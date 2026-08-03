@@ -1,4 +1,7 @@
-from deep_translator import GoogleTranslator
+try:
+    from deep_translator import GoogleTranslator
+except ImportError:  # pragma: no cover - depends on local environment setup
+    GoogleTranslator = None
 
 def translate_to_english(text: str, language: str) -> str:
     """
@@ -7,6 +10,10 @@ def translate_to_english(text: str, language: str) -> str:
     """
     if language == "english":
         return text  # No translation needed
+
+    if GoogleTranslator is None:
+        print("Translation unavailable: deep-translator is not installed.")
+        return text
 
     try:
         translated = GoogleTranslator(

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "extension:build": "pnpm --dir iris-extension build",
-    "extension:dev": "pnpm --dir iris-extension dev",
+    "extension:build": "npm --prefix iris-extension run build",
+    "extension:dev": "npm --prefix iris-extension run dev",
     "app:build": "pnpm --dir iris-app build",
     "app:dev": "pnpm --dir iris-app dev",
     "backend:run": "python iris-backend/app.py"

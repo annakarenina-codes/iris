@@ -1,9 +1,10 @@
 import http from "node:http";
 import { createReadStream, existsSync, statSync } from "node:fs";
-import { extname, join, normalize } from "node:path";
+import { dirname, extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = normalize(join(fileURLToPath(import.meta.url), "..", "..", "dist"));
+const scriptDir = dirname(fileURLToPath(import.meta.url));
+const root = normalize(join(scriptDir, "..", "dist"));
 const port = Number(process.env.PORT || 5173);
 
 const types = {
@@ -37,5 +38,5 @@ const server = http.createServer((request, response) => {
 });
 
 server.listen(port, "127.0.0.1", () => {
-  console.log(`IRIS mockup preview: http://127.0.0.1:${port}/`);
+  console.log(`IRIS extension preview: http://127.0.0.1:${port}/`);
 });

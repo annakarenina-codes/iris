@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IRIS</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup-shell">
+      <header>
+        <div class="iris-mark" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none">
+            <ellipse cx="44" cy="46" rx="30" ry="18" fill="url(#irisPopupGradient)" />
+            <circle cx="50" cy="48" r="20" fill="white" opacity="0.9" />
+            <circle cx="50" cy="48" r="11" fill="url(#irisPopupGradient)" />
+            <line x1="64" y1="62" x2="78" y2="76" stroke="url(#irisPopupGradient)" stroke-width="8" stroke-linecap="round" />
+            <defs>
+              <linearGradient id="irisPopupGradient" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#5B21B6" />
+                <stop offset="0.55" stop-color="#8B5CF6" />
+                <stop offset="1" stop-color="#C4B5FD" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div>
+          <strong>IRIS</strong>
+          <span>Chrome Extension</span>
+        </div>
+      </header>
+
+      <section class="status-card">
+        <span>Backend</span>
+        <strong id="backend-url">Loading...</strong>
+      </section>
+
+      <div class="button-stack">
+        <button id="open-panel" type="button">Open panel</button>
+        <button id="check-selection" type="button">Check selected text</button>
+        <button id="open-options" type="button" class="secondary">Options</button>
+      </div>
+
+      <p id="popup-status" role="status"></p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

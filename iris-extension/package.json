@@ -1,18 +1,15 @@
 {
-  "name": "iris-extension-mockup",
+  "name": "iris-extension",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1 --port 5173",
-    "build": "vite build --base=./",
-    "preview": "vite preview --host 127.0.0.1 --port 5173"
+    "dev": "node scripts/build-extension.mjs",
+    "build": "node scripts/build-extension.mjs",
+    "extension:dev": "node scripts/build-extension.mjs",
+    "extension:build": "node scripts/build-extension.mjs",
+    "preview": "node scripts/serve-dist.mjs"
   },
-  "dependencies": {
-    "@vitejs/plugin-react": "^5.0.0",
-    "vite": "^7.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }

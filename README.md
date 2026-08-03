@@ -1,13 +1,13 @@
 # IRIS Monorepo
 
-IRIS, or Intelligent Real-Time Information Scanner, is organized here as one monorepo with separate projects for the backend, Chrome extension mockup, and Android app mockup.
+IRIS, or Intelligent Real-Time Information Scanner, is organized here as one monorepo with separate projects for the backend, Chrome extension frontend, and Android app mockup.
 
 ## Structure
 
 ```text
 iris/
 ├── iris-backend/      Python Flask backend
-├── iris-extension/    Chrome browser extension frontend mockup
+├── iris-extension/    Chrome browser extension frontend
 └── iris-app/          Android app frontend mockup
 ```
 
@@ -29,9 +29,7 @@ The backend virtual environment was not copied. Recreate it inside `iris-backend
 
 ### `iris-extension`
 
-Copied from the current polished Chrome extension mockup.
-
-This is still the React/Vite mockup version. It can be converted later into the real Chrome extension structure with `manifest.json`, `content.js`, `background.js`, popup files, and icons.
+Manifest V3 Chrome extension frontend for selected-text checks, right-click image OCR checks, toolbar popup controls, and backend configuration.
 
 ### `iris-app`
 

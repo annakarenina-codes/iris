@@ -11,8 +11,16 @@ from __future__ import annotations
 import os
 from typing import Dict, List, Optional
 
-import requests
-from dotenv import load_dotenv
+try:
+    import requests
+except ImportError:  # pragma: no cover - depends on local environment setup
+    requests = None
+
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover - depends on local environment setup
+    def load_dotenv():
+        return False
 
 from pipeline.article_extractor import extract_article_text
 from pipeline.sources import get_all_sources
@@ -44,6 +52,15 @@ def brave_search(query: str, source: Dict[str, object], count: int = RESULTS_PER
     Returns a consistent dictionary whether the request succeeds or fails.
     """
     api_key = _get_api_key()
+    if requests is None:
+        return {
+            "source": source["name"],
+            "query": query,
+            "status": "missing_dependency",
+            "error": "The requests package is not installed.",
+            "results": [],
+        }
+
     if not api_key:
         return {
             "source": source["name"],

@@ -13,7 +13,11 @@ import os
 import re
 from typing import Dict, List, Optional
 
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover - depends on local environment setup
+    def load_dotenv():
+        return False
 
 
 load_dotenv()

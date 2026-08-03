@@ -6,6 +6,7 @@ dependencies are installed.
 """
 
 from pathlib import Path
+from io import BytesIO
 import sys
 
 
@@ -246,6 +247,21 @@ def run_checks() -> None:
         assert payload["verdict"] == "Verified"
         assert payload["claim_count"] == 1
         assert "ocr" in payload["debug"]
+
+        multipart_response = client.post(
+            "/verify-image",
+            data={
+                "image": (BytesIO(decoded["image_bytes"]), "claim.png"),
+                "debug": "true",
+            },
+            content_type="multipart/form-data",
+        )
+        multipart_payload = multipart_response.get_json()
+
+        assert multipart_response.status_code == 200
+        assert multipart_payload["input_type"] == "image"
+        assert multipart_payload["ocr_status"] == "ok"
+        assert "ocr" in multipart_payload["debug"]
 
         bad_response = client.post(
             "/verify-image",

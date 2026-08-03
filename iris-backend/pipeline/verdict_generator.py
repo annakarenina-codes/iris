@@ -11,7 +11,16 @@ import os
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from sentence_transformers import SentenceTransformer, util
+try:
+    from sentence_transformers import SentenceTransformer, util
+except ImportError:  # pragma: no cover - depends on local ML environment setup
+    SentenceTransformer = None
+
+    class _MissingSentenceTransformerUtil:
+        def cos_sim(self, *_args, **_kwargs):
+            raise RuntimeError("sentence-transformers is not installed.")
+
+    util = _MissingSentenceTransformerUtil()
 
 
 MODEL_NAME = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
@@ -21,12 +30,15 @@ VERA_PRIORITY_BONUS = 0.03
 DEFAULT_MODEL_CACHE = Path(__file__).resolve().parents[1] / ".hf_cache"
 os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")
 
-_model: Optional[SentenceTransformer] = None
+_model: Optional[object] = None
 
 
-def get_model() -> SentenceTransformer:
+def get_model() -> object:
     """Loads the embedding model once, then reuses it for future requests."""
     global _model
+
+    if SentenceTransformer is None:
+        raise RuntimeError("sentence-transformers is not installed.")
 
     if _model is None:
         cache_folder = os.getenv("IRIS_MODEL_CACHE", str(DEFAULT_MODEL_CACHE))
@@ -129,7 +141,22 @@ def generate_verdict(claim: str, articles: List[Dict[str, object]]) -> Dict[str,
             },
         }
 
-    model = get_model()
+    try:
+        model = get_model()
+    except RuntimeError as error:
+        return {
+            "verdict": "Not Found",
+            "reason": f"Semantic similarity scoring is unavailable: {error}",
+            "corroboration_count": 0,
+            "primary_evidence": None,
+            "supporting_sources": [],
+            "similarity_thresholds": {
+                "verified": VERIFIED_THRESHOLD,
+                "partial": PARTIAL_THRESHOLD,
+            },
+            "scoring_status": "missing_dependency",
+        }
+
     claim_embedding = model.encode(claim, convert_to_tensor=True)
 
     scored_articles = [

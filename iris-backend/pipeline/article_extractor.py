@@ -11,8 +11,15 @@ from __future__ import annotations
 import re
 from typing import Dict
 
-import requests
-from bs4 import BeautifulSoup
+try:
+    import requests
+except ImportError:  # pragma: no cover - depends on local environment setup
+    requests = None
+
+try:
+    from bs4 import BeautifulSoup
+except ImportError:  # pragma: no cover - depends on local environment setup
+    BeautifulSoup = None
 
 
 REQUEST_TIMEOUT_SECONDS = 5
@@ -36,6 +43,26 @@ def extract_article_text(url: str) -> Dict[str, object]:
     Returns a dictionary with an extraction status instead of raising errors, so
     app.py can continue even if one article fails.
     """
+    if requests is None:
+        return {
+            "url": url,
+            "status": "error",
+            "error": "The requests package is not installed.",
+            "title": None,
+            "text": "",
+            "word_count": 0,
+        }
+
+    if BeautifulSoup is None:
+        return {
+            "url": url,
+            "status": "error",
+            "error": "The beautifulsoup4 package is not installed.",
+            "title": None,
+            "text": "",
+            "word_count": 0,
+        }
+
     headers = {
         "User-Agent": (
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "

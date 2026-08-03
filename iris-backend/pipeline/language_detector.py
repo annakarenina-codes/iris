@@ -1,16 +1,56 @@
-from lingua import Language, LanguageDetectorBuilder
+try:
+    from lingua import Language, LanguageDetectorBuilder
+except ImportError:  # pragma: no cover - depends on local environment setup
+    Language = None
+    LanguageDetectorBuilder = None
 
 # Build detector supporting English and Tagalog
-detector = LanguageDetectorBuilder.from_languages(
-    Language.ENGLISH,
-    Language.TAGALOG
-).build()
+detector = None
+if LanguageDetectorBuilder is not None:
+    detector = LanguageDetectorBuilder.from_languages(
+        Language.ENGLISH,
+        Language.TAGALOG
+    ).build()
+
+TAGALOG_MARKERS = {
+    "ang",
+    "mga",
+    "ng",
+    "sa",
+    "si",
+    "nila",
+    "tayo",
+    "dapat",
+    "ayon",
+    "sinabi",
+    "panalo",
+    "parin",
+}
+
+
+def _fallback_detect_language(text: str) -> str:
+    words = {
+        word.strip(".,!?;:()[]{}\"'`").lower()
+        for word in text.split()
+    }
+    tagalog_hits = words.intersection(TAGALOG_MARKERS)
+
+    if tagalog_hits and len(tagalog_hits) >= 2:
+        return "taglish"
+
+    if tagalog_hits:
+        return "tagalog"
+
+    return "english"
 
 def detect_language(text: str) -> str:
     """
     Detects whether the input text is English, Tagalog, or Taglish.
     Taglish is identified when confidence for both languages is significant.
     """
+    if detector is None:
+        return _fallback_detect_language(text)
+
     try:
         results = detector.compute_language_confidence_values(text)
 

@@ -441,7 +441,7 @@ function ResultPanel({ claimText, claimMode, onDismiss }) {
         <div className="verdict-mobile">
           <span>⚠️</span>
           <div>
-            <strong>Partially Matched</strong>
+            <strong>Partially Verified</strong>
             <p>Survey data found, but the ranking is not directly confirmed.</p>
           </div>
         </div>
