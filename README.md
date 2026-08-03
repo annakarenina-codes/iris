@@ -15,8 +15,6 @@ iris/
 
 ### `iris-backend`
 
-Copied from `C:\Users\aquarius12\iris-backend`.
-
 Key files:
 
 - `app.py`
