@@ -8,6 +8,7 @@ text when the translated English query returns too few results.
 
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
 import os
 from typing import Dict, List, Optional
 
@@ -28,11 +29,29 @@ from pipeline.sources import get_all_sources
 
 load_dotenv()
 
+
+def _env_int(name: str, default: int, minimum: int = 1) -> int:
+    """Reads a positive integer environment setting with a safe default."""
+    try:
+        value = int(os.getenv(name, default))
+    except (TypeError, ValueError):
+        return default
+
+    return max(minimum, value)
+
+
+def _worker_count(configured_workers: int, item_count: int) -> int:
+    """Caps worker count to available work while keeping at least one worker."""
+    return min(max(1, configured_workers), max(1, item_count))
+
+
 BRAVE_SEARCH_URL = "https://api.search.brave.com/res/v1/web/search"
 REQUEST_TIMEOUT_SECONDS = 10
 RESULTS_PER_SOURCE = 3
 MIN_RESULTS_BEFORE_BACKUP = 2
 MAX_ARTICLES_PER_SOURCE = 2
+MAX_SEARCH_WORKERS = _env_int("IRIS_SEARCH_WORKERS", 7)
+MAX_ARTICLE_EXTRACTION_WORKERS = _env_int("IRIS_ARTICLE_WORKERS", 8)
 
 
 def _get_api_key() -> Optional[str]:
@@ -133,14 +152,41 @@ def brave_search(query: str, source: Dict[str, object], count: int = RESULTS_PER
     }
 
 
+def _search_error_report(query: str, source: Dict[str, object], error: Exception) -> Dict[str, object]:
+    source_name = source.get("name", "Unknown source")
+    site_query = source.get("site_query", "")
+
+    return {
+        "source": source_name,
+        "query": _build_domain_query(query, str(site_query)),
+        "status": "error",
+        "error": f"Search request failed unexpectedly: {error}",
+        "results": [],
+    }
+
+
+def _safe_brave_search(query: str, source: Dict[str, object]) -> Dict[str, object]:
+    try:
+        return brave_search(query, source)
+    except Exception as error:  # pragma: no cover - defensive safety net
+        return _search_error_report(query, source, error)
+
+
 def search_sources(query: str) -> Dict[str, object]:
     """Searches VERA Files first, then the six approved Philippine sources."""
-    source_reports = []
+    sources = get_all_sources()
     all_results = []
 
-    for source in get_all_sources():
-        report = brave_search(query, source)
-        source_reports.append(report)
+    with ThreadPoolExecutor(
+        max_workers=_worker_count(MAX_SEARCH_WORKERS, len(sources))
+    ) as executor:
+        futures = [
+            executor.submit(_safe_brave_search, query, source)
+            for source in sources
+        ]
+        source_reports = [future.result() for future in futures]
+
+    for report in source_reports:
         all_results.extend(report["results"])
 
     return {
@@ -242,6 +288,65 @@ def _build_source_summary(search_result: Dict[str, object], articles: List[Dict[
     return summary
 
 
+def _article_error_result(url: str, error: Exception) -> Dict[str, object]:
+    return {
+        "url": url,
+        "status": "error",
+        "error": f"Could not extract article unexpectedly: {error}",
+        "title": None,
+        "text": "",
+        "word_count": 0,
+    }
+
+
+def _build_article_from_result(result: Dict[str, object]) -> Dict[str, object]:
+    url = result["url"]
+
+    try:
+        extraction = extract_article_text(url)
+    except Exception as error:  # pragma: no cover - defensive safety net
+        extraction = _article_error_result(url, error)
+
+    return {
+        "source": result.get("source"),
+        "title": extraction.get("title") or result.get("title"),
+        "url": url,
+        "description": result.get("description"),
+        "status": extraction.get("status"),
+        "word_count": extraction.get("word_count", 0),
+        "error": extraction.get("error"),
+        "text": extraction.get("text", ""),
+    }
+
+
+def _article_targets_by_source_order(
+    search_result: Dict[str, object],
+    max_articles_per_source: int,
+) -> List[Dict[str, object]]:
+    grouped_results = _group_results_by_source(search_result)
+    article_targets: List[Dict[str, object]] = []
+
+    for source_name in _get_source_names(search_result):
+        source_results = grouped_results.get(source_name, [])
+        article_targets.extend(source_results[:max_articles_per_source])
+
+    return article_targets
+
+
+def _extract_articles_parallel(article_targets: List[Dict[str, object]]) -> List[Dict[str, object]]:
+    if not article_targets:
+        return []
+
+    with ThreadPoolExecutor(
+        max_workers=_worker_count(MAX_ARTICLE_EXTRACTION_WORKERS, len(article_targets))
+    ) as executor:
+        futures = [
+            executor.submit(_build_article_from_result, result)
+            for result in article_targets
+        ]
+        return [future.result() for future in futures]
+
+
 def search_and_extract(
     primary_query: str,
     backup_query: Optional[str] = None,
@@ -254,28 +359,11 @@ def search_and_extract(
     extractor also checks article links from the six approved news sources.
     """
     search_result = search_with_backup(primary_query, backup_query)
-    grouped_results = _group_results_by_source(search_result)
-
-    articles: List[Dict[str, object]] = []
-
-    for source_name in _get_source_names(search_result):
-        source_results = grouped_results.get(source_name, [])
-
-        for result in source_results[:max_articles_per_source]:
-            url = result["url"]
-            extraction = extract_article_text(url)
-
-            article = {
-                "source": result["source"],
-                "title": extraction["title"] or result["title"],
-                "url": url,
-                "description": result["description"],
-                "status": extraction["status"],
-                "word_count": extraction["word_count"],
-                "error": extraction["error"],
-                "text": extraction["text"],
-            }
-            articles.append(article)
+    article_targets = _article_targets_by_source_order(
+        search_result,
+        max_articles_per_source,
+    )
+    articles = _extract_articles_parallel(article_targets)
 
     extracted_articles = [article for article in articles if article["status"] == "extracted"]
 

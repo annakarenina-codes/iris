@@ -10,11 +10,13 @@ credits.
 
 from pathlib import Path
 import sys
+import time
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
+import pipeline.search as search_module
 from pipeline.sources import get_all_sources, get_news_sources, get_vera_source
 from pipeline.search import (
     _build_domain_query,
@@ -64,6 +66,121 @@ def run_checks() -> None:
     assert summary[0]["source"] == "VERA Files"
     assert summary[0]["results_found"] == 2
     assert summary[0]["articles_extracted"] == 1
+
+    originals = {
+        "get_all_sources": search_module.get_all_sources,
+        "brave_search": search_module.brave_search,
+        "search_with_backup": search_module.search_with_backup,
+        "extract_article_text": search_module.extract_article_text,
+    }
+
+    try:
+        fake_sources = [
+            {"name": "VERA Files", "site_query": "site:verafiles.org"},
+            {"name": "GMA News", "site_query": "site:gmanetwork.com/news"},
+            {"name": "Philippine Star", "site_query": "site:philstar.com"},
+        ]
+
+        def fake_brave_search(query, source):
+            if source["name"] == "VERA Files":
+                time.sleep(0.03)
+            return {
+                "source": source["name"],
+                "query": f"{query} {source['site_query']}",
+                "status": "ok",
+                "error": None,
+                "results": [
+                    {
+                        "source": source["name"],
+                        "title": f"{source['name']} result",
+                        "url": f"https://example.com/{source['name'].lower().replace(' ', '-')}",
+                        "description": "Fake result.",
+                    }
+                ],
+            }
+
+        search_module.get_all_sources = lambda: fake_sources
+        search_module.brave_search = fake_brave_search
+        parallel_search = search_module.search_sources("sample claim")
+
+        assert [report["source"] for report in parallel_search["source_reports"]] == [
+            "VERA Files",
+            "GMA News",
+            "Philippine Star",
+        ]
+        assert [result["source"] for result in parallel_search["results"]] == [
+            "VERA Files",
+            "GMA News",
+            "Philippine Star",
+        ]
+
+        fake_parallel_search_result = {
+            "primary_query": "sample claim",
+            "backup_query_used": False,
+            "total_results": 3,
+            "results": [
+                {
+                    "source": "VERA Files",
+                    "title": "VERA A",
+                    "url": "https://verafiles.org/a",
+                    "description": "A",
+                },
+                {
+                    "source": "VERA Files",
+                    "title": "VERA B",
+                    "url": "https://verafiles.org/b",
+                    "description": "B",
+                },
+                {
+                    "source": "GMA News",
+                    "title": "GMA A",
+                    "url": "https://gmanetwork.com/news/a",
+                    "description": "C",
+                },
+            ],
+            "searches": [
+                {
+                    "source_reports": [
+                        {"source": "VERA Files"},
+                        {"source": "GMA News"},
+                    ]
+                }
+            ],
+        }
+
+        def fake_extract_article_text(url):
+            if url.endswith("/a"):
+                time.sleep(0.03)
+            return {
+                "url": url,
+                "status": "extracted",
+                "error": None,
+                "title": f"Extracted {url}",
+                "text": "Readable article text " * 10,
+                "word_count": 120,
+            }
+
+        search_module.search_with_backup = lambda primary_query, backup_query=None: fake_parallel_search_result
+        search_module.extract_article_text = fake_extract_article_text
+
+        parallel_extract = search_module.search_and_extract(
+            "sample claim",
+            max_articles_per_source=1,
+        )
+
+        assert parallel_extract["searched_articles"] == 2
+        assert parallel_extract["extracted_articles"] == 2
+        assert [article["url"] for article in parallel_extract["articles"]] == [
+            "https://verafiles.org/a",
+            "https://gmanetwork.com/news/a",
+        ]
+        assert parallel_extract["source_summary"][0]["source"] == "VERA Files"
+        assert parallel_extract["source_summary"][0]["articles_checked"] == 1
+    finally:
+        search_module.get_all_sources = originals["get_all_sources"]
+        search_module.brave_search = originals["brave_search"]
+        search_module.search_with_backup = originals["search_with_backup"]
+        search_module.extract_article_text = originals["extract_article_text"]
 
     print("All Week 2 helper checks passed.")
     print("Approved sources checked: 7 total, VERA Files first.")
