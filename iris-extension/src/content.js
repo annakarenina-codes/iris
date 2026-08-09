@@ -53,6 +53,8 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     settings: { ...STORAGE_DEFAULTS },
     position: null,
     dragging: null,
+    dropActive: false,
+    dropDepth: 0,
     suppressClick: false,
     ignoreSelectionClearUntil: 0,
     ignoreInternalSelectionUntil: 0,
@@ -355,27 +357,57 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     if (!Array.isArray(rawSources)) return [];
 
     const flattened = [];
+    const addSource = (source) => {
+      if (!source || !isValidHttpUrl(source.url)) return;
+      if (source.status && source.status !== "extracted") return;
+
+      flattened.push({
+        outlet: source.outlet || source.source || "Approved source",
+        date: source.date || source.published_date || "",
+        title: source.title || source.url,
+        url: source.url.trim()
+      });
+    };
+
     for (const item of rawSources) {
       if (Array.isArray(item?.articles)) {
         for (const article of item.articles) {
-          flattened.push({
-            outlet: item.source || article.source || article.outlet || "Approved source",
+          addSource({
+            outlet: item.source || article.source || article.outlet,
             date: article.date || article.published_date || "",
-            title: article.title || article.url || "Untitled article",
-            url: article.url || ""
+            title: article.title || article.url,
+            url: article.url || "",
+            status: article.status
           });
         }
       } else {
-        flattened.push({
-          outlet: item.source || item.outlet || "Approved source",
+        addSource({
+          outlet: item.source || item.outlet,
           date: item.date || item.published_date || "",
-          title: item.title || item.url || "Untitled article",
-          url: item.url || ""
+          title: item.title || item.url,
+          url: item.url || "",
+          status: item.status
         });
       }
     }
 
-    return flattened.filter((source) => source.title || source.url);
+    const seenUrls = new Set();
+    return flattened.filter((source) => {
+      const normalizedUrl = source.url.toLowerCase().replace(/#.*$/, "").replace(/\/$/, "");
+      if (seenUrls.has(normalizedUrl)) return false;
+
+      seenUrls.add(normalizedUrl);
+      return true;
+    });
+  }
+
+  function isValidHttpUrl(value) {
+    try {
+      const parsedUrl = new URL(String(value || "").trim());
+      return ["http:", "https:"].includes(parsedUrl.protocol) && Boolean(parsedUrl.hostname);
+    } catch {
+      return false;
+    }
   }
 
   function summarizeIgnoredSegments(segments) {
@@ -405,6 +437,17 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     const verdict = rawClaim?.verdict || "Not Found";
     const style = getVerdictStyle(verdict);
     const corroboration = rawClaim?.corroboration || {};
+    const sources = flattenSources(
+      rawClaim?.evidence_sources ||
+      rawClaim?.supporting_sources ||
+      rawClaim?.sources ||
+      topLevelSources ||
+      []
+    );
+    const rawEvidenceCount = Number(corroboration.count ?? rawClaim?.corroboration_count ?? sources.length);
+    const evidenceCount = Number.isFinite(rawEvidenceCount)
+      ? Math.min(rawEvidenceCount, sources.length)
+      : sources.length;
 
     return {
       claim_id: rawClaim?.claim_id || 1,
@@ -416,10 +459,10 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         ...style
       },
       corroboration: {
-        count: Number(corroboration.count ?? rawClaim?.corroboration_count ?? 0),
-        total: Number(corroboration.total ?? 6)
+        count: evidenceCount,
+        total: Number(corroboration.total ?? 7)
       },
-      sources: flattenSources(rawClaim?.sources || topLevelSources || [])
+      sources
     };
   }
 
@@ -456,11 +499,12 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   function sourceCards(sources) {
-    if (!sources.length) {
-      return '<div class="source-empty">No direct article match found.</div>';
+    const validSources = sources.filter((source) => isValidHttpUrl(source.url));
+    if (!validSources.length) {
+      return '<div class="source-empty">No valid evidence link found.</div>';
     }
 
-    return sources
+    return validSources
       .map((source) => {
         const date = source.date ? `<time>${escapeHtml(source.date)}</time>` : "<time></time>";
         return `
@@ -538,11 +582,11 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         </div>
 
         <div class="corroboration-row">
-          <strong>${claim.corroboration.count} of ${claim.corroboration.total}</strong>
-          <span>sources returned related articles</span>
+          <strong>${claim.corroboration.count}</strong>
+          <span>${claim.corroboration.count === 1 ? "evidence source used" : "evidence sources used"}</span>
         </div>
 
-        <div class="related-label">Related Articles</div>
+        <div class="related-label">Evidence Sources</div>
         <div class="source-list">${sourceCards(claim.sources)}</div>
         ${state.claimIndex === result.claims.length - 1 ? skippedNote(result.ignored_segments) : ""}
       </div>
@@ -576,7 +620,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
           <strong>Text detected</strong>
         </div>
         <blockquote data-role="detected-claim">${escapeHtml(truncateText(state.selectedText))}</blockquote>
-        <p class="supporting-note">IRIS will check this claim against 6 credible Philippine news sources and VERA Files.</p>
+        <p class="supporting-note">IRIS will check this claim against 7 credible Philippine news sources and VERA Files.</p>
         <button class="iris-button iris-button--primary" type="button" data-action="check-text">
           ${irisEye(18, true)}
           Check with IRIS
@@ -621,7 +665,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         <blockquote>${escapeHtml(text)}</blockquote>
         <div class="scan-dots" aria-hidden="true"><span></span><span></span><span></span></div>
         <h2>Scanning sources...</h2>
-        <p>Checking GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, and VERA Files.</p>
+        <p>Checking ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, and VERA Files.</p>
         <div class="progress-track" aria-hidden="true"><span></span></div>
       </section>
     `;
@@ -753,12 +797,12 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         <input id="iris-image-input" type="file" accept="image/*" hidden />
         ${
           state.collapsed
-            ? `<button class="iris-pill iris-extension-shell ${state.dragging ? "is-dragging" : ""}" type="button" aria-label="Open IRIS panel" data-theme="${theme}" style="--iris-scale:${scale}" data-drag-handle data-action="expand">
+            ? `<button class="iris-pill iris-extension-shell ${state.dragging ? "is-dragging" : ""} ${state.dropActive ? "is-drop-target" : ""}" type="button" aria-label="Open IRIS panel" data-theme="${theme}" style="--iris-scale:${scale}" data-drag-handle data-action="expand">
                 ${irisEye(22)}
                 <span>IRIS</span>
                 <i class="iris-pill__status ${statusClass}" aria-hidden="true"></i>
               </button>`
-            : `<aside class="iris-panel iris-extension-shell ${state.dragging ? "is-dragging" : ""}" data-theme="${theme}" style="--iris-scale:${scale}" aria-label="IRIS fact-check panel">
+            : `<aside class="iris-panel iris-extension-shell ${state.dragging ? "is-dragging" : ""} ${state.dropActive ? "is-drop-target" : ""}" data-theme="${theme}" style="--iris-scale:${scale}" aria-label="IRIS fact-check panel">
                 <header class="iris-panel__header" data-drag-handle>
                   <div class="iris-panel__brand">
                     ${irisEye(28)}
@@ -781,6 +825,10 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         }
       </div>
     `;
+
+    if (state.collapsed && state.dropActive) {
+      shadow.querySelector(".iris-pill")?.classList.add("is-drop-target");
+    }
   }
 
   function applyPositionDuringDrag(x, y) {
@@ -901,12 +949,16 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   async function runImageUrlCheck(imageUrl) {
+    return runImageUrlDropCheck(imageUrl, "Image from page");
+  }
+
+  async function runImageUrlDropCheck(imageUrl, imageName = "Image from page") {
     state.panelOpenedByAction = true;
     state.claimMode = "photo";
     state.selectedText = "Image selected for OCR.";
     state.selectedImage = {
       dataUrl: "",
-      name: "Image from page"
+      name: imageName
     };
     state.collapsed = false;
     setStatus("scanning");
@@ -914,14 +966,15 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     try {
       const response = await sendRuntimeMessage({
         type: "IRIS_FETCH_IMAGE_AS_DATA_URL",
-        imageUrl
+        imageUrl,
+        includeCredentials: true
       });
 
       if (!response?.ok) {
         throw new Error(response?.error || "IRIS could not read the selected image from the page.");
       }
 
-      await runImageCheck(response.dataUrl, "Image from page");
+      await runImageCheck(response.dataUrl, imageName);
     } catch (error) {
       state.errorMessage = error.message;
       setStatus("error");
@@ -935,6 +988,193 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       reader.onerror = () => reject(new Error("IRIS could not read the selected image file."));
       reader.readAsDataURL(file);
     });
+  }
+
+  function isImageFile(file) {
+    if (!file) return false;
+    if (String(file.type || "").startsWith("image/")) return true;
+
+    return /\.(png|jpe?g|webp|gif|bmp|tiff?|heic|heif)$/i.test(file.name || "");
+  }
+
+  function dragHasType(event, type) {
+    return Array.from(event.dataTransfer?.types || []).includes(type);
+  }
+
+  function dragHasLocalFiles(event) {
+    return dragHasType(event, "Files");
+  }
+
+  function dragMayContainWebImage(event) {
+    return (
+      dragHasType(event, "text/uri-list") ||
+      dragHasType(event, "text/html") ||
+      dragHasType(event, "text/plain")
+    );
+  }
+
+  function dragMayContainImage(event) {
+    if (dragMayContainWebImage(event)) return true;
+    if (!dragHasLocalFiles(event)) return false;
+
+    const items = Array.from(event.dataTransfer?.items || []);
+    if (!items.length) return true;
+
+    return items.some((item) => (
+      item.kind === "file" &&
+      (!item.type || String(item.type).startsWith("image/"))
+    ));
+  }
+
+  function getDroppedImageFile(dataTransfer) {
+    return Array.from(dataTransfer?.files || []).find(isImageFile) || null;
+  }
+
+  function normalizeDroppedUrl(value) {
+    const candidate = String(value || "").trim();
+    if (!candidate) return "";
+    if (/^data:image\//i.test(candidate)) return candidate;
+    if (/^blob:/i.test(candidate)) return candidate;
+
+    try {
+      const url = new URL(candidate, document.baseURI);
+      if (!["http:", "https:"].includes(url.protocol)) return "";
+      return url.href;
+    } catch (_error) {
+      return "";
+    }
+  }
+
+  function firstUriListUrl(value) {
+    return String(value || "")
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .find((line) => line && !line.startsWith("#")) || "";
+  }
+
+  function firstSrcsetUrl(value) {
+    const firstCandidate = String(value || "").split(",")[0] || "";
+    return firstCandidate.trim().split(/\s+/)[0] || "";
+  }
+
+  function extractImageUrlFromHtml(html) {
+    if (!html) return "";
+
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const image = doc.querySelector("img[src], image[href], image[xlink\\:href]");
+    const source = doc.querySelector("source[srcset]");
+    const ogImage = doc.querySelector('meta[property="og:image"], meta[name="twitter:image"]');
+    const link = doc.querySelector("a[href]");
+
+    const candidates = [
+      image?.getAttribute("src"),
+      image?.getAttribute("href"),
+      image?.getAttribute("xlink:href"),
+      firstSrcsetUrl(source?.getAttribute("srcset")),
+      ogImage?.getAttribute("content"),
+      link?.getAttribute("href"),
+      ...Array.from(html.matchAll(/url\((['"]?)(.*?)\1\)/gi)).map((match) => match[2]),
+    ];
+
+    for (const candidate of candidates) {
+      const url = normalizeDroppedUrl(candidate);
+      if (url) return url;
+    }
+
+    return "";
+  }
+
+  function extractImageUrlFromPlainText(value) {
+    const text = String(value || "").trim();
+    if (!text) return "";
+
+    const directUrl = normalizeDroppedUrl(text);
+    if (directUrl) return directUrl;
+
+    const urlMatch = text.match(/https?:\/\/[^\s"'<>]+/i);
+    return normalizeDroppedUrl(urlMatch?.[0]);
+  }
+
+  function getDroppedImageUrl(dataTransfer) {
+    const uriListUrl = normalizeDroppedUrl(firstUriListUrl(dataTransfer?.getData("text/uri-list")));
+    if (uriListUrl) return uriListUrl;
+
+    const htmlUrl = extractImageUrlFromHtml(dataTransfer?.getData("text/html"));
+    if (htmlUrl) return htmlUrl;
+
+    return extractImageUrlFromPlainText(dataTransfer?.getData("text/plain"));
+  }
+
+  async function readBlobUrlAsDataUrl(url) {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Image download failed with HTTP ${response.status}.`);
+    }
+
+    const blob = await response.blob();
+    return readFileAsDataUrl(blob);
+  }
+
+  function setDropTargetActive(active) {
+    state.dropActive = active;
+    shadow
+      .querySelector(".iris-panel, .iris-pill")
+      ?.classList.toggle("is-drop-target", active);
+  }
+
+  function showImageDropError(message) {
+    state.panelOpenedByAction = true;
+    state.collapsed = false;
+    state.errorMessage = message;
+    setStatus("error");
+  }
+
+  async function handleDroppedImageFile(file) {
+    if (!file) {
+      showImageDropError("Drop an image file or a webpage image onto IRIS.");
+      return;
+    }
+
+    try {
+      const dataUrl = await readFileAsDataUrl(file);
+      await runImageCheck(dataUrl, file.name || "Dropped image");
+    } catch (error) {
+      showImageDropError(error.message);
+    }
+  }
+
+  async function handleDroppedImageUrl(url) {
+    if (!url) {
+      showImageDropError("Drop an image file or a webpage image onto IRIS.");
+      return;
+    }
+
+    try {
+      if (/^data:image\//i.test(url)) {
+        await runImageCheck(url, "Dragged image");
+        return;
+      }
+
+      if (/^blob:/i.test(url)) {
+        const dataUrl = await readBlobUrlAsDataUrl(url);
+        await runImageCheck(dataUrl, "Dragged image");
+        return;
+      }
+
+      await runImageUrlDropCheck(url, "Dragged image");
+    } catch (error) {
+      showImageDropError(error.message);
+    }
+  }
+
+  function handleDroppedImage(dataTransfer) {
+    const file = getDroppedImageFile(dataTransfer);
+    if (file) {
+      handleDroppedImageFile(file);
+      return;
+    }
+
+    handleDroppedImageUrl(getDroppedImageUrl(dataTransfer));
   }
 
   async function handleImageFile(file) {
@@ -1151,7 +1391,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
     if (action === "open-source") {
       const url = actionTarget.dataset.url;
-      if (url) window.open(url, "_blank", "noopener,noreferrer");
+      if (isValidHttpUrl(url)) window.open(url, "_blank", "noopener,noreferrer");
     }
   }
 
@@ -1160,6 +1400,44 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       handleImageFile(event.target.files?.[0]);
       event.target.value = "";
     }
+  }
+
+  function handleLocalImageDragEnter(event) {
+    if (!dragMayContainImage(event)) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    state.dropDepth += 1;
+    setDropTargetActive(true);
+    if (event.dataTransfer) event.dataTransfer.dropEffect = "copy";
+  }
+
+  function handleLocalImageDragOver(event) {
+    if (!dragMayContainImage(event)) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    setDropTargetActive(true);
+    if (event.dataTransfer) event.dataTransfer.dropEffect = "copy";
+  }
+
+  function handleLocalImageDragLeave(event) {
+    if (!dragHasLocalFiles(event) && !dragMayContainWebImage(event)) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    state.dropDepth = Math.max(0, state.dropDepth - 1);
+    if (state.dropDepth === 0) setDropTargetActive(false);
+  }
+
+  function handleLocalImageDrop(event) {
+    if (!dragHasLocalFiles(event) && !dragMayContainWebImage(event)) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    state.dropDepth = 0;
+    setDropTargetActive(false);
+    handleDroppedImage(event.dataTransfer);
   }
 
   function preserveSelectionForPanelInteraction() {
@@ -1258,6 +1536,10 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   root.addEventListener("pointercancel", preserveSelectionForPanelInteraction, true);
   root.addEventListener("click", handleClick);
   root.addEventListener("change", handleChange);
+  root.addEventListener("dragenter", handleLocalImageDragEnter);
+  root.addEventListener("dragover", handleLocalImageDragOver);
+  root.addEventListener("dragleave", handleLocalImageDragLeave);
+  root.addEventListener("drop", handleLocalImageDrop);
   root.addEventListener("pointerdown", startDrag);
   root.addEventListener("pointermove", moveDrag);
   root.addEventListener("pointerup", endDrag);

@@ -2,7 +2,7 @@
 Approved Philippine verification sources for IRIS.
 
 VERA Files is searched first because it is the priority fact-checking layer.
-The other six sources are searched after VERA Files.
+The other seven sources are searched after VERA Files.
 """
 
 VERA_SOURCE = {
@@ -13,6 +13,11 @@ VERA_SOURCE = {
 }
 
 NEWS_SOURCES = [
+    {
+        "name": "ABS-CBN News",
+        "domain": "abs-cbn.com/news",
+        "site_query": "site:abs-cbn.com/news",
+    },
     {
         "name": "GMA News",
         "domain": "gmanetwork.com/news",
@@ -54,10 +59,10 @@ def get_vera_source():
 
 
 def get_news_sources():
-    """Returns the six approved Philippine news source configurations."""
+    """Returns the seven approved Philippine news source configurations."""
     return NEWS_SOURCES
 
 
 def get_all_sources():
-    """Returns VERA Files first, followed by the six approved sources."""
+    """Returns VERA Files first, followed by the seven approved sources."""
     return ALL_SOURCES

@@ -21,6 +21,7 @@ npm run build
 - Right-click context menu for selected text.
 - Right-click context menu for images, routed to `/verify-image`.
 - Manual image upload from the floating panel, routed to `/verify-image`.
+- Local and webpage image drag-and-drop onto the floating panel, routed to `/verify-image`.
 - Toolbar popup with Open panel, Check selected text, and Options shortcuts.
 - Options page for backend URL, panel visibility, theme, font size, and debug mode.
 

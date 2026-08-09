@@ -119,8 +119,8 @@ function HomeScreen({ enabled, onToggle }) {
     },
     {
       icon: "news",
-      title: "6 PH news sources",
-      desc: "GMA, Inquirer, PhilStar, MB, PNA, PIA, plus VERA Files for verified fact-checks.",
+      title: "7 PH news sources",
+      desc: "ABS-CBN, GMA, Inquirer, PhilStar, MB, PNA, PIA, plus VERA Files for verified fact-checks.",
     },
   ];
 
@@ -282,11 +282,13 @@ function SelectionToolbar({ onCheck }) {
 function ScanningCard({ claimText }) {
   const rows = [
     ["VERA Files", "done"],
+    ["ABS-CBN News", "done"],
     ["GMA Network", "done"],
     ["Inquirer", "done"],
     ["PhilStar", "active"],
     ["Manila Bulletin", "waiting"],
-    ["PNA + PIA", "waiting"],
+    ["PNA", "waiting"],
+    ["PIA", "waiting"],
   ];
 
   return (
@@ -447,7 +449,7 @@ function ResultPanel({ claimText, claimMode, onDismiss }) {
         </div>
 
         <div className="corroboration-mobile">
-          <strong>2 of 6</strong>
+          <strong>2 of 7</strong>
           <span>sources matched</span>
         </div>
 

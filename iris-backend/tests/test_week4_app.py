@@ -100,19 +100,21 @@ def _fake_search_result():
 
 
 def _fake_verdict(claim, articles):
+    evidence = {
+        "source": "GMA News",
+        "title": "DOH reports dengue cases",
+        "url": "https://example.com/dengue",
+        "similarity_score": 0.8,
+        "status": "extracted",
+        "word_count": 80,
+    }
+
     return {
         "verdict": "Partially Verified",
         "reason": f"Fake similarity result for: {claim}",
         "corroboration_count": 1,
-        "primary_evidence": {
-            "source": "GMA News",
-            "title": "DOH reports dengue cases",
-            "url": "https://example.com/dengue",
-            "similarity_score": 0.8,
-            "status": "extracted",
-            "word_count": 80,
-        },
-        "supporting_sources": [],
+        "primary_evidence": evidence,
+        "supporting_sources": [evidence],
         "similarity_thresholds": {
             "verified": 0.85,
             "partial": 0.5,
@@ -196,6 +198,164 @@ def run_checks() -> None:
         assert len(payload["claims"]) == 2
         assert payload["claims"][0]["politically_sensitive"] is False
         assert payload["claims"][1]["politically_sensitive"] is True
+        assert payload["claims"][0]["sources"] == [
+            {
+                "source": "GMA News",
+                "title": "DOH reports dengue cases",
+                "url": "https://example.com/dengue",
+                "status": "extracted",
+                "word_count": 80,
+                "evidence_method": "semantic_similarity",
+                "similarity_score": 0.8,
+            }
+        ]
+
+        unsafe_evidence = {
+            "source": "GMA News",
+            "title": "DOH reports dengue cases",
+            "url": "javascript:alert(1)",
+            "similarity_score": 0.9,
+            "status": "extracted",
+            "word_count": 80,
+        }
+        iris_app.generate_verdict = lambda claim, articles: {
+            "verdict": "Verified",
+            "reason": "Unsafe fake evidence should not be trusted.",
+            "corroboration_count": 1,
+            "primary_evidence": unsafe_evidence,
+            "supporting_sources": [unsafe_evidence],
+            "similarity_thresholds": {
+                "verified": 0.85,
+                "partial": 0.5,
+            },
+        }
+        unsafe_response = client.post(
+            "/verify",
+            json={
+                "text": "DOH may bagong dengue cases. Nag-announce ang mayor ng flood aid."
+            },
+        )
+        unsafe_payload = unsafe_response.get_json()
+
+        assert unsafe_response.status_code == 200
+        assert unsafe_payload["claims"][0]["verdict"] == "Not Found"
+        assert unsafe_payload["claims"][0]["sources"] == []
+
+        iris_app.generate_verdict = _fake_verdict
+
+        attributed_claim = {
+            "claim_id": 1,
+            "claim_text": (
+                "Cybersecurity and technology expert Art Samaniego Jr. made the "
+                "argument in an interview on DZRH News program \"Special on Saturday\" "
+                "on July 4, citing research by the Oxford Internet Institute showing "
+                "no direct link between violent video games and real-world crime or violence."
+            ),
+            "normalized_claim": (
+                "Cybersecurity and technology expert Art Samaniego Jr. said in an "
+                "interview on DZRH News program \"Special on Saturday\" on July 4 "
+                "that research by the Oxford Internet Institute shows no direct link "
+                "between violent video games and real-world crime or violence."
+            ),
+            "claim_type": "attributed_statement",
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+                "speaker": "Art Samaniego Jr.",
+                "role": "Cybersecurity and technology expert",
+                "statement": (
+                    "research by the Oxford Internet Institute shows no direct link "
+                    "between violent video games and real-world crime or violence."
+                ),
+                "source": "DZRH News",
+                "program": "Special on Saturday",
+                "date": "July 4",
+            },
+            "search_query": (
+                "Art Samaniego Jr DZRH News Special on Saturday July 4 Oxford "
+                "Internet Institute violent video games"
+            ),
+            "risk_tags": [],
+        }
+        attributed_evidence = {
+            "source": "GMA News",
+            "title": "Calls to ban violent video games follow Tacloban shooting",
+            "url": "https://example.com/tacloban-games",
+            "similarity_score": 0.94,
+            "status": "extracted",
+            "word_count": 150,
+        }
+        generic_attribution_search = _fake_search_result()
+        generic_attribution_search["articles"][0] = {
+            **generic_attribution_search["articles"][0],
+            "title": attributed_evidence["title"],
+            "url": attributed_evidence["url"],
+            "text": (
+                "Lawmakers discussed whether violent video games should be banned "
+                "after a Tacloban school shooting involving a minor. The article "
+                "does not identify who made the argument or where an interview occurred."
+            ),
+        }
+        iris_app.extract_claims = lambda text, translated: {
+            "status": "ok",
+            "method": "test_stub",
+            "error": None,
+            "post_type": "factual_only",
+            "contains_opinion": False,
+            "contains_recommendation": False,
+            "ignored_segments": [],
+            "claims": [attributed_claim],
+        }
+        iris_app.search_and_extract = lambda primary_query, backup_query=None: generic_attribution_search
+        iris_app.generate_verdict = lambda claim, articles: {
+            "verdict": "Verified",
+            "reason": "Semantic similarity alone is not enough for attribution.",
+            "corroboration_count": 1,
+            "primary_evidence": attributed_evidence,
+            "supporting_sources": [attributed_evidence],
+            "similarity_thresholds": {
+                "verified": 0.85,
+                "partial": 0.5,
+            },
+        }
+        attribution_response = client.post(
+            "/verify",
+            json={"text": attributed_claim["claim_text"]},
+        )
+        attribution_payload = attribution_response.get_json()
+
+        assert attribution_response.status_code == 200
+        assert attribution_payload["verdict"] == "Not Found"
+        assert attribution_payload["sources"] == []
+        assert "DZRH News" in attribution_payload["message"]
+
+        anchored_attribution_search = _fake_search_result()
+        anchored_attribution_search["articles"][0] = {
+            **anchored_attribution_search["articles"][0],
+            "title": (
+                "Art Samaniego Jr. discusses video games on DZRH News program "
+                "Special on Saturday"
+            ),
+            "url": attributed_evidence["url"],
+            "text": (
+                "Cybersecurity and technology expert Art Samaniego Jr. said in "
+                "an interview on DZRH News program Special on Saturday on July 4 "
+                "that research by the Oxford Internet Institute shows no direct "
+                "link between violent video games and real-world crime or violence."
+            ),
+        }
+        iris_app.search_and_extract = lambda primary_query, backup_query=None: anchored_attribution_search
+        anchored_response = client.post(
+            "/verify",
+            json={"text": attributed_claim["claim_text"]},
+        )
+        anchored_payload = anchored_response.get_json()
+
+        assert anchored_response.status_code == 200
+        assert anchored_payload["verdict"] == "Verified"
+        assert anchored_payload["sources"][0]["url"] == "https://example.com/tacloban-games"
+
+        iris_app.search_and_extract = lambda primary_query, backup_query=None: _fake_search_result()
+        iris_app.generate_verdict = _fake_verdict
 
         iris_app.is_opinion = lambda text: {
             "is_opinion": True,

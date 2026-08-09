@@ -17,6 +17,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 import pipeline.search as search_module
+import pipeline.article_extractor as article_module
 from pipeline.sources import get_all_sources, get_news_sources, get_vera_source
 from pipeline.search import (
     _build_domain_query,
@@ -32,12 +33,60 @@ def run_checks() -> None:
 
     assert vera["name"] == "VERA Files"
     assert vera["priority"] is True
-    assert len(news_sources) == 6
-    assert len(all_sources) == 7
+    assert len(news_sources) == 7
+    assert len(all_sources) == 8
     assert all_sources[0]["name"] == "VERA Files"
+    assert news_sources[0]["name"] == "ABS-CBN News"
+    assert news_sources[0]["site_query"] == "site:abs-cbn.com/news"
 
     query = _build_domain_query("sample claim", "site:verafiles.org")
     assert query == "sample claim site:verafiles.org"
+    assert article_module.normalize_article_url(
+        "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501."
+    ) == (
+        "https://www.abs-cbn.com/news/nation/2026/8/5/"
+        "padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501"
+    )
+    if article_module.BeautifulSoup is not None:
+        original_article_requests = article_module.requests
+        requested = {}
+
+        class FakeResponse:
+            text = """
+                <html>
+                    <head>
+                        <title>Fallback title</title>
+                        <meta property="og:title" content="Padilla tests auditor on knowledge of terrorism, security threats">
+                        <meta name="description" content="Senator Robinhood Padilla asked former state auditor Roderick Wamil about BARMM and terrorism threats.">
+                    </head>
+                    <body><main><p>Short article.</p></main></body>
+                </html>
+            """
+
+            def raise_for_status(self):
+                return None
+
+        class FakeRequests:
+            RequestException = Exception
+
+            @staticmethod
+            def get(url, headers=None, timeout=None):
+                requested["url"] = url
+                return FakeResponse()
+
+        try:
+            article_module.requests = FakeRequests
+            article = article_module.extract_article_text(
+                "https://www.abs-cbn.com/news/nation/2026/8/5/"
+                "padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501."
+            )
+        finally:
+            article_module.requests = original_article_requests
+
+        assert requested["url"].endswith("security-threats-1501")
+        assert article["status"] == "extracted"
+        assert article["extraction_method"] == "metadata"
+        assert "Padilla tests auditor" in article["text"]
 
     fake_search_result = {
         "results": [
@@ -183,7 +232,7 @@ def run_checks() -> None:
         search_module.extract_article_text = originals["extract_article_text"]
 
     print("All Week 2 helper checks passed.")
-    print("Approved sources checked: 7 total, VERA Files first.")
+    print("Approved sources checked: 8 total, VERA Files first.")
     print("No Brave API credits were used by this test.")
 
 

@@ -73,21 +73,34 @@ function arrayBufferToBase64(buffer) {
   return btoa(binary);
 }
 
-async function fetchImageAsDataUrl(url) {
+async function fetchImageAsDataUrl(url, includeCredentials = false) {
   if (!url) {
     throw new Error("No image URL was provided.");
   }
 
   const response = await fetch(url, {
-    credentials: "omit",
-    cache: "no-store"
+    cache: "no-store",
+    credentials: includeCredentials ? "include" : "omit",
+    headers: {
+      "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"
+    }
   });
 
   if (!response.ok) {
     throw new Error(`Image download failed with HTTP ${response.status}.`);
   }
 
-  const contentType = response.headers.get("content-type") || "image/png";
+  const rawContentType = response.headers.get("content-type") || "image/png";
+  const contentType = rawContentType.split(";")[0].trim().toLowerCase();
+  const imageLikeContent = (
+    contentType.startsWith("image/") ||
+    contentType === "application/octet-stream"
+  );
+
+  if (!imageLikeContent) {
+    throw new Error("The dragged URL did not return an image file.");
+  }
+
   const buffer = await response.arrayBuffer();
   const base64 = arrayBufferToBase64(buffer);
   return `data:${contentType};base64,${base64}`;
@@ -130,7 +143,7 @@ function getBackendError(result) {
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message?.type === "IRIS_FETCH_IMAGE_AS_DATA_URL") {
-    fetchImageAsDataUrl(message.imageUrl)
+    fetchImageAsDataUrl(message.imageUrl, Boolean(message.includeCredentials))
       .then((dataUrl) => sendResponse({ ok: true, dataUrl }))
       .catch((error) => sendResponse({ ok: false, error: error.message }));
     return true;

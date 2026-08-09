@@ -57,7 +57,7 @@ def _evidence_items(articles: List[Dict[str, object]]) -> List[Dict[str, object]
     return items
 
 
-def _parse_response(content: str) -> Dict[str, str]:
+def _parse_response(content: str) -> Dict[str, object]:
     payload = json.loads(content)
     verdict = payload.get("verdict")
 
@@ -71,9 +71,18 @@ def _parse_response(content: str) -> Dict[str, str]:
         reason = reason[:MAX_REASON_CHARS].rsplit(" ", 1)[0].rstrip(".,;:")
         reason = f"{reason}."
 
+    supporting_urls = payload.get("supporting_urls") or []
+    if not isinstance(supporting_urls, list):
+        supporting_urls = []
+
     return {
         "verdict": verdict,
         "reason": reason,
+        "supporting_urls": [
+            str(url).strip()
+            for url in supporting_urls
+            if str(url).strip().startswith(("http://", "https://"))
+        ],
     }
 
 
@@ -129,9 +138,11 @@ def refine_with_openai_rag(
         "claim about flood aid unless the evidence explicitly mentions aid, "
         "assistance, relief, or distribution to residents. Use Not Found when "
         "the evidence is only related but does not confirm the specific claim. "
-        "Return JSON only with keys verdict and reason. Allowed verdicts: "
-        "Verified, Partially Verified, Not Found. Keep reason to one short "
-        "sentence under 25 words."
+        "Return JSON only with keys verdict, reason, and supporting_urls. "
+        "supporting_urls must contain only URLs from the provided evidence that "
+        "directly support the verdict; use an empty array for Not Found. "
+        "Allowed verdicts: Verified, Partially Verified, Not Found. Keep reason "
+        "to one short sentence under 25 words."
     )
     user_prompt = json.dumps({
         "claim": claim,

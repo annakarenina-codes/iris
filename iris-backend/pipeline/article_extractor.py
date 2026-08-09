@@ -8,8 +8,9 @@ count, and paywall/short-content detection.
 
 from __future__ import annotations
 
+import json
 import re
-from typing import Dict
+from typing import Dict, List
 
 try:
     import requests
@@ -24,6 +25,7 @@ except ImportError:  # pragma: no cover - depends on local environment setup
 
 REQUEST_TIMEOUT_SECONDS = 5
 MIN_ARTICLE_WORDS = 100
+MIN_METADATA_WORDS = 8
 
 
 def _clean_text(text: str) -> str:
@@ -36,6 +38,77 @@ def _word_count(text: str) -> int:
     return len(re.findall(r"\b\w+\b", text))
 
 
+def normalize_article_url(url: str) -> str:
+    """Removes common copy/paste punctuation from article URLs."""
+    return (url or "").strip().rstrip(").,;]")
+
+
+def _meta_content(soup, *names: str) -> str:
+    for name in names:
+        tag = soup.find("meta", attrs={"name": name})
+        if tag and tag.get("content"):
+            return _clean_text(tag["content"])
+
+        tag = soup.find("meta", property=name)
+        if tag and tag.get("content"):
+            return _clean_text(tag["content"])
+
+    return ""
+
+
+def _json_values(payload, keys: set) -> List[str]:
+    values = []
+
+    if isinstance(payload, dict):
+        for key, value in payload.items():
+            if key in keys and isinstance(value, str):
+                cleaned = _clean_text(value)
+                if cleaned:
+                    values.append(cleaned)
+            elif isinstance(value, (dict, list)):
+                values.extend(_json_values(value, keys))
+    elif isinstance(payload, list):
+        for item in payload:
+            values.extend(_json_values(item, keys))
+
+    return values
+
+
+def _json_article_text(soup) -> str:
+    """Extracts article text from structured data when paragraphs are absent."""
+    text_keys = {"articleBody", "headline", "description"}
+    values = []
+
+    for script in soup.find_all("script", attrs={"type": re.compile(r"ld\+json", re.I)}):
+        raw = script.string or script.get_text(" ", strip=True)
+        if not raw:
+            continue
+
+        try:
+            payload = json.loads(raw)
+        except ValueError:
+            continue
+
+        values.extend(_json_values(payload, text_keys))
+
+    return _clean_text(" ".join(values))
+
+
+def _paragraph_text(soup) -> str:
+    containers = soup.find_all(["article", "main"])
+    if not containers:
+        containers = [soup]
+
+    paragraphs = []
+    for container in containers:
+        for paragraph in container.find_all("p"):
+            cleaned = _clean_text(paragraph.get_text(" ", strip=True))
+            if cleaned and len(cleaned.split()) >= 5:
+                paragraphs.append(cleaned)
+
+    return _clean_text(" ".join(paragraphs))
+
+
 def extract_article_text(url: str) -> Dict[str, object]:
     """
     Downloads and extracts readable text from a news article URL.
@@ -43,9 +116,11 @@ def extract_article_text(url: str) -> Dict[str, object]:
     Returns a dictionary with an extraction status instead of raising errors, so
     app.py can continue even if one article fails.
     """
+    normalized_url = normalize_article_url(url)
+
     if requests is None:
         return {
-            "url": url,
+            "url": normalized_url,
             "status": "error",
             "error": "The requests package is not installed.",
             "title": None,
@@ -55,7 +130,7 @@ def extract_article_text(url: str) -> Dict[str, object]:
 
     if BeautifulSoup is None:
         return {
-            "url": url,
+            "url": normalized_url,
             "status": "error",
             "error": "The beautifulsoup4 package is not installed.",
             "title": None,
@@ -72,11 +147,11 @@ def extract_article_text(url: str) -> Dict[str, object]:
     }
 
     try:
-        response = requests.get(url, headers=headers, timeout=REQUEST_TIMEOUT_SECONDS)
+        response = requests.get(normalized_url, headers=headers, timeout=REQUEST_TIMEOUT_SECONDS)
         response.raise_for_status()
     except requests.RequestException as error:
         return {
-            "url": url,
+            "url": normalized_url,
             "status": "error",
             "error": f"Could not download article: {error}",
             "title": None,
@@ -90,36 +165,41 @@ def extract_article_text(url: str) -> Dict[str, object]:
         tag.decompose()
 
     title = soup.title.get_text(" ", strip=True) if soup.title else None
+    og_title = _meta_content(soup, "og:title", "twitter:title")
+    description = _meta_content(soup, "description", "og:description", "twitter:description")
+    title = _clean_text(og_title or title or "")
+    paragraph_text = _paragraph_text(soup)
+    json_text = _json_article_text(soup)
+    text = paragraph_text if _word_count(paragraph_text) >= _word_count(json_text) else json_text
+    extraction_method = "paragraphs" if text == paragraph_text and text else "structured_data"
 
-    containers = soup.find_all(["article", "main"])
-    if not containers:
-        containers = [soup]
+    if _word_count(text) < MIN_ARTICLE_WORDS:
+        metadata_text = _clean_text(" ".join([title or "", description or "", json_text or ""]))
+        if _word_count(metadata_text) > _word_count(text):
+            text = metadata_text
+            extraction_method = "metadata"
 
-    paragraphs = []
-    for container in containers:
-        for paragraph in container.find_all("p"):
-            cleaned = _clean_text(paragraph.get_text(" ", strip=True))
-            if cleaned and len(cleaned.split()) >= 5:
-                paragraphs.append(cleaned)
-
-    text = _clean_text(" ".join(paragraphs))
     words = _word_count(text)
 
-    if words < MIN_ARTICLE_WORDS:
+    if words < MIN_METADATA_WORDS:
         return {
-            "url": url,
+            "url": normalized_url,
             "status": "skipped",
             "error": "Extracted article text is too short or possibly paywalled.",
             "title": title,
+            "description": description,
             "text": text,
             "word_count": words,
+            "extraction_method": extraction_method,
         }
 
     return {
-        "url": url,
+        "url": normalized_url,
         "status": "extracted",
         "error": None,
         "title": title,
+        "description": description,
         "text": text,
         "word_count": words,
+        "extraction_method": extraction_method,
     }

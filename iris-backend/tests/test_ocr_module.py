@@ -95,19 +95,21 @@ def _fake_search_result():
 
 
 def _fake_verdict(claim, articles):
+    evidence = {
+        "source": "GMA News",
+        "title": "DOH reports dengue cases",
+        "url": "https://example.com/dengue",
+        "similarity_score": 0.91,
+        "status": "extracted",
+        "word_count": 80,
+    }
+
     return {
         "verdict": "Verified",
         "reason": "Fake OCR endpoint verdict.",
         "corroboration_count": 1,
-        "primary_evidence": {
-            "source": "GMA News",
-            "title": "DOH reports dengue cases",
-            "url": "https://example.com/dengue",
-            "similarity_score": 0.91,
-            "status": "extracted",
-            "word_count": 80,
-        },
-        "supporting_sources": [],
+        "primary_evidence": evidence,
+        "supporting_sources": [evidence],
         "similarity_thresholds": {
             "verified": 0.85,
             "partial": 0.5,

@@ -114,6 +114,33 @@ select {
   cursor: grabbing;
 }
 
+.iris-panel.is-drop-target {
+  border-color: #22c55e;
+  box-shadow:
+    0 0 0 3px rgba(34, 197, 94, 0.18),
+    var(--iris-shadow);
+}
+
+.iris-panel.is-drop-target::after {
+  content: "Drop image to scan";
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(245, 243, 255, 0.88);
+  color: #166534;
+  font-size: calc(13px * var(--iris-scale));
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.iris-extension-shell[data-theme="dark"].iris-panel.is-drop-target::after {
+  background: rgba(30, 27, 46, 0.9);
+  color: #86efac;
+}
+
 .iris-panel__brand {
   display: flex;
   align-items: center;
@@ -964,6 +991,7 @@ blockquote {
 }
 
 .iris-pill {
+  position: relative;
   width: 120px;
   height: 36px;
   display: inline-flex;
@@ -977,7 +1005,32 @@ blockquote {
   cursor: grab;
   touch-action: none;
   user-select: none;
+  overflow: hidden;
   box-shadow: 0 4px 20px rgba(109, 40, 217, 0.18);
+}
+
+.iris-pill.is-drop-target {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+.iris-pill.is-drop-target::after {
+  content: "Drop";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(245, 243, 255, 0.92);
+  color: #166534;
+  font-size: calc(12px * var(--iris-scale));
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.iris-extension-shell[data-theme="dark"].iris-pill.is-drop-target::after {
+  background: rgba(30, 27, 46, 0.92);
+  color: #86efac;
 }
 
 .iris-pill span {

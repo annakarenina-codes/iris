@@ -1,7 +1,7 @@
 """
 Brave Search integration for IRIS.
 
-This module searches VERA Files first, then the six approved Philippine news
+This module searches VERA Files first, then the seven approved Philippine news
 sources. It can also run a backup search using the original Tagalog/Taglish
 text when the translated English query returns too few results.
 """
@@ -50,7 +50,7 @@ REQUEST_TIMEOUT_SECONDS = 10
 RESULTS_PER_SOURCE = 3
 MIN_RESULTS_BEFORE_BACKUP = 2
 MAX_ARTICLES_PER_SOURCE = 2
-MAX_SEARCH_WORKERS = _env_int("IRIS_SEARCH_WORKERS", 7)
+MAX_SEARCH_WORKERS = _env_int("IRIS_SEARCH_WORKERS", 8)
 MAX_ARTICLE_EXTRACTION_WORKERS = _env_int("IRIS_ARTICLE_WORKERS", 8)
 
 
@@ -173,7 +173,7 @@ def _safe_brave_search(query: str, source: Dict[str, object]) -> Dict[str, objec
 
 
 def search_sources(query: str) -> Dict[str, object]:
-    """Searches VERA Files first, then the six approved Philippine sources."""
+    """Searches VERA Files first, then the seven approved Philippine sources."""
     sources = get_all_sources()
     all_results = []
 
@@ -310,11 +310,12 @@ def _build_article_from_result(result: Dict[str, object]) -> Dict[str, object]:
     return {
         "source": result.get("source"),
         "title": extraction.get("title") or result.get("title"),
-        "url": url,
-        "description": result.get("description"),
+        "url": extraction.get("url") or url,
+        "description": extraction.get("description") or result.get("description"),
         "status": extraction.get("status"),
         "word_count": extraction.get("word_count", 0),
         "error": extraction.get("error"),
+        "extraction_method": extraction.get("extraction_method"),
         "text": extraction.get("text", ""),
     }
 
@@ -356,7 +357,7 @@ def search_and_extract(
     Searches approved sources and extracts readable article text from each source.
 
     This keeps the evidence pool balanced. VERA Files is still first, but the
-    extractor also checks article links from the six approved news sources.
+    extractor also checks article links from the seven approved news sources.
     """
     search_result = search_with_backup(primary_query, backup_query)
     article_targets = _article_targets_by_source_order(

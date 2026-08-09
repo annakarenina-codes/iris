@@ -23,7 +23,7 @@ except ImportError:  # pragma: no cover - depends on local environment setup
 load_dotenv()
 
 DEFAULT_OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
-MAX_SEGMENTS = 12
+MAX_SEGMENTS = 30
 
 SEGMENT_LABELS = [
     "factual_claim",
@@ -64,6 +64,7 @@ OPINION_PHRASES = [
     "for me",
     "personally",
     "this is clearly",
+    "reminds us",
 ]
 
 OPINION_WORDS = [
@@ -79,6 +80,11 @@ OPINION_WORDS = [
     "better",
     "evil",
     "fake news",
+    "widely respected",
+    "leading expert",
+    "leading experts",
+    "world-class",
+    "generous mentor",
 ]
 
 CALL_TO_ACTION_MARKERS = [
@@ -112,6 +118,10 @@ FACTUAL_MARKERS = [
     "recorded",
     "stated",
     "said",
+    "asked",
+    "answered",
+    "replied",
+    "furthered",
     "cited",
     "found",
     "arrested",
@@ -119,6 +129,39 @@ FACTUAL_MARKERS = [
     "occurred",
     "died",
     "killed",
+    "shot",
+    "injured",
+    "entered",
+    "forcibly entered",
+    "remain at large",
+    "reviewing",
+    "interviewing",
+    "pursuing leads",
+    "condemned",
+    "vowed",
+    "began",
+    "studying",
+    "submitted",
+    "delivered",
+    "testimony",
+    "evidence",
+    "ruling",
+    "favored",
+    "rejected",
+    "no legal basis",
+    "conducted",
+    "research",
+    "recognized",
+    "tributes",
+    "prompted tributes",
+    "audit observation memorandum",
+    "confidential funds",
+    "confidential agents",
+    "joint circular",
+    "classified",
+    "evaluation",
+    "terrorism threats",
+    "security threats",
     "launched",
     "declared",
     "ayon",
@@ -144,6 +187,13 @@ ENTITY_MARKERS = [
     "doj",
     "dilg",
     "pnp",
+    "police",
+    "tribunal",
+    "university",
+    "unesco",
+    "silliman university",
+    "university of the philippines",
+    "marine science institute",
     "comelec",
     "senate",
     "house of representatives",
@@ -159,6 +209,14 @@ ENTITY_MARKERS = [
     "president",
     "vice president",
     "senator",
+    "senator-judge",
+    "auditor",
+    "state auditor",
+    "witness",
+    "bangsamoro autonomous region",
+    "barmm",
+    "new people's army",
+    "npa",
     "mayor",
     "governor",
 ]
@@ -275,14 +333,46 @@ def _clean_segment(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def _split_leading_headline_question(segment: str) -> List[str]:
+    match = re.match(
+        r"^(?P<head>[\"'`“”‘’]?[A-Z0-9][A-Z0-9\s,'-]{2,80}\?[\"'`“”‘’]?)\s+(?P<rest>.+)$",
+        segment,
+    )
+    if not match:
+        return [segment]
+
+    return [match.group("head"), match.group("rest")]
+
+
 def _split_segments(text: str) -> List[str]:
-    parts = re.split(r"(?:\n+|;\s*|(?<=[.!?])\s+)", text)
+    protected_text = text
+    abbreviations = {
+        "Jr.": "Jr<period>",
+        "Sr.": "Sr<period>",
+        "Mr.": "Mr<period>",
+        "Mrs.": "Mrs<period>",
+        "Ms.": "Ms<period>",
+        "Dr.": "Dr<period>",
+        "Gen.": "Gen<period>",
+    }
+
+    for abbreviation, placeholder in abbreviations.items():
+        protected_text = protected_text.replace(abbreviation, placeholder)
+
+    parts = re.split(r"(?:\n+|;\s*|(?<=[.!?])\s+)", protected_text)
     segments = []
 
     for part in parts:
+        for abbreviation, placeholder in abbreviations.items():
+            part = part.replace(placeholder, abbreviation)
+
         segment = _clean_segment(part)
         if segment:
-            segments.append(segment)
+            segments.extend(
+                split_segment
+                for split_segment in _split_leading_headline_question(segment)
+                if split_segment
+            )
 
     return segments[:MAX_SEGMENTS]
 
@@ -455,6 +545,27 @@ def _reason_codes(scores: Dict[str, float], matches: Dict[str, List[str]], score
     return sorted(set(reasons))
 
 
+def _has_reported_quote(segment: str) -> bool:
+    quote_pattern = r"[\"'“”][^\"'“”]{3,260}[\"'“”]"
+    attribution_pattern = (
+        r"\b(?:asked|answered|replied|said|stated|furthered|told|responded)\b"
+    )
+    return bool(
+        re.search(quote_pattern, segment)
+        and re.search(attribution_pattern, segment, flags=re.IGNORECASE)
+    )
+
+
+def _is_headline_question(segment: str) -> bool:
+    stripped = segment.strip(" \"'`“”‘’")
+    if not stripped.endswith("?") or len(stripped.split()) > 8:
+        return False
+
+    letters = re.findall(r"[A-Za-z]", stripped)
+    uppercase = re.findall(r"[A-Z]", stripped)
+    return bool(letters) and len(uppercase) / len(letters) >= 0.70
+
+
 def _route_segment(segment: str, segment_id: str, translated_segment: Optional[str]) -> Dict[str, object]:
     scores, matches = _base_scores(segment)
     ordered = _ordered_labels(scores)
@@ -466,11 +577,21 @@ def _route_segment(segment: str, segment_id: str, translated_segment: Optional[s
     eligible = False
     route = "stop_no_checkable_claims"
 
-    if scores["forecast_or_projection_detected"] >= 0.65:
+    if _is_headline_question(segment):
+        top_label = "unclear"
+        top_score = max(scores["unclear"], top_score)
+        eligible = False
+        route = "stop_no_checkable_claims"
+    elif scores["forecast_or_projection_detected"] >= 0.65:
         top_label = "forecast_or_projection_detected"
         top_score = scores[top_label]
         eligible = False
         route = "stop_forecast_projection"
+    elif scores["quote"] >= 0.45 and factual_score >= 0.45 and _has_reported_quote(segment):
+        top_label = "factual_claim"
+        top_score = factual_score
+        eligible = True
+        route = "proceed_with_caution"
     elif factual_score >= 0.75:
         top_label = "factual_claim"
         top_score = factual_score
@@ -680,8 +801,8 @@ def _build_profile(
     eligible_segments = [
         segment for segment in segments if segment["eligible_for_verification"]
     ]
-    verification_text = " ".join(str(segment["text"]) for segment in eligible_segments).strip()
-    normalized_verification_text = " ".join(
+    verification_text = "\n".join(str(segment["text"]) for segment in eligible_segments).strip()
+    normalized_verification_text = "\n".join(
         str(segment.get("translated_text") or segment["text"])
         for segment in eligible_segments
     ).strip()
