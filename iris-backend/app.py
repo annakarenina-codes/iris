@@ -38,7 +38,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-component-context-v17"
+RESULT_CACHE_VERSION = "week7-sources-excerpts-v18"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 ATTRIBUTED_CLAIM_TYPE = "attributed_statement"
 REMOTE_IMAGE_TIMEOUT_SECONDS = 10
@@ -247,6 +247,7 @@ def summarize_sources(source_summary, articles):
                 "word_count": article["word_count"],
                 "error": article["error"],
                 "extraction_quality": article.get("extraction_quality"),
+                "evidence_type": article.get("evidence_type"),
                 "evidence_pool": article.get("evidence_pool"),
             }
             for article in articles
@@ -321,6 +322,9 @@ def compact_evidence_source(article, evidence_method="semantic_similarity"):
 
     if article.get("evidence_pool"):
         source["evidence_pool"] = article.get("evidence_pool")
+
+    if article.get("evidence_type"):
+        source["evidence_type"] = article.get("evidence_type")
 
     return source
 
@@ -814,6 +818,7 @@ def summarize_shared_evidence_pool(shared_evidence_pool):
                 "status": article.get("status"),
                 "word_count": article.get("word_count"),
                 "extraction_quality": article.get("extraction_quality"),
+                "evidence_type": article.get("evidence_type"),
             }
             for article in search_result.get("articles") or []
         ],
@@ -1534,7 +1539,7 @@ def verify_text_payload(text, debug_enabled=False, timings=None):
         "contains_quote": content_profile["contains_quote"],
         "ignored_segments": combine_ignored_segments(content_profile, claim_extraction),
         "claims": claim_results,
-        "searched_sources": "VERA Files + 7 approved Philippine news sources",
+        "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
     }, debug_enabled, opinion_result, political_result, content_profile)
     response = add_single_claim_compatibility_fields(response, claim_results)
 

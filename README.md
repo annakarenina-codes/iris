@@ -67,6 +67,8 @@ This keeps the monorepo clean while preserving the source and configuration need
 
 ## Backend diagnostics
 
+Approved sources, how each one is read (full text or search excerpt) and the 19 September 2026 source-policy change are documented in [iris-backend/SOURCES.md](iris-backend/SOURCES.md).
+
 Translation uses the configured OpenAI API with a bounded deadline and original-text fallback. See [translation configuration and validation](iris-backend/TRANSLATION.md).
 
 IRIS TRACE adds a development-only request viewer with tabs, per-claim stages, OCR overlays and calibration fixtures. From `iris-backend`, run `python run_trace.py --artifacts` and open `http://127.0.0.1:5000/debug/trace`. See [TRACE setup and calibration guide](iris-backend/iris_trace/README.md).

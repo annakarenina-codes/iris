@@ -8,6 +8,7 @@ article text. No OpenAI is used here.
 from __future__ import annotations
 
 from iris_trace.core import traced
+from pipeline.sources import is_fact_check_source
 
 import os
 from pathlib import Path
@@ -109,11 +110,12 @@ def _sort_scored_articles(scored_articles: List[Dict[str, object]]) -> List[Dict
     """
     Sorts articles by score.
 
-    VERA Files gets a tiny bonus for ordering only, because it is the priority
-    fact-checking layer. The displayed similarity score is not changed.
+    Fact-checking sources (VERA Files, Rappler) get a tiny bonus for ordering
+    only, because they are the priority layer. The displayed similarity score is
+    not changed.
     """
     def ranking_score(article: Dict[str, object]) -> float:
-        bonus = VERA_PRIORITY_BONUS if article["source"] == "VERA Files" else 0.0
+        bonus = VERA_PRIORITY_BONUS if is_fact_check_source(article["source"]) else 0.0
         return float(article["similarity_score"]) + bonus
 
     return sorted(scored_articles, key=ranking_score, reverse=True)

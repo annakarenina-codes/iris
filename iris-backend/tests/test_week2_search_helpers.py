@@ -33,11 +33,12 @@ def run_checks() -> None:
 
     assert vera["name"] == "VERA Files"
     assert vera["priority"] is True
-    assert len(news_sources) == 7
-    assert len(all_sources) == 8
+    assert len(news_sources) == 9
+    assert len(all_sources) == 11
     assert all_sources[0]["name"] == "VERA Files"
+    assert all_sources[1]["name"] == "Rappler"
     assert news_sources[0]["name"] == "ABS-CBN News"
-    assert news_sources[0]["site_query"] == "site:abs-cbn.com/news"
+    assert news_sources[0]["site_query"] == "site:abs-cbn.com"
 
     query = _build_domain_query("sample claim", "site:verafiles.org")
     assert query == "sample claim site:verafiles.org"
@@ -232,7 +233,7 @@ def run_checks() -> None:
         search_module.extract_article_text = originals["extract_article_text"]
 
     print("All Week 2 helper checks passed.")
-    print("Approved sources checked: 8 total, VERA Files first.")
+    print("Approved sources checked: 11 total, VERA Files and Rappler first.")
     print("No Brave API credits were used by this test.")
 
 

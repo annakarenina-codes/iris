@@ -30,14 +30,24 @@ def article_url_rejection(url, expected_source=None):
         query_keys = {key.casefold() for key, _ in parse_qsl(parts.query)}
         if query_keys & {'s', 'q', 'search', 'query', 'search_query'}:
             return 'search_results_page'
-        if not segments or any(s in {'search', 'search-results', 'tag', 'tags', 'category',
-                                     'categories', 'author', 'authors', 'feed'} for s in segments):
+        if not segments or any(s in {'search', 'search-results', 'tag', 'tags', 'topic', 'topics',
+                                     'category', 'categories', 'author', 'authors', 'feed'}
+                               for s in segments):
             return 'listing_page'
         if host == 'verafiles.org' or host.endswith('.verafiles.org'):
             if len(segments) != 2 or segments[0] != 'articles':
                 return 'not_vera_article'
         if len(segments) < 2:
             return 'listing_page'
+        if host == 'rappler.com' or host.endswith('.rappler.com'):
+            if '-' not in segments[-1]:
+                return 'listing_page'
+        if host == 'dzrh.com.ph' or host.endswith('.dzrh.com.ph'):
+            if len(segments) != 2 or segments[0] != 'post':
+                return 'listing_page'
+        if host == 'onenews.ph' or host.endswith('.onenews.ph'):
+            if len(segments) != 2 or segments[0] != 'articles':
+                return 'listing_page'
         if host == 'abs-cbn.com' or host.endswith('.abs-cbn.com'):
             if len(segments) < 4:
                 return 'listing_page'

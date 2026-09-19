@@ -647,7 +647,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
           <strong>Text detected</strong>
         </div>
         <blockquote data-role="detected-claim">${escapeHtml(truncateText(state.selectedText))}</blockquote>
-        <p class="supporting-note">IRIS will check this claim against 7 credible Philippine news sources and VERA Files.</p>
+        <p class="supporting-note">IRIS will check this claim against VERA Files, Rappler, and 9 credible Philippine news sources.</p>
         <button class="iris-button iris-button--primary" type="button" data-action="check-text">
           ${irisEye(18, true)}
           Check with IRIS
@@ -692,7 +692,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         <blockquote>${escapeHtml(text)}</blockquote>
         <div class="scan-dots" aria-hidden="true"><span></span><span></span><span></span></div>
         <h2>Scanning sources...</h2>
-        <p>Checking ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, and VERA Files.</p>
+        <p>Checking VERA Files, Rappler, ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, DZRH, and OneNews.</p>
         <div class="progress-track" aria-hidden="true"><span></span></div>
       </section>
     `;

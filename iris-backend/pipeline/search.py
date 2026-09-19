@@ -1,9 +1,13 @@
 """
 Brave Search integration for IRIS.
 
-This module searches VERA Files first, then the seven approved Philippine news
-sources. It can also run a backup search using the original Tagalog/Taglish
-text when the translated English query returns too few results.
+This module searches the fact-checking sources first (VERA Files, Rappler), then
+the approved Philippine news sources. It can also run a backup search using the
+original Tagalog/Taglish text when the translated English query returns too few
+results.
+
+Publishers that block automated downloads are read through the article passages
+Brave returns for each result ("search excerpts") instead of downloading pages.
 """
 
 from __future__ import annotations
@@ -11,7 +15,9 @@ from __future__ import annotations
 from iris_trace.core import traced, submit_context
 
 from concurrent.futures import ThreadPoolExecutor
+import html
 import os
+import re
 from typing import Dict, List, Optional
 
 try:
@@ -26,7 +32,7 @@ except ImportError:  # pragma: no cover - depends on local environment setup
         return False
 
 from pipeline.article_extractor import extract_article_text
-from pipeline.sources import get_all_sources
+from pipeline.sources import get_all_sources, uses_search_excerpts
 from pipeline.evidence_urls import article_url_rejection, clean_article_url
 
 
@@ -53,6 +59,7 @@ REQUEST_TIMEOUT_SECONDS = 10
 RESULTS_PER_SOURCE = 5
 MIN_RESULTS_BEFORE_BACKUP = 2
 MAX_ARTICLES_PER_SOURCE = 2
+MIN_EXCERPT_WORDS = 8
 MAX_SEARCH_WORKERS = _env_int("IRIS_SEARCH_WORKERS", 8)
 MAX_ARTICLE_EXTRACTION_WORKERS = _env_int("IRIS_ARTICLE_WORKERS", 8)
 
@@ -104,6 +111,7 @@ def brave_search(query: str, source: Dict[str, object], count: int = RESULTS_PER
         "country": "PH",
         "search_lang": "en",
         "safesearch": "moderate",
+        "extra_snippets": "true",
     }
 
     try:
@@ -150,6 +158,10 @@ def brave_search(query: str, source: Dict[str, object], count: int = RESULTS_PER
             "title": item.get("title"),
             "url": url,
             "description": item.get("description"),
+            "extra_snippets": [
+                snippet for snippet in (item.get("extra_snippets") or [])
+                if isinstance(snippet, str)
+            ],
         })
 
     return {
@@ -183,7 +195,7 @@ def _safe_brave_search(query: str, source: Dict[str, object]) -> Dict[str, objec
 
 
 def search_sources(query: str) -> Dict[str, object]:
-    """Searches VERA Files first, then the seven approved Philippine sources."""
+    """Searches the fact-checking sources first, then the approved news sources."""
     sources = get_all_sources()
     all_results = []
 
@@ -436,13 +448,75 @@ def _article_error_result(url: str, error: Exception) -> Dict[str, object]:
     }
 
 
+def _clean_excerpt(text: object) -> str:
+    """Removes Brave's highlight markup and entities from one returned passage."""
+    cleaned = html.unescape(re.sub(r"<[^>]+>", "", str(text or "")))
+    return re.sub(r"\s+", " ", cleaned).strip()
+
+
+def _excerpt_passages(result: Dict[str, object]) -> List[str]:
+    """Returns the distinct article passages Brave supplied for one result."""
+    passages: List[str] = []
+    for candidate in [result.get("description"), *(result.get("extra_snippets") or [])]:
+        passage = _clean_excerpt(candidate)
+        if not passage:
+            continue
+        key = passage.casefold()
+        if any(key in existing.casefold() for existing in passages):
+            continue
+        passages = [existing for existing in passages if existing.casefold() not in key]
+        passages.append(passage)
+    return passages
+
+
+@traced('retrieval.search_excerpt', dependency=False)
+def build_excerpt_article(result: Dict[str, object], reason: str) -> Dict[str, object]:
+    """
+    Builds an evidence record from the search API's article passages.
+
+    The passages are the publisher's own text as returned by the search API.
+    They are shorter than the full article, so the record is labeled
+    search_excerpt and never presented as a full-text read.
+    """
+    url = result["url"]
+    rejection = article_url_rejection(url, result.get("source"))
+    passages = _excerpt_passages(result)
+    text = "\n".join(passages)
+    words = len(text.split())
+    usable = not rejection and words >= MIN_EXCERPT_WORDS
+
+    return {
+        "source": result.get("source"),
+        "title": _clean_excerpt(result.get("title")) or url,
+        "url": url,
+        "description": _clean_excerpt(result.get("description")),
+        "status": "extracted" if usable else "skipped",
+        "word_count": words if usable else 0,
+        "error": None if usable else (rejection or "Search excerpt is empty or too short."),
+        "extraction_method": "search_excerpt",
+        "extraction_quality": "excerpt",
+        "evidence_type": "search_excerpt",
+        "excerpt_reason": reason,
+        "text": text if usable else "",
+    }
+
+
 def _build_article_from_result(result: Dict[str, object]) -> Dict[str, object]:
     url = result["url"]
+
+    if uses_search_excerpts(result.get("source")):
+        return build_excerpt_article(result, "publisher_blocks_automated_download")
 
     try:
         extraction = extract_article_text(url)
     except Exception as error:  # pragma: no cover - defensive safety net
         extraction = _article_error_result(url, error)
+
+    if extraction.get("status") == "error" and _excerpt_passages(result):
+        fallback = build_excerpt_article(result, "download_failed")
+        if fallback["status"] == "extracted":
+            fallback["download_error"] = extraction.get("error")
+            return fallback
 
     return {
         "source": result.get("source"),
@@ -454,6 +528,7 @@ def _build_article_from_result(result: Dict[str, object]) -> Dict[str, object]:
         "error": extraction.get("error"),
         "extraction_method": extraction.get("extraction_method"),
         "extraction_quality": extraction.get("extraction_quality"),
+        "evidence_type": "full_text",
         "text": extraction.get("text", ""),
     }
 
@@ -495,8 +570,8 @@ def search_and_extract(
     """
     Searches approved sources and extracts readable article text from each source.
 
-    This keeps the evidence pool balanced. VERA Files is still first, but the
-    extractor also checks article links from the seven approved news sources.
+    This keeps the evidence pool balanced. The fact-checking sources are still
+    first, but the extractor also checks article links from every news source.
     """
     search_result = search_with_backup(primary_query, backup_query)
     article_targets = _article_targets_by_source_order(

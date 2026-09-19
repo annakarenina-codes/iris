@@ -389,7 +389,7 @@ public class OverlayService extends Service {
 
         TextView detail = IrisUi.muted(
             this,
-            "Checking ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, and VERA Files.",
+            "Checking VERA Files, Rappler, ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, DZRH, and OneNews.",
             12.5f
         );
         detail.setGravity(Gravity.CENTER);

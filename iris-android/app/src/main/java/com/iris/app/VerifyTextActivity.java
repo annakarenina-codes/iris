@@ -86,7 +86,7 @@ public class VerifyTextActivity extends Activity {
         label.setGravity(Gravity.CENTER);
         bodyLayout.addView(label, IrisUi.spaced(this, 10));
 
-        statusText = IrisUi.muted(this, "Checking ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, and VERA Files.", 12.5f);
+        statusText = IrisUi.muted(this, "Checking VERA Files, Rappler, ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, DZRH, and OneNews.", 12.5f);
         statusText.setGravity(Gravity.CENTER);
         bodyLayout.addView(statusText, IrisUi.spaced(this, 6));
 

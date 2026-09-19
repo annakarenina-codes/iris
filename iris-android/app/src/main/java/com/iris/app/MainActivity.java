@@ -203,7 +203,7 @@ public class MainActivity extends Activity {
         card.addView(IrisUi.title(this, "User-controlled verification", 20), IrisUi.spaced(this, 3));
         card.addView(infoRow("User-triggered only", "IRIS does not monitor other apps automatically; checks begin only when you submit text or an image."), IrisUi.spaced(this, 12));
         card.addView(infoRow("Privacy first", "The clipboard is read only after you tap Paste from Clipboard inside the bubble."), IrisUi.spaced(this, 10));
-        card.addView(infoRow("Approved sources", "IRIS checks VERA Files plus ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, and PIA."), IrisUi.spaced(this, 10));
+        card.addView(infoRow("Approved sources", "IRIS checks VERA Files and Rappler plus ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, DZRH, and OneNews."), IrisUi.spaced(this, 10));
         return card;
     }
 
