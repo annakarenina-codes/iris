@@ -29,6 +29,9 @@ PASSED_ON_0918 = ['A01', 'A04', 'A10', 'B02', 'B03', 'B06', 'B09', 'B10', 'B11',
 STEP3_TARGETS = ['C02', 'C03', 'B15']
 RETRIEVAL_TARGETS = ['C04']
 PRIORITY = PASSED_ON_0918 + STEP3_TARGETS + RETRIEVAL_TARGETS
+REMAINING = ['A02', 'A03', 'A05', 'A06', 'A07', 'A08', 'A09', 'B01', 'B04', 'B05', 'B07', 'B08', 'B12',
+             'B16', 'C06', 'C07', 'C08']
+ALL_CASES = PRIORITY + REMAINING
 
 
 def read(path):
@@ -67,7 +70,7 @@ def main():
     write(HERE / 'configuration.json' if args.out == 'results' else results / 'configuration.json', config)
 
     cases = {case['id']: case for case in read(AUDIT / 'cases.json')}
-    selected = [ident for ident in PRIORITY if not args.cases or ident in args.cases]
+    selected = [ident for ident in ALL_CASES if (ident in args.cases if args.cases else ident in PRIORITY)]
     if args.variants:
         for variant in read(HERE / args.variants):
             cases[variant['id']] = {**variant, 'input_sha256': hashlib.sha256(variant['text'].encode('utf-8')).hexdigest()}

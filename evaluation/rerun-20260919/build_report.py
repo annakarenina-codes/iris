@@ -12,7 +12,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 AUDIT = HERE.parent / 'full-pipeline-audit-20260918'
-from run_priority import PRIORITY, PASSED_ON_0918, STEP3_TARGETS, RETRIEVAL_TARGETS  # noqa: E402
+from run_priority import PRIORITY, PASSED_ON_0918, STEP3_TARGETS, RETRIEVAL_TARGETS, REMAINING  # noqa: E402
 
 GROUP = {**{i: 'Passed on 18 Sept (regression check)' for i in PASSED_ON_0918},
          **{i: 'Step 3 target' for i in STEP3_TARGETS},
@@ -95,8 +95,11 @@ def render_claim(lines, claim):
     lines.append('')
 
 
+CASES = PRIORITY
+
+
 def load_runs(folder):
-    return {i: read(folder / f'{i}.json') for i in PRIORITY if (folder / f'{i}.json').exists()}
+    return {i: read(folder / f'{i}.json') for i in CASES if (folder / f'{i}.json').exists()}
 
 
 def main():
@@ -107,7 +110,10 @@ def main():
     parser.add_argument('--findings', default='FINDINGS.md')
     parser.add_argument('--title', default='IRIS priority rerun, 19 September 2026')
     parser.add_argument('--note', default='Step 3 changes are **not** included in this run.')
+    parser.add_argument('--set', choices=['priority', 'remaining'], default='priority')
     args = parser.parse_args()
+    global CASES
+    CASES = PRIORITY if args.set == 'priority' else REMAINING
 
     cases = {c['id']: c for c in read(AUDIT / 'cases.json')}
     assessments = {a['id']: a for a in read(AUDIT / 'assessment-matrix.json')}
@@ -118,12 +124,14 @@ def main():
     previous = load_runs(HERE / args.previous) if args.previous else {}
     review_path = HERE / 'user-review.json'
     review = read(review_path)['cases'] if args.previous == 'results' and review_path.exists() else {}
-    baseline = {i: read(AUDIT / 'current-baseline' / f'{i}.json') for i in PRIORITY}
+    baseline = {i: read(AUDIT / 'current-baseline' / f'{i}.json') for i in CASES}
+    for ident in CASES:
+        GROUP.setdefault(ident, f"{assessments[ident]['result']} on 18 Sept")
 
     lines = [f'# {args.title}', '']
     lines.append(f"Code: `{config.get('git_commit', '?')[:7]}` · cache version "
                  f"`{config.get('cache_version', '?')}` · verdict cache bypassed · {len(runs)} of "
-                 f"{len(PRIORITY)} cases captured. {args.note}")
+                 f"{len(CASES)} cases captured. {args.note}")
     lines.append('')
     if (HERE / args.findings).exists():
         lines.append((HERE / args.findings).read_text(encoding='utf-8').strip())
@@ -137,7 +145,7 @@ def main():
     earlier = ' | Earlier run | Your review of earlier run' if previous else ''
     lines.append(f'| Case | Group | Topic | 18 Sept | 18 Sept verdicts{earlier} | Now | Time | Your assessment |')
     lines.append('|---|---|---|---|---' + ('|---|---' if previous else '') + '|---|---|---|')
-    for ident in PRIORITY:
+    for ident in CASES:
         run = runs.get(ident)
         old = ', '.join(str(v) for _, v in claim_verdicts(baseline[ident]))
         new = ', '.join(str(v) for _, v in claim_verdicts(run)) if run else 'not run'
@@ -150,7 +158,7 @@ def main():
                      f"{assessments[ident]['result']} | {old}{middle} | {new} | {seconds} | |")
     lines.append('')
 
-    for ident in PRIORITY:
+    for ident in CASES:
         case, assessment, run = cases[ident], assessments[ident], runs.get(ident)
         lines.append(f'## {ident}')
         lines.append('')
