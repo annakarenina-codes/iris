@@ -105,7 +105,12 @@ The new coverage-review step defaults to the pinned `gpt-4.1-2025-04-14` model.
 `IRIS_CLAIM_REVIEW_MODEL` overrides this step alone. The independent final
 entailment check and component partitioning also default to this snapshot,
 separately configurable through `IRIS_EVIDENCE_REVIEW_MODEL`. The draft extractor
-and initial evidence assessment retain `OPENAI_MODEL`; no global setting was changed.
+retains `OPENAI_MODEL`. Since 19 September 2026 the initial evidence assessment (the
+first pass that shortlists passages for the identity and entailment checks) also uses
+`IRIS_EVIDENCE_REVIEW_MODEL`, overridable with `IRIS_ASSESSMENT_MODEL`: replayed on
+saved case B02 with identical input, `gpt-4o-mini` selected only general "will not
+interfere" passages while `gpt-4.1` selected the decisive vote-threshold passages.
+No global setting was changed.
 This is a deliberate quality-first choice after the smaller reviewer retained
 evaluative wording and redundant incident descriptions in the saved-case replay.
 It adds API usage and must be evaluated, not assumed to improve every case.

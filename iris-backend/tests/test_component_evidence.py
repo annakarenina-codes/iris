@@ -29,8 +29,19 @@ class ComponentTests(unittest.TestCase):
             result = review_components("Example claim.", [])
         self.assertEqual(len(calls), 2)
         self.assertEqual(calls[0]['model'], 'review-test-model')
-        self.assertEqual(calls[1]['model'], 'draft-test-model')
+        # The first-pass assessment uses the review model unless explicitly overridden.
+        self.assertEqual(calls[1]['model'], 'review-test-model')
         self.assertEqual(result["status"], "ok")
+        self.assertEqual(result['assessment_model'], 'review-test-model')
+
+        calls.clear()
+        replies.extend([{"split_after": [], "contexts": [{k: [] for k in FIELDS}]}, {"assessments": {
+            "0": {"status": "not_supported", "passage_ids": []}}}])
+        with patch.dict(sys.modules, {"openai": SimpleNamespace(OpenAI=lambda **kw: client)}), \
+             patch.dict('os.environ', {'IRIS_EVIDENCE_REVIEW_MODEL': 'review-test-model',
+                                       'IRIS_ASSESSMENT_MODEL': 'assessment-test-model'}):
+            review_components("Example claim.", [])
+        self.assertEqual(calls[1]['model'], 'assessment-test-model')
 
     def test_rate_limit_remains_a_clear_technical_error(self):
         RateLimitError = type('RateLimitError', (Exception,), {})

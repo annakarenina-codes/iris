@@ -9,6 +9,7 @@ Verdict-cache reads and writes are bypassed; TRACE captures every request.
     python evaluation/rerun-20260919/run_priority.py --cases C02 # selected cases
 """
 import argparse
+import hashlib
 import json
 import logging
 import os
@@ -42,6 +43,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--cases', nargs='*')
     parser.add_argument('--out', default='results', help='result folder name inside this directory')
+    parser.add_argument('--variants', help='JSON file of extra inputs [{id, text, note}] to run as well')
     args = parser.parse_args()
     results = HERE / args.out
     results.mkdir(parents=True, exist_ok=True)
@@ -66,6 +68,10 @@ def main():
 
     cases = {case['id']: case for case in read(AUDIT / 'cases.json')}
     selected = [ident for ident in PRIORITY if not args.cases or ident in args.cases]
+    if args.variants:
+        for variant in read(HERE / args.variants):
+            cases[variant['id']] = {**variant, 'input_sha256': hashlib.sha256(variant['text'].encode('utf-8')).hexdigest()}
+            selected.append(variant['id'])
     with patch.object(app, 'get_cached_verdict', return_value=None), \
          patch.object(app, 'save_cached_verdict', return_value=None):
         for ident in selected:
