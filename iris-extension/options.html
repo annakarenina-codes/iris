@@ -10,19 +10,7 @@
     <main class="options-shell">
       <header>
         <div class="iris-mark" aria-hidden="true">
-          <svg viewBox="0 0 100 100" fill="none">
-            <ellipse cx="44" cy="46" rx="30" ry="18" fill="url(#irisOptionsGradient)" />
-            <circle cx="50" cy="48" r="20" fill="white" opacity="0.9" />
-            <circle cx="50" cy="48" r="11" fill="url(#irisOptionsGradient)" />
-            <line x1="64" y1="62" x2="78" y2="76" stroke="url(#irisOptionsGradient)" stroke-width="8" stroke-linecap="round" />
-            <defs>
-              <linearGradient id="irisOptionsGradient" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#5B21B6" />
-                <stop offset="0.55" stop-color="#8B5CF6" />
-                <stop offset="1" stop-color="#C4B5FD" />
-              </linearGradient>
-            </defs>
-          </svg>
+          <img src="assets/iris-logo-mark.png" alt="" draggable="false" />
         </div>
         <div>
           <h1>IRIS Options</h1>
@@ -41,6 +29,10 @@
           <label class="checkbox-row">
             <input id="panel-enabled" type="checkbox" />
             <span>Show floating panel automatically when text is selected</span>
+          </label>
+          <label class="checkbox-row">
+            <input id="quiet-mode" type="checkbox" />
+            <span>Quiet Mode: hide IRIS until a right-click check is triggered</span>
           </label>
           <label class="checkbox-row">
             <input id="debug-mode" type="checkbox" />

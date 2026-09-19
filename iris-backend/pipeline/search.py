@@ -8,6 +8,8 @@ text when the translated English query returns too few results.
 
 from __future__ import annotations
 
+from iris_trace.core import traced, submit_context
+
 from concurrent.futures import ThreadPoolExecutor
 import os
 from typing import Dict, List, Optional
@@ -25,6 +27,7 @@ except ImportError:  # pragma: no cover - depends on local environment setup
 
 from pipeline.article_extractor import extract_article_text
 from pipeline.sources import get_all_sources
+from pipeline.evidence_urls import article_url_rejection, clean_article_url
 
 
 load_dotenv()
@@ -47,7 +50,7 @@ def _worker_count(configured_workers: int, item_count: int) -> int:
 
 BRAVE_SEARCH_URL = "https://api.search.brave.com/res/v1/web/search"
 REQUEST_TIMEOUT_SECONDS = 10
-RESULTS_PER_SOURCE = 3
+RESULTS_PER_SOURCE = 5
 MIN_RESULTS_BEFORE_BACKUP = 2
 MAX_ARTICLES_PER_SOURCE = 2
 MAX_SEARCH_WORKERS = _env_int("IRIS_SEARCH_WORKERS", 8)
@@ -64,6 +67,7 @@ def _build_domain_query(query: str, site_query: str) -> str:
     return f"{query} {site_query}".strip()
 
 
+@traced('retrieval.source_search', dependency=True)
 def brave_search(query: str, source: Dict[str, object], count: int = RESULTS_PER_SOURCE) -> Dict[str, object]:
     """
     Searches one source domain using Brave Search.
@@ -130,10 +134,15 @@ def brave_search(query: str, source: Dict[str, object], count: int = RESULTS_PER
 
     web_results = payload.get("web", {}).get("results", [])
     results = []
+    rejected_results = []
 
     for item in web_results:
-        url = item.get("url")
+        url = clean_article_url(item.get("url"))
         if not url:
+            continue
+        rejection = article_url_rejection(url, source['name'])
+        if rejection:
+            rejected_results.append({'url': url, 'reason': rejection})
             continue
 
         results.append({
@@ -149,6 +158,7 @@ def brave_search(query: str, source: Dict[str, object], count: int = RESULTS_PER
         "status": "ok",
         "error": None,
         "results": results,
+        "rejected_results": rejected_results,
     }
 
 
@@ -181,7 +191,7 @@ def search_sources(query: str) -> Dict[str, object]:
         max_workers=_worker_count(MAX_SEARCH_WORKERS, len(sources))
     ) as executor:
         futures = [
-            executor.submit(_safe_brave_search, query, source)
+            submit_context(executor, _safe_brave_search, query, source)
             for source in sources
         ]
         source_reports = [future.result() for future in futures]
@@ -197,6 +207,7 @@ def search_sources(query: str) -> Dict[str, object]:
     }
 
 
+@traced('retrieval.queries', dependency=False)
 def search_with_backup(primary_query: str, backup_query: Optional[str] = None) -> Dict[str, object]:
     """
     Runs the translated English search first.
@@ -288,6 +299,132 @@ def _build_source_summary(search_result: Dict[str, object], articles: List[Dict[
     return summary
 
 
+def _article_url_key(article: Dict[str, object]) -> str:
+    """Normalizes article URLs enough for evidence-pool deduping."""
+    return str(article.get("url") or "").strip().rstrip("/").lower()
+
+
+def _tag_articles(
+    articles: List[Dict[str, object]],
+    evidence_pool: str,
+) -> List[Dict[str, object]]:
+    tagged_articles = []
+    for article in articles:
+        tagged_article = dict(article)
+        tagged_article.setdefault("evidence_pool", evidence_pool)
+        tagged_articles.append(tagged_article)
+
+    return tagged_articles
+
+
+def _merge_articles(
+    primary_articles: List[Dict[str, object]],
+    supplemental_articles: List[Dict[str, object]],
+) -> List[Dict[str, object]]:
+    merged_articles = []
+    seen_urls = set()
+
+    for article in [
+        *_tag_articles(primary_articles, "claim_specific"),
+        *_tag_articles(supplemental_articles, "event_context"),
+    ]:
+        url_key = _article_url_key(article)
+        if url_key and url_key in seen_urls:
+            continue
+
+        if url_key:
+            seen_urls.add(url_key)
+        merged_articles.append(article)
+
+    return merged_articles
+
+
+def _merge_source_summary(
+    primary_summary: List[Dict[str, object]],
+    supplemental_summary: List[Dict[str, object]],
+) -> List[Dict[str, object]]:
+    order = []
+    by_source: Dict[str, Dict[str, object]] = {}
+
+    for summary in [*primary_summary, *supplemental_summary]:
+        source = str(summary.get("source") or "Unknown source")
+        if source not in by_source:
+            by_source[source] = {
+                "source": source,
+                "results_found": 0,
+                "articles_checked": 0,
+                "articles_extracted": 0,
+            }
+            order.append(source)
+
+        by_source[source]["results_found"] += int(summary.get("results_found") or 0)
+        by_source[source]["articles_checked"] += int(summary.get("articles_checked") or 0)
+        by_source[source]["articles_extracted"] += int(summary.get("articles_extracted") or 0)
+
+    return [by_source[source] for source in order]
+
+
+@traced('retrieval.merge', dependency=False)
+def merge_search_results(
+    primary_result: Dict[str, object],
+    supplemental_result: Optional[Dict[str, object]],
+) -> Dict[str, object]:
+    """
+    Adds shared event-level evidence to a claim-specific search result.
+
+    The claim-specific result stays first for ranking stability, while event
+    articles are added as supplementary candidates and deduped by URL.
+    """
+    if not supplemental_result:
+        return primary_result
+
+    primary_articles = list(primary_result.get("articles") or [])
+    supplemental_articles = list(supplemental_result.get("articles") or [])
+    merged_articles = _merge_articles(primary_articles, supplemental_articles)
+    extracted_articles = [
+        article for article in merged_articles if article.get("status") == "extracted"
+    ]
+
+    primary_search = primary_result.get("search") or {}
+    supplemental_search = supplemental_result.get("search") or {}
+
+    return {
+        "total_search_results": (
+            int(primary_result.get("total_search_results") or 0)
+            + int(supplemental_result.get("total_search_results") or 0)
+        ),
+        "searched_articles": len(merged_articles),
+        "extracted_articles": len(extracted_articles),
+        "articles": merged_articles,
+        "source_summary": _merge_source_summary(
+            list(primary_result.get("source_summary") or []),
+            list(supplemental_result.get("source_summary") or []),
+        ),
+        "search": {
+            "primary_query": primary_search.get("primary_query"),
+            "backup_query_used": bool(primary_search.get("backup_query_used"))
+            or bool(supplemental_search.get("backup_query_used")),
+            "total_results": (
+                int(primary_search.get("total_results") or primary_result.get("total_search_results") or 0)
+                + int(supplemental_search.get("total_results") or supplemental_result.get("total_search_results") or 0)
+            ),
+            "results": [
+                *(primary_search.get("results") or []),
+                *(supplemental_search.get("results") or []),
+            ],
+            "searches": [
+                *(primary_search.get("searches") or []),
+                *(supplemental_search.get("searches") or []),
+            ],
+            "supplemental_event_query": supplemental_search.get("primary_query"),
+        },
+        "merged_evidence_pool": {
+            "claim_specific_articles": len(primary_articles),
+            "event_context_articles": len(supplemental_articles),
+        },
+    }
+
+
 def _article_error_result(url: str, error: Exception) -> Dict[str, object]:
     return {
         "url": url,
@@ -316,6 +453,7 @@ def _build_article_from_result(result: Dict[str, object]) -> Dict[str, object]:
         "word_count": extraction.get("word_count", 0),
         "error": extraction.get("error"),
         "extraction_method": extraction.get("extraction_method"),
+        "extraction_quality": extraction.get("extraction_quality"),
         "text": extraction.get("text", ""),
     }
 
@@ -342,12 +480,13 @@ def _extract_articles_parallel(article_targets: List[Dict[str, object]]) -> List
         max_workers=_worker_count(MAX_ARTICLE_EXTRACTION_WORKERS, len(article_targets))
     ) as executor:
         futures = [
-            executor.submit(_build_article_from_result, result)
+            submit_context(executor, _build_article_from_result, result)
             for result in article_targets
         ]
         return [future.result() for future in futures]
 
 
+@traced('retrieval.pool', dependency=False)
 def search_and_extract(
     primary_query: str,
     backup_query: Optional[str] = None,

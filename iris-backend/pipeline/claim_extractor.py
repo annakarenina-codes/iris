@@ -8,10 +8,14 @@ can still run.
 
 from __future__ import annotations
 
+from iris_trace.core import traced, event
+
 import json
 import os
 import re
 from typing import Dict, List, Optional
+from pipeline.text_boundaries import is_attribution_tail, split_statement_segments
+from pipeline.quotation_context import SPEECH_RULES, speech_scopes, validate_speech_coverage, QuotationExtractionError
 
 try:
     from dotenv import load_dotenv
@@ -23,7 +27,7 @@ except ImportError:  # pragma: no cover - depends on local environment setup
 load_dotenv()
 
 DEFAULT_OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
-MAX_CLAIMS = 10
+DEFAULT_CLAIM_REVIEW_MODEL = os.getenv("IRIS_CLAIM_REVIEW_MODEL", "gpt-4.1-2025-04-14")
 ATTRIBUTED_CLAIM_TYPE = "attributed_statement"
 ALLOWED_CLAIM_TYPES = {"factual_claim", ATTRIBUTED_CLAIM_TYPE}
 OPINION_MARKERS = [
@@ -214,40 +218,19 @@ def _split_leading_headline_question(segment: str) -> List[str]:
         r"^(?P<head>[\"'`“”‘’]?[A-Z0-9][A-Z0-9\s,'-]{2,80}\?[\"'`“”‘’]?)\s+(?P<rest>.+)$",
         segment,
     )
-    if not match:
+    if not match or is_attribution_tail(match.group("rest")):
         return [segment]
 
     return [match.group("head"), match.group("rest")]
 
 
 def _split_segments(text: str) -> List[str]:
-    protected_text = text
-    abbreviations = {
-        "Jr.": "Jr<period>",
-        "Sr.": "Sr<period>",
-        "Mr.": "Mr<period>",
-        "Mrs.": "Mrs<period>",
-        "Ms.": "Ms<period>",
-        "Dr.": "Dr<period>",
-    }
-
-    for abbreviation, placeholder in abbreviations.items():
-        protected_text = protected_text.replace(abbreviation, placeholder)
-
-    parts = re.split(r"(?:\n+|;\s*|(?<=[.!?])\s+)", protected_text)
     segments = []
-
-    for part in parts:
-        for abbreviation, placeholder in abbreviations.items():
-            part = part.replace(placeholder, abbreviation)
-
-        segment = _normalize_claim(part)
-        if segment:
-            segments.extend(
-                split_segment
-                for split_segment in _split_leading_headline_question(segment)
-                if split_segment
-            )
+    for part in split_statement_segments(text):
+        for statement in _split_leading_headline_question(part):
+            segment = _normalize_claim(statement)
+            if segment:
+                segments.append(segment)
 
     return segments
 
@@ -659,7 +642,7 @@ def _attribution_context_phrase(context: Dict[str, Optional[str]]) -> str:
     date = context.get("date")
 
     if source:
-        phrase = f"in an interview on {source}"
+        phrase = f"as reported by {source}"
         if program:
             phrase += f' program "{program}"'
         if date:
@@ -784,7 +767,7 @@ def _extract_attributed_claims(text: str, translated_text: Optional[str] = None)
             context,
             str(record.get("source_sentence") or ""),
         )
-        for index, record in enumerate(statement_records[:MAX_CLAIMS], start=1)
+        for index, record in enumerate(statement_records, start=1)
     ]
 
 
@@ -810,6 +793,85 @@ def _claim_from_segment(segment: str, last_subject: Optional[str]) -> str:
     segment = re.sub(r"^fugitive\s+([A-Z])", r"\1", segment, flags=re.IGNORECASE)
 
     return segment
+
+
+def _clean_named_actor(text: str) -> str:
+    actor = _normalize_sentence(text)
+    actor = re.sub(
+        r"^(?:the\s+)?(?:late\s+|former\s+)*(?:(?:former\s+)?president\s+|"
+        r"president\s+)?",
+        "",
+        actor,
+        flags=re.IGNORECASE,
+    )
+    return _normalize_sentence(actor)
+
+
+def _subject_from_arrest_pardon_segment(segment: str, last_subject: Optional[str]) -> Optional[str]:
+    match = re.search(
+        r"\b(?P<subject>[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÖØ-öø-ÿ.'-]+"
+        r"(?:\s+[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÖØ-öø-ÿ.'-]+){0,3})\s+"
+        r"was\s+arrested\b",
+        _clean_markup(segment),
+    )
+
+    if match:
+        return _normalize_sentence(match.group("subject"))
+
+    return last_subject
+
+
+def _decompose_arrest_pardon_claims(segment: str, last_subject: Optional[str]) -> List[str]:
+    normalized = segment.lower()
+    required_markers = [
+        "arrested",
+        "imprisoned",
+        "illegal possession of firearms",
+        "conditional pardon",
+        "absolute pardon",
+    ]
+    if not all(marker in normalized for marker in required_markers):
+        return []
+
+    subject = _subject_from_arrest_pardon_segment(segment, last_subject)
+    if not subject:
+        return []
+
+    claims = [
+        f"{subject} was arrested and imprisoned for illegal possession of firearms."
+    ]
+    conditional_match = re.search(
+        r"\bconditional\s+pardon\s+by\s+(?P<actor>.+?)\s+and\s+an\s+absolute\s+pardon\b",
+        segment,
+        flags=re.IGNORECASE,
+    )
+    absolute_match = re.search(
+        r"\babsolute\s+pardon(?:\s+in\s+(?P<year>\d{4}))?\s+by\s+(?P<actor>.+?)(?:[.!?]|$)",
+        segment,
+        flags=re.IGNORECASE,
+    )
+
+    if conditional_match:
+        actor = _clean_named_actor(conditional_match.group("actor"))
+        if actor:
+            claims.append(f"{subject} was granted a conditional pardon by {actor}.")
+
+    if absolute_match:
+        actor = _clean_named_actor(absolute_match.group("actor"))
+        year = absolute_match.group("year")
+        if actor:
+            date_phrase = f" in {year}" if year else ""
+            claims.append(f"{subject} was granted an absolute pardon{date_phrase} by {actor}.")
+
+    return claims if len(claims) > 1 else []
+
+
+def _claims_from_segment(segment: str, last_subject: Optional[str]) -> List[str]:
+    decomposed_claims = _decompose_arrest_pardon_claims(segment, last_subject)
+    if decomposed_claims:
+        return decomposed_claims
+
+    return [_claim_from_segment(segment, last_subject)]
 
 
 def _primary_person_name(text: str) -> Optional[str]:
@@ -998,12 +1060,11 @@ def _claim_fingerprint(claim: Dict[str, object]) -> str:
     else:
         text = str(claim.get("normalized_claim") or claim.get("claim_text") or "")
 
-    words = [
-        word
-        for word in re.findall(r"[a-z0-9]+", text.lower())
-        if word not in SEARCH_STOPWORDS
-    ]
-    return " ".join(words[:18])
+    # Keep the entire assertion, especially negation and late qualifiers. Punctuation
+    # variants are duplicates, but different speakers making the same statement are not.
+    speaker = str(attribution.get("speaker") or "") if isinstance(attribution, dict) else ""
+    words = re.findall(r"[^\W_]+", text.casefold())
+    return f"{claim.get('claim_type', 'factual_claim')}|{speaker.casefold()}|{' '.join(words)}" if words else ""
 
 
 def _dedupe_claim_dicts(claims: List[Dict[str, object]]) -> List[Dict[str, object]]:
@@ -1042,7 +1103,7 @@ def _finalize_claims(claims: List[Dict[str, object]], source_text: str) -> List[
     )
 
     finalized = []
-    for index, claim in enumerate(deduped[:MAX_CLAIMS], start=1):
+    for index, claim in enumerate(deduped, start=1):
         claim.pop("_sort_index", None)
         claim.pop("_original_order", None)
         claim["claim_id"] = index
@@ -1054,7 +1115,7 @@ def _finalize_claims(claims: List[Dict[str, object]], source_text: str) -> List[
 def _renumber_claims(claims: List[Dict[str, object]]) -> List[Dict[str, object]]:
     finalized = []
 
-    for index, claim in enumerate(_dedupe_claim_dicts([dict(item) for item in claims])[:MAX_CLAIMS], start=1):
+    for index, claim in enumerate(_dedupe_claim_dicts([dict(item) for item in claims]), start=1):
         claim.pop("_sort_index", None)
         claim.pop("_original_order", None)
         claim.pop("_source_index", None)
@@ -1192,14 +1253,12 @@ def _fallback_fact_claims(text: str, translated_text: Optional[str] = None) -> L
         segment_type = _segment_type(segment)
 
         if segment_type == "factual_claim":
-            claim = _claim_from_segment(segment, last_subject)
-            claims.append(claim)
-            last_subject = _infer_subject(claim) or last_subject
+            segment_claims = _claims_from_segment(segment, last_subject)
+            claims.extend(segment_claims)
+            for claim in segment_claims:
+                last_subject = _infer_subject(claim) or last_subject
         elif "fugitive from justice" in segment.lower() and last_subject:
             claims.append(f"{last_subject} is a fugitive from justice.")
-
-        if len(claims) >= MAX_CLAIMS:
-            break
 
     if not claims and _normalize_claim(source_text) and _segment_type(source_text) == "factual_claim":
         claims = [_normalize_claim(source_text)]
@@ -1221,6 +1280,13 @@ def _is_mainly_attribution_post(text: str, attributed_claims: List[Dict[str, obj
 
 
 def _fallback_extract_claims(text: str, translated_text: Optional[str] = None) -> List[Dict[str, object]]:
+    segments = split_statement_segments(translated_text or text)
+    scopes = speech_scopes(segments)
+    if 'imagined' in scopes:
+        text = '\n'.join(s for s, scope in zip(segments, scopes) if scope != 'imagined')
+        translated_text = None
+        if not text.strip():
+            return []
     attributed_claims = _extract_attributed_claims(text, translated_text)
     if _is_mainly_attribution_post(text, attributed_claims):
         return _renumber_claims(attributed_claims)
@@ -1236,8 +1302,9 @@ def _fallback_ignored_segments(text: str, translated_text: Optional[str] = None)
     source_text = translated_text or text
     ignored = []
 
-    for segment in _split_segments(source_text):
-        segment_type = _segment_type(segment)
+    segments = _split_segments(source_text)
+    for segment, scope in zip(segments, speech_scopes(segments)):
+        segment_type = 'uncheckable' if scope == 'imagined' else _segment_type(segment)
 
         if segment_type != "factual_claim":
             ignored.append({
@@ -1253,7 +1320,7 @@ def _parse_claim_response(content: str) -> List[Dict[str, object]]:
     raw_claims = payload.get("claims", [])
     claims = []
 
-    for index, item in enumerate(raw_claims[:MAX_CLAIMS], start=1):
+    for index, item in enumerate(raw_claims, start=1):
         if isinstance(item, str):
             original_text = _normalize_claim(item)
             normalized_claim = original_text
@@ -1262,8 +1329,8 @@ def _parse_claim_response(content: str) -> List[Dict[str, object]]:
             search_query = ""
             verification_focus = "factual_claim"
         else:
-            original_text = _normalize_claim(str(item.get("claim_text", "")))
-            normalized_claim = _normalize_claim(str(item.get("normalized_claim", original_text)))
+            original_text = ' '.join(str(item.get("claim_text", "")).split())
+            normalized_claim = ' '.join(str(item.get("normalized_claim", original_text)).split())
             claim_type = str(item.get("claim_type", "factual_claim"))
             attribution = item.get("attribution") if isinstance(item.get("attribution"), dict) else {}
             search_query = _normalize_claim(str(item.get("search_query", "")))
@@ -1286,10 +1353,8 @@ def _parse_claim_response(content: str) -> List[Dict[str, object]]:
         if claim_type == ATTRIBUTED_CLAIM_TYPE:
             speaker = str(attribution.get("speaker") or "")
             statement = str(attribution.get("statement") or normalized_claim)
-            if speaker and statement:
-                normalized_claim = _normalized_attribution_claim(speaker, statement, attribution)
-                claim["normalized_claim"] = normalized_claim
-                claim["risk_tags"] = _risk_tags(normalized_claim)
+            # Preserve the reviewed reporting frame (including denials and questions).
+            # Re-templating every attribution as "speaker said" changes its meaning.
 
             claim["verification_focus"] = "speaker_attribution"
             claim["attribution"] = attribution
@@ -1350,17 +1415,20 @@ def _contains_segment_type(segments: List[Dict[str, object]], segment_type: str)
     return any(segment.get("segment_type") == segment_type for segment in segments)
 
 
+@traced('claims.extract', dependency=True)
 def extract_claims(text: str, translated_text: Optional[str] = None) -> Dict[str, object]:
     """
     Extracts factual claims from a post.
 
     Returns a stable dictionary with extraction status and a numbered claim list.
     """
-    attribution_claims = _extract_attributed_claims(text, translated_text)
+    needs_quote_review = 'reported' in speech_scopes(split_statement_segments(translated_text or text))
     fallback_claims = _fallback_extract_claims(text, translated_text)
     fallback_ignored = _fallback_ignored_segments(text, translated_text)
 
     if OpenAI is None:
+        if needs_quote_review:
+            raise QuotationExtractionError('missing_dependency')
         return {
             "status": "missing_dependency",
             "method": "local_sentence_split",
@@ -1374,6 +1442,8 @@ def extract_claims(text: str, translated_text: Optional[str] = None) -> Dict[str
 
     api_key = _get_api_key()
     if not api_key:
+        if needs_quote_review:
+            raise QuotationExtractionError('missing_api_key')
         return {
             "status": "missing_api_key",
             "method": "local_sentence_split",
@@ -1386,13 +1456,23 @@ def extract_claims(text: str, translated_text: Optional[str] = None) -> Dict[str
         }
 
     prompt = (
+        SPEECH_RULES +
         "Extract checkable factual claims from messy Philippine social media posts. "
+        "For an explicit fact-check headline ('the claim that X is false/true'), "
+        "independently check X, not the headline's verdict. Preserve the full "
+        "headline in claim_text and use the underlying proposition in normalized_claim. "
+        "Do not invert ordinary negative factual assertions or strip negation inside X. "
+        "Do not treat a printed publisher name or verdict as supporting evidence. "
         "When a post mainly attributes statements to a named person, source, "
         "program, or interview, prioritize attribution checks over the embedded "
         "topic claims. In that case, emit claim_type=\"attributed_statement\" "
         "and write normalized_claim as '<speaker> said <statement>'. Include "
         "attribution.speaker, attribution.role, attribution.statement, "
         "attribution.source, attribution.program, attribution.date when present, "
+        "using null for absent fields. Contributor bylines, trailing /via NAME, and "
+        "photo credits are not speaker or required source attribution; do not insert "
+        "credit-only names into the assertion or search query. A reporter may be a "
+        "speaker/source only when the statement explicitly assigns that role, "
         "and a search_query containing the speaker, source/program/date, and "
         "statement keywords. For attribution checks, claim_text must preserve "
         "the complete original sentence that contains the named speaker/source/"
@@ -1408,6 +1488,24 @@ def extract_claims(text: str, translated_text: Optional[str] = None) -> Dict[str
         "as an injured companion, investigation status, a public official's "
         "quoted statement, a legal ruling, research activity, advocacy, and "
         "institutional tributes. "
+        "Evaluate each sentence independently for how many separately verifiable "
+        "facts it contains. Do not default to one claim per sentence just because "
+        "the post contains multiple sentences. A sentence with several distinct "
+        "facts should produce multiple claims regardless of how many other "
+        "sentences and claims exist elsewhere in the same post. A sentence "
+        "contains multiple separate claims when it asserts more than one "
+        "independently checkable fact, such as multiple named actions, multiple "
+        "named entities each doing something distinct, or a list of separate "
+        "events joined by 'and.' For example, the sentence 'Padilla was arrested "
+        "and imprisoned before for illegal possession of firearms and was granted "
+        "a conditional pardon by the late Fidel Ramos and an absolute pardon in "
+        "2016 by Former President Rodrigo Roa Duterte' should produce three "
+        "claims: Padilla was arrested and imprisoned for illegal possession of "
+        "firearms; Padilla was granted a conditional pardon by Fidel Ramos; and "
+        "Padilla was granted an absolute pardon in 2016 by Rodrigo Roa Duterte. "
+        "Apply this same decomposition standard whether the post is one sentence "
+        "long or many sentences long, and whether the sentence is the only "
+        "complex sentence or one of several. "
         "Do not reject the whole post because it contains opinion, insults, fear, "
         "support language, or calls to action. Separate those into ignored_segments. "
         "Do not include vague/evaluative/eulogy framing as claims, such as "
@@ -1416,7 +1514,7 @@ def extract_claims(text: str, translated_text: Optional[str] = None) -> Dict[str
         "Return JSON only with this shape: "
         '{"claims":[{"claim_text":"original claim","normalized_claim":"clear English claim","claim_type":"factual_claim|attributed_statement","verification_focus":"factual_claim|speaker_attribution","attribution":{"speaker":"name","role":"speaker role","statement":"what was said","source":"outlet","program":"program","date":"date"},"search_query":"speaker source statement keywords"}],'
         '"ignored_segments":[{"text":"opinion or demand","segment_type":"opinion|recommendation|uncheckable"}]}. '
-        f"Return at most {MAX_CLAIMS} checkable claims. Extract criminal allegations, "
+        "Return every distinct checkable claim, without a fixed count quota. Extract criminal allegations, "
         "public-official claims, event-attendance claims, and disaster-response claims "
         "when they are stated as facts. Do not include opinions, slogans, insults, "
         "predictions, or demands as claims."
@@ -1426,8 +1524,9 @@ def extract_claims(text: str, translated_text: Optional[str] = None) -> Dict[str
         f"Translated text if available:\n{translated_text or text}"
     )
 
+    client = None
     try:
-        client = OpenAI(api_key=api_key)
+        client = OpenAI(api_key=api_key, timeout=60, max_retries=0)
         response = client.chat.completions.create(
             model=DEFAULT_OPENAI_MODEL,
             temperature=0,
@@ -1437,10 +1536,28 @@ def extract_claims(text: str, translated_text: Optional[str] = None) -> Dict[str
                 {"role": "user", "content": user_content},
             ],
         )
-        content = response.choices[0].message.content or "{}"
+        choice = response.choices[0]
+        if choice.finish_reason != 'stop' or getattr(choice.message, 'refusal', None):
+            raise ValueError('incomplete_extraction_response')
+        content = choice.message.content or "{}"
         claims = _parse_claim_response(content)
         ignored_segments = _parse_ignored_segments(content)
+        from pipeline.claim_coverage import review_claim_coverage
+        coverage = review_claim_coverage(client, DEFAULT_CLAIM_REVIEW_MODEL,
+                                         translated_text or text, claims)
+        content = json.dumps(coverage, ensure_ascii=False)
+        claims = _parse_claim_response(content)
+        ignored_segments = _parse_ignored_segments(content)
+        if len(claims) != len(coverage['claims']):
+            raise ValueError('covered_claim_lost_during_parsing')
+        for claim, raw in zip(claims, coverage['claims']):
+            claim['source_passages'] = raw['source_quotes']
+        validate_speech_coverage({**coverage, 'claims': claims},
+                                 split_statement_segments(translated_text or text))
     except Exception as error:
+        if needs_quote_review:
+            event('claims.quotation_extraction_failed', error_type=type(error).__name__)
+            raise QuotationExtractionError('quotation_review_failed') from error
         return {
             "status": "error",
             "method": "local_sentence_split",
@@ -1452,28 +1569,33 @@ def extract_claims(text: str, translated_text: Optional[str] = None) -> Dict[str
             "contains_recommendation": _contains_segment_type(fallback_ignored, "recommendation"),
         }
 
-    if _is_mainly_attribution_post(text, attribution_claims):
-        claims = _renumber_claims(attribution_claims)
-    else:
-        claims = _finalize_claims([*claims, *attribution_claims], translated_text or text)
-        if len(fallback_claims) > len(claims):
-            claims = fallback_claims
+    finally:
+        if client is not None and callable(getattr(client, 'close', None)):
+            try:
+                client.close()
+            except Exception:
+                event('claims.client_cleanup_failed')
 
-    if not claims:
-        return {
-            "status": "empty_ai_result",
-            "method": "local_sentence_split",
-            "error": "OpenAI did not return usable claims.",
-            "claims": fallback_claims,
-            "ignored_segments": fallback_ignored,
-            "post_type": _post_type(fallback_claims, fallback_ignored),
-            "contains_opinion": _contains_segment_type(fallback_ignored, "opinion"),
-            "contains_recommendation": _contains_segment_type(fallback_ignored, "recommendation"),
-        }
+    # Do not overwrite a reviewed inventory with local quote heuristics or whichever
+    # list happens to be longer. That reintroduced duplicates and discarded facts.
+    draft_fingerprints = [_claim_fingerprint(claim) for claim in claims]
+    claims = _renumber_claims(claims)
+    final_indexes = {_claim_fingerprint(claim): i for i, claim in enumerate(claims)}
+    for row in coverage['coverage']:
+        row['claim_indexes'] = sorted({final_indexes[draft_fingerprints[i]] for i in row['claim_indexes']})
+    for claim in claims:
+        claim['evidence_context'] = translated_text or text
 
+    # A validated empty inventory is a completed exclusion, not a provider failure.
+    # Do not resurrect imagined/opinion statements through the local fallback.
     return {
         "status": "ok",
         "method": "openai",
+        "coverage": coverage['coverage'],
+        "grouping": coverage.get('grouping', []),
+        "grouping_status": coverage.get('grouping_status'),
+        "grouping_error": coverage.get('grouping_error'),
+        "coverage_review_model": DEFAULT_CLAIM_REVIEW_MODEL,
         "error": None,
         "claims": claims,
         "ignored_segments": ignored_segments,

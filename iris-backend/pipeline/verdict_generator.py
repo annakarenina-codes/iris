@@ -7,6 +7,8 @@ article text. No OpenAI is used here.
 
 from __future__ import annotations
 
+from iris_trace.core import traced
+
 import os
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -33,6 +35,7 @@ os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")
 _model: Optional[object] = None
 
 
+@traced('model.semantic_load')
 def get_model() -> object:
     """Loads the embedding model once, then reuses it for future requests."""
     global _model
@@ -116,6 +119,7 @@ def _sort_scored_articles(scored_articles: List[Dict[str, object]]) -> List[Dict
     return sorted(scored_articles, key=ranking_score, reverse=True)
 
 
+@traced('claim.semantic', dependency=True)
 def generate_verdict(claim: str, articles: List[Dict[str, object]]) -> Dict[str, object]:
     """
     Generates the Week 3 verdict from extracted articles.

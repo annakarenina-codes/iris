@@ -8,20 +8,20 @@ The other seven sources are searched after VERA Files.
 VERA_SOURCE = {
     "name": "VERA Files",
     "domain": "verafiles.org",
-    "site_query": "site:verafiles.org",
+    "site_query": "site:verafiles.org/articles",
     "priority": True,
 }
 
 NEWS_SOURCES = [
     {
         "name": "ABS-CBN News",
-        "domain": "abs-cbn.com/news",
-        "site_query": "site:abs-cbn.com/news",
+        "domain": "abs-cbn.com",
+        "site_query": "site:abs-cbn.com",
     },
     {
         "name": "GMA News",
-        "domain": "gmanetwork.com/news",
-        "site_query": "site:gmanetwork.com/news",
+        "domain": "gmanetwork.com",
+        "site_query": "site:gmanetwork.com",
     },
     {
         "name": "Philippine Daily Inquirer",

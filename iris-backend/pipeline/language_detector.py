@@ -1,3 +1,5 @@
+
+from iris_trace.core import traced
 try:
     from lingua import Language, LanguageDetectorBuilder
 except ImportError:  # pragma: no cover - depends on local environment setup
@@ -43,6 +45,7 @@ def _fallback_detect_language(text: str) -> str:
 
     return "english"
 
+@traced('text.language', dependency=False)
 def detect_language(text: str) -> str:
     """
     Detects whether the input text is English, Tagalog, or Taglish.

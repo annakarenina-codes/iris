@@ -8,8 +8,11 @@ institutions, government controversy, or policy-sensitive issues.
 
 from __future__ import annotations
 
+from iris_trace.core import traced
+
 import re
 from typing import Dict, List
+from pipeline.attribution_integrity import attribution_phrase_match, attribution_tokens
 
 
 ELECTION_KEYWORDS = [
@@ -29,6 +32,8 @@ PUBLIC_OFFICIAL_KEYWORDS = [
     "president",
     "vice president",
     "senator",
+    "senators",
+    "representative",
     "congressman",
     "congresswoman",
     "councilor",
@@ -134,7 +139,31 @@ GOVERNMENT_AGENCY_KEYWORDS = [
 
 def _normalize(text: str) -> str:
     """Lowercase text and make spacing predictable for keyword matching."""
-    return re.sub(r"\s+", " ", text.lower()).strip()
+    text = ' '.join(attribution_tokens(text))
+    return re.sub(r'\b(?:sen|sens|rep)\b',
+                  lambda m: {'sen': 'senator', 'sens': 'senators', 'rep': 'representative'}[m.group()], text)
+
+
+_NAME_TOKEN = r'(?:[A-Z][\w\u2019\x27-]+|[\u201c\"](?:[^\u201d\"\r\n]{1,30})[\u201d\"])'
+_OFFICIAL_MENTION = re.compile(
+    r'\b(?P<role>Senator(?:-Judge)?|Sen\.|President|Mayor|Rep\.|Secretary|Governor)\s+'
+    r'(?P<name>' + _NAME_TOKEN + r'(?:\s+' + _NAME_TOKEN + r'){0,5})')
+
+
+def flag_claim_political(claim):
+    attribution = claim.get('attribution') or {}
+    assertion = ' '.join(str(claim.get(key) or '') for key in ('claim_text', 'normalized_claim'))
+    result = flag_political(assertion)
+    speaker = attribution.get('speaker')
+    # Inherit an office only for this explicitly named speaker, never the whole post.
+    matches = [m for m in _OFFICIAL_MENTION.finditer(claim.get('evidence_context') or '')
+               if speaker and attribution_phrase_match(speaker, m.group('name'))]
+    if claim.get('claim_type') == 'attributed_statement' and matches:
+        context = ' '.join(m.group() for m in matches)
+        result = flag_political(assertion + ' ' + context)
+        result['speaker_context'] = [{'speaker': m.group('name'), 'role': m.group('role')}
+                                     for m in matches]
+    return result
 
 
 def _has_term(text: str, term: str) -> bool:
@@ -147,6 +176,7 @@ def _matched_terms(text: str, terms: List[str]) -> List[str]:
     return [term for term in terms if _has_term(text, term)]
 
 
+@traced('text.political', dependency=False)
 def flag_political(text: str) -> Dict[str, object]:
     """
     Checks whether text should receive the Politically Sensitive overlay.

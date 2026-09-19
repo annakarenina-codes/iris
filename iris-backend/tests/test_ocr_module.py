@@ -160,6 +160,22 @@ def _fake_ocr_missing_dependency(image_bytes):
     }
 
 
+class _FakeImageResponse:
+    def __init__(self, body, content_type="image/png", status_code=200):
+        self.body = body
+        self.headers = {
+            "content-type": content_type,
+            "content-length": str(len(body)),
+        }
+        self.status_code = status_code
+
+    def iter_content(self, chunk_size=65536):
+        yield self.body
+
+    def close(self):
+        pass
+
+
 def run_checks() -> None:
     decoded = decode_base64_image(f"data:image/png;base64,{PNG_BASE64}")
     assert decoded["status"] == "ok"
@@ -171,6 +187,7 @@ def run_checks() -> None:
     unsupported = validate_image_bytes(b"not an image")
     assert unsupported["status"] == "unsupported_image_type"
 
+    original_requests_get = iris_app.requests.get
     originals = {
         "detect_language": iris_app.detect_language,
         "translate_to_english": iris_app.translate_to_english,
@@ -265,6 +282,34 @@ def run_checks() -> None:
         assert multipart_payload["ocr_status"] == "ok"
         assert "ocr" in multipart_payload["debug"]
 
+        iris_app.requests.get = lambda url, **kwargs: _FakeImageResponse(decoded["image_bytes"])
+        url_response = client.post(
+            "/verify-image",
+            json={
+                "image_url": "https://example.com/claim.png",
+                "debug": True,
+            },
+        )
+        url_payload = url_response.get_json()
+
+        assert url_response.status_code == 200
+        assert url_payload["input_type"] == "image"
+        assert url_payload["ocr_status"] == "ok"
+        assert url_payload["ocr_text"].startswith("The Department of Health")
+
+        iris_app.requests.get = lambda url, **kwargs: _FakeImageResponse(
+            b"<html>not an image</html>",
+            content_type="text/html",
+        )
+        non_image_response = client.post(
+            "/verify-image",
+            json={"image_url": "https://example.com/not-image"},
+        )
+        non_image_payload = non_image_response.get_json()
+
+        assert non_image_response.status_code == 400
+        assert non_image_payload["ocr_status"] == "unsupported_image_type"
+
         bad_response = client.post(
             "/verify-image",
             json={"image_base64": "not base64"},
@@ -287,6 +332,7 @@ def run_checks() -> None:
     finally:
         for name, value in originals.items():
             setattr(iris_app, name, value)
+        iris_app.requests.get = original_requests_get
 
     print("All OCR module checks passed.")
 

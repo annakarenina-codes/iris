@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from iris_trace.core import traced
+
 import json
 import os
 from typing import Dict, List, Optional
@@ -86,6 +88,7 @@ def _parse_response(content: str) -> Dict[str, object]:
     }
 
 
+@traced('claim.fallback_ai', dependency=True)
 def refine_with_openai_rag(
     claim: str,
     articles: List[Dict[str, object]],
@@ -134,6 +137,9 @@ def refine_with_openai_rag(
         "You are the IRIS evidence reviewer. Decide whether the claim is "
         "supported only by the provided retrieved evidence snippets. Do not use "
         "outside knowledge. Match the specific claim, not merely a related topic. "
+        "Match who did or said what, to whom, including negation and event context. "
+        "Asking someone for a position is not the same as advocating that person "
+        "preside over a trial. Shared names and topics alone never establish support. "
         "For example, evidence about flood control projects does not verify a "
         "claim about flood aid unless the evidence explicitly mentions aid, "
         "assistance, relief, or distribution to residents. Use Not Found when "

@@ -8,6 +8,14 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
+.iris-extension-shell[hidden] * {
+  animation-play-state: paused !important;
+}
+
 .iris-floating-wrap {
   position: fixed;
   top: 20px;
@@ -56,18 +64,18 @@
 }
 
 .iris-extension-shell[data-theme="dark"] {
-  --iris-panel-bg: #1e1b2e;
-  --iris-card-bg: #2a2440;
-  --iris-subtle-bg: #2f2850;
-  --iris-muted-bg: #3a315f;
-  --iris-hover-bg: #332b54;
-  --iris-text: #f0ebff;
-  --iris-text-mid: #d8cdfd;
-  --iris-text-light: #b8a8ee;
-  --iris-border: rgba(196, 181, 253, 0.25);
-  --iris-border-strong: rgba(196, 181, 253, 0.55);
-  --iris-footer-bg: #242038;
-  --iris-overlay: rgba(9, 6, 22, 0.62);
+  --iris-panel-bg: #1A1A1A;
+  --iris-card-bg: #242424;
+  --iris-subtle-bg: #242424;
+  --iris-muted-bg: #2F2F2F;
+  --iris-hover-bg: #2A2A2A;
+  --iris-text: #F5F5F5;
+  --iris-text-mid: #A3A3A3;
+  --iris-text-light: #A3A3A3;
+  --iris-border: rgba(255, 255, 255, 0.12);
+  --iris-border-strong: rgba(255, 255, 255, 0.12);
+  --iris-footer-bg: #1A1A1A;
+  --iris-overlay: rgba(0, 0, 0, 0.68);
 }
 
 button,
@@ -137,8 +145,8 @@ select {
 }
 
 .iris-extension-shell[data-theme="dark"].iris-panel.is-drop-target::after {
-  background: rgba(30, 27, 46, 0.9);
-  color: #86efac;
+  background: rgba(26, 26, 26, 0.92);
+  color: #F5F5F5;
 }
 
 .iris-panel__brand {
@@ -153,8 +161,16 @@ select {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.14));
 }
 
+.iris-panel__brand-copy {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
 .iris-panel__brand strong {
   display: block;
+  flex: 0 0 auto;
   color: #fff;
   font-size: calc(14px * var(--iris-scale));
   font-weight: 800;
@@ -162,17 +178,32 @@ select {
   letter-spacing: 0.6px;
 }
 
-.iris-panel__brand span {
-  display: block;
-  width: 214px;
-  overflow: hidden;
+.iris-panel__tagline {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
   color: rgba(255, 255, 255, 0.72);
   font-family: Consolas, "Courier New", monospace;
   font-size: calc(8px * var(--iris-scale));
   letter-spacing: 0.38px;
-  line-height: 1.2;
+  line-height: 1.12;
+  white-space: normal;
+}
+
+.iris-panel__tagline span {
+  display: block;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.iris-eye {
+  display: inline-block;
+  flex: 0 0 auto;
+  object-fit: contain;
+  pointer-events: none;
+  vertical-align: middle;
 }
 
 .iris-icon {
@@ -890,6 +921,10 @@ blockquote {
 
 .font-options button {
   min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
   border: 1.5px solid var(--iris-border);
   border-radius: 8px;
   background: var(--iris-panel-bg);
@@ -897,6 +932,10 @@ blockquote {
   cursor: pointer;
   font-size: calc(10.5px * var(--iris-scale));
   font-weight: 800;
+  line-height: 1;
+  padding: 0 8px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .font-options button:hover,
@@ -1049,16 +1088,123 @@ blockquote {
   margin-left: auto;
   border-radius: 999px;
   background: var(--iris-text-light);
+  transition:
+    background-color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .iris-pill__status.is-ready {
   background: #22c55e;
   box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+  animation: none;
 }
 
 .iris-pill__status.is-scanning {
   background: #8b5cf6;
-  animation: ready-pulse 1s ease-in-out infinite;
+  box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.34);
+  animation: scan-pulse 1.05s ease-in-out infinite;
+}
+
+.iris-extension-shell[data-theme="dark"] .idle-search,
+.iris-extension-shell[data-theme="dark"] .iris-icon-button--plain,
+.iris-extension-shell[data-theme="dark"] .skipped-note > span {
+  background: #242424;
+  color: #F5F5F5;
+}
+
+.iris-extension-shell[data-theme="dark"] blockquote {
+  border-color: rgba(255, 255, 255, 0.12);
+  border-left-color: #A3A3A3;
+  background: #242424;
+  color: #F5F5F5;
+}
+
+.iris-extension-shell[data-theme="dark"] .empty-claim strong,
+.iris-extension-shell[data-theme="dark"] .detected-row,
+.iris-extension-shell[data-theme="dark"] .iris-button--secondary,
+.iris-extension-shell[data-theme="dark"] .iris-button--upload,
+.iris-extension-shell[data-theme="dark"] .claim-navigator__button,
+.iris-extension-shell[data-theme="dark"] .source-card__meta span,
+.iris-extension-shell[data-theme="dark"] .source-card__link,
+.iris-extension-shell[data-theme="dark"] .faq-list button,
+.iris-extension-shell[data-theme="dark"] .font-options button:hover,
+.iris-extension-shell[data-theme="dark"] .font-options button.is-active,
+.iris-extension-shell[data-theme="dark"] .iris-panel__footer button:hover,
+.iris-extension-shell[data-theme="dark"] .iris-panel__footer button.is-active {
+  color: #F5F5F5;
+}
+
+.iris-extension-shell[data-theme="dark"] .iris-button--primary,
+.iris-extension-shell[data-theme="dark"] .corroboration-row strong,
+.iris-extension-shell[data-theme="dark"] .progress-track span,
+.iris-extension-shell[data-theme="dark"] .scan-dots span {
+  background: #F5F5F5;
+  color: #1A1A1A;
+  box-shadow: none;
+}
+
+.iris-extension-shell[data-theme="dark"] .source-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.28);
+}
+
+.iris-extension-shell[data-theme="dark"] .detected-row span {
+  background: #A3A3A3;
+  box-shadow: none;
+  animation: none;
+}
+
+.iris-extension-shell[data-theme="dark"] .iris-pill__status.is-ready {
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.20);
+  animation: none;
+}
+
+.iris-extension-shell[data-theme="dark"] .iris-pill__status.is-scanning {
+  background: #8b5cf6;
+  box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.36);
+  animation: scan-pulse 1.05s ease-in-out infinite;
+}
+
+.iris-extension-shell[data-theme="dark"] .political-flag {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: #242424;
+  color: #F5F5F5;
+}
+
+.iris-extension-shell[data-theme="dark"] .political-flag > span {
+  background: #2F2F2F;
+  color: #F5F5F5;
+}
+
+.iris-extension-shell[data-theme="dark"] .political-flag p {
+  color: #A3A3A3;
+}
+
+.iris-extension-shell[data-theme="dark"] .switch-button.is-on {
+  background: #F5F5F5;
+}
+
+.iris-extension-shell[data-theme="dark"] .switch-button.is-on span {
+  background: #1A1A1A;
+}
+
+.iris-extension-shell[data-theme="dark"].iris-pill {
+  color: #F5F5F5;
+}
+
+.iris-extension-shell[data-theme="dark"].iris-pill span {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.iris-extension-shell[data-theme="dark"].iris-pill.is-drop-target::after {
+  background: rgba(26, 26, 26, 0.94);
+  color: #F5F5F5;
+}
+
+.quiet-close-result {
+  margin-bottom: 8px;
 }
 
 @keyframes iris-enter {
@@ -1088,6 +1234,18 @@ blockquote {
   }
   50% {
     box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+  }
+}
+
+@keyframes scan-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.38);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(139, 92, 246, 0);
+    transform: scale(1.16);
   }
 }
 
@@ -1126,5 +1284,47 @@ blockquote {
   .iris-panel {
     width: min(310px, calc(100vw - 24px));
     max-height: calc(100vh - 28px);
+  }
+}
+
+.iris-extension-shell button:not(.iris-pill) {
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+.iris-extension-shell button:not(:disabled):not(.iris-pill):active {
+  transform: scale(0.97);
+  filter: brightness(0.92);
+}
+
+.iris-pill:active:not(.is-dragging) {
+  filter: brightness(0.92);
+}
+
+.iris-extension-shell button:focus-visible {
+  outline: 2px solid var(--iris-text);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .iris-extension-shell button:active,
+  .source-card:hover,
+  .scan-dots span,
+  .progress-track span,
+  .iris-pill__status {
+    transform: none !important;
+  }
+
+  .scan-dots span {
+    opacity: 1;
+  }
+
+  .iris-pill__status.is-scanning {
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3) !important;
   }
 }

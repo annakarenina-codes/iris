@@ -6,7 +6,8 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     irisPanelEnabled: true,
     irisTheme: "system",
     irisFontSize: "default",
-    irisDebugMode: false
+    irisDebugMode: false,
+    quietMode: false
   };
 
   const FONT_OPTIONS = [
@@ -38,6 +39,8 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         "IRIS extracts readable text from submitted images. It does not judge whether an image is authentic or edited."
     }
   ];
+  const IMAGE_DROP_ERROR = "Drop a PNG, JPEG, WEBP, BMP, or TIFF image. GIFs, videos, and selected text are not sent to IRIS.";
+  const IRIS_LOGO_MARK_URL = chrome.runtime.getURL("assets/iris-logo-mark.png");
 
   const state = {
     status: "idle",
@@ -52,6 +55,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     panelOpenedByAction: false,
     settings: { ...STORAGE_DEFAULTS },
     position: null,
+    tabId: null,
     dragging: null,
     dropActive: false,
     dropDepth: 0,
@@ -73,27 +77,51 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   shadow.append(stylesheet, root);
   document.documentElement.append(host);
 
-  const storage = chrome.storage?.sync;
+  const syncStorage = chrome.storage?.sync;
+  const sessionStorage = chrome.storage?.session;
+  let mountedView = null;
 
-  function readStorage(defaults) {
+  function readSyncStorage(defaults) {
     return new Promise((resolve) => {
-      if (!storage) {
+      if (!syncStorage) {
         resolve(defaults);
         return;
       }
 
-      storage.get(defaults, (items) => resolve(items || defaults));
+      syncStorage.get(defaults, (items) => resolve(items || defaults));
     });
   }
 
-  function writeStorage(items) {
+  function writeSyncStorage(items) {
     return new Promise((resolve) => {
-      if (!storage) {
+      if (!syncStorage) {
         resolve();
         return;
       }
 
-      storage.set(items, resolve);
+      syncStorage.set(items, resolve);
+    });
+  }
+
+  function readSessionStorage(defaults) {
+    return new Promise((resolve) => {
+      if (!sessionStorage) {
+        resolve(defaults);
+        return;
+      }
+
+      sessionStorage.get(defaults, (items) => resolve(items || defaults));
+    });
+  }
+
+  function writeSessionStorage(items) {
+    return new Promise((resolve) => {
+      if (!sessionStorage) {
+        resolve();
+        return;
+      }
+
+      sessionStorage.set(items, resolve);
     });
   }
 
@@ -109,6 +137,19 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         resolve(response);
       });
     });
+  }
+
+  async function getCurrentTabId() {
+    try {
+      const response = await sendRuntimeMessage({ type: "IRIS_GET_TAB_ID" });
+      return response?.tabId ?? null;
+    } catch (_error) {
+      return null;
+    }
+  }
+
+  function positionStorageKey() {
+    return state.tabId == null ? "" : `iris_position_${state.tabId}`;
   }
 
   function escapeHtml(value) {
@@ -170,6 +211,13 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   function shouldRenderPanel() {
+    if (state.settings.quietMode) {
+      if (state.collapsed) return false;
+      if (!state.panelOpenedByAction && ["idle", "detected"].includes(state.status)) {
+        return false;
+      }
+    }
+
     return (
       state.settings.irisPanelEnabled ||
       state.panelOpenedByAction ||
@@ -177,28 +225,9 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     );
   }
 
-  function irisEye(size = 28, monochrome = false) {
-    const id = `irisGradient-${Math.random().toString(36).slice(2)}`;
-    const fill = monochrome ? "currentColor" : `url(#${id})`;
-    const innerFill = monochrome ? "none" : "white";
-    const innerStroke = monochrome ? "currentColor" : "none";
-    const innerStrokeWidth = monochrome ? "4" : "0";
-
+  function irisEye(size = 28, _monochrome = false) {
     return `
-      <svg class="iris-eye" width="${size}" height="${size}" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="${id}" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#5B21B6" />
-            <stop offset="0.55" stop-color="#8B5CF6" />
-            <stop offset="1" stop-color="#C4B5FD" />
-          </linearGradient>
-        </defs>
-        <ellipse cx="44" cy="46" rx="30" ry="18" fill="${fill}" />
-        <circle cx="50" cy="48" r="20" fill="${innerFill}" opacity="0.9" stroke="${innerStroke}" stroke-width="${innerStrokeWidth}" />
-        <circle cx="50" cy="48" r="11" fill="${fill}" />
-        <circle cx="44" cy="43" r="4" fill="white" opacity="0.7" />
-        <line x1="64" y1="62" x2="78" y2="76" stroke="${fill}" stroke-width="8" stroke-linecap="round" />
-      </svg>
+      <img class="iris-eye" src="${IRIS_LOGO_MARK_URL}" width="${size}" height="${size}" alt="" aria-hidden="true" draggable="false" />
     `;
   }
 
@@ -538,10 +567,8 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   function claimNavigator(totalClaims) {
-    if (totalClaims <= 1) return "";
-
     return `
-      <div class="claim-navigator" aria-label="Claim navigation">
+      <div class="claim-navigator" aria-label="Claim navigation" ${totalClaims <= 1 ? "hidden" : ""}>
         <button class="claim-navigator__button" type="button" data-action="prev-claim" aria-label="Previous claim" ${state.claimIndex === 0 ? "disabled" : ""}>
           ${icon("chevronLeft")}
         </button>
@@ -677,12 +704,14 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       ? result.claims
       : [normalizeClaim({ verdict: "Not Found", message: "IRIS did not return a claim result." }, state.selectedText, [])];
     const activeClaim = claims[Math.min(state.claimIndex, claims.length - 1)];
+    const quietCloseButton = `<button class="iris-button iris-button--secondary quiet-close-result" type="button" data-action="quiet-close" ${state.settings.quietMode ? "" : "hidden"}>Close IRIS</button>`;
 
     return `
       <section class="iris-state iris-state--result">
         ${claimNavigator(claims.length)}
         ${resultClaimBlock(activeClaim, { ...result, claims })}
         <p class="disclaimer">IRIS is an assistant, not an authority. Always read the linked articles before sharing.</p>
+        ${quietCloseButton}
         <button class="iris-button iris-button--secondary" type="button" data-action="reset">Check another claim</button>
       </section>
     `;
@@ -718,6 +747,16 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
             <span>IRIS panel only</span>
           </div>
           <button class="switch-button ${resolveTheme() === "dark" ? "is-on" : ""}" type="button" role="switch" aria-checked="${resolveTheme() === "dark"}" data-action="toggle-theme">
+            <span></span>
+          </button>
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <strong>Quiet Mode</strong>
+            <span>Only show IRIS after right-click checks</span>
+          </div>
+          <button class="switch-button ${state.settings.quietMode ? "is-on" : ""}" type="button" role="switch" aria-checked="${state.settings.quietMode}" data-action="toggle-quiet-mode">
             <span></span>
           </button>
         </div>
@@ -774,67 +813,147 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     return idleState();
   }
 
-  function render() {
-    if (!shouldRenderPanel()) {
-      root.innerHTML = "";
-      return;
-    }
-
-    const positionStyle = state.position
-      ? `left:${state.position.x}px;top:${state.position.y}px;right:auto;bottom:auto;`
-      : "";
-    const theme = resolveTheme();
-    const scale = activeFontScale();
-    const detected =
-      state.status === "detected" ||
-      state.status === "photo" ||
-      state.status === "scanning" ||
-      state.status === "result";
-    const statusClass = state.status === "scanning" ? "is-scanning" : detected ? "is-ready" : "";
-
+  function mountPanel() {
     root.innerHTML = `
-      <div class="iris-floating-wrap ${state.position ? "is-positioned" : ""}" style="${positionStyle}">
+      <div class="iris-floating-wrap">
         <input id="iris-image-input" type="file" accept="image/*" hidden />
-        ${
-          state.collapsed
-            ? `<button class="iris-pill iris-extension-shell ${state.dragging ? "is-dragging" : ""} ${state.dropActive ? "is-drop-target" : ""}" type="button" aria-label="Open IRIS panel" data-theme="${theme}" style="--iris-scale:${scale}" data-drag-handle data-action="expand">
+        <button class="iris-pill iris-extension-shell" type="button" aria-label="Open IRIS panel" data-drag-handle data-action="expand" hidden>
                 ${irisEye(22)}
                 <span>IRIS</span>
-                <i class="iris-pill__status ${statusClass}" aria-hidden="true"></i>
-              </button>`
-            : `<aside class="iris-panel iris-extension-shell ${state.dragging ? "is-dragging" : ""} ${state.dropActive ? "is-drop-target" : ""}" data-theme="${theme}" style="--iris-scale:${scale}" aria-label="IRIS fact-check panel">
+                <i class="iris-pill__status" aria-hidden="true"></i>
+        </button>
+        <aside class="iris-panel iris-extension-shell" aria-label="IRIS fact-check panel" hidden>
                 <header class="iris-panel__header" data-drag-handle>
                   <div class="iris-panel__brand">
                     ${irisEye(28)}
-                    <div>
+                    <div class="iris-panel__brand-copy">
                       <strong>IRIS</strong>
-                      <span>INTELLIGENT REAL-TIME INFORMATION SCANNER</span>
+                      <span class="iris-panel__tagline">
+                        <span>INTELLIGENT REAL-TIME</span>
+                        <span>INFORMATION SCANNER</span>
+                      </span>
                     </div>
                   </div>
-                  <button class="iris-icon-button" type="button" aria-label="Collapse IRIS panel" data-action="collapse">
-                    ${icon("minus")}
-                  </button>
+                  <button class="iris-icon-button" type="button" data-role="header-close"></button>
                 </header>
-                <div class="iris-panel__body">${bodyForStatus()}</div>
+                <div class="iris-panel__body"></div>
                 <footer class="iris-panel__footer">
-                  <button class="${state.status === "settings" ? "is-active" : ""}" type="button" aria-label="Open IRIS settings" data-action="open-settings">${icon("gear")}</button>
+                  <button type="button" aria-label="Open IRIS settings" data-action="open-settings">${icon("gear")}</button>
                   <button type="button" aria-label="Open IRIS FAQ" data-action="open-faq">${icon("question")}</button>
                 </footer>
-                ${faqOverlay()}
-              </aside>`
-        }
+        </aside>
       </div>
     `;
+    mountedView = {
+      wrapper: root.querySelector(".iris-floating-wrap"),
+      panel: root.querySelector(".iris-panel"),
+      pill: root.querySelector(".iris-pill"),
+      body: root.querySelector(".iris-panel__body"),
+      headerClose: root.querySelector('[data-role="header-close"]'),
+      status: null,
+      bodyMarkup: null,
+      claimIndex: null
+    };
+  }
 
-    if (state.collapsed && state.dropActive) {
-      shadow.querySelector(".iris-pill")?.classList.add("is-drop-target");
+  function updatePanelBody() {
+    const view = mountedView;
+    const markup = bodyForStatus();
+    if (view.bodyMarkup === markup && view.status === state.status) return;
+
+    if (view.status !== state.status) {
+      view.body.innerHTML = markup;
+      view.body.scrollTop = 0;
+    } else if (state.status === "detected") {
+      updateDetectedText(state.selectedText);
+    } else if (state.status === "settings") {
+      for (const [action, checked] of [
+        ["toggle-theme", resolveTheme() === "dark"],
+        ["toggle-quiet-mode", state.settings.quietMode]
+      ]) {
+        const button = view.body.querySelector(`[data-action="${action}"]`);
+        button.classList.toggle("is-on", Boolean(checked));
+        button.setAttribute("aria-checked", String(Boolean(checked)));
+      }
+      for (const button of view.body.querySelectorAll('[data-action="set-font"]')) {
+        button.classList.toggle("is-active", button.dataset.value === state.settings.irisFontSize);
+      }
+    } else if (state.status === "result") {
+      // Keep navigation buttons and unchanged evidence links alive during updates.
+      const template = document.createElement("template");
+      template.innerHTML = markup;
+      const next = template.content;
+      const navigator = view.body.querySelector(".claim-navigator");
+      const nextNavigator = next.querySelector(".claim-navigator");
+      navigator.hidden = nextNavigator.hidden;
+      navigator.querySelector("strong").textContent = nextNavigator.querySelector("strong").textContent;
+      for (const action of ["prev-claim", "next-claim"]) {
+        navigator.querySelector(`[data-action="${action}"]`).disabled =
+          nextNavigator.querySelector(`[data-action="${action}"]`).disabled;
+      }
+      const block = view.body.querySelector(".claim-result-block");
+      const nextBlock = next.querySelector(".claim-result-block");
+      if (!block.isEqualNode(nextBlock)) block.replaceWith(nextBlock);
+      view.body.querySelector(".quiet-close-result").hidden = !state.settings.quietMode;
+      if (view.claimIndex !== state.claimIndex) view.body.scrollTop = 0;
+    } else {
+      view.body.innerHTML = markup;
     }
+    view.status = state.status;
+    view.bodyMarkup = markup;
+    view.claimIndex = state.claimIndex;
+  }
+
+  function render() {
+    if (!shouldRenderPanel()) {
+      root.replaceChildren();
+      mountedView = null;
+      return;
+    }
+    if (!mountedView) mountPanel();
+
+    const { wrapper, panel, pill, headerClose } = mountedView;
+    wrapper.classList.toggle("is-positioned", Boolean(state.position));
+    if (state.position) {
+      applyPositionDuringDrag(state.position.x, state.position.y);
+    } else {
+      wrapper.removeAttribute("style");
+    }
+    for (const surface of [panel, pill]) {
+      surface.dataset.theme = resolveTheme();
+      surface.style.setProperty("--iris-scale", activeFontScale());
+      surface.classList.toggle("is-dragging", Boolean(state.dragging));
+      surface.classList.toggle("is-drop-target", state.dropActive);
+    }
+    panel.hidden = state.collapsed;
+    pill.hidden = !state.collapsed;
+    const scanning = state.status === "scanning";
+    const ready = ["detected", "photo", "result"].includes(state.status);
+    const statusDot = pill.querySelector(".iris-pill__status");
+    statusDot.classList.toggle("is-scanning", scanning);
+    statusDot.classList.toggle("is-ready", ready);
+    pill.setAttribute("aria-label", scanning ? "IRIS is scanning. Open panel" : ready ? "IRIS is ready. Open panel" : "Open IRIS panel");
+    panel.setAttribute("aria-busy", String(scanning));
+
+    const closeAction = state.settings.quietMode ? "quiet-close" : "collapse";
+    if (headerClose.dataset.action !== closeAction) {
+      headerClose.dataset.action = closeAction;
+      headerClose.setAttribute("aria-label", state.settings.quietMode ? "Close IRIS panel" : "Collapse IRIS panel");
+      headerClose.innerHTML = icon(state.settings.quietMode ? "close" : "minus");
+    }
+    panel.querySelector('[data-action="open-settings"]').classList.toggle("is-active", state.status === "settings");
+    updatePanelBody();
+
+    const faq = panel.querySelector(".faq-overlay");
+    if (state.faqOpen && !faq) panel.insertAdjacentHTML("beforeend", faqOverlay());
+    if (!state.faqOpen && faq) faq.remove();
   }
 
   function applyPositionDuringDrag(x, y) {
     const wrapper = shadow.querySelector(".iris-floating-wrap");
     if (!wrapper) return;
 
+    wrapper.classList.add("is-positioned");
     wrapper.style.left = `${x}px`;
     wrapper.style.top = `${y}px`;
     wrapper.style.right = "auto";
@@ -902,8 +1021,10 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     }
   }
 
-  async function runImageCheck(imageDataUrl, imageName = "Selected image") {
-    if (!imageDataUrl) {
+  async function requestBackgroundImageVerification(source, imageName = "Selected image", previewDataUrl = "") {
+    const imageSource = source || {};
+
+    if (!imageSource.dataUrl && !imageSource.url) {
       state.errorMessage = "No image data was provided.";
       setStatus("error");
       return;
@@ -913,9 +1034,10 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     state.claimMode = "photo";
     state.selectedText = "Image selected for OCR.";
     state.selectedImage = {
-      dataUrl: imageDataUrl,
+      dataUrl: previewDataUrl || imageSource.dataUrl || "",
       name: imageName
     };
+    state.result = null;
     state.claimIndex = 0;
     state.faqOpen = false;
     state.collapsed = false;
@@ -923,29 +1045,33 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
     try {
       const response = await sendRuntimeMessage({
-        type: "IRIS_VERIFY_IMAGE",
-        backendUrl: state.settings.irisBackendUrl,
-        debug: state.settings.irisDebugMode,
-        imageDataUrl
+        type: "IRIS_VERIFY_IMAGE_SOURCE",
+        source: {
+          ...imageSource,
+          name: imageName
+        }
       });
 
       if (!response?.ok) {
-        const fallbackPayload = response?.payload;
-        if (fallbackPayload) {
-          state.result = normalizeBackendResult(fallbackPayload, fallbackPayload.ocr_text || "Image selected for OCR.", "photo");
-          setStatus("result");
-          return;
-        }
-
-        throw new Error(response?.error || "The IRIS backend did not return a successful OCR result.");
+        throw new Error(response?.error || "IRIS could not start image verification.");
       }
-
-      state.result = normalizeBackendResult(response.payload, response.payload?.ocr_text || "Image selected for OCR.", "photo");
-      setStatus("result");
     } catch (error) {
-      state.errorMessage = error.message;
-      setStatus("error");
+      failContextImageCheck(error.message);
     }
+  }
+
+  async function runImageCheck(imageDataUrl, imageName = "Selected image") {
+    if (!imageDataUrl) {
+      state.errorMessage = "No image data was provided.";
+      setStatus("error");
+      return;
+    }
+
+    return requestBackgroundImageVerification({
+      kind: "data_url",
+      dataUrl: imageDataUrl,
+      name: imageName
+    }, imageName, imageDataUrl);
   }
 
   async function runImageUrlCheck(imageUrl) {
@@ -953,32 +1079,51 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   async function runImageUrlDropCheck(imageUrl, imageName = "Image from page") {
+    if (!imageUrl) {
+      state.errorMessage = "No image URL was provided.";
+      setStatus("error");
+      return;
+    }
+
+    return requestBackgroundImageVerification({
+      kind: "url",
+      url: imageUrl,
+      name: imageName
+    }, imageName);
+  }
+
+  function startContextImageCheck(imageUrl, imageName = "Selected image") {
     state.panelOpenedByAction = true;
     state.claimMode = "photo";
     state.selectedText = "Image selected for OCR.";
     state.selectedImage = {
       dataUrl: "",
-      name: imageName
+      name: imageName || (imageUrl ? "Image from page" : "Selected image")
     };
+    state.result = null;
+    state.claimIndex = 0;
+    state.faqOpen = false;
     state.collapsed = false;
     setStatus("scanning");
+  }
 
-    try {
-      const response = await sendRuntimeMessage({
-        type: "IRIS_FETCH_IMAGE_AS_DATA_URL",
-        imageUrl,
-        includeCredentials: true
-      });
+  function finishContextImageCheck(payload) {
+    const fallbackText = payload?.ocr_text || "Image selected for OCR.";
+    state.result = normalizeBackendResult(payload, fallbackText, "photo");
+    setStatus("result");
+  }
 
-      if (!response?.ok) {
-        throw new Error(response?.error || "IRIS could not read the selected image from the page.");
-      }
-
-      await runImageCheck(response.dataUrl, imageName);
-    } catch (error) {
-      state.errorMessage = error.message;
-      setStatus("error");
-    }
+  function failContextImageCheck(message) {
+    state.panelOpenedByAction = true;
+    state.claimMode = "photo";
+    state.selectedText = "Image selected for OCR.";
+    state.selectedImage = state.selectedImage || {
+      dataUrl: "",
+      name: "Selected image"
+    };
+    state.collapsed = false;
+    state.errorMessage = message || "IRIS could not verify the selected image.";
+    setStatus("error");
   }
 
   function readFileAsDataUrl(file) {
@@ -992,9 +1137,18 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
   function isImageFile(file) {
     if (!file) return false;
-    if (String(file.type || "").startsWith("image/")) return true;
+    const fileType = String(file.type || "").toLowerCase();
+    const supportedTypes = new Set([
+      "image/png",
+      "image/jpeg",
+      "image/jpg",
+      "image/webp",
+      "image/bmp",
+      "image/tiff"
+    ]);
+    if (fileType) return supportedTypes.has(fileType);
 
-    return /\.(png|jpe?g|webp|gif|bmp|tiff?|heic|heif)$/i.test(file.name || "");
+    return /\.(png|jpe?g|webp|bmp|tiff?)$/i.test(file.name || "");
   }
 
   function dragHasType(event, type) {
@@ -1013,6 +1167,10 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     );
   }
 
+  function dragHasDropPayload(event) {
+    return dragHasLocalFiles(event) || dragMayContainWebImage(event);
+  }
+
   function dragMayContainImage(event) {
     if (dragMayContainWebImage(event)) return true;
     if (!dragHasLocalFiles(event)) return false;
@@ -1022,7 +1180,10 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
     return items.some((item) => (
       item.kind === "file" &&
-      (!item.type || String(item.type).startsWith("image/"))
+      (!item.type || (
+        String(item.type).startsWith("image/") &&
+        String(item.type).toLowerCase() !== "image/gif"
+      ))
     ));
   }
 
@@ -1045,6 +1206,19 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     }
   }
 
+  function hasSupportedImageExtension(value) {
+    return /\.(png|jpe?g|webp|bmp|tiff?)(?:[?#].*)?$/i.test(String(value || ""));
+  }
+
+  function hasUnsupportedMediaExtension(value) {
+    return /\.(gif|mp4|m4v|mov|avi|webm|mkv|m3u8)(?:[?#].*)?$/i.test(String(value || ""));
+  }
+
+  function isUnsupportedDroppedSource(value) {
+    const source = String(value || "");
+    return /^data:image\/gif[;,]/i.test(source) || hasUnsupportedMediaExtension(source);
+  }
+
   function firstUriListUrl(value) {
     return String(value || "")
       .split(/\r?\n/)
@@ -1062,9 +1236,8 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
     const doc = new DOMParser().parseFromString(html, "text/html");
     const image = doc.querySelector("img[src], image[href], image[xlink\\:href]");
-    const source = doc.querySelector("source[srcset]");
+    const source = doc.querySelector('picture source[srcset], source[type^="image/"][srcset]');
     const ogImage = doc.querySelector('meta[property="og:image"], meta[name="twitter:image"]');
-    const link = doc.querySelector("a[href]");
 
     const candidates = [
       image?.getAttribute("src"),
@@ -1072,7 +1245,6 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       image?.getAttribute("xlink:href"),
       firstSrcsetUrl(source?.getAttribute("srcset")),
       ogImage?.getAttribute("content"),
-      link?.getAttribute("href"),
       ...Array.from(html.matchAll(/url\((['"]?)(.*?)\1\)/gi)).map((match) => match[2]),
     ];
 
@@ -1102,7 +1274,8 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     const htmlUrl = extractImageUrlFromHtml(dataTransfer?.getData("text/html"));
     if (htmlUrl) return htmlUrl;
 
-    return extractImageUrlFromPlainText(dataTransfer?.getData("text/plain"));
+    const plainTextUrl = extractImageUrlFromPlainText(dataTransfer?.getData("text/plain"));
+    return hasSupportedImageExtension(plainTextUrl) ? plainTextUrl : "";
   }
 
   async function readBlobUrlAsDataUrl(url) {
@@ -1112,14 +1285,19 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     }
 
     const blob = await response.blob();
+    const type = String(blob.type || "").toLowerCase();
+    if (type && (!type.startsWith("image/") || type === "image/gif")) {
+      throw new Error(IMAGE_DROP_ERROR);
+    }
+
     return readFileAsDataUrl(blob);
   }
 
   function setDropTargetActive(active) {
     state.dropActive = active;
-    shadow
-      .querySelector(".iris-panel, .iris-pill")
-      ?.classList.toggle("is-drop-target", active);
+    for (const surface of root.querySelectorAll(".iris-panel, .iris-pill")) {
+      surface.classList.toggle("is-drop-target", active);
+    }
   }
 
   function showImageDropError(message) {
@@ -1131,7 +1309,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
   async function handleDroppedImageFile(file) {
     if (!file) {
-      showImageDropError("Drop an image file or a webpage image onto IRIS.");
+      showImageDropError(IMAGE_DROP_ERROR);
       return;
     }
 
@@ -1145,11 +1323,16 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
   async function handleDroppedImageUrl(url) {
     if (!url) {
-      showImageDropError("Drop an image file or a webpage image onto IRIS.");
+      showImageDropError(IMAGE_DROP_ERROR);
       return;
     }
 
     try {
+      if (isUnsupportedDroppedSource(url)) {
+        showImageDropError(IMAGE_DROP_ERROR);
+        return;
+      }
+
       if (/^data:image\//i.test(url)) {
         await runImageCheck(url, "Dragged image");
         return;
@@ -1168,6 +1351,18 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   function handleDroppedImage(dataTransfer) {
+    const files = Array.from(dataTransfer?.files || []);
+    if (files.length) {
+      const file = files.find(isImageFile);
+      if (file) {
+        handleDroppedImageFile(file);
+        return;
+      }
+
+      showImageDropError(IMAGE_DROP_ERROR);
+      return;
+    }
+
     const file = getDroppedImageFile(dataTransfer);
     if (file) {
       handleDroppedImageFile(file);
@@ -1207,6 +1402,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   function canSyncPageSelection() {
+    if (state.settings.quietMode) return false;
     if (!state.settings.irisPanelEnabled) return;
     if (["scanning", "result", "settings", "photo"].includes(state.status)) return;
 
@@ -1280,7 +1476,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
   async function saveQuickSetting(key, value) {
     state.settings[key] = value;
-    await writeStorage({ [key]: value });
+    await writeSyncStorage({ [key]: value });
     render();
   }
 
@@ -1303,8 +1499,18 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     }
 
     if (action === "collapse") {
+      if (state.settings.quietMode) {
+        resetPanel();
+        return;
+      }
+
       state.collapsed = true;
       render();
+      return;
+    }
+
+    if (action === "quiet-close") {
+      resetPanel();
       return;
     }
 
@@ -1355,6 +1561,14 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     }
 
     if (action === "close-settings") {
+      if (
+        state.settings.quietMode &&
+        ["idle", "detected"].includes(state.settingsReturnStatus || "idle")
+      ) {
+        resetPanel();
+        return;
+      }
+
       state.status = state.settingsReturnStatus || "idle";
       render();
       return;
@@ -1363,6 +1577,11 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     if (action === "toggle-theme") {
       const nextTheme = resolveTheme() === "dark" ? "light" : "dark";
       saveQuickSetting("irisTheme", nextTheme);
+      return;
+    }
+
+    if (action === "toggle-quiet-mode") {
+      saveQuickSetting("quietMode", !state.settings.quietMode);
       return;
     }
 
@@ -1403,26 +1622,26 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   function handleLocalImageDragEnter(event) {
-    if (!dragMayContainImage(event)) return;
+    if (!dragHasDropPayload(event)) return;
 
     event.preventDefault();
     event.stopPropagation();
     state.dropDepth += 1;
-    setDropTargetActive(true);
+    setDropTargetActive(dragMayContainImage(event));
     if (event.dataTransfer) event.dataTransfer.dropEffect = "copy";
   }
 
   function handleLocalImageDragOver(event) {
-    if (!dragMayContainImage(event)) return;
+    if (!dragHasDropPayload(event)) return;
 
     event.preventDefault();
     event.stopPropagation();
-    setDropTargetActive(true);
+    setDropTargetActive(dragMayContainImage(event));
     if (event.dataTransfer) event.dataTransfer.dropEffect = "copy";
   }
 
   function handleLocalImageDragLeave(event) {
-    if (!dragHasLocalFiles(event) && !dragMayContainWebImage(event)) return;
+    if (!dragHasDropPayload(event)) return;
 
     event.preventDefault();
     event.stopPropagation();
@@ -1431,7 +1650,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   function handleLocalImageDrop(event) {
-    if (!dragHasLocalFiles(event) && !dragMayContainWebImage(event)) return;
+    if (!dragHasDropPayload(event)) return;
 
     event.preventDefault();
     event.stopPropagation();
@@ -1484,7 +1703,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     };
 
     handle.setPointerCapture?.(event.pointerId);
-    shadow.querySelector(".iris-panel, .iris-pill")?.classList.add("is-dragging");
+    handle.closest(".iris-panel, .iris-pill")?.classList.add("is-dragging");
     event.preventDefault();
   }
 
@@ -1509,12 +1728,17 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     state.suppressClick = drag.moved;
     state.dragging = null;
 
-    shadow.querySelector(".iris-panel, .iris-pill")?.classList.remove("is-dragging");
+    for (const surface of root.querySelectorAll(".iris-panel, .iris-pill")) {
+      surface.classList.remove("is-dragging");
+    }
 
     if (state.position) {
       const positionToSave = { ...state.position };
+      const key = positionStorageKey();
       state.pendingPositionSave = positionToSave;
-      await writeStorage({ irisPanelPosition: positionToSave });
+      if (key) {
+        await writeSessionStorage({ [key]: positionToSave });
+      }
       window.setTimeout(() => {
         if (positionsMatch(state.pendingPositionSave, positionToSave)) {
           state.pendingPositionSave = null;
@@ -1549,6 +1773,9 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   window.addEventListener("pointerup", handlePagePointerUp, true);
   window.addEventListener("pointercancel", handlePagePointerUp, true);
   document.addEventListener("selectionchange", handleSelectionChange);
+  window.matchMedia?.("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (state.settings.irisTheme === "system") render();
+  });
   window.addEventListener("mouseup", () => scheduleSelectionSync(0));
   window.addEventListener("keyup", () => scheduleSelectionSync(0));
 
@@ -1561,6 +1788,24 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
     if (message?.type === "IRIS_CONTEXT_IMAGE") {
       runImageUrlCheck(message.imageUrl);
+      sendResponse({ ok: true });
+      return false;
+    }
+
+    if (message?.type === "IRIS_CONTEXT_IMAGE_STARTED") {
+      startContextImageCheck(message.imageUrl || "", message.imageName || "Selected image");
+      sendResponse({ ok: true });
+      return false;
+    }
+
+    if (message?.type === "IRIS_CONTEXT_IMAGE_RESULT") {
+      finishContextImageCheck(message.payload || {});
+      sendResponse({ ok: true });
+      return false;
+    }
+
+    if (message?.type === "IRIS_CONTEXT_IMAGE_ERROR") {
+      failContextImageCheck(message.error);
       sendResponse({ ok: true });
       return false;
     }
@@ -1590,35 +1835,57 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     return false;
   });
 
-  readStorage({ ...STORAGE_DEFAULTS, irisPanelPosition: null }).then((items) => {
+  Promise.all([
+    getCurrentTabId(),
+    readSyncStorage(STORAGE_DEFAULTS)
+  ]).then(async ([tabId, items]) => {
+    state.tabId = tabId;
     state.settings = {
       ...STORAGE_DEFAULTS,
       irisBackendUrl: normalizeBackendUrl(items.irisBackendUrl),
       irisPanelEnabled: items.irisPanelEnabled !== false,
       irisTheme: items.irisTheme || STORAGE_DEFAULTS.irisTheme,
       irisFontSize: items.irisFontSize || STORAGE_DEFAULTS.irisFontSize,
-      irisDebugMode: Boolean(items.irisDebugMode)
+      irisDebugMode: Boolean(items.irisDebugMode),
+      quietMode: Boolean(items.quietMode)
     };
 
-    state.position = normalizePanelPosition(items.irisPanelPosition);
+    const key = positionStorageKey();
+    if (key) {
+      const positionItems = await readSessionStorage({ [key]: null });
+      state.position = normalizePanelPosition(positionItems[key]);
+    }
 
     render();
   });
 
   chrome.storage?.onChanged?.addListener((changes, areaName) => {
-    if (areaName !== "sync") return;
-
     let shouldRender = false;
 
-    for (const key of Object.keys(STORAGE_DEFAULTS)) {
-      if (changes[key]) {
-        state.settings[key] = changes[key].newValue;
-        shouldRender = true;
+    if (areaName === "sync") {
+      for (const key of Object.keys(STORAGE_DEFAULTS)) {
+        if (changes[key]) {
+          state.settings[key] = changes[key].newValue;
+          shouldRender = true;
+        }
+      }
+
+      if (
+        changes.quietMode?.newValue === true &&
+        ["idle", "detected"].includes(state.status)
+      ) {
+        state.status = "idle";
+        state.selectedText = "";
+        state.panelOpenedByAction = false;
+        state.collapsed = false;
       }
     }
 
-    if (changes.irisPanelPosition) {
-      const nextPosition = normalizePanelPosition(changes.irisPanelPosition.newValue);
+    if (areaName === "session") {
+      const key = positionStorageKey();
+      if (!key || !changes[key]) return;
+
+      const nextPosition = normalizePanelPosition(changes[key].newValue);
       const localDragSave = positionsMatch(nextPosition, state.pendingPositionSave);
 
       state.position = nextPosition;

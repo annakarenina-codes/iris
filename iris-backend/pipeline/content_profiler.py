@@ -8,7 +8,13 @@ true. It only labels content type, ambiguity, and routing.
 
 from __future__ import annotations
 
+from iris_trace.core import traced, event
+from pipeline.translator import sanitize_translation
+from pipeline.text_boundaries import has_reported_quote, is_attribution_tail, quote_spans, split_statement_segments
+from pipeline.quotation_context import SPEECH_RULES, speech_scopes
+
 import json
+import math
 import os
 import re
 from typing import Dict, List, Optional, Tuple
@@ -23,7 +29,6 @@ except ImportError:  # pragma: no cover - depends on local environment setup
 load_dotenv()
 
 DEFAULT_OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
-MAX_SEGMENTS = 30
 
 SEGMENT_LABELS = [
     "factual_claim",
@@ -338,34 +343,15 @@ def _split_leading_headline_question(segment: str) -> List[str]:
         r"^(?P<head>[\"'`“”‘’]?[A-Z0-9][A-Z0-9\s,'-]{2,80}\?[\"'`“”‘’]?)\s+(?P<rest>.+)$",
         segment,
     )
-    if not match:
+    if not match or is_attribution_tail(match.group("rest")):
         return [segment]
 
     return [match.group("head"), match.group("rest")]
 
 
 def _split_segments(text: str) -> List[str]:
-    protected_text = text
-    abbreviations = {
-        "Jr.": "Jr<period>",
-        "Sr.": "Sr<period>",
-        "Mr.": "Mr<period>",
-        "Mrs.": "Mrs<period>",
-        "Ms.": "Ms<period>",
-        "Dr.": "Dr<period>",
-        "Gen.": "Gen<period>",
-    }
-
-    for abbreviation, placeholder in abbreviations.items():
-        protected_text = protected_text.replace(abbreviation, placeholder)
-
-    parts = re.split(r"(?:\n+|;\s*|(?<=[.!?])\s+)", protected_text)
     segments = []
-
-    for part in parts:
-        for abbreviation, placeholder in abbreviations.items():
-            part = part.replace(placeholder, abbreviation)
-
+    for part in split_statement_segments(text):
         segment = _clean_segment(part)
         if segment:
             segments.extend(
@@ -374,7 +360,7 @@ def _split_segments(text: str) -> List[str]:
                 if split_segment
             )
 
-    return segments[:MAX_SEGMENTS]
+    return segments
 
 
 def _align_translated_segments(text: str, translated_text: Optional[str]) -> List[Optional[str]]:
@@ -387,7 +373,7 @@ def _align_translated_segments(text: str, translated_text: Optional[str]) -> Lis
     if len(translated_segments) != len(source_segments):
         return [None for _ in source_segments]
 
-    return translated_segments[:MAX_SEGMENTS]
+    return translated_segments
 
 
 def _has_term(normalized_text: str, term: str) -> bool:
@@ -466,9 +452,11 @@ def _base_scores(segment: str) -> Tuple[Dict[str, float], Dict[str, List[str]]]:
     scores["forecast_or_projection_detected"] = forecast_score
 
     quote_score = 0.05
-    if re.search(r"[\"']", segment):
+    if quote_spans(segment):
         quote_score += 0.28
     quote_score += min(0.55, 0.20 * len(matches["quote"]))
+    if _has_reported_quote(segment):
+        quote_score = max(quote_score, 0.53)
     scores["quote"] = quote_score
 
     satire_score = 0.05 + min(0.80, 0.35 * len(matches["satire"]))
@@ -546,14 +534,7 @@ def _reason_codes(scores: Dict[str, float], matches: Dict[str, List[str]], score
 
 
 def _has_reported_quote(segment: str) -> bool:
-    quote_pattern = r"[\"'“”][^\"'“”]{3,260}[\"'“”]"
-    attribution_pattern = (
-        r"\b(?:asked|answered|replied|said|stated|furthered|told|responded)\b"
-    )
-    return bool(
-        re.search(quote_pattern, segment)
-        and re.search(attribution_pattern, segment, flags=re.IGNORECASE)
-    )
+    return has_reported_quote(segment)
 
 
 def _is_headline_question(segment: str) -> bool:
@@ -564,6 +545,14 @@ def _is_headline_question(segment: str) -> bool:
     letters = re.findall(r"[A-Za-z]", stripped)
     uppercase = re.findall(r"[A-Z]", stripped)
     return bool(letters) and len(uppercase) / len(letters) >= 0.70
+
+
+def _is_reported_or_scheduled_event(segment: str) -> bool:
+    return bool(re.search(
+        r"\b(?:announced|scheduled|proclaimed|announces|reported|sinabi|iniulat|"
+        r"inanunsyo|nakatakda)\b|\bwill\s+be\s+(?:proclaimed|awarded|held|opened)\b",
+        segment, re.I,
+    ))
 
 
 def _route_segment(segment: str, segment_id: str, translated_segment: Optional[str]) -> Dict[str, object]:
@@ -582,16 +571,22 @@ def _route_segment(segment: str, segment_id: str, translated_segment: Optional[s
         top_score = max(scores["unclear"], top_score)
         eligible = False
         route = "stop_no_checkable_claims"
+    elif _has_reported_quote(segment):
+        top_label = "factual_claim"
+        top_score = factual_score
+        eligible = True
+        route = "proceed_with_caution"
+    elif (scores["forecast_or_projection_detected"] >= 0.65
+          and _is_reported_or_scheduled_event(segment)):
+        top_label = "factual_claim"
+        top_score = factual_score
+        eligible = True
+        route = "proceed_with_caution"
     elif scores["forecast_or_projection_detected"] >= 0.65:
         top_label = "forecast_or_projection_detected"
         top_score = scores[top_label]
         eligible = False
         route = "stop_forecast_projection"
-    elif scores["quote"] >= 0.45 and factual_score >= 0.45 and _has_reported_quote(segment):
-        top_label = "factual_claim"
-        top_score = factual_score
-        eligible = True
-        route = "proceed_with_caution"
     elif factual_score >= 0.75:
         top_label = "factual_claim"
         top_score = factual_score
@@ -636,6 +631,20 @@ def _route_segment(segment: str, segment_id: str, translated_segment: Optional[s
         route = "stop_no_checkable_claims"
 
     reasons = _reason_codes(scores, matches, score_gap)
+    if _has_reported_quote(segment):
+        reasons = sorted(set(reasons + ["reported_attribution_needs_verification"]))
+
+    # A weak keyword score is not evidence that a statement is uncheckable.
+    # Keep plausible statements for the actual claim extractor to assess.
+    if (not eligible and top_label == "unclear" and len(segment.split()) >= 5
+            and not segment.rstrip(" \"'\u201c\u201d\u2018\u2019").endswith("?")):
+        eligible = True
+        route = "proceed_with_caution"
+        reasons = sorted(set(reasons + ["needs_claim_extraction_review"]))
+    if _has_term(_normalize(segment), "imaginary"):
+        reasons = sorted(set(reasons + ["imaginary_qualifier_needs_context"]))
+        if eligible:
+            route = "proceed_with_caution"
 
     return {
         "segment_id": segment_id,
@@ -650,7 +659,8 @@ def _route_segment(segment: str, segment_id: str, translated_segment: Optional[s
         "eligible_for_verification": eligible,
         "recommended_route": route,
         "reason_codes": reasons,
-        "user_notification": None if eligible else _segment_notification(route),
+        "user_notification": _segment_notification(route) if route == "proceed_with_caution"
+        else (None if eligible else _segment_notification(route)),
     }
 
 
@@ -697,7 +707,7 @@ def _post_type(segments: List[Dict[str, object]]) -> str:
     if eligible and ignored:
         return "mixed_content"
     if eligible:
-        return "fact_only"
+        return "unclear" if "unclear" in labels else "fact_only"
     if "opinion" in labels or "call_to_action" in labels:
         return "opinion_only"
     if "satire_or_humor" in labels:
@@ -713,6 +723,8 @@ def _recommended_route(segments: List[Dict[str, object]], post_type: str) -> str
 
     if eligible:
         if len(eligible) == len(segments):
+            if any(segment["recommended_route"] == "proceed_with_caution" for segment in eligible):
+                return "proceed_with_caution"
             return "proceed_to_verification"
         return "verify_factual_claims_only"
 
@@ -795,6 +807,19 @@ def _build_profile(
     error: Optional[str],
     openai_profile: Optional[Dict[str, object]] = None,
 ) -> Dict[str, object]:
+    # Reapply source-grounded framing after AI advice as well as local routing.
+    scopes = speech_scopes([str(s['text']) for s in segments])
+    for segment, scope in zip(segments, scopes):
+        segment['speech_scope'] = scope
+        if scope == 'imagined':
+            segment.update(eligible_for_verification=False, top_label='satire_or_humor',
+                           recommended_route='stop_no_checkable_claims',
+                           user_notification='This describes imagined or anticipated speech, not a reported statement.')
+            segment['reason_codes'] = sorted(set(segment['reason_codes'] + ['imagined_speech_not_reported']))
+        elif scope in {'reported', 'reported_indirect'}:
+            segment.update(eligible_for_verification=True, top_label='factual_claim',
+                           recommended_route='proceed_with_caution')
+            segment['reason_codes'] = sorted(set(segment['reason_codes'] + ['reported_attribution_needs_verification']))
     ignored = _ignored_segments(segments)
     post_type = _post_type(segments)
     route = _recommended_route(segments, post_type)
@@ -846,6 +871,7 @@ def _build_profile(
     }
 
 
+@traced('text.profile_local', dependency=False)
 def _local_profile(text: str, translated_text: Optional[str]) -> Dict[str, object]:
     source_segments = _split_segments(text)
     translated_segments = _align_translated_segments(text, translated_text)
@@ -865,6 +891,9 @@ def _local_profile(text: str, translated_text: Optional[str]) -> Dict[str, objec
 
 
 def _needs_openai_profile(profile: Dict[str, object]) -> bool:
+    if any("needs_claim_extraction_review" in segment["reason_codes"]
+           for segment in profile["segments"]):
+        return True
     if profile["post_type"] in {"mixed_content", "satirical_or_comedic", "quote_context", "unclear"}:
         return True
 
@@ -873,11 +902,13 @@ def _needs_openai_profile(profile: Dict[str, object]) -> bool:
 
 def _safe_float(value: object, default: float = 0.0) -> float:
     try:
-        return float(value)
+        number = float(value)
+        return number if math.isfinite(number) else default
     except (TypeError, ValueError):
         return default
 
 
+@traced('text.profile_ai', dependency=True)
 def _request_openai_profile(
     text: str,
     translated_text: Optional[str],
@@ -901,9 +932,25 @@ def _request_openai_profile(
         }
 
     system_prompt = (
+        SPEECH_RULES +
         "You are the IRIS Content Profiler. Classify the content type of a "
         "Philippines-related online post before fact-checking. Do not decide "
         "truth or falsity. Return JSON only. Use fixed segment labels: "
+        "A fact-check headline saying a concrete claim 'is false' or 'is true' "
+        "is checkable, not opinion merely because it contains a verdict. "
+        "Preserve the assertion and route it for independent verification; "
+        "a screenshot's publisher and printed verdict are not evidence. "
+        "Treat local labels as weak hints, not answers to copy. Classify every "
+        "provided segment ID. Low confidence alone is not a reason to discard "
+        "a possible factual statement. Reunion reports, attributed denials, "
+        "dated numerical observations, and announcements of scheduled honors "
+        "are checkable. Distinguish a reported announcement or forecast from "
+        "a prediction of what will actually happen. Preserve named subjects, "
+        "Keep a complete attributed quotation together, including questions, "
+        "recommendations and hypothetical comparisons: the checkable assertion "
+        "is that the speaker said it, not that the quoted scenario happened. "
+        "negation, dates, amounts, and imaginary/satirical qualifiers. Do not "
+        "invent context, rewrite the source text, or determine a verdict. "
         "factual_claim, opinion, forecast_or_projection_detected, quote, "
         "satire_or_humor, call_to_action, contextual_background, unclear. Use "
         "fixed routes: proceed_to_verification, verify_factual_claims_only, "
@@ -923,33 +970,18 @@ def _request_openai_profile(
             }
             for segment in local_profile["segments"]
         ],
-        "return_shape": {
-            "post_type": "fact_only|opinion_only|mixed_content|satirical_or_comedic|quote_context|unclear",
-            "confidence": 0.0,
-            "ambiguity_score": 0.0,
-            "ambiguity_reasons": ["reason_code"],
-            "contains_factual_claims": True,
-            "contains_opinion": False,
-            "contains_forecast_or_projection": False,
-            "contains_satire_or_humor": False,
-            "contains_quote": False,
-            "eligible_for_verification": True,
-            "recommended_route": "verify_factual_claims_only",
-            "segments": [
-                {
-                    "segment_id": "s1",
-                    "top_label": "factual_claim",
-                    "top_label_score": 0.0,
-                    "eligible_for_verification": True,
-                    "reason_codes": ["reason_code"],
-                    "user_notification": None,
-                }
-            ],
+        "output_requirements": {
+            "segments": "An array with one object for EVERY supplied segment ID, in source order.",
+            "segment_id": "The exact supplied ID, not a new ID.",
+            "top_label": SEGMENT_LABELS,
+            "top_label_score": "A number from 0 to 1 reflecting your actual uncertainty; advisory only.",
+            "eligible_for_verification": "JSON boolean: true for a checkable factual assertion or reported attribution.",
+            "reason_codes": "An array of brief classification reasons, not verdicts.",
         },
     })
 
     try:
-        client = OpenAI(api_key=api_key)
+        client = OpenAI(api_key=api_key, timeout=30, max_retries=1)
         response = client.chat.completions.create(
             model=DEFAULT_OPENAI_MODEL,
             temperature=0,
@@ -961,6 +993,21 @@ def _request_openai_profile(
         )
         content = response.choices[0].message.content or "{}"
         result = json.loads(content)
+        if not isinstance(result, dict) or not isinstance(result.get("segments"), list):
+            raise ValueError("Invalid profiler response shape")
+        known_ids = {segment["segment_id"] for segment in local_profile["segments"]}
+        seen = set()
+        for segment in result["segments"]:
+            if not isinstance(segment, dict):
+                raise ValueError("Invalid profiler segment")
+            segment_id = segment.get("segment_id")
+            if (not isinstance(segment_id, str) or segment_id not in known_ids or segment_id in seen
+                    or segment.get("top_label") not in SEGMENT_LABELS
+                    or type(segment.get("eligible_for_verification")) is not bool):
+                raise ValueError("Invalid profiler segment fields")
+            seen.add(segment_id)
+        if seen != known_ids:
+            event("text.profile_advice_incomplete", missing_segment_ids=sorted(known_ids - seen))
     except Exception as error:
         return {
             "used": False,
@@ -977,11 +1024,14 @@ def _request_openai_profile(
     }
 
 
+@traced('text.profile_merge', dependency=False)
 def _merge_openai_segment_advice(
     local_profile: Dict[str, object],
     openai_profile: Dict[str, object],
 ) -> Dict[str, object]:
-    ai_result = openai_profile.get("result") or {}
+    ai_result = openai_profile.get("result")
+    if not isinstance(ai_result, dict) or not isinstance(ai_result.get("segments"), list):
+        return local_profile
     ai_segments = {
         str(segment.get("segment_id")): segment
         for segment in ai_result.get("segments", [])
@@ -999,16 +1049,16 @@ def _merge_openai_segment_advice(
         if ai_segment:
             ai_label = str(ai_segment.get("top_label", ""))
             ai_score = _safe_float(ai_segment.get("top_label_score"))
-            ai_eligible = bool(ai_segment.get("eligible_for_verification"))
+            ai_eligible = ai_segment.get("eligible_for_verification") is True
 
             if (
-                not updated["eligible_for_verification"]
-                and ai_eligible
+                ai_eligible
                 and ai_label == "factual_claim"
-                and ai_score >= 0.65
             ):
+                # Routing is not a verdict. An uncalibrated generated number
+                # must not veto an explicit finding of checkable content.
                 updated["top_label"] = "factual_claim"
-                updated["top_label_score"] = max(float(updated["top_label_score"]), ai_score)
+                updated["top_label_score"] = _clamp_score(max(float(updated["top_label_score"]), ai_score))
                 updated["eligible_for_verification"] = True
                 updated["recommended_route"] = "proceed_with_caution"
                 updated["reason_codes"] = sorted(set(
@@ -1029,6 +1079,7 @@ def _merge_openai_segment_advice(
     )
 
 
+@traced('text.profile', dependency=False)
 def profile_content(
     text: str,
     translated_text: Optional[str] = None,
@@ -1040,6 +1091,8 @@ def profile_content(
     use_ai=False is useful for deterministic tests. By default, OpenAI is used
     only for ambiguous or mixed local profiles when an API key is configured.
     """
+    if translated_text is not None:
+        translated_text = sanitize_translation(text, translated_text)
     local_profile = _local_profile(text, translated_text)
 
     if use_ai is False or not _needs_openai_profile(local_profile):

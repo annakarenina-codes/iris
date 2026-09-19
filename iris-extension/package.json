@@ -8,8 +8,11 @@
     "build": "node scripts/build-extension.mjs",
     "extension:dev": "node scripts/build-extension.mjs",
     "extension:build": "node scripts/build-extension.mjs",
-    "preview": "node scripts/serve-dist.mjs"
+    "preview": "node scripts/serve-dist.mjs",
+    "test:ui": "node --test tests/interactions.test.cjs"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
 }

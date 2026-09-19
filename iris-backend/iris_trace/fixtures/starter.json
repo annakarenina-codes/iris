@@ -1,0 +1,5 @@
+[
+  {"case_id":"LAYOUT-NEGATION-001","dataset_version":"starter-1","label_version":"1","mode":"layout","input":{"regions":[{"text":"LOCAL NEWS","bbox":[[0,0],[500,0],[500,30],[0,30]],"confidence":0.99},{"text":"THE CLAIM ABOUT THE LAW IS FALSE","bbox":[[0,150],[500,150],[500,210],[0,210]],"confidence":0.95},{"text":"Publisher","bbox":[[0,450],[500,450],[500,465],[0,465]],"confidence":0.98}]},"assertions":[{"path":"text","op":"equal","expected":"THE CLAIM ABOUT THE LAW IS FALSE"}]},
+  {"case_id":"LAYOUT-QUALIFIER-002","dataset_version":"starter-1","label_version":"1","mode":"layout","input":{"regions":[{"text":"The mayor announced a new program","bbox":[[0,100],[500,100],[500,160],[0,160]]},{"text":"NOT CONFIRMED","bbox":[[0,400],[500,400],[500,415],[0,415]]}]},"assertions":[{"path":"text","op":"contains","expected":"NOT CONFIRMED"}]},
+  {"case_id":"PROFILE-OPINION-001","dataset_version":"starter-1","label_version":"1","mode":"profile","input":{"text":"I think this is the best idea ever."},"assertions":[{"path":"contains_opinion","op":"equal","expected":true}]}
+]

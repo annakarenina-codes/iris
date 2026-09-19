@@ -14,6 +14,12 @@ const files = [
   "options.html",
   "options.css",
   "options.js",
+  "assets/iris-logo.png",
+  "assets/iris-logo-mark.png",
+  "assets/icon16.png",
+  "assets/icon32.png",
+  "assets/icon48.png",
+  "assets/icon128.png",
   "src/background.js",
   "src/content.js",
   "src/content.css"

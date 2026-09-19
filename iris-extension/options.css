@@ -44,9 +44,11 @@ header {
   box-shadow: 0 8px 32px rgba(109, 40, 217, 0.12);
 }
 
-.iris-mark svg {
+.iris-mark img {
   width: 36px;
   height: 36px;
+  display: block;
+  object-fit: contain;
 }
 
 h1 {
@@ -152,6 +154,27 @@ button {
 
 button:hover {
   filter: brightness(1.04);
+}
+
+button {
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+  filter: brightness(0.92);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  button:active {
+    transform: none;
+  }
 }
 
 #restore-defaults {

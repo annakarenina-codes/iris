@@ -8,6 +8,8 @@ slightly looks like an opinion, the system should continue verification later.
 
 from __future__ import annotations
 
+from iris_trace.core import traced
+
 import re
 from typing import Dict, List
 
@@ -45,6 +47,7 @@ def _normalize(text: str) -> str:
     return re.sub(r"\s+", " ", text.lower()).strip()
 
 
+@traced('text.opinion', dependency=False)
 def is_opinion(text: str) -> Dict[str, object]:
     """
     Checks whether text is clearly an opinion.

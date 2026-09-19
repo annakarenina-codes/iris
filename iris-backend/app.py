@@ -1,13 +1,22 @@
+
+from iris_trace.core import traced, event, CURRENT
 import logging
 import re
 import time
 import uuid
 from urllib.parse import urlparse
 
+import requests
 from flask import Flask, request, jsonify
 from pipeline.cache import get_cached_verdict, hash_claim, save_cached_verdict
+from pipeline.attribution_integrity import attribution_phrase_match
+from pipeline.evidence_urls import article_url_rejection
 from pipeline.claim_extractor import extract_claims
 from pipeline.content_profiler import profile_content
+from pipeline.event_retrieval import (
+    build_event_search_query,
+    mark_quote_derived_claims,
+)
 from pipeline.keyword_fallback import keyword_overlap_verdict
 from pipeline.language_detector import detect_language
 from pipeline.ocr import (
@@ -18,17 +27,21 @@ from pipeline.ocr import (
 )
 from pipeline.openai_fallback import refine_with_openai_rag
 from pipeline.opinion_filter import is_opinion
-from pipeline.political_checker import flag_political
-from pipeline.search import search_and_extract
+from pipeline.political_checker import flag_political, flag_claim_political
+from pipeline.quote_paraphraser import paraphrase_quote_claim
+from pipeline.search import merge_search_results, search_and_extract
 from pipeline.translator import translate_to_english
 from pipeline.verdict_generator import generate_verdict
 
 app = Flask(__name__)
 app.json.sort_keys = False
+from iris_trace.web import init_app as init_trace
+init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week6-retrieval-query-v2"
+RESULT_CACHE_VERSION = "week7-component-context-v17"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 ATTRIBUTED_CLAIM_TYPE = "attributed_statement"
+REMOTE_IMAGE_TIMEOUT_SECONDS = 10
 EVIDENCE_STOPWORDS = {
     "about",
     "after",
@@ -59,7 +72,7 @@ class RequestTimings:
     """Collects per-request backend timing data for IRIS calibration."""
 
     def __init__(self, request_type):
-        self.request_id = uuid.uuid4().hex[:8]
+        self.request_id = CURRENT.get().id if CURRENT.get() else uuid.uuid4().hex[:8]
         self.request_type = request_type
         self.started_at = time.perf_counter()
         self.stages = []
@@ -76,6 +89,7 @@ class RequestTimings:
             entry["error"] = error
 
         self.stages.append(entry)
+        event('timing', **entry)
         app.logger.info(
             "[TIMING] request=%s type=%s stage=%s status=%s duration=%.2fs%s",
             self.request_id,
@@ -97,6 +111,7 @@ class RequestTimings:
             "status": "ok",
         }
         self.stages.append(entry)
+        event('timing', **entry)
         app.logger.info(
             "[TIMING] request=%s type=%s stage=%s status=ok duration=%.2fs",
             self.request_id,
@@ -231,6 +246,8 @@ def summarize_sources(source_summary, articles):
                 "status": article["status"],
                 "word_count": article["word_count"],
                 "error": article["error"],
+                "extraction_quality": article.get("extraction_quality"),
+                "evidence_pool": article.get("evidence_pool"),
             }
             for article in articles
             if article["source"] == source["source"]
@@ -275,7 +292,7 @@ def normalize_evidence_url(url):
 
 def compact_evidence_source(article, evidence_method="semantic_similarity"):
     """Builds the public evidence-source object shown by the API/UI."""
-    if not article or not is_valid_source_url(article.get("url")):
+    if not article or article_url_rejection(article.get("url")):
         return None
 
     status = article.get("status")
@@ -298,6 +315,12 @@ def compact_evidence_source(article, evidence_method="semantic_similarity"):
 
     if article.get("similarity_score") is not None:
         source["similarity_score"] = article.get("similarity_score")
+
+    if article.get("extraction_quality"):
+        source["extraction_quality"] = article.get("extraction_quality")
+
+    if article.get("evidence_pool"):
+        source["evidence_pool"] = article.get("evidence_pool")
 
     return source
 
@@ -358,17 +381,7 @@ def phrase_is_covered(phrase, text, text_terms=None):
     if not phrase:
         return True
 
-    normalized_phrase = " ".join(str(phrase).lower().split())
-    normalized_text = " ".join(str(text).lower().split())
-    if normalized_phrase and normalized_phrase in normalized_text:
-        return True
-
-    required_terms = evidence_terms(phrase)
-    if not required_terms:
-        return True
-
-    text_terms = text_terms or set(evidence_terms(text))
-    return all(term in text_terms for term in required_terms)
+    return attribution_phrase_match(phrase, text)
 
 
 def speaker_is_covered(speaker, text, text_terms):
@@ -376,15 +389,7 @@ def speaker_is_covered(speaker, text, text_terms):
     if not speaker:
         return False
 
-    if phrase_is_covered(speaker, text, text_terms):
-        return True
-
-    speaker_terms = evidence_terms(speaker)
-    if not speaker_terms:
-        return False
-
-    last_name = speaker_terms[-1]
-    return last_name in text_terms
+    return attribution_phrase_match(speaker, text)
 
 
 def statement_is_covered(statement, text_terms):
@@ -407,7 +412,8 @@ def statement_is_covered(statement, text_terms):
     return len(matches) >= required_matches
 
 
-def attribution_evidence_gate(article, claim):
+@traced('claim.attribution_gate', dependency=False)
+def attribution_evidence_gate(article, claim, anchors_only=False):
     """
     Verifies that an evidence article supports the attribution, not only topic.
 
@@ -421,24 +427,35 @@ def attribution_evidence_gate(article, claim):
         }
 
     attribution = claim.get("attribution") or {}
-    article_text = evidence_text(article)
+    article_text = str(article.get("text") or "")
     text_terms = set(evidence_terms(article_text))
     missing = []
+    anchor_checks = {}
 
-    if not speaker_is_covered(attribution.get("speaker"), article_text, text_terms):
+    speaker_match = speaker_is_covered(attribution.get("speaker"), article_text, text_terms)
+    anchor_checks["speaker"] = "normalized_phrase_match" if speaker_match else "missing_or_unmatched"
+    if not speaker_match:
         missing.append("speaker")
 
     for key in ["source", "program", "date"]:
         value = attribution.get(key)
-        if value and not phrase_is_covered(value, article_text, text_terms):
+        matched = phrase_is_covered(value, article_text, text_terms)
+        anchor_checks[key] = ("not_required" if not value else
+                              "normalized_phrase_match" if matched else "unmatched")
+        if value and not matched:
             missing.append(key)
 
-    if not statement_is_covered(attribution.get("statement") or claim.get("normalized_claim"), text_terms):
+    statement = attribution.get("statement") or claim.get("normalized_claim")
+    # Non-reviewed legacy callers may only accept a literal statement match.
+    # Paraphrased support is handled by component review, not a lexical cutoff.
+    covered = bool(statement) and " ".join(str(statement).lower().split()) in " ".join(article_text.lower().split())
+    if not anchors_only and not covered:
         missing.append("statement")
 
     return {
         "matches": not missing,
         "missing": missing,
+        "anchor_checks": anchor_checks,
     }
 
 
@@ -515,6 +532,7 @@ def evidence_sources_from_keyword_fallback(keyword_fallback, articles, claim):
     return [source] if source else []
 
 
+@traced('claim.evidence_gate', dependency=False)
 def build_public_evidence_sources(final_verdict, verdict_result, fallback_result, articles, claim):
     """
     Produces the only source list that should be shown as evidence.
@@ -553,6 +571,7 @@ def evidence_source_count(evidence_sources):
     }
     return len(source_names)
 
+@traced('retrieval.status')
 def get_search_status(search_result):
     """Creates a short status for the user-facing API response."""
     statuses = []
@@ -587,8 +606,9 @@ def get_search_status(search_result):
         "message": "IRIS searched the approved sources and extracted readable article text where possible."
     }
 
-def get_claim_flags(claim_text):
-    political_result = flag_political(claim_text)
+@traced('claim.political')
+def get_claim_flags(claim_text, claim=None):
+    political_result = flag_claim_political(claim) if claim else flag_political(claim_text)
     politically_sensitive = political_result["politically_sensitive"]
 
     return {
@@ -639,6 +659,7 @@ def contextualize_attribution_message(claim, verdict, message):
     return message
 
 
+@traced('claim.fallback')
 def apply_low_confidence_fallback(
     claim_text,
     articles,
@@ -653,6 +674,7 @@ def apply_low_confidence_fallback(
         lambda: refine_with_openai_rag(claim_text, articles, verdict_result),
     )
     keyword_result = None
+    event('verdict.semantic', verdict=verdict_result.get('verdict'), reason=verdict_result.get('reason'))
     final_verdict = verdict_result["verdict"]
     final_message = verdict_result["reason"]
 
@@ -675,16 +697,217 @@ def apply_low_confidence_fallback(
         "keyword_fallback": keyword_result,
     }
 
-def verify_claim(claim, language, timings=None):
+
+def build_claim_cache_basis(normalized_claim, claim, scoring_claim, shared_evidence_pool):
+    """Keeps quote/event-context cache entries separate from standalone checks."""
+    parts = [normalized_claim]
+    if claim.get('claim_text'):
+        parts.append(f"original_claim:{claim['claim_text']}")
+    if claim.get('evidence_context'):
+        parts.append(f"source_context:{claim['evidence_context']}")
+
+    if claim.get("is_quote_derived"):
+        parts.append("quote_derived:true")
+
+    if scoring_claim and scoring_claim != normalized_claim:
+        parts.append(f"scoring_claim:{scoring_claim}")
+
+    if shared_evidence_pool and shared_evidence_pool.get("used"):
+        parts.append(f"event_query:{shared_evidence_pool.get('query')}")
+
+    return "\n".join(parts)
+
+
+def should_build_event_pool(claims, content_profile):
+    """Runs shared event retrieval only when it can help a multi-claim post."""
+    if not claims:
+        return False
+
+    if any(claim.get("is_quote_derived") for claim in claims):
+        return True
+
+    return bool(content_profile.get("contains_quote")) and len(claims) > 1
+
+
+def tag_search_result_articles(search_result, evidence_pool):
+    """Copies a search result and tags every article with its pool role."""
+    if not search_result:
+        return None
+
+    tagged = dict(search_result)
+    tagged["articles"] = [
+        {
+            **article,
+            "evidence_pool": article.get("evidence_pool") or evidence_pool,
+        }
+        for article in search_result.get("articles") or []
+    ]
+    return tagged
+
+
+@traced('event.retrieve', dependency=False)
+def build_shared_event_evidence_pool(
+    text,
+    translated_text,
+    claims,
+    content_profile,
+):
+    """Searches the broader post event once and returns a reusable pool."""
+    if not should_build_event_pool(claims, content_profile):
+        return {
+            "used": False,
+            "status": "not_needed",
+            "query": None,
+            "search_result": None,
+        }
+
+    query = build_event_search_query(
+        text=text,
+        translated_text=translated_text,
+        claims=claims,
+    )
+    if not query:
+        return {
+            "used": False,
+            "status": "empty_query",
+            "query": None,
+            "search_result": None,
+        }
+
+    search_result = search_and_extract(primary_query=query)
+    search_result = tag_search_result_articles(search_result, "event_context")
+
+    return {
+        "used": True,
+        "status": "ok",
+        "query": query,
+        "search_result": search_result,
+        "total_search_results": search_result["total_search_results"],
+        "searched_articles": search_result["searched_articles"],
+        "extracted_articles": search_result["extracted_articles"],
+        "source_summary": search_result["source_summary"],
+    }
+
+
+def summarize_shared_evidence_pool(shared_evidence_pool):
+    """Returns a compact debug-safe summary without full article text."""
+    if not shared_evidence_pool:
+        return {
+            "used": False,
+            "status": "not_run",
+        }
+
+    search_result = shared_evidence_pool.get("search_result") or {}
+    return {
+        "used": bool(shared_evidence_pool.get("used")),
+        "status": shared_evidence_pool.get("status"),
+        "query": shared_evidence_pool.get("query"),
+        "total_search_results": shared_evidence_pool.get("total_search_results", 0),
+        "searched_articles": shared_evidence_pool.get("searched_articles", 0),
+        "extracted_articles": shared_evidence_pool.get("extracted_articles", 0),
+        "source_summary": shared_evidence_pool.get("source_summary", []),
+        "articles": [
+            {
+                "source": article.get("source"),
+                "title": article.get("title"),
+                "url": article.get("url"),
+                "status": article.get("status"),
+                "word_count": article.get("word_count"),
+                "extraction_quality": article.get("extraction_quality"),
+            }
+            for article in search_result.get("articles") or []
+        ],
+    }
+
+
+def quote_paraphrase_for_claim(claim, timings, stage_prefix):
+    """Returns paraphrase metadata and the claim text to use for scoring."""
+    default_result = {
+        "used_for_scoring": False,
+        "status": "not_needed",
+        "method": "not_run",
+        "error": None,
+        "paraphrase": claim["normalized_claim"],
+    }
+
+    if not claim.get("is_quote_derived"):
+        event('stage.skipped', stages=['claim.paraphrase'], reason='Claim is not quote derived')
+        return default_result
+
+    return timed_stage(
+        timings,
+        f"{stage_prefix}quote_paraphrase",
+        lambda: paraphrase_quote_claim(claim),
+    )
+
+
+@traced('claim.retrieve', dependency=False)
+def build_claim_search_result(
+    claim,
+    language,
+    retrieval_query,
+    normalized_claim,
+    shared_evidence_pool,
+):
+    """Chooses event-only, claim-only, or claim-plus-event retrieval."""
+    event_search_result = (
+        shared_evidence_pool.get("search_result")
+        if shared_evidence_pool and shared_evidence_pool.get("used")
+        else None
+    )
+    has_event_articles = bool(event_search_result and event_search_result.get("articles"))
+
+    if claim.get("is_quote_derived") and has_event_articles:
+        return (
+            tag_search_result_articles(event_search_result, "event_context"),
+            "event_pool_only",
+        )
+
+    claim_search_result = search_and_extract(
+        primary_query=retrieval_query,
+        backup_query=(
+            normalized_claim
+            if retrieval_query.strip().lower() != normalized_claim.strip().lower()
+            else claim["claim_text"] if language in ["tagalog", "taglish"] else None
+        ),
+    )
+
+    if has_event_articles:
+        return (
+            merge_search_results(claim_search_result, event_search_result),
+            "claim_search_plus_event_pool",
+        )
+
+    return claim_search_result, "claim_search_only"
+
+
+@traced('claim.process', dependency=False)
+def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
     """Runs search, scoring, fallback, and caching for one extracted claim."""
     normalized_claim = claim["normalized_claim"]
     retrieval_query = claim.get("search_query") or normalized_claim
+    from pipeline.claim_context import incident_anchor, contextual_search_query, incident_evidence_gate
+    context_anchor = incident_anchor(normalized_claim, claim.get('evidence_context', ''))
+    retrieval_query = contextual_search_query(retrieval_query, context_anchor)
     claim_id = claim.get("claim_id", "unknown")
     stage_prefix = f"claim_{claim_id}."
+
+    quote_paraphrase = quote_paraphrase_for_claim(
+        claim,
+        timings,
+        stage_prefix,
+    )
+    scoring_claim = quote_paraphrase.get("paraphrase") or normalized_claim
+    cache_basis = build_claim_cache_basis(
+        normalized_claim,
+        claim,
+        scoring_claim,
+        shared_evidence_pool,
+    )
     claim_hash = timed_stage(
         timings,
         f"{stage_prefix}hash_claim",
-        lambda: hash_claim(normalized_claim),
+        lambda: hash_claim(cache_basis),
     )
     cached_result = timed_stage(
         timings,
@@ -693,28 +916,32 @@ def verify_claim(claim, language, timings=None):
     )
 
     if cached_result and cached_result.get("cache_version") == RESULT_CACHE_VERSION:
+        event('stage.skipped', stages=['claim.retrieve','claim.semantic','claim.fallback','claim.component_review'], reason='Matching cache entry reused')
+        event('cache.hit', claim_id=claim['claim_id'], cache_version=cached_result.get('cache_version'), downstream='retrieval and review bypassed')
         cached_result["claim_id"] = claim["claim_id"]
         cached_result["claim_text"] = claim["claim_text"]
+        cached_result["is_quote_derived"] = bool(claim.get("is_quote_derived"))
         cached_result["cache_hit"] = True
         return cached_result
 
     claim_flags = timed_stage(
         timings,
         f"{stage_prefix}political_flags",
-        lambda: get_claim_flags(normalized_claim),
+        lambda: get_claim_flags(normalized_claim, claim),
     )
     search_result = timed_stage(
         timings,
         f"{stage_prefix}search_and_extract",
-        lambda: search_and_extract(
-            primary_query=retrieval_query,
-            backup_query=(
-                normalized_claim
-                if retrieval_query.strip().lower() != normalized_claim.strip().lower()
-                else claim["claim_text"] if language in ["tagalog", "taglish"] else None
-            )
+        lambda: build_claim_search_result(
+            claim,
+            language,
+            retrieval_query,
+            normalized_claim,
+            shared_evidence_pool,
         ),
     )
+    retrieval_strategy = search_result[1]
+    search_result = search_result[0]
     search_status = timed_stage(
         timings,
         f"{stage_prefix}search_status",
@@ -723,7 +950,7 @@ def verify_claim(claim, language, timings=None):
     verdict_result = timed_stage(
         timings,
         f"{stage_prefix}generate_verdict",
-        lambda: generate_verdict(normalized_claim, search_result["articles"]),
+        lambda: generate_verdict(scoring_claim, search_result["articles"]),
     )
 
     final_verdict = verdict_result["verdict"]
@@ -746,13 +973,14 @@ def verify_claim(claim, language, timings=None):
             timings,
             f"{stage_prefix}fallback_total",
             lambda: apply_low_confidence_fallback(
-                normalized_claim,
+                scoring_claim,
                 search_result["articles"],
                 verdict_result,
                 timings,
                 stage_prefix,
             ),
         )
+        event('verdict.fallback', before=final_verdict, after=fallback_result.get('verdict'), details=fallback_result)
         final_verdict = fallback_result["verdict"]
         final_message = fallback_result["message"]
 
@@ -768,7 +996,36 @@ def verify_claim(claim, language, timings=None):
         ),
     )
 
+    component_review = None
+    if search_status["status"] == "ok":
+        from pipeline.component_evidence import review_components
+        eligible = [article for article in search_result["articles"]
+                    if compact_evidence_source(article)
+                    and article.get("text")
+                    and attribution_evidence_gate(article, claim, anchors_only=True)["matches"]
+                    and incident_evidence_gate(article, context_anchor)["matches"]]
+        event('evidence.incident_gate', anchor=context_anchor, articles=[
+            {'url': article.get('url'), **incident_evidence_gate(article, context_anchor)}
+            for article in search_result['articles']])
+        component_review = timed_stage(
+            timings, f"{stage_prefix}component_evidence_review",
+            lambda: review_components(claim.get('claim_text') or normalized_claim, eligible,
+                                      source_context=claim.get('evidence_context', '')),
+        ) if eligible else {"status": "no_evidence", "verdict": "Not Found",
+                            "reason": "No valid extracted evidence satisfied the claim's required anchors.",
+                            "supporting_urls": [], "components": []}
+        from pipeline.component_evidence import require_completed_review
+        require_completed_review(component_review)
+        event('verdict.component_review', before=final_verdict, after=component_review.get('verdict'), details=component_review)
+        final_verdict = component_review["verdict"]
+        final_message = component_review["reason"]
+        evidence_sources = unique_evidence_sources([
+            compact_evidence_source(article, "component_review") for article in eligible
+            if article.get("url") in component_review["supporting_urls"]
+        ])
+
     if final_verdict in POSITIVE_VERDICTS and not evidence_sources:
+        event('verdict.evidence_gate', before=final_verdict, after='Not Found', reason='No valid public evidence')
         final_verdict = "Not Found"
         final_message = (
             "IRIS found related material, but no valid extracted source link "
@@ -788,7 +1045,27 @@ def verify_claim(claim, language, timings=None):
         "claim_type": claim.get("claim_type", "factual_claim"),
         "verification_focus": claim.get("verification_focus", claim.get("claim_type", "factual_claim")),
         "attribution": claim.get("attribution"),
+        "attribution_integrity": claim.get("attribution_integrity"),
+        "component_review": component_review,
+        "incident_evidence_audit": [
+            {'url': article.get('url'), **incident_evidence_gate(article, context_anchor)}
+            for article in search_result['articles']
+        ],
+        "evidence_gate_audit": [
+            {"url": article.get("url"), "stage": "attribution_anchors",
+             **attribution_evidence_gate(article, claim, anchors_only=True)}
+            for article in search_result["articles"] if article.get("status") == "extracted"
+        ],
+        "is_quote_derived": bool(claim.get("is_quote_derived")),
+        "quote_paraphrase": quote_paraphrase,
+        "scoring_claim": scoring_claim,
         "search_query": retrieval_query,
+        "event_search_query": (
+            shared_evidence_pool.get("query")
+            if shared_evidence_pool and shared_evidence_pool.get("used")
+            else None
+        ),
+        "retrieval_strategy": retrieval_strategy,
         "risk_tags": claim.get("risk_tags", []),
         "claim_hash": claim_hash,
         "cache_version": RESULT_CACHE_VERSION,
@@ -825,8 +1102,10 @@ def verify_claim(claim, language, timings=None):
             lambda: save_cached_verdict(claim_hash, normalized_claim, claim_result),
         )
 
+    event('claim.final', result=claim_result)
     return claim_result
 
+@traced('request.assemble', dependency=False)
 def build_overall_verdict(claim_results):
     if not claim_results:
         return {
@@ -899,6 +1178,114 @@ def _truthy(value):
 
     return str(value).strip().lower() in {"1", "true", "yes", "on"}
 
+def _image_input_error(status, message, http_status=400):
+    return {
+        "status": status,
+        "message": message,
+        "http_status": http_status,
+    }
+
+@traced('image.download', dependency=True)
+def _get_image_bytes_from_url(image_url):
+    image_url = str(image_url or "").strip()
+    parsed = urlparse(image_url)
+
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+        return _image_input_error(
+            "invalid_image_url",
+            "Image URL must be an http or https URL.",
+            400,
+        )
+
+    headers = {
+        "Accept": "image/avif,image/webp,image/png,image/jpeg,image/bmp,image/tiff,image/*;q=0.8,*/*;q=0.1",
+        "User-Agent": "IRIS/1.0 image verification",
+    }
+    response = None
+
+    try:
+        response = requests.get(
+            image_url,
+            headers=headers,
+            stream=True,
+            timeout=REMOTE_IMAGE_TIMEOUT_SECONDS,
+        )
+    except requests.exceptions.Timeout:
+        return _image_input_error(
+            "remote_image_timeout",
+            "IRIS timed out while fetching the image URL.",
+            504,
+        )
+    except requests.RequestException as error:
+        return _image_input_error(
+            "remote_image_failed",
+            f"IRIS could not fetch the image URL: {error}",
+            502,
+        )
+
+    try:
+        if response.status_code >= 400:
+            return _image_input_error(
+                "remote_image_failed",
+                f"Image URL returned HTTP {response.status_code}.",
+                502,
+            )
+
+        raw_content_type = response.headers.get("content-type", "")
+        content_type = raw_content_type.split(";", 1)[0].strip().lower()
+        if (
+            content_type
+            and not content_type.startswith("image/")
+            and content_type != "application/octet-stream"
+        ):
+            return _image_input_error(
+                "unsupported_image_type",
+                "Image URL did not return an image file.",
+                400,
+            )
+
+        content_length = response.headers.get("content-length")
+        if content_length:
+            try:
+                if int(content_length) > MAX_IMAGE_BYTES:
+                    return _image_input_error(
+                        "image_too_large",
+                        f"Image is larger than the {MAX_IMAGE_BYTES} byte OCR limit.",
+                        413,
+                    )
+            except ValueError:
+                pass
+
+        chunks = []
+        total_size = 0
+        for chunk in response.iter_content(chunk_size=64 * 1024):
+            if not chunk:
+                continue
+
+            total_size += len(chunk)
+            if total_size > MAX_IMAGE_BYTES:
+                return _image_input_error(
+                    "image_too_large",
+                    f"Image is larger than the {MAX_IMAGE_BYTES} byte OCR limit.",
+                    413,
+                )
+
+            chunks.append(chunk)
+
+        image_bytes = b"".join(chunks)
+        validation = validate_image_bytes(image_bytes)
+        if validation["status"] != "ok":
+            return validation
+
+        validation["image_bytes"] = image_bytes
+        validation["source_url"] = image_url
+        return validation
+    finally:
+        close = getattr(response, "close", None)
+        if close:
+            close()
+
+@traced('image.acquire_decode', dependency=False)
 def _get_image_bytes_from_request(data):
     if request.files and "image" in request.files:
         image_file = request.files["image"]
@@ -916,9 +1303,13 @@ def _get_image_bytes_from_request(data):
         if data.get(key):
             return decode_base64_image(data[key])
 
+    for key in ["image_url", "url", "src_url"]:
+        if data.get(key):
+            return _get_image_bytes_from_url(data[key])
+
     return {
         "status": "missing_image",
-        "message": "Provide an image file or a base64 image field.",
+        "message": "Provide an image file, an image URL, or a base64 image field.",
         "http_status": 400,
     }
 
@@ -956,6 +1347,7 @@ def build_ocr_stop_response(ocr_result, debug_enabled):
     }
     return add_ocr_response_fields(response, ocr_result, debug_enabled)
 
+@traced('text.process', dependency=False)
 def verify_text_payload(text, debug_enabled=False, timings=None):
     owns_timings = timings is None
     timings = timings or RequestTimings("verify_text")
@@ -1003,7 +1395,9 @@ def verify_text_payload(text, debug_enabled=False, timings=None):
     )
     politically_sensitive = political_result["politically_sensitive"]
 
+    event('text.route', eligible=content_profile['eligible_for_verification'], route=content_profile['recommended_route'], ignored_segments=content_profile.get('ignored_segments'))
     if not content_profile["eligible_for_verification"]:
+        event('stage.skipped', stages=['claims.extract','event.retrieve','claim.process'], reason=content_profile['recommended_route'])
         response = build_profiler_stop_response(
             text,
             translated,
@@ -1066,12 +1460,44 @@ def verify_text_payload(text, debug_enabled=False, timings=None):
 
         return complete_response(response)
 
-    # Step 5: Verify each extracted factual claim independently.
+    from pipeline.attribution_integrity import ground_attribution
+    claim_extraction["claims"] = [
+        ground_attribution(claim, text + "\n" + (translated or ""))
+        for claim in claim_extraction["claims"]
+    ]
+    for claim in claim_extraction['claims']:
+        # Context identifies the incident for pronouns; it is never supporting evidence.
+        claim['evidence_context'] = normalized_verification_text or verification_text
+    trace = CURRENT.get()
+    if trace and trace.stop_claim is not None and trace.stop_claim not in {str(c['claim_id']) for c in claim_extraction['claims']}:
+        from iris_trace.core import TargetNotReached
+        raise TargetNotReached(trace.stop_after, 'Claim ID was not extracted; downstream retrieval was not started.')
+    # Step 5: Mark quote-derived claims and build one reusable event pool.
+    claim_extraction["claims"] = timed_stage(
+        timings,
+        "text.mark_quote_derived_claims",
+        lambda: mark_quote_derived_claims(
+            claim_extraction["claims"],
+            content_profile,
+        ),
+    )
+    shared_evidence_pool = timed_stage(
+        timings,
+        "text.shared_event_evidence_pool",
+        lambda: build_shared_event_evidence_pool(
+            text,
+            translated,
+            claim_extraction["claims"],
+            content_profile,
+        ),
+    )
+
+    # Step 6: Verify each extracted factual claim independently.
     claim_results = timed_stage(
         timings,
         "text.verify_claims_total",
         lambda: [
-            verify_claim(claim, language, timings)
+            verify_claim(claim, language, timings, shared_evidence_pool)
             for claim in claim_extraction["claims"]
         ],
     )
@@ -1114,8 +1540,32 @@ def verify_text_payload(text, debug_enabled=False, timings=None):
 
     if debug_enabled:
         response["debug"]["claim_extraction"] = claim_extraction
+        response["debug"]["shared_evidence_pool"] = summarize_shared_evidence_pool(
+            shared_evidence_pool
+        )
 
     return complete_response(response)
+
+from pipeline.component_evidence import ComponentReviewError
+from pipeline.quotation_context import QuotationExtractionError
+
+
+@app.errorhandler(QuotationExtractionError)
+def quotation_extraction_error(error):
+    return jsonify({'status': 'processing_error', 'error': 'quotation_extraction_failed',
+                    'message': 'IRIS could not safely extract the reported quotations. Please retry; no verdict was issued.',
+                    'retryable': True, 'verdict': None, 'evidence_sources': [],
+                    'reason_code': str(error), 'failed_stage': 'claim_extraction'}), 503
+
+
+@app.errorhandler(ComponentReviewError)
+def component_review_error(error):
+    app.logger.error('Evidence review failed: stage=%s reason=%s', error.stage, error.reason_code)
+    return jsonify({"status": "processing_error", "error": "component_review_failed",
+                    "message": str(error), "retryable": True, "verdict": None,
+                    "evidence_sources": [], "reason_code": error.reason_code,
+                    "failed_stage": error.stage}), 503
+
 
 @app.route('/verify', methods=['POST'])
 def verify():

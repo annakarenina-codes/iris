@@ -3,12 +3,14 @@ const DEFAULTS = {
   irisPanelEnabled: true,
   irisTheme: "system",
   irisFontSize: "default",
-  irisDebugMode: false
+  irisDebugMode: false,
+  quietMode: false
 };
 
 const form = document.getElementById("options-form");
 const backendUrl = document.getElementById("backend-url");
 const panelEnabled = document.getElementById("panel-enabled");
+const quietMode = document.getElementById("quiet-mode");
 const debugMode = document.getElementById("debug-mode");
 const theme = document.getElementById("theme");
 const fontSize = document.getElementById("font-size");
@@ -26,6 +28,7 @@ function setStatus(message) {
 function applyValues(values) {
   backendUrl.value = normalizeBackendUrl(values.irisBackendUrl);
   panelEnabled.checked = values.irisPanelEnabled !== false;
+  quietMode.checked = Boolean(values.quietMode);
   debugMode.checked = Boolean(values.irisDebugMode);
   theme.value = values.irisTheme || DEFAULTS.irisTheme;
   fontSize.value = values.irisFontSize || DEFAULTS.irisFontSize;
@@ -41,6 +44,7 @@ form.addEventListener("submit", (event) => {
   const values = {
     irisBackendUrl: normalizeBackendUrl(backendUrl.value),
     irisPanelEnabled: panelEnabled.checked,
+    quietMode: quietMode.checked,
     irisTheme: theme.value,
     irisFontSize: fontSize.value,
     irisDebugMode: debugMode.checked

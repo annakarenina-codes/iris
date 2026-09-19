@@ -64,3 +64,9 @@ Generated dependency folders and runtime artifacts were intentionally not copied
 - nested `.git/` folders
 
 This keeps the monorepo clean while preserving the source and configuration needed to continue development.
+
+## Backend diagnostics
+
+Translation uses the configured OpenAI API with a bounded deadline and original-text fallback. See [translation configuration and validation](iris-backend/TRANSLATION.md).
+
+IRIS TRACE adds a development-only request viewer with tabs, per-claim stages, OCR overlays and calibration fixtures. From `iris-backend`, run `python run_trace.py --artifacts` and open `http://127.0.0.1:5000/debug/trace`. See [TRACE setup and calibration guide](iris-backend/iris_trace/README.md).

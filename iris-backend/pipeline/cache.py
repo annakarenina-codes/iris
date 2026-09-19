@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from iris_trace.core import traced, event, CURRENT
+
 import hashlib
 import json
 import os
@@ -41,7 +43,12 @@ def init_cache(cache_path: Optional[Path] = None) -> None:
         )
 
 
+@traced('claim.cache_read', dependency=False)
 def get_cached_verdict(claim_hash: str, cache_path: Optional[Path] = None) -> Optional[Dict[str, object]]:
+    trace = CURRENT.get()
+    if trace is not None and trace.cache_bypass:
+        event('cache.bypassed', reason='calibration')
+        return None
     init_cache(cache_path)
     path = cache_path or get_cache_path()
 
@@ -57,12 +64,17 @@ def get_cached_verdict(claim_hash: str, cache_path: Optional[Path] = None) -> Op
     return json.loads(row[0])
 
 
+@traced('claim.cache_write', dependency=False)
 def save_cached_verdict(
     claim_hash: str,
     claim_text: str,
     result: Dict[str, object],
     cache_path: Optional[Path] = None,
 ) -> None:
+    trace = CURRENT.get()
+    if trace is not None and trace.cache_bypass:
+        event('cache.bypassed', reason='calibration')
+        return None
     init_cache(cache_path)
     path = cache_path or get_cache_path()
     timestamp = datetime.now(timezone.utc).isoformat()

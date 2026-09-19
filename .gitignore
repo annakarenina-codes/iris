@@ -8,6 +8,12 @@ dist/
 build/
 *.log
 
+# Android local/build output
+.gradle/
+local.properties
+*.apk
+*.aab
+
 # Python caches and runtime data
 __pycache__/
 *.py[cod]
@@ -32,3 +38,8 @@ Thumbs.db
 # Nested tool metadata
 .agents/
 .codex/
+
+# IRIS TRACE runtime data
+.iris-trace/
+*.sqlite3-wal
+*.sqlite3-shm

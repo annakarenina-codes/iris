@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from iris_trace.core import traced
+
 import re
 from typing import Dict, List
 
@@ -45,6 +47,7 @@ def _article_text(article: Dict[str, object]) -> str:
     ])
 
 
+@traced('claim.fallback_keyword', dependency=False)
 def keyword_overlap_verdict(claim: str, articles: List[Dict[str, object]]) -> Dict[str, object]:
     """Scores claim/evidence overlap without calling any external AI API."""
     claim_tokens = set(_tokens(claim))

@@ -8,6 +8,8 @@ accurate.
 
 from __future__ import annotations
 
+from iris_trace.core import traced, event, CURRENT, span
+
 import base64
 import binascii
 import os
@@ -177,6 +179,7 @@ def _resize_for_ocr(image, image_module, max_side: int):
     }
 
 
+@traced('image.preprocess', dependency=False)
 def _preprocess_image(image_bytes: bytes, dependencies: Dict[str, object]) -> Dict[str, object]:
     Image = dependencies["Image"]
     ImageEnhance = dependencies["ImageEnhance"]
@@ -239,6 +242,7 @@ def _gpu_enabled() -> bool:
     return os.getenv("IRIS_OCR_GPU", "false").lower() in {"1", "true", "yes"}
 
 
+@traced('image.reader', dependency=False)
 def _get_reader(easyocr, languages: Tuple[str, ...]):
     gpu = _gpu_enabled()
     cache_key = (languages, gpu)
@@ -288,6 +292,7 @@ def _confidence(regions: List[Dict[str, object]]) -> Optional[float]:
     return round(weighted_total / max(1, weight_sum), 4)
 
 
+@traced('image.regions', dependency=False)
 def _parse_easyocr_result(raw_result) -> List[Dict[str, object]]:
     regions = []
 
@@ -303,13 +308,15 @@ def _parse_easyocr_result(raw_result) -> List[Dict[str, object]]:
         regions.append({
             "text": text,
             "confidence": round(float(confidence), 4),
-            "bbox": bbox,
+            # EasyOCR coordinates can be NumPy scalars, which Flask cannot serialize.
+            "bbox": [[float(coordinate) for coordinate in point] for point in bbox],
         })
 
     regions = sorted(regions, key=_region_position)
     return regions[:OCR_MAX_REGIONS]
 
 
+@traced('image.ocr', dependency=True)
 def extract_text_from_image(
     image_bytes: bytes,
     languages: Tuple[str, ...] = DEFAULT_LANGUAGES,
@@ -414,7 +421,10 @@ def extract_text_from_image(
             }
 
     try:
-        raw_result = reader.readtext(preprocessed["image"])
+        with span('image.recognition', {'image': preprocessed['metadata']}) as recognition:
+            raw_result = reader.readtext(preprocessed["image"])
+            if recognition is not None:
+                recognition['output'] = raw_result
     except Exception as error:
         return {
             "status": "error",
@@ -429,7 +439,17 @@ def extract_text_from_image(
             "image_authenticity_checked": False,
         }
 
-    regions = _parse_easyocr_result(raw_result)
+    from pipeline.ocr_layout import select_content_regions
+
+    trace = CURRENT.get()
+    if trace is not None:
+        trace.artifact('image', image_bytes, 'application/octet-stream')
+    raw_regions = _parse_easyocr_result(raw_result)
+    raw_text = _clean_text(" ".join(region["text"] for region in raw_regions))
+    if trace is not None:
+        trace.artifact('ocr_regions', raw_regions)
+    regions, excluded_regions = select_content_regions(raw_regions)
+    event('ocr.selection', raw_regions=raw_regions, retained=regions, excluded=excluded_regions, image=preprocessed['metadata'])
     text = _clean_text(" ".join(region["text"] for region in regions))
     words = _word_count(text)
     confidence = _confidence(regions)
@@ -461,6 +481,9 @@ def extract_text_from_image(
     return {
         "status": "ok",
         "text": text,
+        "raw_text": raw_text,
+        "raw_regions": raw_regions,
+        "excluded_regions": excluded_regions,
         "word_count": words,
         "confidence": confidence,
         "low_confidence": bool(warnings),
