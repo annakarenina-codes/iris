@@ -1,14 +1,12 @@
-"""Borrowed dates stay with their own subject; reported speech stays whole; attribution queries."""
+"""Borrowed dates stay with their own subject; reported speech stays whole."""
 
 import sys
 import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from pipeline.attribution_integrity import ground_attribution
 from pipeline.component_context import (FIELDS, clause_span, limit_inherited_times,
                                         needs_context_review, prepare_components)
-from pipeline.search_queries import attribution_search_query
 
 C01 = ('Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment '
        'trial of his sister, Vice President Sara Duterte, on Sept. 23, as the Senate impeachment court '
@@ -89,29 +87,6 @@ class ReportedSpeechTests(unittest.TestCase):
         units = prepare_components(claim, parts, [context('Remulla', 'announced'),
                                                   context('Austria', 'rejected')])
         self.assertEqual(len(units), 2)
-
-
-class AttributionQueryTests(unittest.TestCase):
-    def test_speaker_plus_key_terms_instead_of_full_sentence(self):
-        query = attribution_search_query('Jonvic Remulla', ReportedSpeechTests.CLAIM)
-        self.assertIn('Jonvic Remulla', query)
-        self.assertIn('Austria', query)
-        self.assertIn('Harry Roque', query)
-        self.assertLess(len(query.split()), len(ReportedSpeechTests.CLAIM.split()))
-
-    def test_grounded_attribution_uses_keyword_query_and_keeps_full_assertion(self):
-        claim = {'claim_type': 'attributed_statement', 'claim_text': ReportedSpeechTests.CLAIM,
-                 'normalized_claim': ReportedSpeechTests.CLAIM,
-                 'attribution': {'speaker': 'Jonvic Remulla', 'statement': ReportedSpeechTests.CLAIM}}
-        grounded = ground_attribution(claim, ReportedSpeechTests.CLAIM)
-        self.assertNotEqual(grounded['search_query'], ReportedSpeechTests.CLAIM)
-        self.assertIn('Jonvic Remulla', grounded['search_query'])
-        self.assertEqual(grounded['search_query'].count('Jonvic Remulla'), 1)
-        # The full sentence stays the normalized claim, which retrieval uses as its backup query.
-        self.assertEqual(grounded['normalized_claim'], ReportedSpeechTests.CLAIM)
-
-    def test_missing_speaker_still_gives_a_query(self):
-        self.assertTrue(attribution_search_query(None, 'The agency said it opened 12 clinics.'))
 
 
 if __name__ == '__main__':

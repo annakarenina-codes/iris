@@ -84,6 +84,5 @@ def ground_attribution(claim, source_text):
         "field_checks": field_checks,
         "incidental_credits": credits,
     }
-    from pipeline.search_queries import attribution_search_query
-    claim["search_query"] = attribution_search_query(attribution.get("speaker"), assertion)
+    claim["search_query"] = assertion
     return claim

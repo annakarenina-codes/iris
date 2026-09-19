@@ -6,6 +6,7 @@ what was not checked, and each extracted claim with its verdict, search query,
 component decisions, cited passages and evidence links, next to the baseline.
 Offline: reads saved JSON only.
 """
+import argparse
 import json
 from pathlib import Path
 
@@ -94,20 +95,38 @@ def render_claim(lines, claim):
     lines.append('')
 
 
+def load_runs(folder):
+    return {i: read(folder / f'{i}.json') for i in PRIORITY if (folder / f'{i}.json').exists()}
+
+
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--results', default='results', help='result folder to report')
+    parser.add_argument('--previous', help='earlier result folder shown for comparison')
+    parser.add_argument('--output', default='REPORT.md')
+    parser.add_argument('--findings', default='FINDINGS.md')
+    parser.add_argument('--title', default='IRIS priority rerun, 19 September 2026')
+    parser.add_argument('--note', default='Step 3 changes are **not** included in this run.')
+    args = parser.parse_args()
+
     cases = {c['id']: c for c in read(AUDIT / 'cases.json')}
     assessments = {a['id']: a for a in read(AUDIT / 'assessment-matrix.json')}
-    config = read(HERE / 'configuration.json') if (HERE / 'configuration.json').exists() else {}
-    runs = {i: read(HERE / 'results' / f'{i}.json') for i in PRIORITY if (HERE / 'results' / f'{i}.json').exists()}
+    results_dir = HERE / args.results
+    config_path = HERE / 'configuration.json' if args.results == 'results' else results_dir / 'configuration.json'
+    config = read(config_path) if config_path.exists() else {}
+    runs = load_runs(results_dir)
+    previous = load_runs(HERE / args.previous) if args.previous else {}
+    review_path = HERE / 'user-review.json'
+    review = read(review_path)['cases'] if args.previous == 'results' and review_path.exists() else {}
     baseline = {i: read(AUDIT / 'current-baseline' / f'{i}.json') for i in PRIORITY}
 
-    lines = ['# IRIS priority rerun, 19 September 2026', '']
-    lines.append(f"Code: `{config.get('git_commit', '?')[:7]}` (branch sources-and-snippets) · cache version "
+    lines = [f'# {args.title}', '']
+    lines.append(f"Code: `{config.get('git_commit', '?')[:7]}` · cache version "
                  f"`{config.get('cache_version', '?')}` · verdict cache bypassed · {len(runs)} of "
-                 f"{len(PRIORITY)} cases captured. Step 3 changes are **not** included in this run.")
+                 f"{len(PRIORITY)} cases captured. {args.note}")
     lines.append('')
-    if (HERE / 'FINDINGS.md').exists():
-        lines.append((HERE / 'FINDINGS.md').read_text(encoding='utf-8').strip())
+    if (HERE / args.findings).exists():
+        lines.append((HERE / args.findings).read_text(encoding='utf-8').strip())
         lines.append('')
         lines.append('## Case-by-case results')
         lines.append('')
@@ -115,15 +134,20 @@ def main():
                  'compared claim by claim with the 18 September baseline; claim extraction can differ between runs, '
                  'so compare the claim text too.')
     lines.append('')
-    lines.append('| Case | Group | Topic | 18 Sept | 18 Sept verdicts | Now | Time | Your assessment |')
-    lines.append('|---|---|---|---|---|---|---|---|')
+    earlier = ' | Earlier run | Your review of earlier run' if previous else ''
+    lines.append(f'| Case | Group | Topic | 18 Sept | 18 Sept verdicts{earlier} | Now | Time | Your assessment |')
+    lines.append('|---|---|---|---|---' + ('|---|---' if previous else '') + '|---|---|---|')
     for ident in PRIORITY:
         run = runs.get(ident)
         old = ', '.join(str(v) for _, v in claim_verdicts(baseline[ident]))
         new = ', '.join(str(v) for _, v in claim_verdicts(run)) if run else 'not run'
         seconds = f"{run.get('seconds', 0):.0f}s" if run else ''
+        middle = ''
+        if previous:
+            before = ', '.join(str(v) for _, v in claim_verdicts(previous.get(ident))) if previous.get(ident) else ''
+            middle = f" | {before} | {review.get(ident, {}).get('assessment', '')}"
         lines.append(f"| [{ident}](#{ident.lower()}) | {GROUP[ident]} | {cell(assessments[ident]['topic'])} | "
-                     f"{assessments[ident]['result']} | {old} | {new} | {seconds} | |")
+                     f"{assessments[ident]['result']} | {old}{middle} | {new} | {seconds} | |")
     lines.append('')
 
     for ident in PRIORITY:
@@ -134,6 +158,8 @@ def main():
         lines.append('')
         lines.append(f"- **Expected behavior:** {cell(assessment['expected_behavior'])}")
         lines.append(f"- **18 Sept reason:** {cell(assessment['reason'])}")
+        if review.get(ident):
+            lines.append(f"- **Your review of the earlier run ({review[ident]['assessment']}):** {cell(review[ident]['note'])}")
         lines.append('')
         lines.append('<details><summary>Full input text</summary>')
         lines.append('')
@@ -181,8 +207,8 @@ def main():
         lines.append('')
         lines.append('</details>')
         lines.append('')
-    (HERE / 'REPORT.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
-    print(f'REPORT.md written for {len(runs)} cases')
+    (HERE / args.output).write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    print(f'{args.output} written for {len(runs)} cases')
 
 
 if __name__ == '__main__':

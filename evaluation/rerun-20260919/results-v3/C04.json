@@ -1,0 +1,3288 @@
+{
+  "case_id": "C04",
+  "input_sha256": "047689376ab1e3b3986ce134a174bb437d1b5b878836a940a5cac870956d8f2b",
+  "started_utc": "2026-09-19T10:29:26.365686+00:00",
+  "http_status": 200,
+  "seconds": 97.734,
+  "trace_id": "be856c33a00445eb8879d713ebe994df",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-step3-context-fixes-v20",
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 3 extracted claims individually.",
+    "original_text": "LONGER OJT HOURS FOR SENIOR HIGH SCHOOL STUDENTS?\nThe Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.\nEducation Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.\nHe added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+    "translated_text": "LONGER OJT HOURS FOR SENIOR HIGH SCHOOL STUDENTS?\nThe Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.\nEducation Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.\nHe added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 3,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s1",
+        "text": "LONGER OJT HOURS FOR SENIOR HIGH SCHOOL STUDENTS?",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.",
+        "normalized_claim": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Department of Education",
+          "role": null,
+          "statement": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [
+            "role"
+          ],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "not_in_input",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.",
+              "status": "not_supported",
+              "citations": [],
+              "context": {
+                "start": 0,
+                "end": 195,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "The Department of Education (DepEd)",
+                      "start": 0,
+                      "end": 35
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "employers",
+                      "start": 94,
+                      "end": 103
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "says there is still work to be done",
+                      "start": 36,
+                      "end": 71
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "find some senior high school graduates not yet sufficiently prepared for the workplace",
+                      "start": 108,
+                      "end": 194
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "The Department of Education (DepEd) says there is still work to be done",
+                      "start": 0,
+                      "end": 71
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace",
+                      "start": 80,
+                      "end": 194
+                    }
+                  ],
+                  "time": [],
+                  "negation": [
+                    {
+                      "origin": "claim",
+                      "quote": "not yet sufficiently prepared",
+                      "start": 147,
+                      "end": 176
+                    }
+                  ],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "The Department of Education (DepEd)",
+                      "start": 0,
+                      "end": 35
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "employers",
+                      "start": 94,
+                      "end": 103
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 195
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              }
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "original_claim": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.",
+          "partition_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/deped-rolls-out-calamity-resilient-classrooms",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/amid-shortened-budget-cycle-deped-hastens-use-remaining-fund",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/video-deped-sonny-angara-fixing-teachers-paperwork/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/reading-mathematics-science-results-pisa-2025/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/department-education-new-k-10-curriculum/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/2/17/deped-proposed-trimester-system-not-yet-final-1347",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/2/deped-school-safety-drill-to-proceed-without-active-shooter-reenactment-1327",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2025/12/17/deped-16-000-teachers-promoted-thousands-of-promotions-still-being-processed-1836",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/975529/deped-to-fast-track-completion-of-over-8k-classrooms/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001612/ph-posts-highest-pisa-scores-yet-in-reading-math-science-deped/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/regionaltv/news/114265/deped-assures-all-students-can-enroll/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2112013/aswang-projects-deped-says-over-1000-dpwh-built-classrooms-incomplete",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://opinion.inquirer.net/194396/sustaining-the-pisa-results",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2164272/deped-on-rumored-revamp-angara-to-continue-work-unless-told-otherwise",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/07/25/2544543/deped-still-faces-backlog-166000-classrooms",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://qa.philstar.com/headlines/2026/08/25/2551602/deped-asks-congress-school-safety-budget",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2025/08/20/2466861/sara-dutertes-education-rant-triggers-reminders-her-deped-failures",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/02/05/deped-ramps-up-completion-of-unfinished-classrooms-expands-delivery-options-for-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/12/deped-11-steps-up-school-emergency-preparedness",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2025/06/26/deped-ramps-up-reforms-to-fix-longstanding-issues-in-philippine-basic-education",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1217671",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283518",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1181715",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-releases/agencies/deped",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/government-work-classes-suspended-in-ncr-16-provinces-due-to-habagat/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/deped-bolsters-guidelines-for-localized-classroom-building-program/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/deped-vows-faster-cleaner-construction-targets-40000-classrooms-by-2028",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/deped-sets-two-day-wellness-break-for-public-school-teachers-on-sept-14-15",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/over-1000-deped-classrooms-nationwide-turned-over-unfinished-angara",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/schools-open-today-teachers-say-deped-not-ready",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/poa-disavows-liquidation-of-deped-funds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/all-systems-go-for-school-opening",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/deped-rolls-out-calamity-resilient-classrooms",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/amid-shortened-budget-cycle-deped-hastens-use-remaining-fund",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/video-deped-sonny-angara-fixing-teachers-paperwork/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/reading-mathematics-science-results-pisa-2025/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/department-education-new-k-10-curriculum/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/2/17/deped-proposed-trimester-system-not-yet-final-1347",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/2/deped-school-safety-drill-to-proceed-without-active-shooter-reenactment-1327",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2025/12/17/deped-16-000-teachers-promoted-thousands-of-promotions-still-being-processed-1836",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/975529/deped-to-fast-track-completion-of-over-8k-classrooms/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001612/ph-posts-highest-pisa-scores-yet-in-reading-math-science-deped/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/regionaltv/news/114265/deped-assures-all-students-can-enroll/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2112013/aswang-projects-deped-says-over-1000-dpwh-built-classrooms-incomplete",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://opinion.inquirer.net/194396/sustaining-the-pisa-results",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2164272/deped-on-rumored-revamp-angara-to-continue-work-unless-told-otherwise",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/07/25/2544543/deped-still-faces-backlog-166000-classrooms",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://qa.philstar.com/headlines/2026/08/25/2551602/deped-asks-congress-school-safety-budget",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2025/08/20/2466861/sara-dutertes-education-rant-triggers-reminders-her-deped-failures",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/02/05/deped-ramps-up-completion-of-unfinished-classrooms-expands-delivery-options-for-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/12/deped-11-steps-up-school-emergency-preparedness",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2025/06/26/deped-ramps-up-reforms-to-fix-longstanding-issues-in-philippine-basic-education",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1217671",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283518",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1181715",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/press-releases/agencies/deped",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/government-work-classes-suspended-in-ncr-16-provinces-due-to-habagat/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/deped-bolsters-guidelines-for-localized-classroom-building-program/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/deped-vows-faster-cleaner-construction-targets-40000-classrooms-by-2028",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/deped-sets-two-day-wellness-break-for-public-school-teachers-on-sept-14-15",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/over-1000-deped-classrooms-nationwide-turned-over-unfinished-angara",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/schools-open-today-teachers-say-deped-not-ready",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/poa-disavows-liquidation-of-deped-funds",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/all-systems-go-for-school-opening",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace."
+        },
+        "scoring_claim": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.",
+        "search_query": "Department of Education DepEd Department Education says still work done",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "6e0bdbc64d0f39cab9eb9e62bdb5af34589014dae0f16fcde93fa1309b7dc50c",
+        "cache_version": "week7-step3-context-fixes-v20",
+        "verdict": "Not Found",
+        "message": "IRIS did not find enough approved-source evidence confirming that Department of Education made this statement.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 104,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence mentions feedback from employers about senior high school graduates' preparedness for the workplace.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+        "normalized_claim": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Sonny Angara",
+          "role": "Education Secretary",
+          "statement": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "grounded",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://mb.com.ph/2026/09/11/answer-to-unemployment-yamsuan-backs-depeds-strengthening-of-senior-high-school-curriculum",
+                  "quote": "Angara said among the Department’s efforts to improve the SHS curriculum is increasing the requirements for on-the-job training or work immersion for senior high school learners to 640 hours from the usual 80 to 160 hours."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "The passage explicitly states that Angara said the Department's efforts include increasing the requirements for on-the-job training for senior high school learners to 640 hours from the usual 80 to 160 hours, which matches the claim in all details.",
+              "context": {
+                "start": 0,
+                "end": 186,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Education Secretary Sonny Angara",
+                      "start": 0,
+                      "end": 32
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "DepEd",
+                      "start": 38,
+                      "end": 43
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "said",
+                      "start": 33,
+                      "end": 37
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+                      "start": 44,
+                      "end": 186
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+                      "start": 0,
+                      "end": 186
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+                      "start": 38,
+                      "end": 186
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "Education Secretary Sonny Angara",
+                      "start": 0,
+                      "end": 32
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 186
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://mb.com.ph/2026/09/11/answer-to-unemployment-yamsuan-backs-depeds-strengthening-of-senior-high-school-curriculum"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "citation_ids": [
+                0
+              ],
+              "reason": "The passage explicitly states that Angara said the Department's efforts include increasing the requirements for on-the-job training for senior high school learners to 640 hours from the usual 80 to 160 hours, which matches the claim in all details.",
+              "component_id": 0
+            }
+          ],
+          "original_claim": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+              "sources": {
+                "https://mb.com.ph/2026/09/11/answer-to-unemployment-yamsuan-backs-depeds-strengthening-of-senior-high-school-curriculum": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0
+                  ],
+                  "reason": "Passage 0 explicitly states that Angara said the Department’s efforts include increasing on-the-job training for senior high school learners to 640 hours from the usual 80 to 160 hours, matching the claim's subject, action, and context.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/09/11/answer-to-unemployment-yamsuan-backs-depeds-strengthening-of-senior-high-school-curriculum",
+                      "quote": "Angara said among the Department’s efforts to improve the SHS curriculum is increasing the requirements for on-the-job training or work immersion for senior high school learners to 640 hours from the usual 80 to 160 hours."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/insufficient-funds-for-new-classrooms-amid-high-budget-low-utilization",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/duterte-defense-challenges-addition-of-8-incidents-sourced-from-trillanes-to-icc-trial-brief",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/sona-2024-promise-tracker-education",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/sonny-angara-vows-support-teachers-salary-raise-career-progression/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/zero-funding-aral-program-deped-proposed-2027-budget/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/education-sector-reactions-marcos-jr-sona-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/2024/7/9/new-deped-chief-urged-to-raise-teacher-s-pay-to-p50-000-per-month-1305",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/eo-on-new-class-suspension-rules-being-drafted-angara-1922",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/4/19/deped-offers-loan-restructuring-to-teachers-amid-concerns-over-debt-2143",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/959332/deped-sonny-angara/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001514/zero-budget-for-new-teachers-in-2027-proposed-deped-budget/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/975641/act-presses-angara-push-50-000-entry-level-pay-for-teachers/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2211566/angara-boosts-school-funding-to-strengthen-classroom-resources",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://cebudailynews.inquirer.net/764760/budget-cuts-may-halt-deped-teacher-hiring-in-2027-ae-angara",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2300286/deped-seeks-additional-p500-m-funding-for-special-needs-program",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2025/12/15/2494333/angara-p9613-billion-deped-budget-will-boost-philippine-education",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/08/2554789/deped-addressing-bullying-schools-angara-tells-house",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2025/11/26/2489929/p1-trillion-2026-deped-budget-address-learning-crisis",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/11/answer-to-unemployment-yamsuan-backs-depeds-strengthening-of-senior-high-school-curriculum",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/04/93000-public-school-personnel-to-receive-salary-adjustmentsdeped",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2025/11/25/deped-secures-highest-education-budget-for-2026-boosting-angaras-reform-agenda",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1266272",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283518",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1263966",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/largest-education-budget-in-history-marcos-jr-admin-sets-record-p1-34t-funding-for-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/schools-nationwide-test-emergency-readiness-in-deped-safety-drill/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/deped-chief-calls-on-high-school-students-to-join-public-service/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/sonny-angara-takes-oath-as-newly-appointed-deped-secretary",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/deped-peso899m-not-peso899b-allocated-for-2026-child-protection-program",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/pbbm-names-sonny-angara-as-new-deped-secretary",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/angara-p961-3-billion-deped-budget-will-boost-philippine-education",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/marcos-blames-heavy-rain-for-massive-flooding",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/angara-criticizes-moves-to-discredit-deped",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/insufficient-funds-for-new-classrooms-amid-high-budget-low-utilization",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/duterte-defense-challenges-addition-of-8-incidents-sourced-from-trillanes-to-icc-trial-brief",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/sona-2024-promise-tracker-education",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/sonny-angara-vows-support-teachers-salary-raise-career-progression/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/zero-funding-aral-program-deped-proposed-2027-budget/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/education-sector-reactions-marcos-jr-sona-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/2024/7/9/new-deped-chief-urged-to-raise-teacher-s-pay-to-p50-000-per-month-1305",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/eo-on-new-class-suspension-rules-being-drafted-angara-1922",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/4/19/deped-offers-loan-restructuring-to-teachers-amid-concerns-over-debt-2143",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/959332/deped-sonny-angara/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001514/zero-budget-for-new-teachers-in-2027-proposed-deped-budget/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/975641/act-presses-angara-push-50-000-entry-level-pay-for-teachers/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2211566/angara-boosts-school-funding-to-strengthen-classroom-resources",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://cebudailynews.inquirer.net/764760/budget-cuts-may-halt-deped-teacher-hiring-in-2027-ae-angara",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2300286/deped-seeks-additional-p500-m-funding-for-special-needs-program",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2025/12/15/2494333/angara-p9613-billion-deped-budget-will-boost-philippine-education",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/08/2554789/deped-addressing-bullying-schools-angara-tells-house",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2025/11/26/2489929/p1-trillion-2026-deped-budget-address-learning-crisis",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/11/answer-to-unemployment-yamsuan-backs-depeds-strengthening-of-senior-high-school-curriculum",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/04/93000-public-school-personnel-to-receive-salary-adjustmentsdeped",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2025/11/25/deped-secures-highest-education-budget-for-2026-boosting-angaras-reform-agenda",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1266272",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283518",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1263966",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/largest-education-budget-in-history-marcos-jr-admin-sets-record-p1-34t-funding-for-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/schools-nationwide-test-emergency-readiness-in-deped-safety-drill/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/deped-chief-calls-on-high-school-students-to-join-public-service/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/sonny-angara-takes-oath-as-newly-appointed-deped-secretary",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/deped-peso899m-not-peso899b-allocated-for-2026-child-protection-program",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/pbbm-names-sonny-angara-as-new-deped-secretary",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/angara-p961-3-billion-deped-budget-will-boost-philippine-education",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/marcos-blames-heavy-rain-for-massive-flooding",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/angara-criticizes-moves-to-discredit-deped",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours."
+        },
+        "scoring_claim": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+        "search_query": "Education Secretary Sonny Angara DepEd OJT said looking increase amount 640 80 160",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "dc4ac7b0c9d55a01c40a5bd65ba3e97a832e8593dfc47a4bf8acec7a4f099b85",
+        "cache_version": "week7-step3-context-fixes-v20",
+        "verdict": "Verified",
+        "message": "Retrieved evidence supports that Sonny Angara made this statement. This verifies the attribution, not the underlying claim by itself.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "Manila Bulletin",
+          "title": "Manila Bulletin - Answer to unemployment? Yamsuan backs DepEd’s strengthening of senior high school curriculum",
+          "url": "https://mb.com.ph/2026/09/11/answer-to-unemployment-yamsuan-backs-depeds-strengthening-of-senior-high-school-curriculum",
+          "status": "extracted",
+          "word_count": 110,
+          "evidence_method": "component_review",
+          "extraction_quality": "excerpt",
+          "evidence_type": "search_excerpt"
+        },
+        "supporting_sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Answer to unemployment? Yamsuan backs DepEd’s strengthening of senior high school curriculum",
+            "url": "https://mb.com.ph/2026/09/11/answer-to-unemployment-yamsuan-backs-depeds-strengthening-of-senior-high-school-curriculum",
+            "status": "extracted",
+            "word_count": 110,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 99,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Answer to unemployment? Yamsuan backs DepEd’s strengthening of senior high school curriculum",
+            "url": "https://mb.com.ph/2026/09/11/answer-to-unemployment-yamsuan-backs-depeds-strengthening-of-senior-high-school-curriculum",
+            "status": "extracted",
+            "word_count": 110,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Answer to unemployment? Yamsuan backs DepEd’s strengthening of senior high school curriculum",
+            "url": "https://mb.com.ph/2026/09/11/answer-to-unemployment-yamsuan-backs-depeds-strengthening-of-senior-high-school-curriculum",
+            "status": "extracted",
+            "word_count": 110,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence confirms Angara's statement about increasing OJT hours for senior high school students.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 3,
+        "claim_text": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+        "normalized_claim": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Sonny Angara",
+          "role": "Education Secretary",
+          "statement": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "grounded",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+              "status": "not_supported",
+              "citations": [],
+              "event_group_id": 0,
+              "context": {
+                "start": 0,
+                "end": 117,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "He",
+                      "start": 0,
+                      "end": 2
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+                      "start": 3,
+                      "end": 117
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+                      "start": 14,
+                      "end": 117
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": [
+                    {
+                      "origin": "source_context",
+                      "quote": "Education Secretary Sonny Angara",
+                      "start": 196,
+                      "end": 228
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 117
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_rejections": [
+                {
+                  "component_id": 0,
+                  "url": "https://mb.com.ph/2026/03/02/deped-to-fully-implement-strengthened-shs-curriculum-in-sy-20262027",
+                  "status": "uncertain",
+                  "reason": "Passage 3 confirms that DepEd Secretary Sonny Angara said the reform aims to expand on-the-job training and better align graduates with workforce demands, but it does not specifically state that he added longer OJT could improve graduates’ chances of being hired by the same employers who trained them. The specific claim about hiring by the same employers is not directly supported by any passage."
+                }
+              ]
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "entailment_checks": [],
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Education Secretary Sonny Angara stated that longer on-the-job training (OJT) could improve graduates’ chances of being hired by the same employers who trained them.",
+              "sources": {
+                "https://mb.com.ph/2026/03/02/deped-to-fully-implement-strengthened-shs-curriculum-in-sy-20262027": {
+                  "status": "uncertain",
+                  "passage_ids": [
+                    3
+                  ],
+                  "reason": "Passage 3 confirms that DepEd Secretary Sonny Angara said the reform aims to expand on-the-job training and better align graduates with workforce demands, but it does not specifically state that he added longer OJT could improve graduates’ chances of being hired by the same employers who trained them. The specific claim about hiring by the same employers is not directly supported by any passage.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/03/02/deped-to-fully-implement-strengthened-shs-curriculum-in-sy-20262027",
+                      "quote": "DepEd Secretary Sonny Angara said the reform aims to improve foundational skills, expand on-the-job training, and better align graduates with higher education and workforce demands"
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "original_claim": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/sona-2024-promise-tracker-education",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/duterte-defense-challenges-addition-of-8-incidents-sourced-from-trillanes-to-icc-trial-brief",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/sona-2023-promise-tracker-education",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/sonny-angara-vows-support-teachers-salary-raise-career-progression/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/high-bullying-index-pisa-2025-results/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/moveph/social-good-summit/sonny-angara-message-social-good-summit-2024/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2025/6/5/angara-vows-to-continue-reforms-to-improve-ph-education-1541",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/19/angara-better-mental-health-interventions-needed-for-learners-1353",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/2024/10/16/angara-admits-state-of-ph-education-not-great-recovery-programs-initiated-1533",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/981923/angara-to-class-of-2026-resilience-will-matter-beyond-the-classroom/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001514/zero-budget-for-new-teachers-in-2027-proposed-deped-budget/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/912374/marcos-k-to-12-program-didn-t-improve-employability-of-graduates/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/703354/education-and-employment-the-twain-must-meet",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2307637/improving-ph-learning-gains-needs-strong-lgu-support-angara",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2080693/angara-to-up-mindanao-graduates-go-where-the-wound-is",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/education-and-home/2013/04/18/931915/sonny-angara-education",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556853/deped-taps-170-leaders-boost-shs-graduates-employability",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/08/2554789/deped-addressing-bullying-schools-angara-tells-house",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/03/02/deped-to-fully-implement-strengthened-shs-curriculum-in-sy-20262027",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/04/marcos-signs-amendments-to-the-universal-access-to-quality-tertiary-education-act",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2025/1/1/dep-ed-2025-priorities",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1135210",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282632",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1266281",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/deped-chief-calls-on-high-school-students-to-join-public-service/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/dost-opens-27-undergrad-scholarship-applications-empowers-next-generation-of-filipino-scientists/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/new-career-system-ends-decades-long-wait-for-teacher-promotions/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/deped-psac-sign-agreement-on-enhanced-work-immersion-program-for-shs-students",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/house-panel-oks-p72-trillion-proposed-national-budget-for-2027",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/house-committee-hopeful-for-depeds-success-lauds-angaras-5-point-agenda",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/deped-vows-to-address-functional-illiteracy-in-shs",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/ceap-3-term-school-year-needs-commitments-to-improve-learning",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/sona-2024-promise-tracker-education",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/duterte-defense-challenges-addition-of-8-incidents-sourced-from-trillanes-to-icc-trial-brief",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/sona-2023-promise-tracker-education",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/sonny-angara-vows-support-teachers-salary-raise-career-progression/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/high-bullying-index-pisa-2025-results/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/moveph/social-good-summit/sonny-angara-message-social-good-summit-2024/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2025/6/5/angara-vows-to-continue-reforms-to-improve-ph-education-1541",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/19/angara-better-mental-health-interventions-needed-for-learners-1353",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/2024/10/16/angara-admits-state-of-ph-education-not-great-recovery-programs-initiated-1533",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/981923/angara-to-class-of-2026-resilience-will-matter-beyond-the-classroom/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001514/zero-budget-for-new-teachers-in-2027-proposed-deped-budget/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/912374/marcos-k-to-12-program-didn-t-improve-employability-of-graduates/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/703354/education-and-employment-the-twain-must-meet",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2307637/improving-ph-learning-gains-needs-strong-lgu-support-angara",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2080693/angara-to-up-mindanao-graduates-go-where-the-wound-is",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/education-and-home/2013/04/18/931915/sonny-angara-education",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556853/deped-taps-170-leaders-boost-shs-graduates-employability",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/08/2554789/deped-addressing-bullying-schools-angara-tells-house",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/03/02/deped-to-fully-implement-strengthened-shs-curriculum-in-sy-20262027",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/04/marcos-signs-amendments-to-the-universal-access-to-quality-tertiary-education-act",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2025/1/1/dep-ed-2025-priorities",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1135210",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282632",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1266281",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/deped-chief-calls-on-high-school-students-to-join-public-service/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/dost-opens-27-undergrad-scholarship-applications-empowers-next-generation-of-filipino-scientists/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/new-career-system-ends-decades-long-wait-for-teacher-promotions/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/deped-psac-sign-agreement-on-enhanced-work-immersion-program-for-shs-students",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/house-panel-oks-p72-trillion-proposed-national-budget-for-2027",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/house-committee-hopeful-for-depeds-success-lauds-angaras-5-point-agenda",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/deped-vows-to-address-functional-illiteracy-in-shs",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/ceap-3-term-school-year-needs-commitments-to-improve-learning",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them."
+        },
+        "scoring_claim": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+        "search_query": "Sonny Angara OJT added longer also improve graduates chances",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "c5e0958c1b5c95bcea7ee1945ee6e31b4fa972a82c33034a2c89bee8f4dab235",
+        "cache_version": "week7-step3-context-fixes-v20",
+        "verdict": "Not Found",
+        "message": "IRIS did not find enough approved-source evidence confirming that Sonny Angara made this statement.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 102,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not mention longer OJT improving graduates' chances of being hired by employers.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [
+          "department of education",
+          "deped"
+        ],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "mixed_content",
+        "confidence": 0.54,
+        "ambiguity_score": 0.6,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice",
+          "reported_attribution_needs_verification"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "verify_factual_claims_only",
+        "verification_text": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.\nEducation Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.\nHe added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+        "normalized_verification_text": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.\nEducation Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.\nHe added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "LONGER OJT HOURS FOR SENIOR HIGH SCHOOL STUDENTS?",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.54,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.54,
+            "second_label": "opinion",
+            "second_label_score": 0.05,
+            "score_gap": 0.49,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s3",
+            "text": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.95,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.25,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.95,
+            "second_label": "quote",
+            "second_label_score": 0.25,
+            "score_gap": 0.7,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "openai_factual_claim_advice",
+              "reported_attribution_needs_verification"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "reported_indirect"
+          },
+          {
+            "segment_id": "s4",
+            "text": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.37,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.37,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.07,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "LONGER OJT HOURS FOR SENIOR HIGH SCHOOL STUDENTS?",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS will verify only the factual segments and skip non-checkable parts.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "factual_claim",
+                "top_label_score": 0.9,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reported_attribution_needs_verification"
+                ]
+              },
+              {
+                "segment_id": "s4",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "low_classifier_confidence",
+                  "needs_claim_extraction_review"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "DepEd's statement about employer feedback and graduate preparedness is a checkable attributed statement."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "checkable",
+            "claim_indexes": [
+              1
+            ],
+            "reason": "Sonny Angara's statement about increasing OJT hours is a checkable attributed statement and required speech segment."
+          },
+          {
+            "segment_id": 2,
+            "disposition": "checkable",
+            "claim_indexes": [
+              2
+            ],
+            "reason": "Sonny Angara's statement about the potential impact of longer OJT is a checkable attributed statement."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "The Department of Education says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              2
+            ],
+            "assertions": [
+              "Education Secretary Sonny Angara said that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them."
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.",
+            "normalized_claim": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Department of Education",
+              "role": null,
+              "statement": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "Department of Education DepEd Department Education says still work done",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace."
+              }
+            ],
+            "evidence_context": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.\nEducation Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.\nHe added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [
+                "role"
+              ],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "not_in_input",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+            "normalized_claim": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Sonny Angara",
+              "role": "Education Secretary",
+              "statement": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "Education Secretary Sonny Angara DepEd OJT said looking increase amount",
+            "source_passages": [
+              {
+                "segment_id": 1,
+                "quote": "Education Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours."
+              }
+            ],
+            "evidence_context": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.\nEducation Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.\nHe added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "grounded",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 3,
+            "claim_text": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+            "normalized_claim": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Sonny Angara",
+              "role": "Education Secretary",
+              "statement": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "Sonny Angara OJT added longer also improve graduates chances",
+            "source_passages": [
+              {
+                "segment_id": 2,
+                "quote": "He added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them."
+              }
+            ],
+            "evidence_context": "The Department of Education (DepEd) says there is still work to be done, citing feedback from employers who find some senior high school graduates not yet sufficiently prepared for the workplace.\nEducation Secretary Sonny Angara said DepEd is looking to increase the amount of on-the-job training (OJT) for senior high school students to 640 hours, from the current 80 to 160 hours.\nHe added that longer OJT could also improve graduates’ chances of being hired by the same employers who trained them.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "grounded",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "be856c33a00445eb8879d713ebe994df",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0161,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 2.5123,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0004,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0017,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 10.0296,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0031,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0023,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0027,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 10.31,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0857,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 2.4436,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.5663,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.5967,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0225,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 7.8003,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0042,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 9.8926,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0734,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 2.0415,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.4788,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.4987,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0187,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 11.0818,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.cache_lookup",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.political_flags",
+            "duration_seconds": 0.0025,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.search_and_extract",
+            "duration_seconds": 26.7641,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.search_status",
+            "duration_seconds": 0.0668,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.generate_verdict",
+            "duration_seconds": 1.7703,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.openai_rag_fallback",
+            "duration_seconds": 1.3771,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.fallback_total",
+            "duration_seconds": 1.3966,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.public_evidence_sources",
+            "duration_seconds": 0.0191,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.component_evidence_review",
+            "duration_seconds": 7.8067,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 85.1046,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 97.6933,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -71,22 +71,6 @@ def anchored_query(query: str, claim_text: str) -> str:
     return " ".join([query, *anchors]).strip()
 
 
-def attribution_search_query(speaker: Optional[str], assertion: str, max_terms: int = 7) -> str:
-    """
-    Speaker plus the assertion's names, numbers and key words, instead of the whole sentence.
-
-    Long word-for-word sentences are brittle search queries, especially translations.
-    The full assertion remains available to retrieval as the backup query.
-    """
-    from pipeline.claim_extractor import _factual_search_query
-
-    keywords = _factual_search_query(assertion, max_terms=max_terms)
-    speaker = " ".join(str(speaker or "").split())
-    if speaker and speaker.casefold() not in keywords.casefold():
-        keywords = f"{speaker} {keywords}"
-    return keywords.strip() or " ".join(assertion.split())
-
-
 def _content_words(text: str) -> set:
     return {word.casefold() for word in WORD_PATTERN.findall(text or "") if len(word) >= 3}
 

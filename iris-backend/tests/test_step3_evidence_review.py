@@ -192,5 +192,41 @@ class PassageSelectionTests(unittest.TestCase):
         self.assertEqual([p['text'] for p in kept], [f'Passage number {i}.' for i in range(4)])
 
 
+class FirstPassShortlistTests(unittest.TestCase):
+    CLAIM = 'Remulla announced that Austria did not accept the asylum application of Harry Roque.'
+    ARTICLE = {'url': 'https://example.org/roque',
+               'text': 'Remulla announced that Austria did not accept the asylum application of Harry Roque.'}
+
+    def first_pass(self, status, ids):
+        return [
+            {'split_after': [], 'contexts': [context('Remulla', 'announced')]},
+            {'assessments': {'0': {'status': status, 'passage_ids': ids}}},
+        ]
+
+    def identity(self):
+        return {'groups': [{'component_ids': [0], 'referent': self.CLAIM, 'sources': {
+            '0': {'status': 'matched', 'passage_ids': [0], 'reason': 'Same announcement.'}}}]}
+
+    def test_listed_passages_reach_the_strict_checks_despite_not_supported(self):
+        replies = [*self.first_pass('not_supported', [0]), self.identity(),
+                   {'checks': {'0': check(ids=[0], reason='Passage 0 states the announcement.')}}]
+        result, calls = run_review(self.CLAIM, [self.ARTICLE], replies)
+        self.assertEqual(result['verdict'], 'Verified')
+        self.assertEqual(len(calls), 4)
+
+    def test_strict_checks_can_still_reject_a_shortlisted_passage(self):
+        rejection = {'checks': {'0': check(supported=False, ids=[], reason='Different announcement.')}}
+        # The passage repeats the claim word for word, so the consistency recheck asks once more.
+        replies = [*self.first_pass('not_supported', [0]), self.identity(), rejection, rejection]
+        result, calls = run_review(self.CLAIM, [self.ARTICLE], replies)
+        self.assertEqual(result['verdict'], 'Not Found')
+        self.assertEqual(len(calls), 5)
+
+    def test_not_supported_without_passages_ends_the_review(self):
+        result, calls = run_review(self.CLAIM, [self.ARTICLE], self.first_pass('not_supported', []))
+        self.assertEqual(result['verdict'], 'Not Found')
+        self.assertEqual(len(calls), 2)
+
+
 if __name__ == '__main__':
     unittest.main()
