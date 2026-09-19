@@ -9,8 +9,10 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from pipeline.component_context import FIELDS
+from pipeline import component_evidence
 from pipeline.component_evidence import (apply_entailment_checks, apply_event_identity_checks,
-                                         event_identity_input, review_components, validate_review,
+                                         event_identity_input, review_components,
+                                         select_assessment_passages, validate_review,
                                          verbatim_recheck_targets)
 
 
@@ -164,6 +166,30 @@ class ConsistencyRecheckTests(unittest.TestCase):
                        'passages': [{'citation_id': 0, 'url': 'u',
                                      'quote': 'She added: "I think it\'s great" she said at the Open.'}]}]
         self.assertEqual(verbatim_recheck_targets(candidates, [check(supported=False)]), {0: [0]})
+
+
+class PassageSelectionTests(unittest.TestCase):
+    def passages(self, count):
+        return [{'passage_id': i, 'url': f'https://example.org/{i // 10}', 'text': f'Passage number {i}.'}
+                for i in range(count)]
+
+    def test_small_pools_are_untouched(self):
+        passages = self.passages(5)
+        with patch.object(component_evidence, '_passage_scores', side_effect=AssertionError('ranked')):
+            self.assertEqual(select_assessment_passages('claim', passages, limit=5), passages)
+
+    def test_large_pool_keeps_most_similar_in_article_order_and_renumbers(self):
+        passages = self.passages(10)
+        scores = [0.1, 0.9, 0.2, 0.3, 0.8, 0.0, 0.7, 0.1, 0.2, 0.1]
+        with patch.object(component_evidence, '_passage_scores', return_value=scores):
+            kept = select_assessment_passages('claim', passages, limit=3)
+        self.assertEqual([p['text'] for p in kept], ['Passage number 1.', 'Passage number 4.', 'Passage number 6.'])
+        self.assertEqual([p['passage_id'] for p in kept], [0, 1, 2])
+
+    def test_without_similarity_model_keeps_earliest_passages(self):
+        with patch.object(component_evidence, '_passage_scores', return_value=None):
+            kept = select_assessment_passages('claim', self.passages(10), limit=4)
+        self.assertEqual([p['text'] for p in kept], [f'Passage number {i}.' for i in range(4)])
 
 
 if __name__ == '__main__':

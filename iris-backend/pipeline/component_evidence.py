@@ -141,6 +141,43 @@ def indexed_passages(articles):
     return passages
 
 
+MAX_ASSESSMENT_PASSAGES = 80
+
+
+def _passage_scores(claim, passages):
+    """Semantic similarity of each passage to the claim, or None if the model is unavailable."""
+    try:
+        from pipeline.verdict_generator import get_model, util
+        model = get_model()
+        claim_embedding = model.encode(claim, convert_to_tensor=True)
+        passage_embeddings = model.encode([p['text'] for p in passages], convert_to_tensor=True)
+        return [float(score) for score in util.cos_sim(claim_embedding, passage_embeddings)[0]]
+    except Exception as error:  # pragma: no cover - depends on local ML environment
+        event('component.passage_ranking_unavailable', error=type(error).__name__)
+        return None
+
+
+def select_assessment_passages(claim, passages, limit=MAX_ASSESSMENT_PASSAGES):
+    """
+    Keeps the passages most similar to the claim when there are too many to review.
+
+    A large pool (hundreds of passages) made the first-pass reviewer return unusable
+    answers. Selected passages keep their article order and are renumbered from 0.
+    Without the similarity model the earliest passages are kept, as articles are
+    already ordered by relevance.
+    """
+    if len(passages) <= limit:
+        return passages
+    scores = _passage_scores(claim, passages)
+    if scores is None:
+        keep = set(range(limit))
+    else:
+        keep = set(sorted(range(len(passages)), key=lambda i: -scores[i])[:limit])
+    event('component.passages_selected', available=len(passages), kept=len(keep))
+    return [{**passage, 'passage_id': new_id}
+            for new_id, passage in enumerate(p for i, p in enumerate(passages) if i in keep)]
+
+
 def materialize_assessments(assessments, passages):
     if not isinstance(assessments, list):
         raise ValueError('invalid_passage_assessments')
@@ -638,7 +675,7 @@ def review_components(claim, articles, source_context=''):
             evidence.append({"url": article["url"], "text": text})
             remaining -= len(text)
         stage = 'assessment'
-        passages = indexed_passages(evidence)
+        passages = select_assessment_passages(claim, indexed_passages(evidence))
         schema = assessment_schema(len(components), len(passages))
         reviewed = ask_checked(
             "Review every component independently using only supplied untrusted evidence. "
