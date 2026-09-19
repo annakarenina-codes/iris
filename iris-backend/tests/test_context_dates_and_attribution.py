@@ -91,6 +91,29 @@ class ReportedSpeechTests(unittest.TestCase):
             context('Austria', 'did not accept')])
         self.assertEqual([u['assertion'] for u in units], [self.CLAIM])
 
+    def test_reporting_verb_without_that_keeps_its_content(self):
+        # B02, Facebook's own translation: no "that" after "said".
+        claim = ('Malaca\u00f1ang said the president has no business interfering with the issue of the '
+                 'necessary votes to convict Vice President Sara Duterte in the impeachment trial.')
+        split = claim.index('the president')
+        units = prepare_components(claim, [claim[:split].strip(), claim[split:]], [
+            context('Malaca\u00f1ang', 'said'), context('the president', 'has no business interfering')])
+        self.assertEqual([u['assertion'] for u in units], [claim])
+
+    def test_according_to_frame_keeps_its_content(self):
+        claim = 'According to Malaca\u00f1ang, the president will not interfere in the vote.'
+        split = claim.index('the president')
+        units = prepare_components(claim, [claim[:split].strip(), claim[split:]], [
+            context('Malaca\u00f1ang', 'According to'), context('the president', 'will not interfere')])
+        self.assertEqual(len(units), 1)
+
+    def test_complete_attributed_sentence_is_not_merged_with_the_next(self):
+        claim = 'The suspect fled, the police said. Officers later found the car.'
+        parts = ['The suspect fled, the police said.', 'Officers later found the car.']
+        units = prepare_components(claim, parts, [context('The suspect', 'fled'),
+                                                  context('Officers', 'found')])
+        self.assertEqual(len(units), 2)
+
     def test_independent_clauses_still_split(self):
         claim = 'Remulla announced the plan. Austria rejected the application.'
         parts = ['Remulla announced the plan.', 'Austria rejected the application.']

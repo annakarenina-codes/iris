@@ -48,9 +48,25 @@ def ground_context(context, claim, source_context):
 DEPENDENT_CLAUSE = re.compile(r"\s*(?:that|whether)\b", re.I)
 
 
+REPORTING_VERBS = (
+    'said|says|say|stated|states|announced|announces|claimed|claims|confirmed|confirms|'
+    'denied|denies|added|adds|noted|notes|insisted|insists|argued|argues|explained|explains|'
+    'revealed|reveals|disclosed|discloses|warned|warns|reiterated|reiterates|asserted|asserts|'
+    'maintained|maintains|clarified|clarifies|emphasized|emphasizes|stressed|stresses|'
+    'reported|reports|assured|assures|declared|declares')
+REPORTING_END = re.compile(
+    r"(?:\b(?:" + REPORTING_VERBS + r")(?:\s+(?:that|to\s+\w+(?:\s+\w+)?))?"
+    r"|\btold\s+\w+(?:\s+\w+)?|\baccording\s+to\s+[^,.;]{1,80})\s*[,:]?\s*$", re.I)
+
+
 def dependent_clause(part):
     """A clause opening with 'that'/'whether' completes the preceding verb (announced that ...)."""
     return bool(DEPENDENT_CLAUSE.match(part))
+
+
+def reporting_frame(part):
+    """A part ending in a reporting verb ("Malacanang said") needs the content that follows it."""
+    return bool(REPORTING_END.search(part.strip()))
 
 
 def local_assertion(part, context):
@@ -91,7 +107,9 @@ def prepare_components(claim, parts, contexts, source_context=''):
         # did not accept ..." is one attributed assertion, not two independent facts.
         bad = next((i for i, u in enumerate(units)
                     if not local_assertion(claim[u['start']:u['end']], u['anchors'])
-                    or (i > 0 and dependent_clause(claim[u['start']:u['end']]))), None)
+                    or (i > 0 and (dependent_clause(claim[u['start']:u['end']])
+                                   or reporting_frame(claim[units[i - 1]['start']:units[i - 1]['end']])))),
+                   None)
         if bad is None:
             break
         left = max(0, bad - 1)
