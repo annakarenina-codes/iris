@@ -615,6 +615,8 @@ def review_components(claim, articles, source_context=''):
             "speaker, recipient and qualifiers. Split coordinated factual details such as personal "
             "background, medicines, terrorism, and the stated funds rationale into separate components. "
             "Do not split mere names or noun phrases without a distinct assertion. "
+            "Never separate a reporting verb (said, announced, claimed, confirmed, denied, added) "
+            "from the reported content that follows it: 'X announced that Y' is ONE component. "
             "A person's name, a pronoun, a year, or a trailing noun such as 'leads' is NOT "
             "a separate assertion. Keep verbs with their objects and dates with the action "
             "they qualify. 'The agency opened its clinic in 2020' is ONE component; "

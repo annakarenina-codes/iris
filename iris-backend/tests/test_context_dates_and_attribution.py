@@ -1,0 +1,118 @@
+"""Borrowed dates stay with their own subject; reported speech stays whole; attribution queries."""
+
+import sys
+import unittest
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from pipeline.attribution_integrity import ground_attribution
+from pipeline.component_context import (FIELDS, clause_span, limit_inherited_times,
+                                        needs_context_review, prepare_components)
+from pipeline.search_queries import attribution_search_query
+
+C01 = ('Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment '
+       'trial of his sister, Vice President Sara Duterte, on Sept. 23, as the Senate impeachment court '
+       'examines allegations of unexplained wealth against her.')
+C07 = ('HEALING ERA LOOK: Moira Dela Torre faced the media earlier today, Sept. 17, in Quezon City, to talk '
+       'about her upcoming concert “Where It All Started,” set for Oct. 4. Dela Torre opened up about '
+       'her healing journey after a series of heartbreaks and controversies.')
+
+
+def ref(text, quote, origin='source_context'):
+    start = text.index(quote)
+    return {'origin': origin, 'quote': quote, 'start': start, 'end': start + len(quote)}
+
+
+def context(subject='', action='', time=None):
+    values = {k: [] for k in FIELDS}
+    if subject:
+        values['subject'] = [{'origin': 'claim', 'quote': subject}]
+    if action:
+        values['action'] = [{'origin': 'claim', 'quote': action}]
+    if time:
+        values['time'] = [time]
+    return values
+
+
+class BorrowedDateTests(unittest.TestCase):
+    def test_date_of_another_subjects_clause_is_dropped(self):
+        anchors = {'subject': [{'origin': 'claim', 'quote': 'The Senate impeachment court'}],
+                   'time': [ref(C01, 'on Sept. 23')]}
+        dropped = limit_inherited_times(anchors, C01)
+        self.assertEqual([r['quote'] for r in dropped], ['on Sept. 23'])
+        self.assertEqual(anchors['time'], [])
+
+    def test_follow_up_keeps_the_date_of_its_own_event(self):
+        anchors = {'subject': [{'origin': 'claim', 'quote': 'Dela Torre'}], 'time': [ref(C07, 'Sept. 17')]}
+        self.assertEqual(limit_inherited_times(anchors, C07), [])
+        self.assertEqual([r['quote'] for r in anchors['time']], ['Sept. 17'])
+
+    def test_pronoun_subject_keeps_borrowed_date(self):
+        anchors = {'subject': [{'origin': 'claim', 'quote': 'She'}], 'time': [ref(C07, 'Oct. 4')]}
+        self.assertEqual(limit_inherited_times(anchors, C07), [])
+
+    def test_claims_own_date_is_never_dropped(self):
+        claim = 'The court met on Sept. 23.'
+        anchors = {'subject': [{'origin': 'claim', 'quote': 'The court'}],
+                   'time': [ref(claim, 'Sept. 23', origin='claim')]}
+        self.assertEqual(limit_inherited_times(anchors, C01), [])
+
+    def test_abbreviated_month_is_not_a_sentence_end(self):
+        start = C01.index('Sept. 23')
+        left, right = clause_span(C01, start, start + len('Sept. 23'))
+        self.assertIn('Baste', C01[left:right])
+        self.assertNotIn('examines', C01[left:right])
+
+    def test_dropped_date_does_not_trigger_another_context_review(self):
+        claim = 'The Senate impeachment court examines allegations of unexplained wealth against her.'
+        units = prepare_components(claim, [claim], [context('The Senate impeachment court', 'examines',
+                                                             ref(C01, 'on Sept. 23'))], C01)
+        self.assertEqual([r['quote'] for r in units[0]['inherited_time_dropped']], ['on Sept. 23'])
+        self.assertFalse(needs_context_review(claim, C01, units))
+
+
+class ReportedSpeechTests(unittest.TestCase):
+    CLAIM = ('Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum '
+             'application of former presidential spokesperson Harry Roque.')
+
+    def test_that_clause_rejoins_its_reporting_verb(self):
+        split = self.CLAIM.index('that Austria')
+        parts = [self.CLAIM[:split].strip(), self.CLAIM[split:]]
+        units = prepare_components(self.CLAIM, parts, [
+            context('Interior Secretary Jonvic Remulla', 'announced'),
+            context('Austria', 'did not accept')])
+        self.assertEqual([u['assertion'] for u in units], [self.CLAIM])
+
+    def test_independent_clauses_still_split(self):
+        claim = 'Remulla announced the plan. Austria rejected the application.'
+        parts = ['Remulla announced the plan.', 'Austria rejected the application.']
+        units = prepare_components(claim, parts, [context('Remulla', 'announced'),
+                                                  context('Austria', 'rejected')])
+        self.assertEqual(len(units), 2)
+
+
+class AttributionQueryTests(unittest.TestCase):
+    def test_speaker_plus_key_terms_instead_of_full_sentence(self):
+        query = attribution_search_query('Jonvic Remulla', ReportedSpeechTests.CLAIM)
+        self.assertIn('Jonvic Remulla', query)
+        self.assertIn('Austria', query)
+        self.assertIn('Harry Roque', query)
+        self.assertLess(len(query.split()), len(ReportedSpeechTests.CLAIM.split()))
+
+    def test_grounded_attribution_uses_keyword_query_and_keeps_full_assertion(self):
+        claim = {'claim_type': 'attributed_statement', 'claim_text': ReportedSpeechTests.CLAIM,
+                 'normalized_claim': ReportedSpeechTests.CLAIM,
+                 'attribution': {'speaker': 'Jonvic Remulla', 'statement': ReportedSpeechTests.CLAIM}}
+        grounded = ground_attribution(claim, ReportedSpeechTests.CLAIM)
+        self.assertNotEqual(grounded['search_query'], ReportedSpeechTests.CLAIM)
+        self.assertIn('Jonvic Remulla', grounded['search_query'])
+        self.assertEqual(grounded['search_query'].count('Jonvic Remulla'), 1)
+        # The full sentence stays the normalized claim, which retrieval uses as its backup query.
+        self.assertEqual(grounded['normalized_claim'], ReportedSpeechTests.CLAIM)
+
+    def test_missing_speaker_still_gives_a_query(self):
+        self.assertTrue(attribution_search_query(None, 'The agency said it opened 12 clinics.'))
+
+
+if __name__ == '__main__':
+    unittest.main()

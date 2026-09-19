@@ -45,6 +45,14 @@ def ground_context(context, claim, source_context):
     return result
 
 
+DEPENDENT_CLAUSE = re.compile(r"\s*(?:that|whether)\b", re.I)
+
+
+def dependent_clause(part):
+    """A clause opening with 'that'/'whether' completes the preceding verb (announced that ...)."""
+    return bool(DEPENDENT_CLAUSE.match(part))
+
+
 def local_assertion(part, context):
     # Both predicate and subject must be explicitly located in this fragment.
     # Shared-subject clauses are conservatively recombined instead of rewritten.
@@ -79,8 +87,11 @@ def prepare_components(claim, parts, contexts, source_context=''):
     units = [{'start': start, 'end': end, 'anchors': ctx, 'proposed_ids': [i]}
              for i, ((start, end), ctx) in enumerate(zip(spans, grounded))]
     while len(units) > 1:
+        # Reported content stays with its reporting verb: "Remulla announced" + "that Austria
+        # did not accept ..." is one attributed assertion, not two independent facts.
         bad = next((i for i, u in enumerate(units)
-                    if not local_assertion(claim[u['start']:u['end']], u['anchors'])), None)
+                    if not local_assertion(claim[u['start']:u['end']], u['anchors'])
+                    or (i > 0 and dependent_clause(claim[u['start']:u['end']]))), None)
         if bad is None:
             break
         left = max(0, bad - 1)
@@ -102,6 +113,9 @@ def prepare_components(claim, parts, contexts, source_context=''):
                 u['anchors']['time'].append({'origin': 'claim', 'quote': quote, 'start': start,
                                              'end': start + len(quote)})
         # No inferred values: an unresolved role remains an empty list.
+        dropped = limit_inherited_times(u['anchors'], source_context)
+        if dropped:
+            u['inherited_time_dropped'] = dropped
     if compact(' '.join(u['assertion'] for u in units)) != compact(claim):
         raise ValueError('component_context_changed_claim')
     return units
@@ -118,6 +132,63 @@ DATE = re.compile(r'\b(' + '|'.join(sorted(MONTHS, key=len, reverse=True)) +
 
 def dates(text):
     return {(MONTHS[m.group(1).lower()], int(m.group(2))) for m in DATE.finditer(text)}
+
+
+SUBJECT_PRONOUNS = {'he', 'she', 'they', 'it', 'siya', 'sila', 'this', 'that', 'these', 'those', 'i', 'we', 'you'}
+CLAUSE_PRONOUNS = re.compile(r"(?<!\w)(?:he|she|they|siya|sila)(?!\w)", re.I)
+NOT_SENTENCE_END = set(MONTHS) | {'sen', 'rep', 'gov', 'gen', 'col', 'lt', 'dr', 'mr', 'mrs', 'ms', 'jr', 'sr',
+                                  'st', 'no', 'atty', 'engr', 'pres', 'vp', 'sec', 'usec', 'hon', 'vs', 'v'}
+CLAUSE_BREAK = re.compile(r"\n|;\s*|,\s+(?=(?:as|while|when|whereas|after|before|because|since|although|though|but)\b)", re.I)
+SENTENCE_BREAK = re.compile(r"[.!?][\"'”’)]*\s+")
+
+
+def clause_span(text, start, end):
+    """Bounds of the clause holding text[start:end]: sentence ends and subordinate joins such as ', as'."""
+    breaks = [(m.start(), m.end()) for m in CLAUSE_BREAK.finditer(text)]
+    for match in SENTENCE_BREAK.finditer(text):
+        word = re.search(r"(\w+)$", text[:match.start()])
+        if not word or word.group(1).lower() not in NOT_SENTENCE_END:
+            breaks.append((match.start(), match.end()))
+    left = max([b_end for b_start, b_end in breaks if b_end <= start], default=0)
+    right = min([b_start for b_start, b_end in breaks if b_start >= end], default=len(text))
+    return left, right
+
+
+def _subject_heads(anchors):
+    heads = set()
+    for ref in anchors['subject']:
+        words = re.findall(r"[\w'-]+", ref['quote'])
+        if words and words[-1].lower() not in SUBJECT_PRONOUNS:
+            heads.add(words[-1].lower())
+    return heads
+
+
+def limit_inherited_times(anchors, source_context):
+    """
+    Drops a date borrowed from the surrounding post when it belongs to another subject's clause.
+
+    In "X was subpoenaed to testify on Sept. 23, as the court examines allegations", Sept. 23
+    is X's testimony date, not the date of the court's examination. A borrowed date is kept
+    when its clause names the claim's subject or refers to someone by pronoun, and always
+    when the claim's subject is itself only a pronoun. Returns the dropped references.
+    """
+    heads = _subject_heads(anchors)
+    if not heads or not source_context:
+        return []
+    kept, dropped = [], []
+    for ref in anchors['time']:
+        if ref.get('origin') != 'source_context':
+            kept.append(ref)
+            continue
+        left, right = clause_span(source_context, ref['start'], ref['end'])
+        clause = source_context[left:right]
+        if (CLAUSE_PRONOUNS.search(clause)
+                or any(re.search(r'(?<!\w)' + re.escape(head) + r'(?!\w)', clause, re.I) for head in heads)):
+            kept.append(ref)
+        else:
+            dropped.append(ref)
+    anchors['time'] = kept
+    return dropped
 
 
 def temporal_context_decision(contexts, passages):
@@ -152,7 +223,8 @@ def needs_context_review(claim, source_context, contexts):
     return bool(source_context and compact(source_context) != compact(claim)
                 and dates(source_context) - dates(claim)
                 and not any(r['origin'] == 'source_context' for c in contexts
-                            for r in c['anchors']['time']))
+                            for r in c['anchors']['time'])
+                and not any(c.get('inherited_time_dropped') for c in contexts))
 
 
 def merge_context_review(contexts, reviewed, claim, source_context):
@@ -165,5 +237,8 @@ def merge_context_review(contexts, reviewed, claim, source_context):
         for field in FIELDS:
             refs = component['anchors'][field]
             refs.extend(r for r in grounded[field] if r not in refs)
+        dropped = limit_inherited_times(component['anchors'], source_context)
+        if dropped:
+            component['inherited_time_dropped'] = component.get('inherited_time_dropped', []) + dropped
         component['context_reviewed'] = True
     return contexts
