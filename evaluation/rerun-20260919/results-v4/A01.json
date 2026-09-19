@@ -1,0 +1,180 @@
+{
+  "case_id": "A01",
+  "input_sha256": "8bac50d74749e7f05a56d2ea83a635c49034ec3f4b26c37b4c829627fc389e54",
+  "started_utc": "2026-09-19T10:34:52.381963+00:00",
+  "http_status": 200,
+  "seconds": 3.488,
+  "trace_id": "68f65f10b75d40f68d621d8bb1067f3a",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-first-pass-shortlist-v21",
+  "response": {
+    "verdict": "No Checkable Claims",
+    "message": "IRIS did not find factual claims that can be checked against sources.",
+    "original_text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+    "translated_text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 0,
+    "claim_extraction_status": "ok",
+    "post_type": "fact_only",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_with_caution",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+        "segment_type": "uncheckable"
+      }
+    ],
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules",
+        "error": null,
+        "post_type": "fact_only",
+        "confidence": 0.64,
+        "ambiguity_score": 0.0,
+        "ambiguity_reasons": [
+          "imaginary_qualifier_needs_context"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "verification_text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+        "normalized_verification_text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.64,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.25,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.64,
+            "second_label": "quote",
+            "second_label_score": 0.25,
+            "score_gap": 0.39,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "imaginary_qualifier_needs_context"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": false,
+          "status": "not_needed",
+          "error": null,
+          "result": null
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "The statement is satirical and refers to an imaginary scenario, not a factual or attributed event."
+          }
+        ],
+        "grouping": [],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [],
+        "ignored_segments": [
+          {
+            "text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+            "segment_type": "uncheckable"
+          }
+        ],
+        "post_type": "non_factual",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "timings": {
+        "request_id": "68f65f10b75d40f68d621d8bb1067f3a",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0093,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 0.0137,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0004,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0042,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 3.3964,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 3.4258,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

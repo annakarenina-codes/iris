@@ -40,6 +40,16 @@ class BorrowedDateTests(unittest.TestCase):
         self.assertEqual([r['quote'] for r in dropped], ['on Sept. 23'])
         self.assertEqual(anchors['time'], [])
 
+    def test_object_listed_as_subject_does_not_keep_anothers_date(self):
+        # Seen live: the context step also listed the object (Sara Duterte) as a subject.
+        claim = ('The Senate impeachment court is examining allegations of unexplained wealth '
+                 'against Vice President Sara Duterte.')
+        anchors = {'subject': [ref(claim, 'The Senate impeachment court', origin='claim'),
+                               ref(claim, 'Vice President Sara Duterte', origin='claim')],
+                   'action': [ref(claim, 'is examining', origin='claim')],
+                   'time': [ref(C01, 'on Sept. 23')]}
+        self.assertEqual([r['quote'] for r in limit_inherited_times(anchors, C01)], ['on Sept. 23'])
+
     def test_follow_up_keeps_the_date_of_its_own_event(self):
         anchors = {'subject': [{'origin': 'claim', 'quote': 'Dela Torre'}], 'time': [ref(C07, 'Sept. 17')]}
         self.assertEqual(limit_inherited_times(anchors, C07), [])

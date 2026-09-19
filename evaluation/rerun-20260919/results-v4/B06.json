@@ -1,0 +1,256 @@
+{
+  "case_id": "B06",
+  "input_sha256": "8547bdc877a3329f7d1599809ae86638704ab688340ebbc24eba40f5c7615f7d",
+  "started_utc": "2026-09-19T10:38:19.028068+00:00",
+  "http_status": 200,
+  "seconds": 4.786,
+  "trace_id": "27e94fef7ea344a79c6b536625b0f32e",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-first-pass-shortlist-v21",
+  "response": {
+    "verdict": "No Checkable Claims",
+    "message": "IRIS did not find factual claims that can be checked against sources.",
+    "original_text": "At the end of the day, the senator-judges will decide the impeachment court’s voting threshold based on their own biases & the prevailing public mood. Hopefully, many of them will be guided by the principle of justice, as well as political & COMMON SENSE.",
+    "translated_text": "At the end of the day, the senator-judges will decide the impeachment court’s voting threshold based on their own biases & the prevailing public mood. Hopefully, many of them will be guided by the principle of justice, as well as political & COMMON SENSE.",
+    "detected_language": "english",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 0,
+    "claim_extraction_status": "ok",
+    "post_type": "unclear",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_with_caution",
+    "contains_opinion": true,
+    "contains_recommendation": true,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "text": "At the end of the day, the senator-judges will decide the impeachment court’s voting threshold based on their own biases & the prevailing public mood.",
+        "segment_type": "opinion"
+      },
+      {
+        "text": "Hopefully, many of them will be guided by the principle of justice, as well as political & COMMON SENSE.",
+        "segment_type": "recommendation"
+      }
+    ],
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "senator",
+          "impeachment"
+        ],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [
+            "senator"
+          ],
+          "political_institutions": [],
+          "government_controversy": [
+            "impeachment"
+          ],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.37,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "verification_text": "At the end of the day, the senator-judges will decide the impeachment court’s voting threshold based on their own biases & the prevailing public mood.\nHopefully, many of them will be guided by the principle of justice, as well as political & COMMON SENSE.",
+        "normalized_verification_text": "At the end of the day, the senator-judges will decide the impeachment court’s voting threshold based on their own biases & the prevailing public mood.\nHopefully, many of them will be guided by the principle of justice, as well as political & COMMON SENSE.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "At the end of the day, the senator-judges will decide the impeachment court’s voting threshold based on their own biases & the prevailing public mood.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.22,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.37,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.37,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.07,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "Hopefully, many of them will be guided by the principle of justice, as well as political & COMMON SENSE.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.37,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.37,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.07,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "opinion",
+                "top_label_score": 0.8,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "subjective interpretation",
+                  "not a checkable claim"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "forecast_or_projection_detected",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "speculative statement",
+                  "not a checkable claim"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "The segment expresses an opinion about how senator-judges will decide, referencing biases and public mood, which is not a checkable factual assertion."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "The segment expresses a hope or recommendation about how senator-judges should be guided, which is not a checkable factual assertion."
+          }
+        ],
+        "grouping": [],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [],
+        "ignored_segments": [
+          {
+            "text": "At the end of the day, the senator-judges will decide the impeachment court’s voting threshold based on their own biases & the prevailing public mood.",
+            "segment_type": "opinion"
+          },
+          {
+            "text": "Hopefully, many of them will be guided by the principle of justice, as well as political & COMMON SENSE.",
+            "segment_type": "recommendation"
+          }
+        ],
+        "post_type": "non_factual",
+        "contains_opinion": true,
+        "contains_recommendation": true
+      },
+      "timings": {
+        "request_id": "27e94fef7ea344a79c6b536625b0f32e",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0006,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0006,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 2.1221,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0003,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 2.6556,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 4.7811,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

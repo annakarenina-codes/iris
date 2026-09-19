@@ -1,0 +1,2295 @@
+{
+  "case_id": "B03",
+  "input_sha256": "d4eebbf83373c6827cbba20c6573719ef6cc9d7d8794e65b7897e0169cd6199c",
+  "started_utc": "2026-09-19T10:37:16.252090+00:00",
+  "http_status": 200,
+  "seconds": 59.767,
+  "trace_id": "e5dc0a4521d94c94ab149658f36f4b2d",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-first-pass-shortlist-v21",
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 2 extracted claims individually.",
+    "original_text": "Pinayuhan ng Malacañang ang DILG na panatilihing lihim ang legal na operasyon nito matapos ipahayag ni Interior Secretary Jonvic Remulla na hindi tinanggap ng Austria ang asylum application ni dating presidential spokesperson Harry Roque. Tingnan ang comments section para sa buong ulat.",
+    "translated_text": "Malacañang advised the DILG to keep its legal operations confidential after Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque.\nSee the comments section for the full report.",
+    "detected_language": "tagalog",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 2,
+    "claim_extraction_status": "ok",
+    "post_type": "unclear",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_with_caution",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "text": "See the comments section for the full report.",
+        "segment_type": "uncheckable"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Malacañang advised the DILG to keep its legal operations confidential",
+        "normalized_claim": "Malacañang advised the DILG to keep its legal operations confidential",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Malacañang advised the DILG to keep its legal operations confidential",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720",
+                  "quote": "George Calvelo, ABS-CBN News MANILA — Malacañang advised the Department of the Interior and Local Government on Wednesday to keep its legal operations under wraps after Secretary Jonvic Remulla claimed that former presidential spokesperson Harry Roque's asylum application in Austria had been denied."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Citation 0 explicitly states that Malacañang advised the DILG to keep its legal operations under wraps, which is a faithful paraphrase of advising to keep legal operations confidential. The subject (Malacañang and DILG) and the action (advising confidentiality regarding legal operations) match exactly. No contradictory information is present in the cited passages.",
+              "context": {
+                "start": 0,
+                "end": 69,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Malacañang",
+                      "start": 0,
+                      "end": 10
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "the DILG",
+                      "start": 19,
+                      "end": 27
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "advised",
+                      "start": 11,
+                      "end": 18
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "to keep its legal operations confidential",
+                      "start": 28,
+                      "end": 69
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Malacañang advised the DILG to keep its legal operations confidential",
+                      "start": 0,
+                      "end": 69
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "the DILG to keep its legal operations confidential",
+                      "start": 19,
+                      "end": 69
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0,
+                  1
+                ],
+                "component_id": 0,
+                "assertion": "Malacañang advised the DILG to keep its legal operations confidential",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 69
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "citation_ids": [
+                0
+              ],
+              "reason": "Citation 0 explicitly states that Malacañang advised the DILG to keep its legal operations under wraps, which is a faithful paraphrase of advising to keep legal operations confidential. The subject (Malacañang and DILG) and the action (advising confidentiality regarding legal operations) match exactly. No contradictory information is present in the cited passages.",
+              "component_id": 0
+            }
+          ],
+          "original_claim": "Malacañang advised the DILG to keep its legal operations confidential",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Malacañang advised the DILG to keep its legal operations confidential",
+              "sources": {
+                "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name": {
+                  "status": "matched",
+                  "passage_ids": [
+                    3,
+                    4
+                  ],
+                  "reason": "Passages 3 and 4 from source 0 quote Palace Press Officer Claire Castro referencing the saying 'do not telegraph your punches' in the context of DILG's potential legal operations, which is a clear idiomatic way of advising confidentiality. This is consistent with the claim that Malacañang advised the DILG to keep its legal operations confidential.",
+                  "citations": [
+                    {
+                      "url": "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+                      "quote": "“At kung mayroong ibang mga legal na operasyon na gagawin ang DILG, definitely mayroon tayong kasabihan na ‘do not telegraph your punches.’ So, hayaan na lang po nating si Secretary Jonvic ang sumagot patungkol diyan,” Castro continued."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+                      "quote": "(And if the DILG has other legal operations that it plans to undertake, we definitely have a saying: “Do not telegraph your punches.”"
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720": {
+                  "status": "matched",
+                  "passage_ids": [
+                    7,
+                    11
+                  ],
+                  "reason": "Passage 7 from source 1 directly states: 'Malacañang advised the Department of the Interior and Local Government on Wednesday to keep its legal operations under wraps...' and passage 11 quotes the Palace Press Officer using the phrase 'do not telegraph your punches' regarding DILG's legal operations. Both passages establish that Malacañang gave this advice to the DILG.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720",
+                      "quote": "George Calvelo, ABS-CBN News MANILA — Malacañang advised the Department of the Interior and Local Government on Wednesday to keep its legal operations under wraps after Secretary Jonvic Remulla claimed that former presidential spokesperson Harry Roque's asylum application in Austria had been denied."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720",
+                      "quote": "“At kung mayroong ibang mga legal na operasyon na gagawin ang DILG, definitely mayroon tayong kasabihan na ‘do not telegraph your punches,’” she added."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-sheet-three-things-you-need-to-know-about-confidential-and-intelligence-funds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/coalition-urges-marcos-to-stop-natl-government-meddling-in-barmm-polls",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-remulla-did-not-resign-as-dilg-secretary",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/in-depth/things-to-know-protecting-rights-arrests-curfew-safer-metro-manila-plan/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/sara-duterte-wealth-case-argument-examining-mans-carpio-finances/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/p41199037-juanito-victor-remulla/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/5/13/ex-iloilo-mayor-jed-mabilog-appointed-as-dilg-undersecretary-palace-1616",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/27/dilg-replacing-obsolete-police-body-cameras-with-ai-enabled-ones-2128",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/949596/dilg-elected-officials-without-soces-cannot-assume-office/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/video/liveevents/768102/live-dilg-press-conference-sept-15-2026-replay-gma-news/video/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/989457/dilg-remulla-kay-bato-dela-rosa-huwag-na-natin-patagalin-ito-kasi-baka-umuwi-pa-ito-sa-hindi-mo-g/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://globalnation.inquirer.net/321932/decision-on-interpol-red-notice-bid-vs-harry-roque-out-soon-remulla",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2228012/mabilog-as-new-dilg-usec",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2022/05/04/2178695/continued-e-sabong-operations-now-illegal-dilg",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/27/2552196/dilg-chief-remulla-seeks-bigger-bjmp-budget-if-loose-firearms-law-repealed",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/bansa/2026/09/16/2556582/hirit-na-asylum-ni-harry-roque-ibinasura-remulla",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2025/05/25/no-legal-impediment-to-dilgs-plan-to-lease-a-property-acquired-by-gsis-doj",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/28/remula-dilg-very-serious-in-protecting-female-cops",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/25/harry-roques-asylum-bid-in-austria-denied-jovic-says",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1276675",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282567",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1269247",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2022/09/05/dilg-ncr-invites-public-to-participate-in-an-online-forum-series-be-in-the-know-legal-lokal",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/dilg-mlgoos-strengthen-rule-of-law-support-fair-barangay-justice/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dilg-mlgoos-key-to-upholding-rule-of-law-ensuring-fair-barangay-justice",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/marcos-had-no-role-in-cousin-romualdezs-arrest-remulla-says-the-law-is-the-law",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/icc-can-pursue-phl-probe-sans-gov-t-cooperation",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/remullas-flying-to-france-for-co",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/zaldy-co-on-the-run-again-seeks-asylum-in-france",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-sheet-three-things-you-need-to-know-about-confidential-and-intelligence-funds",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/coalition-urges-marcos-to-stop-natl-government-meddling-in-barmm-polls",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-remulla-did-not-resign-as-dilg-secretary",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/in-depth/things-to-know-protecting-rights-arrests-curfew-safer-metro-manila-plan/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/sara-duterte-wealth-case-argument-examining-mans-carpio-finances/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/p41199037-juanito-victor-remulla/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/5/13/ex-iloilo-mayor-jed-mabilog-appointed-as-dilg-undersecretary-palace-1616",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/27/dilg-replacing-obsolete-police-body-cameras-with-ai-enabled-ones-2128",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/949596/dilg-elected-officials-without-soces-cannot-assume-office/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/video/liveevents/768102/live-dilg-press-conference-sept-15-2026-replay-gma-news/video/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/989457/dilg-remulla-kay-bato-dela-rosa-huwag-na-natin-patagalin-ito-kasi-baka-umuwi-pa-ito-sa-hindi-mo-g/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://globalnation.inquirer.net/321932/decision-on-interpol-red-notice-bid-vs-harry-roque-out-soon-remulla",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2228012/mabilog-as-new-dilg-usec",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2022/05/04/2178695/continued-e-sabong-operations-now-illegal-dilg",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/27/2552196/dilg-chief-remulla-seeks-bigger-bjmp-budget-if-loose-firearms-law-repealed",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/bansa/2026/09/16/2556582/hirit-na-asylum-ni-harry-roque-ibinasura-remulla",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2025/05/25/no-legal-impediment-to-dilgs-plan-to-lease-a-property-acquired-by-gsis-doj",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/28/remula-dilg-very-serious-in-protecting-female-cops",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/25/harry-roques-asylum-bid-in-austria-denied-jovic-says",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1276675",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282567",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1269247",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2022/09/05/dilg-ncr-invites-public-to-participate-in-an-online-forum-series-be-in-the-know-legal-lokal",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/dilg-mlgoos-strengthen-rule-of-law-support-fair-barangay-justice/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dilg-mlgoos-key-to-upholding-rule-of-law-ensuring-fair-barangay-justice",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/marcos-had-no-role-in-cousin-romualdezs-arrest-remulla-says-the-law-is-the-law",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/icc-can-pursue-phl-probe-sans-gov-t-cooperation",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/remullas-flying-to-france-for-co",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/zaldy-co-on-the-run-again-seeks-asylum-in-france",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Malacañang advised the DILG to keep its legal operations confidential"
+        },
+        "scoring_claim": "Malacañang advised the DILG to keep its legal operations confidential",
+        "search_query": "Malacañang DILG legal operations advice",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "19465413e7db803cd1e889b8b77b523e21e168a6ce1b329e2f9759e7a6bf78df",
+        "cache_version": "week7-first-pass-shortlist-v21",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 1 of 1 factual components.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "ABS-CBN News",
+          "title": "Palace tells DILG on Roque asylum bid: Do not telegraph your punches | ABS-CBN News",
+          "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720",
+          "status": "extracted",
+          "word_count": 187,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Palace tells DILG on Roque asylum bid: Do not telegraph your punches | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720",
+            "status": "extracted",
+            "word_count": 187,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 144,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 15,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 15,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Palace tells DILG on Roque asylum bid: Do not telegraph your punches | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720",
+            "status": "extracted",
+            "word_count": 187,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Palace tells DILG on Roque asylum bid: Do not telegraph your punches | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720",
+            "status": "extracted",
+            "word_count": 187,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence directly supports that Malacañang advised DILG to keep legal operations confidential.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+        "normalized_claim": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Interior Secretary Jonvic Remulla",
+          "role": "Interior Secretary",
+          "statement": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "grounded",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+                  "quote": "MANILA, Philippines (First published Sept. 15, 8 p.m.) — Interior Secretary Jonvic Remulla on Tuesday claimed that former presidential spokesperson Harry Roque's asylum bid in Austria had been denied, a claim Roque later disputed."
+                },
+                {
+                  "url": "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+                  "quote": "On Tuesday, Interior Secretary Jonvic Remulla announced that Roque’s asylum application in Europe had been denied — a statement that Roque disputed several hours later."
+                },
+                {
+                  "url": "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution",
+                  "quote": "The statement was made after Interior Secretary Jonvic Remulla said Roque’s asylum application in Austria had been denied."
+                },
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+                  "quote": "\"By the way, na-deny 'yung asylum ni Harry Roque,\" Remulla said."
+                },
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+                  "quote": "By the way, Harry Roque's asylum bid was denied..."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Multiple passages explicitly state that Interior Secretary Jonvic Remulla announced that Harry Roque's asylum application in Austria had been denied. For example, citation 0 says Remulla claimed Roque's asylum bid in Austria had been denied, citation 1 says Remulla announced the denial, citation 2 repeats this, and citations 4 and 5 quote Remulla directly. The passages are about the same subject, event, and speaker, and preserve all qualifiers. There is no contradiction in the cited passages regarding Remulla making this announcement.",
+              "context": {
+                "start": 0,
+                "end": 142,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Interior Secretary Jonvic Remulla",
+                      "start": 0,
+                      "end": 33
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "Austria",
+                      "start": 49,
+                      "end": 56
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "announced",
+                      "start": 34,
+                      "end": 43
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "did not accept",
+                      "start": 57,
+                      "end": 71
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+                      "start": 0,
+                      "end": 142
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+                      "start": 49,
+                      "end": 142
+                    }
+                  ],
+                  "time": [],
+                  "negation": [
+                    {
+                      "origin": "claim",
+                      "quote": "did not accept",
+                      "start": 57,
+                      "end": 71
+                    }
+                  ],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "Interior Secretary Jonvic Remulla",
+                      "start": 0,
+                      "end": 33
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0,
+                  1
+                ],
+                "component_id": 0,
+                "assertion": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 142
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+            "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+            "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "citation_ids": [
+                0,
+                1,
+                2,
+                4,
+                5
+              ],
+              "reason": "Multiple passages explicitly state that Interior Secretary Jonvic Remulla announced that Harry Roque's asylum application in Austria had been denied. For example, citation 0 says Remulla claimed Roque's asylum bid in Austria had been denied, citation 1 says Remulla announced the denial, citation 2 repeats this, and citations 4 and 5 quote Remulla directly. The passages are about the same subject, event, and speaker, and preserve all qualifiers. There is no contradiction in the cited passages regarding Remulla making this announcement.",
+              "component_id": 0
+            }
+          ],
+          "original_claim": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque.",
+              "sources": {
+                "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0,
+                    1,
+                    2,
+                    4
+                  ],
+                  "reason": "Passages 0, 1, 2, and 4 from source 0 directly state that Interior Secretary Jonvic Remulla announced that Harry Roque's asylum bid in Austria had been denied. This matches the claim's subject, action, and context.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+                      "quote": "MANILA, Philippines (First published Sept. 15, 8 p.m.) — Interior Secretary Jonvic Remulla on Tuesday claimed that former presidential spokesperson Harry Roque's asylum bid in Austria had been denied, a claim Roque later disputed."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+                      "quote": "Remulla made the statement during a press conference on Tuesday, September 15, adding that authorities would move against Roque once an Interpol Red Notice is issued."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+                      "quote": "\"By the way, na-deny 'yung asylum ni Harry Roque,\" Remulla said."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+                      "quote": "By the way, Harry Roque's asylum bid was denied..."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name": {
+                  "status": "matched",
+                  "passage_ids": [
+                    22
+                  ],
+                  "reason": "Passage 22 from source 1 states: 'On Tuesday, Interior Secretary Jonvic Remulla announced that Roque’s asylum application in Europe had been denied — a statement that Roque disputed several hours later.' This matches the claim's subject, action, and context, though it says 'Europe' in the summary, the surrounding context and other sources clarify Austria as the country.",
+                  "citations": [
+                    {
+                      "url": "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+                      "quote": "On Tuesday, Interior Secretary Jonvic Remulla announced that Roque’s asylum application in Europe had been denied — a statement that Roque disputed several hours later."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution": {
+                  "status": "matched",
+                  "passage_ids": [
+                    33,
+                    41
+                  ],
+                  "reason": "Passages 33 and 41 from source 2 state: 'The statement was made after Interior Secretary Jonvic Remulla said Roque’s asylum application in Austria had been denied.' This directly matches the claim's subject, action, and context.",
+                  "citations": [
+                    {
+                      "url": "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution",
+                      "quote": "The statement was made after Interior Secretary Jonvic Remulla said Roque’s asylum application in Austria had been denied."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution",
+                      "quote": "The statement was made after Interior Secretary Jonvic Remulla said Roque’s asylum application in Austria had been denied."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/harry-roques-rocky-road-to-redemption",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-cdo-mayor-visiting-romualdez-on-hospital-arrest-ai-generated",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-remulla-did-not-resign-as-dilg-secretary",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/harry-roque-situation-netherlands-asylum-november-2025-austria/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/sara-duterte-bail-grave-threats-case/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/p41199037-juanito-victor-remulla/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/15/harry-roque-s-asylum-application-denied-dilg-1312",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/4/13/remulla-clarifies-remarks-on-possible-arrest-of-harry-roque-1937",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/968357/dilg-chief-ph-can-request-roque-repatriation-if-asylum-bid-denied/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002792/marcos-has-no-plans-to-resign-palace-says/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/989457/dilg-remulla-kay-bato-dela-rosa-huwag-na-natin-patagalin-ito-kasi-baka-umuwi-pa-ito-sa-hindi-mo-g/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://globalnation.inquirer.net/317931/harry-roque-remulla-has-no-right-to-make-arrests-in-ph-austria",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://globalnation.inquirer.net/321932/decision-on-interpol-red-notice-bid-vs-harry-roque-out-soon-remulla",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/bansa/2026/09/16/2556582/hirit-na-asylum-ni-harry-roque-ibinasura-remulla",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/15/2556503/palace-roques-asylum-bid-persecution-claims-lack-basis",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/25/harry-roques-asylum-bid-in-austria-denied-jovic-says",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/remulla-harry-roques-netherlands-asylum-bid-rejected",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/17/jonvic-dares-harry-show-proof-austrian-asylum-request-was-approved",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1274601",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282567",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1269247",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-releases/page/165/?category=asean",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/schools-nationwide-test-emergency-readiness-in-deped-safety-drill/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/harry-roque-rejects-remullas-claim-that-his-asylum-bid-was-denied-this-is-fake-news",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ph-govt-awaiting-interpol-red-notice-vs-harry-roque-remulla",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/roque-denies-arrest-doj-offers-p1-million-reward-for-info-on-ong",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bongbong-marcos-to-jonvic-remulla-bring-back-zaldy-co",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/zaldy-co-on-the-run-again-seeks-asylum-in-france",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/harry-roques-rocky-road-to-redemption",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-cdo-mayor-visiting-romualdez-on-hospital-arrest-ai-generated",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-remulla-did-not-resign-as-dilg-secretary",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/harry-roque-situation-netherlands-asylum-november-2025-austria/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/sara-duterte-bail-grave-threats-case/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/p41199037-juanito-victor-remulla/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/15/harry-roque-s-asylum-application-denied-dilg-1312",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-tells-dilg-on-roque-asylum-bid-do-not-telegraph-your-punches-1720",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/4/13/remulla-clarifies-remarks-on-possible-arrest-of-harry-roque-1937",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/968357/dilg-chief-ph-can-request-roque-repatriation-if-asylum-bid-denied/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002792/marcos-has-no-plans-to-resign-palace-says/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/989457/dilg-remulla-kay-bato-dela-rosa-huwag-na-natin-patagalin-ito-kasi-baka-umuwi-pa-ito-sa-hindi-mo-g/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://globalnation.inquirer.net/317931/harry-roque-remulla-has-no-right-to-make-arrests-in-ph-austria",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://globalnation.inquirer.net/321932/decision-on-interpol-red-notice-bid-vs-harry-roque-out-soon-remulla",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/bansa/2026/09/16/2556582/hirit-na-asylum-ni-harry-roque-ibinasura-remulla",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/15/2556503/palace-roques-asylum-bid-persecution-claims-lack-basis",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/25/harry-roques-asylum-bid-in-austria-denied-jovic-says",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/remulla-harry-roques-netherlands-asylum-bid-rejected",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/17/jonvic-dares-harry-show-proof-austrian-asylum-request-was-approved",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1274601",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282567",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1269247",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/press-releases/page/165/?category=asean",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/schools-nationwide-test-emergency-readiness-in-deped-safety-drill/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/harry-roque-rejects-remullas-claim-that-his-asylum-bid-was-denied-this-is-fake-news",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ph-govt-awaiting-interpol-red-notice-vs-harry-roque-remulla",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/roque-denies-arrest-doj-offers-p1-million-reward-for-info-on-ong",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bongbong-marcos-to-jonvic-remulla-bring-back-zaldy-co",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/zaldy-co-on-the-run-again-seeks-asylum-in-france",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque"
+        },
+        "scoring_claim": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+        "search_query": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "a14e53deaffb72ae8fa2f642c22a92ac7c9a917eb928597cb34b1321faff1f3f",
+        "cache_version": "week7-first-pass-shortlist-v21",
+        "verdict": "Verified",
+        "message": "Retrieved evidence supports that Interior Secretary Jonvic Remulla made this statement. This verifies the attribution, not the underlying claim by itself.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 3,
+        "primary_evidence": {
+          "source": "Philippine Star",
+          "title": "Remulla says Roque asylum bid denied; Roque disputes claim",
+          "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+          "status": "extracted",
+          "word_count": 350,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Remulla says Roque asylum bid denied; Roque disputes claim",
+            "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+            "status": "extracted",
+            "word_count": 350,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Palace on Roque asylum: Accused must face allegations, clear name",
+            "url": "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+            "status": "extracted",
+            "word_count": 183,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Palace reiterates Roque case not political persecution",
+            "url": "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution",
+            "status": "extracted",
+            "word_count": 396,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 118,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 15,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Remulla says Roque asylum bid denied; Roque disputes claim",
+            "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+            "status": "extracted",
+            "word_count": 350,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Palace on Roque asylum: Accused must face allegations, clear name",
+            "url": "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+            "status": "extracted",
+            "word_count": 183,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Palace reiterates Roque case not political persecution",
+            "url": "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution",
+            "status": "extracted",
+            "word_count": 396,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Remulla says Roque asylum bid denied; Roque disputes claim",
+            "url": "https://www.philstar.com/headlines/2026/09/16/2556506/remulla-says-roque-asylum-bid-denied-roque-disputes-claim",
+            "status": "extracted",
+            "word_count": 350,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Palace on Roque asylum: Accused must face allegations, clear name",
+            "url": "https://newsinfo.inquirer.net/2306240/palace-on-roque-asylum-accused-must-face-allegations-clear-name",
+            "status": "extracted",
+            "word_count": 183,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Palace reiterates Roque case not political persecution",
+            "url": "https://www.dzrh.com.ph/post/palace-reiterates-roque-case-not-political-persecution",
+            "status": "extracted",
+            "word_count": 396,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Verified",
+              "reason": "The evidence confirms that Jonvic Remulla announced Roque's asylum bid was denied by Austria.",
+              "supporting_urls": [
+                "https://mb.com.ph/2026/07/25/harry-roques-asylum-bid-in-austria-denied-jovic-says"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "malacanang"
+        ],
+        "matched_agencies": [
+          "dilg"
+        ],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [
+            "malacanang"
+          ],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.6,
+        "ambiguity_score": 0.45,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "verification_text": "Pinayuhan ng Malacañang ang DILG na panatilihing lihim ang legal na operasyon nito matapos ipahayag ni Interior Secretary Jonvic Remulla na hindi tinanggap ng Austria ang asylum application ni dating presidential spokesperson Harry Roque.\nTingnan ang comments section para sa buong ulat.",
+        "normalized_verification_text": "Malacañang advised the DILG to keep its legal operations confidential after Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque.\nSee the comments section for the full report.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Pinayuhan ng Malacañang ang DILG na panatilihing lihim ang legal na operasyon nito matapos ipahayag ni Interior Secretary Jonvic Remulla na hindi tinanggap ng Austria ang asylum application ni dating presidential spokesperson Harry Roque.",
+            "translated_text": "Malacañang advised the DILG to keep its legal operations confidential after Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque.",
+            "scores": {
+              "factual_claim": 0.32,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.9,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.02,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review",
+              "openai_factual_claim_advice"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "Tingnan ang comments section para sa buong ulat.",
+            "translated_text": "See the comments section for the full report.",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "factual_claim",
+                "top_label_score": 0.9,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reported_attribution",
+                  "checkable_claim"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "call_to_action",
+                "top_label_score": 0.8,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "not_checkable_claim"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0,
+              1
+            ],
+            "reason": "Contains two factual assertions: Malacañang's advice to DILG and Remulla's announcement about Austria's rejection of Roque's asylum application."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "Instructional/uncheckable content."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "Malacañang advised the DILG to keep its legal operations confidential"
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque"
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Malacañang advised the DILG to keep its legal operations confidential",
+            "normalized_claim": "Malacañang advised the DILG to keep its legal operations confidential",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Malacañang DILG legal operations advice",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Malacañang advised the DILG to keep its legal operations confidential after Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque."
+              }
+            ],
+            "evidence_context": "Malacañang advised the DILG to keep its legal operations confidential after Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque.\nSee the comments section for the full report.",
+            "original_language_query": "Pinayuhan ng Malacañang ang DILG na panatilihing lihim ang legal na operasyon nito matapos ipahayag ni Interior Secretary Jonvic Remulla na hindi tinanggap ng Austria ang asylum application ni dating",
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+            "normalized_claim": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Interior Secretary Jonvic Remulla",
+              "role": "Interior Secretary",
+              "statement": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Malacañang advised the DILG to keep its legal operations confidential after Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque."
+              }
+            ],
+            "evidence_context": "Malacañang advised the DILG to keep its legal operations confidential after Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum application of former presidential spokesperson Harry Roque.\nSee the comments section for the full report.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "grounded",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "original_language_query": "Pinayuhan ng Malacañang ang DILG na panatilihing lihim ang legal na operasyon nito matapos ipahayag ni Interior Secretary Jonvic Remulla na hindi tinanggap ng Austria ang asylum application ni dating",
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [
+          {
+            "text": "See the comments section for the full report.",
+            "segment_type": "uncheckable"
+          }
+        ],
+        "post_type": "mixed_content",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "e5dc0a4521d94c94ab149658f36f4b2d",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 1.4496,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 1.8172,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0003,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0013,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 5.2623,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0024,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0014,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0012,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 11.7872,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.093,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 1.9721,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.4339,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.4569,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0218,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 10.7701,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0016,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 11.4034,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0912,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 1.9713,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 2.0428,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 2.0613,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0401,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 9.3023,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 51.182,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 59.7359,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

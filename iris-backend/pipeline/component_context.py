@@ -155,8 +155,17 @@ def clause_span(text, start, end):
 
 
 def _subject_heads(anchors):
+    # Prefer the grammatical subject: claim subjects placed before the claim's first verb.
+    # "The court is examining allegations against Sara Duterte" is about the court, even when
+    # an annotator also lists Sara Duterte as a subject.
+    refs = anchors['subject']
+    verb_starts = [r['start'] for r in anchors.get('action', [])
+                   if r.get('origin') == 'claim' and 'start' in r]
+    if verb_starts:
+        leading = [r for r in refs if r.get('origin') == 'claim' and r.get('start', 0) < min(verb_starts)]
+        refs = leading or refs
     heads = set()
-    for ref in anchors['subject']:
+    for ref in refs:
         words = re.findall(r"[\w'-]+", ref['quote'])
         if words and words[-1].lower() not in SUBJECT_PRONOUNS:
             heads.add(words[-1].lower())
