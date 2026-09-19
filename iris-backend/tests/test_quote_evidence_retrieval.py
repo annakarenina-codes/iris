@@ -241,7 +241,7 @@ class QuoteEvidenceRetrievalTests(unittest.TestCase):
         }
         search_calls = []
 
-        def fake_search(primary_query, backup_query=None):
+        def fake_search(primary_query, backup_query=None, **_):
             search_calls.append(primary_query)
             return _abs_cbn_event_search_result(primary_query)
 

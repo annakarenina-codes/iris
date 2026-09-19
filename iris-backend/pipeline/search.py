@@ -18,6 +18,7 @@ from concurrent.futures import ThreadPoolExecutor
 import html
 import os
 import re
+import time
 from typing import Dict, List, Optional
 
 try:
@@ -58,7 +59,9 @@ BRAVE_SEARCH_URL = "https://api.search.brave.com/res/v1/web/search"
 REQUEST_TIMEOUT_SECONDS = 10
 RESULTS_PER_SOURCE = 5
 MIN_RESULTS_BEFORE_BACKUP = 2
-MAX_ARTICLES_PER_SOURCE = 2
+MAX_ARTICLES_PER_SOURCE = 3
+RECENCY_WINDOW = "pm"  # Brave freshness: past month. Ranks recent coverage; never evidence.
+SEARCH_RATE_LIMIT_RETRY_SECONDS = 1.5
 MIN_EXCERPT_WORDS = 8
 MAX_SEARCH_WORKERS = _env_int("IRIS_SEARCH_WORKERS", 8)
 MAX_ARTICLE_EXTRACTION_WORKERS = _env_int("IRIS_ARTICLE_WORKERS", 8)
@@ -75,10 +78,16 @@ def _build_domain_query(query: str, site_query: str) -> str:
 
 
 @traced('retrieval.source_search', dependency=True)
-def brave_search(query: str, source: Dict[str, object], count: int = RESULTS_PER_SOURCE) -> Dict[str, object]:
+def brave_search(
+    query: str,
+    source: Dict[str, object],
+    count: int = RESULTS_PER_SOURCE,
+    freshness: Optional[str] = None,
+) -> Dict[str, object]:
     """
     Searches one source domain using Brave Search.
 
+    freshness optionally restricts results to recent pages (for example "pm").
     Returns a consistent dictionary whether the request succeeds or fails.
     """
     api_key = _get_api_key()
@@ -113,6 +122,8 @@ def brave_search(query: str, source: Dict[str, object], count: int = RESULTS_PER
         "safesearch": "moderate",
         "extra_snippets": "true",
     }
+    if freshness:
+        params["freshness"] = freshness
 
     try:
         response = requests.get(
@@ -121,6 +132,14 @@ def brave_search(query: str, source: Dict[str, object], count: int = RESULTS_PER
             params=params,
             timeout=REQUEST_TIMEOUT_SECONDS,
         )
+        if getattr(response, "status_code", None) == 429:
+            time.sleep(SEARCH_RATE_LIMIT_RETRY_SECONDS)
+            response = requests.get(
+                BRAVE_SEARCH_URL,
+                headers=headers,
+                params=params,
+                timeout=REQUEST_TIMEOUT_SECONDS,
+            )
         response.raise_for_status()
         payload = response.json()
     except requests.RequestException as error:
@@ -187,14 +206,16 @@ def _search_error_report(query: str, source: Dict[str, object], error: Exception
     }
 
 
-def _safe_brave_search(query: str, source: Dict[str, object]) -> Dict[str, object]:
+def _safe_brave_search(query: str, source: Dict[str, object], freshness: Optional[str] = None) -> Dict[str, object]:
     try:
+        if freshness:
+            return brave_search(query, source, freshness=freshness)
         return brave_search(query, source)
     except Exception as error:  # pragma: no cover - defensive safety net
         return _search_error_report(query, source, error)
 
 
-def search_sources(query: str) -> Dict[str, object]:
+def search_sources(query: str, freshness: Optional[str] = None, search_pass: str = "primary") -> Dict[str, object]:
     """Searches the fact-checking sources first, then the approved news sources."""
     sources = get_all_sources()
     all_results = []
@@ -203,54 +224,89 @@ def search_sources(query: str) -> Dict[str, object]:
         max_workers=_worker_count(MAX_SEARCH_WORKERS, len(sources))
     ) as executor:
         futures = [
-            submit_context(executor, _safe_brave_search, query, source)
+            submit_context(executor, _safe_brave_search, query, source, freshness)
             for source in sources
         ]
         source_reports = [future.result() for future in futures]
 
     for report in source_reports:
-        all_results.extend(report["results"])
+        for rank, result in enumerate(report["results"]):
+            all_results.append({**result, "search_pass": search_pass, "pass_rank": rank})
 
     return {
         "query": query,
+        "search_pass": search_pass,
+        "freshness": freshness,
         "total_results": len(all_results),
         "results": all_results,
         "source_reports": source_reports,
     }
 
 
+def _interleave_pass_results(searches: List[Dict[str, object]]) -> List[Dict[str, object]]:
+    """
+    Orders results so every search pass contributes its best hits per source.
+
+    Results are grouped by source later, so ordering by (rank within source,
+    pass order) lets each pass's top result be read before any pass's second.
+    """
+    ordered = []
+    for pass_index, search in enumerate(searches):
+        for result in search["results"]:
+            ordered.append((result.get("pass_rank", 0), pass_index, result))
+    ordered.sort(key=lambda item: (item[0], item[1]))
+
+    combined, seen_urls = [], set()
+    for _, _, result in ordered:
+        if result["url"] not in seen_urls:
+            seen_urls.add(result["url"])
+            combined.append(result)
+    return combined
+
+
 @traced('retrieval.queries', dependency=False)
-def search_with_backup(primary_query: str, backup_query: Optional[str] = None) -> Dict[str, object]:
+def search_with_backup(
+    primary_query: str,
+    backup_query: Optional[str] = None,
+    original_language_query: Optional[str] = None,
+    recency: bool = True,
+) -> Dict[str, object]:
     """
-    Runs the translated English search first.
+    Runs every search pass for one claim and merges their results.
 
-    If fewer than two results are found and a different original Tagalog/Taglish
-    query is available, it runs one backup search.
+    1. primary: the English query.
+    2. recent: the same query restricted to recent pages, so current coverage
+       is not pushed out by older articles on the same subject.
+    3. original_language: the post's own Filipino/Taglish sentence, when given.
+    4. backup: the older fallback, only when too few results were found.
     """
-    primary = search_sources(primary_query)
-    searches = [primary]
-    combined_results = list(primary["results"])
+    searches = [search_sources(primary_query)]
+    if recency:
+        searches.append(search_sources(primary_query, freshness=RECENCY_WINDOW, search_pass="recent"))
 
-    should_backup = (
+    used_queries = {primary_query.strip().casefold()}
+    original_language_query = (original_language_query or "").strip()
+    if original_language_query and original_language_query.casefold() not in used_queries:
+        searches.append(search_sources(original_language_query, search_pass="original_language"))
+        used_queries.add(original_language_query.casefold())
+
+    combined_results = _interleave_pass_results(searches)
+    should_backup = bool(
         backup_query
         and backup_query.strip()
-        and backup_query.strip().lower() != primary_query.strip().lower()
-        and primary["total_results"] < MIN_RESULTS_BEFORE_BACKUP
+        and backup_query.strip().casefold() not in used_queries
+        and len(combined_results) < MIN_RESULTS_BEFORE_BACKUP
     )
 
     if should_backup:
-        backup = search_sources(backup_query)
-        searches.append(backup)
-
-        seen_urls = {result["url"] for result in combined_results}
-        for result in backup["results"]:
-            if result["url"] not in seen_urls:
-                combined_results.append(result)
-                seen_urls.add(result["url"])
+        searches.append(search_sources(backup_query, search_pass="backup"))
+        combined_results = _interleave_pass_results(searches)
 
     return {
         "primary_query": primary_query,
         "backup_query_used": should_backup,
+        "original_language_query": original_language_query or None,
+        "search_passes": [search["search_pass"] for search in searches],
         "total_results": len(combined_results),
         "results": combined_results,
         "searches": searches,
@@ -565,7 +621,8 @@ def _extract_articles_parallel(article_targets: List[Dict[str, object]]) -> List
 def search_and_extract(
     primary_query: str,
     backup_query: Optional[str] = None,
-    max_articles_per_source: int = MAX_ARTICLES_PER_SOURCE
+    max_articles_per_source: int = MAX_ARTICLES_PER_SOURCE,
+    original_language_query: Optional[str] = None,
 ) -> Dict[str, object]:
     """
     Searches approved sources and extracts readable article text from each source.
@@ -573,7 +630,11 @@ def search_and_extract(
     This keeps the evidence pool balanced. The fact-checking sources are still
     first, but the extractor also checks article links from every news source.
     """
-    search_result = search_with_backup(primary_query, backup_query)
+    search_result = search_with_backup(
+        primary_query,
+        backup_query,
+        original_language_query=original_language_query,
+    )
     article_targets = _article_targets_by_source_order(
         search_result,
         max_articles_per_source,

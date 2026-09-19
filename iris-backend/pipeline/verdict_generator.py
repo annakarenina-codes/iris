@@ -190,6 +190,10 @@ def generate_verdict(claim: str, articles: List[Dict[str, object]]) -> Dict[str,
         "corroboration_count": len(corroborating_source_names),
         "primary_evidence": primary_evidence,
         "supporting_sources": supporting_sources,
+        "ranked_articles": [
+            {"url": article["url"], "similarity_score": article["similarity_score"]}
+            for article in ranked_articles
+        ],
         "similarity_thresholds": {
             "verified": VERIFIED_THRESHOLD,
             "partial": PARTIAL_THRESHOLD,

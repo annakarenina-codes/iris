@@ -210,7 +210,7 @@ def run_checks() -> None:
                 "word_count": 120,
             }
 
-        search_module.search_with_backup = lambda primary_query, backup_query=None: fake_parallel_search_result
+        search_module.search_with_backup = lambda primary_query, backup_query=None, **_: fake_parallel_search_result
         search_module.extract_article_text = fake_extract_article_text
 
         parallel_extract = search_module.search_and_extract(

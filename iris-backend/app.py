@@ -30,6 +30,7 @@ from pipeline.opinion_filter import is_opinion
 from pipeline.political_checker import flag_political, flag_claim_political
 from pipeline.quote_paraphraser import paraphrase_quote_claim
 from pipeline.search import merge_search_results, search_and_extract
+from pipeline.search_queries import anchored_query, original_language_query
 from pipeline.translator import translate_to_english
 from pipeline.verdict_generator import generate_verdict
 
@@ -38,8 +39,13 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-sources-excerpts-v18"
+RESULT_CACHE_VERSION = "week7-search-passes-v19"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
+REVIEW_FAILED_VERDICT = "Review Failed"
+REVIEW_FAILED_MESSAGE = (
+    "IRIS could not complete the evidence review for this claim, so no verdict was "
+    "issued. This is a technical failure, not a finding about the claim. Please retry."
+)
 ATTRIBUTED_CLAIM_TYPE = "attributed_statement"
 REMOTE_IMAGE_TIMEOUT_SECONDS = 10
 EVIDENCE_STOPWORDS = {
@@ -875,6 +881,9 @@ def build_claim_search_result(
             if retrieval_query.strip().lower() != normalized_claim.strip().lower()
             else claim["claim_text"] if language in ["tagalog", "taglish"] else None
         ),
+        original_language_query=(
+            claim.get("original_language_query") if language in ["tagalog", "taglish"] else None
+        ),
     )
 
     if has_event_articles:
@@ -894,6 +903,8 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
     from pipeline.claim_context import incident_anchor, contextual_search_query, incident_evidence_gate
     context_anchor = incident_anchor(normalized_claim, claim.get('evidence_context', ''))
     retrieval_query = contextual_search_query(retrieval_query, context_anchor)
+    # Keep the claim's dates, numbers and short titles that the generated query dropped.
+    retrieval_query = anchored_query(retrieval_query, claim.get("claim_text") or normalized_claim)
     claim_id = claim.get("claim_id", "unknown")
     stage_prefix = f"claim_{claim_id}."
 
@@ -1002,13 +1013,22 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
     )
 
     component_review = None
+    review_error = None
     if search_status["status"] == "ok":
-        from pipeline.component_evidence import review_components
+        from pipeline.component_evidence import (
+            ComponentReviewError,
+            require_completed_review,
+            review_components,
+        )
         eligible = [article for article in search_result["articles"]
                     if compact_evidence_source(article)
                     and article.get("text")
                     and attribution_evidence_gate(article, claim, anchors_only=True)["matches"]
                     and incident_evidence_gate(article, context_anchor)["matches"]]
+        # Most relevant first, so the reviewer's evidence budget holds the best articles.
+        relevance = {article["url"]: article["similarity_score"]
+                     for article in verdict_result.get("ranked_articles") or []}
+        eligible.sort(key=lambda article: -relevance.get(article.get("url"), -1.0))
         event('evidence.incident_gate', anchor=context_anchor, articles=[
             {'url': article.get('url'), **incident_evidence_gate(article, context_anchor)}
             for article in search_result['articles']])
@@ -1019,15 +1039,26 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
         ) if eligible else {"status": "no_evidence", "verdict": "Not Found",
                             "reason": "No valid extracted evidence satisfied the claim's required anchors.",
                             "supporting_urls": [], "components": []}
-        from pipeline.component_evidence import require_completed_review
-        require_completed_review(component_review)
-        event('verdict.component_review', before=final_verdict, after=component_review.get('verdict'), details=component_review)
-        final_verdict = component_review["verdict"]
-        final_message = component_review["reason"]
-        evidence_sources = unique_evidence_sources([
-            compact_evidence_source(article, "component_review") for article in eligible
-            if article.get("url") in component_review["supporting_urls"]
-        ])
+        try:
+            require_completed_review(component_review)
+        except ComponentReviewError as error:
+            review_error = {"reason_code": error.reason_code, "failed_stage": error.stage,
+                            "retryable": True}
+        if review_error:
+            # A failed review is reported for this claim only; other claims keep their results.
+            event('verdict.review_failed', before=final_verdict, after=REVIEW_FAILED_VERDICT,
+                  **review_error)
+            final_verdict = REVIEW_FAILED_VERDICT
+            final_message = REVIEW_FAILED_MESSAGE
+            evidence_sources = []
+        else:
+            event('verdict.component_review', before=final_verdict, after=component_review.get('verdict'), details=component_review)
+            final_verdict = component_review["verdict"]
+            final_message = component_review["reason"]
+            evidence_sources = unique_evidence_sources([
+                compact_evidence_source(article, "component_review") for article in eligible
+                if article.get("url") in component_review["supporting_urls"]
+            ])
 
     if final_verdict in POSITIVE_VERDICTS and not evidence_sources:
         event('verdict.evidence_gate', before=final_verdict, after='Not Found', reason='No valid public evidence')
@@ -1052,6 +1083,7 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
         "attribution": claim.get("attribution"),
         "attribution_integrity": claim.get("attribution_integrity"),
         "component_review": component_review,
+        "review_error": review_error,
         "incident_evidence_audit": [
             {'url': article.get('url'), **incident_evidence_gate(article, context_anchor)}
             for article in search_result['articles']
@@ -1100,7 +1132,7 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
         },
     }
 
-    if search_status["status"] == "ok":
+    if search_status["status"] == "ok" and not review_error:
         timed_stage(
             timings,
             f"{stage_prefix}cache_save",
@@ -1109,6 +1141,13 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
 
     event('claim.final', result=claim_result)
     return claim_result
+
+def raise_if_every_review_failed(claim_results):
+    """Keeps the explicit retryable 503 when no claim received a verdict."""
+    failed_reviews = [result["review_error"] for result in claim_results if result.get("review_error")]
+    if failed_reviews and len(failed_reviews) == len(claim_results):
+        raise ComponentReviewError(failed_reviews[0]["reason_code"], failed_reviews[0]["failed_stage"])
+
 
 @traced('request.assemble', dependency=False)
 def build_overall_verdict(claim_results):
@@ -1473,6 +1512,9 @@ def verify_text_payload(text, debug_enabled=False, timings=None):
     for claim in claim_extraction['claims']:
         # Context identifies the incident for pronouns; it is never supporting evidence.
         claim['evidence_context'] = normalized_verification_text or verification_text
+        if language in ["tagalog", "taglish"]:
+            claim['original_language_query'] = original_language_query(
+                claim.get('claim_text') or claim.get('normalized_claim') or '', text, translated)
     trace = CURRENT.get()
     if trace and trace.stop_claim is not None and trace.stop_claim not in {str(c['claim_id']) for c in claim_extraction['claims']}:
         from iris_trace.core import TargetNotReached
@@ -1506,6 +1548,7 @@ def verify_text_payload(text, debug_enabled=False, timings=None):
             for claim in claim_extraction["claims"]
         ],
     )
+    raise_if_every_review_failed(claim_results)
     overall = build_overall_verdict(claim_results)
     politically_sensitive = any(
         claim_result["politically_sensitive"] for claim_result in claim_results

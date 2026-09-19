@@ -27,6 +27,19 @@ Limits: an excerpt contains only a few passages, so a detail that appears only d
 
 Publication dates returned by the search provider are deliberately **not** recorded or used as time evidence.
 
+## Search passes
+
+Each claim is searched against every source in up to four passes ([pipeline/search.py](pipeline/search.py)):
+
+1. **primary**: the claim's English query, with any date, number or short quoted title from the claim that the generated query dropped appended to it ([pipeline/search_queries.py](pipeline/search_queries.py)).
+2. **recent**: the same query restricted to the past month (Brave `freshness=pm`), so current coverage is not pushed out of the top results by older articles on the same subject. This only ranks search results. A publication date is never evidence: retrieved text must state the claimed date itself.
+3. **original_language**: for Filipino/Taglish posts, the post's own sentence that the claim was translated from.
+4. **backup**: the previous fallback, only when the other passes return fewer than two results.
+
+Up to three articles per source are read, taking each pass's best result before any pass's second. Before evidence review, eligible articles are ordered by semantic similarity to the claim, so the reviewer's 60,000-character evidence budget holds the most relevant articles.
+
+Known limit: some pages are not in the search provider's index at all (for example the GMA article for saved case A09, which does not appear even for its exact headline, and GMA's 24 Oras video transcript pages). No query change can retrieve those.
+
 ## Change record: 19 September 2026
 
 Reason: a review of 47 saved TRACE requests found that direct downloads from four approved publishers failed consistently: PNA 185/185, PIA 169/169, Manila Bulletin 155/155 and Inquirer nearly all attempts. A single test request confirmed a Cloudflare bot challenge. Their RSS feeds are also challenged, except Inquirer's, which contain only about 40 recent short excerpts. VERA Files returned HTTP 429 for about one in three downloads. IRIS does not attempt to circumvent publisher bot protection.

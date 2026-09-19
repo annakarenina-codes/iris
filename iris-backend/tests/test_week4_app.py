@@ -172,7 +172,7 @@ def run_checks() -> None:
                 },
             ],
         }
-        iris_app.search_and_extract = lambda primary_query, backup_query=None: _fake_search_result()
+        iris_app.search_and_extract = lambda primary_query, backup_query=None, **_: _fake_search_result()
         iris_app.generate_verdict = _fake_verdict
         iris_app.refine_with_openai_rag = lambda claim, articles, verdict_result: {
             "used": False,
@@ -305,7 +305,7 @@ def run_checks() -> None:
             "ignored_segments": [],
             "claims": [attributed_claim],
         }
-        iris_app.search_and_extract = lambda primary_query, backup_query=None: generic_attribution_search
+        iris_app.search_and_extract = lambda primary_query, backup_query=None, **_: generic_attribution_search
         iris_app.generate_verdict = lambda claim, articles: {
             "verdict": "Verified",
             "reason": "Semantic similarity alone is not enough for attribution.",
@@ -343,7 +343,7 @@ def run_checks() -> None:
                 "link between violent video games and real-world crime or violence."
             ),
         }
-        iris_app.search_and_extract = lambda primary_query, backup_query=None: anchored_attribution_search
+        iris_app.search_and_extract = lambda primary_query, backup_query=None, **_: anchored_attribution_search
         anchored_response = client.post(
             "/verify",
             json={"text": attributed_claim["claim_text"]},
@@ -354,7 +354,7 @@ def run_checks() -> None:
         assert anchored_payload["verdict"] == "Verified"
         assert anchored_payload["sources"][0]["url"] == "https://example.com/tacloban-games"
 
-        iris_app.search_and_extract = lambda primary_query, backup_query=None: _fake_search_result()
+        iris_app.search_and_extract = lambda primary_query, backup_query=None, **_: _fake_search_result()
         iris_app.generate_verdict = _fake_verdict
 
         iris_app.is_opinion = lambda text: {

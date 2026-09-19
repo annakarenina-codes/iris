@@ -230,7 +230,10 @@ class ComponentTests(unittest.TestCase):
         client = SimpleNamespace(chat=SimpleNamespace(completions=SimpleNamespace(create=create)))
         with patch.dict(sys.modules, {'openai': SimpleNamespace(OpenAI=lambda **kw: client)}):
             result = review_components('Example claim.', [])
-        self.assertEqual(len(calls), 1)
+        # One corrective retry of the partition, then the failure stands.
+        self.assertEqual(len(calls), 2)
+        self.assertEqual({c['response_format']['json_schema']['name'] for c in calls}, {'component_boundaries'})
+        self.assertIn('CORRECTION', calls[1]['messages'][0]['content'])
         self.assertIsNone(result['verdict'])
         self.assertEqual(result['failed_stage'], 'partition')
 
@@ -252,22 +255,33 @@ class ComponentTests(unittest.TestCase):
                  'normalized_claim': 'Padilla questioned Wamil.',
                  'claim_type': 'attributed_statement'}
         article = {'url': 'https://www.philstar.com/headlines/example', 'text': 'Some evidence.'}
-        with patch.object(iris, 'quote_paraphrase_for_claim', return_value={}), \
-             patch.object(iris, 'get_cached_verdict', return_value=None), \
-             patch.object(iris, 'get_claim_flags', return_value=[]), \
-             patch.object(iris, 'build_claim_search_result', return_value=({'articles': [article]}, 'test')), \
-             patch.object(iris, 'get_search_status', return_value={'status': 'ok'}), \
-             patch.object(iris, 'generate_verdict', return_value={'verdict': 'Verified', 'reason': 'test'}), \
-             patch.object(iris, 'apply_low_confidence_fallback', return_value={'verdict': 'Verified', 'message': 'test'}), \
-             patch.object(iris, 'build_public_evidence_sources', return_value=[article]), \
-             patch.object(iris, 'compact_evidence_source', return_value=article), \
-             patch.object(iris, 'attribution_evidence_gate', return_value={'matches': True}), \
-             patch('pipeline.component_evidence.review_components', return_value={'status': 'error', 'verdict': None}) as review, \
-             patch.object(iris, 'save_cached_verdict') as save:
-            with self.assertRaises(ComponentReviewError):
-                iris.verify_claim(claim, 'english')
-            save.assert_not_called()
-            self.assertEqual(review.call_args.args[0], claim['claim_text'])
+        search_result = {'articles': [article], 'total_search_results': 1, 'searched_articles': 1,
+                         'extracted_articles': 1, 'source_summary': []}
+        with patch.object(iris, 'quote_paraphrase_for_claim', return_value={}),              patch.object(iris, 'get_cached_verdict', return_value=None),              patch.object(iris, 'get_claim_flags', return_value={'politically_sensitive': False, 'flags': []}),              patch.object(iris, 'build_claim_search_result', return_value=(search_result, 'test')),              patch.object(iris, 'get_search_status', return_value={'status': 'ok'}),              patch.object(iris, 'generate_verdict', return_value={'verdict': 'Verified', 'reason': 'test'}),              patch.object(iris, 'apply_low_confidence_fallback', return_value={
+                 'verdict': 'Verified', 'message': 'test', 'openai_fallback': {}, 'keyword_fallback': None}),              patch.object(iris, 'build_public_evidence_sources', return_value=[article]),              patch.object(iris, 'compact_evidence_source', return_value=article),              patch.object(iris, 'attribution_evidence_gate', return_value={'matches': True}),              patch('pipeline.component_evidence.review_components', return_value={
+                 'status': 'error', 'verdict': None, 'error_code': 'review_rate_limited',
+                 'failed_stage': 'entailment_check'}) as review,              patch.object(iris, 'save_cached_verdict') as save:
+            result = iris.verify_claim(claim, 'english')
+        # The failed claim gets an explicit technical status, never the positive fallback.
+        self.assertEqual(result['verdict'], iris.REVIEW_FAILED_VERDICT)
+        self.assertEqual(result['review_error'], {'reason_code': 'review_rate_limited',
+                                                  'failed_stage': 'entailment_check', 'retryable': True})
+        self.assertEqual(result['evidence_sources'], [])
+        self.assertIsNone(result['primary_evidence'])
+        save.assert_not_called()
+        self.assertEqual(review.call_args.args[0], claim['claim_text'])
+
+    def test_request_fails_only_when_every_claim_review_failed(self):
+        import app as iris
+        failed = {'verdict': 'Review Failed', 'review_error': {
+            'reason_code': 'review_rate_limited', 'failed_stage': 'entailment_check', 'retryable': True}}
+        done = {'verdict': 'Verified', 'review_error': None}
+        iris.raise_if_every_review_failed([done, failed])
+        iris.raise_if_every_review_failed([])
+        with self.assertRaises(ComponentReviewError) as caught:
+            iris.raise_if_every_review_failed([failed, failed])
+        self.assertEqual(caught.exception.reason_code, 'review_rate_limited')
+        self.assertEqual(caught.exception.stage, 'entailment_check')
 
     def test_original_assertions_have_distinct_cache_keys(self):
         import app as iris

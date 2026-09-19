@@ -11,7 +11,7 @@ from pipeline.evidence_urls import article_url_rejection, clean_article_url
 from pipeline import article_extractor as extractor
 from pipeline import search
 from pipeline.component_evidence import event_identity_input, event_identity_schema, apply_event_identity_checks
-from pipeline.component_evidence import rate_limit_retry_delay, rate_limit_details, review_components
+from pipeline.component_evidence import rate_limit_retry_delay, rate_limit_details, review_components, RATE_LIMIT_ATTEMPTS
 from pipeline.political_checker import flag_claim_political, flag_political
 from pipeline.ocr_layout import select_content_regions
 
@@ -168,7 +168,7 @@ class ReviewRateLimitTests(unittest.TestCase):
         self.assertEqual(result['supporting_urls'], [])
 
     def test_second_limit_or_quota_error_never_invents_a_verdict(self):
-        for code, expected_calls in [('rate_limit_exceeded', 2), ('insufficient_quota', 1)]:
+        for code, expected_calls in [('rate_limit_exceeded', RATE_LIMIT_ATTEMPTS), ('insufficient_quota', 1)]:
             with self.subTest(code=code):
                 from unittest.mock import Mock
                 create = Mock(side_effect=self.error(code=code))

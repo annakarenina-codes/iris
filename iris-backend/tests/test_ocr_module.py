@@ -236,7 +236,7 @@ def run_checks() -> None:
                 }
             ],
         }
-        iris_app.search_and_extract = lambda primary_query, backup_query=None: _fake_search_result()
+        iris_app.search_and_extract = lambda primary_query, backup_query=None, **_: _fake_search_result()
         iris_app.generate_verdict = _fake_verdict
         iris_app.refine_with_openai_rag = lambda claim, articles, verdict_result: {
             "used": False,
