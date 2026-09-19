@@ -1,0 +1,4186 @@
+{
+  "case_id": "A07",
+  "input_sha256": "4c05624bd1c0afdc6aaa2366f2a14bc31b18b937114d6bf5dec23a3af11d5d0c",
+  "started_utc": "2026-09-19T12:36:08.156961+00:00",
+  "http_status": 200,
+  "seconds": 105.455,
+  "trace_id": "753e4a237a0d4604b4844b5e33715f4d",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-institution-equivalence-v24",
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 4 extracted claims individually.",
+    "original_text": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds.",
+    "translated_text": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds.",
+    "detected_language": "english",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 4,
+    "claim_extraction_status": "ok",
+    "post_type": "fact_only",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_to_verification",
+    "contains_opinion": true,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+        "normalized_claim": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Robin Padilla",
+          "role": "senator-judge",
+          "statement": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "grounded",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                  "quote": "Padilla asked Wamil if he had been to parts of the country like the Bangsamoro Autonomous Region in Muslim Mindanao, the Bicol region, and to Mindanao."
+                },
+                {
+                  "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                  "quote": "Padilla also asked Wamil if he had visited remote communities and seen the challenges faced by residents there, including access to food and medicine."
+                },
+                {
+                  "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+                  "quote": "Padilla questions Wamil on BARMM and confidential fund audits Senator-judge Robinhood Padilla asked former Commission on Audit (COA) State Auditor Roderick Wamil whether he had visited the Bangsamoro Autonomous Region in Muslim Mindanao (BARMM) and if he was aware of the country's terrorism threats while discussing the audit of confidential funds."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Multiple passages (0, 1, 2) show that Senator-judge Robin Padilla asked state auditor Roderick Wamil about whether he had been to certain regions, visited remote communities, and his familiarity with local conditions. These questions pertain to Wamil's personal background and experiences, directly supporting the assertion. No cited passage contradicts this.",
+              "context": {
+                "start": 0,
+                "end": 93,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator-judge Robin Padilla",
+                      "start": 0,
+                      "end": 27
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "asked",
+                      "start": 28,
+                      "end": 33
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+                      "start": 0,
+                      "end": 93
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 93
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "citation_ids": [
+                0,
+                1,
+                2
+              ],
+              "reason": "Multiple passages (0, 1, 2) show that Senator-judge Robin Padilla asked state auditor Roderick Wamil about whether he had been to certain regions, visited remote communities, and his familiarity with local conditions. These questions pertain to Wamil's personal background and experiences, directly supporting the assertion. No cited passage contradicts this.",
+              "component_id": 0
+            }
+          ],
+          "original_claim": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background during the impeachment trial of Vice President Sara Duterte.",
+              "sources": {
+                "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501": {
+                  "status": "matched",
+                  "passage_ids": [
+                    2,
+                    3,
+                    5,
+                    7,
+                    8,
+                    0
+                  ],
+                  "reason": "Passages 2 and 3 from source 0 show Padilla asking Wamil if he had been to various regions and about his experiences in remote communities, which are questions about Wamil's personal background and exposure. Passage 5 further details Padilla's line of questioning about Wamil's exposure and knowledge, and passage 7 shows Padilla pressing Wamil on his audit observations. These exchanges establish that Padilla questioned Wamil about his personal background and experience relevant to the issues at hand.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                      "quote": "Padilla asked Wamil if he had been to parts of the country like the Bangsamoro Autonomous Region in Muslim Mindanao, the Bicol region, and to Mindanao."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                      "quote": "Padilla also asked Wamil if he had visited remote communities and seen the challenges faced by residents there, including access to food and medicine."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                      "quote": "“Ayun, hindi kayo exposed,\" Padilla said. (Oh there, you are not exposed to that.) Auditor: Medicines ‘not normal’ reward for information in confidential operations ARMED GROUPS Padilla then shifted his questions to national security as he asked if Wamil was familiar with armed groups ISIS, Abu Sayyaf and the New People's Army. \"Sa news po, nababalitaan ko,\" the auditor said. (I heard about them in the news.) “Alam niyo po ba kung gaano na kagrabe ang terrorism sa bansa?” Padilla asked. (Do you know how severe terrorism is in the country?) Wamil, an accountant and lawyer, responded he has \"no threshold\" to determine that Padilla said he asked because he heard that Wamil is in charge of investigating the use of confidential funds. Auditor says 'first time' to encounter confidential expenses backed only by acknowledgement receipts Wamil clarified that COA's role is to see if government agencies complied with rules on accounting for confidential fund expenditures.. \"Hindi po siya investigation, evaluation siya,\" Wamil said. (It is not an investigation but an evaluation.) Padilla also pressed Wamil on the audit observations that he had raised. \"Konklusyon po ba yun (Is that a conclusion)?"
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                      "quote": "Final?\" Padilla said as Wamil explained that the Audit Observation Memorandum he wrote on OVP spending was part of a preliminary stage of a COA audit. PADILLA LINKS CHECKS TO 'RED' ANNIVERSARIES In later questions, Padilla said that the dates of some confidential expenses that COA had flagged were close to the founding anniversaries of the Communist Party of the Philippines, the New People's Army and the National Democratic Front. He also said that \"for the first time\", there were no NPA attacks on those dates. Wamil said he has no personal knowledge on the supposed significance of the dates. \"Ang tanong ko po, naniniwala po ba kayo na malaki ang papel ng confidential fund at confidential agent?\" Padilla asked. (My question is, do you believe that confidential funds and confidential agents have an important role?) \"Depende po 'yan sa ano po talaga 'yung mandate ng agency,\" Wamil replied."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                      "quote": "(That depends on the what the mandate of the agency is.)"
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                      "quote": "MANILA — Sen. Robin Padilla on Wednesday questioned state auditor Roderick Wamil on his familiarity with terrorism and with security threats as he stressed the importance of confidential funds to address these issues."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://mb.com.ph/2026/08/05/robin-padilla-links-deped-to-communist-recruitment-in-universities": {
+                  "status": "matched",
+                  "passage_ids": [
+                    11,
+                    12,
+                    15,
+                    16,
+                    17
+                  ],
+                  "reason": "Passages 11, 12, 15, and 16 from source 1 confirm that Padilla questioned Wamil during the impeachment trial, including about the importance of confidential funds and Wamil's familiarity with specific regions, which are aspects of Wamil's personal background and experience. Passage 17 further clarifies Wamil's response about his work not involving ground assessments, supporting the context of Padilla's questioning.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/08/05/robin-padilla-links-deped-to-communist-recruitment-in-universities",
+                      "quote": "Padilla said this during his questioning of former Commission on Audit (COA) auditor Roderick Wamil in the impeachment trial of Vice President Sara Duterte."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/08/05/robin-padilla-links-deped-to-communist-recruitment-in-universities",
+                      "quote": "Senator-judge Robin Padilla asked COA auditor Roderick Wamil whether confidential funds and confidential agents are important, with Wamil responding that their necessity depends on the mandate of the agency."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/08/05/robin-padilla-links-deped-to-communist-recruitment-in-universities",
+                      "quote": "The senator-judge first asked Wamil whether he believed confidential funds and confidential agents played an important role in government operations."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/08/05/robin-padilla-links-deped-to-communist-recruitment-in-universities",
+                      "quote": "Padilla also pressed Wamil on his familiarity with the situation in the Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/08/05/robin-padilla-links-deped-to-communist-recruitment-in-universities",
+                      "quote": "Wamil responded that his work did not involve assessing conditions on the ground or conducting investigations, explaining that his responsibility as an auditor was limited to examining the documents submitted for confidential fund liquidation."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    22,
+                    23,
+                    24,
+                    26,
+                    27,
+                    18,
+                    19
+                  ],
+                  "reason": "Passages 22, 23, and 24 from source 2 confirm Padilla questioned Wamil during the impeachment trial, including about his familiarity with BARMM and his work responsibilities, which relate to Wamil's personal background. Passages 26 and 27 show Padilla asking about the importance of confidential funds, and passages 18 and 19 reinforce the context of Padilla pressing Wamil on his familiarity with BARMM.",
+                  "citations": [
+                    {
+                      "url": "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/",
+                      "quote": "Padilla said this during his questioning of former Commission on Audit (COA) auditor Roderick Wamil in the impeachment trial of Vice President Sara Duterte."
+                    },
+                    {
+                      "url": "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/",
+                      "quote": "Padilla also pressed Wamil on his familiarity with the situation in the Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)."
+                    },
+                    {
+                      "url": "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/",
+                      "quote": "Wamil responded that his work did not involve assessing conditions on the ground or conducting investigations, explaining that his responsibility as an auditor was limited to examining the documents submitted for confidential fund liquidation."
+                    },
+                    {
+                      "url": "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/",
+                      "quote": "The senator-judge first asked Wamil whether he believed confidential funds and confidential agents played an important role in government operations."
+                    },
+                    {
+                      "url": "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/",
+                      "quote": "Wamil replied that the importance of confidential funds depended on the mandate of the government agency involved."
+                    },
+                    {
+                      "url": "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/",
+                      "quote": "Padilla also pressed Wamil on his familiarity with the situation in the Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)."
+                    },
+                    {
+                      "url": "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/",
+                      "quote": "Wamil responded that his work did not involve assessing conditions on the ground or conducting investigations, ..."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026": {
+                  "status": "matched",
+                  "passage_ids": [
+                    33,
+                    34,
+                    52,
+                    53,
+                    54,
+                    58,
+                    59
+                  ],
+                  "reason": "Passages 33 and 34 from source 3 confirm senator-judges, including Padilla, questioned Wamil during the impeachment trial. Passage 52 specifically states Padilla asked Wamil for his personal opinion on confidential agents, and passages 58 and 59 show Padilla asking Wamil about his visits to BARMM and awareness of terrorism threats, which are questions about Wamil's personal background and experience. Passages 53 and 54 show Wamil declining to answer a personal opinion question, further supporting the context of Padilla's questioning about Wamil's background and perspective.",
+                  "citations": [
+                    {
+                      "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+                      "quote": "Senator-judges begin interpellation of COA witness The senator-judges have begun their interpellation of former Commission on Audit (COA) State Auditor Roderick Wamil during the continuation of the impeachment trial against Vice President Sara Duterte on Wednesday, August 5."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+                      "quote": "Wamil is answering clarificatory questions from the Senate impeachment court regarding his testimony."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+                      "quote": "Padilla seeks Wamil's personal opinion on confidential agents Senator-judge Robin Padilla asked former Commission on Audit (COA) State Auditor Roderick Wamil whether, in his personal opinion, confidential agents receiving confidential funds should identify themselves."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+                      "quote": "Wamil declined to answer, saying the question called for a personal opinion beyond the scope of his authority."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+                      "quote": "“Since that calls for an opinion, hindi po ako authorized to express that, Your Honor,” Wamil said."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+                      "quote": "Padilla questions Wamil on BARMM and confidential fund audits Senator-judge Robinhood Padilla asked former Commission on Audit (COA) State Auditor Roderick Wamil whether he had visited the Bangsamoro Autonomous Region in Muslim Mindanao (BARMM) and if he was aware of the country's terrorism threats while discussing the audit of confidential funds."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+                      "quote": "Padilla also sought to connect the questions to the Office of the Vice President's confidential fund expenditures, but Wamil clarified, \"Hindi po siya imbestigasyon. Evaluation po,\" referring to COA's role."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/sara-dutertes-impeachment-trial-week-5-beyond-the-receipts",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/robin-padillas-cringe-ramblings-on-history",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/honor-humor-and-humiliation-in-the-senate",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/imee-marcos-state-auditor-clash-sara-duterte-accountability-confidential-funds/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/doj-subpoenas-robin-padilla-obstruction-justice-complaint/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/robin-padilla-doj-subpoena-dela-rosa-escape-1002",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/wrap-tense-exchanges-as-state-auditor-wamil-wraps-up-testimony-2145",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/960106/erwin-tulfo-robin-padilla-bend-the-law-flood-control-projects-witness-protection/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999179/house-prosecutor-we-expect-senator-judges-to-be-physically-present-at-trial/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/997121/live-updates-sara-duterte-impeachment-trial-august-3-2026/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2277977/ovp-secret-funds-may-have-helped-stop-rebel-attacks-padilla",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305990/robin-padilla-happy-to-face-doj-over-obstruction-complaint",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.inquirer.net/483460/live-updates-sara-duterte-impeachment-trial-aug-5-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/07/2547564/padilla-vp-secret-funds-used-vs-reds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/15/2556497/doj-summons-robin-padilla-6-others-over-bato-dela-rosa-escape",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/05/2547205/sara-duterte-trial-recap-aug-5-receipts-only-medicine-rewards-audit-thresholds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/26/robin-padilla-invokes-national-heroes-to-justify-aliases-in-confidential-funds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/05/robin-padilla-links-deped-to-communist-recruitment-in-universities",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1281014",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284350",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1174810",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2022/12/13/reserve-captain-sen-robinhood-padilla-commits-to-support-armys-thrusts-programs",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/features/2023/05/15/nueva-vizcayas-legend-laid-to-rest-with-honors",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/padilla-urges-senate-to-uphold-constitution-in-impeachment-vote-debate",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-15-of-vp-sara-duterte-impeachment-trial-or-august-12-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/auditor-ovp-confidential-funds-personally-used",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bam-aquino-lp-shut-down-robin-padilla-on-use-of-aliases",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/sara-dutertes-impeachment-trial-week-5-beyond-the-receipts",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/robin-padillas-cringe-ramblings-on-history",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/honor-humor-and-humiliation-in-the-senate",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/imee-marcos-state-auditor-clash-sara-duterte-accountability-confidential-funds/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/doj-subpoenas-robin-padilla-obstruction-justice-complaint/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/robin-padilla-doj-subpoena-dela-rosa-escape-1002",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/wrap-tense-exchanges-as-state-auditor-wamil-wraps-up-testimony-2145",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/960106/erwin-tulfo-robin-padilla-bend-the-law-flood-control-projects-witness-protection/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999179/house-prosecutor-we-expect-senator-judges-to-be-physically-present-at-trial/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/997121/live-updates-sara-duterte-impeachment-trial-august-3-2026/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2277977/ovp-secret-funds-may-have-helped-stop-rebel-attacks-padilla",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305990/robin-padilla-happy-to-face-doj-over-obstruction-complaint",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.inquirer.net/483460/live-updates-sara-duterte-impeachment-trial-aug-5-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/07/2547564/padilla-vp-secret-funds-used-vs-reds",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/15/2556497/doj-summons-robin-padilla-6-others-over-bato-dela-rosa-escape",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/05/2547205/sara-duterte-trial-recap-aug-5-receipts-only-medicine-rewards-audit-thresholds",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/26/robin-padilla-invokes-national-heroes-to-justify-aliases-in-confidential-funds",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/05/robin-padilla-links-deped-to-communist-recruitment-in-universities",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1281014",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284350",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1174810",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2022/12/13/reserve-captain-sen-robinhood-padilla-commits-to-support-armys-thrusts-programs",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/features/2023/05/15/nueva-vizcayas-legend-laid-to-rest-with-honors",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/padilla-urges-senate-to-uphold-constitution-in-impeachment-vote-debate",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-15-of-vp-sara-duterte-impeachment-trial-or-august-12-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/auditor-ovp-confidential-funds-personally-used",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bam-aquino-lp-shut-down-robin-padilla-on-use-of-aliases",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background."
+        },
+        "scoring_claim": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+        "search_query": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "af5b7ce5eb70ca74d61f627be08925f512bc0d3312a83f012cfae7953568a401",
+        "cache_version": "week7-institution-equivalence-v24",
+        "verdict": "Verified",
+        "message": "Retrieved evidence supports that Robin Padilla made this statement. This verifies the attribution, not the underlying claim by itself.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 2,
+        "primary_evidence": {
+          "source": "ABS-CBN News",
+          "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+          "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+          "status": "extracted",
+          "word_count": 491,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "status": "extracted",
+            "word_count": 491,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Day 13 of VP Sara Duterte impeachment trial | August 5, 2026",
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "status": "extracted",
+            "word_count": 2821,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 94,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 3,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "status": "extracted",
+            "word_count": 491,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Day 13 of VP Sara Duterte impeachment trial | August 5, 2026",
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "status": "extracted",
+            "word_count": 2821,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "status": "extracted",
+            "word_count": 491,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Day 13 of VP Sara Duterte impeachment trial | August 5, 2026",
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "status": "extracted",
+            "word_count": 2821,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence confirms that Padilla asked Wamil about his personal background.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+        "normalized_claim": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Robin Padilla",
+          "role": "senator-judge",
+          "statement": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "grounded",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                  "quote": "Padilla also asked Wamil if he had visited remote communities and seen the challenges faced by residents there, including access to food and medicine."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "The passage states that Padilla asked Wamil if he had visited remote communities and seen the challenges faced by residents there, including access to food and medicine. This directly supports that Padilla noted whether Wamil understood the need for medicines in far-flung areas, as the question was explicitly about witnessing such needs.",
+              "context": {
+                "start": 0,
+                "end": 110,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator-judge Robin Padilla",
+                      "start": 0,
+                      "end": 27
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "Roderick Wamil",
+                      "start": 42,
+                      "end": 56
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "noted",
+                      "start": 28,
+                      "end": 33
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "understood",
+                      "start": 57,
+                      "end": 67
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "understood the need for medicines",
+                      "start": 57,
+                      "end": 90
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator-judge Robin Padilla noted",
+                      "start": 0,
+                      "end": 33
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "whether Roderick Wamil understood",
+                      "start": 34,
+                      "end": 67
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "whether Roderick Wamil understood the need for medicines in far-flung areas",
+                      "start": 34,
+                      "end": 109
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator-judge Robin Padilla",
+                      "start": 0,
+                      "end": 27
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 110
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "citation_ids": [
+                0
+              ],
+              "reason": "The passage states that Padilla asked Wamil if he had visited remote communities and seen the challenges faced by residents there, including access to food and medicine. This directly supports that Padilla noted whether Wamil understood the need for medicines in far-flung areas, as the question was explicitly about witnessing such needs.",
+              "component_id": 0
+            }
+          ],
+          "original_claim": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Senator-judge Robin Padilla asked state auditor Roderick Wamil whether he understood the need for medicines in far-flung areas.",
+              "sources": {
+                "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501": {
+                  "status": "matched",
+                  "passage_ids": [
+                    3
+                  ],
+                  "reason": "Passage 3 explicitly states that Padilla asked Wamil if he had visited remote communities and seen the challenges faced by residents there, including access to food and medicine. This directly matches the claim that Padilla noted whether Wamil understood the need for medicines in far-flung areas.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                      "quote": "Padilla also asked Wamil if he had visited remote communities and seen the challenges faced by residents there, including access to food and medicine."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/honor-humor-and-humiliation-in-the-senate",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/robin-padillas-cringe-ramblings-on-history",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-ovp-secret-funds-used-for-medical-food-supplies-to-save-lives-baseless",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/doj-subpoenas-robin-padilla-obstruction-justice-complaint/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/fact-check/coa-auditor-not-jailed-contempt-sara-duterte-impeachment/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/15/robin-padilla-gets-doj-subpoena-over-dela-rosa-escape-1712",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/wrap-tense-exchanges-as-state-auditor-wamil-wraps-up-testimony-2145",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/960106/erwin-tulfo-robin-padilla-bend-the-law-flood-control-projects-witness-protection/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999853/live-updates-sara-duterte-impeachment-trial-august-26-2026/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/956244/robin-padilla-mandatory-hair-follice-drug-test-elected-appointed-officials/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2279205/luistro-wamil-deserves-praise-for-holding-ground-amid-marcos-queries",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305990/robin-padilla-happy-to-face-doj-over-obstruction-complaint",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2268944/robin-padilla-one-sided-remark-was-a-call-for-fairness",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2024/10/04/2390011/marcos-renews-commitment-strengthen-health-care-system",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/15/2556497/doj-summons-robin-padilla-6-others-over-bato-dela-rosa-escape",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/07/2547564/padilla-vp-secret-funds-used-vs-reds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/05/robin-padilla-links-deped-to-communist-recruitment-in-universities",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/27/happy-for-them-padilla-brushes-off-backlash-says-bashing-keeps-trolls-fed",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1182363",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284350",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1195640",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/senator-robin-padilla-pushes-for-devt-programs-in-pag-asa-island/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/mga-cicl-ginhanas-sa-paghimo-sang-habon-kandila/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/page/638/?article=561334217422",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/padilla-clarifies-one-sided-remark-stresses-balance-in-justice-system",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/padilla-urges-senate-to-uphold-constitution-in-impeachment-vote-debate",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/pangilinan-slams-ethics-complaint-threat-after-heated-exchange-with-padilla",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/actor-robin-padilla-leads-magic-12-in-senate-race",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bam-aquino-lp-shut-down-robin-padilla-on-use-of-aliases",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/robin-padilla-takes-crash-course-on-legislation",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/honor-humor-and-humiliation-in-the-senate",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/robin-padillas-cringe-ramblings-on-history",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-ovp-secret-funds-used-for-medical-food-supplies-to-save-lives-baseless",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/doj-subpoenas-robin-padilla-obstruction-justice-complaint/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/fact-check/coa-auditor-not-jailed-contempt-sara-duterte-impeachment/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/15/robin-padilla-gets-doj-subpoena-over-dela-rosa-escape-1712",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/wrap-tense-exchanges-as-state-auditor-wamil-wraps-up-testimony-2145",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/960106/erwin-tulfo-robin-padilla-bend-the-law-flood-control-projects-witness-protection/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999853/live-updates-sara-duterte-impeachment-trial-august-26-2026/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/956244/robin-padilla-mandatory-hair-follice-drug-test-elected-appointed-officials/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2279205/luistro-wamil-deserves-praise-for-holding-ground-amid-marcos-queries",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305990/robin-padilla-happy-to-face-doj-over-obstruction-complaint",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2268944/robin-padilla-one-sided-remark-was-a-call-for-fairness",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2024/10/04/2390011/marcos-renews-commitment-strengthen-health-care-system",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/15/2556497/doj-summons-robin-padilla-6-others-over-bato-dela-rosa-escape",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/07/2547564/padilla-vp-secret-funds-used-vs-reds",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/05/robin-padilla-links-deped-to-communist-recruitment-in-universities",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/27/happy-for-them-padilla-brushes-off-backlash-says-bashing-keeps-trolls-fed",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/08/06/robin-links-deped-to-communist-recruitment-in-universities/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1182363",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284350",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1195640",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/senator-robin-padilla-pushes-for-devt-programs-in-pag-asa-island/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/mga-cicl-ginhanas-sa-paghimo-sang-habon-kandila/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/page/638/?article=561334217422",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/padilla-clarifies-one-sided-remark-stresses-balance-in-justice-system",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/padilla-urges-senate-to-uphold-constitution-in-impeachment-vote-debate",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/pangilinan-slams-ethics-complaint-threat-after-heated-exchange-with-padilla",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/actor-robin-padilla-leads-magic-12-in-senate-race",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bam-aquino-lp-shut-down-robin-padilla-on-use-of-aliases",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/robin-padilla-takes-crash-course-on-legislation",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas."
+        },
+        "scoring_claim": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+        "search_query": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "a4fe6b026f79b925dc96f9b8e5b1aaabf1ae08b456ffa0e42f80012464da23a1",
+        "cache_version": "week7-institution-equivalence-v24",
+        "verdict": "Verified",
+        "message": "Retrieved evidence supports that Robin Padilla made this statement. This verifies the attribution, not the underlying claim by itself.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "ABS-CBN News",
+          "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+          "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+          "status": "extracted",
+          "word_count": 491,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "status": "extracted",
+            "word_count": 491,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 91,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "status": "extracted",
+            "word_count": 491,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "status": "extracted",
+            "word_count": 491,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence confirms Padilla's inquiry about Wamil's understanding of medicine needs in remote areas.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 3,
+        "claim_text": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+        "normalized_claim": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Robin Padilla",
+          "role": "senator-judge",
+          "statement": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "grounded",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                  "quote": "MANILA — Sen. Robin Padilla on Wednesday questioned state auditor Roderick Wamil on his familiarity with terrorism and with security threats as he stressed the importance of confidential funds to address these issues."
+                },
+                {
+                  "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                  "quote": "“Ayun, hindi kayo exposed,\" Padilla said. (Oh there, you are not exposed to that.) Auditor: Medicines ‘not normal’ reward for information in confidential operations ARMED GROUPS Padilla then shifted his questions to national security as he asked if Wamil was familiar with armed groups ISIS, Abu Sayyaf and the New People's Army. \"Sa news po, nababalitaan ko,\" the auditor said. (I heard about them in the news.) “Alam niyo po ba kung gaano na kagrabe ang terrorism sa bansa?” Padilla asked. (Do you know how severe terrorism is in the country?) Wamil, an accountant and lawyer, responded he has \"no threshold\" to determine that Padilla said he asked because he heard that Wamil is in charge of investigating the use of confidential funds. Auditor says 'first time' to encounter confidential expenses backed only by acknowledgement receipts Wamil clarified that COA's role is to see if government agencies complied with rules on accounting for confidential fund expenditures.. \"Hindi po siya investigation, evaluation siya,\" Wamil said. (It is not an investigation but an evaluation.) Padilla also pressed Wamil on the audit observations that he had raised. \"Konklusyon po ba yun (Is that a conclusion)?"
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Citation 1 directly quotes Padilla asking about the severity of terrorism in the country (\"Alam niyo po ba kung gaano na kagrabe ang terrorism sa bansa?\"), which constitutes noting the threat of terrorism in the country. Citation 0 summarizes Padilla's questioning as stressing the importance of confidential funds to address terrorism and security threats, further supporting that he noted the threat. All details in the assertion are covered: Padilla is the subject, he is the one noting, and the threat of terrorism in the country is explicitly referenced. No contradiction is present.",
+              "context": {
+                "start": 0,
+                "end": 73,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator-judge Robin Padilla",
+                      "start": 0,
+                      "end": 27
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "the threat of terrorism in the country",
+                      "start": 34,
+                      "end": 72
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "noted",
+                      "start": 28,
+                      "end": 33
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator-judge Robin Padilla noted",
+                      "start": 0,
+                      "end": 33
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "the threat of terrorism in the country",
+                      "start": 34,
+                      "end": 72
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator-judge Robin Padilla",
+                      "start": 0,
+                      "end": 27
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 73
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "citation_ids": [
+                0,
+                1
+              ],
+              "reason": "Citation 1 directly quotes Padilla asking about the severity of terrorism in the country (\"Alam niyo po ba kung gaano na kagrabe ang terrorism sa bansa?\"), which constitutes noting the threat of terrorism in the country. Citation 0 summarizes Padilla's questioning as stressing the importance of confidential funds to address terrorism and security threats, further supporting that he noted the threat. All details in the assertion are covered: Padilla is the subject, he is the one noting, and the threat of terrorism in the country is explicitly referenced. No contradiction is present.",
+              "component_id": 0
+            }
+          ],
+          "original_claim": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+              "sources": {
+                "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0,
+                    5
+                  ],
+                  "reason": "Passage 0 establishes that Sen. Robin Padilla questioned a state auditor about terrorism and security threats, stressing the importance of confidential funds to address these issues. Passage 5 shows Padilla directly asking about the severity of terrorism in the country, which demonstrates that he noted the threat of terrorism. This matches the claim's context and referent.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                      "quote": "MANILA — Sen. Robin Padilla on Wednesday questioned state auditor Roderick Wamil on his familiarity with terrorism and with security threats as he stressed the importance of confidential funds to address these issues."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+                      "quote": "“Ayun, hindi kayo exposed,\" Padilla said. (Oh there, you are not exposed to that.) Auditor: Medicines ‘not normal’ reward for information in confidential operations ARMED GROUPS Padilla then shifted his questions to national security as he asked if Wamil was familiar with armed groups ISIS, Abu Sayyaf and the New People's Army. \"Sa news po, nababalitaan ko,\" the auditor said. (I heard about them in the news.) “Alam niyo po ba kung gaano na kagrabe ang terrorism sa bansa?” Padilla asked. (Do you know how severe terrorism is in the country?) Wamil, an accountant and lawyer, responded he has \"no threshold\" to determine that Padilla said he asked because he heard that Wamil is in charge of investigating the use of confidential funds. Auditor says 'first time' to encounter confidential expenses backed only by acknowledgement receipts Wamil clarified that COA's role is to see if government agencies complied with rules on accounting for confidential fund expenditures.. \"Hindi po siya investigation, evaluation siya,\" Wamil said. (It is not an investigation but an evaluation.) Padilla also pressed Wamil on the audit observations that he had raised. \"Konklusyon po ba yun (Is that a conclusion)?"
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://mb.com.ph/2022/11/21/confidential-intel-funds-needed-vs-terrorism-violence-robin-padilla": {
+                  "status": "matched",
+                  "passage_ids": [
+                    9,
+                    11
+                  ],
+                  "reason": "Passage 9 shows Senator Robin Padilla discussing the need for confidential and intelligence funds to counter violence caused by terrorist groups, and passage 11 quotes him on the role of such funds in clearing remote areas of terrorists. These passages establish that Padilla noted the threat of terrorism in the country, matching the claim's referent.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2022/11/21/confidential-intel-funds-needed-vs-terrorism-violence-robin-padilla",
+                      "quote": "Senator Robinhood \"Robin\" C. Padilla on Monday, November 21 said the proper use of confidential and intelligence funds is key to counter the violence caused by terrorist groups."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2022/11/21/confidential-intel-funds-needed-vs-terrorism-violence-robin-padilla",
+                      "quote": "\"Itong intelligence at confidential fund na ito ay nakatulong po para linisin ang mga liblib na lugar ng mga terorista, ang mga tinatawag nating nananakot, nangingikil, nandiyan po lahat yan (The intelligence and confidential funds will help clear remote areas of terrorists who harass and extort from our people),\" he added."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-robin-padilla-misleadingly-links-beiru",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/the-absurdity-that-is-pia-cayetano",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-robin-padilla-maling-ini-uugnay-ang-pa",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/doj-subpoenas-robin-padilla-obstruction-justice-complaint/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/voices/newsletters/robin-padilla-senator-judge-troll-sara-duterte-impeachment-trial/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/15/robin-padilla-gets-doj-subpoena-over-dela-rosa-escape-1712",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/6/1/robin-padilla-hindi-ako-traydor-1240",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/989280/force-majeure-explainer-what-is/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999975/robin-padilla-insulted-heroes-ninoy-by-likening-aliases-to-vp-sara-s-unusual-fund-recipients-prosecutio/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/989596/robin-padilla-long-term-senators-failed-the-poor-workers/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2253431/padilla-seeks-automatic-reservist-registration-for-eligible-filipinos-for-national-emergency-preparedness",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305990/robin-padilla-happy-to-face-doj-over-obstruction-complaint",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2155265/isnt-character-assassination-a-threat-to-national-security-padilla-asks",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/05/28/2531146/fact-check-global-war-la-nia-are-not-force-majeure-senate-sessions",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/15/2556497/doj-summons-robin-padilla-6-others-over-bato-dela-rosa-escape",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://interaksyon.philstar.com/politics-issues/2026/07/15/316396/robin-remarks-facing-complaints-revive-criticism-helping-bato-evade-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2022/11/21/confidential-intel-funds-needed-vs-terrorism-violence-robin-padilla",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/08/26/robin-defends-use-of-aliases-in-confidential-fund-records/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/14/komunista-ako-robin-padilla-likens-dutertes-to-romanovs-who-fought-communists",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1276014",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284350",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1233243",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/infographics/2023/08/21/honoring-the-lives-affected-by-terrorism",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/senator-robin-padilla-pushes-for-devt-programs-in-pag-asa-island/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/padilla-urges-senate-to-uphold-constitution-in-impeachment-vote-debate",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-15-of-vp-sara-duterte-impeachment-trial-or-august-12-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/fact-checked-pahayag-ni-robin-padilla-sa-rebelyon-sa-pilipinas",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/lacson-gordon-dispute-padilla-s-force-majeure-argument",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-robin-padilla-misleadingly-links-beiru",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/the-absurdity-that-is-pia-cayetano",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-robin-padilla-maling-ini-uugnay-ang-pa",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/doj-subpoenas-robin-padilla-obstruction-justice-complaint/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/voices/newsletters/robin-padilla-senator-judge-troll-sara-duterte-impeachment-trial/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/15/robin-padilla-gets-doj-subpoena-over-dela-rosa-escape-1712",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/6/1/robin-padilla-hindi-ako-traydor-1240",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/989280/force-majeure-explainer-what-is/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999975/robin-padilla-insulted-heroes-ninoy-by-likening-aliases-to-vp-sara-s-unusual-fund-recipients-prosecutio/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/989596/robin-padilla-long-term-senators-failed-the-poor-workers/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2253431/padilla-seeks-automatic-reservist-registration-for-eligible-filipinos-for-national-emergency-preparedness",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305990/robin-padilla-happy-to-face-doj-over-obstruction-complaint",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2155265/isnt-character-assassination-a-threat-to-national-security-padilla-asks",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/05/28/2531146/fact-check-global-war-la-nia-are-not-force-majeure-senate-sessions",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/15/2556497/doj-summons-robin-padilla-6-others-over-bato-dela-rosa-escape",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://interaksyon.philstar.com/politics-issues/2026/07/15/316396/robin-remarks-facing-complaints-revive-criticism-helping-bato-evade-arrest/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2022/11/21/confidential-intel-funds-needed-vs-terrorism-violence-robin-padilla",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/08/26/robin-defends-use-of-aliases-in-confidential-fund-records/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/14/komunista-ako-robin-padilla-likens-dutertes-to-romanovs-who-fought-communists",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1276014",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284350",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1233243",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/infographics/2023/08/21/honoring-the-lives-affected-by-terrorism",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/senator-robin-padilla-pushes-for-devt-programs-in-pag-asa-island/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/padilla-urges-senate-to-uphold-constitution-in-impeachment-vote-debate",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-15-of-vp-sara-duterte-impeachment-trial-or-august-12-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/fact-checked-pahayag-ni-robin-padilla-sa-rebelyon-sa-pilipinas",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/lacson-gordon-dispute-padilla-s-force-majeure-argument",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Senator-judge Robin Padilla noted the threat of terrorism in the country."
+        },
+        "scoring_claim": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+        "search_query": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "55082b4ca88a5c0611e29fbc33678ebf3dc2166ce56fb6037890679de01eba20",
+        "cache_version": "week7-institution-equivalence-v24",
+        "verdict": "Verified",
+        "message": "Retrieved evidence supports that Robin Padilla made this statement. This verifies the attribution, not the underlying claim by itself.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "ABS-CBN News",
+          "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+          "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+          "status": "extracted",
+          "word_count": 491,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "status": "extracted",
+            "word_count": 491,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 102,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "status": "extracted",
+            "word_count": 491,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Padilla tests auditor on knowledge of terrorism, security threats | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+            "status": "extracted",
+            "word_count": 491,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Verified",
+              "reason": "Padilla explicitly linked the Beirut explosion to a high threat of terrorism in the Philippines.",
+              "supporting_urls": [
+                "https://verafiles.org/articles/vera-files-fact-check-robin-padilla-misleadingly-links-beiru"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 4,
+        "claim_text": "The need for medicines in far-flung areas and the threat of terrorism in the country were cited as among the reasons for Vice President Sara Duterte’s use of confidential funds.",
+        "normalized_claim": "The need for medicines in far-flung areas and the threat of terrorism were cited as reasons for Sara Duterte’s use of confidential funds.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "error",
+          "verdict": null,
+          "components": [],
+          "supporting_urls": [],
+          "reason": "Component-level evidence review could not be completed.",
+          "error": "ValueError",
+          "error_code": "invalid_review_response",
+          "failed_stage": "partition"
+        },
+        "review_error": {
+          "reason_code": "invalid_review_response",
+          "failed_stage": "partition",
+          "retryable": true
+        },
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/the-lies-and-plunder-of-sara-duterte",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-9-army-denials-deepen-questions-on-secret-funds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-sara-duterte-wrongly-claims-law-bars-discussion-on-confidential-funds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/how-sara-duterte-broke-rules-joint-circular-confidential-funds-repeatedly/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/coa-funny-names-receipts-confidential-funds-spending-same-day-sara-duterte-defense/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/names-confidential-funds-acknowledgement-receipts-aliases-sara-duterte-defense/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/11/witness-duterte-s-alleged-release-of-confidential-funds-to-security-chief-violated-rules-1600",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/parties-distance-selves-from-idea-that-duterte-confi-fund-payees-used-aliases-1302",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/2026/8/25/duterte-masterminded-confidential-fund-scam-prosecution-maintains-1936",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/984618/vp-sara-liable-for-p375-million-confi-funds-use-without-documentation-coa/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999689/sara-duterte-impeachment-trial-day-18-confidential-funds-disbursed-to-may-pamana-pagong-pusa/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999814/palace-imee-marcos-questioning-appears-aimed-at-clearing-sara-duterte-over-confidential-funds/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2283471/witness-sara-had-no-basis-to-use-secret-funds-as-vp-or-deped-chief",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2304350/same-day-receipts-add-scrutiny-to-sara-dutertes-confidential-spending-alonto-adiong-2",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2125949/duterte-finally-reveals-how-deped-confidential-funds-were-spent",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/18/2550023/witness-p125-million-secret-funds-released-vps-order",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/24/2551500/witness-acosta-i-dont-know-why-sara-duterte-chose-me-disburse-funds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/01/2553309/sara-duterte-trial-recap-sept-1-military-men-depeds-p155-million-confidential-funds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/25/ovp-exec-says-vp-duterte-sought-confidential-funds-without-any-supporting-documents",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/11/5-stages-of-confiscam-exposed-vp-sara-tagged-as-mastermind",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/08/barbers-zero-sincerity-from-vp-duterte-to-account-for-p6125-m-confidential-funds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1246641",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282603",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1281564",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/prosecution-panel-says-well-prepared-for-vp-sara-impeachment-trial-at-senate-urges-public-to-monitor-participate-in-the-process/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/worlds-largest-indoor-arena-opens-in-davao-city/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/page/753/?article=901337160210",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ovp-had-no-confidential-funds-in-2026-but-vp-sara-held-tree-planting-activity-prosecution",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/vp-sara-duterte-the-brain-behind-the-confidential-funds-scam-house-prosecution",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dutertes-ovp-spent-confidential-funds-on-christmas-parties-tree-planting-other-events-auditor",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/madriaga-vp-duterte-s-confidential-funds-disbursed-in-1-day-not-11-days",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/testimony-of-ovp-witness-a-smoking-gun-in-sara-trial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sara-drops-request-for-secret-funds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/the-lies-and-plunder-of-sara-duterte",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-9-army-denials-deepen-questions-on-secret-funds",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-sara-duterte-wrongly-claims-law-bars-discussion-on-confidential-funds",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/how-sara-duterte-broke-rules-joint-circular-confidential-funds-repeatedly/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/coa-funny-names-receipts-confidential-funds-spending-same-day-sara-duterte-defense/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/names-confidential-funds-acknowledgement-receipts-aliases-sara-duterte-defense/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/11/witness-duterte-s-alleged-release-of-confidential-funds-to-security-chief-violated-rules-1600",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/parties-distance-selves-from-idea-that-duterte-confi-fund-payees-used-aliases-1302",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/2026/8/25/duterte-masterminded-confidential-fund-scam-prosecution-maintains-1936",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/984618/vp-sara-liable-for-p375-million-confi-funds-use-without-documentation-coa/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999689/sara-duterte-impeachment-trial-day-18-confidential-funds-disbursed-to-may-pamana-pagong-pusa/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999814/palace-imee-marcos-questioning-appears-aimed-at-clearing-sara-duterte-over-confidential-funds/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2283471/witness-sara-had-no-basis-to-use-secret-funds-as-vp-or-deped-chief",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2304350/same-day-receipts-add-scrutiny-to-sara-dutertes-confidential-spending-alonto-adiong-2",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2125949/duterte-finally-reveals-how-deped-confidential-funds-were-spent",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/18/2550023/witness-p125-million-secret-funds-released-vps-order",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/24/2551500/witness-acosta-i-dont-know-why-sara-duterte-chose-me-disburse-funds",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/01/2553309/sara-duterte-trial-recap-sept-1-military-men-depeds-p155-million-confidential-funds",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/25/ovp-exec-says-vp-duterte-sought-confidential-funds-without-any-supporting-documents",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/11/5-stages-of-confiscam-exposed-vp-sara-tagged-as-mastermind",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/08/barbers-zero-sincerity-from-vp-duterte-to-account-for-p6125-m-confidential-funds",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1246641",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282603",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1281564",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/prosecution-panel-says-well-prepared-for-vp-sara-impeachment-trial-at-senate-urges-public-to-monitor-participate-in-the-process/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/worlds-largest-indoor-arena-opens-in-davao-city/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/page/753/?article=901337160210",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ovp-had-no-confidential-funds-in-2026-but-vp-sara-held-tree-planting-activity-prosecution",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/vp-sara-duterte-the-brain-behind-the-confidential-funds-scam-house-prosecution",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dutertes-ovp-spent-confidential-funds-on-christmas-parties-tree-planting-other-events-auditor",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/madriaga-vp-duterte-s-confidential-funds-disbursed-in-1-day-not-11-days",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/testimony-of-ovp-witness-a-smoking-gun-in-sara-trial",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sara-drops-request-for-secret-funds",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "The need for medicines in far-flung areas and the threat of terrorism were cited as reasons for Sara Duterte’s use of confidential funds."
+        },
+        "scoring_claim": "The need for medicines in far-flung areas and the threat of terrorism were cited as reasons for Sara Duterte’s use of confidential funds.",
+        "search_query": "Sara Duterte confidential funds reasons",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "fbbc7d726519dd66bc171e61a3676228b48fe8e1391cc35aaf93710f4433a5d4",
+        "cache_version": "week7-institution-equivalence-v24",
+        "verdict": "Review Failed",
+        "message": "IRIS could not complete the evidence review for this claim, so no verdict was issued. This is a technical failure, not a finding about the claim. Please retry.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 94,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not explicitly mention the need for medicines or terrorism as reasons for the use of confidential funds.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": true,
+        "matched_phrases": [
+          "for me"
+        ],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "president",
+          "vice president",
+          "senator",
+          "robin padilla",
+          "confidential funds"
+        ],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [
+            "president",
+            "vice president",
+            "senator",
+            "robin padilla"
+          ],
+          "political_institutions": [],
+          "government_controversy": [
+            "confidential funds"
+          ],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules",
+        "error": null,
+        "post_type": "fact_only",
+        "confidence": 0.95,
+        "ambiguity_score": 0.0,
+        "ambiguity_reasons": [],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_to_verification",
+        "verification_text": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds.",
+        "normalized_verification_text": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.95,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.95,
+            "second_label": "opinion",
+            "second_label_score": 0.05,
+            "score_gap": 0.9,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_to_verification",
+            "reason_codes": [],
+            "user_notification": null,
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": false,
+          "status": "not_needed",
+          "error": null,
+          "result": null
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "reason": "All clauses in the segment are independently checkable factual or attributed statements."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "Robin Padilla asked Roderick Wamil about his personal background."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              2
+            ],
+            "assertions": [
+              "Robin Padilla noted the threat of terrorism in the country."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              3
+            ],
+            "assertions": [
+              "The need for medicines in far-flung areas and the threat of terrorism were cited as reasons for Sara Duterte’s use of confidential funds."
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+            "normalized_claim": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Robin Padilla",
+              "role": "senator-judge",
+              "statement": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "Senator-judge Robin Padilla asked state auditor Roderick Wamil about his personal background.",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds."
+              }
+            ],
+            "evidence_context": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "grounded",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+            "normalized_claim": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Robin Padilla",
+              "role": "senator-judge",
+              "statement": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "Senator-judge Robin Padilla noted whether Roderick Wamil understood the need for medicines in far-flung areas.",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds."
+              }
+            ],
+            "evidence_context": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "grounded",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 3,
+            "claim_text": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+            "normalized_claim": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Robin Padilla",
+              "role": "senator-judge",
+              "statement": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "Senator-judge Robin Padilla noted the threat of terrorism in the country.",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds."
+              }
+            ],
+            "evidence_context": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "grounded",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 4,
+            "claim_text": "The need for medicines in far-flung areas and the threat of terrorism in the country were cited as among the reasons for Vice President Sara Duterte’s use of confidential funds.",
+            "normalized_claim": "The need for medicines in far-flung areas and the threat of terrorism were cited as reasons for Sara Duterte’s use of confidential funds.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Sara Duterte confidential funds reasons",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds."
+              }
+            ],
+            "evidence_context": "Senator-judge Robin Padilla asks state auditor Roderick Wamil about his personal background, noting whether he understood the need for medicines in far-flung areas and the threat of terrorism in the country—issues cited as among the reasons for Vice President Sara Duterte’s use of confidential funds.",
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "753e4a237a0d4604b4844b5e33715f4d",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 0.0072,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0004,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0013,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 9.609,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0026,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0016,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0014,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 10.4152,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0836,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 1.9545,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.6957,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.7329,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0314,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 12.6058,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0016,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 10.0307,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0762,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 2.4068,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.3935,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.4239,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0233,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 10.5813,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.political_flags",
+            "duration_seconds": 0.0014,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.search_and_extract",
+            "duration_seconds": 11.1187,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.search_status",
+            "duration_seconds": 0.0824,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.generate_verdict",
+            "duration_seconds": 1.8257,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.openai_rag_fallback",
+            "duration_seconds": 1.5976,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.fallback_total",
+            "duration_seconds": 1.6242,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.public_evidence_sources",
+            "duration_seconds": 0.033,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.component_evidence_review",
+            "duration_seconds": 11.3532,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_4.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_4.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_4.political_flags",
+            "duration_seconds": 0.0016,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_4.search_and_extract",
+            "duration_seconds": 10.872,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_4.search_status",
+            "duration_seconds": 0.1005,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_4.generate_verdict",
+            "duration_seconds": 1.8871,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_4.openai_rag_fallback",
+            "duration_seconds": 1.7753,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_4.fallback_total",
+            "duration_seconds": 1.8083,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_4.public_evidence_sources",
+            "duration_seconds": 0.0278,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_4.component_evidence_review",
+            "duration_seconds": 3.0346,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 95.7413,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 105.3973,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}
