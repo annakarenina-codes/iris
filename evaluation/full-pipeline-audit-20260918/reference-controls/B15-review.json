@@ -1,0 +1,116 @@
+{
+  "case_id": "B15",
+  "reference": "R-fanmeet",
+  "trace_id": "b9cc63707f344405a73e659900c54a84",
+  "review": {
+    "status": "ok",
+    "verdict": "Not Found",
+    "components": [
+      {
+        "component": "SOBRANG BOYFRIEND CODED NAMAN, OPPA! South Korean actor na si Byeon Woo-seok, nag-post sa Instagram ng kanyang photo update.",
+        "status": "not_supported",
+        "citations": [],
+        "event_group_id": 0,
+        "event_rejections": [
+          {
+            "component_id": 0,
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+            "status": "uncertain",
+            "reason": "Passage 1 mentions a photo from Byeon Woo-seok's Instagram account but does not confirm a recent photo update or the specific netizen comment. There is no direct evidence in the passages about the Instagram post or the comment, only that a photo from his Instagram was used."
+          }
+        ]
+      },
+      {
+        "component": "\u201cSo handsome ,\u201d komento naman ng isang netizen.",
+        "status": "not_supported",
+        "citations": [],
+        "event_group_id": 0
+      },
+      {
+        "component": "Nakatakdang pumunta si Woo-seok sa Pilipinas sa October 10, 2026 para sa kanyang \u201cThe Secret Library\u201d fan meeting tour na gaganapin sa SM Mall of Asia Arena.",
+        "status": "not_supported",
+        "citations": [],
+        "review_reason": "The passages confirm that Byeon Woo-seok will have an event at the Mall of Asia Arena on October 10 as part of his 'The Secret Library' fan meeting tour. However, they do not specify the year as 2026, only stating 'October 10.' Therefore, the assertion that the event is on October 10, 2026 is not fully supported; the year is missing from the evidence.",
+        "event_group_id": 1
+      },
+      {
+        "component": "(Instagram/byeonwooseok)",
+        "status": "not_supported",
+        "citations": [],
+        "event_group_id": 0
+      }
+    ],
+    "supporting_urls": [],
+    "reason": "Retrieved passages support 0 of 4 factual components.",
+    "entailment_checks": [
+      {
+        "same_subject_and_event": true,
+        "assertion_supported": false,
+        "qualifiers_preserved": false,
+        "citation_ids": [
+          0,
+          1
+        ],
+        "reason": "The passages confirm that Byeon Woo-seok will have an event at the Mall of Asia Arena on October 10 as part of his 'The Secret Library' fan meeting tour. However, they do not specify the year as 2026, only stating 'October 10.' Therefore, the assertion that the event is on October 10, 2026 is not fully supported; the year is missing from the evidence.",
+        "component_id": 2
+      }
+    ],
+    "event_identity_checks": [
+      {
+        "group_id": 0,
+        "component_ids": [
+          0,
+          1,
+          3
+        ],
+        "referent": "Byeon Woo-seok posting a photo update on his Instagram, with a netizen commenting 'So handsome'.",
+        "sources": {
+          "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729": {
+            "status": "uncertain",
+            "passage_ids": [
+              1
+            ],
+            "reason": "Passage 1 mentions a photo from Byeon Woo-seok's Instagram account but does not confirm a recent photo update or the specific netizen comment. There is no direct evidence in the passages about the Instagram post or the comment, only that a photo from his Instagram was used.",
+            "citations": [
+              {
+                "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+                "quote": "Photo from actor's Instagram account South Korean actor Byeon Woo-seok is returning to the Philippines for a fan meeting, the event's local producer said Tuesday."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "group_id": 1,
+        "component_ids": [
+          2
+        ],
+        "referent": "Byeon Woo-seok is scheduled to visit the Philippines on October 10, 2026 for his 'The Secret Library' fan meeting tour at SM Mall of Asia Arena.",
+        "sources": {
+          "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729": {
+            "status": "matched",
+            "passage_ids": [
+              2,
+              3
+            ],
+            "reason": "Passage 2 confirms the event will be held at the Mall of Asia Arena on October 10. Passage 3 confirms it is part of Woo-seok's 'The Secret Library' fan meeting tour. The date, location, and event are all established.",
+            "citations": [
+              {
+                "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+                "quote": "The event will be held at the Mall of Asia Arena on October 10, PULP Live World said."
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+                "quote": "The show is part of Woo-Seok's \"The Secret Library\" fan meeting tour, which will commence in Seoul in July before heading to other Asian stops."
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "event_identity_model": "gpt-4.1-2025-04-14",
+    "partition_model": "gpt-4.1-2025-04-14",
+    "entailment_model": "gpt-4.1-2025-04-14"
+  },
+  "scope": "Fresh model review with known article supplied. Does not test search or claim extraction."
+}

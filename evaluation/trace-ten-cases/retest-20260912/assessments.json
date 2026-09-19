@@ -1,0 +1,72 @@
+[
+  {
+    "n": 1,
+    "status": "Cannot yet judge",
+    "reference": "P01-C01 remains an ambiguity decision. The submitted text explicitly says imaginary, but the original graphic and intended satire context were not included. Do not invent that missing context or interpret Not Found as false.",
+    "match": "One output retains the original assertion. Whether it should enter factual verification or a possible-satire route is not yet an agreed reference label. No mandatory extra/missed-ID score is assigned.",
+    "observed": "One factual_claim; Not Found; zero evidence links. No execution error. Final text retains imaginary, although the extraction dependency proposed a normalization without that qualifier. Final-verdict agreement remains unscored."
+  },
+  {
+    "n": 2,
+    "status": "Failed",
+    "reference": "P02-C01: S01 now supplies full attributed support for BARMM and terrorism. P02-C02: S01 supplies AOM/security context and S21 reports the NPA/school-recruitment rationale; exact surveillance wording remains partial. P02-C03: S01 describes the investigation premise but not the complete question verbatim. P02-C04: S01 explicitly attributes the evaluation-not-investigation correction to Wamil. P02-C05-C07 still rely on S02 for their exact exchanges; S01 does not establish those exact details.",
+    "match": "Output 1 -> P02-C01; 2 -> P02-C02; 3 -> incomplete P02-C04; 4 -> incomplete P02-C05; 5 -> P02-C06 with unresolved referent; 6 -> P02-C07. P02-C03 is missing. Outputs 3 and 4 are fragments, not extra valid claims. All six were labeled factual_claim instead of attributed_statement.",
+    "observed": "Six outputs: 1 Verified, 2 Partially Verified, 3 Not Found. Translation contained a service Error 500 message. ABS-CBN entered the shared pool with 491 words. Output 1 also cites an unrelated BARMM-election article: evidence selection fails even where a valid supporting article exists. Output 3 says the evaluation answer is absent despite S01 containing it. Output 6 cites S01 without evidence of the confidential/classified exchange. Do not count that partial verdict as a demonstrated match."
+  },
+  {
+    "n": 3,
+    "status": "Failed",
+    "reference": "S03 supports P03-C05, C07, C08 and C09, and supplies partial chronology for C01. S17 now supports C06, limited to maritime rights rather than ownership of all disputed territory. S18 supports the initial injury account, investigation steps and Cardino attribution (C03, C04, C10). S04 gives a later contrary account on injury and forced entry: preserve the conflict for C02-C03 and the as-of date for C04; do not preset those disputed details to Verified.",
+    "match": "Ten candidates before the crash: outputs 7/8 cover parts of P03-C01; 1/2 overlap on P03-C02; 3 -> C03; 4 -> C04; 6 -> C05; 10 -> C06; 5/9 duplicate C10. C07-C09 are missing. Output 1 also mixes the death and testimony assertions; an equal count of ten therefore does not mean correct coverage.",
+    "observed": "No completed final response. ComponentReviewError; saved component-review result records ValueError without a precise retained reason. The extraction artifact is available, but the TRACE capture is partial. Two early internal Verified results were recorded before failure; they are not a delivered complete-case outcome. Final-verdict agreement cannot be judged for this failed request."
+  },
+  {
+    "n": 4,
+    "status": "Failed",
+    "reference": "P04-C01 is directly supported by S05's reunion reporting. P04-C02 needs the scope of Bea's denial preserved: S05 says not co-parenting as a couple, which is narrower than no co-parenting at all. GMA entertainment is outside the configured news search path; this is not grounds to discard a checkable input.",
+    "match": "Zero outputs. P04-C01 and P04-C02 both missed; no extras.",
+    "observed": "Stopped at stop_no_checkable_claims with No Checkable Claims. The reunion and reported denial are checkable. No retrieval or evidence review ran, so this is an upstream screening failure, not proof that evidence does not exist. Verdict agreement for the parenting statement remains unscored pending wording."
+  },
+  {
+    "n": 5,
+    "status": "Failed",
+    "reference": "S06 directly supports the constitutional-citation attribution for P05-C01. S15 offers in-policy surrounding discussion but its immunity passage is not equivalent to the exact constitutional-citation assertion. C02 remains only partly matched. C03: S15 confirms a request to the Senate, but not the named Gatchalian recipient. C04: S15 now supports Saturday bail, PHP360,000, three counts and the named people; proposed Verified for that factual assertion, not guilt.",
+    "match": "Output 1 -> partial P05-C01 (specific article/section citation omitted); output 2 -> P05-C03. P05-C02 and P05-C04 missed. No extra claim. Unsupported source/program placeholders from extraction were removed by attribution grounding.",
+    "observed": "Two outputs: Verified and Not Found. The Verified component cites a passage about whether the Constitution explicitly grants immunity, not a passage establishing the claimed impeachable-officer provision. The link is real but that selected passage is insufficient: evidence-pair failure. S15 contained the bail details, but no bail claim was extracted. Do not accept the positive badge alone as a pass."
+  },
+  {
+    "n": 6,
+    "status": "Failed",
+    "reference": "S07 supports recent road damage and project-start background, but its broader budget is not automatically the same as the stated phase cost. A GMA-uploaded broadcast transcript offers a lead for the PHP1.2 billion Phase 1 figure (S22), not yet an approved article passage. The exact 24 Oras attribution, Sonza criticism and original no-response cutoff remain unresolved.",
+    "match": "Zero outputs. P06-C01-C05 all missed; no extras. The opening praise/sarcasm should not remove the factual paragraphs.",
+    "observed": "Stopped at stop_no_checkable_claims. The translation field contains a service Error 500 message. No retrieval or evidence review ran. Failure is established at screening/translation even though some final evidence labels remain unresolved."
+  },
+  {
+    "n": 7,
+    "status": "Failed",
+    "reference": "S01 is now fully readable. It directly covers Padilla's questions about Wamil's visits and exposure, medicine access in remote communities, and terrorism. It also links the hearing to confidential funds. P07-C01 is a paraphrase of exposure/experience, not proof of a broader biography inquiry; C04 should stay a reported rationale, not proof of actual spending. Proposed parent judgment: at least Partially Verified on these passages, with full support dependent on the precise scope of those two components.",
+    "match": "One intact parent claim contains P07-C01-C04. This satisfies the intended one-parent structure; the four IDs are components, not four required output cards. No extra or missed component apparent in the extracted wording.",
+    "observed": "ComponentReviewError; saved review outcome records ValueError. S01 was in the eligible review input at 491 words, so the request did not fail because this article was absent or too thin. No final verdict was delivered. Extraction shape and article availability pass; end-to-end execution fails. TRACE capture is partial, so the exact validation subreason remains unknown."
+  },
+  {
+    "n": 8,
+    "status": "Failed",
+    "reference": "S08 supports a related Samaniego science/network argument from a different station/date. It does not verify the specific DZRH Special on Saturday interview. Exact Call of Duty, more-than-20-games and Vivamax passages remain unlocated. Do not transfer the developer's age-rating statement to Samaniego. Not Found is defensible with these available anchors, but does not prove the quoted interview never happened.",
+    "match": "Five outputs: 1 -> P08-C01; 3 -> C02 mixed with repeated C01 framing; 4 -> C03; 5 -> C04; 2 -> C05 with a general MTRCB reference. C06's specific Vivamax hypothetical was not retained. Partial coverage is not six complete targets.",
+    "observed": "All five outputs Not Found, zero evidence links. Attribution anchors were retained, but translation contained a service Error 500 message. The missing hypothetical and contaminated translation make this case fail the proposed extraction/processing checks. Final-verdict correctness for the exact interview remains cannot yet judge; do not classify all five as false negatives."
+  },
+  {
+    "n": 9,
+    "status": "Failed",
+    "reference": "S10's recovered article explicitly reports the Wednesday PHP62.513-per-USD close; it describes a rebound from the prior day, so bagsak must not be turned into a day-on-day depreciation claim. S20 is the canonical Philstar market record, but IRIS extracts only 43 words of mostly boilerplate; the rate is in the title. Keep the numeric/date assertion distinct from the framing and note that the year comes from run context.",
+    "match": "Zero outputs. P09-C01 missed; no extras.",
+    "observed": "Initial run: No Checkable Claims after a Windows console-encoding exception caused the translator to return the original text. A separate Unicode-safe follow-up also returned No Checkable Claims and exposed the translation service Error 500 text. The extra run is not an eleventh benchmark case. The numerical assertion was never searched or reviewed."
+  },
+  {
+    "n": 10,
+    "status": "Failed",
+    "reference": "S11's structured article body is now recovered: it supports the ten-person announcement and award definition, even though its 144-word text is flagged thin. S12 supports both for the current run but was published after the original historical test. Keep P10-C01 plus C02 as two reviewable assertions or one compound output with both components; exact card count need not block this test.",
+    "match": "Zero outputs. P10-C01 and proposed component P10-C02 both missed; no extras.",
+    "observed": "Stopped at stop_no_checkable_claims with No Checkable Claims. A documented announcement of forthcoming recognition is checkable; future tense and exemplary wording should not cause both factual assertions to be discarded. No retrieval or evidence review ran."
+  }
+]

@@ -1,0 +1,83 @@
+{
+  "case": 10,
+  "trace_id": "c005bed63f204a388c4813bfa317ed46",
+  "scope": "language, translation and profiling only; no final verdict test",
+  "started_utc": "2026-09-12T19:53:59.080030+00:00",
+  "original_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country’s highest national recognition for distinct and significant contributions to the arts and letters.",
+  "language": "english",
+  "translated_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country’s highest national recognition for distinct and significant contributions to the arts and letters.",
+  "profile": {
+    "status": "ok",
+    "method": "local_rules_with_openai_advice",
+    "error": null,
+    "post_type": "fact_only",
+    "confidence": 0.9,
+    "ambiguity_score": 0.65,
+    "ambiguity_reasons": [
+      "low_classifier_confidence",
+      "needs_claim_extraction_review",
+      "openai_factual_claim_advice"
+    ],
+    "contains_factual_claims": true,
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "eligible_for_verification": true,
+    "recommended_route": "proceed_with_caution",
+    "verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country’s highest national recognition for distinct and significant contributions to the arts and letters.",
+    "normalized_verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country’s highest national recognition for distinct and significant contributions to the arts and letters.",
+    "segments": [
+      {
+        "segment_id": "s1",
+        "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country’s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "translated_text": null,
+        "scores": {
+          "factual_claim": 0.2,
+          "opinion": 0.05,
+          "forecast_or_projection_detected": 0.37,
+          "quote": 0.05,
+          "satire_or_humor": 0.05,
+          "call_to_action": 0.05,
+          "contextual_background": 0.05,
+          "unclear": 0.3
+        },
+        "top_label": "factual_claim",
+        "top_label_score": 0.9,
+        "second_label": "unclear",
+        "second_label_score": 0.3,
+        "score_gap": 0.07,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "reason_codes": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice"
+        ],
+        "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals."
+      }
+    ],
+    "ignored_segments": [],
+    "user_notification": null,
+    "openai_profile": {
+      "used": true,
+      "status": "ok",
+      "error": null,
+      "result": {
+        "segments": [
+          {
+            "segment_id": "s1",
+            "top_label": "factual_claim",
+            "top_label_score": 0.9,
+            "eligible_for_verification": true,
+            "reason_codes": [
+              "checkable announcement",
+              "specific claim about recognition"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

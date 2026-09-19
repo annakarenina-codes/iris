@@ -1,0 +1,1410 @@
+{
+  "case": "moira",
+  "cache_version": "week7-source-review-repair-v16",
+  "seconds": 65.82,
+  "http_status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "Content-Length": "49579",
+    "X-IRIS-Trace-ID": "8de06af62d52443fa38e0f07f62754dd"
+  },
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 2 extracted claims individually.",
+    "original_text": "HEALING ERA \u2764\ufe0f\u200d\ud83e\ude79\nLOOK: Moira Dela Torre faced the media earlier today, Sept. 17, in Quezon City, to talk about her upcoming concert \u201cWhere It All Started,\u201d set for Oct. 4.\nDela Torre opened up about her healing journey after a series of heartbreaks and controversies. | via Jessica Ann Evangelista,",
+    "translated_text": "HEALING ERA \u2764\ufe0f\u200d\ud83e\ude79\nLOOK: Moira Dela Torre faced the media earlier today, Sept. 17, in Quezon City, to talk about her upcoming concert \u201cWhere It All Started,\u201d set for Oct. 4.\nDela Torre opened up about her healing journey after a series of heartbreaks and controversies. | via Jessica Ann Evangelista,",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 2,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s1",
+        "text": "HEALING ERA \u2764\ufe0f\u200d\ud83e\ude79",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "text": "| via Jessica Ann Evangelista,",
+        "segment_type": "uncheckable"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Moira Dela Torre faced the media earlier today, Sept. 17, in Quezon City, to talk about her upcoming concert \u201cWhere It All Started,\u201d set for Oct. 4.",
+        "normalized_claim": "Moira Dela Torre faced the media on September 17 in Quezon City to discuss her upcoming concert 'Where It All Started' scheduled for October 4.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "Moira Dela Torre faced the media on September 17 in Quezon City",
+              "status": "not_supported",
+              "citations": [],
+              "event_group_id": 0,
+              "event_rejections": [
+                {
+                  "component_id": 0,
+                  "url": "https://www.philstar.com/entertainment/2023/09/15/2296299/moira-dela-torre-celebrating-new-kind-independence",
+                  "status": "uncertain",
+                  "reason": "None of the passages from this source mention Moira Dela Torre facing the media on September 17 in Quezon City or discussing the 'Where It All Started' concert scheduled for October 4. The content is focused on her personal journey and endorsements, not the concert or a media event."
+                }
+              ]
+            },
+            {
+              "component": "to discuss her upcoming concert 'Where It All Started' scheduled for October 4.",
+              "status": "not_supported",
+              "citations": [],
+              "review_reason": "The passages confirm that Moira Dela Torre has an upcoming concert titled 'Where It All Started' scheduled for October 4 and that she announced it via social media. However, there is no information in the provided passages that she faced the media on September 17 in Quezon City to discuss the concert. Therefore, the assertion fragment about her discussing the concert with the media on that specific date and location is not supported.",
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 2 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": false,
+              "assertion_supported": false,
+              "qualifiers_preserved": false,
+              "citation_ids": [
+                0,
+                1
+              ],
+              "reason": "The passages confirm that Moira Dela Torre has an upcoming concert titled 'Where It All Started' scheduled for October 4 and that she announced it via social media. However, there is no information in the provided passages that she faced the media on September 17 in Quezon City to discuss the concert. Therefore, the assertion fragment about her discussing the concert with the media on that specific date and location is not supported.",
+              "component_id": 1
+            }
+          ],
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0,
+                1
+              ],
+              "referent": "Moira Dela Torre facing the media on September 17 in Quezon City to discuss her upcoming concert 'Where It All Started' scheduled for October 4.",
+              "sources": {
+                "https://www.abs-cbn.com/entertainment/showbiz/events/2026/7/20/moira-dela-torre-to-stage-major-concert-at-moa-arena-1142": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0
+                  ],
+                  "reason": "Passage 0 confirms Moira Dela Torre has an upcoming concert on October 4 at the SM Mall of Asia Arena. While it does not mention the media event on September 17 in Quezon City, it establishes the concert's existence and date, which is part of the referent. No passage in this source contradicts or confirms the media event, but the concert detail is matched.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/7/20/moira-dela-torre-to-stage-major-concert-at-moa-arena-1142",
+                      "quote": "MANILA -- OPM hitmaker Moira dela Torre is gearing up for her upcoming concert this October 4 at the SM Mall of Asia Arena."
+                    }
+                  ]
+                },
+                "https://www.philstar.com/entertainment/2023/09/15/2296299/moira-dela-torre-celebrating-new-kind-independence": {
+                  "status": "uncertain",
+                  "passage_ids": [],
+                  "reason": "None of the passages from this source mention Moira Dela Torre facing the media on September 17 in Quezon City or discussing the 'Where It All Started' concert scheduled for October 4. The content is focused on her personal journey and endorsements, not the concert or a media event.",
+                  "citations": []
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-at-15-truth-continues-to-be-our-business",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-celebs-netizens-nagkamali-sa-pag-share",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/7/20/moira-dela-torre-to-stage-major-concert-at-moa-arena-1142",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/2019/8/13/photos/moira-dela-torre-is-back-on-the-concert-scene-with-213553",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/tracking/moira_dela_torre/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/hobbiesandactivities/890667/moira-dela-torre-thanks-fans-after-successful-music-streams/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://entertainment.inquirer.net/684038/moira-dela-torre-ex-husband-jason-hernandez-have-moved-forward-now-civil",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://cebudailynews.inquirer.net/262434/a-braver-moira-to-enthral-cebu-in-a-concert-this-october",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://interaksyon.philstar.com/breaking-news/2018/09/17/134049/the-case-moira-dela-torre-appearance-the-marcos-fest-event/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2023/09/15/2296299/moira-dela-torre-celebrating-new-kind-independence",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2023/05/17/reyna-ng-opm-moira-dela-torre-nag-iisang-pinoy-artist-na-nagtala-ng-1b-spotify-stream/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2018/01/18/moira-dela-torre-hottest-recording-artist-ngayon/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1081713",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1124348",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/features/pushing-for-concert-tourism-in-davao/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/luzon/ncr/2nd-manila-dance-festival-to-take-center-stage-at-rizal-park/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-at-15-truth-continues-to-be-our-business",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-celebs-netizens-nagkamali-sa-pag-share",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/7/20/moira-dela-torre-to-stage-major-concert-at-moa-arena-1142",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/2019/8/13/photos/moira-dela-torre-is-back-on-the-concert-scene-with-213553",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/tracking/moira_dela_torre/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/hobbiesandactivities/890667/moira-dela-torre-thanks-fans-after-successful-music-streams/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://interaksyon.philstar.com/breaking-news/2018/09/17/134049/the-case-moira-dela-torre-appearance-the-marcos-fest-event/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2023/09/15/2296299/moira-dela-torre-celebrating-new-kind-independence",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Moira Dela Torre faced the media on September 17 in Quezon City to discuss her upcoming concert 'Where It All Started' scheduled for October 4."
+        },
+        "scoring_claim": "Moira Dela Torre faced the media on September 17 in Quezon City to discuss her upcoming concert 'Where It All Started' scheduled for October 4.",
+        "search_query": "Moira Dela Torre media September 17 concert Where It All Started October 4",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "55d146d4e2945e26bb4ec1db84a94c7f616c8033934b995948c46c150179109a",
+        "cache_version": "week7-source-review-repair-v16",
+        "verdict": "Not Found",
+        "message": "Retrieved passages support 0 of 2 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 34,
+        "searched_articles": 16,
+        "extracted_articles": 8,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "GMA News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Partially Verified",
+              "reason": "The evidence confirms the concert date and location but does not mention Moira facing the media on September 17.",
+              "supporting_urls": [
+                "https://www.abs-cbn.com/entertainment/showbiz/events/2026/7/20/moira-dela-torre-to-stage-major-concert-at-moa-arena-1142"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "Dela Torre opened up about her healing journey after a series of heartbreaks and controversies.",
+        "normalized_claim": "Dela Torre discussed her healing journey following a series of heartbreaks and controversies.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Partially Verified",
+          "components": [
+            {
+              "component": "Dela Torre discussed her healing journey",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                  "quote": "MANILA - After months of silence, healing and redirection, Moira Dela Torre is finally speaking up about her highly-publicized breakup with husband Jason Marvin Hernandez."
+                },
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                  "quote": "During her launch as an addition to the Republic Records Philippines family, Dela Torre sat down and shared this new season of life that she has embraced."
+                },
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                  "quote": "\u201cI am better than I expected. I don't remember being able to breathe this way and being able to enjoy what I have and mourn what I can\u2019t have,\u201d she said when asked how she's doing."
+                },
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                  "quote": "\u201cI don't remember being able to feel the way that I do now. I wasn\u2019t aware that I was so numb for a long time. But now I\u2019m in the season where I finally know my worth and I finally get to take care of myself. I am just enjoying life whether it\u2019s a good day or a bad day. I\u2019ve learned to embrace whatever I wake up to.\u201d"
+                },
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135",
+                  "quote": "When asked about the status of her heart now following her widely publicized marriage breakup with ex-husband Jason Hernandez, Dela Torre responded: \u201cI\u2019m happy. I feel like everyone is okay. Everyone is better. I think time heals a lot of wounds. Everyone grows. Everyone matures. I think I have a long way to go. I know I\u2019ve come so far.\u201d"
+                }
+              ],
+              "review_reason": "The passages explicitly state that Moira Dela Torre discussed her healing journey. She is quoted reflecting on her emotional state, healing, and personal growth after her breakup, and she describes embracing a new season in life. She also discusses learning to take care of herself and setting boundaries, which are consistent with discussing a healing journey. The passages are about Dela Torre herself and her own experiences, so the subject and event match, and all qualifiers are preserved.",
+              "event_group_id": 0
+            },
+            {
+              "component": "following a series of heartbreaks",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                  "quote": "Halfway through 2022, buzz started to go around that Dela Torre and Hernandez's union was on the rocks, citing \"cheating\" allegations on his part."
+                },
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                  "quote": "Rumors and speculations about the real score between them started to churn until Hernandez himself admitted, through a statement posted on his Instagram account, that he and Dela Torre have parted ways and called it quits after three years of marriage."
+                },
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                  "quote": "Part of the statement also said he had been \"unfaithful to her during our marriage.\""
+                },
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                  "quote": "She admitted that she lost the drive to write songs and in her own words, \"I lost myself.\""
+                },
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                  "quote": "\u201cIt\u2019s been a long time. I think my heart was prepared for it. Just because my mind was walking through it unconsciously, I\u2019ve been on auto pilot for a long time. And when it happened, I just knew what to write. I didn\u2019t get to write on my own for a while, I write because it\u2019s work. Pero 'yung expression ko talaga, ang tagal bago nangyari ulit. And it happened when that season ended and I started just writing.\u201d"
+                },
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                  "quote": "It took her a while to get back on her feet but she knew it was the process she has to go through."
+                }
+              ],
+              "review_reason": "The passages detail a series of heartbreaks, specifically the breakup of Dela Torre's marriage due to her husband's infidelity, the emotional aftermath, and her struggle to recover. She describes losing herself, being on autopilot, and needing time to get back on her feet. These details explicitly support the assertion that her healing journey followed a series of heartbreaks. The subject and event are the same, and the qualifier 'series' is preserved as the breakup and its emotional consequences are described as an extended, difficult period.",
+              "event_group_id": 0
+            },
+            {
+              "component": "and controversies.",
+              "status": "not_supported",
+              "citations": [],
+              "review_reason": "While the passages reference heartbreak and the controversy of her husband's infidelity, they do not provide explicit evidence that Dela Torre discussed her healing journey following a series of 'controversies' in the plural or beyond the cheating scandal. The only controversy clearly described is the breakup and infidelity; there is no mention of multiple controversies or other public disputes. Therefore, the assertion is not fully supported and the qualifier 'controversies' (plural) is not preserved.",
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+            "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135"
+          ],
+          "reason": "Retrieved passages support 2 of 3 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "citation_ids": [
+                0,
+                1,
+                2,
+                4,
+                5
+              ],
+              "reason": "The passages explicitly state that Moira Dela Torre discussed her healing journey. She is quoted reflecting on her emotional state, healing, and personal growth after her breakup, and she describes embracing a new season in life. She also discusses learning to take care of herself and setting boundaries, which are consistent with discussing a healing journey. The passages are about Dela Torre herself and her own experiences, so the subject and event match, and all qualifiers are preserved.",
+              "component_id": 0
+            },
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "citation_ids": [
+                0,
+                1,
+                2,
+                5,
+                6,
+                7
+              ],
+              "reason": "The passages detail a series of heartbreaks, specifically the breakup of Dela Torre's marriage due to her husband's infidelity, the emotional aftermath, and her struggle to recover. She describes losing herself, being on autopilot, and needing time to get back on her feet. These details explicitly support the assertion that her healing journey followed a series of heartbreaks. The subject and event are the same, and the qualifier 'series' is preserved as the breakup and its emotional consequences are described as an extended, difficult period.",
+              "component_id": 1
+            },
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": false,
+              "qualifiers_preserved": false,
+              "citation_ids": [
+                0,
+                2,
+                15,
+                17
+              ],
+              "reason": "While the passages reference heartbreak and the controversy of her husband's infidelity, they do not provide explicit evidence that Dela Torre discussed her healing journey following a series of 'controversies' in the plural or beyond the cheating scandal. The only controversy clearly described is the breakup and infidelity; there is no mention of multiple controversies or other public disputes. Therefore, the assertion is not fully supported and the qualifier 'controversies' (plural) is not preserved.",
+              "component_id": 2
+            }
+          ],
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0,
+                1,
+                2
+              ],
+              "referent": "Moira Dela Torre discussed her healing journey following a series of heartbreaks and controversies, particularly after her breakup with Jason Marvin Hernandez.",
+              "sources": {
+                "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0,
+                    6,
+                    7,
+                    13,
+                    14,
+                    15,
+                    16,
+                    19,
+                    21,
+                    22,
+                    24
+                  ],
+                  "reason": "Multiple passages directly quote Moira Dela Torre discussing her healing journey, emotional struggles, and recovery after her breakup with Jason Marvin Hernandez, which was surrounded by heartbreak and controversy (cheating allegations, public breakup). She explicitly refers to healing, regaining confidence, and moving forward from a difficult chapter.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                      "quote": "MANILA - After months of silence, healing and redirection, Moira Dela Torre is finally speaking up about her highly-publicized breakup with husband Jason Marvin Hernandez."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                      "quote": "During her launch as an addition to the Republic Records Philippines family, Dela Torre sat down and shared this new season of life that she has embraced."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                      "quote": "\u201cI am better than I expected. I don't remember being able to breathe this way and being able to enjoy what I have and mourn what I can\u2019t have,\u201d she said when asked how she's doing."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                      "quote": "She admitted that she lost the drive to write songs and in her own words, \"I lost myself.\""
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                      "quote": "\u201cIt\u2019s been a long time. I think my heart was prepared for it. Just because my mind was walking through it unconsciously, I\u2019ve been on auto pilot for a long time. And when it happened, I just knew what to write. I didn\u2019t get to write on my own for a while, I write because it\u2019s work. Pero 'yung expression ko talaga, ang tagal bago nangyari ulit. And it happened when that season ended and I started just writing.\u201d"
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                      "quote": "It took her a while to get back on her feet but she knew it was the process she has to go through."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                      "quote": "\u201cI don't remember being able to feel the way that I do now. I wasn\u2019t aware that I was so numb for a long time. But now I\u2019m in the season where I finally know my worth and I finally get to take care of myself. I am just enjoying life whether it\u2019s a good day or a bad day. I\u2019ve learned to embrace whatever I wake up to.\u201d"
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                      "quote": "\u201cWhen I exited that season, I felt like I was released from prison."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                      "quote": "But now, I\u2019m very careful with the people that I allow into my life, the projects that I allowed in my life,\" she said. \u201cIronically, this crazy season has made me a stronger and a braver person. I thought this season would make me more scared. But God works in mysterious ways and definitely used my weakness and made it into strength.\u201d And that\u2019s when she starting channeling back her energy into writing songs. \u201cAng dami palang naipon. I just started unloading through songs and that\u2019s really what I got to bounce back.\u201d She\u2019s back but with a new rhythm. Dela Torre just signed up with Republic Records Philippines hoping to expand her wings in music. globally. However, cshe larified that she didn\u2019t cut ties with Star Music and will still do special projects with her former label. \u201cIt doesn't feel like a transfer, it feels like an expansion. So, I just feel like my world just got so much bigger. I have three families now who look after me -- ABS-CBN, Cornerstone and Republic.\u201d Being the \"Queen of Hugot Songs,\" should her listeners expect the ultimate hugot album or even get a full picture of that \"difficult chapter of her personal life\" in her new music? \u201cIt\u2019s a very vulnerable album. I think it\u2019s my most honest and vulnerable album yet. Let\u2019s just say that I wrote it during those times. I don\u2019t expect it to be hits, I hope they would. But I feel like for the first time, I\u2019m not curating an album because I want new hits. I curated an album to be honest.\u201d Her recent glow-up also had netizens buzzing. When she released \"Babalik Sa \u2018Yo\" for the feel-good highly-successful KathNiel series \"2Good 2 Be True,\" there was not one hint of dark cloud over her head -- looking refreshed, re-energized and happy singing a love song."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                      "quote": "\u201cI think I just healed. There was a long time that I wasn\u2019t confident in how I look, how I felt. There was a time, after a long day at work, I would go home and feel good and feel confident. But I think, after so many years, ngayon ko lang naramdaman na \u2018I don't look so bad after all.\u2019 I\u2019m not so bad after all.\u201d"
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                      "quote": "She replied with a good laugh, saying: \u201cWell, I don\u2019t know. I just, I didn\u2019t. When I thought that I\u2019d be in a season where I feel full the most myself, I lost myself. And I am now in a season where I am surrounded by people who celebrate me.\u201d"
+                    }
+                  ]
+                },
+                "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135": {
+                  "status": "matched",
+                  "passage_ids": [
+                    35,
+                    36,
+                    39,
+                    40,
+                    42
+                  ],
+                  "reason": "Moira Dela Torre is quoted discussing her healing and growth after her failed marriage, referencing time healing wounds, setting boundaries, and living joyfully. The context is her public breakup and the aftermath, which aligns with the claim of discussing her healing journey after heartbreaks and controversies.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135",
+                      "quote": "Dela Torre, dressed in all black, spoke to the media after the program, which was uncommon given that she had previously avoided interviews, particularly those discussing her personal life."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135",
+                      "quote": "When asked about the status of her heart now following her widely publicized marriage breakup with ex-husband Jason Hernandez, Dela Torre responded: \u201cI\u2019m happy. I feel like everyone is okay. Everyone is better. I think time heals a lot of wounds. Everyone grows. Everyone matures. I think I have a long way to go. I know I\u2019ve come so far.\u201d"
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135",
+                      "quote": "Echo Jham Entertainment Living joyfully and freely, the singer-songwriter went on to remark that she now values setting boundaries."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135",
+                      "quote": "\u201cI just want to know how to say no, set boundaries, and pursue my music while still protecting my little world for myself so that I have something to come home to at any time,\u201d she told the media."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135",
+                      "quote": "On releasing new songs, she said: \u201cNag-ipon lang po ng mga istorya ulit. Nabuhay ulit.\u201d"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-at-15-truth-continues-to-be-our-business",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/superstar-high",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/showbiz/chikaminute/871739/zack-tabudlo-on-moira-jason-breakup-i-kept-quiet-but-it-all-became-too-heavy-for-me/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/moira-dela-torre-shares-jason-hernandezs-statement-about-their-split-posts-cryptic-photo/89001/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://entertainment.inquirer.net/451609/moira-dela-torre-speaks-up-on-split-with-jason-hernandez-i-never-cheated",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://cebudailynews.inquirer.net/477090/moira-dela-torre-on-her-glow-up-after-split-with-jason-marvin-hernandez-i-just-healed",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2022/06/04/2186033/i-never-cheated-moira-dela-torre-breaks-silence-after-split-jason-hernandez",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2023/05/28/2269713/composer-spills-tea-moira-dela-torre-jason-hernandez-breakup",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/article/215352/Entertainment/what-breaks-moira-dela-torres-heart",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2025/07/06/moira-drops-new-collab-tracks-exploring-friendship-healing-and-emotional-connections",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1030084",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/opinion/pieces/152-tokhang",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/a-broken-heart-is-not-good-for-ones-health/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/healing-the-filipino-way-ilocos-norte-hospital-blends-tradition-with-science/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-at-15-truth-continues-to-be-our-business",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/superstar-high",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/showbiz/chikaminute/871739/zack-tabudlo-on-moira-jason-breakup-i-kept-quiet-but-it-all-became-too-heavy-for-me/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/moira-dela-torre-shares-jason-hernandezs-statement-about-their-split-posts-cryptic-photo/89001/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2022/06/04/2186033/i-never-cheated-moira-dela-torre-breaks-silence-after-split-jason-hernandez",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2023/05/28/2269713/composer-spills-tea-moira-dela-torre-jason-hernandez-breakup",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Dela Torre discussed her healing journey following a series of heartbreaks and controversies."
+        },
+        "scoring_claim": "Dela Torre discussed her healing journey following a series of heartbreaks and controversies.",
+        "search_query": "Dela Torre healing journey heartbreaks controversies",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "116d0eae9259c251ab2a9e40d705264f7fd42a74cdd0f402f7335c297897c508",
+        "cache_version": "week7-source-review-repair-v16",
+        "verdict": "Partially Verified",
+        "message": "Retrieved passages support 2 of 3 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "ABS-CBN News",
+          "title": "Moira opens up about breakup, healing and possibly falling in love again | ABS-CBN Entertainment",
+          "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+          "status": "extracted",
+          "word_count": 1110,
+          "evidence_method": "component_review",
+          "extraction_quality": "full"
+        },
+        "supporting_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Moira opens up about breakup, healing and possibly falling in love again | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+            "status": "extracted",
+            "word_count": 1110,
+            "evidence_method": "component_review",
+            "extraction_quality": "full"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Moira after failed marriage: \u2018Time heals a lot of wounds\u2019 | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135",
+            "status": "extracted",
+            "word_count": 371,
+            "evidence_method": "component_review",
+            "extraction_quality": "full"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 38,
+        "searched_articles": 16,
+        "extracted_articles": 8,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "GMA News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          }
+        ],
+        "sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Moira opens up about breakup, healing and possibly falling in love again | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+            "status": "extracted",
+            "word_count": 1110,
+            "evidence_method": "component_review",
+            "extraction_quality": "full"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Moira after failed marriage: \u2018Time heals a lot of wounds\u2019 | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135",
+            "status": "extracted",
+            "word_count": 371,
+            "evidence_method": "component_review",
+            "extraction_quality": "full"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Moira opens up about breakup, healing and possibly falling in love again | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+            "status": "extracted",
+            "word_count": 1110,
+            "evidence_method": "component_review",
+            "extraction_quality": "full"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Moira after failed marriage: \u2018Time heals a lot of wounds\u2019 | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135",
+            "status": "extracted",
+            "word_count": 371,
+            "evidence_method": "component_review",
+            "extraction_quality": "full"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Verified",
+              "reason": "Dela Torre discussed her healing journey after her breakup and the challenges she faced.",
+              "supporting_urls": [
+                "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/6/30/moira-after-failed-marriage-time-heals-a-lot-of-wounds-1135"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files + 7 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "mixed_content",
+        "confidence": 0.42,
+        "ambiguity_score": 0.6,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "verify_factual_claims_only",
+        "verification_text": "LOOK: Moira Dela Torre faced the media earlier today, Sept. 17, in Quezon City, to talk about her upcoming concert \u201cWhere It All Started,\u201d set for Oct. 4.\nDela Torre opened up about her healing journey after a series of heartbreaks and controversies.\n| via Jessica Ann Evangelista,",
+        "normalized_verification_text": "LOOK: Moira Dela Torre faced the media earlier today, Sept. 17, in Quezon City, to talk about her upcoming concert \u201cWhere It All Started,\u201d set for Oct. 4.\nDela Torre opened up about her healing journey after a series of heartbreaks and controversies.\n| via Jessica Ann Evangelista,",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "HEALING ERA \u2764\ufe0f\u200d\ud83e\ude79",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "LOOK: Moira Dela Torre faced the media earlier today, Sept. 17, in Quezon City, to talk about her upcoming concert \u201cWhere It All Started,\u201d set for Oct. 4.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.42,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.33,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.8,
+            "second_label": "quote",
+            "second_label_score": 0.33,
+            "score_gap": 0.09,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review",
+              "openai_factual_claim_advice"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "unattributed"
+          },
+          {
+            "segment_id": "s3",
+            "text": "Dela Torre opened up about her healing journey after a series of heartbreaks and controversies.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.2,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.2,
+            "score_gap": 0.1,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s4",
+            "text": "| via Jessica Ann Evangelista,",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.2,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.2,
+            "score_gap": 0.1,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "HEALING ERA \u2764\ufe0f\u200d\ud83e\ude79",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS will verify only the factual segments and skip non-checkable parts.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "factual_claim",
+                "top_label_score": 0.8,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "checkable_event",
+                  "announcement"
+                ]
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "quote",
+                "top_label_score": 0.7,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reported_speech",
+                  "checkable_event"
+                ]
+              },
+              {
+                "segment_id": "s4",
+                "top_label": "contextual_background",
+                "top_label_score": 0.6,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "attribution"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "Describes a factual event: Moira Dela Torre facing the media to discuss her concert."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "checkable",
+            "claim_indexes": [
+              1
+            ],
+            "reason": "Describes a factual event: Dela Torre discussing her healing journey."
+          },
+          {
+            "segment_id": 2,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "This is a byline/credit and does not contain a factual claim."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "Moira Dela Torre faced the media on September 17 in Quezon City to discuss her upcoming concert 'Where It All Started' scheduled for October 4."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "Dela Torre discussed her healing journey following a series of heartbreaks and controversies."
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Moira Dela Torre faced the media earlier today, Sept. 17, in Quezon City, to talk about her upcoming concert \u201cWhere It All Started,\u201d set for Oct. 4.",
+            "normalized_claim": "Moira Dela Torre faced the media on September 17 in Quezon City to discuss her upcoming concert 'Where It All Started' scheduled for October 4.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Moira Dela Torre media September 17 concert Where It All Started October 4",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "LOOK: Moira Dela Torre faced the media earlier today, Sept. 17, in Quezon City, to talk about her upcoming concert \u201cWhere It All Started,\u201d set for Oct. 4."
+              }
+            ],
+            "evidence_context": "LOOK: Moira Dela Torre faced the media earlier today, Sept. 17, in Quezon City, to talk about her upcoming concert \u201cWhere It All Started,\u201d set for Oct. 4.\nDela Torre opened up about her healing journey after a series of heartbreaks and controversies.\n| via Jessica Ann Evangelista,",
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "Dela Torre opened up about her healing journey after a series of heartbreaks and controversies.",
+            "normalized_claim": "Dela Torre discussed her healing journey following a series of heartbreaks and controversies.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Dela Torre healing journey heartbreaks controversies",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 1,
+                "quote": "Dela Torre opened up about her healing journey after a series of heartbreaks and controversies."
+              }
+            ],
+            "evidence_context": "LOOK: Moira Dela Torre faced the media earlier today, Sept. 17, in Quezon City, to talk about her upcoming concert \u201cWhere It All Started,\u201d set for Oct. 4.\nDela Torre opened up about her healing journey after a series of heartbreaks and controversies.\n| via Jessica Ann Evangelista,",
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [
+          {
+            "text": "| via Jessica Ann Evangelista,",
+            "segment_type": "uncheckable"
+          }
+        ],
+        "post_type": "mixed_content",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "8de06af62d52443fa38e0f07f62754dd",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 3.1815,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0006,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0018,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 6.4062,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0018,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0019,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0015,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 4.6796,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0192,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 0.5688,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.705,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.7158,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0115,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 6.8592,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0019,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 4.9754,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0388,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 0.6915,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.9358,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.9509,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0143,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 34.5874,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 56.1919,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 65.799,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

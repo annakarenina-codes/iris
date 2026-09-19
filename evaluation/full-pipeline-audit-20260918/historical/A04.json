@@ -1,0 +1,1142 @@
+{
+  "case": 4,
+  "trace": {
+    "id": "214b112b076e42c6a7645335108d3c0c",
+    "owner": "08b79e5b143645e991168beb0ab25664",
+    "created": 1788966429.3385546,
+    "ended": 1788966432.216026,
+    "status": "completed",
+    "platform": "chrome",
+    "input_type": "text",
+    "title": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear tha",
+    "claim_count": 0,
+    "http_status": 200,
+    "capture_status": "complete",
+    "summary": {
+      "verdict": "No Checkable Claims",
+      "message": "IRIS did not find factual claims that can be checked against approved sources.",
+      "calibration_result": null,
+      "duration_ms": 2877.48,
+      "stop_after": null,
+      "target_reached": false
+    }
+  },
+  "input": {
+    "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+    "platform": "chrome",
+    "debug": false,
+    "_trace_complete": true
+  },
+  "response": {
+    "verdict": "No Checkable Claims",
+    "message": "IRIS did not find factual claims that can be checked against approved sources.",
+    "original_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+    "translated_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 0,
+    "claim_extraction_status": "not_run_content_profiler",
+    "post_type": "unclear",
+    "content_profile_status": "ok",
+    "content_profile_route": "stop_no_checkable_claims",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s1",
+        "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "low_classifier_confidence"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      }
+    ]
+  },
+  "configuration": {
+    "source_sha256": "cdc4b9d9ea9f3e17188e6e91f826b61b1f1f4b53bbbce955527f7e9615074b2f",
+    "code_commit": "add5d63bee5deb7c5efd0f035ee3af14bb1e5f65",
+    "dependencies": {
+      "Flask": "3.1.3",
+      "numpy": "2.5.1",
+      "easyocr": "1.7.2",
+      "sentence-transformers": "5.6.0",
+      "openai": "2.44.0"
+    },
+    "snapshot_policy": "First use in this process; restart after edits",
+    "semantic_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "verified_threshold": 0.85,
+    "partial_threshold": 0.5,
+    "settings": {
+      "OPENAI_MODEL": null,
+      "IRIS_OCR_GPU": null,
+      "IRIS_SEARCH_WORKERS": null,
+      "IRIS_ARTICLE_WORKERS": null,
+      "IRIS_OCR_LOW_CONFIDENCE": null
+    }
+  },
+  "events": [
+    {
+      "data": {},
+      "kind": "request.input",
+      "seq": 1,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 0.08,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "span_id": "a2015747c8a74fa78815c0fd8513760e",
+      "stage_id": "request.parse_validate",
+      "parent_span_id": null,
+      "input": null,
+      "kind": "span.start",
+      "seq": 2,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 0.16,
+      "claim_id": null
+    },
+    {
+      "span_id": "a2015747c8a74fa78815c0fd8513760e",
+      "stage_id": "request.parse_validate",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "json_object": true,
+        "content_type": "application/json",
+        "content_length": 218
+      },
+      "duration_ms": 0.13780000153928995,
+      "kind": "span.end",
+      "seq": 3,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 0.37,
+      "parent_span_id": "a2015747c8a74fa78815c0fd8513760e",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "platform": "chrome",
+        "debug": false
+      },
+      "kind": "request.input",
+      "seq": 4,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 0.44,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "id": "bdeb5811fa5b4ce39dc2e52f2d2213ac",
+        "kind": "request_input"
+      },
+      "kind": "artifact",
+      "seq": 5,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 0.67,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "source_sha256": "cdc4b9d9ea9f3e17188e6e91f826b61b1f1f4b53bbbce955527f7e9615074b2f",
+        "code_commit": "add5d63bee5deb7c5efd0f035ee3af14bb1e5f65",
+        "dependencies": {
+          "Flask": "3.1.3",
+          "numpy": "2.5.1",
+          "easyocr": "1.7.2",
+          "sentence-transformers": "5.6.0",
+          "openai": "2.44.0"
+        },
+        "snapshot_policy": "First use in this process; restart after edits",
+        "semantic_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "verified_threshold": 0.85,
+        "partial_threshold": 0.5,
+        "settings": {
+          "OPENAI_MODEL": null,
+          "IRIS_OCR_GPU": null,
+          "IRIS_SEARCH_WORKERS": null,
+          "IRIS_ARTICLE_WORKERS": null,
+          "IRIS_OCR_LOW_CONFIDENCE": null
+        }
+      },
+      "kind": "runtime.configuration",
+      "seq": 6,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 0.81,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "stage_id": "text.process",
+      "parent_span_id": null,
+      "input": {
+        "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "debug_enabled": false
+      },
+      "kind": "span.start",
+      "seq": 7,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 0.94,
+      "claim_id": null
+    },
+    {
+      "span_id": "4edd0d816295451b85dd0d377ee2a897",
+      "stage_id": "text.language",
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "input": {
+        "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope"
+      },
+      "kind": "span.start",
+      "seq": 8,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 1.05,
+      "claim_id": null
+    },
+    {
+      "span_id": "4edd0d816295451b85dd0d377ee2a897",
+      "stage_id": "text.language",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": "english",
+      "duration_ms": 3.942799987271428,
+      "kind": "span.end",
+      "seq": 9,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 5.1,
+      "parent_span_id": "4edd0d816295451b85dd0d377ee2a897",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.detect_language",
+        "duration_seconds": 0.0042,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 10,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 5.19,
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "claim_id": null
+    },
+    {
+      "span_id": "cd95e631fa104cfa8637b51afff88c11",
+      "stage_id": "text.translation",
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "input": {
+        "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "language": "english"
+      },
+      "kind": "span.start",
+      "seq": 11,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 5.59,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "reason": "already_english"
+      },
+      "kind": "translation.skipped",
+      "seq": 12,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 5.73,
+      "parent_span_id": "cd95e631fa104cfa8637b51afff88c11",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "id": "9c0af9c8c7a34e0594f4bdd83febb8c3",
+        "kind": "dependency"
+      },
+      "kind": "artifact",
+      "seq": 13,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 5.96,
+      "parent_span_id": "cd95e631fa104cfa8637b51afff88c11",
+      "claim_id": null
+    },
+    {
+      "span_id": "cd95e631fa104cfa8637b51afff88c11",
+      "stage_id": "text.translation",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+      "duration_ms": 0.3360999980941415,
+      "kind": "span.end",
+      "seq": 14,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 6.05,
+      "parent_span_id": "cd95e631fa104cfa8637b51afff88c11",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.translate_to_english",
+        "duration_seconds": 0.0007,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 15,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 6.11,
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "claim_id": null
+    },
+    {
+      "span_id": "5bb3cd8359354a78b32b6022cdc24867",
+      "stage_id": "text.profile",
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "input": {
+        "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "translated_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope"
+      },
+      "kind": "span.start",
+      "seq": 16,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 6.66,
+      "claim_id": null
+    },
+    {
+      "span_id": "51b38e87079b431288a8b83d6e8dcf8b",
+      "stage_id": "text.profile_local",
+      "parent_span_id": "5bb3cd8359354a78b32b6022cdc24867",
+      "input": {
+        "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "translated_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope"
+      },
+      "kind": "span.start",
+      "seq": 17,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 7.04,
+      "claim_id": null
+    },
+    {
+      "span_id": "51b38e87079b431288a8b83d6e8dcf8b",
+      "stage_id": "text.profile_local",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "status": "ok",
+        "method": "local_rules",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.3,
+        "ambiguity_score": 0.95,
+        "ambiguity_reasons": [
+          "low_classifier_confidence"
+        ],
+        "contains_factual_claims": false,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": false,
+        "recommended_route": "stop_no_checkable_claims",
+        "verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "normalized_verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.3,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.0,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "openai_profile": {
+          "used": false,
+          "status": "not_run",
+          "error": null,
+          "result": null
+        }
+      },
+      "duration_ms": 2.3909000447019935,
+      "kind": "span.end",
+      "seq": 18,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 9.98,
+      "parent_span_id": "51b38e87079b431288a8b83d6e8dcf8b",
+      "claim_id": null
+    },
+    {
+      "span_id": "5f064f373ec04e8babd42fbfdb6249d1",
+      "stage_id": "text.profile_ai",
+      "parent_span_id": "5bb3cd8359354a78b32b6022cdc24867",
+      "input": {
+        "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "translated_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "local_profile": {
+          "status": "ok",
+          "method": "local_rules",
+          "error": null,
+          "post_type": "unclear",
+          "confidence": 0.3,
+          "ambiguity_score": 0.95,
+          "ambiguity_reasons": [
+            "low_classifier_confidence"
+          ],
+          "contains_factual_claims": false,
+          "contains_opinion": false,
+          "contains_recommendation": false,
+          "contains_forecast_or_projection": false,
+          "contains_satire_or_humor": false,
+          "contains_quote": false,
+          "eligible_for_verification": false,
+          "recommended_route": "stop_no_checkable_claims",
+          "verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+          "normalized_verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+          "segments": [
+            {
+              "segment_id": "s1",
+              "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+              "translated_text": null,
+              "scores": {
+                "factual_claim": 0.3,
+                "opinion": 0.05,
+                "forecast_or_projection_detected": 0.05,
+                "quote": 0.05,
+                "satire_or_humor": 0.05,
+                "call_to_action": 0.05,
+                "contextual_background": 0.05,
+                "unclear": 0.3
+              },
+              "top_label": "unclear",
+              "top_label_score": 0.3,
+              "second_label": "unclear",
+              "second_label_score": 0.3,
+              "score_gap": 0.0,
+              "eligible_for_verification": false,
+              "recommended_route": "stop_no_checkable_claims",
+              "reason_codes": [
+                "low_classifier_confidence"
+              ],
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "ignored_segments": [
+            {
+              "segment_id": "s1",
+              "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+              "segment_type": "unclear",
+              "reason_codes": [
+                "low_classifier_confidence"
+              ],
+              "recommended_route": "stop_no_checkable_claims",
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+          "openai_profile": {
+            "used": false,
+            "status": "not_run",
+            "error": null,
+            "result": null
+          }
+        }
+      },
+      "kind": "span.start",
+      "seq": 19,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 10.61,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "id": "fa168e8df84d45b69dd37b9a52a0a246",
+        "kind": "dependency"
+      },
+      "kind": "artifact",
+      "seq": 20,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2871.45,
+      "parent_span_id": "5f064f373ec04e8babd42fbfdb6249d1",
+      "claim_id": null
+    },
+    {
+      "span_id": "5f064f373ec04e8babd42fbfdb6249d1",
+      "stage_id": "text.profile_ai",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "used": true,
+        "status": "ok",
+        "error": null,
+        "result": {
+          "post_type": "unclear",
+          "confidence": 0.0,
+          "ambiguity_score": 0.0,
+          "ambiguity_reasons": [
+            "low_classifier_confidence"
+          ],
+          "contains_factual_claims": true,
+          "contains_opinion": false,
+          "contains_forecast_or_projection": false,
+          "contains_satire_or_humor": false,
+          "contains_quote": false,
+          "eligible_for_verification": true,
+          "recommended_route": "verify_factual_claims_only",
+          "segments": [
+            {
+              "segment_id": "s1",
+              "top_label": "factual_claim",
+              "top_label_score": 0.0,
+              "eligible_for_verification": true,
+              "reason_codes": [
+                "low_classifier_confidence"
+              ],
+              "user_notification": null
+            }
+          ]
+        }
+      },
+      "duration_ms": 2860.7717999839224,
+      "kind": "span.end",
+      "seq": 21,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2871.58,
+      "parent_span_id": "5f064f373ec04e8babd42fbfdb6249d1",
+      "claim_id": null
+    },
+    {
+      "span_id": "0cc9289a82984c28aaf0784457236c35",
+      "stage_id": "text.profile_merge",
+      "parent_span_id": "5bb3cd8359354a78b32b6022cdc24867",
+      "input": {
+        "local_profile": {
+          "status": "ok",
+          "method": "local_rules",
+          "error": null,
+          "post_type": "unclear",
+          "confidence": 0.3,
+          "ambiguity_score": 0.95,
+          "ambiguity_reasons": [
+            "low_classifier_confidence"
+          ],
+          "contains_factual_claims": false,
+          "contains_opinion": false,
+          "contains_recommendation": false,
+          "contains_forecast_or_projection": false,
+          "contains_satire_or_humor": false,
+          "contains_quote": false,
+          "eligible_for_verification": false,
+          "recommended_route": "stop_no_checkable_claims",
+          "verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+          "normalized_verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+          "segments": [
+            {
+              "segment_id": "s1",
+              "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+              "translated_text": null,
+              "scores": {
+                "factual_claim": 0.3,
+                "opinion": 0.05,
+                "forecast_or_projection_detected": 0.05,
+                "quote": 0.05,
+                "satire_or_humor": 0.05,
+                "call_to_action": 0.05,
+                "contextual_background": 0.05,
+                "unclear": 0.3
+              },
+              "top_label": "unclear",
+              "top_label_score": 0.3,
+              "second_label": "unclear",
+              "second_label_score": 0.3,
+              "score_gap": 0.0,
+              "eligible_for_verification": false,
+              "recommended_route": "stop_no_checkable_claims",
+              "reason_codes": [
+                "low_classifier_confidence"
+              ],
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "ignored_segments": [
+            {
+              "segment_id": "s1",
+              "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+              "segment_type": "unclear",
+              "reason_codes": [
+                "low_classifier_confidence"
+              ],
+              "recommended_route": "stop_no_checkable_claims",
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+          "openai_profile": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "post_type": "unclear",
+              "confidence": 0.0,
+              "ambiguity_score": 0.0,
+              "ambiguity_reasons": [
+                "low_classifier_confidence"
+              ],
+              "contains_factual_claims": true,
+              "contains_opinion": false,
+              "contains_forecast_or_projection": false,
+              "contains_satire_or_humor": false,
+              "contains_quote": false,
+              "eligible_for_verification": true,
+              "recommended_route": "verify_factual_claims_only",
+              "segments": [
+                {
+                  "segment_id": "s1",
+                  "top_label": "factual_claim",
+                  "top_label_score": 0.0,
+                  "eligible_for_verification": true,
+                  "reason_codes": [
+                    "low_classifier_confidence"
+                  ],
+                  "user_notification": null
+                }
+              ]
+            }
+          }
+        },
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "post_type": "unclear",
+            "confidence": 0.0,
+            "ambiguity_score": 0.0,
+            "ambiguity_reasons": [
+              "low_classifier_confidence"
+            ],
+            "contains_factual_claims": true,
+            "contains_opinion": false,
+            "contains_forecast_or_projection": false,
+            "contains_satire_or_humor": false,
+            "contains_quote": false,
+            "eligible_for_verification": true,
+            "recommended_route": "verify_factual_claims_only",
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "factual_claim",
+                "top_label_score": 0.0,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "low_classifier_confidence"
+                ],
+                "user_notification": null
+              }
+            ]
+          }
+        }
+      },
+      "kind": "span.start",
+      "seq": 22,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2872.11,
+      "claim_id": null
+    },
+    {
+      "span_id": "0cc9289a82984c28aaf0784457236c35",
+      "stage_id": "text.profile_merge",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.3,
+        "ambiguity_score": 0.95,
+        "ambiguity_reasons": [
+          "low_classifier_confidence"
+        ],
+        "contains_factual_claims": false,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": false,
+        "recommended_route": "stop_no_checkable_claims",
+        "verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "normalized_verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.3,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.0,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "post_type": "unclear",
+            "confidence": 0.0,
+            "ambiguity_score": 0.0,
+            "ambiguity_reasons": [
+              "low_classifier_confidence"
+            ],
+            "contains_factual_claims": true,
+            "contains_opinion": false,
+            "contains_forecast_or_projection": false,
+            "contains_satire_or_humor": false,
+            "contains_quote": false,
+            "eligible_for_verification": true,
+            "recommended_route": "verify_factual_claims_only",
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "factual_claim",
+                "top_label_score": 0.0,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "low_classifier_confidence"
+                ],
+                "user_notification": null
+              }
+            ]
+          }
+        }
+      },
+      "duration_ms": 0.03220001235604286,
+      "kind": "span.end",
+      "seq": 23,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2872.65,
+      "parent_span_id": "0cc9289a82984c28aaf0784457236c35",
+      "claim_id": null
+    },
+    {
+      "span_id": "5bb3cd8359354a78b32b6022cdc24867",
+      "stage_id": "text.profile",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.3,
+        "ambiguity_score": 0.95,
+        "ambiguity_reasons": [
+          "low_classifier_confidence"
+        ],
+        "contains_factual_claims": false,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": false,
+        "recommended_route": "stop_no_checkable_claims",
+        "verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "normalized_verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.3,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.0,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "post_type": "unclear",
+            "confidence": 0.0,
+            "ambiguity_score": 0.0,
+            "ambiguity_reasons": [
+              "low_classifier_confidence"
+            ],
+            "contains_factual_claims": true,
+            "contains_opinion": false,
+            "contains_forecast_or_projection": false,
+            "contains_satire_or_humor": false,
+            "contains_quote": false,
+            "eligible_for_verification": true,
+            "recommended_route": "verify_factual_claims_only",
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "factual_claim",
+                "top_label_score": 0.0,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "low_classifier_confidence"
+                ],
+                "user_notification": null
+              }
+            ]
+          }
+        }
+      },
+      "duration_ms": 2865.934000001289,
+      "kind": "span.end",
+      "seq": 24,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2873.16,
+      "parent_span_id": "5bb3cd8359354a78b32b6022cdc24867",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.profile_content",
+        "duration_seconds": 2.8668,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 25,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2873.25,
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "claim_id": null
+    },
+    {
+      "span_id": "3757a84185654c0da4050b51d6817ee7",
+      "stage_id": "text.opinion",
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "input": {
+        "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope"
+      },
+      "kind": "span.start",
+      "seq": 26,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2873.7,
+      "claim_id": null
+    },
+    {
+      "span_id": "3757a84185654c0da4050b51d6817ee7",
+      "stage_id": "text.opinion",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "duration_ms": 0.21719996584579349,
+      "kind": "span.end",
+      "seq": 27,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2874.09,
+      "parent_span_id": "3757a84185654c0da4050b51d6817ee7",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.opinion_filter",
+        "duration_seconds": 0.0007,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 28,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2874.21,
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "claim_id": null
+    },
+    {
+      "span_id": "597d3c9429eb48178da84db61b5288c6",
+      "stage_id": "text.political",
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "input": {
+        "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope"
+      },
+      "kind": "span.start",
+      "seq": 29,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2874.98,
+      "claim_id": null
+    },
+    {
+      "span_id": "597d3c9429eb48178da84db61b5288c6",
+      "stage_id": "text.political",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "duration_ms": 0.7493000011891127,
+      "kind": "span.end",
+      "seq": 30,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2875.91,
+      "parent_span_id": "597d3c9429eb48178da84db61b5288c6",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.political_check",
+        "duration_seconds": 0.0011,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 31,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2875.98,
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "eligible": false,
+        "route": "stop_no_checkable_claims",
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ]
+      },
+      "kind": "text.route",
+      "seq": 32,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2876.31,
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stages": [
+          "claims.extract",
+          "event.retrieve",
+          "claim.process"
+        ],
+        "reason": "stop_no_checkable_claims"
+      },
+      "kind": "stage.skipped",
+      "seq": 33,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2876.39,
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "verify_text.total",
+        "duration_seconds": 2.8755,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 34,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2876.46,
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "claim_id": null
+    },
+    {
+      "span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "stage_id": "text.process",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "verdict": "No Checkable Claims",
+        "message": "IRIS did not find factual claims that can be checked against approved sources.",
+        "original_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "translated_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "detected_language": "english",
+        "politically_sensitive": false,
+        "flags": [],
+        "claim_count": 0,
+        "claim_extraction_status": "not_run_content_profiler",
+        "post_type": "unclear",
+        "content_profile_status": "ok",
+        "content_profile_route": "stop_no_checkable_claims",
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ]
+      },
+      "duration_ms": 2875.709000043571,
+      "kind": "span.end",
+      "seq": 35,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2876.94,
+      "parent_span_id": "4cb0998e67834a8e882be7ea366937b1",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "verdict": "No Checkable Claims",
+        "message": "IRIS did not find factual claims that can be checked against approved sources.",
+        "original_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "translated_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+        "detected_language": "english",
+        "politically_sensitive": false,
+        "flags": [],
+        "claim_count": 0,
+        "claim_extraction_status": "not_run_content_profiler",
+        "post_type": "unclear",
+        "content_profile_status": "ok",
+        "content_profile_route": "stop_no_checkable_claims",
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn\u2019t mean they\u2019re co-parenting their daughter, Victoria Hope",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ]
+      },
+      "http_status": 200,
+      "error": null,
+      "kind": "request.result",
+      "seq": 36,
+      "trace_id": "214b112b076e42c6a7645335108d3c0c",
+      "offset_ms": 2877.41,
+      "parent_span_id": null,
+      "claim_id": null
+    }
+  ]
+}

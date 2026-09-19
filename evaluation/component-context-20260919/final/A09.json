@@ -1,0 +1,98 @@
+{
+  "case_id": "A09",
+  "scope": "Saved case article pool, not an exact replay of per-claim retrieval inputs.",
+  "trace_id": "5c9b310c574a4b75844fb0c13ba0c56a",
+  "timestamp_utc": "2026-09-19T03:56:01.505016+00:00",
+  "input_sha256": "3932721f4d9412256f6982044f413d4f2d4964027545c174ac0e03a42d49face",
+  "seconds": 2.854,
+  "old_verdict": "Partially Verified",
+  "cache": "not used; direct component review",
+  "new_searches": 0,
+  "models": {
+    "OPENAI_MODEL": "gpt-4o-mini",
+    "IRIS_EVIDENCE_REVIEW_MODEL": "gpt-4.1-2025-04-14"
+  },
+  "code_sha256": {
+    "component_context.py": "e13c299b7803a285dde07ab6d66007bddd03f918984868b3292c845703d8915f",
+    "component_evidence.py": "2544ef55ce14d9fea4e8dbf3a29416ec1707f45018811ec30f9faefad455d46f"
+  },
+  "review": {
+    "status": "ok",
+    "verdict": "Not Found",
+    "components": [
+      {
+        "component": "The exchange rate of the peso against the dollar remains down, closing at ₱62.513 = $1 this Wednesday, September 9.",
+        "status": "not_supported",
+        "citations": [],
+        "context": {
+          "start": 0,
+          "end": 115,
+          "anchors": {
+            "subject": [
+              {
+                "origin": "claim",
+                "quote": "The exchange rate of the peso against the dollar",
+                "start": 0,
+                "end": 48
+              }
+            ],
+            "action": [
+              {
+                "origin": "claim",
+                "quote": "remains down",
+                "start": 49,
+                "end": 61
+              },
+              {
+                "origin": "claim",
+                "quote": "closing at ₱62.513 = $1",
+                "start": 63,
+                "end": 86
+              }
+            ],
+            "event": [
+              {
+                "origin": "claim",
+                "quote": "The exchange rate of the peso against the dollar remains down",
+                "start": 0,
+                "end": 61
+              },
+              {
+                "origin": "claim",
+                "quote": "closing at ₱62.513 = $1 this Wednesday, September 9.",
+                "start": 63,
+                "end": 115
+              }
+            ],
+            "time": [
+              {
+                "origin": "claim",
+                "quote": "this Wednesday, September 9.",
+                "start": 87,
+                "end": 115
+              }
+            ],
+            "negation": [],
+            "speaker": []
+          },
+          "proposed_ids": [
+            0,
+            1
+          ],
+          "component_id": 0,
+          "assertion": "The exchange rate of the peso against the dollar remains down, closing at ₱62.513 = $1 this Wednesday, September 9.",
+          "source_reference": {
+            "origin": "claim",
+            "start": 0,
+            "end": 115
+          },
+          "context_is_evidence": false
+        }
+      }
+    ],
+    "supporting_urls": [],
+    "reason": "Retrieved passages support 0 of 1 factual components.",
+    "original_claim": "The exchange rate of the peso against the dollar remains down, closing at ₱62.513 = $1 this Wednesday, September 9.",
+    "partition_model": "gpt-4.1-2025-04-14"
+  }
+}

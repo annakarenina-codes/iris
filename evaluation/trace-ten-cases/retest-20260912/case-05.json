@@ -1,0 +1,577 @@
+{
+  "case": 5,
+  "trace_id": "1f60645076ef47ebbf4b6526750d90e8",
+  "original_trace_id": "ca9ac265af86450fa09a84ffec43755e",
+  "started_utc": "2026-09-12T04:35:57.472416+00:00",
+  "elapsed_seconds": 39.008879,
+  "input": {
+    "text": "Senator-Judge Robin Padilla became emotional as he sought clarification on the Senate’s position regarding the grave threats case against Vice President Sara Duterte. In his manifestation on Monday, Padilla pointed out that Duterte, as a sitting Vice President, is an impeachable officer under the 1987 Constitution. “Ako po ay binalot ng mga karimarimarim na balita nitong nakaraang araw. Ang isang sitting vice president po ay isang impeachable officer. Ito po ay tahasang nakalagay sa 1987 Constitution, Article 11, Section 2,” Padilla said. He noted that impeachment is the constitutional mechanism for holding impeachable officers politically accountable and removing them from office over impeachable offenses. Padilla then asked Senate President Win Gatchalian about the chamber’s position on the developments involving Duterte. “Ginoong Pangulo, ang minorya ay nagtatanong. Ano po ang posisyon ng Senado dito?… Ano ba naman itong nangyayaring ito sa atin, Ginoong Pangulo, kailangan po natin malinawan ito dahil nahahati po ang ating mga kababayan sa nangyayaring ito. Hindi po ito nakakatulong sa atin,” he said. Duterte posted ₱360,000 bail on Saturday for three counts of grave threats involving President Ferdinand Marcos Jr., First Lady Liza Araneta-Marcos and former House Speaker Martin Romualdez."
+  },
+  "output": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 2 extracted claims individually.",
+    "original_text": "Senator-Judge Robin Padilla became emotional as he sought clarification on the Senate’s position regarding the grave threats case against Vice President Sara Duterte. In his manifestation on Monday, Padilla pointed out that Duterte, as a sitting Vice President, is an impeachable officer under the 1987 Constitution. “Ako po ay binalot ng mga karimarimarim na balita nitong nakaraang araw. Ang isang sitting vice president po ay isang impeachable officer. Ito po ay tahasang nakalagay sa 1987 Constitution, Article 11, Section 2,” Padilla said. He noted that impeachment is the constitutional mechanism for holding impeachable officers politically accountable and removing them from office over impeachable offenses. Padilla then asked Senate President Win Gatchalian about the chamber’s position on the developments involving Duterte. “Ginoong Pangulo, ang minorya ay nagtatanong. Ano po ang posisyon ng Senado dito?… Ano ba naman itong nangyayaring ito sa atin, Ginoong Pangulo, kailangan po natin malinawan ito dahil nahahati po ang ating mga kababayan sa nangyayaring ito. Hindi po ito nakakatulong sa atin,” he said. Duterte posted ₱360,000 bail on Saturday for three counts of grave threats involving President Ferdinand Marcos Jr., First Lady Liza Araneta-Marcos and former House Speaker Martin Romualdez.",
+    "translated_text": "Senator-Judge Robin Padilla became emotional as he sought clarification on the Senate’s position regarding the grave threats case against Vice President Sara Duterte. In his manifestation on Monday, Padilla pointed out that Duterte, as a sitting Vice President, is an impeachable officer under the 1987 Constitution. “Ako po ay binalot ng mga karimarimarim na balita nitong nakaraang araw. Ang isang sitting vice president po ay isang impeachable officer. Ito po ay tahasang nakalagay sa 1987 Constitution, Article 11, Section 2,” Padilla said. He noted that impeachment is the constitutional mechanism for holding impeachable officers politically accountable and removing them from office over impeachable offenses. Padilla then asked Senate President Win Gatchalian about the chamber’s position on the developments involving Duterte. “Ginoong Pangulo, ang minorya ay nagtatanong. Ano po ang posisyon ng Senado dito?… Ano ba naman itong nangyayaring ito sa atin, Ginoong Pangulo, kailangan po natin malinawan ito dahil nahahati po ang ating mga kababayan sa nangyayaring ito. Hindi po ito nakakatulong sa atin,” he said. Duterte posted ₱360,000 bail on Saturday for three counts of grave threats involving President Ferdinand Marcos Jr., First Lady Liza Araneta-Marcos and former House Speaker Martin Romualdez.",
+    "detected_language": "tagalog",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 2,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s1",
+        "text": "Senator-Judge Robin Padilla became emotional as he sought clarification on the Senate’s position regarding the grave threats case against Vice President Sara Duterte.",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s3",
+        "text": "“Ako po ay binalot ng mga karimarimarim na balita nitong nakaraang araw.",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s4",
+        "text": "Ang isang sitting vice president po ay isang impeachable officer.",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "low_classifier_confidence"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s5",
+        "text": "Ito po ay tahasang nakalagay sa 1987 Constitution, Article 11, Section 2,” Padilla said.",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s6",
+        "text": "He noted that impeachment is the constitutional mechanism for holding impeachable officers politically accountable and removing them from office over impeachable offenses.",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s8",
+        "text": "“Ginoong Pangulo, ang minorya ay nagtatanong.",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s9",
+        "text": "Ano po ang posisyon ng Senado dito?… Ano ba naman itong nangyayaring ito sa atin, Ginoong Pangulo, kailangan po natin malinawan ito dahil nahahati po ang ating mga kababayan sa nangyayaring ito.",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "low_classifier_confidence"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s10",
+        "text": "Hindi po ito nakakatulong sa atin,” he said.",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "low_classifier_confidence"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s11",
+        "text": "Duterte posted ₱360,000 bail on Saturday for three counts of grave threats involving President Ferdinand Marcos Jr., First Lady Liza Araneta-Marcos and former House Speaker Martin Romualdez.",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Padilla pointed out that Duterte, as a sitting Vice President, is an impeachable officer under the 1987 Constitution.",
+        "normalized_claim": "Padilla pointed out that Duterte, as a sitting Vice President, is an impeachable officer under the 1987 Constitution.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Padilla",
+          "role": null,
+          "statement": "Padilla pointed out that Duterte, as a sitting Vice President, is an impeachable officer under the 1987 Constitution.",
+          "source": null,
+          "program": null,
+          "date": "Monday"
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [
+            "role",
+            "source",
+            "program"
+          ]
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Padilla pointed out that Duterte, as a sitting Vice President, is an impeachable officer under the 1987 Constitution.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://newsinfo.inquirer.net/2300646/padilla-why-not-extend-presidential-immunity-from-suit-to-vp-duterte",
+                  "quote": "Padilla said that while there is nothing in the 1987 Constitution stating that the vice president is immune from suit, there is also no provision stating otherwise."
+                }
+              ]
+            }
+          ],
+          "supporting_urls": [
+            "https://newsinfo.inquirer.net/2300646/padilla-why-not-extend-presidential-immunity-from-suit-to-vp-duterte"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components."
+        },
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/impeachment-court-debates-if-duterte-remarks-alone-warrant-removal-from-office",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "date"
+            ]
+          },
+          {
+            "url": "https://verafiles.org/articles/historic-senate-trial-begins-for-impeached-vp-sara-duterte",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ]
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/in-privilege-speech-padilla-argues-vp-duterte-has-immunity-from-suit-1743",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "date"
+            ]
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2025/2/8/1987-constitution-framer-says-senate-must-act-on-vp-sara-impeachment-despite-break-1049",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "date"
+            ]
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/928794/impeachment-explainer-philippines/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "date"
+            ]
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001176/can-vice-president-be-charged-doj-sara-duterte-camp-show-why-and-why-not/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "date"
+            ]
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2300646/padilla-why-not-extend-presidential-immunity-from-suit-to-vp-duterte",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/1463095/vp-also-immune-from-suit-being-an-impeachable-official-macalintal",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "date"
+            ]
+          },
+          {
+            "url": "https://interaksyon.philstar.com/politics-issues/2026/07/06/315973/padilla-criticism-search-engine-impeachment-trial/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/07/07/2540286/escudero-vote-what-constitution-says-impeachment-trial-presider",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ]
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Padilla pointed out that Duterte, as a sitting Vice President, is an impeachable officer under the 1987 Constitution."
+        },
+        "scoring_claim": "Padilla pointed out that Duterte, as a sitting Vice President, is an impeachable officer under the 1987 Constitution.",
+        "search_query": "Padilla pointed out that Duterte, as a sitting Vice President, is an impeachable officer under the 1987 Constitution.",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "88f8c5a13b01825918c1d0725ae032e2b2643b15eb34a96270a3adf784d04dd9",
+        "cache_version": "week7-component-evidence-v2",
+        "verdict": "Verified",
+        "message": "Retrieved evidence supports that Padilla made this statement with Monday attribution. This verifies the attribution, not the underlying claim by itself.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "Philippine Daily Inquirer",
+          "title": "Padilla: Why not extend presidential immunity from suit to VP Duterte?",
+          "url": "https://newsinfo.inquirer.net/2300646/padilla-why-not-extend-presidential-immunity-from-suit-to-vp-duterte",
+          "status": "extracted",
+          "word_count": 441,
+          "evidence_method": "component_review",
+          "extraction_quality": "full"
+        },
+        "supporting_sources": [
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Padilla: Why not extend presidential immunity from suit to VP Duterte?",
+            "url": "https://newsinfo.inquirer.net/2300646/padilla-why-not-extend-presidential-immunity-from-suit-to-vp-duterte",
+            "status": "extracted",
+            "word_count": 441,
+            "evidence_method": "component_review",
+            "extraction_quality": "full"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 24,
+        "searched_articles": 16,
+        "extracted_articles": 10,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "GMA News",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          }
+        ],
+        "sources": [
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Padilla: Why not extend presidential immunity from suit to VP Duterte?",
+            "url": "https://newsinfo.inquirer.net/2300646/padilla-why-not-extend-presidential-immunity-from-suit-to-vp-duterte",
+            "status": "extracted",
+            "word_count": 441,
+            "evidence_method": "component_review",
+            "extraction_quality": "full"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Padilla: Why not extend presidential immunity from suit to VP Duterte?",
+            "url": "https://newsinfo.inquirer.net/2300646/padilla-why-not-extend-presidential-immunity-from-suit-to-vp-duterte",
+            "status": "extracted",
+            "word_count": 441,
+            "evidence_method": "component_review",
+            "extraction_quality": "full"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Partially Verified",
+              "reason": "Padilla discusses impeachment as a constitutional mechanism for vice presidents, but does not explicitly state Duterte is impeachable.",
+              "supporting_urls": [
+                "https://www.abs-cbn.com/news/nation/2026/9/7/in-privilege-speech-padilla-argues-vp-duterte-has-immunity-from-suit-1743"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "Padilla asked Senate President Win Gatchalian about the chamber’s position on the developments involving Duterte.",
+        "normalized_claim": "Padilla asked Senate President Win Gatchalian about the chamber’s position on the developments involving Duterte.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Padilla",
+          "role": null,
+          "statement": "Padilla asked Senate President Win Gatchalian about the chamber’s position on the developments involving Duterte.",
+          "source": null,
+          "program": null,
+          "date": "Monday"
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [
+            "role",
+            "source",
+            "program"
+          ]
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "Padilla asked Senate President Win Gatchalian",
+              "status": "not_supported",
+              "citations": []
+            },
+            {
+              "component": "about the chamber’s position on the developments involving Duterte.",
+              "status": "not_supported",
+              "citations": []
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 2 factual components."
+        },
+        "evidence_gate_audit": [
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/6/18/gatchalian-senate-to-still-discuss-presiding-officer-of-vp-duterte-trial-1113",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "date"
+            ]
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/6/gatchalian-vows-impartial-justice-as-duterte-impeachment-trial-starts-at-senate-1444",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ]
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/993186/senate-plenary-sara-duterte/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ]
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/992318/robin-padilla-opposition-chiz-escudero-impeachment-officer/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2248388/senate-row-ends-gatchalian-takes-helm-cayetano-yields",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "date"
+            ]
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2225857/padilla-ill-keep-defending-dutertes-till-senate-becomes-impeachment-court",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/07/03/2539570/gatchalian-preside-over-vp-sara-impeachment-trial",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ]
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/07/17/2542679/gatchalian-impeachment-court-remains-impartial",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Padilla asked Senate President Win Gatchalian about the chamber’s position on the developments involving Duterte."
+        },
+        "scoring_claim": "Padilla asked Senate President Win Gatchalian about the chamber’s position on the developments involving Duterte.",
+        "search_query": "Padilla asked Senate President Win Gatchalian about the chamber’s position on the developments involving Duterte.",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "459fd94dff2221fdd5e8b85b9fce3f756c50eed2deaa5291c2452e88486e879c",
+        "cache_version": "week7-component-evidence-v2",
+        "verdict": "Not Found",
+        "message": "IRIS did not find enough approved-source evidence confirming that Padilla made this statement with Monday attribution.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 24,
+        "searched_articles": 16,
+        "extracted_articles": 8,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "GMA News",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "There is no evidence that Padilla asked Gatchalian about the Senate's position on Duterte's developments.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files + 7 approved Philippine news sources",
+    "calibration": {
+      "result": "not_evaluated",
+      "assertions": []
+    }
+  },
+  "error": null
+}

@@ -1,0 +1,392 @@
+{
+  "case": 3,
+  "trace_id": "eb7d32e69d1d45878f9c2793d13e1b0e",
+  "mode": "targeted_saved_evidence_replay",
+  "baseline_trace_id": "abb84b373fdd402e873e552ac17e23e8",
+  "extraction": {
+    "status": "ok",
+    "method": "openai",
+    "coverage": [
+      {
+        "segment_id": 0,
+        "disposition": "excluded",
+        "claim_indexes": [],
+        "reason": "Evaluative statement about defending the Philippines; not independently checkable."
+      },
+      {
+        "segment_id": 1,
+        "disposition": "checkable",
+        "claim_indexes": [
+          0
+        ],
+        "reason": "Factual report of Dr. Kent Carpenter's death and context."
+      },
+      {
+        "segment_id": 2,
+        "disposition": "checkable",
+        "claim_indexes": [
+          1
+        ],
+        "reason": "Police statement about the break-in."
+      },
+      {
+        "segment_id": 3,
+        "disposition": "checkable",
+        "claim_indexes": [
+          2
+        ],
+        "reason": "Factual report of the shooting."
+      },
+      {
+        "segment_id": 4,
+        "disposition": "checkable",
+        "claim_indexes": [
+          3
+        ],
+        "reason": "Factual report of injury to companion."
+      },
+      {
+        "segment_id": 5,
+        "disposition": "checkable",
+        "claim_indexes": [
+          4
+        ],
+        "reason": "Factual report on investigation status."
+      },
+      {
+        "segment_id": 6,
+        "disposition": "checkable",
+        "claim_indexes": [
+          5
+        ],
+        "reason": "Attributed statement by police official."
+      },
+      {
+        "segment_id": 7,
+        "disposition": "mixed",
+        "claim_indexes": [
+          6
+        ],
+        "reason": "First clause is factual (began studying in 1975); second clause is evaluative."
+      },
+      {
+        "segment_id": 8,
+        "disposition": "excluded",
+        "claim_indexes": [],
+        "reason": "Evaluative statement about significance of role."
+      },
+      {
+        "segment_id": 9,
+        "disposition": "checkable",
+        "claim_indexes": [
+          7
+        ],
+        "reason": "Factual report of expert evidence submission."
+      },
+      {
+        "segment_id": 10,
+        "disposition": "checkable",
+        "claim_indexes": [
+          8
+        ],
+        "reason": "Factual report of oral testimony."
+      },
+      {
+        "segment_id": 11,
+        "disposition": "checkable",
+        "claim_indexes": [
+          9
+        ],
+        "reason": "Factual report of tribunal ruling."
+      },
+      {
+        "segment_id": 12,
+        "disposition": "mixed",
+        "claim_indexes": [
+          10
+        ],
+        "reason": "First clause is factual (research and advocacy); quoted nickname is evaluative."
+      },
+      {
+        "segment_id": 13,
+        "disposition": "checkable",
+        "claim_indexes": [
+          11
+        ],
+        "reason": "Factual report of tributes following death."
+      }
+    ],
+    "coverage_review_model": "gpt-4.1-2025-04-14",
+    "error": null,
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "American marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.",
+        "normalized_claim": "Dr. Kent Carpenter was allegedly shot and killed during a home invasion in Negros Oriental province, Central Visayas, Philippines.",
+        "claim_type": "factual_claim",
+        "risk_tags": [],
+        "search_query": "Kent Carpenter shot killed home invasion Negros Oriental Central Visayas",
+        "verification_focus": "factual_claim",
+        "source_passages": [
+          {
+            "segment_id": 1,
+            "quote": "American marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "Police said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.",
+        "normalized_claim": "Police said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.",
+        "claim_type": "attributed_statement",
+        "risk_tags": [],
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Police",
+          "role": null,
+          "statement": "Three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "search_query": "Police three men entered Kent Carpenter home Barangay Ajong Sibulan July 12",
+        "source_passages": [
+          {
+            "segment_id": 2,
+            "quote": "Police said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      },
+      {
+        "claim_id": 3,
+        "claim_text": "One of the intruders allegedly shot the 73-year-old scientist in the head, killing him.",
+        "normalized_claim": "One of the intruders allegedly shot Dr. Kent Carpenter, age 73, in the head, killing him.",
+        "claim_type": "factual_claim",
+        "risk_tags": [],
+        "search_query": "Kent Carpenter shot in head killed",
+        "verification_focus": "factual_claim",
+        "source_passages": [
+          {
+            "segment_id": 3,
+            "quote": "One of the intruders allegedly shot the 73-year-old scientist in the head, killing him."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      },
+      {
+        "claim_id": 4,
+        "claim_text": "His 34-year-old companion was also injured.",
+        "normalized_claim": "Dr. Kent Carpenter's 34-year-old companion was injured during the incident.",
+        "claim_type": "factual_claim",
+        "risk_tags": [],
+        "search_query": "Kent Carpenter companion injured",
+        "verification_focus": "factual_claim",
+        "source_passages": [
+          {
+            "segment_id": 4,
+            "quote": "His 34-year-old companion was also injured."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      },
+      {
+        "claim_id": 5,
+        "claim_text": "The suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.",
+        "normalized_claim": "The suspects in Dr. Kent Carpenter's killing remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.",
+        "claim_type": "factual_claim",
+        "risk_tags": [],
+        "search_query": "Kent Carpenter suspects at large investigation CCTV",
+        "verification_focus": "factual_claim",
+        "source_passages": [
+          {
+            "segment_id": 5,
+            "quote": "The suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      },
+      {
+        "claim_id": 6,
+        "claim_text": "Police Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.",
+        "normalized_claim": "Police Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.",
+        "claim_type": "attributed_statement",
+        "risk_tags": [],
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Romano Cardiño",
+          "role": "Police Brigadier General",
+          "statement": "condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "search_query": "Romano Cardiño condemned killing senseless act justice",
+        "source_passages": [
+          {
+            "segment_id": 6,
+            "quote": "Police Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      },
+      {
+        "claim_id": 7,
+        "claim_text": "He first began studying the country's marine ecosystems in 1975.",
+        "normalized_claim": "Dr. Kent Carpenter began studying the Philippines' marine ecosystems in 1975.",
+        "claim_type": "factual_claim",
+        "risk_tags": [],
+        "search_query": "Kent Carpenter began studying Philippine marine ecosystems 1975",
+        "verification_focus": "factual_claim",
+        "source_passages": [
+          {
+            "segment_id": 7,
+            "quote": "He first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      },
+      {
+        "claim_id": 8,
+        "claim_text": "During the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.",
+        "normalized_claim": "Dr. Kent Carpenter submitted expert written evidence during the South China Sea arbitration initiated by the Philippines in 2013, documenting environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.",
+        "claim_type": "factual_claim",
+        "risk_tags": [],
+        "search_query": "Kent Carpenter South China Sea arbitration written evidence environmental damage",
+        "verification_focus": "factual_claim",
+        "source_passages": [
+          {
+            "segment_id": 9,
+            "quote": "During the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      },
+      {
+        "claim_id": 9,
+        "claim_text": "He also delivered oral testimony during the 2015 merits hearing.",
+        "normalized_claim": "Dr. Kent Carpenter delivered oral testimony during the 2015 merits hearing of the South China Sea arbitration.",
+        "claim_type": "factual_claim",
+        "risk_tags": [],
+        "search_query": "Kent Carpenter oral testimony 2015 merits hearing",
+        "verification_focus": "factual_claim",
+        "source_passages": [
+          {
+            "segment_id": 10,
+            "quote": "He also delivered oral testimony during the 2015 merits hearing."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      },
+      {
+        "claim_id": 10,
+        "claim_text": "The tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.",
+        "normalized_claim": "The tribunal's 2016 ruling favored the Philippines and found no legal basis for China's \"nine-dash line\" claims.",
+        "claim_type": "factual_claim",
+        "risk_tags": [],
+        "search_query": "tribunal 2016 ruling Philippines China nine-dash line",
+        "verification_focus": "factual_claim",
+        "source_passages": [
+          {
+            "segment_id": 11,
+            "quote": "The tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      },
+      {
+        "claim_id": 11,
+        "claim_text": "Dr. Kent Carpenter conducted extensive research in the Verde Island Passage and advocated for its recognition as a UNESCO World Heritage Site.",
+        "normalized_claim": "Dr. Kent Carpenter conducted extensive research in the Verde Island Passage and advocated for its recognition as a UNESCO World Heritage Site.",
+        "claim_type": "factual_claim",
+        "risk_tags": [],
+        "search_query": "Kent Carpenter Verde Island Passage UNESCO World Heritage Site",
+        "verification_focus": "factual_claim",
+        "source_passages": [
+          {
+            "segment_id": 12,
+            "quote": "Carpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      },
+      {
+        "claim_id": 12,
+        "claim_text": "Dr. Kent Carpenter's death prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists.",
+        "normalized_claim": "Dr. Kent Carpenter's death prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists.",
+        "claim_type": "factual_claim",
+        "risk_tags": [],
+        "search_query": "Kent Carpenter death tributes Silliman University University of the Philippines Marine Science Institute",
+        "verification_focus": "factual_claim",
+        "source_passages": [
+          {
+            "segment_id": 13,
+            "quote": "His death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+          }
+        ],
+        "evidence_context": "His work helped defend the Philippines.\nAmerican marine biologist Dr. Kent Carpenter, whose scientific testimony supported the Philippines in its landmark 2016 South China Sea arbitration case against China, was shot and killed during a home invasion in Negros Oriental province in the Central Visayas region of the Philippines.\nPolice said three unidentified men forcibly entered Carpenter's home in Barangay Ajong, Sibulan, on the night of July 12.\nOne of the intruders allegedly shot the 73-year-old scientist in the head, killing him.\nHis 34-year-old companion was also injured.\nThe suspects remain at large, and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.\nPolice Brigadier General Romano Cardiño condemned the killing as a \"senseless act of violence\" and vowed to bring those responsible to justice.\nHe first began studying the country's marine ecosystems in 1975 and became one of the world's leading experts on Philippine marine biodiversity.\nBeyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.\nDuring the South China Sea arbitration initiated by the Philippines in 2013, he submitted expert written evidence documenting the environmental damage caused by China's island reclamation and destructive fishing practices in the West Philippine Sea.\nHe also delivered oral testimony during the 2015 merits hearing.\nThe tribunal's 2016 ruling overwhelmingly favored the Philippines and found no legal basis for China's sweeping \"nine-dash line\" claims.\nCarpenter also conducted extensive research in the Verde Island Passage, often called the \"center of the center\" of global marine shore fish biodiversity, and was a strong advocate for having the area recognized as a UNESCO World Heritage Site.\nHis death has prompted tributes from Silliman University, the University of the Philippines Marine Science Institute, conservation groups, and fellow scientists."
+      }
+    ],
+    "ignored_segments": [
+      {
+        "text": "His work helped defend the Philippines.",
+        "segment_type": "opinion"
+      },
+      {
+        "text": "He became one of the world's leading experts on Philippine marine biodiversity.",
+        "segment_type": "opinion"
+      },
+      {
+        "text": "Beyond his scientific achievements, Carpenter also played a significant role in one of the Philippines' biggest international legal victories.",
+        "segment_type": "opinion"
+      },
+      {
+        "text": "often called the \"center of the center\" of global marine shore fish biodiversity",
+        "segment_type": "opinion"
+      },
+      {
+        "text": "was a strong advocate for having the area recognized as a UNESCO World Heritage Site.",
+        "segment_type": "opinion"
+      }
+    ],
+    "post_type": "mixed_content",
+    "contains_opinion": true,
+    "contains_recommendation": false
+  },
+  "probe": {
+    "claim": "The suspects remain at large and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.",
+    "expected_review": "Not Found: the saved Yulo article concerns a different incident.",
+    "saved_articles": [
+      {
+        "url": "https://www.philstar.com/nation/2019/02/20/1895068/probers-review-mmda-videos-jose-luis-yulo-ambush",
+        "status": "extracted",
+        "error": null,
+        "title": "Probers review MMDA videos in Jose Luis Yulo ambush",
+        "description": "A police task force is reviewing footage taken by closed-circuit television cameras of the Metropolitan Manila Development Authority to help identify the killers of businessman Jose Luis Yulo and his driver, who were ambushed along EDSA in Mandaluyong City last Sunday.",
+        "text": "MANILA, Philippines — A police task force is reviewing footage taken by closed-circuit television cameras of the Metropolitan Manila Development Authority (MMDA) to help identify the killers of businessman Jose Luis Yulo and his driver, who were ambushed along EDSA in Mandaluyong City last Sunday. Chief Superintendent Bernabe Balba, Eastern Police District director and concurrent head of Special Investigation Task Group Yulo, said they want to find out if a vehicle had been tailing the Toyota Grandia rented by Yulo from Muñoz in Quezon City to the intersection of EDSA and Reliance street, where he was attacked. Yulo and his party came from Pampanga, where he took part in a drag race, Balba said. In Muñoz, a messenger got off the van as Yulo used a restroom, Balba said, noting that it may be at this juncture that the businessman was followed. “We are reviewing the CCTV footages of the MMDA. But we have not established anything as yet,” Balba said in an interview. The MMDA had put up CCTV cameras to monitor traffic buildup and address problems immediately. The task force is also working to get copies of CCTV footage from business establishments in the vicinity of the crime scene to determine whether the killing of Yulo, 62, and his driver, Allan Santos, 55, was caught on video. Balba said they are also investigating Yulo’s background to determine whether he had enemies who wanted him silenced. “We are looking at all angles that might help us to uncover the truth surrounding the incident including his business transactions or possible threats. That’s why we are appealing to the public or motorists who might have captured the incident in photos or videos, CCTV footages,” Balba said. He said that in particular, they are looking for the plate number of the motorcycle used by the assailants who ambushed Yulo. The businessman’s companion, Esmeralda Ignacio, is confined at a hospital. Police recovered 12 bullet casings and a slug from a .45 caliber pistol at the crime scene and a loaded .38 caliber Colt revolver from Yulo’s belongings, Balba said. Philstar.com is one of the most vibrant, opinionated, discerning communities of readers on cyberspace. With your meaningful insights, help shape the stories that can shape the country. Sign up now! Signup for the News Round now",
+        "word_count": 387,
+        "extraction_method": "paragraphs",
+        "extraction_quality": "full"
+      }
+    ],
+    "review": {
+      "status": "ok",
+      "verdict": "Not Found",
+      "components": [
+        {
+          "component": "The suspects remain at large",
+          "status": "not_supported",
+          "citations": []
+        },
+        {
+          "component": "and investigators are reviewing CCTV footage, interviewing witnesses, and pursuing leads.",
+          "status": "not_supported",
+          "citations": []
+        }
+      ],
+      "supporting_urls": [],
+      "reason": "Retrieved passages support 0 of 2 factual components."
+    }
+  }
+}

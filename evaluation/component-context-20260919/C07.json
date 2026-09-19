@@ -1,0 +1,202 @@
+{
+  "case_id": "C07",
+  "scope": "Saved case article pool, not an exact replay of per-claim retrieval inputs.",
+  "trace_id": "fe52bf5468b649f99c7e824cce20d66a",
+  "timestamp_utc": "2026-09-19T03:50:40.455253+00:00",
+  "input_sha256": "206e009fd9b60f4497a2931307b47064ba718cc8fba9c4e33493b961898a84a2",
+  "seconds": 7.996,
+  "old_verdict": "Partially Verified",
+  "cache": "not used; direct component review",
+  "new_searches": 0,
+  "models": {
+    "OPENAI_MODEL": "gpt-4o-mini",
+    "IRIS_EVIDENCE_REVIEW_MODEL": "gpt-4.1-2025-04-14"
+  },
+  "code_sha256": {
+    "component_context.py": "f559b0cccd22a46b2cf6c3ede18160630e93356da3e20c654d4cbeee32b8610b",
+    "component_evidence.py": "6a30ba5da0632f8314f1ebdc81d5af8691bc8a0ff4fa14a95defdc5551d82bd4"
+  },
+  "review": {
+    "status": "ok",
+    "verdict": "Not Found",
+    "components": [
+      {
+        "component": "Dela Torre opened up about her healing journey after a series of heartbreaks and controversies.",
+        "status": "not_supported",
+        "citations": [],
+        "review_reason": "The passages confirm that Moira Dela Torre discussed her healing journey and spoke about her breakup and the aftermath, which can be considered a heartbreak. However, none of the passages explicitly mention that she opened up about her healing journey after a 'series of heartbreaks and controversies.' The passages focus on her breakup with her husband and the healing process from that specific event, but do not establish that she addressed multiple heartbreaks or controversies as a series. The qualifier 'after a series of heartbreaks and controversies' is not fully supported by the evidence provided, as only the breakup is directly referenced as the context for her healing journey.",
+        "context": {
+          "start": 0,
+          "end": 95,
+          "anchors": {
+            "subject": [
+              {
+                "origin": "claim",
+                "quote": "Dela Torre",
+                "start": 0,
+                "end": 10
+              }
+            ],
+            "action": [
+              {
+                "origin": "claim",
+                "quote": "opened up about her healing journey",
+                "start": 11,
+                "end": 46
+              }
+            ],
+            "event": [
+              {
+                "origin": "claim",
+                "quote": "Dela Torre opened up about her healing journey after a series of heartbreaks and controversies.",
+                "start": 0,
+                "end": 95
+              }
+            ],
+            "time": [],
+            "negation": [],
+            "speaker": []
+          },
+          "proposed_ids": [
+            0
+          ],
+          "component_id": 0,
+          "assertion": "Dela Torre opened up about her healing journey after a series of heartbreaks and controversies.",
+          "source_reference": {
+            "origin": "claim",
+            "start": 0,
+            "end": 95
+          },
+          "context_is_evidence": false
+        },
+        "event_group_id": 0
+      }
+    ],
+    "supporting_urls": [],
+    "reason": "Retrieved passages support 0 of 1 factual components.",
+    "entailment_checks": [
+      {
+        "same_subject_and_event": true,
+        "assertion_supported": false,
+        "qualifiers_preserved": false,
+        "citation_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "reason": "The passages confirm that Moira Dela Torre discussed her healing journey and spoke about her breakup and the aftermath, which can be considered a heartbreak. However, none of the passages explicitly mention that she opened up about her healing journey after a 'series of heartbreaks and controversies.' The passages focus on her breakup with her husband and the healing process from that specific event, but do not establish that she addressed multiple heartbreaks or controversies as a series. The qualifier 'after a series of heartbreaks and controversies' is not fully supported by the evidence provided, as only the breakup is directly referenced as the context for her healing journey.",
+        "component_id": 0
+      }
+    ],
+    "original_claim": "Dela Torre opened up about her healing journey after a series of heartbreaks and controversies.",
+    "event_identity_checks": [
+      {
+        "group_id": 0,
+        "component_ids": [
+          0
+        ],
+        "referent": "Moira Dela Torre opened up about her healing journey after a series of heartbreaks and controversies.",
+        "sources": {
+          "https://www.gmanetwork.com/news/showbiz/chikaminute/871510/moira-dela-torre-speaks-up-on-cheating-ghostwriting-allegations/story/": {
+            "status": "matched",
+            "passage_ids": [
+              3
+            ],
+            "reason": "Passage 3 from source 0 directly states that Moira Dela Torre's current focus is her healing journey, referencing the trauma she experienced, which aligns with the claim that she opened up about her healing journey after heartbreaks and controversies. Additional context in passages 2 and 14-18 further supports the context of heartbreak and controversy.",
+            "citations": [
+              {
+                "url": "https://www.gmanetwork.com/news/showbiz/chikaminute/871510/moira-dela-torre-speaks-up-on-cheating-ghostwriting-allegations/story/",
+                "quote": "The singer-songwriter said that her current focus is her healing journey, “as the weight of trauma still lingers heavily in my heart.”"
+              }
+            ],
+            "context_status": "matching",
+            "temporal_context": {
+              "status": "unresolved",
+              "enforced": false,
+              "reason": "No explicit event-time anchor; semantic event review still required."
+            }
+          },
+          "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband": {
+            "status": "matched",
+            "passage_ids": [
+              20,
+              26,
+              27,
+              33,
+              34,
+              35,
+              36,
+              39,
+              40,
+              41,
+              42,
+              44
+            ],
+            "reason": "Multiple passages from source 1 (notably 20, 26, 27, 33, 34, 35, 36, 39, 40, 41, 42, 44) describe Moira Dela Torre opening up about her healing journey after her breakup and the controversies surrounding it. She discusses her emotional state, healing process, and how she is embracing a new season in her life, which matches the claim.",
+            "citations": [
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "MANILA - After months of silence, healing and redirection, Moira Dela Torre is finally speaking up about her highly-publicized breakup with husband Jason Marvin Hernandez."
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "During her launch as an addition to the Republic Records Philippines family, Dela Torre sat down and shared this new season of life that she has embraced."
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "“I am better than I expected. I don't remember being able to breathe this way and being able to enjoy what I have and mourn what I can’t have,” she said when asked how she's doing."
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "She admitted that she lost the drive to write songs and in her own words, \"I lost myself.\""
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "“It’s been a long time. I think my heart was prepared for it. Just because my mind was walking through it unconsciously, I’ve been on auto pilot for a long time. And when it happened, I just knew what to write. I didn’t get to write on my own for a while, I write because it’s work. Pero 'yung expression ko talaga, ang tagal bago nangyari ulit. And it happened when that season ended and I started just writing.”"
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "It took her a while to get back on her feet but she knew it was the process she has to go through."
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "“I don't remember being able to feel the way that I do now. I wasn’t aware that I was so numb for a long time. But now I’m in the season where I finally know my worth and I finally get to take care of myself. I am just enjoying life whether it’s a good day or a bad day. I’ve learned to embrace whatever I wake up to.”"
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "“When I exited that season, I felt like I was released from prison."
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "It felt like I was allowed to be the creative Moira that wrote ‘Malaya,’ and I lost her for a little bit."
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "But now, I’m very careful with the people that I allow into my life, the projects that I allowed in my life,\" she said. “Ironically, this crazy season has made me a stronger and a braver person. I thought this season would make me more scared. But God works in mysterious ways and definitely used my weakness and made it into strength.” And that’s when she starting channeling back her energy into writing songs. “Ang dami palang naipon. I just started unloading through songs and that’s really what I got to bounce back.” She’s back but with a new rhythm. Dela Torre just signed up with Republic Records Philippines hoping to expand her wings in music. globally. However, cshe larified that she didn’t cut ties with Star Music and will still do special projects with her former label. “It doesn't feel like a transfer, it feels like an expansion. So, I just feel like my world just got so much bigger. I have three families now who look after me -- ABS-CBN, Cornerstone and Republic.” Being the \"Queen of Hugot Songs,\" should her listeners expect the ultimate hugot album or even get a full picture of that \"difficult chapter of her personal life\" in her new music? “It’s a very vulnerable album. I think it’s my most honest and vulnerable album yet. Let’s just say that I wrote it during those times. I don’t expect it to be hits, I hope they would. But I feel like for the first time, I’m not curating an album because I want new hits. I curated an album to be honest.” Her recent glow-up also had netizens buzzing. When she released \"Babalik Sa ‘Yo\" for the feel-good highly-successful KathNiel series \"2Good 2 Be True,\" there was not one hint of dark cloud over her head -- looking refreshed, re-energized and happy singing a love song."
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "“I think I just healed. There was a long time that I wasn’t confident in how I look, how I felt. There was a time, after a long day at work, I would go home and feel good and feel confident. But I think, after so many years, ngayon ko lang naramdaman na ‘I don't look so bad after all.’ I’m not so bad after all.”"
+              },
+              {
+                "url": "https://www.abs-cbn.com/entertainment/11/25/22/moira-finally-opens-up-about-breakup-with-husband",
+                "quote": "She replied with a good laugh, saying: “Well, I don’t know. I just, I didn’t. When I thought that I’d be in a season where I feel full the most myself, I lost myself. And I am now in a season where I am surrounded by people who celebrate me.”"
+              }
+            ],
+            "context_status": "matching",
+            "temporal_context": {
+              "status": "unresolved",
+              "enforced": false,
+              "reason": "No explicit event-time anchor; semantic event review still required."
+            }
+          }
+        }
+      }
+    ],
+    "event_identity_model": "gpt-4.1-2025-04-14",
+    "partition_model": "gpt-4.1-2025-04-14",
+    "entailment_model": "gpt-4.1-2025-04-14"
+  }
+}
