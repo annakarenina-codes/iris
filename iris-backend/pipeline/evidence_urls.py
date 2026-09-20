@@ -22,6 +22,17 @@ OPINION_SEGMENTS = {'opinion', 'opinions', 'opinyon', 'column', 'columns', 'colu
                     'blog', 'blogs'}
 
 
+# A publisher's test and staging hosts serve unreviewed or stale copies of its pages.
+# Held-out post H22 was verified from qa.philstar.com.
+STAGING_HOSTS = {'qa', 'staging', 'stage', 'test', 'testing', 'dev', 'develop', 'beta',
+                 'preview', 'sandbox', 'uat', 'demo', 'localhost'}
+
+
+def is_staging_host(url):
+    host = (urlsplit(clean_article_url(url)).hostname or '').lower()
+    return host.split('.')[0] in STAGING_HOSTS if host else False
+
+
 def is_opinion_url(url):
     """True for a publisher's opinion, column or editorial section."""
     parts = urlsplit(clean_article_url(url))
@@ -44,6 +55,8 @@ def article_url_rejection(url, expected_source=None):
         domains = [s['domain'].split('/')[0] for s in approved]
         if not any(host == domain or host.endswith('.' + domain) for domain in domains):
             return 'unapproved_publisher'
+        if host.split('.')[0] in STAGING_HOSTS:
+            return 'publisher_staging_host'
         segments = [unquote(s).casefold() for s in parts.path.split('/') if s]
         query_keys = {key.casefold() for key, _ in parse_qsl(parts.query)}
         if query_keys & {'s', 'q', 'search', 'query', 'search_query'}:

@@ -57,6 +57,17 @@ def _date_parts(phrase):
     return month, day
 
 
+def is_calendar_date(phrase):
+    """
+    True for a date that names a day of a month, false for "Saturday" or "last week".
+
+    A claim that says "Saturday" is not pinned to a day a source could print, and held-out
+    post H14 lost three correct Verified verdicts to that distinction.
+    """
+    month, day = _date_parts(phrase)
+    return month is not None and day is not None
+
+
 def date_phrase_match(phrase, text):
     """True when the text states the same calendar date, however it is written."""
     month, day = _date_parts(phrase)

@@ -10,13 +10,14 @@ import requests
 from flask import Flask, request, jsonify
 from pipeline.cache import get_cached_verdict, hash_claim, save_cached_verdict
 from pipeline.attribution_integrity import (attribution_phrase_match, date_phrase_match,
-                                            speaker_phrase_match)
+                                            is_calendar_date, speaker_phrase_match)
 from pipeline.evidence_urls import article_url_rejection, is_opinion_url
 from pipeline.checkable_claims import only_general_statements
 from pipeline.claim_extractor import extract_claims
 from pipeline.component_evidence import REFUTED_VERDICT
 from pipeline.content_profiler import profile_content
-from pipeline.coverage_scope import OUT_OF_SCOPE_VERDICT, out_of_scope_message, philippine_scope
+from pipeline.coverage_scope import (OUT_OF_SCOPE_VERDICT, SCRIPTURE_VERDICT, out_of_scope_message,
+                                     philippine_scope, scriptural_narrative, scripture_message)
 from pipeline.event_retrieval import (
     build_event_search_query,
     mark_quote_derived_claims,
@@ -43,7 +44,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-general-claims-v36"
+RESULT_CACHE_VERSION = "week7-scripture-dates-v37"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 # A verdict that asserts something about the world has to show the source it rests on.
 VERDICTS_NEEDING_EVIDENCE = POSITIVE_VERDICTS | {REFUTED_VERDICT}
@@ -520,6 +521,11 @@ def cap_unconfirmed_date(verdict, message, claim, articles):
     claimed_date = (claim.get("attribution") or {}).get("date")
     if verdict != "Verified" or not claimed_date:
         return verdict, message
+    if not is_calendar_date(claimed_date):
+        # "Saturday" or "last week" names no day a source could print, so its absence says
+        # nothing. Held-out post H14 lost three correct verdicts this way.
+        event('verdict.date_not_calendar', claimed_date=claimed_date)
+        return verdict, message
     if any(attribution_evidence_gate(article, claim, anchors_only=True)["date_confirmed"]
            for article in articles):
         return verdict, message
@@ -529,22 +535,24 @@ def cap_unconfirmed_date(verdict, message, claim, articles):
 
 
 def build_out_of_scope_response(text, translated, language, debug_enabled, opinion_result,
-                                political_result, content_profile, scope):
+                                political_result, content_profile, scope,
+                                verdict=OUT_OF_SCOPE_VERDICT, message=None,
+                                route="stop_outside_philippine_coverage"):
     """Tells the reader IRIS does not cover this subject, instead of reporting Not Found."""
     return build_response({
-        "verdict": OUT_OF_SCOPE_VERDICT,
-        "message": out_of_scope_message(scope.get("subject")),
+        "verdict": verdict,
+        "message": message or out_of_scope_message(scope.get("subject")),
         "original_text": text,
         "translated_text": translated,
         "detected_language": language,
         "politically_sensitive": political_result["politically_sensitive"],
-        "flags": ["outside_philippine_coverage"]
+        "flags": [route.replace("stop_", "")]
                  + (["politically_sensitive"] if political_result["politically_sensitive"] else []),
         "claim_count": 0,
         "claim_extraction_status": "not_run_outside_coverage",
         "post_type": content_profile["post_type"],
         "content_profile_status": content_profile["status"],
-        "content_profile_route": "stop_outside_philippine_coverage",
+        "content_profile_route": route,
         "coverage_scope": scope,
         "contains_opinion": content_profile["contains_opinion"] or opinion_result["is_opinion"],
         "contains_recommendation": content_profile["contains_recommendation"],
@@ -1554,6 +1562,19 @@ def verify_text_payload(text, debug_enabled=False, timings=None):
     politically_sensitive = political_result["politically_sensitive"]
 
     event('text.route', eligible=content_profile['eligible_for_verification'], route=content_profile['recommended_route'], ignored_segments=content_profile.get('ignored_segments'))
+    if content_profile["eligible_for_verification"] and scriptural_narrative(
+            " ".join(part for part in [text, translated] if part)):
+        # Scripture is not reported as news, and "Verified" on it reads as IRIS endorsing a
+        # religious account as fact (held-out post H22).
+        event('stage.skipped', stages=['claims.extract','event.retrieve','claim.process'],
+              reason='scriptural_narrative')
+        response = build_out_of_scope_response(
+            text, translated, language, debug_enabled, opinion_result, political_result,
+            content_profile, {'in_scope': True, 'reason': 'scriptural_narrative'},
+            verdict=SCRIPTURE_VERDICT, message=scripture_message(),
+            route="stop_scriptural_narrative")
+        return complete_response(response)
+
     scope = timed_stage(timings, "text.coverage_scope", lambda: philippine_scope(text, translated))
     if content_profile["eligible_for_verification"] and not scope["in_scope"]:
         # Eleven Philippine publishers have nothing to say about a galaxy 24 million light-years

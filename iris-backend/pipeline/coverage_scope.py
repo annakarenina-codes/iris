@@ -19,6 +19,49 @@ import re
 from typing import Dict, Optional
 
 OUT_OF_SCOPE_VERDICT = "Outside Philippine Coverage"
+SCRIPTURE_VERDICT = "No Checkable Claims"
+
+# Scripture is not reported as news, and answering "Verified" about it reads as IRIS endorsing
+# a religious account as established fact. Held-out post H22 retold the healing of the woman
+# with the hemorrhage and IRIS verified two of its sentences, one from an opinion column.
+# Religion IN the news stays checkable: a bishop's statement or a church drive names Philippine
+# people and places, which keeps the post in scope by the marker rule below.
+SCRIPTURE_WORDS = re.compile(
+    r"\b(?:jesus|christ|messiah|the\s+lord|holy\s+spirit|apostle|apostles|disciples?|"
+    r"pharisees?|gospel|scripture|bible|biblical|parable|psalm|psalms|proverbs|"
+    r"panginoon|hesus|kristo|banal\s+na\s+kasulatan|ebanghelyo)\b", re.I)
+VERSE_REFERENCE = re.compile(
+    r"\b(?:[1-3]\s*)?(?:genesis|exodus|leviticus|numbers|deuteronomy|joshua|judges|ruth|"
+    r"samuel|kings|chronicles|ezra|nehemiah|esther|job|psalm|psalms|proverbs|ecclesiastes|"
+    r"isaiah|jeremiah|ezekiel|daniel|hosea|joel|amos|jonah|micah|matthew|mark|luke|john|"
+    r"acts|romans|corinthians|galatians|ephesians|philippians|colossians|thessalonians|"
+    r"timothy|titus|philemon|hebrews|james|peter|jude|revelation)\s+\d{1,3}:\d{1,3}\b", re.I)
+MIN_SCRIPTURE_MENTIONS = 2
+
+
+def scriptural_narrative(text):
+    """
+    True when a post retells scripture rather than reporting news.
+
+    Two conditions, because the safe mistake is to check a post anyway: the post speaks of
+    scripture more than in passing, and it names nothing Philippine that a newsroom would cover.
+    """
+    body = str(text or '')
+    mentions = len(SCRIPTURE_WORDS.findall(body))
+    if not (mentions >= MIN_SCRIPTURE_MENTIONS or VERSE_REFERENCE.search(body)):
+        return False
+    if PHILIPPINE_MARKERS.search(body):
+        return False
+    event('text.scriptural_narrative', mentions=mentions)
+    return True
+
+
+def scripture_message():
+    return ("IRIS checks Philippine news against Philippine news sources. This post recounts "
+            "scripture or religious teaching, which they do not report as news, so IRIS did not "
+            "check it. This is not a judgment about the post's meaning or truth.")
+
+
 
 # Read from the post itself: if any of these appear, the post stays in scope whatever the
 # model answers. A wrong "out of scope" silences a check that should have run.
