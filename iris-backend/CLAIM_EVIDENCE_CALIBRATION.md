@@ -300,6 +300,31 @@ The passages handed to the reviewer carry only a URL and text, never a publisher
 
 The verdict is `Refuted` and the reason begins "VERA Files reports that this did not happen." The fact-check leads the evidence list, and the same evidence gate that guards Verified downgrades a Refuted verdict with no displayable source to Not Found. The Chrome extension shows a red card and the Android client a red chip.
 
+### A refutation has to be stated
+
+A cited passage must itself say that something did not happen or is not true before either path
+into Refuted is taken (`states_a_denial`). The 34-case rerun of 20 September produced a false
+Refuted without it: for "the peso closed at 62.513 on Sept. 9", the reviewer cited a VERA Files
+passage reporting that the peso closed at P59 on **Oct. 13** and called it "a direct factual
+denial of the claimed exchange rate occurrence". Another trading session's rate denies nothing.
+The instruction now also states plainly that a different figure, date or outcome is not a denial.
+With the guard the claim returns to Not Found, while the two posts VERA has actually refuted stay
+Refuted.
+
+### Reaching the review: three fixes
+
+The verdict is only as good as the retrieval behind it, and the fact-check that settles saved case
+C08 reached the reviewer only after:
+
+1. The refutation check runs at all three ways a review can end. A claim with no proposed support
+   returns at the first of them, which is the case the check exists for.
+2. The sitemap lookup runs first among the search passes and takes at most two of a fact-checker's
+   three article slots. It used to run last, so its candidate was cut whenever ordinary search had
+   already filled them.
+3. Sitemap matches are ranked by how rare the shared words are in the archive. Counting matches
+   alone treated "marcos" like "poquiz", so general Marcos coverage outranked the fact-check that
+   named the person.
+
 ### Limit: the denial has to reach the entailment stage
 
 Only components that the first review pass proposes as supported reach the entailment check, and that is where a denial is recognised. A fact-check that plainly refutes a claim often produces no passage that *supports* it, so the first pass drops the component and the claim stays Not Found. Observed on 20 September with two posts carrying claims VERA Files has refuted:
@@ -307,4 +332,4 @@ Only components that the first review pass proposes as supported reach the entai
 - "Marcos announced he will step down after the Sept. 21 rallies": the first pass proposed support, the entailment check returned `contradiction_kind: denial` citing the VERA fact-check, and the review produced **Refuted**.
 - "Poquiz said the Marcoses no longer have a mandate": the first pass proposed nothing, so no entailment check ran and the claim stayed **Not Found**.
 
-Closing this gap needs a refutation check that runs when a review ends Not Found and a VERA Files fact-check is among the retrieved articles.
+This gap is closed by the refutation check described above. C08 now returns Verified for "at least two Facebook posts are claiming..." and **Refuted** for "Poquiz made a statement against the Marcoses", citing the fact-check.

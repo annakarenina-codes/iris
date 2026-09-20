@@ -32,7 +32,7 @@ Known problems deliberately left open, with the evidence gathered so far. Decisi
 
 ## 3. A claim the evidence refutes is reported as "Not Found" (C08 claim 2)
 
-**Status:** open, decision pending with the project owner (raised 20 Sept 2026).
+**Status:** resolved 20 Sept 2026. The project owner chose a Refuted verdict triggered by VERA Files alone, since it is the only IFCN-accredited fact-checking organisation in the Philippines and the only approved source whose work is dedicated to correcting false claims. C08 claim 2 now returns Refuted. See the Refuted section of iris-backend/CLAIM_EVIDENCE_CALIBRATION.md. The original finding is kept below.
 
 - Post C08 claim 2: "Retired Maj. Gen. Romeo Poquiz made a statement against President Marcos Jr. and Liza Araneta-Marcos."
 - After the VERA Files fix of 20 Sept, IRIS now reads the fact-check that settles it: "VERA Files found no records of Poquiz making this statement." Claim 1 ("at least two Facebook posts are claiming…") is **Verified** on that article.
@@ -55,3 +55,15 @@ Known problems deliberately left open, with the evidence gathered so far. Decisi
 
 - Entity resolution treats a nickname or short form and the full name as different people unless the post itself shows both together, so a component naming one form is not matched to evidence using the other.
 - Nickname handling added on 19 September covers names quoted inside a fuller name ("Ferdinand 'Bongbong' Marcos Jr.") and forms the post itself introduces. It does not cover a nickname that only the news article uses.
+
+
+## 6. Whether a claim keeps its date anchor decides the verdict (C06)
+
+**Status:** open, found on 20 Sept 2026 while comparing two runs of the same 34 cases.
+
+- C06 claim 1: "Sen. Robin Padilla announced on Friday, Sept. 18, that he has no plans of running."
+- In one run the attribution step returned `date: null` and all three C06 claims came back **Partially Verified**: the component review covers the announcement and records the date as unconfirmed.
+- In the next run, same input and same code, it returned `date: "Sept. 18"`. The date then became a required anchor, the evidence gate rejected **all 33 retrieved articles** with `missing: ["date"]`, and all three claims came back **Not Found** with no evidence shown. The same Philstar article passed the gate in the first run and failed in the second.
+- So the two stages disagree: the component review has a deliberate rule for an unconfirmed date (partial support, never Verified), while the attribution gate rejects the article outright before the review can apply it.
+- This also makes the verdict unstable between runs, independently of any code change.
+- Possible directions: let an unmatched date reduce an article's standing rather than exclude it, and leave the confirmed/unconfirmed decision to the component review; or make the date anchor required only when the claim's own wording makes the date essential.
