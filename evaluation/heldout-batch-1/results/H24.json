@@ -1,0 +1,276 @@
+{
+  "http_status": 200,
+  "trace_id": "1c90bf3b4e1f4b2bb096b0b42e94c5c3",
+  "response": {
+    "verdict": "Outside Philippine Coverage",
+    "message": "IRIS checks Philippine news against Philippine news sources. This post is about Money and business advice, which those sources do not cover, so IRIS did not check it. This is not a judgment about whether the post is true.",
+    "original_text": "Make the money mistakes & business mistakes as early as possible. \nWould you agree?\n#adulting #mindset #personalfinance See less",
+    "translated_text": "Make the money mistakes & business mistakes as early as possible. \nWould you agree?\n#adulting #mindset #personalfinance See less",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [
+      "outside_philippine_coverage"
+    ],
+    "claim_count": 0,
+    "claim_extraction_status": "not_run_outside_coverage",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "stop_outside_philippine_coverage",
+    "coverage_scope": {
+      "in_scope": false,
+      "subject": "Money and business advice",
+      "reason": "The post discusses general financial advice without any specific connection to the Philippines.",
+      "decided_by": "review"
+    },
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s2",
+        "text": "Would you agree?",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      }
+    ],
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "mixed_content",
+        "confidence": 0.3,
+        "ambiguity_score": 0.6,
+        "ambiguity_reasons": [
+          "needs_claim_extraction_review"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "verify_factual_claims_only",
+        "verification_text": "Make the money mistakes & business mistakes as early as possible.\n#adulting #mindset #personalfinance See less",
+        "normalized_verification_text": "Make the money mistakes & business mistakes as early as possible.\n#adulting #mindset #personalfinance See less",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Make the money mistakes & business mistakes as early as possible.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "Would you agree?",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s3",
+            "text": "#adulting #mindset #personalfinance See less",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s2",
+            "text": "Would you agree?",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS will verify only the factual segments and skip non-checkable parts.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "opinion",
+                "top_label_score": 0.8,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "subjective_statement",
+                  "not_checkable"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "quote",
+                "top_label_score": 0.9,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "rhetorical_question"
+                ]
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "contextual_background",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "hashtags",
+                  "not_checkable"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "timings": {
+        "request_id": "1c90bf3b4e1f4b2bb096b0b42e94c5c3",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0022,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 2.354,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0002,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0007,
+            "status": "ok"
+          },
+          {
+            "stage": "text.coverage_scope",
+            "duration_seconds": 1.3549,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 3.7135,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  },
+  "post_id": "H24",
+  "started_utc": "2026-09-20T16:16:26.508976+00:00",
+  "seconds": 3.745,
+  "git_commit": "bef80703bbe6e64d6daadd4f7026218fde2c2add",
+  "cache_version": "week7-general-claims-v36",
+  "cache_policy": "reads and writes bypassed",
+  "post": {
+    "id": "H24",
+    "page": "The Savvy Pinay",
+    "url": "https://www.facebook.com/share/v/1CKuTUuVFz/",
+    "date": "6 weeks ago",
+    "category": "opinion_satire",
+    "notes": "",
+    "text": "Make the money mistakes & business mistakes as early as possible. \nWould you agree?\n#adulting #mindset #personalfinance See less",
+    "image": "",
+    "image_text": "",
+    "expected": {
+      "overall": "Opinion Detected or No Checkable Claims",
+      "claims": [],
+      "references": []
+    },
+    "expected_fingerprint": "5018bb13c9ba2b40f9736dd0c424da1da3d19f345cec14ab10ecd2d4f9161daa"
+  },
+  "input_type": "text"
+}
