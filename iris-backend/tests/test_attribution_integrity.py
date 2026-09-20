@@ -109,8 +109,12 @@ class AttributionGateTests(unittest.TestCase):
             {'claim_type': 'attributed_statement', 'attribution': {'speaker': 'Robin Padilla'}}, anchors_only=True)
         self.assertFalse(result['matches'])
 
-    def test_missing_speaker_does_not_pass(self):
-        self.assertFalse(self.gate(None, 'A politician spoke.')['matches'])
+    def test_unresolved_speaker_is_not_required_at_the_gate(self):
+        # A speaker IRIS never resolved ("the judges") cannot be checked here. Requiring a name it
+        # does not have rejected every article (saved cases B04, C06); the component review decides.
+        gate = self.gate(None, 'A politician spoke.')
+        self.assertTrue(gate['matches'])
+        self.assertEqual(gate['anchor_checks']['speaker'], 'unresolved_not_required')
 
     def test_speaker_match_is_not_statement_confirmation(self):
         claim = {'claim_type': 'attributed_statement', 'attribution': {

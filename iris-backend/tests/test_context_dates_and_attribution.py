@@ -79,6 +79,25 @@ class BorrowedDateTests(unittest.TestCase):
         self.assertFalse(needs_context_review(claim, C01, units))
 
 
+class ParaphrasedContextTests(unittest.TestCase):
+    CLAIM = ('The suspects remain at large, and investigators are reviewing CCTV footage, '
+             'interviewing witnesses, and pursuing leads.')
+
+    def test_filled_in_ellipsis_is_dropped_and_the_claim_still_reviewed(self):
+        # Seen live in A03: the model wrote "investigators are interviewing witnesses", which is
+        # not one contiguous span of the claim.
+        anchors = context('investigators', 'are reviewing')
+        anchors['event'] = [{'origin': 'claim', 'quote': 'investigators are interviewing witnesses'}]
+        units = prepare_components(self.CLAIM, [self.CLAIM], [anchors])
+        self.assertEqual([u['assertion'] for u in units], [self.CLAIM])
+        self.assertEqual(units[0]['anchors']['event'], [])
+        self.assertEqual([r['field'] for r in units[0]['ungrounded_dropped']], ['event'])
+
+    def test_structurally_invalid_context_still_fails(self):
+        with self.assertRaises(ValueError):
+            prepare_components(self.CLAIM, [self.CLAIM], [{'subject': 'not a list'}])
+
+
 class ReportedSpeechTests(unittest.TestCase):
     CLAIM = ('Interior Secretary Jonvic Remulla announced that Austria did not accept the asylum '
              'application of former presidential spokesperson Harry Roque.')
@@ -120,6 +139,46 @@ class ReportedSpeechTests(unittest.TestCase):
         units = prepare_components(claim, parts, [context('Remulla', 'announced'),
                                                   context('Austria', 'rejected')])
         self.assertEqual(len(units), 2)
+
+
+class SpeakerTests(unittest.TestCase):
+    POST = ('LOOK: Sen. Robinhood \u201cRobin\u201d Padilla announced on Friday, Sept. 18, that he has no '
+            'plans of running in future elections.')
+
+    def test_quoted_nickname_does_not_hide_the_speaker(self):
+        from pipeline.attribution_integrity import attribution_phrase_match
+        self.assertTrue(attribution_phrase_match('Sen. Robinhood Padilla', self.POST))
+        self.assertTrue(attribution_phrase_match('Robin Padilla', self.POST))
+        self.assertFalse(attribution_phrase_match('Sara Duterte', self.POST))
+        self.assertFalse(attribution_phrase_match('Padilla Robinhood', self.POST))
+
+    def test_named_speaker_survives_grounding(self):
+        from pipeline.attribution_integrity import ground_attribution
+        claim = {'claim_type': 'attributed_statement', 'claim_text': self.POST, 'normalized_claim': self.POST,
+                 'attribution': {'speaker': 'Sen. Robinhood Padilla', 'role': None, 'statement': self.POST}}
+        grounded = ground_attribution(claim, self.POST)
+        self.assertEqual(grounded['attribution']['speaker'], 'Sen. Robinhood Padilla')
+        self.assertEqual(grounded['attribution_integrity']['field_checks']['speaker'], 'grounded')
+
+    def test_unresolved_speaker_does_not_reject_every_article(self):
+        import app as iris
+        article = {'url': 'https://www.philstar.com/headlines/2026/09/17/2556893/example',
+                   'text': 'The judges ruled that the reports do not contain any new information.'}
+        claim = {'claim_type': 'attributed_statement', 'attribution': {'speaker': None, 'role': 'judges'},
+                 'normalized_claim': 'The judges ruled that the reports contain no new information.'}
+        gate = iris.attribution_evidence_gate(article, claim, anchors_only=True)
+        self.assertTrue(gate['matches'])
+        self.assertEqual(gate['anchor_checks']['speaker'], 'unresolved_not_required')
+
+    def test_named_speaker_absent_from_an_article_still_rejects_it(self):
+        import app as iris
+        article = {'url': 'https://www.philstar.com/headlines/2026/09/17/2556893/example',
+                   'text': 'An unrelated agency began a different investigation this week.'}
+        claim = {'claim_type': 'attributed_statement', 'attribution': {'speaker': 'Melvin Matibag'},
+                 'normalized_claim': 'Matibag said his agency began the investigation.'}
+        gate = iris.attribution_evidence_gate(article, claim, anchors_only=True)
+        self.assertFalse(gate['matches'])
+        self.assertIn('speaker', gate['missing'])
 
 
 if __name__ == '__main__':

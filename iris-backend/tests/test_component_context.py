@@ -52,9 +52,10 @@ class ComponentContextTests(unittest.TestCase):
             self.assertEqual(claim[u['start']:u['end']], u['assertion'])
         self.assertEqual(units[0]['anchors']['negation'][0]['quote'], 'not')
 
-    def test_invented_context_is_rejected_not_inferred(self):
-        with self.assertRaisesRegex(ValueError, 'ungrounded'):
-            prepare_components('Someone spoke.', ['Someone spoke.'], [context('Robin Padilla', 'spoke')])
+    def test_invented_context_is_dropped_not_inferred(self):
+        units = prepare_components('Someone spoke.', ['Someone spoke.'], [context('Robin Padilla', 'spoke')])
+        self.assertEqual(units[0]['anchors']['subject'], [])
+        self.assertEqual([r['quote'] for r in units[0]['ungrounded_dropped']], ['Robin Padilla'])
 
     def test_missing_context_fails_closed(self):
         with self.assertRaises(ValueError):
@@ -68,9 +69,11 @@ class ComponentContextTests(unittest.TestCase):
         self.assertIn('partition_repair', units[0])
 
     def test_mismatch_repair_does_not_accept_invented_context(self):
-        with self.assertRaisesRegex(ValueError, 'ungrounded'):
-            prepare_components('Someone spoke. Police listened.', ['Someone spoke.', 'Police listened.'],
-                               [context('Robin Padilla', 'spoke')])
+        units = prepare_components('Someone spoke. Police listened.', ['Someone spoke.', 'Police listened.'],
+                                   [context('Robin Padilla', 'spoke')])
+        self.assertEqual(units[0]['anchors']['subject'], [])
+        self.assertEqual([r['quote'] for r in units[0]['ungrounded_dropped']], ['Robin Padilla'])
+        self.assertIn('partition_repair', units[0])
 
     def test_asserted_date_cannot_be_omitted(self):
         claim = 'The peso closed lower on September 9.'
@@ -110,12 +113,13 @@ class ComponentContextTests(unittest.TestCase):
         self.assertEqual(units[0]['anchors']['time'], [])
         self.assertFalse(temporal_context_decision(units, ['Cases rose.'])['enforced'])
 
-    def test_context_review_rejects_invented_year(self):
+    def test_context_review_drops_invented_year(self):
         claim = 'The singer discussed healing.'
         source = 'The singer met the media on Sept. 17. ' + claim
         units = prepare_components(claim, [claim], [context('singer', 'discussed')], source)
-        with self.assertRaisesRegex(ValueError, 'ungrounded'):
-            merge_context_review(units, [context(time='Sept. 17, 2026', origin='source_context')], claim, source)
+        merged = merge_context_review(units, [context(time='Sept. 17, 2026', origin='source_context')], claim, source)
+        self.assertEqual(merged[0]['anchors']['time'], [])
+        self.assertEqual([r['quote'] for r in merged[0]['ungrounded_dropped']], ['Sept. 17, 2026'])
 
     def test_context_review_is_wired_before_assessment(self):
         claim = 'The singer discussed healing.'

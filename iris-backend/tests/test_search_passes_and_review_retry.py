@@ -142,9 +142,10 @@ class ReviewRetryTests(unittest.TestCase):
                               'qualifiers_preserved': True, 'citation_ids': [0], 'reason': 'Explicit support.'}}},
         ]
 
-    def test_invented_quote_gets_one_corrective_retry(self):
+    def test_unusable_answer_gets_one_corrective_retry(self):
         calls = []
-        replies = [{'split_after': [], 'contexts': [context('Cases', 'went up')]},
+        # A structurally unusable answer: contexts must be a list, one entry per component.
+        replies = [{'split_after': [], 'contexts': 'not a list'},
                    {'split_after': [], 'contexts': [context('Cases', 'rose')]}, *self.replies()]
         article = {'url': 'https://example.org/news', 'text': self.CLAIM}
         with patch('openai.OpenAI', return_value=reply_client(replies, calls)):
@@ -152,11 +153,11 @@ class ReviewRetryTests(unittest.TestCase):
         self.assertEqual(result['verdict'], 'Verified')
         self.assertEqual(len(calls), 5)
         self.assertNotIn('CORRECTION', calls[0]['messages'][0]['content'])
-        self.assertIn('ungrounded_component_context', calls[1]['messages'][0]['content'])
+        self.assertIn('incomplete_component_contexts', calls[1]['messages'][0]['content'])
 
     def test_second_invalid_answer_is_a_processing_error(self):
         calls = []
-        bad = {'split_after': [], 'contexts': [context('Cases', 'went up')]}
+        bad = {'split_after': [], 'contexts': 'not a list'}
         with patch('openai.OpenAI', return_value=reply_client([bad, bad], calls)):
             result = review_components(self.CLAIM, [], self.CLAIM)
         self.assertEqual(len(calls), 2)

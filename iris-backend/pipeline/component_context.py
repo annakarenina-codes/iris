@@ -1,4 +1,5 @@
 """Ground component context in input spans; source context is never evidence."""
+from iris_trace.core import event
 import re
 from copy import deepcopy
 
@@ -20,7 +21,15 @@ def compact(text):
     return ' '.join(text.split())
 
 
-def ground_context(context, claim, source_context):
+def ground_context(context, claim, source_context, dropped=None):
+    """
+    Keeps only references quoted word for word from the claim or the post.
+
+    A paraphrased or invented reference (an ellipsis filled in, a reworded clause, an
+    invented year) is dropped and recorded, never used as context. Dropping keeps the
+    claim reviewable; failing the whole review over a reworded annotation does not make
+    the verdict safer, because dropped references cannot influence it.
+    """
     if not isinstance(context, dict) or set(context) != set(FIELDS):
         raise ValueError('invalid_component_context')
     result = {}
@@ -38,7 +47,10 @@ def ground_context(context, claim, source_context):
             quote = ref['quote']
             start = text.find(quote)
             if start < 0:
-                raise ValueError('ungrounded_component_context')
+                if dropped is None:
+                    raise ValueError('ungrounded_component_context')
+                dropped.append({'field': field, 'origin': origin, 'quote': quote})
+                continue
             entry = {'origin': origin, 'quote': quote, 'start': start, 'end': start + len(quote)}
             if entry not in result[field]:
                 result[field].append(entry)
@@ -82,7 +94,14 @@ def local_assertion(part, context):
 def prepare_components(claim, parts, contexts, source_context=''):
     if not isinstance(contexts, list) or not contexts:
         raise ValueError('incomplete_component_contexts')
-    grounded = [ground_context(c, claim, source_context) for c in contexts]
+    grounded, dropped_per_context = [], []
+    for context in contexts:
+        dropped = []
+        grounded.append(ground_context(context, claim, source_context, dropped))
+        dropped_per_context.append(dropped)
+    if any(dropped_per_context):
+        event('component.context_reference_dropped', stage='partition',
+              dropped=[ref for dropped in dropped_per_context for ref in dropped])
     repair = None
     if len(contexts) != len(parts):
         # Contexts cannot safely be assigned to fragments when counts disagree.
@@ -92,6 +111,7 @@ def prepare_components(claim, parts, contexts, source_context=''):
             for k in FIELDS:
                 merged[k].extend(r for r in ctx[k] if r not in merged[k])
         parts, grounded = [claim], [merged]
+        dropped_per_context = [[ref for dropped in dropped_per_context for ref in dropped]]
         repair = 'context_count_mismatch_recombined_whole_claim'
     spans, cursor = [], 0
     for part in parts:
@@ -100,7 +120,8 @@ def prepare_components(claim, parts, contexts, source_context=''):
             raise ValueError('component_span_not_in_claim')
         spans.append((start, start + len(part)))
         cursor = start + len(part)
-    units = [{'start': start, 'end': end, 'anchors': ctx, 'proposed_ids': [i]}
+    units = [{'start': start, 'end': end, 'anchors': ctx, 'proposed_ids': [i],
+              'dropped': dropped_per_context[i]}
              for i, ((start, end), ctx) in enumerate(zip(spans, grounded))]
     while len(units) > 1:
         # Reported content stays with its reporting verb: "Remulla announced" + "that Austria
@@ -116,8 +137,12 @@ def prepare_components(claim, parts, contexts, source_context=''):
         a, b = units[left:left + 2]
         anchors = {k: a['anchors'][k] + [r for r in b['anchors'][k] if r not in a['anchors'][k]] for k in FIELDS}
         units[left:left + 2] = [{'start': a['start'], 'end': b['end'], 'anchors': anchors,
-                                'proposed_ids': a['proposed_ids'] + b['proposed_ids']}]
+                                'proposed_ids': a['proposed_ids'] + b['proposed_ids'],
+                                'dropped': a['dropped'] + b['dropped']}]
     for i, u in enumerate(units):
+        dropped_references = u.pop('dropped')
+        if dropped_references:
+            u['ungrounded_dropped'] = dropped_references
         u.update(component_id=i, assertion=claim[u['start']:u['end']],
                  source_reference={'origin': 'claim', 'start': u['start'], 'end': u['end']},
                  context_is_evidence=False)
@@ -258,7 +283,11 @@ def merge_context_review(contexts, reviewed, claim, source_context):
     if not isinstance(reviewed, list) or len(reviewed) != len(contexts):
         raise ValueError('incomplete_context_review')
     for component, correction in zip(contexts, reviewed):
-        grounded = ground_context(correction, claim, source_context)
+        dropped = []
+        grounded = ground_context(correction, claim, source_context, dropped)
+        if dropped:
+            event('component.context_reference_dropped', stage='context_resolution', dropped=dropped)
+            component['ungrounded_dropped'] = component.get('ungrounded_dropped', []) + dropped
         # An independent context pass may add missing antecedents, never erase
         # explicit qualifiers already grounded in the assertion.
         for field in FIELDS:

@@ -14,13 +14,26 @@ def attribution_tokens(value):
     return re.findall(r"[^\W_]+", value)
 
 
+QUOTED_NICKNAME = re.compile(r"[\"\u201c\u2018\']\s*([^\W\d_]+)\s*[\"\u201d\u2019\']")
+
+
+def without_quoted_nicknames(text):
+    """Sen. Robinhood "Robin" Padilla also reads as Sen. Robinhood Padilla."""
+    return QUOTED_NICKNAME.sub(' ', str(text or ''))
+
+
+def _contains_tokens(required, text):
+    available = attribution_tokens(text)
+    return any(available[index:index + len(required)] == required
+               for index in range(len(available) - len(required) + 1))
+
+
 def attribution_phrase_match(phrase, text):
     required = attribution_tokens(phrase)
-    available = attribution_tokens(text)
-    return bool(required) and any(
-        available[index:index + len(required)] == required
-        for index in range(len(available) - len(required) + 1)
-    )
+    if not required:
+        return False
+    # A nickname in quotes is dropped from the text, never added to the phrase: no alias guessing.
+    return _contains_tokens(required, text) or _contains_tokens(required, without_quoted_nicknames(text))
 
 
 _CREDIT_LINE = re.compile(
