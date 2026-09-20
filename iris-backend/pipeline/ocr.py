@@ -332,6 +332,34 @@ def _confidence(regions: List[Dict[str, object]]) -> Optional[float]:
     return round(weighted_total / max(1, weight_sum), 4)
 
 
+# A reader looking at a stylised graphic returns stray marks as words: an opening quotation
+# mark comes back as "66", a decorative bar as ">", a clipped letter as a lone "D". They travel
+# into the claim and are checked as if the post had said them (held-out post H18 became
+# "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM").
+QUOTE_ARTEFACT = re.compile(r"^(?:6{2,}|9{2,})$")
+OPENS_A_WORD = r"\w" + "\"'(\u201c\u2018"
+CLOSES_A_WORD = r"\w" + "\".,:;!?)'\u201d\u2019"
+EDGE_JUNK = re.compile("^[^" + OPENS_A_WORD + "]+|[^" + CLOSES_A_WORD + "]+$")
+KEPT_SINGLE_LETTERS = {"a", "i"}
+
+
+def _keep_token(token: str) -> bool:
+    if not token or QUOTE_ARTEFACT.match(token):
+        return False
+    # A lone letter is a fragment of a word the reader lost; a lone digit can be a real figure.
+    return not (len(token) == 1 and token.isalpha() and token.lower() not in KEPT_SINGLE_LETTERS)
+
+
+def clean_region_text(text: str) -> str:
+    """Removes the stray marks a reader returns as words, keeping the words themselves."""
+    kept = []
+    for token in str(text or "").split():
+        token = EDGE_JUNK.sub("", token)
+        if _keep_token(token):
+            kept.append(token)
+    return " ".join(kept)
+
+
 @traced('image.regions', dependency=False)
 def _parse_easyocr_result(raw_result) -> List[Dict[str, object]]:
     regions = []
@@ -341,7 +369,7 @@ def _parse_easyocr_result(raw_result) -> List[Dict[str, object]]:
             continue
 
         bbox, text, confidence = item[:3]
-        text = _clean_text(str(text))
+        text = clean_region_text(_clean_text(str(text)))
         if not text:
             continue
 

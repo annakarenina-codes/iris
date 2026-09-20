@@ -70,6 +70,24 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   }
 });
 
+// Manifest V3 runs this script as a service worker that Chrome stops after about thirty
+// seconds of inactivity. An image check takes a minute or more, and when the worker was stopped
+// mid-request the backend finished while the panel waited for a result that could never arrive.
+// Touching a chrome API on a timer keeps the worker awake until the work is done.
+const KEEP_AWAKE_MS = 20000;
+
+async function withWorkerAwake(work) {
+  const ticker = setInterval(() => {
+    chrome.runtime.getPlatformInfo().catch(() => {});
+  }, KEEP_AWAKE_MS);
+
+  try {
+    return await work();
+  } finally {
+    clearInterval(ticker);
+  }
+}
+
 async function postJson(url, payload) {
   const controller = new AbortController();
   const timeoutId = REQUEST_TIMEOUT_MS > 0
@@ -199,7 +217,8 @@ async function verifyImage(sourceInput, tabId) {
   try {
     const settings = await readSettings();
     const backendUrl = normalizeBackendUrl(settings.irisBackendUrl);
-    const result = await postJson(`${backendUrl}/verify-image`, buildImagePayload(source, settings));
+    const result = await withWorkerAwake(
+      () => postJson(`${backendUrl}/verify-image`, buildImagePayload(source, settings)));
 
     if (!result.ok) {
       throw new Error(getBackendError(result));
@@ -258,14 +277,17 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
       return false;
     }
 
+    // Answer only when the check is finished: an open message channel is what keeps the
+    // service worker alive while the backend works.
     verifyImage(message.source || {
       kind: message.imageUrl ? "url" : "data_url",
       url: message.imageUrl || "",
       dataUrl: message.imageDataUrl || "",
       name: message.imageName || "Selected image"
-    }, tabId);
-    sendResponse({ ok: true });
-    return false;
+    }, tabId)
+      .then(() => sendResponse({ ok: true }))
+      .catch((error) => sendResponse({ ok: false, error: error?.message || "Image check failed." }));
+    return true;
   }
 
   if (message?.type === "IRIS_OPEN_OPTIONS") {

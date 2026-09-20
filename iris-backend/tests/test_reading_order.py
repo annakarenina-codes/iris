@@ -78,3 +78,35 @@ class UnreadableRegionTests(unittest.TestCase):
              'bbox': [[10, 10], [400, 10], [400, 50], [10, 50]]}])
         self.assertEqual(len(kept), 1)
         self.assertEqual(rejected, [])
+
+
+class RegionTextTests(unittest.TestCase):
+    """Stray marks a reader returns as words do not become part of the claim."""
+
+    def clean(self, text):
+        from pipeline.ocr import clean_region_text
+        return clean_region_text(text)
+
+    def test_quote_marks_read_as_digits_are_dropped(self):
+        # An opening curly quote comes back as "66" and became the first word of H18's claim.
+        self.assertEqual(self.clean('66'), '')
+        self.assertEqual(self.clean('99'), '')
+
+    def test_decorative_marks_are_stripped_from_words(self):
+        self.assertEqual(self.clean('MAY >'), 'MAY')
+        self.assertEqual(self.clean('ISANG ['), 'ISANG')
+        self.assertEqual(self.clean('~|~'), '')
+
+    def test_a_lone_letter_is_a_lost_word_not_a_word(self):
+        self.assertEqual(self.clean('KAY D'), 'KAY')
+        self.assertEqual(self.clean('a man'), 'a man')
+        self.assertEqual(self.clean('I saw it'), 'I saw it')
+
+    def test_figures_and_punctuation_inside_words_survive(self):
+        for text in ['P1.2 billion', '5 dead', 'BBM:', 'SAYAD.', '62.513', 'Sept. 18']:
+            with self.subTest(text=text):
+                self.assertEqual(self.clean(text), text)
+
+    def test_quotations_are_kept(self):
+        self.assertEqual(self.clean('"Wala na akong planong tumakbo"'),
+                         '"Wala na akong planong tumakbo"')
