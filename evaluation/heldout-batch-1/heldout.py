@@ -26,12 +26,28 @@ from unittest.mock import patch
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-OVERALL = ['Verified', 'Partially Verified', 'Not Found', 'Refuted', 'No Checkable Claims']
+# Every verdict IRIS can answer with, including the ones it gives without checking a claim.
+OVERALL = ['Verified', 'Partially Verified', 'Not Found', 'Refuted', 'No Checkable Claims',
+           'Opinion Detected', 'Outside Philippine Coverage']
 CLAIM_VERDICTS = OVERALL[:4]
+NO_CLAIM_VERDICTS = {'No Checkable Claims', 'Opinion Detected', 'Outside Philippine Coverage'}
 # Matches pipeline/ocr.py, so a file this runner accepts is a file IRIS can read.
 MAX_IMAGE_BYTES = 8 * 1024 * 1024
 IMAGE_SUFFIXES = {'.jpg', '.jpeg', '.png', '.webp', '.bmp', '.tif', '.tiff'}
 CATEGORIES = ['news', 'filipino', 'quote', 'false_claim', 'opinion_satire', 'other']
+CATEGORY_ALIASES = {'opinion_satire_non_news': 'opinion_satire', 'non_news': 'opinion_satire',
+                    'opinion': 'opinion_satire', 'satire': 'opinion_satire',
+                    'false': 'false_claim', 'fact_checked': 'false_claim'}
+
+
+def category_of(value):
+    named = re.sub(r'[\s-]+', '_', str(value or '').strip().lower())
+    return CATEGORY_ALIASES.get(named, named)
+
+
+def expected_verdicts(value):
+    """One verdict, or the few a post could fairly get: "Opinion Detected or No Checkable Claims"."""
+    return [part.strip() for part in re.split(r'\s+or\s+', str(value or '').strip()) if part.strip()]
 JUDGMENTS = {
     'correct': 'the verdict and its evidence are right',
     'false_positive': 'Verified/Partially Verified, but the claim is false or the evidence does not support it',
@@ -94,7 +110,7 @@ def finish_post(post):
                 'references': post['references']}
     return {
         'id': post['id'], 'page': fields.get('page', ''), 'url': fields.get('post url', ''),
-        'date': fields.get('date posted', ''), 'category': fields.get('category', '').lower(),
+        'date': fields.get('date posted', ''), 'category': category_of(fields.get('category', '')),
         'notes': fields.get('notes', ''), 'text': '\n'.join(post['text_lines']).strip(),
         'image': fields.get('image', ''),
         'expected': expected,
@@ -114,6 +130,7 @@ def image_path(folder, post):
 def check_post(post, folder=HERE):
     errors, warnings = [], []
     expected = post['expected']
+    wanted = expected_verdicts(expected['overall'])
     picture = image_path(folder, post)
     if picture is not None:
         if not picture.is_file():
@@ -122,11 +139,16 @@ def check_post(post, folder=HERE):
             errors.append(f'IMAGE must be one of {", ".join(sorted(IMAGE_SUFFIXES))}: {post["image"]}')
         elif picture.stat().st_size > MAX_IMAGE_BYTES:
             errors.append(f'IMAGE is larger than the {MAX_IMAGE_BYTES} byte OCR limit: {post["image"]}')
-    if expected['overall'] not in OVERALL:
-        errors.append(f"EXPECTED OVERALL must be one of: {', '.join(OVERALL)}")
-    if expected['overall'] != 'No Checkable Claims':
+    if not wanted or any(verdict not in OVERALL for verdict in wanted):
+        errors.append(f"EXPECTED OVERALL must be one of: {', '.join(OVERALL)}"
+                      + ' (or two of them written as "A or B" when either would be fair)')
+    if not set(wanted) & NO_CLAIM_VERDICTS:
         if not expected['claims']:
-            errors.append('list at least one EXPECTED CLAIMS line')
+            # Optional: EXPECTED OVERALL and REFERENCES still record a judgment made before the
+            # run. Per-claim expectations are what back the "claims IRIS missed" count, so the
+            # runner asks for them without refusing a post that has none.
+            warnings.append('no EXPECTED CLAIMS: the missed-claim count for this post rests on '
+                            'your memory of the post rather than on what you wrote beforehand')
         for claim in expected['claims']:
             if claim['verdict'] not in CLAIM_VERDICTS:
                 errors.append('claim needs "=> " and one of ' + ', '.join(CLAIM_VERDICTS)

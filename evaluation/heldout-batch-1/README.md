@@ -35,7 +35,16 @@ Two posts by VERA Files itself are worth including, because an expert will try o
 
 ## 2. Write your expected results before running IRIS (you)
 
-Fill in `EXPECTED OVERALL`, `EXPECTED CLAIMS` and `REFERENCES` **before** step 3, without looking at what IRIS returns. This keeps the evaluation blind. The runner refuses posts whose expected results are empty, and records a fingerprint of what you wrote so later edits are flagged in the report.
+Fill in `EXPECTED OVERALL`, `EXPECTED CLAIMS` and `REFERENCES` **before** step 3, without looking at what IRIS returns. This keeps the evaluation blind. The runner refuses a post with no `EXPECTED OVERALL`, and records a fingerprint of what you wrote so later edits are flagged in the report.
+
+`EXPECTED CLAIMS` is optional, and the runner only warns when a post has none. What you lose by leaving them out:
+
+- **The missed-claim count** becomes a judgment you make while reviewing, from the post in front of you, instead of a comparison against what you wrote beforehand.
+- **Wrong-level judgments** (Verified where Partially Verified was right) rest on your reading at review time rather than on a stated expectation.
+
+What you keep: `EXPECTED OVERALL` still records, before the run, what you thought the post deserved, and the fingerprint still flags any later edit. That is enough for claim accuracy, false positives and false negatives, which are judged per claim in `review.txt` anyway.
+
+Worth writing claims for even if you skip the rest: the `false_claim` posts, where the verdict turns on one specific statement.
 
 `EXPECTED OVERALL` is one of: `Verified`, `Partially Verified`, `Not Found`, `No Checkable Claims`.
 
