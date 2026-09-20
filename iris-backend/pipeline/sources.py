@@ -23,6 +23,9 @@ VERA_SOURCE = {
     # Its fact-checks are not always in the web-search index (saved case C08), so IRIS also
     # looks them up in the sitemap VERA publishes.
     "sitemap": "https://verafiles.org/sitemap.xml",
+    # Its pages now answer automated requests with a challenge page, so the article text is
+    # read through the public article API the same site publishes. See SOURCES.md.
+    "content_api": "https://verafiles.org/wp-json/wp/v2/posts",
 }
 
 FACT_CHECK_SOURCES = [

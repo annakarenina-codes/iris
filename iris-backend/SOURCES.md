@@ -51,3 +51,20 @@ Changes:
 3. Verdict cache version changed to `week7-sources-excerpts-v18` so results computed with the old source list are not reused.
 
 Evaluation note: this changes the evidence pool, so results after this date are not directly comparable to the 18 September 34-case baseline without noting the source-policy change. Each claim now makes 11 search requests instead of 8.
+
+## Change record: 20 September 2026 — VERA Files behind a challenge page
+
+Reason: every VERA Files page (articles, home page, RSS feed) began answering automated requests with HTTP 429 and a "Verifying if your connection is secure" page served by Deflect, a DDoS-protection service. The same is true for a browser-like request. This cost IRIS its most reliable source: saved case C08 is verified only by a VERA fact-check, and the sitemap lookup added on 19 September found that article but could not read it.
+
+IRIS does not attempt to solve or circumvent the challenge. Instead it reads the article through the **public article API the same site publishes** (`verafiles.org/wp-json/wp/v2/posts`), which returns 200 and the article's own full text. The sitemap (`sitemap.xml`) also still serves normally, so fact-check discovery is unaffected.
+
+Changes ([pipeline/publisher_api.py](pipeline/publisher_api.py)):
+
+1. A source may declare a `content_api`. Only VERA Files declares one. For such a source the article is read from the API first and downloading is the fallback, which is faster and sends the publisher fewer requests.
+2. The API is asked for the article's slug; if the stored slug differs, it is asked for the slug's words. **The returned article's own address must match the address IRIS asked for**, otherwise nothing is used. Text is used only if it is at least 8 words.
+3. An API failure is never fatal: the article falls back to a download, and then to a search excerpt.
+4. Records read this way are `extraction_method: publisher_api`. They are full article text, so they stay `evidence_type: full_text`.
+
+Request volume ([pipeline/article_extractor.py](pipeline/article_extractor.py)): a post with several claims used to download the same article once per claim. Readings are now cached in process for 15 minutes per URL, requests to one publisher are serialised and spaced at least 1 second apart, and a 429 is retried twice. C08 read the VERA fact-check in 1.6 seconds.
+
+Result: C08 claim 1 is **Verified** on the VERA fact-check `fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses`, which IRIS previously could not read at all.

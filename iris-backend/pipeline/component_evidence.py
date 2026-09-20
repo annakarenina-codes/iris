@@ -314,6 +314,9 @@ def apply_entailment_checks(claim, reviewed, checks, articles):
                                f"{', '.join(sorted(years - cited_years))}."
                                + ('' if partial else f" They state a different year: "
                                   f"{', '.join(sorted(cited_years))}."))
+        if (check.get('missing_kind') == 'date' or part.get('time_unconfirmed')) and not same_occurrence:
+            # Another occasion that happens to fit the words is not this claim's event.
+            supported = partial = False
         if supported and part.get('time_unconfirmed'):
             # The event matches, but no passage states the claimed date: support stays partial.
             supported, partial = False, True

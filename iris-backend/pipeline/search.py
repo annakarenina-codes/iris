@@ -34,6 +34,7 @@ except ImportError:  # pragma: no cover - depends on local environment setup
 
 from pipeline.article_extractor import extract_article_text
 from pipeline.fact_check_index import fact_check_candidates
+from pipeline.publisher_api import article_from_api
 from pipeline.sources import get_all_sources, uses_search_excerpts
 from pipeline.evidence_urls import article_url_rejection, clean_article_url
 
@@ -578,7 +579,9 @@ def _build_article_from_result(result: Dict[str, object]) -> Dict[str, object]:
         return build_excerpt_article(result, "publisher_blocks_automated_download")
 
     try:
-        extraction = extract_article_text(url)
+        # A publisher that offers an article API is read there first: VERA Files serves its
+        # pages behind a challenge, and the API is the channel it offers to programs.
+        extraction = article_from_api(url, result.get("source")) or extract_article_text(url)
     except Exception as error:  # pragma: no cover - defensive safety net
         extraction = _article_error_result(url, error)
 

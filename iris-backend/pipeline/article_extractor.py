@@ -8,12 +8,15 @@ count, and paywall/short-content detection.
 
 from __future__ import annotations
 
-from iris_trace.core import traced
+from iris_trace.core import traced, event
 
 import json
 import re
+import threading
+import time
 from html import unescape
 from typing import Dict, List
+from urllib.parse import urlsplit
 from pipeline.evidence_urls import article_url_rejection, clean_article_url
 
 try:
@@ -239,6 +242,55 @@ def _extraction_quality(word_count: int) -> str:
     return "full" if word_count >= THIN_ARTICLE_WORDS else "thin"
 
 
+RATE_LIMITED_RETRIES = 2
+RATE_LIMITED_WAIT_SECONDS = 2
+HOST_REQUEST_INTERVAL_SECONDS = 1.0
+ARTICLE_CACHE_SECONDS = 900
+ARTICLE_CACHE_MAX = 500
+_host_locks = {}
+_host_last_request = {}
+_host_locks_guard = threading.Lock()
+_article_cache = {}
+_article_cache_guard = threading.Lock()
+
+
+def _host_lock(url):
+    """One request at a time per publisher: parallel fetches are what trigger 429s."""
+    host = urlsplit(url).netloc.lower()
+    with _host_locks_guard:
+        return _host_locks.setdefault(host, threading.Lock())
+
+
+def _wait_for_host(url):
+    """Leaves a gap between requests to the same publisher, which VERA Files requires."""
+    host = urlsplit(url).netloc.lower()
+    previous = _host_last_request.get(host)
+    if previous is not None:
+        delay = HOST_REQUEST_INTERVAL_SECONDS - (time.monotonic() - previous)
+        if delay > 0:
+            time.sleep(delay)
+    _host_last_request[host] = time.monotonic()
+
+
+def cached_article(url):
+    """A recently read article, so a post with many claims downloads each source once."""
+    with _article_cache_guard:
+        entry = _article_cache.get(url)
+        if entry and time.monotonic() - entry['read'] < ARTICLE_CACHE_SECONDS:
+            return dict(entry['article'])
+    return None
+
+
+def remember_article(url, article):
+    if article.get('status') != 'extracted':
+        return article
+    with _article_cache_guard:
+        if len(_article_cache) >= ARTICLE_CACHE_MAX:
+            _article_cache.pop(next(iter(_article_cache)), None)
+        _article_cache[url] = {'read': time.monotonic(), 'article': dict(article)}
+    return article
+
+
 @traced('retrieval.article_extract', dependency=True)
 def extract_article_text(url: str) -> Dict[str, object]:
     """
@@ -283,8 +335,23 @@ def extract_article_text(url: str) -> Dict[str, object]:
         )
     }
 
+    reused = cached_article(normalized_url)
+    if reused is not None:
+        event('retrieval.article_cached', url=normalized_url)
+        return reused
+
     try:
-        response = requests.get(normalized_url, headers=headers, timeout=REQUEST_TIMEOUT_SECONDS)
+        with _host_lock(normalized_url):
+            _wait_for_host(normalized_url)
+            response = requests.get(normalized_url, headers=headers, timeout=REQUEST_TIMEOUT_SECONDS)
+            for attempt in range(RATE_LIMITED_RETRIES):
+                if getattr(response, "status_code", None) != 429:
+                    break
+                # VERA Files answers 429 when several of its pages are fetched at once,
+                # which cost IRIS the C08 fact-check entirely.
+                time.sleep(RATE_LIMITED_WAIT_SECONDS * (attempt + 1))
+                _wait_for_host(normalized_url)
+                response = requests.get(normalized_url, headers=headers, timeout=REQUEST_TIMEOUT_SECONDS)
         response.raise_for_status()
     except requests.RequestException as error:
         return {
@@ -345,7 +412,7 @@ def extract_article_text(url: str) -> Dict[str, object]:
             "extraction_quality": _extraction_quality(words),
         }
 
-    return {
+    return remember_article(normalized_url, {
         "url": normalized_url,
         "status": "extracted",
         "error": None,
@@ -355,4 +422,4 @@ def extract_article_text(url: str) -> Dict[str, object]:
         "word_count": words,
         "extraction_method": extraction_method,
         "extraction_quality": _extraction_quality(words),
-    }
+    })
