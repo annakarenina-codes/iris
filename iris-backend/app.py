@@ -39,7 +39,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-post-name-forms-v27"
+RESULT_CACHE_VERSION = "week7-platform-source-v28"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 REVIEW_FAILED_VERDICT = "Review Failed"
 REVIEW_FAILED_MESSAGE = (
@@ -47,6 +47,13 @@ REVIEW_FAILED_MESSAGE = (
     "issued. This is a technical failure, not a finding about the claim. Please retry."
 )
 ATTRIBUTED_CLAIM_TYPE = "attributed_statement"
+# "Facebook post", "viral post", "netizens": where a claim circulated, not an outlet that
+# reporting must name. Requiring these words inside news articles rejected every source (C06).
+PLATFORM_SOURCE_WORDS = {
+    "facebook", "fb", "instagram", "ig", "twitter", "tiktok", "youtube", "messenger",
+    "social", "media", "post", "posts", "page", "pages", "online", "viral", "netizen",
+    "netizens", "user", "users", "account", "video", "reel", "story", "stories",
+}
 REMOTE_IMAGE_TIMEOUT_SECONDS = 10
 EVIDENCE_STOPWORDS = {
     "about",
@@ -394,6 +401,12 @@ def phrase_is_covered(phrase, text, text_terms=None):
     return attribution_phrase_match(phrase, text)
 
 
+def is_platform_reference(value):
+    """True for a social-platform or self-referential source such as "Facebook post"."""
+    words = {word for word in re.findall(r"[^\W_]+", str(value or "").lower())}
+    return bool(words) and words <= PLATFORM_SOURCE_WORDS
+
+
 def speaker_is_covered(speaker, text, text_terms, source_text=''):
     """Requires named attribution evidence, not just generic topic overlap."""
     if not speaker:
@@ -456,6 +469,9 @@ def attribution_evidence_gate(article, claim, anchors_only=False):
 
     for key in ["source", "program", "date"]:
         value = attribution.get(key)
+        if key == "source" and is_platform_reference(value):
+            anchor_checks[key] = "platform_reference_not_required"
+            continue
         matched = phrase_is_covered(value, article_text, text_terms)
         anchor_checks[key] = ("not_required" if not value else
                               "normalized_phrase_match" if matched else "unmatched")

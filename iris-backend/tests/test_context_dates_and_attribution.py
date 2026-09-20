@@ -208,6 +208,26 @@ class SpeakerTests(unittest.TestCase):
         self.assertEqual(grounded['attribution']['speaker'], 'Sen. Robinhood Padilla')
         self.assertEqual(grounded['attribution_integrity']['field_checks']['speaker'], 'grounded')
 
+    def test_platform_sources_are_not_required_in_evidence(self):
+        import app as iris
+        for value in ['Facebook post', 'Facebook', 'viral post', 'netizens', 'Instagram video']:
+            self.assertTrue(iris.is_platform_reference(value), value)
+        for value in ['ABS-CBN News', 'DZRH', '24 Oras', 'GMA News Online', None, '']:
+            self.assertFalse(iris.is_platform_reference(value), value)
+
+    def test_a_named_outlet_is_still_required(self):
+        import app as iris
+        article = {'url': 'https://www.abs-cbn.com/news/2026/9/19/example',
+                   'text': 'Senator Robin Padilla said he has no plans of running again.'}
+        claim = {'claim_type': 'attributed_statement', 'evidence_context': self.POST,
+                 'normalized_claim': 'Padilla said he has no plans of running.',
+                 'attribution': {'speaker': 'Sen. Robinhood Padilla', 'source': 'Facebook post'}}
+        self.assertTrue(iris.attribution_evidence_gate(article, claim, anchors_only=True)['matches'])
+        claim['attribution'] = {'speaker': 'Sen. Robinhood Padilla', 'source': 'DZRH'}
+        gate = iris.attribution_evidence_gate(article, claim, anchors_only=True)
+        self.assertFalse(gate['matches'])
+        self.assertIn('source', gate['missing'])
+
     def test_unresolved_speaker_does_not_reject_every_article(self):
         import app as iris
         article = {'url': 'https://www.philstar.com/headlines/2026/09/17/2556893/example',
