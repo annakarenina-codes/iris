@@ -129,13 +129,20 @@ def runnable(posts):
 
 
 def ocr_fidelity(post, body):
-    """How much of the words in the picture came back from OCR, as a 0-1 ratio."""
+    """
+    How much of the statement recorded for a picture survived OCR, as a 0-1 ratio.
+
+    IMAGE TEXT holds the words that should be checked, not everything printed on the image,
+    so this measures whether that statement came through. Branding, hashtags and captions that
+    OCR also reads do not count against it.
+    """
     from difflib import SequenceMatcher
-    wanted, read = post.get('image_text') or '', (body or {}).get('ocr_text') or ''
+    words = lambda value: re.findall(r"[^\W_]+", str(value or '').lower())
+    wanted, read = words(post.get('image_text')), words((body or {}).get('ocr_text'))
     if not wanted or not read:
         return None
-    normalize = lambda value: ' '.join(re.findall(r"[^\W_]+", str(value).lower()))
-    return round(SequenceMatcher(None, normalize(wanted), normalize(read)).ratio(), 3)
+    survived = sum(block.size for block in SequenceMatcher(None, wanted, read).get_matching_blocks())
+    return round(survived / len(wanted), 3)
 
 
 def image_path(folder, post):
@@ -366,7 +373,7 @@ def write_report(folder, posts, results):
             fidelity = ocr_fidelity(post, body)
             lines += [f"**Image:** `{post.get('image')}` · OCR {body.get('ocr_status')} · "
                       f"{body.get('ocr_word_count')} words · confidence {body.get('ocr_confidence')}"
-                      + (f" · matches the picture's words {fidelity:.0%}" if fidelity is not None else '')
+                      + (f" · {fidelity:.0%} of the statement's words survived" if fidelity is not None else '')
                       + (' · **low confidence**' if body.get('ocr_low_confidence') else ''), '']
             if post.get('image_text'):
                 lines += ['<details><summary>What the picture says (you)</summary>', '',
@@ -466,7 +473,7 @@ def score(folder):
     if fidelities:
         lines += ['', '## Reading the pictures', '',
                   f'| Image posts compared | {len(fidelities)} |', '|---|---|',
-                  f'| OCR match with the words in the picture, median | {statistics.median(fidelities):.0%} |',
+                  f'| Words of the recorded statement that survived OCR, median | {statistics.median(fidelities):.0%} |',
                   f'| Worst | {min(fidelities):.0%} |']
     lines += ['', '## By input', '', '| Input | Posts | Claim accuracy | False positives |', '|---|---|---|---|']
     for kind, bucket in sorted(by_input.items()):
