@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 import requests
 from flask import Flask, request, jsonify
 from pipeline.cache import get_cached_verdict, hash_claim, save_cached_verdict
-from pipeline.attribution_integrity import attribution_phrase_match
+from pipeline.attribution_integrity import attribution_phrase_match, speaker_phrase_match
 from pipeline.evidence_urls import article_url_rejection
 from pipeline.claim_extractor import extract_claims
 from pipeline.content_profiler import profile_content
@@ -39,7 +39,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-grounding-and-speakers-v25"
+RESULT_CACHE_VERSION = "week7-speaker-variants-v26"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 REVIEW_FAILED_VERDICT = "Review Failed"
 REVIEW_FAILED_MESSAGE = (
@@ -399,7 +399,8 @@ def speaker_is_covered(speaker, text, text_terms):
     if not speaker:
         return False
 
-    return attribution_phrase_match(speaker, text)
+    # Accepts only the name forms the post itself supplies (nickname, titles), never a new name.
+    return speaker_phrase_match(speaker, text)
 
 
 def statement_is_covered(statement, text_terms):

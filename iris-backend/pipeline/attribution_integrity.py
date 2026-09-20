@@ -36,6 +36,43 @@ def attribution_phrase_match(phrase, text):
     return _contains_tokens(required, text) or _contains_tokens(required, without_quoted_nicknames(text))
 
 
+TITLES = {'sen', 'senator', 'sens', 'rep', 'reps', 'representative', 'cong', 'congressman', 'congresswoman',
+          'sec', 'secretary', 'usec', 'undersecretary', 'gov', 'governor', 'mayor', 'vice', 'president',
+          'vp', 'atty', 'attorney', 'dr', 'engr', 'gen', 'general', 'brig', 'maj', 'col', 'lt', 'police',
+          'justice', 'judge', 'chief', 'former', 'ret', 'retired', 'hon', 'dir', 'director', 'spokesperson',
+          'interior', 'education', 'senator-judge'}
+
+
+def speaker_variants(speaker):
+    """
+    Name forms the post itself supplies: with or without a quoted nickname, with or without titles.
+
+    "Sen. Robinhood \u201cRobin\u201d Padilla" yields Robinhood Padilla and Robin Padilla, which is how
+    articles write the same person. Nothing is invented: every variant comes from the submitted name.
+    """
+    speaker = str(speaker or '')
+    given = attribution_tokens(speaker)
+    plain = attribution_tokens(without_quoted_nicknames(speaker))
+    untitled = [token for token in plain if token not in TITLES]
+    forms = [given, plain, untitled]
+    nickname = QUOTED_NICKNAME.search(speaker)
+    if nickname and untitled:
+        # The nickname stands in for the given name: Robinhood Padilla -> Robin Padilla.
+        forms.append(attribution_tokens(nickname.group(1)) + untitled[1:])
+    variants = []
+    for form in forms:
+        if len(form) >= min(2, len(given)) and form not in variants:
+            variants.append(form)
+    return variants
+
+
+def speaker_phrase_match(speaker, text):
+    """True when any name form of this speaker appears in the text as written."""
+    texts = (text, without_quoted_nicknames(text))
+    return any(_contains_tokens(variant, candidate)
+               for variant in speaker_variants(speaker) for candidate in texts)
+
+
 _CREDIT_LINE = re.compile(
     r"(?:^|[/|])[ \t]*(?:via|by|reported by|report by|photo by|image by|photo credit:?)"
     r"[ \t]+(?P<credit>[^\r\n]+)\r?$", re.IGNORECASE | re.MULTILINE,

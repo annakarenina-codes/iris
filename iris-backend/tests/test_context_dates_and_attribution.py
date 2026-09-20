@@ -152,6 +152,33 @@ class SpeakerTests(unittest.TestCase):
         self.assertFalse(attribution_phrase_match('Sara Duterte', self.POST))
         self.assertFalse(attribution_phrase_match('Padilla Robinhood', self.POST))
 
+    def test_articles_may_use_any_name_form_the_post_supplies(self):
+        from pipeline.attribution_integrity import speaker_phrase_match, speaker_variants
+        speaker = 'Sen. Robinhood \u201cRobin\u201d Padilla'
+        self.assertEqual(speaker_variants(speaker),
+                         [['sen', 'robinhood', 'robin', 'padilla'], ['sen', 'robinhood', 'padilla'],
+                          ['robinhood', 'padilla'], ['robin', 'padilla']])
+        for text in ['Senator Robin Padilla said he will not run.',
+                     'Robinhood Padilla announced his plans.',
+                     'Sen. Robinhood \u201cRobin\u201d Padilla announced.']:
+            self.assertTrue(speaker_phrase_match(speaker, text), text)
+
+    def test_a_different_person_or_a_surname_alone_is_not_the_speaker(self):
+        from pipeline.attribution_integrity import speaker_phrase_match
+        speaker = 'Sen. Robinhood \u201cRobin\u201d Padilla'
+        for text in ['Daniel Padilla spoke at the event.', 'Padilla was mentioned briefly.',
+                     'Robin Duterte and Padilla spoke.']:
+            self.assertFalse(speaker_phrase_match(speaker, text), text)
+        self.assertFalse(speaker_phrase_match('Sara Duterte', 'Rodrigo Duterte spoke.'))
+        self.assertFalse(speaker_phrase_match('Art Samaniego Jr.', 'A different politician Jr. spoke.'))
+
+    def test_titles_and_institutions_still_match(self):
+        from pipeline.attribution_integrity import speaker_phrase_match
+        self.assertTrue(speaker_phrase_match('Vice President Sara Duterte', 'Sara Duterte posted bail.'))
+        self.assertTrue(speaker_phrase_match('Malaca\u00f1ang', 'Malacanang announced a holiday.'))
+        self.assertTrue(speaker_phrase_match(
+            'Antonio Carpio', 'former Supreme Court senior associate justice Antonio Carpio said'))
+
     def test_named_speaker_survives_grounding(self):
         from pipeline.attribution_integrity import ground_attribution
         claim = {'claim_type': 'attributed_statement', 'claim_text': self.POST, 'normalized_claim': self.POST,
