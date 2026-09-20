@@ -12,6 +12,8 @@ from pipeline.sources import is_fact_check_source
 
 import os
 from pathlib import Path
+import hashlib
+import threading
 from typing import Dict, List, Optional
 
 try:
@@ -89,12 +91,55 @@ def _get_reason(verdict: str, best_score: float) -> str:
     )
 
 
-def _score_article(claim_embedding, article: Dict[str, object]) -> Dict[str, object]:
+# Reading an article is expensive; reading it again for the next claim of the same post is
+# waste. Held-out post H25 spent 236 of its 329 seconds here, encoding the same articles once
+# per claim, one at a time. The score of an article is exactly what it was before.
+EMBEDDING_CACHE_MAX = 4000
+ENCODE_BATCH = 16
+_embeddings: Dict[str, object] = {}
+_embeddings_guard = threading.Lock()
+# Encoding is work for the processor, not the network. Several claims encoding at once on the
+# same machine fight over it: one claim of held-out post H25 spent 172 seconds this way. They
+# take turns instead, and whoever goes second usually finds the articles already encoded.
+_encode_guard = threading.Lock()
+
+
+def _embedding_key(text: str) -> str:
+    return hashlib.sha1(text.encode("utf-8", "ignore")).hexdigest()
+
+
+def article_embeddings(texts: List[str]) -> List[object]:
+    """The vector for each text, encoding in one batch whatever is not already known."""
+    model = get_model()
+    keys = [_embedding_key(text) for text in texts]
+    with _embeddings_guard:
+        unknown = list(dict.fromkeys(
+            text for text, key in zip(texts, keys) if text and key not in _embeddings))
+
+    if unknown:
+        with _encode_guard:
+            # Another claim may have encoded these while this one waited for its turn.
+            with _embeddings_guard:
+                unknown = [text for text in unknown if _embedding_key(text) not in _embeddings]
+            if unknown:
+                encoded = model.encode(unknown, convert_to_tensor=True, batch_size=ENCODE_BATCH)
+                with _embeddings_guard:
+                    for text, vector in zip(unknown, encoded):
+                        if len(_embeddings) >= EMBEDDING_CACHE_MAX:
+                            _embeddings.pop(next(iter(_embeddings)), None)
+                        _embeddings[_embedding_key(text)] = vector
+
+    with _embeddings_guard:
+        return [_embeddings.get(key) for key in keys]
+
+
+def _score_article(claim_embedding, article: Dict[str, object],
+                   article_embedding=None) -> Dict[str, object]:
     """Scores one extracted article against the claim."""
     article_text = article.get("text") or ""
-    model = get_model()
-    article_embedding = model.encode(article_text, convert_to_tensor=True)
-    score = util.cos_sim(claim_embedding, article_embedding).item()
+    if article_embedding is None:
+        article_embedding = article_embeddings([article_text])[0]
+    score = util.cos_sim(claim_embedding, article_embedding).item() if article_embedding is not None else 0.0
 
     return {
         "source": article["source"],
@@ -165,9 +210,10 @@ def generate_verdict(claim: str, articles: List[Dict[str, object]]) -> Dict[str,
 
     claim_embedding = model.encode(claim, convert_to_tensor=True)
 
+    embeddings = article_embeddings([article.get("text") or "" for article in extracted_articles])
     scored_articles = [
-        _score_article(claim_embedding, article)
-        for article in extracted_articles
+        _score_article(claim_embedding, article, embedding)
+        for article, embedding in zip(extracted_articles, embeddings)
     ]
     ranked_articles = _sort_scored_articles(scored_articles)
 

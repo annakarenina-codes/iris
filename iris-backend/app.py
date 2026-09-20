@@ -1,6 +1,8 @@
 
-from iris_trace.core import traced, event, CURRENT
+from iris_trace.core import traced, event, CURRENT, submit_context
+from concurrent.futures import ThreadPoolExecutor
 import logging
+import os
 import re
 import time
 import uuid
@@ -1270,6 +1272,30 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
     event('claim.final', result=claim_result)
     return claim_result
 
+# A claim spends its time waiting for publishers and the review models, and the claims of one
+# post wait on different ones. Checking them together is what keeps a long post inside the
+# ninety seconds the phone app allows: held-out post H25 spent 238 seconds on eight claims
+# checked in turn. Three at a time keeps well inside the provider rate limits that the review
+# already retries around.
+CLAIM_WORKERS = max(1, int(os.getenv("IRIS_CLAIM_WORKERS", "3")))
+
+
+
+
+
+def verify_claims(claims, language, timings, shared_evidence_pool):
+    """Checks every claim of a post, a few at a time, in the order they were extracted."""
+    if len(claims) < 2 or CLAIM_WORKERS < 2:
+        return [verify_claim(claim, language, timings, shared_evidence_pool) for claim in claims]
+
+    with ThreadPoolExecutor(max_workers=min(CLAIM_WORKERS, len(claims)),
+                            thread_name_prefix="iris-claim") as executor:
+        futures = [submit_context(executor, verify_claim, claim, language, timings,
+                                  shared_evidence_pool)
+                   for claim in claims]
+        return [future.result() for future in futures]
+
+
 def raise_if_every_review_failed(claim_results):
     """Keeps the explicit retryable 503 when no claim received a verdict."""
     failed_reviews = [result["review_error"] for result in claim_results if result.get("review_error")]
@@ -1707,10 +1733,7 @@ def verify_text_payload(text, debug_enabled=False, timings=None, from_image=Fals
     claim_results = timed_stage(
         timings,
         "text.verify_claims_total",
-        lambda: [
-            verify_claim(claim, language, timings, shared_evidence_pool)
-            for claim in claim_extraction["claims"]
-        ],
+        lambda: verify_claims(claim_extraction["claims"], language, timings, shared_evidence_pool),
     )
     raise_if_every_review_failed(claim_results)
     overall = build_overall_verdict(claim_results)
