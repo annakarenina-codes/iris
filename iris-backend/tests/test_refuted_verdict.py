@@ -6,7 +6,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from pipeline.component_evidence import (ENTAILMENT_SCHEMA, REFUTED_VERDICT, ComponentReviewError,
-                                         apply_entailment_checks, require_completed_review,
+                                         apply_entailment_checks, apply_published_refutation,
+                                         refutation_passages, require_completed_review,
                                          validate_review)
 
 CLAIM = 'Retired Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr.'
@@ -123,6 +124,88 @@ class PublisherLookupTests(unittest.TestCase):
         body = inspect.getsource(component_evidence.review_components)
         self.assertIn("publishers = {article['url']: article.get('source') for article in articles}", body)
         self.assertEqual(body.count('published_by=publishers'), body.count('apply_entailment_checks('))
+
+
+class RefutationCheckTests(unittest.TestCase):
+    """The extra look at the fact-checker's own findings, for claims that end Not Found."""
+
+    FACT_CHECK = {'url': VERA['url'], 'text':
+                  'A viral statement attributed to retired Maj. Gen. Romeo Poquiz is fabricated. '
+                  'VERA Files found no record of Poquiz saying the Marcoses have lost their mandate. '
+                  'His family said he did not write the post.'}
+    NEWS = {'url': GMA['url'], 'text':
+            'Romeo Poquiz led the Philippine Air Force health service before his retirement. '
+            'He has kept a low profile since leaving the service, his former colleagues said.'}
+    OTHER_CHECK = {'url': 'https://verafiles.org/articles/fact-check-old-bridge-photo-recycled',
+                   'text': 'A photograph of a collapsed bridge in Cebu is recycled from 2018 '
+                           'and does not show recent flooding damage anywhere.'}
+
+    def published_by(self, *articles):
+        return {self.FACT_CHECK['url']: 'VERA Files', self.NEWS['url']: 'GMA News',
+                self.OTHER_CHECK['url']: 'VERA Files'}
+
+    def not_found(self, components=None):
+        components = components or [CLAIM]
+        return {'status': 'ok', 'verdict': 'Not Found', 'supporting_urls': [],
+                'reason': 'Retrieved passages support 0 of 1 factual components.',
+                'components': [{'component': c, 'status': 'not_supported', 'citations': [],
+                                'evidence_relation': 'not_established'} for c in components]}
+
+    def answer(self, denied=True, same_occurrence=True, passage_ids=(0,), component_ids=(0,)):
+        return {'denied': denied, 'same_occurrence': same_occurrence,
+                'passage_ids': list(passage_ids), 'component_ids': list(component_ids),
+                'reason': 'The fact-check states no record of the statement exists.'}
+
+    def test_only_the_fact_checker_is_read_for_a_refutation(self):
+        passages = refutation_passages(CLAIM, [self.NEWS, self.FACT_CHECK], self.published_by())
+        self.assertTrue(passages)
+        self.assertEqual({p['url'] for p in passages}, {VERA['url']})
+        self.assertEqual([p['passage_id'] for p in passages], list(range(len(passages))))
+
+    def test_an_unrelated_fact_check_costs_no_model_call(self):
+        self.assertEqual(refutation_passages(CLAIM, [self.OTHER_CHECK], self.published_by()), [])
+
+    def test_a_denial_turns_the_claim_into_refuted(self):
+        passages = refutation_passages(CLAIM, [self.FACT_CHECK], self.published_by())
+        result = apply_published_refutation(self.not_found(), self.answer(), passages)
+        self.assertEqual(result['verdict'], REFUTED_VERDICT)
+        self.assertEqual(result['supporting_urls'], [VERA['url']])
+        self.assertEqual(result['components'][0]['evidence_relation'], 'contradicted')
+        self.assertTrue(result['reason'].startswith('VERA Files reports that this did not happen.'))
+
+    def test_no_denial_leaves_the_claim_not_found(self):
+        passages = refutation_passages(CLAIM, [self.FACT_CHECK], self.published_by())
+        result = apply_published_refutation(self.not_found(), self.answer(denied=False), passages)
+        self.assertEqual(result['verdict'], 'Not Found')
+        self.assertEqual(result['supporting_urls'], [])
+        self.assertFalse(result['refutation_check']['denied'])
+
+    def test_a_denial_about_another_occasion_leaves_the_claim_not_found(self):
+        passages = refutation_passages(CLAIM, [self.FACT_CHECK], self.published_by())
+        result = apply_published_refutation(self.not_found(), self.answer(same_occurrence=False), passages)
+        self.assertEqual(result['verdict'], 'Not Found')
+
+    def test_a_denial_that_names_nothing_is_not_accepted(self):
+        passages = refutation_passages(CLAIM, [self.FACT_CHECK], self.published_by())
+        for empty in [{'passage_ids': []}, {'component_ids': []}]:
+            with self.subTest(**empty):
+                result = apply_published_refutation(self.not_found(), {**self.answer(), **empty}, passages)
+                self.assertEqual(result['verdict'], 'Not Found')
+
+    def test_invented_ids_are_rejected(self):
+        passages = refutation_passages(CLAIM, [self.FACT_CHECK], self.published_by())
+        for bad in [{'passage_ids': [len(passages)]}, {'component_ids': [3]},
+                    {'passage_ids': ['0']}, {'denied': 'yes'}, {'reason': '  '}]:
+            with self.subTest(**bad):
+                with self.assertRaises(ValueError):
+                    apply_published_refutation(self.not_found(), {**self.answer(), **bad}, passages)
+
+    def test_the_check_runs_only_for_a_claim_that_ended_not_found(self):
+        import inspect
+        from pipeline import component_evidence
+        body = inspect.getsource(component_evidence.review_components)
+        self.assertIn("if result['verdict'] == 'Not Found':", body)
+        self.assertIn('refutation_passages(claim, evidence, publishers)', body)
 
 
 class ClientContractTests(unittest.TestCase):
