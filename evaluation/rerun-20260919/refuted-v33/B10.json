@@ -1,0 +1,1593 @@
+{
+  "case_id": "B10",
+  "input_sha256": "b21d36b0d120f43d75bcfbed177f61c1f8a3c01113aaf4fb15c89bbf5155ebba",
+  "started_utc": "2026-09-20T09:51:55.762354+00:00",
+  "http_status": 200,
+  "seconds": 40.193,
+  "trace_id": "4e68b5206d8b45b29e0554b08c096f4c",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-refuted-v33",
+  "response": {
+    "verdict": "Verified",
+    "message": "Retrieved passages support 1 of 1 factual components.",
+    "original_text": "Why Loren and her son won’t be coming home anytime soon. They’ve seen what happened to the former House Speaker, the President’s own cousin, who ended up in a QC jail in Payatas. Kung ang pinsan ng Presidente nakakulong, paano pa sila?",
+    "translated_text": "Why Loren and her son won’t be coming home anytime soon.\nThey’ve seen what happened to the former House Speaker, the President’s own cousin, who ended up in a QC jail in Payatas.\nIf the President’s cousin is in jail, what more for them?",
+    "detected_language": "tagalog",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 1,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s3",
+        "text": "Kung ang pinsan ng Presidente nakakulong, paano pa sila?",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "text": "Why Loren and her son won’t be coming home anytime soon.",
+        "segment_type": "uncheckable"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "the former House Speaker, the President’s own cousin, ended up in a QC jail in Payatas",
+        "normalized_claim": "the former House Speaker, who is the President’s cousin, ended up in a QC jail in Payatas",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "the former House Speaker, the President’s own cousin, ended up in a QC jail in Payatas",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+                  "quote": "Romualdez’s detention comes only a week after his arrest because he was placed under hospital confinement MANILA, Philippines – Former speaker Martin Romualdez, cousin of President Ferdinand Marcos Jr., is now detained at the New Quezon City Jail in Payatas over his P7.44-billion plunder case allegedly related to flood control corruption."
+                },
+                {
+                  "url": "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/",
+                  "quote": "MANILA, Philippines – Former speaker Martin Romualdez , the cousin of President Ferdinand Marcos Jr., is now detained at the New Quezon City Jail a week after his arrest over plunder related to the multi-billion flood control scandal."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Passages 9 and 25 explicitly state that former speaker Martin Romualdez, who is the cousin of President Ferdinand Marcos Jr., is now detained at the New Quezon City Jail in Payatas. This directly supports the assertion that the former House Speaker, the President’s own cousin, ended up in a QC jail in Payatas. The subject, event, and all qualifiers are preserved, and the same occurrence is described. There is no contradiction.",
+              "context": {
+                "start": 0,
+                "end": 86,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "the former House Speaker, the President’s own cousin",
+                      "start": 0,
+                      "end": 52
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "ended up",
+                      "start": 54,
+                      "end": 62
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "ended up in a QC jail in Payatas",
+                      "start": 54,
+                      "end": 86
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "the former House Speaker, the President’s own cousin, ended up in a QC jail in Payatas",
+                      "start": 0,
+                      "end": 86
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "ended up in a QC jail in Payatas",
+                      "start": 54,
+                      "end": 86
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0,
+                  1
+                ],
+                "component_id": 0,
+                "assertion": "the former House Speaker, the President’s own cousin, ended up in a QC jail in Payatas",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 86
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+            "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                9,
+                25
+              ],
+              "reason": "Passages 9 and 25 explicitly state that former speaker Martin Romualdez, who is the cousin of President Ferdinand Marcos Jr., is now detained at the New Quezon City Jail in Payatas. This directly supports the assertion that the former House Speaker, the President’s own cousin, ended up in a QC jail in Payatas. The subject, event, and all qualifiers are preserved, and the same occurrence is described. There is no contradiction.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "the former House Speaker, the President’s own cousin, ended up in a QC jail in Payatas",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "The former House Speaker, the President’s own cousin (Martin Romualdez), ended up in a QC jail in Payatas.",
+              "sources": {
+                "https://www.abs-cbn.com/news/nation/2026/9/15/romualdez-allowed-to-attend-arraignment-pretrial-via-videoconference-from-jail-2227": {
+                  "status": "matched",
+                  "passage_ids": [
+                    1,
+                    4,
+                    11,
+                    12
+                  ],
+                  "reason": "Passages 1, 4, 11, and 12 from source 0 confirm that former House Speaker Martin Romualdez is detained at the Quezon City Jail-Male Dormitory in Payatas. The context and details (former House Speaker, jail location) match the claim. While the familial relationship to the President is not explicitly stated in these passages, the identity of the subject as the former House Speaker detained in Payatas is established.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/9/15/romualdez-allowed-to-attend-arraignment-pretrial-via-videoconference-from-jail-2227",
+                      "quote": "Maria Tan, ABS-CBN News/File MANILA — The Sandiganbayan Third Division on Tuesday allowed detained former House Speaker Martin Romualdez to attend his arraignment and pretrial hearing on Wednesday via videoconference from the Quezon City Jail-Male Dormitory in Payatas."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/9/15/romualdez-allowed-to-attend-arraignment-pretrial-via-videoconference-from-jail-2227",
+                      "quote": "READ: Martin Romualdez transferred to QC jail in Payatas The court ordered JSupt."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/9/15/romualdez-allowed-to-attend-arraignment-pretrial-via-videoconference-from-jail-2227",
+                      "quote": "He was transferred from the UP-Philippine General Hospital to the Quezon City Jail on Monday after government doctors testified that he is clinically stable and does not require confinement."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/9/15/romualdez-allowed-to-attend-arraignment-pretrial-via-videoconference-from-jail-2227",
+                      "quote": "READ: Romualdez in jail infirmary, needs medical supervision — BJMP The former house speaker is currently staying at the infirmary ward, which according to Interior and Local Government Secretary Jonvic Remulla is not air-conditioned but has exhaust fans to allow air circulation."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.dzrh.com.ph/post/remulla-romualdez-placed-in-qc-jail-infirmary-with-3-other-pdls": {
+                  "status": "matched",
+                  "passage_ids": [
+                    15,
+                    24
+                  ],
+                  "reason": "Passages 15 and 24 from source 1 confirm that former House Speaker Martin Romualdez was placed in the infirmary ward of the New Quezon City Jail in Payatas. The subject and location match the claim.",
+                  "citations": [
+                    {
+                      "url": "https://www.dzrh.com.ph/post/remulla-romualdez-placed-in-qc-jail-infirmary-with-3-other-pdls",
+                      "quote": "Former House Speaker and incumbent Leyte 1st District Rep. Martin Romualdez has been placed in the infirmary ward of the New Quezon City Jail in Payatas, Quezon City, along with three other persons deprived of liberty (PDLs), Interior and Local Government Secretary Jonvic Remulla said Tuesday, Sept. 15."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/remulla-romualdez-placed-in-qc-jail-infirmary-with-3-other-pdls",
+                      "quote": "The former Speaker was transferred from the PGH to the New Quezon City Jail on Monday night, September 14."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.abs-cbn.com/news/nation/2026/9/14/martin-romualdez-transferred-to-qc-jail-in-payatas-2213": {
+                  "status": "matched",
+                  "passage_ids": [
+                    36,
+                    41,
+                    43
+                  ],
+                  "reason": "Passages 36, 41, and 43 from source 2 confirm that former House Speaker Martin Romualdez was moved to the New Quezon City Jail in Payatas and placed in the jail infirmary. The subject and location are clearly established.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/9/14/martin-romualdez-transferred-to-qc-jail-in-payatas-2213",
+                      "quote": "Maria Tan, ABS-CBN News/File MANILA ( 3RD UPDATE ) - Former House Speaker Martin Romualdez was moved to the New Quezon City Jail in Payatas on Monday night, September 14."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/9/14/martin-romualdez-transferred-to-qc-jail-in-payatas-2213",
+                      "quote": "They said Romualdez was committed to the Quezon City Jail–Male Dormitory at approximately 10:49 p.m."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2026/9/14/martin-romualdez-transferred-to-qc-jail-in-payatas-2213",
+                      "quote": "\"Considering his medical needs and the medical recommendations presented before the Court, Rep. Romualdez has been placed in the jail infirmary together with other PDL requiring medical monitoring,\" the BJMP said in a statement."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.dzrh.com.ph/post/romualdez-attends-plunder-arraignment-via-videoconference": {
+                  "status": "matched",
+                  "passage_ids": [
+                    55,
+                    66,
+                    77
+                  ],
+                  "reason": "Passages 55, 66, and 77 from source 3 confirm that former House Speaker Martin Romualdez attended his arraignment via videoconference from the Quezon City Jail–Male Dormitory in Payatas, and that he is currently detained there. The identity and location match the claim.",
+                  "citations": [
+                    {
+                      "url": "https://www.dzrh.com.ph/post/romualdez-attends-plunder-arraignment-via-videoconference",
+                      "quote": "Former House Speaker Ferdinand Martin Romualdez attended his arraignment and pre-trial proceedings in a plunder case via videoconference from the Quezon City Jail–Male Dormitory in Payatas, Quezon City, on Wednesday."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/romualdez-attends-plunder-arraignment-via-videoconference",
+                      "quote": "Romualdez is currently detained at the Quezon City Jail - Male Dormitory in connection with the case."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/romualdez-attends-plunder-arraignment-via-videoconference",
+                      "quote": "Romualdez is currently detained at the Quezon City Jail - Male Dormitory in connection with the case."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://mb.com.ph/2026/09/14/sandiganbayan-orders-romualdezs-commitment-to-qc-jail-after-up-pgh-finds-him-clinically-stable": {
+                  "status": "matched",
+                  "passage_ids": [
+                    80
+                  ],
+                  "reason": "Passage 80 from source 4 states that the Sandiganbayan ordered the transfer of former House Speaker Ferdinand Martin Romualdez to the New Quezon City Jail in Payatas. The subject and location are established.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/09/14/sandiganbayan-orders-romualdezs-commitment-to-qc-jail-after-up-pgh-finds-him-clinically-stable",
+                      "quote": "The Sandiganbayan Third Division on Monday, Sept. 14, ordered the transfer of former House speaker Ferdinand Martin Romualdez to the New Quezon City Jail in Payatas after the University of the Philippines-Philippine General Hospital (UP-PGH), which conducted an independent medical examination, found him “clinically stable” and with no imperative medical need for hospital confinement."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://newsinfo.inquirer.net/2304914/romualdez-now-behind-bars": {
+                  "status": "matched",
+                  "passage_ids": [
+                    84,
+                    88
+                  ],
+                  "reason": "Passages 84 and 88 from source 5 confirm that former House Speaker Martin Romualdez is now at the New Quezon City Jail in Barangay Payatas and is behind bars there. The subject and location match the claim.",
+                  "citations": [
+                    {
+                      "url": "https://newsinfo.inquirer.net/2304914/romualdez-now-behind-bars",
+                      "quote": "MANILA, Philippines — Former House Speaker and Leyte Representative Martin Romualdez is now at the New Quezon City Jail in Barangay Payatas on Monday night."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2304914/romualdez-now-behind-bars",
+                      "quote": "Former House Speaker Martin Romualdez is now behind bars at the New Quezon City Jail in Barangay Payatas at midnight of Tuesday."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released": {
+                  "status": "matched",
+                  "passage_ids": [
+                    94,
+                    97,
+                    101,
+                    114
+                  ],
+                  "reason": "Passages 94, 97, 101, and 114 from source 6 confirm that former House Speaker Martin Romualdez was transferred to the New Quezon City Jail Male Dormitory on Payatas Road and is staying at its infirmary ward. The subject and location are established.",
+                  "citations": [
+                    {
+                      "url": "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released",
+                      "quote": "Mugshots of Leyte congressman Martin Romualdez were released on Tuesday, Sept.15, to the public, showing the former speaker in yellow detainee shirt and black pants."
+                    },
+                    {
+                      "url": "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released",
+                      "quote": "He was transferred to the New Quezon City Jail Male Dormitory on Payatas Road, but was made to stay at its infirmary ward where he is under medical supervision."
+                    },
+                    {
+                      "url": "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released",
+                      "quote": "Romualdez arrived at the detention facility Monday night hours after undergoing several medical tests at the Philippine General Hospital (PGH), as ordered by the Sandiganbayan Third Division."
+                    },
+                    {
+                      "url": "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released",
+                      "quote": "Romualdez arrived at the detention facility at 10:49 p.m., escorted by BJMP personnel and police officers in compliance with an order from the Sandiganbayan Third Division."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    120
+                  ],
+                  "reason": "Passage 120 from source 7 states that former speaker Martin Romualdez, cousin of President Ferdinand Marcos Jr., is now detained at the New Quezon City Jail in Payatas. This passage explicitly confirms both the familial relationship and the detention location, fully matching the claim.",
+                  "citations": [
+                    {
+                      "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+                      "quote": "Romualdez’s detention comes only a week after his arrest because he was placed under hospital confinement MANILA, Philippines – Former speaker Martin Romualdez, cousin of President Ferdinand Marcos Jr., is now detained at the New Quezon City Jail in Payatas over his P7.44-billion plunder case allegedly related to flood control corruption."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    130,
+                    131
+                  ],
+                  "reason": "Passages 130 and 131 from source 8 confirm that former speaker Martin Romualdez, cousin of President Ferdinand Marcos Jr., is now detained at the New Quezon City Jail a week after his arrest, and that he was transferred to the Payatas jail at around 10:49 pm on Monday, September 14. The subject, familial relationship, and location are all established.",
+                  "citations": [
+                    {
+                      "url": "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/",
+                      "quote": "MANILA, Philippines – Former speaker Martin Romualdez , the cousin of President Ferdinand Marcos Jr., is now detained at the New Quezon City Jail a week after his arrest over plunder related to the multi-billion flood control scandal."
+                    },
+                    {
+                      "url": "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/",
+                      "quote": "Romualdez was transferred to the Payatas jail at around 10:49 pm on Monday, September 14."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.philstar.com/headlines/2026/09/14/2556216/romualdezs-transfer-payatas-ordered-after-pgh-assessment": {
+                  "status": "matched",
+                  "passage_ids": [
+                    149,
+                    151
+                  ],
+                  "reason": "Passages 149 and 151 from source 9 confirm that former House speaker and incumbent Rep. Martin Romualdez was ordered transferred to the Quezon City Jail Male Dormitory in Barangay Payatas and is to be held there as a detention prisoner. The subject and location are established.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/14/2556216/romualdezs-transfer-payatas-ordered-after-pgh-assessment",
+                      "quote": "MANILA, Philippines (Updated 1:48 p.m.) — The Sandiganbayan Third Division has ordered the transfer of former House speaker and incumbent Rep. Martin Romualdez (Leyte) to the Quezon City Jail Male Dormitory in Barangay Payatas on Monday, September 14."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/14/2556216/romualdezs-transfer-payatas-ordered-after-pgh-assessment",
+                      "quote": "Romualdez is to be held at the Quezon City jail as a \"detention prisoner,\" the anti-graft court said."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.gmanetwork.com/news/topstories/nation/1002373/martin-romualdez-in-quezon-city-jail-in-payatas/story/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    166,
+                    167,
+                    169,
+                    170,
+                    183,
+                    188
+                  ],
+                  "reason": "Passages 166, 167, 169, 170, 183, and 188 from source 10 confirm that former Speaker Ferdinand Martin Romualdez arrived at the Quezon City Jail in Payatas, was placed in the jail infirmary, and was committed to the male dormitory of the Quezon City Jail. The subject and location are established.",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002373/martin-romualdez-in-quezon-city-jail-in-payatas/story/",
+                      "quote": "Former Speaker Ferdinand Martin Romualdez has arrived at the Quezon City Jail, the Bureau of Jail Management and Penology has said."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002373/martin-romualdez-in-quezon-city-jail-in-payatas/story/",
+                      "quote": "According to the BJMP, Romualdez arrived at the Payatas facility at 10:49 p.m."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002373/martin-romualdez-in-quezon-city-jail-in-payatas/story/",
+                      "quote": "In a statement, the BJMP said Romualdez was placed in the jail infirmary ."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002373/martin-romualdez-in-quezon-city-jail-in-payatas/story/",
+                      "quote": "\"Considering his medical needs and the medical recommendations presented before the Court, Rep. Romualdez has been placed in the jail infirmary together with other [persons deprived of liberty] requiring medical monitoring,\" the BJMP said."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002373/martin-romualdez-in-quezon-city-jail-in-payatas/story/",
+                      "quote": "The Sandiganbayan on Monday committed Romualdez to the male dormitory of the Quezon City Jail."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002373/martin-romualdez-in-quezon-city-jail-in-payatas/story/",
+                      "quote": "\"Accordingly, the court commits to the Quezon City Jail - Male Dormitory the living person of accused Romualdez, who is charged for the crime of plunder, to be held therein as a detention prisoner and as such, the accused shall not be moved, removed, transferred, and/or otherwise be released therefrom unless ordered by the court,\" the court said."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.philstar.com/pilipino-star-ngayon/metro/2026/09/16/2556596/romualdez-inilipat-na-sa-quezon-city-jail-mugshot-inilabas": {
+                  "status": "matched",
+                  "passage_ids": [
+                    191,
+                    193
+                  ],
+                  "reason": "Passages 191 and 193 from source 11 confirm that former House Speaker Martin Romualdez was transferred to the New Quezon City Jail Male Dormitory in Payatas from PGH. The subject and location are established.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/pilipino-star-ngayon/metro/2026/09/16/2556596/romualdez-inilipat-na-sa-quezon-city-jail-mugshot-inilabas",
+                      "quote": "MANILA, Philippines — Inilipat na sa New Quezon City Jail Male Dormitory sa Payatas si dating House Speaker Martin Romualdez."
+                    },
+                    {
+                      "url": "https://www.philstar.com/pilipino-star-ngayon/metro/2026/09/16/2556596/romualdez-inilipat-na-sa-quezon-city-jail-mugshot-inilabas",
+                      "quote": "Inilipat si Romualdez mula PGH patungo sa QC jail bandang alas-10:09 ng gabi nitong Lunes."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-faustino-bodjie-dy-is-new-house-speaker-not-paolo-duterte",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/the-absurdity-that-is-pia-cayetano",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/joel-butuyan-the-lawyer-carrying-the-victims-stories-to-the-hague",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/martin-romualdez-transfer-pgh-new-quezon-city-jail-payatas/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/14/martin-romualdez-transferred-to-qc-jail-in-payatas-2213",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/15/romualdez-allowed-to-attend-arraignment-pretrial-via-videoconference-from-jail-2227",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/8/remulla-marcos-did-not-intervene-in-cousin-romualdez-s-arrest-1047",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002373/martin-romualdez-in-quezon-city-jail-in-payatas/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002502/martin-romualdez-allowed-to-attend-arraignment-via-videoconference-sandiganbayan/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001500/armed-police-secure-martin-romualdez-at-cardinal-santos-says-dilg-chief-remulla/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2304914/romualdez-now-behind-bars",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2303366/romualdez-under-bjmp-but-transfer-on-hold",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2304742/sandiganbayan-orders-romualdezs-transfer-to-qc-jail-in-payatas",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/metro/2026/09/16/2556596/romualdez-inilipat-na-sa-quezon-city-jail-mugshot-inilabas",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/opinion/2026/09/15/2556365/cousins-martin-romualdez-ferdinand-r-marcos-jr",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/14/2556216/romualdezs-transfer-payatas-ordered-after-pgh-assessment",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/14/sandiganbayan-orders-romualdezs-commitment-to-qc-jail-after-up-pgh-finds-him-clinically-stable",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/qc-jail-medical-needs-raised-before-sandiganbayan-during-romualdez-hearing",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/transfer-of-romualdez-to-qc-jail-done-according-to-law-due-process-palace",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284005",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1278763",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283198",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/dilg-big-fish-coming-soon-as-seven-suspects-in-flood-control-anomaly-enter-bjmp-custody/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/worlds-largest-indoor-arena-opens-in-davao-city/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/remulla-romualdez-placed-in-qc-jail-infirmary-with-3-other-pdls",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dizon-romualdezs-transfer-to-qc-jail-a-success-in-flood-control-scandal-probe",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/romualdez-attends-plunder-arraignment-via-videoconference",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/lacson-cayetano-belongs-in-quezon-city-jail",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sandiganbayan-sends-bong-revilla-to-qc-jail",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-faustino-bodjie-dy-is-new-house-speaker-not-paolo-duterte",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/the-absurdity-that-is-pia-cayetano",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/joel-butuyan-the-lawyer-carrying-the-victims-stories-to-the-hague",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/martin-romualdez-transfer-pgh-new-quezon-city-jail-payatas/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/14/martin-romualdez-transferred-to-qc-jail-in-payatas-2213",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/15/romualdez-allowed-to-attend-arraignment-pretrial-via-videoconference-from-jail-2227",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/8/remulla-marcos-did-not-intervene-in-cousin-romualdez-s-arrest-1047",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002373/martin-romualdez-in-quezon-city-jail-in-payatas/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002502/martin-romualdez-allowed-to-attend-arraignment-via-videoconference-sandiganbayan/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001500/armed-police-secure-martin-romualdez-at-cardinal-santos-says-dilg-chief-remulla/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2304914/romualdez-now-behind-bars",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2303366/romualdez-under-bjmp-but-transfer-on-hold",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2304742/sandiganbayan-orders-romualdezs-transfer-to-qc-jail-in-payatas",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/metro/2026/09/16/2556596/romualdez-inilipat-na-sa-quezon-city-jail-mugshot-inilabas",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/opinion/2026/09/15/2556365/cousins-martin-romualdez-ferdinand-r-marcos-jr",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/14/2556216/romualdezs-transfer-payatas-ordered-after-pgh-assessment",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/14/sandiganbayan-orders-romualdezs-commitment-to-qc-jail-after-up-pgh-finds-him-clinically-stable",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/qc-jail-medical-needs-raised-before-sandiganbayan-during-romualdez-hearing",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/transfer-of-romualdez-to-qc-jail-done-according-to-law-due-process-palace",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284005",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1278763",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283198",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/dilg-big-fish-coming-soon-as-seven-suspects-in-flood-control-anomaly-enter-bjmp-custody/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/worlds-largest-indoor-arena-opens-in-davao-city/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/remulla-romualdez-placed-in-qc-jail-infirmary-with-3-other-pdls",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dizon-romualdezs-transfer-to-qc-jail-a-success-in-flood-control-scandal-probe",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/romualdez-attends-plunder-arraignment-via-videoconference",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/lacson-cayetano-belongs-in-quezon-city-jail",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sandiganbayan-sends-bong-revilla-to-qc-jail",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "the former House Speaker, who is the President’s cousin, ended up in a QC jail in Payatas"
+        },
+        "scoring_claim": "the former House Speaker, who is the President’s cousin, ended up in a QC jail in Payatas",
+        "search_query": "former House Speaker QC jail Payatas",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "f4f6c476a9660d95a06a7271e0efb21620a5bfd1747214719a67688edf18bff7",
+        "cache_version": "week7-refuted-v33",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 1 of 1 factual components.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "Rappler",
+          "title": "Rappler Recap: Martin Romualdez jailed in Payatas a week after arrest",
+          "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+          "status": "extracted",
+          "word_count": 84,
+          "evidence_method": "component_review",
+          "extraction_quality": "thin",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "Rappler",
+            "title": "Rappler Recap: Martin Romualdez jailed in Payatas a week after arrest",
+            "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+            "status": "extracted",
+            "word_count": 84,
+            "evidence_method": "component_review",
+            "extraction_quality": "thin",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "Martin Romualdez now in Payatas jail a week after arrest",
+            "url": "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/",
+            "status": "extracted",
+            "word_count": 430,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 96,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "Rappler",
+            "title": "Rappler Recap: Martin Romualdez jailed in Payatas a week after arrest",
+            "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+            "status": "extracted",
+            "word_count": 84,
+            "evidence_method": "component_review",
+            "extraction_quality": "thin",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "Martin Romualdez now in Payatas jail a week after arrest",
+            "url": "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/",
+            "status": "extracted",
+            "word_count": 430,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Rappler",
+            "title": "Rappler Recap: Martin Romualdez jailed in Payatas a week after arrest",
+            "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+            "status": "extracted",
+            "word_count": 84,
+            "evidence_method": "component_review",
+            "extraction_quality": "thin",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "Martin Romualdez now in Payatas jail a week after arrest",
+            "url": "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/",
+            "status": "extracted",
+            "word_count": 430,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Verified",
+              "reason": "The evidence confirms that Martin Romualdez, the former House Speaker and cousin of the President, is in Payatas jail.",
+              "supporting_urls": [
+                "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "president"
+        ],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [
+            "president"
+          ],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "mixed_content",
+        "confidence": 0.33,
+        "ambiguity_score": 0.6,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "verify_factual_claims_only",
+        "verification_text": "Why Loren and her son won’t be coming home anytime soon.\nThey’ve seen what happened to the former House Speaker, the President’s own cousin, who ended up in a QC jail in Payatas.",
+        "normalized_verification_text": "Why Loren and her son won’t be coming home anytime soon.\nThey’ve seen what happened to the former House Speaker, the President’s own cousin, who ended up in a QC jail in Payatas.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Why Loren and her son won’t be coming home anytime soon.",
+            "translated_text": "Why Loren and her son won’t be coming home anytime soon.",
+            "scores": {
+              "factual_claim": 0.2,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.37,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.37,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.07,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "They’ve seen what happened to the former House Speaker, the President’s own cousin, who ended up in a QC jail in Payatas.",
+            "translated_text": "They’ve seen what happened to the former House Speaker, the President’s own cousin, who ended up in a QC jail in Payatas.",
+            "scores": {
+              "factual_claim": 0.32,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.32,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.02,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s3",
+            "text": "Kung ang pinsan ng Presidente nakakulong, paano pa sila?",
+            "translated_text": "If the President’s cousin is in jail, what more for them?",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s3",
+            "text": "Kung ang pinsan ng Presidente nakakulong, paano pa sila?",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS will verify only the factual segments and skip non-checkable parts.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "low_classifier_confidence",
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "low_classifier_confidence",
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "This is a rhetorical or speculative question and does not contain a checkable factual assertion."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "This segment asserts a factual event about the former House Speaker ending up in a QC jail in Payatas."
+          }
+        ],
+        "grouping": [],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "the former House Speaker, the President’s own cousin, ended up in a QC jail in Payatas",
+            "normalized_claim": "the former House Speaker, who is the President’s cousin, ended up in a QC jail in Payatas",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "former House Speaker QC jail Payatas",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 1,
+                "quote": "They’ve seen what happened to the former House Speaker, the President’s own cousin, who ended up in a QC jail in Payatas."
+              }
+            ],
+            "evidence_context": "Why Loren and her son won’t be coming home anytime soon.\nThey’ve seen what happened to the former House Speaker, the President’s own cousin, who ended up in a QC jail in Payatas.",
+            "original_language_query": "They’ve seen what happened to the former House Speaker, the President’s own cousin, who ended up in a QC jail in Payatas.",
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [
+          {
+            "text": "Why Loren and her son won’t be coming home anytime soon.",
+            "segment_type": "uncheckable"
+          }
+        ],
+        "post_type": "mixed_content",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "4e68b5206d8b45b29e0554b08c096f4c",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 1.5954,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 1.9349,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0003,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 3.3301,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0013,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 15.6982,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.1028,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 1.7771,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.6484,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.6733,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0242,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 13.9295,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 33.2924,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 40.1681,
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    "corroboration_count": 1,
+    "primary_evidence": {
+      "source": "Rappler",
+      "title": "Rappler Recap: Martin Romualdez jailed in Payatas a week after arrest",
+      "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+      "status": "extracted",
+      "word_count": 84,
+      "evidence_method": "component_review",
+      "extraction_quality": "thin",
+      "evidence_type": "full_text"
+    },
+    "supporting_sources": [
+      {
+        "source": "Rappler",
+        "title": "Rappler Recap: Martin Romualdez jailed in Payatas a week after arrest",
+        "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+        "status": "extracted",
+        "word_count": 84,
+        "evidence_method": "component_review",
+        "extraction_quality": "thin",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Rappler",
+        "title": "Martin Romualdez now in Payatas jail a week after arrest",
+        "url": "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/",
+        "status": "extracted",
+        "word_count": 430,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "search_status": "ok",
+    "total_search_results": 96,
+    "searched_articles": 33,
+    "extracted_articles": 33,
+    "source_summary": [
+      {
+        "source": "VERA Files",
+        "results_found": 12,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Rappler",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "ABS-CBN News",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "GMA News",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Daily Inquirer",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Star",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Manila Bulletin",
+        "results_found": 7,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine News Agency",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Information Agency",
+        "results_found": 10,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "DZRH News",
+        "results_found": 6,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "OneNews.PH",
+        "results_found": 10,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      }
+    ],
+    "sources": [
+      {
+        "source": "Rappler",
+        "title": "Rappler Recap: Martin Romualdez jailed in Payatas a week after arrest",
+        "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+        "status": "extracted",
+        "word_count": 84,
+        "evidence_method": "component_review",
+        "extraction_quality": "thin",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Rappler",
+        "title": "Martin Romualdez now in Payatas jail a week after arrest",
+        "url": "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/",
+        "status": "extracted",
+        "word_count": 430,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "evidence_sources": [
+      {
+        "source": "Rappler",
+        "title": "Rappler Recap: Martin Romualdez jailed in Payatas a week after arrest",
+        "url": "https://www.rappler.com/philippines/recap-video-martin-romualdez-jailed-payatas/",
+        "status": "extracted",
+        "word_count": 84,
+        "evidence_method": "component_review",
+        "extraction_quality": "thin",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Rappler",
+        "title": "Martin Romualdez now in Payatas jail a week after arrest",
+        "url": "https://www.rappler.com/philippines/martin-romualdez-payatas-jail-week-after-arrest/",
+        "status": "extracted",
+        "word_count": 430,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim."
+  }
+}

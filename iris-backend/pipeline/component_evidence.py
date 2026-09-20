@@ -284,6 +284,20 @@ REFUTATION_STOPWORDS = {'about', 'after', 'against', 'been', 'from', 'have', 'ma
                         'said', 'says', 'that', 'their', 'there', 'this', 'were', 'what',
                         'when', 'which', 'with', 'would'}
 
+# A refutation has to be stated. Without this, a passage reporting a different figure on a
+# different day was accepted as "a direct factual denial" of a peso closing rate (saved case A09).
+DENIAL_LANGUAGE = re.compile(
+    r"\b(?:no\s+record|no\s+records|not\s+true|untrue|is\s+false|are\s+false|was\s+false|"
+    r"fake|faked|fabricat\w*|falsely|mislead\w*|doctored|manipulated|digitally\s+altered|"
+    r"hoax|satir\w*|did\s+not|does\s+not|do\s+not|never\s+\w+ed|denied|denies|deny|"
+    r"debunk\w*|no\s+such|no\s+basis|baseless|walang|hindi|peke)\b", re.I)
+
+
+def states_a_denial(text):
+    """True when the passage itself says the thing did not happen or is not true."""
+    return bool(DENIAL_LANGUAGE.search(str(text or '')))
+
+
 REFUTATION_SCHEMA = {
     'type': 'object', 'additionalProperties': False,
     'properties': {
@@ -307,10 +321,14 @@ REFUTATION_INSTRUCTION = (
     'attributed or altered; no record of the event exists; or the person or office named '
     'denied it. Repeating what a post claims, describing the claim, or checking a different '
     'claim is not a denial. A passage that does not mention this claim denies nothing. '
+    'A different figure, date or outcome is NOT a denial. A passage reporting what happened '
+    'on another day, in another trading session, at another hearing or in another incident '
+    'says nothing about this claim, however similar it looks: answer denied false. The '
+    'passage must state that THIS event did not happen or is not true. '
     'Set same_occurrence true ONLY when the passages are about this very claim: the same '
-    'person, the same statement or event, the same occasion. A fact-check about a similar '
-    'claim, another person or another occasion is not about this claim, and then denied is '
-    'false. '
+    'person, the same statement or event, the same occasion, the same day. A fact-check about '
+    'a similar claim, another person, another date or another occasion is not about this '
+    'claim, and then denied is false. '
     'Put in passage_ids only the supplied passages that carry the denial, and in component_ids '
     'only the claim components they refute. If you cannot name both, denied is false. Say in '
     'reason which passage denies what.')
@@ -352,6 +370,11 @@ def apply_published_refutation(result, answer, passages):
         raise ValueError('invalid_refutation_component_ids')
     result['refutation_check'] = answer
     if not (answer['denied'] and answer['same_occurrence'] and ids and parts):
+        return result
+    if not any(states_a_denial(passages[i]['text']) for i in ids):
+        # The passages report something else about the subject; that is not a refutation.
+        event('component.refutation_unstated', passage_ids=ids, reason=answer['reason'][:200])
+        answer['denied'] = False
         return result
     urls = list(dict.fromkeys(passages[i]['url'] for i in ids))
     for index in parts:
@@ -410,7 +433,8 @@ def apply_entailment_checks(claim, reviewed, checks, articles, published_by=None
         # A denial speaks about this claim only when it is about this very occurrence.
         check['denial_urls'] = sorted({part['citations'][i]['url'] for i in ids}) if (
             contradicted and check.get('contradiction_kind') == 'denial'
-            and check['same_subject_and_event'] and same_occurrence) else []
+            and check['same_subject_and_event'] and same_occurrence
+            and any(states_a_denial(part['citations'][i]['quote']) for i in ids)) else []
         if (check.get('missing_kind') == 'date' or part.get('time_unconfirmed')) and not same_occurrence:
             # Another occasion that happens to fit the words is not this claim's event.
             supported = partial = False

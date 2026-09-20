@@ -37,6 +37,13 @@ def reviewed(article, claim=CLAIM, components=None):
 
 
 class RefutedVerdictTests(unittest.TestCase):
+    def test_a_contradiction_without_a_stated_denial_does_not_refute(self):
+        # A passage reporting something else about the subject is a discrepancy, not a denial.
+        other = {'url': VERA['url'], 'source': 'VERA Files',
+                 'text': 'Poquiz led the Philippine Air Force health service until his retirement.'}
+        final = apply_entailment_checks(CLAIM, reviewed(other), [check()], [other])
+        self.assertEqual(final['verdict'], 'Not Found')
+
     def test_the_reviewer_is_asked_which_kind_of_contradiction_it_found(self):
         item = ENTAILMENT_SCHEMA['properties']['checks']['items']
         self.assertIn('contradiction_kind', item['required'])
@@ -130,7 +137,7 @@ class RefutationCheckTests(unittest.TestCase):
     """The extra look at the fact-checker's own findings, for claims that end Not Found."""
 
     FACT_CHECK = {'url': VERA['url'], 'text':
-                  'A viral statement attributed to retired Maj. Gen. Romeo Poquiz is fabricated. '
+                  'A viral statement attributed to retired general Romeo Poquiz is fabricated. '
                   'VERA Files found no record of Poquiz saying the Marcoses have lost their mandate. '
                   'His family said he did not write the post.'}
     NEWS = {'url': GMA['url'], 'text':
@@ -199,6 +206,36 @@ class RefutationCheckTests(unittest.TestCase):
             with self.subTest(**bad):
                 with self.assertRaises(ValueError):
                     apply_published_refutation(self.not_found(), {**self.answer(), **bad}, passages)
+
+    def test_a_different_figure_on_another_day_is_not_a_denial(self):
+        # Saved case A09: a fact-check reporting another session's closing rate was accepted
+        # as "a direct factual denial" of this one, and the peso claim came back Refuted.
+        peso_claim = 'The peso closed at 62.513 against the dollar on Sept. 9.'
+        market = {'url': VERA['url'], 'text':
+                  'Data from the Bankers Association of the Philippines show the peso closed at '
+                  'P59 to the dollar on Oct. 13, weaker than the rate a year earlier.'}
+        passages = refutation_passages(peso_claim, [market], {market['url']: 'VERA Files'})
+        self.assertTrue(passages, 'the passage should still be offered to the reviewer')
+        answer = {'denied': True, 'same_occurrence': True, 'passage_ids': [0], 'component_ids': [0],
+                  'reason': 'The passage reports a different closing rate.'}
+        result = apply_published_refutation(self.not_found([peso_claim]), answer, passages)
+        self.assertEqual(result['verdict'], 'Not Found')
+        self.assertFalse(result['refutation_check']['denied'])
+
+    def test_a_denial_has_to_be_stated_in_the_passage(self):
+        sentences = [
+            ('VERA Files found no record of the Poquiz statement against the president.', True),
+            ('The Poquiz statement graphic about the president is fake and was digitally altered.', True),
+            ('Romeo Poquiz did not write the statement against the president, his family said.', True),
+            ('Hindi totoo ang viral na statement ni Romeo Poquiz laban sa presidente.', True),
+            ('Romeo Poquiz issued a statement about military pensions last president day.', False)]
+        for text, refuted in sentences:
+            with self.subTest(text=text):
+                article = {'url': VERA['url'], 'text': text}
+                passages = refutation_passages(CLAIM, [article], {VERA['url']: 'VERA Files'})
+                self.assertTrue(passages, 'the passage should reach the reviewer either way')
+                result = apply_published_refutation(self.not_found(), self.answer(), passages)
+                self.assertEqual(result['verdict'], REFUTED_VERDICT if refuted else 'Not Found')
 
     def test_every_review_exit_reaches_the_check(self):
         import inspect
