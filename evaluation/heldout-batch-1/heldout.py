@@ -58,6 +58,7 @@ JUDGMENTS = {
     'cannot_judge': 'you cannot tell what the right answer is',
 }
 POSITIVE = {'Verified', 'Partially Verified'}
+BLOCK_FIELDS = {'text': 'text_lines', 'image text': 'image_text_lines'}
 SLOW_SECONDS = 120
 
 
@@ -69,22 +70,23 @@ def parse_posts(path):
         line = raw.rstrip()
         if line.startswith('### POST '):
             current = {'id': line[len('### POST '):].strip(), 'fields': {}, 'text_lines': [],
-                       'claims': [], 'references': []}
+                       'image_text_lines': [], 'claims': [], 'references': []}
             posts.append(current)
-            mode = None
+            mode = block = None
             continue
         if current is None:
             continue
-        if mode == 'text':
+        if mode == 'block':
             if line.strip() == '>>>':
                 mode = None
             else:
-                current['text_lines'].append(raw)
+                current[block or 'text_lines'].append(raw)
             continue
         if line.startswith('#'):
             continue
         if line.strip() == '<<<':
-            mode = 'text'
+            # The block belongs to whichever field opened it: TEXT, or IMAGE TEXT.
+            mode = 'block'
             continue
         if line.lstrip().startswith('-'):
             item = line.lstrip()[1:].strip()
@@ -95,7 +97,9 @@ def parse_posts(path):
         if match:
             key, value = match.group(1).strip().lower(), match.group(2).strip()
             mode = {'expected claims': 'claims', 'references': 'references'}.get(key)
-            if mode is None and key != 'text':
+            if key in BLOCK_FIELDS:
+                block = BLOCK_FIELDS[key]
+            elif mode is None:
                 current['fields'][key] = value
     return [finish_post(post) for post in posts]
 
@@ -113,6 +117,7 @@ def finish_post(post):
         'date': fields.get('date posted', ''), 'category': category_of(fields.get('category', '')),
         'notes': fields.get('notes', ''), 'text': '\n'.join(post['text_lines']).strip(),
         'image': fields.get('image', ''),
+        'image_text': '\n'.join(post['image_text_lines']).strip(),
         'expected': expected,
         'expected_fingerprint': hashlib.sha256(json.dumps(expected, sort_keys=True).encode('utf-8')).hexdigest(),
     }
@@ -121,6 +126,16 @@ def finish_post(post):
 def runnable(posts):
     # An image post carries its words in the picture, so it needs no TEXT block.
     return [p for p in posts if not p['id'].startswith('EXAMPLE') and (p['text'] or p['image'])]
+
+
+def ocr_fidelity(post, body):
+    """How much of the words in the picture came back from OCR, as a 0-1 ratio."""
+    from difflib import SequenceMatcher
+    wanted, read = post.get('image_text') or '', (body or {}).get('ocr_text') or ''
+    if not wanted or not read:
+        return None
+    normalize = lambda value: ' '.join(re.findall(r"[^\W_]+", str(value).lower()))
+    return round(SequenceMatcher(None, normalize(wanted), normalize(read)).ratio(), 3)
 
 
 def image_path(folder, post):
@@ -139,14 +154,18 @@ def check_post(post, folder=HERE):
             errors.append(f'IMAGE must be one of {", ".join(sorted(IMAGE_SUFFIXES))}: {post["image"]}')
         elif picture.stat().st_size > MAX_IMAGE_BYTES:
             errors.append(f'IMAGE is larger than the {MAX_IMAGE_BYTES} byte OCR limit: {post["image"]}')
+        if not post.get('image_text'):
+            warnings.append('no IMAGE TEXT: without the words the picture shows, a verdict on a '
+                            'misread claim cannot be told from a verdict on the right one')
     if not wanted or any(verdict not in OVERALL for verdict in wanted):
         errors.append(f"EXPECTED OVERALL must be one of: {', '.join(OVERALL)}"
                       + ' (or two of them written as "A or B" when either would be fair)')
     if not set(wanted) & NO_CLAIM_VERDICTS:
-        if not expected['claims']:
+        if not expected['claims'] and not post.get('image_text'):
             # Optional: EXPECTED OVERALL and REFERENCES still record a judgment made before the
             # run. Per-claim expectations are what back the "claims IRIS missed" count, so the
-            # runner asks for them without refusing a post that has none.
+            # runner asks for them without refusing a post that has none. An image post that
+            # records what the picture says can be compared without them.
             warnings.append('no EXPECTED CLAIMS: the missed-claim count for this post rests on '
                             'your memory of the post rather than on what you wrote beforehand')
         for claim in expected['claims']:
@@ -344,10 +363,15 @@ def write_report(folder, posts, results):
                   '', '</details>', '']
         if result.get('input_type') == 'image':
             # An image result cannot be judged without seeing the words OCR actually produced.
+            fidelity = ocr_fidelity(post, body)
             lines += [f"**Image:** `{post.get('image')}` · OCR {body.get('ocr_status')} · "
                       f"{body.get('ocr_word_count')} words · confidence {body.get('ocr_confidence')}"
-                      + (' · **low confidence**' if body.get('ocr_low_confidence') else ''), '',
-                      '<details><summary>What OCR read</summary>', '',
+                      + (f" · matches the picture's words {fidelity:.0%}" if fidelity is not None else '')
+                      + (' · **low confidence**' if body.get('ocr_low_confidence') else ''), '']
+            if post.get('image_text'):
+                lines += ['<details><summary>What the picture says (you)</summary>', '',
+                          '> ' + post['image_text'].replace('\n', '\n> '), '', '</details>', '']
+            lines += ['<details><summary>What OCR read</summary>', '',
                       '> ' + str(body.get('ocr_text') or '').replace('\n', '\n> '), '', '</details>', '']
         lines += [f"HTTP {result.get('http_status')} · {result.get('seconds')}s · TRACE `{result.get('trace_id')}` · "
                   f"overall **{body.get('verdict')}** · commit `{str(result.get('git_commit'))[:7]}`", '']
@@ -437,6 +461,13 @@ def score(folder):
               '## By category', '', '| Category | Posts | Claim accuracy | False positives |', '|---|---|---|---|']
     for category, bucket in sorted(by_category.items()):
         lines.append(f"| {category} | {bucket['posts']} | {pct(bucket['correct'], bucket['judged'])} | {bucket['false_positive']} |")
+    fidelities = [f for f in (ocr_fidelity(posts.get(pid) or r['post'], r.get('response') or {})
+                              for pid, r in results.items()) if f is not None]
+    if fidelities:
+        lines += ['', '## Reading the pictures', '',
+                  f'| Image posts compared | {len(fidelities)} |', '|---|---|',
+                  f'| OCR match with the words in the picture, median | {statistics.median(fidelities):.0%} |',
+                  f'| Worst | {min(fidelities):.0%} |']
     lines += ['', '## By input', '', '| Input | Posts | Claim accuracy | False positives |', '|---|---|---|---|']
     for kind, bucket in sorted(by_input.items()):
         lines.append(f"| {kind} | {bucket['posts']} | {pct(bucket['correct'], bucket['judged'])} | {bucket['false_positive']} |")

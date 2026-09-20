@@ -25,6 +25,7 @@ Fill in [posts.txt](posts.txt). Each `### POST Hxx` block is one post; unused bl
 Fabricated statements usually circulate as pictures, so the batch should contain some. Save the picture in [images/](images), give its path in the block's `IMAGE:` field (`images/H07.jpg`), and leave `TEXT:` empty.
 
 - **Do not retype the words of the image into TEXT.** That would test IRIS without the part that reads the picture, and a misread name or number is a real result worth recording.
+- **Do write them into `IMAGE TEXT:`**, in its own `<<< >>>` block. That text is never sent to IRIS. It is compared with what OCR produced, so the report shows the picture's words beside the reading, with the share of words that survived, and `SCORES.md` reports the median and the worst. Without it, a verdict on a misread claim cannot be told from a verdict on the right one. A post that records it does not need EXPECTED CLAIMS.
 - Save it as a phone screenshot, not a cropped or sharpened copy: under 8 MB, `.jpg .jpeg .png .webp .bmp .tif .tiff`.
 - If a post has both a picture and a caption, use the picture. IRIS reads one or the other, as the extension and the phone app do.
 - The runner sends these to `/verify-image`, and records what OCR read next to the verdict, so an image failure can be attributed to the reading or to the checking.
