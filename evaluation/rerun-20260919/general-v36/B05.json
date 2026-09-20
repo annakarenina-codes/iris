@@ -1,0 +1,1135 @@
+{
+  "case_id": "B05",
+  "input_sha256": "15cbba61e77c44b01446f15440aaf4d34650d08e9e7bdc41a28e9c39e9ba88e3",
+  "started_utc": "2026-09-20T14:46:33.782354+00:00",
+  "http_status": 200,
+  "seconds": 41.774,
+  "trace_id": "b3aea328eec141e1884e96ae45e785d2",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-scope-opinion-v35",
+  "response": {
+    "verdict": "Not Found",
+    "message": "Retrieved passages support 0 of 1 factual components.",
+    "original_text": "BABALA: Sensitibong balita. Maging disente sa pagkomento. Lalaking bumaril sa bagong kinakasama ng ex matapos mapikon sa patutsada online, arestado",
+    "translated_text": "WARNING: Sensitive news.\nBe decent in commenting.\nMan who shot ex's new partner after getting provoked by online taunts arrested.",
+    "detected_language": "tagalog",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 1,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s1",
+        "text": "BABALA: Sensitibong balita.",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s2",
+        "text": "Maging disente sa pagkomento.",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+        "normalized_claim": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+              "status": "not_supported",
+              "citations": [],
+              "event_group_id": 0,
+              "context": {
+                "start": 0,
+                "end": 79,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Man",
+                      "start": 0,
+                      "end": 3
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "shot",
+                      "start": 8,
+                      "end": 12
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "arrested",
+                      "start": 70,
+                      "end": 78
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Man who shot ex's new partner after getting provoked by online taunts",
+                      "start": 0,
+                      "end": 69
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "Man who shot ex's new partner after getting provoked by online taunts arrested",
+                      "start": 0,
+                      "end": 78
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0,
+                  1
+                ],
+                "component_id": 0,
+                "assertion": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 79
+                },
+                "context_is_evidence": false
+              },
+              "event_rejections": [
+                {
+                  "component_id": 0,
+                  "url": "https://www.philstar.com/cebu-news/2012/08/13/837792/love-triangles-cause-2-shooting-incidents",
+                  "status": "mismatched",
+                  "reason": "The passages describe two separate shooting incidents involving love triangles. In the first incident, Wani Abellanosa (the new partner of Eudelyn Oliveros) shot Fidie Algoso (the ex-partner). In the second incident, Jorildine Ababon is suspected of shooting Rolie Cueva, who was in a relationship with Ababon's ex-girlfriend. In both cases, the shooter is the new partner or ex-partner, but in the claim, the shooter is described as the ex shooting the new partner. The article does not mention any provocation by online taunts, nor does it report the arrest of the shooter in either case (Abellanosa and Ababon both eluded arrest; only Quijano, a companion, was arrested). Therefore, the specific incident described in the claim is not established by the supplied source."
+                }
+              ]
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "entailment_checks": [],
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+              "sources": {
+                "https://www.philstar.com/cebu-news/2012/08/13/837792/love-triangles-cause-2-shooting-incidents": {
+                  "status": "mismatched",
+                  "passage_ids": [
+                    0,
+                    1,
+                    6,
+                    8,
+                    9,
+                    10,
+                    12
+                  ],
+                  "reason": "The passages describe two separate shooting incidents involving love triangles. In the first incident, Wani Abellanosa (the new partner of Eudelyn Oliveros) shot Fidie Algoso (the ex-partner). In the second incident, Jorildine Ababon is suspected of shooting Rolie Cueva, who was in a relationship with Ababon's ex-girlfriend. In both cases, the shooter is the new partner or ex-partner, but in the claim, the shooter is described as the ex shooting the new partner. The article does not mention any provocation by online taunts, nor does it report the arrest of the shooter in either case (Abellanosa and Ababon both eluded arrest; only Quijano, a companion, was arrested). Therefore, the specific incident described in the claim is not established by the supplied source.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/cebu-news/2012/08/13/837792/love-triangles-cause-2-shooting-incidents",
+                      "quote": "CEBU, Philippines - A man was injured after he was shot by the new lover of his former live-in-partner, in sitio Badjang, Barangay Toong, Cebu City Friday night."
+                    },
+                    {
+                      "url": "https://www.philstar.com/cebu-news/2012/08/13/837792/love-triangles-cause-2-shooting-incidents",
+                      "quote": "Fidie Algoso, 28, was wounded in the chest after he was shot by Wani Abellanosa, a construction worker and the new live-in-partner of Eudelyn Oliveros, his former partner."
+                    },
+                    {
+                      "url": "https://www.philstar.com/cebu-news/2012/08/13/837792/love-triangles-cause-2-shooting-incidents",
+                      "quote": "He went outside and confronted Oliveros and her companions but Abellanosa reportedly shot him."
+                    },
+                    {
+                      "url": "https://www.philstar.com/cebu-news/2012/08/13/837792/love-triangles-cause-2-shooting-incidents",
+                      "quote": "Abellanosa and his companions then fled."
+                    },
+                    {
+                      "url": "https://www.philstar.com/cebu-news/2012/08/13/837792/love-triangles-cause-2-shooting-incidents",
+                      "quote": "PO3 Virgilio Bugatan of the Cebu City Public Safety Company conducted hot pursuit operation and arrested Quijano."
+                    },
+                    {
+                      "url": "https://www.philstar.com/cebu-news/2012/08/13/837792/love-triangles-cause-2-shooting-incidents",
+                      "quote": "The two other suspects eluded arrest."
+                    },
+                    {
+                      "url": "https://www.philstar.com/cebu-news/2012/08/13/837792/love-triangles-cause-2-shooting-incidents",
+                      "quote": "The victim told police that he and Oliveros separated last month and Abellanosa is now her new live-in-partner."
+                    }
+                  ],
+                  "context_status": "conflicting",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "original_claim": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/viral-tiktok-videos-do-not-show-suspect-suspects-mother-in-ofw-rape-slay",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/victims-counsels-ask-icc-to-rule-duterte-fit-for-trial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-satire-post-na-ibinahagi-ng-fb-pages-dating-pcoo-consultant-hindi-nilagyan-ng-wastong-label",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/mindanao/viral-video-prompts-pnp-soccsksargen-domestic-abuse-infidelity/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/ateneo-de-zamboanga-shooting-debate-shifts-social-media-gun-safety/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/theater/kisapmata-play-ccp-review-love-relationships-abuse/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/overseas/03/15/18/woman-who-shot-boyfriend-dead-in-youtube-stunt-jailed-6-months",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/20/mpd-to-exercise-maximum-restraint-but-reminds-protestors-to-keep-the-peace-2144",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://news.abs-cbn.com/news/12/29/22/lalaki-tiklo-matapos-umanong-bugbugin-halayin-ang-ex",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/1002975/tangke-tumalsik-sa-taxi-matapos-sumabog-mula-sa-isang-junk-shop-sa-qc-gas-station-nadamay-din/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/promdi/935448/lalaki-hinabol-at-pinagbabaril-ang-bagong-karelasyon-ng-dati-niyang-live-in-partner/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2216072/nbi-arrests-individual-for-assaulting-threatening-ex-partner",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2290469/cops-nab-suspect-in-puerto-galera-online-shopping-workers-slay",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/411878/boy-tapang-arestado-buntis-na-live-in-partner-binugbog",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/cebu-news/2012/08/13/837792/love-triangles-cause-2-shooting-incidents",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/cebu-news/2026/09/04/2553927/cops-probe-online-death-threat-against-school",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/metro/2026/09/05/2554110/lalaking-namaril-ng-binatilyo-sa-maynila-arestado-na",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/17/vlogger-killed-partner-wounded-in-caloocan-shooting",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/09/09/love-fight-turns-fatal-in-negros/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/03/12/lalaki-ni-wrestling-at-sinaksak-bagong-jowa-ng-ex-niya/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1275028",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/index.php/articles/1015492",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/page/258/?article=1831339652459",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/davao-city-strengthens-schools-security-after-deadly-zambo-school-shooting/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/luzon/paghilom-19-na-taong-pagtitiis-isang-hakbang-sa-paglaya/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/voyeur-blackmailer-arrested",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/utility-worker-shot-dead-in-jaen-nueva-ecija",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/couple-vloggers-17-others-nabbed-for-vishing",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/shoot-first-think-later-ex-cop-convicted-for-murder-of-mother-son-in-tarlac",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/victim-of-gun-toting-ex-cop-video-uploader-and-other-witnesses-urged-to-come-out",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/viral-tiktok-videos-do-not-show-suspect-suspects-mother-in-ofw-rape-slay",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/victims-counsels-ask-icc-to-rule-duterte-fit-for-trial",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-satire-post-na-ibinahagi-ng-fb-pages-dating-pcoo-consultant-hindi-nilagyan-ng-wastong-label",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/mindanao/viral-video-prompts-pnp-soccsksargen-domestic-abuse-infidelity/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/ateneo-de-zamboanga-shooting-debate-shifts-social-media-gun-safety/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/theater/kisapmata-play-ccp-review-love-relationships-abuse/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/overseas/03/15/18/woman-who-shot-boyfriend-dead-in-youtube-stunt-jailed-6-months",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/20/mpd-to-exercise-maximum-restraint-but-reminds-protestors-to-keep-the-peace-2144",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://news.abs-cbn.com/news/12/29/22/lalaki-tiklo-matapos-umanong-bugbugin-halayin-ang-ex",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/1002975/tangke-tumalsik-sa-taxi-matapos-sumabog-mula-sa-isang-junk-shop-sa-qc-gas-station-nadamay-din/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/promdi/935448/lalaki-hinabol-at-pinagbabaril-ang-bagong-karelasyon-ng-dati-niyang-live-in-partner/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2216072/nbi-arrests-individual-for-assaulting-threatening-ex-partner",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2290469/cops-nab-suspect-in-puerto-galera-online-shopping-workers-slay",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://bandera.inquirer.net/411878/boy-tapang-arestado-buntis-na-live-in-partner-binugbog",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/cebu-news/2012/08/13/837792/love-triangles-cause-2-shooting-incidents",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/cebu-news/2026/09/04/2553927/cops-probe-online-death-threat-against-school",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/metro/2026/09/05/2554110/lalaking-namaril-ng-binatilyo-sa-maynila-arestado-na",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/17/vlogger-killed-partner-wounded-in-caloocan-shooting",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/09/09/love-fight-turns-fatal-in-negros/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/03/12/lalaki-ni-wrestling-at-sinaksak-bagong-jowa-ng-ex-niya/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1275028",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/index.php/articles/1015492",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/page/258/?article=1831339652459",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/davao-city-strengthens-schools-security-after-deadly-zambo-school-shooting/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/luzon/paghilom-19-na-taong-pagtitiis-isang-hakbang-sa-paglaya/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/voyeur-blackmailer-arrested",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/utility-worker-shot-dead-in-jaen-nueva-ecija",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/couple-vloggers-17-others-nabbed-for-vishing",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/shoot-first-think-later-ex-cop-convicted-for-murder-of-mother-son-in-tarlac",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/victim-of-gun-toting-ex-cop-video-uploader-and-other-witnesses-urged-to-come-out",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Man who shot ex's new partner after getting provoked by online taunts arrested."
+        },
+        "scoring_claim": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+        "search_query": "man shot ex's new partner arrested online taunts",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "d137c601630b442d64ecec156eaed7695e77098e07308757db2851db964f92c4",
+        "cache_version": "week7-scope-opinion-v35",
+        "verdict": "Not Found",
+        "message": "Retrieved passages support 0 of 1 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 136,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 15,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not mention a man shooting his ex's new partner or online taunts.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "mixed_content",
+        "confidence": 0.47,
+        "ambiguity_score": 0.6,
+        "ambiguity_reasons": [
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "verify_factual_claims_only",
+        "verification_text": "Lalaking bumaril sa bagong kinakasama ng ex matapos mapikon sa patutsada online, arestado",
+        "normalized_verification_text": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "BABALA: Sensitibong balita.",
+            "translated_text": "WARNING: Sensitive news.",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "Maging disente sa pagkomento.",
+            "translated_text": "Be decent in commenting.",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s3",
+            "text": "Lalaking bumaril sa bagong kinakasama ng ex matapos mapikon sa patutsada online, arestado",
+            "translated_text": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.8,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review",
+              "openai_factual_claim_advice"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "BABALA: Sensitibong balita.",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s2",
+            "text": "Maging disente sa pagkomento.",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS will verify only the factual segments and skip non-checkable parts.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "contextual_background",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "call_to_action",
+                "top_label_score": 0.6,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "factual_claim",
+                "top_label_score": 0.8,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reported_event",
+                  "arrest"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "This segment asserts a factual event: a man was arrested for shooting his ex's new partner after being provoked by online taunts."
+          }
+        ],
+        "grouping": [],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+            "normalized_claim": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "man shot ex's new partner arrested online taunts",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Man who shot ex's new partner after getting provoked by online taunts arrested."
+              }
+            ],
+            "evidence_context": "Man who shot ex's new partner after getting provoked by online taunts arrested.",
+            "original_language_query": "Lalaking bumaril sa bagong kinakasama ng ex matapos mapikon sa patutsada online, arestado",
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "b3aea328eec141e1884e96ae45e785d2",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0025,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 1.3706,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 2.0891,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.coverage_scope",
+            "duration_seconds": 1.253,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 3.1856,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 17.7826,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0816,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 2.8797,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.7548,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.7751,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0203,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 11.2183,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 33.8471,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 41.7585,
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    "corroboration_count": 0,
+    "primary_evidence": null,
+    "supporting_sources": [],
+    "search_status": "ok",
+    "total_search_results": 136,
+    "searched_articles": 33,
+    "extracted_articles": 33,
+    "source_summary": [
+      {
+        "source": "VERA Files",
+        "results_found": 13,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Rappler",
+        "results_found": 12,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "ABS-CBN News",
+        "results_found": 13,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "GMA News",
+        "results_found": 14,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Daily Inquirer",
+        "results_found": 12,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Star",
+        "results_found": 14,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Manila Bulletin",
+        "results_found": 15,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine News Agency",
+        "results_found": 13,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Information Agency",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "DZRH News",
+        "results_found": 11,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "OneNews.PH",
+        "results_found": 10,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      }
+    ],
+    "sources": [],
+    "evidence_sources": [],
+    "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim."
+  }
+}

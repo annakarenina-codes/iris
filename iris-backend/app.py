@@ -12,6 +12,7 @@ from pipeline.cache import get_cached_verdict, hash_claim, save_cached_verdict
 from pipeline.attribution_integrity import (attribution_phrase_match, date_phrase_match,
                                             speaker_phrase_match)
 from pipeline.evidence_urls import article_url_rejection, is_opinion_url
+from pipeline.checkable_claims import only_general_statements
 from pipeline.claim_extractor import extract_claims
 from pipeline.component_evidence import REFUTED_VERDICT
 from pipeline.content_profiler import profile_content
@@ -42,7 +43,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-scope-opinion-v35"
+RESULT_CACHE_VERSION = "week7-general-claims-v36"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 # A verdict that asserts something about the world has to show the source it rests on.
 VERDICTS_NEEDING_EVIDENCE = POSITIVE_VERDICTS | {REFUTED_VERDICT}
@@ -1585,6 +1586,13 @@ def verify_text_payload(text, debug_enabled=False, timings=None):
         lambda: extract_claims(verification_text, normalized_verification_text),
     )
 
+    general_only = only_general_statements(claim_extraction["claims"], content_profile)
+    if general_only:
+        # Saved case B07: five statements about what one vote can influence, searched across
+        # eleven publishers, answered Not Found five times. No source can confirm a sentence
+        # that names nobody, nothing and no date.
+        claim_extraction = {**claim_extraction, "claims": [], "status": "no_checkable_claims_general"}
+
     if not claim_extraction["claims"]:
         flags = ["politically_sensitive"] if politically_sensitive else []
         verdict = "Opinion Detected" if opinion_result["is_opinion"] else "No Checkable Claims"
@@ -1593,6 +1601,11 @@ def verify_text_payload(text, debug_enabled=False, timings=None):
             if verdict == "Opinion Detected"
             else "IRIS did not find factual claims that can be checked against sources."
         )
+        if general_only:
+            message = (
+                "IRIS did not check this post: its statements are general and name no person, "
+                "institution, number or date that a news source could confirm."
+            )
 
         response = build_response({
             "verdict": verdict,
