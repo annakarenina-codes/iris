@@ -67,3 +67,22 @@ Known problems deliberately left open, with the evidence gathered so far. Decisi
 - So the two stages disagree: the component review has a deliberate rule for an unconfirmed date (partial support, never Verified), while the attribution gate rejects the article outright before the review can apply it.
 - This also makes the verdict unstable between runs, independently of any code change.
 - Possible directions: let an unmatched date reduce an article's standing rather than exclude it, and leave the confirmed/unconfirmed decision to the component review; or make the date anchor required only when the claim's own wording makes the date essential.
+
+## 7. Forecast wording is only detected in some English phrasings (found via held-out post H13)
+
+**Status:** open, found 20 September 2026 while preparing held-out batch 1. No code change during the batch freeze.
+
+IRIS's policy is that it can check whether a forecast was **reported**, but does not verify whether a forecast came true. The detector that routes a projection away from verification only fires on part of the English phrasing and on none of the Filipino:
+
+| sentence | forecast flagged |
+|---|---|
+| "The economy will likely grow by 6 percent next year, the bank projects." | yes |
+| "Oil prices are expected to rise next week, analysts said." | no |
+| "Nagbabadya ang malaking taas-presyo sa langis sa susunod na linggo." | no |
+| "Inaasahang tataas ang presyo ng bigas sa Disyembre, ayon sa mga eksperto." | no |
+
+Roughly a fifth of the held-out batch is in Filipino, and Philippine pages publish price, weather and traffic forecasts constantly, so this decides how a common kind of post is handled.
+
+Note that stopping is not always the right answer. Held-out post H13 ("Nagbabadya ang big-time oil price hike sa susunod na linggo… nakapanayam natin si Dir. Rino Abad ng DOE") is a **reported** forecast: that oil firms signalled a hike is something Philippine outlets publish every week, and the post names the official and the bureau, so IRIS has something concrete to retrieve. The gap is that IRIS cannot currently tell a reported forecast from a prediction it should decline, in Filipino at all.
+
+Direction: add Filipino and the missing English forecast wording to the detector, and distinguish "X is expected/announced" (checkable as reported) from "X will happen" (declined), rather than stopping on every forecast word.
