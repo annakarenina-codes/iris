@@ -20,6 +20,9 @@ VERA_SOURCE = {
     "site_query": "site:verafiles.org/articles",
     "priority": True,
     "access": FULL_TEXT,
+    # Its fact-checks are not always in the web-search index (saved case C08), so IRIS also
+    # looks them up in the sitemap VERA publishes.
+    "sitemap": "https://verafiles.org/sitemap.xml",
 }
 
 FACT_CHECK_SOURCES = [

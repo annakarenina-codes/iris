@@ -33,6 +33,7 @@ except ImportError:  # pragma: no cover - depends on local environment setup
         return False
 
 from pipeline.article_extractor import extract_article_text
+from pipeline.fact_check_index import fact_check_candidates
 from pipeline.sources import get_all_sources, uses_search_excerpts
 from pipeline.evidence_urls import article_url_rejection, clean_article_url
 
@@ -265,11 +266,20 @@ def _interleave_pass_results(searches: List[Dict[str, object]]) -> List[Dict[str
 
 
 @traced('retrieval.queries', dependency=False)
+def fact_check_search(claim_text: str) -> Dict[str, object]:
+    """A pass over the fact-checkers' own sitemaps, for articles web search does not return."""
+    results = [{**result, 'search_pass': 'fact_check_index', 'pass_rank': rank}
+               for rank, result in enumerate(fact_check_candidates(claim_text))]
+    return {'query': claim_text, 'search_pass': 'fact_check_index', 'freshness': None,
+            'total_results': len(results), 'results': results, 'source_reports': []}
+
+
 def search_with_backup(
     primary_query: str,
     backup_query: Optional[str] = None,
     original_language_query: Optional[str] = None,
     recency: bool = True,
+    fact_check_text: Optional[str] = None,
 ) -> Dict[str, object]:
     """
     Runs every search pass for one claim and merges their results.
@@ -289,6 +299,10 @@ def search_with_backup(
     if original_language_query and original_language_query.casefold() not in used_queries:
         searches.append(search_sources(original_language_query, search_pass="original_language"))
         used_queries.add(original_language_query.casefold())
+
+    fact_checks = fact_check_search(fact_check_text or primary_query)
+    if fact_checks['results']:
+        searches.append(fact_checks)
 
     combined_results = _interleave_pass_results(searches)
     should_backup = bool(
@@ -623,6 +637,7 @@ def search_and_extract(
     backup_query: Optional[str] = None,
     max_articles_per_source: int = MAX_ARTICLES_PER_SOURCE,
     original_language_query: Optional[str] = None,
+    fact_check_text: Optional[str] = None,
 ) -> Dict[str, object]:
     """
     Searches approved sources and extracts readable article text from each source.
@@ -634,6 +649,7 @@ def search_and_extract(
         primary_query,
         backup_query,
         original_language_query=original_language_query,
+        fact_check_text=fact_check_text,
     )
     article_targets = _article_targets_by_source_order(
         search_result,

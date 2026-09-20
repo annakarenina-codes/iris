@@ -88,7 +88,8 @@ class SearchPassTests(unittest.TestCase):
 
     def test_primary_recent_and_original_language_passes_all_run(self):
         calls = []
-        with patch.object(search, 'brave_search', side_effect=self.fake_search(calls)):
+        with patch.object(search, 'brave_search', side_effect=self.fake_search(calls)), \
+             patch.object(search, 'fact_check_candidates', return_value=[]):
             result = search.search_with_backup('man shot ex partner arrested',
                                                original_language_query='Lalaking bumaril arestado')
         self.assertEqual(result['search_passes'], ['primary', 'recent', 'original_language'])
@@ -103,6 +104,7 @@ class SearchPassTests(unittest.TestCase):
     def test_top_hit_from_every_pass_is_read(self):
         calls = []
         with patch.object(search, 'brave_search', side_effect=self.fake_search(calls)), \
+             patch.object(search, 'fact_check_candidates', return_value=[]), \
              patch.object(search, 'extract_article_text', side_effect=lambda url: {
                  'url': url, 'status': 'extracted', 'error': None, 'title': url, 'text': 'Enough text here.',
                  'word_count': 3}):

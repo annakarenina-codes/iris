@@ -39,7 +39,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-partial-support-v29"
+RESULT_CACHE_VERSION = "week7-factcheck-index-v30"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 REVIEW_FAILED_VERDICT = "Review Failed"
 REVIEW_FAILED_MESSAGE = (
@@ -907,6 +907,7 @@ def build_claim_search_result(
         original_language_query=(
             claim.get("original_language_query") if language in ["tagalog", "taglish"] else None
         ),
+        fact_check_text=claim.get("claim_text") or normalized_claim,
     )
 
     if has_event_articles:
