@@ -244,10 +244,14 @@ ENTAILMENT_SCHEMA = {
             'assertion_supported': {'type': 'boolean'},
             'qualifiers_preserved': {'type': 'boolean'},
             'contradicted': {'type': 'boolean'},
+            'same_occurrence': {'type': 'boolean'},
+            'missing_kind': {'type': 'string',
+                             'enum': ['none', 'detail', 'date', 'subject_or_event', 'other']},
             'citation_ids': {'type': 'array', 'items': {'type': 'integer'}},
             'reason': {'type': 'string'},
         }, 'required': ['component_id', 'same_subject_and_event', 'assertion_supported',
-                        'qualifiers_preserved', 'contradicted', 'citation_ids', 'reason']}}},
+                        'qualifiers_preserved', 'contradicted', 'same_occurrence', 'missing_kind',
+                        'citation_ids', 'reason']}}},
     'required': ['checks'],
 }
 
@@ -291,7 +295,12 @@ def apply_entailment_checks(claim, reviewed, checks, articles):
         contradicted = check.get('contradicted', False)
         same_event = check['same_subject_and_event'] and bool(ids) and not contradicted
         supported = same_event and check['assertion_supported'] and check['qualifiers_preserved']
-        partial = same_event and not supported
+        # Partial support needs the very same occurrence and a named gap. Without this, a
+        # different shooting (B05), a later market commentary (A09) or an older interview
+        # (C07) counted as partial support for an unrelated claim.
+        same_occurrence = check.get('same_occurrence', check['same_subject_and_event'])
+        partial = (same_event and not supported and same_occurrence
+                   and check.get('missing_kind', 'detail') in {'detail', 'date'})
         # A nearby year is not the asserted year, even if the model says yes.
         years = set(re.findall(r'\b(?:19|20)\d{2}\b', part['component']))
         cited_years = set(re.findall(r'\b(?:19|20)\d{2}\b',
@@ -818,8 +827,19 @@ def review_components(claim, articles, source_context=''):
             'selected passages must actually establish the asserted action or relationship. '
             'Return checks as an object keyed by the supplied component IDs, not an array. '
             'For every supplied component ID return same_subject_and_event, assertion_supported, '
-            'qualifiers_preserved, contradicted, citation_ids (only relevant supplied passage IDs), '
-            'and a reason. '
+            'qualifiers_preserved, contradicted, same_occurrence, missing_kind, citation_ids (only '
+            'relevant supplied passage IDs), and a reason. '
+            'same_occurrence is TRUE only when the cited passages report the VERY SAME occurrence '
+            'as the claim: the same incident, announcement, interview, hearing or trading session, '
+            'with the same participants and roles. Another occasion involving the same people or '
+            'the same kind of event is FALSE: a different shooting with a different victim, a later '
+            'commentary repeating a figure instead of the session that closed at it, an older '
+            'interview about the same topic. If the passages cannot pin down the occurrence, it is '
+            'FALSE. missing_kind names what the passages do not establish: "none" when everything '
+            'is established, "detail" for a secondary attribute of that same occurrence (a second '
+            'kind of damage, an extra participant), "date" when only the stated date or time is '
+            'absent, "subject_or_event" when the occurrence or a participant differs or is '
+            'unconfirmed, and "other" for anything else. '
             'Same names/topic are insufficient. A similar police process in another incident is '
             'a different event. Familiarity with security threats does not by itself establish '
             'questioning about personal biography/background. Nearby dates do not prove a stated '

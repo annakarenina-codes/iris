@@ -15,10 +15,13 @@ def context(subject='', action=''):
     return {k: [{'origin': 'claim', 'quote': values[k]}] if values.get(k) else [] for k in FIELDS}
 
 
-def check(component_id=0, same_event=True, supported=True, contradicted=False, ids=(0,), reason='Checked.'):
+def check(component_id=0, same_event=True, supported=True, contradicted=False, ids=(0,),
+          reason='Checked.', same_occurrence=None, missing_kind=None):
     return {'component_id': component_id, 'same_subject_and_event': same_event,
             'assertion_supported': supported, 'qualifiers_preserved': supported,
-            'contradicted': contradicted, 'citation_ids': list(ids), 'reason': reason}
+            'contradicted': contradicted, 'citation_ids': list(ids), 'reason': reason,
+            'same_occurrence': same_event if same_occurrence is None else same_occurrence,
+            'missing_kind': ('none' if supported else 'detail') if missing_kind is None else missing_kind}
 
 
 def reviewed_with(claim, article, quote=None):
@@ -57,6 +60,35 @@ class MissingDetailTests(unittest.TestCase):
     def test_no_cited_passage_is_still_not_found(self):
         final = apply_entailment_checks(self.CLAIM, reviewed_with(self.CLAIM, self.ARTICLE), [
             check(supported=False, ids=[], reason='Nothing relevant.')], [self.ARTICLE])
+        self.assertEqual(final['verdict'], 'Not Found')
+
+
+class OtherOccurrenceTests(unittest.TestCase):
+    # B05, A09 and C07: the passages describe another occasion, however similar.
+    CLAIM = "Man who shot his ex's new partner after online taunts arrested."
+    ARTICLE = {'url': 'https://example.org/taytay',
+               'text': 'The suspect is the former partner of the store owner where the victim works.'}
+
+    def reviewed(self):
+        return reviewed_with(self.CLAIM, self.ARTICLE)
+
+    def test_a_different_occurrence_is_not_partial_support(self):
+        final = apply_entailment_checks(self.CLAIM, self.reviewed(), [check(
+            supported=False, same_occurrence=False, missing_kind='subject_or_event',
+            reason='The victim is an employee, not the new partner.')], [self.ARTICLE])
+        self.assertEqual(final['verdict'], 'Not Found')
+        self.assertEqual(final['components'][0]['citations'], [])
+
+    def test_same_occurrence_with_a_missing_detail_is_partial(self):
+        final = apply_entailment_checks(self.CLAIM, self.reviewed(), [check(
+            supported=False, same_occurrence=True, missing_kind='detail',
+            reason='The taunts are not mentioned.')], [self.ARTICLE])
+        self.assertEqual(final['verdict'], 'Partially Verified')
+
+    def test_unknown_gap_is_not_partial_support(self):
+        final = apply_entailment_checks(self.CLAIM, self.reviewed(), [check(
+            supported=False, same_occurrence=True, missing_kind='other',
+            reason='Unclear what the passages establish.')], [self.ARTICLE])
         self.assertEqual(final['verdict'], 'Not Found')
 
 
