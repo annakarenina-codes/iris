@@ -1,15 +1,15 @@
 {
   "case_id": "V01",
   "input_sha256": "586942d047b1dc745e22fd636648c8d8fcbcbaef47e97c1391bd6902ae7d42de",
-  "started_utc": "2026-09-20T09:16:56.147783+00:00",
+  "started_utc": "2026-09-20T09:44:47.457119+00:00",
   "http_status": 200,
-  "seconds": 49.849,
-  "trace_id": "80005dd320624032b8066b9c56a3126a",
+  "seconds": 48.096,
+  "trace_id": "3be1284f67df417ba32249eb14855f7a",
   "cache_policy": "reads and writes bypassed",
   "cache_version": "week7-refuted-v33",
   "response": {
-    "verdict": "Not Found",
-    "message": "IRIS did not find enough approved-source evidence confirming that Gen. Romeo Poquiz made this statement.",
+    "verdict": "Refuted",
+    "message": "VERA Files reports that this did not happen. Retrieved passages support 0 of 1 factual components. 1 component is contradicted by retrieved passages.",
     "original_text": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
     "translated_text": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
     "detected_language": "english",
@@ -27,23 +27,18 @@
     "contains_forecast_or_projection": false,
     "contains_satire_or_humor": false,
     "contains_quote": false,
-    "ignored_segments": [
-      {
-        "text": "Retired Philippine Air Force Maj.",
-        "segment_type": "uncheckable"
-      }
-    ],
+    "ignored_segments": [],
     "claims": [
       {
         "claim_id": 1,
-        "claim_text": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
-        "normalized_claim": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+        "claim_text": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+        "normalized_claim": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
         "claim_type": "attributed_statement",
         "verification_focus": "speaker_attribution",
         "attribution": {
-          "speaker": "Gen. Romeo Poquiz",
-          "role": null,
-          "statement": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+          "speaker": "Romeo Poquiz",
+          "role": "Retired Philippine Air Force Maj. Gen.",
+          "statement": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
           "source": null,
           "program": null,
           "date": null
@@ -52,7 +47,7 @@
           "removed_unsupported_fields": [],
           "field_checks": {
             "speaker": "grounded",
-            "role": "absent",
+            "role": "grounded",
             "source": "absent",
             "program": "absent",
             "date": "absent"
@@ -61,57 +56,58 @@
         },
         "component_review": {
           "status": "ok",
-          "verdict": "Not Found",
+          "verdict": "Refuted",
           "components": [
             {
-              "component": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+              "component": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
               "status": "not_supported",
               "citations": [],
-              "event_group_id": 0,
+              "evidence_relation": "contradicted",
+              "review_reason": "Passage 3 explicitly states 'there are no records of Poquiz making this statement,' directly denying that Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country. This is a direct denial of the claim.",
               "context": {
                 "start": 0,
-                "end": 134,
+                "end": 168,
                 "anchors": {
                   "subject": [
                     {
                       "origin": "claim",
-                      "quote": "Gen. Romeo Poquiz",
+                      "quote": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz",
                       "start": 0,
-                      "end": 17
+                      "end": 51
                     },
                     {
                       "origin": "claim",
                       "quote": "President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos",
-                      "start": 23,
-                      "end": 88
+                      "start": 57,
+                      "end": 122
                     }
                   ],
                   "action": [
                     {
                       "origin": "claim",
-                      "quote": "said",
-                      "start": 18,
-                      "end": 22
+                      "quote": "said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+                      "start": 52,
+                      "end": 168
                     },
                     {
                       "origin": "claim",
                       "quote": "no longer have a mandate to lead the country.",
-                      "start": 89,
-                      "end": 134
+                      "start": 123,
+                      "end": 168
                     }
                   ],
                   "event": [
                     {
                       "origin": "claim",
-                      "quote": "President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
-                      "start": 23,
-                      "end": 134
+                      "quote": "said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+                      "start": 52,
+                      "end": 168
                     },
                     {
                       "origin": "claim",
                       "quote": "no longer have a mandate to lead the country.",
-                      "start": 89,
-                      "end": 134
+                      "start": 123,
+                      "end": 168
                     }
                   ],
                   "time": [],
@@ -119,16 +115,16 @@
                     {
                       "origin": "claim",
                       "quote": "no longer",
-                      "start": 89,
-                      "end": 98
+                      "start": 123,
+                      "end": 132
                     }
                   ],
                   "speaker": [
                     {
                       "origin": "claim",
-                      "quote": "Gen. Romeo Poquiz",
+                      "quote": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz",
                       "start": 0,
-                      "end": 17
+                      "end": 51
                     }
                   ]
                 },
@@ -137,163 +133,82 @@
                   1
                 ],
                 "component_id": 0,
-                "assertion": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+                "assertion": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
                 "source_reference": {
                   "origin": "claim",
                   "start": 0,
-                  "end": 134
+                  "end": 168
                 },
                 "context_is_evidence": false
               },
-              "event_rejections": [
-                {
-                  "component_id": 0,
-                  "url": "https://www.dzrh.com.ph/post/anti-corruption-protesters-jailed-while-corrupt-officials-remain-free-poquiz",
-                  "status": "uncertain",
-                  "reason": "The passages from source 0 (DZRH) confirm that Gen. Romeo Poquiz called for President Ferdinand Marcos Jr.'s resignation and for the military to withdraw support, and that he questioned the President's fitness to serve. However, there is no direct statement attributed to Poquiz saying that both President Marcos Jr. and First Lady Liza Araneta-Marcos 'no longer have a mandate to lead the country.' The passages focus on the President, not the First Lady, and do not use the specific language of 'no longer have a mandate.' Thus, the identity of the specific assertion about both individuals and the exact wording is uncertain."
-                },
-                {
-                  "component_id": 0,
-                  "url": "https://www.philstar.com/headlines/2026/01/05/2498917/ex-air-force-general-nabbed-over-sedition-charge",
-                  "status": "uncertain",
-                  "reason": "Source 1 (Philstar) confirms that Poquiz called for the military to withdraw support from President Ferdinand Marcos Jr. and that the United People’s Initiative (UPI) demanded something of 'the Marcos,' but it does not specify a statement about both President Marcos Jr. and First Lady Liza Araneta-Marcos 'no longer having a mandate to lead the country.' The referent is not fully established for both individuals or the exact claim."
-                },
-                {
-                  "component_id": 0,
-                  "url": "https://www.onenews.ph/articles/ex-general-who-called-for-marcos-ouster-nabbed",
-                  "status": "uncertain",
-                  "reason": "Source 2 (OneNews) confirms that Poquiz called on the military to withdraw support from President Marcos at a protest and is a vocal critic of the Marcos administration. However, there is no direct statement about both President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos 'no longer having a mandate to lead the country.' The referent is not fully established for both individuals or the specific claim."
-                },
-                {
-                  "component_id": 0,
-                  "url": "https://www.onenews.ph/articles/opinion-a-brewing-political-storm",
-                  "status": "uncertain",
-                  "reason": "Source 3 (OneNews opinion) confirms that Poquiz hoped the military would withdraw support and that he was involved in protests demanding President Marcos Jr.'s resignation. There is no mention of the First Lady or a statement that both 'no longer have a mandate to lead the country.' The referent is not fully established for both individuals or the specific claim."
-                }
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses"
+          ],
+          "reason": "VERA Files reports that this did not happen. Retrieved passages support 0 of 1 factual components. 1 component is contradicted by retrieved passages.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": false,
+              "qualifiers_preserved": true,
+              "contradicted": true,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "denial",
+              "citation_ids": [
+                3
+              ],
+              "reason": "Passage 3 explicitly states 'there are no records of Poquiz making this statement,' directly denying that Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country. This is a direct denial of the claim.",
+              "component_id": 0,
+              "denial_urls": [
+                "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses"
               ]
             }
           ],
-          "supporting_urls": [],
-          "reason": "Retrieved passages support 0 of 1 factual components.",
-          "entailment_checks": [],
+          "original_claim": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
           "event_identity_checks": [
             {
               "group_id": 0,
               "component_ids": [
                 0
               ],
-              "referent": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+              "referent": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
               "sources": {
-                "https://www.dzrh.com.ph/post/anti-corruption-protesters-jailed-while-corrupt-officials-remain-free-poquiz": {
-                  "status": "uncertain",
+                "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses": {
+                  "status": "matched",
                   "passage_ids": [
-                    3,
-                    6,
-                    8,
-                    30,
-                    32
+                    0,
+                    1,
+                    2,
+                    4,
+                    6
                   ],
-                  "reason": "The passages from source 0 (DZRH) confirm that Gen. Romeo Poquiz called for President Ferdinand Marcos Jr.'s resignation and for the military to withdraw support, and that he questioned the President's fitness to serve. However, there is no direct statement attributed to Poquiz saying that both President Marcos Jr. and First Lady Liza Araneta-Marcos 'no longer have a mandate to lead the country.' The passages focus on the President, not the First Lady, and do not use the specific language of 'no longer have a mandate.' Thus, the identity of the specific assertion about both individuals and the exact wording is uncertain.",
+                  "reason": "The passages explicitly discuss the viral claim that Maj. Gen. Romeo Poquiz made a statement denouncing the leadership of President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos, claiming they no longer have a mandate to lead. The article states this is fake and that there are no records of Poquiz making this statement, directly addressing the specific assertion and its attribution to Poquiz.",
                   "citations": [
                     {
-                      "url": "https://www.dzrh.com.ph/post/anti-corruption-protesters-jailed-while-corrupt-officials-remain-free-poquiz",
-                      "quote": "“Tulad niyan, ako ‘yung kinasuhan, instead na ‘yung dapat, ‘yung mga nagnakaw na ‘yun, e, sinabi ng Pangulo, na dapat may makukulong, ipapanagot bago mag-Pasko, pero wala naman … Parang mali—mali talaga,” he added. Upon returning to the country from overseas, Poquiz was seized for inciting to sedition . He told DZRH that the Philippine National Police - Criminal Investigation and Detection Group (PNP-CIDG) filed an inciting to sedition and rebellion case against him in response to social media posts allegedly aiming to destabilize the government. “Ang ginagawa lang naman namin, aming grupo, ay mag-protesta, magpahayag ng mga damdamin dito sa mga matinding korapsyon na itong nangyayari sa bayan. At gusto nating mapanagot ang mga nagnakaw ng mga bilyun-bilyon sa kaban ng bayan,” Poquiz explained. He did admit that during the UPI’s protest in November alongside the Iglesia Ni Cristo (INC), he called for President Ferdinand Marcos Jr.’s resignation and for the military to withdraw their support for the present administration. This was, he said, in response to Senator Imee Marcos’ speech, wherein she claimed that her brother, the President, was a drug addict."
+                      "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+                      "quote": "At least two Facebook posts falsely attributed a viral statement to retired Air Force Maj."
                     },
                     {
-                      "url": "https://www.dzrh.com.ph/post/anti-corruption-protesters-jailed-while-corrupt-officials-remain-free-poquiz",
-                      "quote": "So may move doon na mag-resign ang Presidente, ipinapanawagan namin,” Poquiz explained."
+                      "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+                      "quote": "Gen. Romeo Poquiz denouncing the leadership of President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos claiming they no longer have a mandate to lead."
                     },
                     {
-                      "url": "https://www.dzrh.com.ph/post/anti-corruption-protesters-jailed-while-corrupt-officials-remain-free-poquiz",
-                      "quote": "Mag-resign, mag-withdraw ng support ang AFP, parang ganoon na dahil sa bugso ng damdamin noong gabi na iyon,” he went on."
+                      "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+                      "quote": "This is fake."
                     },
                     {
-                      "url": "https://www.dzrh.com.ph/post/anti-corruption-protesters-jailed-while-corrupt-officials-remain-free-poquiz",
-                      "quote": "So may move doon na mag-resign ang Presidente, ipinapanawagan namin,” Poquiz explained."
+                      "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+                      "quote": "The graphic contains a photo of Poquiz and this fake quote attributed to him: “Hindi sobra na, kundi sobra sobra na. So, ano na? Liza at BBM, wala na kayong saysay sa Pilipinas para manatili pa. Hindi niyo pagmamay-ari ang Pilipinas. Tama na… (It’s not just too much anymore, it’s way, way too much. So, what now? Liza and BBM, there is no reason for you to stay in power. You do not own the Philippines. Enough is enough…).”"
                     },
                     {
-                      "url": "https://www.dzrh.com.ph/post/anti-corruption-protesters-jailed-while-corrupt-officials-remain-free-poquiz",
-                      "quote": "Mag-resign, mag-withdraw ng support ang AFP, parang ganoon na dahil sa bugso ng damdamin noong gabi na iyon,” he went on."
+                      "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+                      "quote": "Contrary to what the post is implying, there are no records of Poquiz making this statement."
                     }
                   ],
-                  "context_status": "unresolved",
-                  "temporal_context": {
-                    "status": "unresolved",
-                    "enforced": false,
-                    "reason": "No explicit event-time anchor; semantic event review still required."
-                  }
-                },
-                "https://www.philstar.com/headlines/2026/01/05/2498917/ex-air-force-general-nabbed-over-sedition-charge": {
-                  "status": "uncertain",
-                  "passage_ids": [
-                    55,
-                    56,
-                    59
-                  ],
-                  "reason": "Source 1 (Philstar) confirms that Poquiz called for the military to withdraw support from President Ferdinand Marcos Jr. and that the United People’s Initiative (UPI) demanded something of 'the Marcos,' but it does not specify a statement about both President Marcos Jr. and First Lady Liza Araneta-Marcos 'no longer having a mandate to lead the country.' The referent is not fully established for both individuals or the exact claim.",
-                  "citations": [
-                    {
-                      "url": "https://www.philstar.com/headlines/2026/01/05/2498917/ex-air-force-general-nabbed-over-sedition-charge",
-                      "quote": "The charges against the retired Air Force general stemmed from his participation in the November 2025 rallies, where he urged the military to withdraw support from President Ferdinand Marcos Jr. over corruption scandals."
-                    },
-                    {
-                      "url": "https://www.philstar.com/headlines/2026/01/05/2498917/ex-air-force-general-nabbed-over-sedition-charge",
-                      "quote": "Poquiz also serves as the spokesperson for the United People’s Initiative, an organization composed of former military officers that has demanded the Marcos."
-                    },
-                    {
-                      "url": "https://www.philstar.com/headlines/2026/01/05/2498917/ex-air-force-general-nabbed-over-sedition-charge",
-                      "quote": "Sign up now!"
-                    }
-                  ],
-                  "context_status": "unresolved",
-                  "temporal_context": {
-                    "status": "unresolved",
-                    "enforced": false,
-                    "reason": "No explicit event-time anchor; semantic event review still required."
-                  }
-                },
-                "https://www.onenews.ph/articles/ex-general-who-called-for-marcos-ouster-nabbed": {
-                  "status": "uncertain",
-                  "passage_ids": [
-                    67,
-                    69
-                  ],
-                  "reason": "Source 2 (OneNews) confirms that Poquiz called on the military to withdraw support from President Marcos at a protest and is a vocal critic of the Marcos administration. However, there is no direct statement about both President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos 'no longer having a mandate to lead the country.' The referent is not fully established for both individuals or the specific claim.",
-                  "citations": [
-                    {
-                      "url": "https://www.onenews.ph/articles/ex-general-who-called-for-marcos-ouster-nabbed",
-                      "quote": "Poquiz, founder of the United People’s Initiative and a vocal critic of the Marcos administration, is facing inciting to sedition and rebellion charges filed by the Department of Justice."
-                    },
-                    {
-                      "url": "https://www.onenews.ph/articles/ex-general-who-called-for-marcos-ouster-nabbed",
-                      "quote": "At an anti-corruption protest in November last year, Poquiz allegedly called on members of the Armed Forces of the Philippines (AFP) to withdraw their support for President Marcos."
-                    }
-                  ],
-                  "context_status": "unresolved",
-                  "temporal_context": {
-                    "status": "unresolved",
-                    "enforced": false,
-                    "reason": "No explicit event-time anchor; semantic event review still required."
-                  }
-                },
-                "https://www.onenews.ph/articles/opinion-a-brewing-political-storm": {
-                  "status": "uncertain",
-                  "passage_ids": [
-                    88,
-                    89
-                  ],
-                  "reason": "Source 3 (OneNews opinion) confirms that Poquiz hoped the military would withdraw support and that he was involved in protests demanding President Marcos Jr.'s resignation. There is no mention of the First Lady or a statement that both 'no longer have a mandate to lead the country.' The referent is not fully established for both individuals or the specific claim.",
-                  "citations": [
-                    {
-                      "url": "https://www.onenews.ph/articles/opinion-a-brewing-political-storm",
-                      "quote": "In a TV interview, retired general Romeo Poquiz warned that anything can happen when one million people gather at Luneta on the protest days."
-                    },
-                    {
-                      "url": "https://www.onenews.ph/articles/opinion-a-brewing-political-storm",
-                      "quote": "Poquiz was hoping the military brass would cave in when the senior generals saw the large crowd protesting against corruption and demanding President Ferdinand Marcos Jr.’s immediate resignation."
-                    }
-                  ],
-                  "context_status": "unresolved",
+                  "context_status": "matching",
                   "temporal_context": {
                     "status": "unresolved",
                     "enforced": false,
@@ -303,12 +218,19 @@
               }
             }
           ],
-          "original_claim": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
           "event_identity_model": "gpt-4.1-2025-04-14",
-          "partition_model": "gpt-4.1-2025-04-14"
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
         },
         "review_error": null,
         "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
           {
             "url": "https://verafiles.org/articles/fact-check-liza-marcos-not-suspended-as-first-lady",
             "matches": true,
@@ -316,31 +238,25 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://verafiles.org/articles/fact-check-viral-photo-of-sara-duterte-handcuffed-over-grave-threats-arrest-is-ai-manipulated",
+            "url": "https://verafiles.org/articles/coalition-urges-marcos-to-stop-natl-government-meddling-in-barmm-polls",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://verafiles.org/articles/marcos-lays-down-plans-skips-key-issues-in-first-sona",
+            "url": "https://www.rappler.com/philippines/retired-general-romeo-poquiz-arrested-inciting-sedition/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-remains-president-sara-duterte-vice-president/",
+            "url": "https://www.rappler.com/philippines/office-president-2027-budget/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.rappler.com/philippines/elections/parties-most-parliament-seats-results-barmm-2026/",
-            "matches": true,
-            "subject": null,
-            "reason": "not_referential_incident"
-          },
-          {
-            "url": "https://www.rappler.com/voices/thought-leaders/rear-view-marcos-out-of-time-post-state-of-the-nation-address/",
+            "url": "https://www.rappler.com/philippines/military-colonel-audie-mongao-dismissed-withdrawal-support-marcos-jr/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -358,13 +274,13 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.abs-cbn.com/news/nation/2025/11/20/marcos-dubs-first-lady-the-ambassador-of-migrant-workers-says-she-ll-be-part-of-cabinet-shakeup-1145",
+            "url": "https://www.abs-cbn.com/news/nation/2026/1/5/retired-military-officer-poquiz-questions-arrest-over-criticism-vs-corruption-cases-1920",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.gmanetwork.com/news/topstories/nation/910546/duterte-marcos-uniteam-ends/story/",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/971707/retired-air-force-general-poquiz-posts-bail-in-inciting-to-sedition-case/story/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -376,25 +292,25 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.gmanetwork.com/news/topstories/nation/1002009/sara-duterte-calls-on-marcos-to-resign-wala-siyang-utang-na-loob-sa-taumbayan/story/",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/971656/retired-general-poquiz-arrested-for-sedition/story/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://newsinfo.inquirer.net/2166148/army-sacks-colonel-who-withdrew-support-from-marcos-probe-set",
+            "url": "https://newsinfo.inquirer.net/2165905/ph-army-relieves-colonel-who-allegedly-withdrew-support-for-marcos",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://newsinfo.inquirer.net/2304599/marcos-birthday-wishes-lasting-govt-reforms-more-time-with-family",
+            "url": "https://newsinfo.inquirer.net/2303764/inqtoday-duterte-calls-on-marcos-to-resign-romualdez-in-pgh-saturday",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://newsinfo.inquirer.net/1720162/marcos-jr-says-wife-liza-has-no-involvement-in-political-decisions-govt-appointees",
+            "url": "https://newsinfo.inquirer.net/2163381/retired-military-officer-who-sought-marcos-ouster-arrested-for-sedition",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -406,25 +322,13 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.philstar.com/headlines/2026/08/31/2552966/palace-defends-marcos-singing-first-ladys-birthday",
+            "url": "https://www.philstar.com/headlines/2026/09/19/2557299/president-marcos-has-no-plans-resign-palace",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.philstar.com/nation/2026/07/16/2542496/palace-marcos-jr-focused-work",
-            "matches": true,
-            "subject": null,
-            "reason": "not_referential_incident"
-          },
-          {
-            "url": "https://mb.com.ph/2026/01/05/retired-military-general-arrested-over-inciting-to-sedition-case",
-            "matches": true,
-            "subject": null,
-            "reason": "not_referential_incident"
-          },
-          {
-            "url": "https://mb.com.ph/2026/09/18/palace-hits-duterte-over-claims-marcos-controls-senate-courts-police",
+            "url": "https://www.philstar.com/headlines/2026/01/05/2498937/poquiz-retired-air-force-general-freed-bail-after-naia-arrest",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -436,19 +340,31 @@
             "reason": "not_referential_incident"
           },
           {
+            "url": "https://mb.com.ph/2026/09/15/duterte-camps-call-for-marcos-to-resign-absolutely-delusional-palace",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/01/09/fracture-within-afp-army-colonel-relieved-after-withdrawing-support-from-marcos",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1266186",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283814",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
             "url": "https://www.pna.gov.ph/articles/1177892",
-            "matches": true,
-            "subject": null,
-            "reason": "not_referential_incident"
-          },
-          {
-            "url": "https://www.pna.gov.ph/articles/1283358",
-            "matches": true,
-            "subject": null,
-            "reason": "not_referential_incident"
-          },
-          {
-            "url": "https://www.pna.gov.ph/articles/1279322",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -460,13 +376,13 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://pia.gov.ph/news/president-marcos-swears-in-manny-pacquiao-as-secretary-of-anti-poverty-agency/",
+            "url": "https://pia.gov.ph/news/pbbm-declares-2027-regular-and-special-holidays/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://mirror.pia.gov.ph/publications/2022/10/28/transcript-president-ferdinand-r-marcos-jrs-first-state-of-the-nation-address-speech-as-delivered",
+            "url": "https://pia.gov.ph/news/2022/06/30/bbm-thanks-filipinos-for-answering-call-for-unity",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -490,19 +406,19 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.onenews.ph/articles/opinion-a-brewing-political-storm",
-            "matches": true,
-            "subject": null,
-            "reason": "not_referential_incident"
-          },
-          {
-            "url": "https://www.onenews.ph/articles/marcos-orders-swift-government-response-amid-flooding",
-            "matches": true,
-            "subject": null,
-            "reason": "not_referential_incident"
-          },
-          {
             "url": "https://www.onenews.ph/articles/ex-general-who-called-for-marcos-ouster-nabbed",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/vp-sara-posts-p360-000-bail-for-grave-threats-case",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/perspective-the-trauma-of-a-military-intervention",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -510,6 +426,18 @@
         ],
         "evidence_gate_audit": [
           {
+            "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
             "url": "https://verafiles.org/articles/fact-check-liza-marcos-not-suspended-as-first-lady",
             "stage": "attribution_anchors",
             "matches": false,
@@ -524,7 +452,7 @@
             }
           },
           {
-            "url": "https://verafiles.org/articles/fact-check-viral-photo-of-sara-duterte-handcuffed-over-grave-threats-arrest-is-ai-manipulated",
+            "url": "https://verafiles.org/articles/coalition-urges-marcos-to-stop-natl-government-meddling-in-barmm-polls",
             "stage": "attribution_anchors",
             "matches": false,
             "missing": [
@@ -538,7 +466,19 @@
             }
           },
           {
-            "url": "https://verafiles.org/articles/marcos-lays-down-plans-skips-key-issues-in-first-sona",
+            "url": "https://www.rappler.com/philippines/retired-general-romeo-poquiz-arrested-inciting-sedition/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/office-president-2027-budget/",
             "stage": "attribution_anchors",
             "matches": false,
             "missing": [
@@ -552,42 +492,12 @@
             }
           },
           {
-            "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-remains-president-sara-duterte-vice-president/",
+            "url": "https://www.rappler.com/philippines/military-colonel-audie-mongao-dismissed-withdrawal-support-marcos-jr/",
             "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
+            "matches": true,
+            "missing": [],
             "anchor_checks": {
-              "speaker": "missing_or_unmatched",
-              "source": "not_required",
-              "program": "not_required",
-              "date": "not_required"
-            }
-          },
-          {
-            "url": "https://www.rappler.com/philippines/elections/parties-most-parliament-seats-results-barmm-2026/",
-            "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
-            "anchor_checks": {
-              "speaker": "missing_or_unmatched",
-              "source": "not_required",
-              "program": "not_required",
-              "date": "not_required"
-            }
-          },
-          {
-            "url": "https://www.rappler.com/voices/thought-leaders/rear-view-marcos-out-of-time-post-state-of-the-nation-address/",
-            "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
-            "anchor_checks": {
-              "speaker": "missing_or_unmatched",
+              "speaker": "normalized_phrase_match",
               "source": "not_required",
               "program": "not_required",
               "date": "not_required"
@@ -620,28 +530,24 @@
             }
           },
           {
-            "url": "https://www.abs-cbn.com/news/nation/2025/11/20/marcos-dubs-first-lady-the-ambassador-of-migrant-workers-says-she-ll-be-part-of-cabinet-shakeup-1145",
+            "url": "https://www.abs-cbn.com/news/nation/2026/1/5/retired-military-officer-poquiz-questions-arrest-over-criticism-vs-corruption-cases-1920",
             "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
+            "matches": true,
+            "missing": [],
             "anchor_checks": {
-              "speaker": "missing_or_unmatched",
+              "speaker": "normalized_phrase_match",
               "source": "not_required",
               "program": "not_required",
               "date": "not_required"
             }
           },
           {
-            "url": "https://www.gmanetwork.com/news/topstories/nation/910546/duterte-marcos-uniteam-ends/story/",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/971707/retired-air-force-general-poquiz-posts-bail-in-inciting-to-sedition-case/story/",
             "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
+            "matches": true,
+            "missing": [],
             "anchor_checks": {
-              "speaker": "missing_or_unmatched",
+              "speaker": "normalized_phrase_match",
               "source": "not_required",
               "program": "not_required",
               "date": "not_required"
@@ -662,21 +568,7 @@
             }
           },
           {
-            "url": "https://www.gmanetwork.com/news/topstories/nation/1002009/sara-duterte-calls-on-marcos-to-resign-wala-siyang-utang-na-loob-sa-taumbayan/story/",
-            "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
-            "anchor_checks": {
-              "speaker": "missing_or_unmatched",
-              "source": "not_required",
-              "program": "not_required",
-              "date": "not_required"
-            }
-          },
-          {
-            "url": "https://newsinfo.inquirer.net/2166148/army-sacks-colonel-who-withdrew-support-from-marcos-probe-set",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/971656/retired-general-poquiz-arrested-for-sedition/story/",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": [],
@@ -688,7 +580,19 @@
             }
           },
           {
-            "url": "https://newsinfo.inquirer.net/2304599/marcos-birthday-wishes-lasting-govt-reforms-more-time-with-family",
+            "url": "https://newsinfo.inquirer.net/2165905/ph-army-relieves-colonel-who-allegedly-withdrew-support-for-marcos",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2303764/inqtoday-duterte-calls-on-marcos-to-resign-romualdez-in-pgh-saturday",
             "stage": "attribution_anchors",
             "matches": false,
             "missing": [
@@ -702,14 +606,12 @@
             }
           },
           {
-            "url": "https://newsinfo.inquirer.net/1720162/marcos-jr-says-wife-liza-has-no-involvement-in-political-decisions-govt-appointees",
+            "url": "https://newsinfo.inquirer.net/2163381/retired-military-officer-who-sought-marcos-ouster-arrested-for-sedition",
             "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
+            "matches": true,
+            "missing": [],
             "anchor_checks": {
-              "speaker": "missing_or_unmatched",
+              "speaker": "normalized_phrase_match",
               "source": "not_required",
               "program": "not_required",
               "date": "not_required"
@@ -728,7 +630,7 @@
             }
           },
           {
-            "url": "https://www.philstar.com/headlines/2026/08/31/2552966/palace-defends-marcos-singing-first-ladys-birthday",
+            "url": "https://www.philstar.com/headlines/2026/09/19/2557299/president-marcos-has-no-plans-resign-palace",
             "stage": "attribution_anchors",
             "matches": false,
             "missing": [
@@ -742,40 +644,12 @@
             }
           },
           {
-            "url": "https://www.philstar.com/nation/2026/07/16/2542496/palace-marcos-jr-focused-work",
-            "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
-            "anchor_checks": {
-              "speaker": "missing_or_unmatched",
-              "source": "not_required",
-              "program": "not_required",
-              "date": "not_required"
-            }
-          },
-          {
-            "url": "https://mb.com.ph/2026/01/05/retired-military-general-arrested-over-inciting-to-sedition-case",
+            "url": "https://www.philstar.com/headlines/2026/01/05/2498937/poquiz-retired-air-force-general-freed-bail-after-naia-arrest",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": [],
             "anchor_checks": {
               "speaker": "normalized_phrase_match",
-              "source": "not_required",
-              "program": "not_required",
-              "date": "not_required"
-            }
-          },
-          {
-            "url": "https://mb.com.ph/2026/09/18/palace-hits-duterte-over-claims-marcos-controls-senate-courts-police",
-            "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
-            "anchor_checks": {
-              "speaker": "missing_or_unmatched",
               "source": "not_required",
               "program": "not_required",
               "date": "not_required"
@@ -794,35 +668,59 @@
             }
           },
           {
+            "url": "https://mb.com.ph/2026/09/15/duterte-camps-call-for-marcos-to-resign-absolutely-delusional-palace",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/01/09/fracture-within-afp-army-colonel-relieved-after-withdrawing-support-from-marcos",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1266186",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283814",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
             "url": "https://www.pna.gov.ph/articles/1177892",
-            "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
-            "anchor_checks": {
-              "speaker": "missing_or_unmatched",
-              "source": "not_required",
-              "program": "not_required",
-              "date": "not_required"
-            }
-          },
-          {
-            "url": "https://www.pna.gov.ph/articles/1283358",
-            "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
-            "anchor_checks": {
-              "speaker": "missing_or_unmatched",
-              "source": "not_required",
-              "program": "not_required",
-              "date": "not_required"
-            }
-          },
-          {
-            "url": "https://www.pna.gov.ph/articles/1279322",
             "stage": "attribution_anchors",
             "matches": false,
             "missing": [
@@ -850,7 +748,7 @@
             }
           },
           {
-            "url": "https://pia.gov.ph/news/president-marcos-swears-in-manny-pacquiao-as-secretary-of-anti-poverty-agency/",
+            "url": "https://pia.gov.ph/news/pbbm-declares-2027-regular-and-special-holidays/",
             "stage": "attribution_anchors",
             "matches": false,
             "missing": [
@@ -864,7 +762,7 @@
             }
           },
           {
-            "url": "https://mirror.pia.gov.ph/publications/2022/10/28/transcript-president-ferdinand-r-marcos-jrs-first-state-of-the-nation-address-speech-as-delivered",
+            "url": "https://pia.gov.ph/news/2022/06/30/bbm-thanks-filipinos-for-answering-call-for-unity",
             "stage": "attribution_anchors",
             "matches": false,
             "missing": [
@@ -916,7 +814,7 @@
             }
           },
           {
-            "url": "https://www.onenews.ph/articles/opinion-a-brewing-political-storm",
+            "url": "https://www.onenews.ph/articles/ex-general-who-called-for-marcos-ouster-nabbed",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": [],
@@ -928,7 +826,7 @@
             }
           },
           {
-            "url": "https://www.onenews.ph/articles/marcos-orders-swift-government-response-amid-flooding",
+            "url": "https://www.onenews.ph/articles/vp-sara-posts-p360-000-bail-for-grave-threats-case",
             "stage": "attribution_anchors",
             "matches": false,
             "missing": [
@@ -942,7 +840,7 @@
             }
           },
           {
-            "url": "https://www.onenews.ph/articles/ex-general-who-called-for-marcos-ouster-nabbed",
+            "url": "https://www.onenews.ph/articles/perspective-the-trauma-of-a-military-intervention",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": [],
@@ -960,33 +858,53 @@
           "status": "not_needed",
           "method": "not_run",
           "error": null,
-          "paraphrase": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country."
+          "paraphrase": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country."
         },
-        "scoring_claim": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
-        "search_query": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+        "scoring_claim": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+        "search_query": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
         "event_search_query": null,
         "retrieval_strategy": "claim_search_only",
         "risk_tags": [],
-        "claim_hash": "275e0037bf0054d3b3bd1b735b7e31ca757682fa9f273ae20902d59a30268591",
+        "claim_hash": "d07d14d7c7ea777ac3bacfd9969a77622fce8d8eafde44fa89305efc5f808042",
         "cache_version": "week7-refuted-v33",
-        "verdict": "Not Found",
-        "message": "IRIS did not find enough approved-source evidence confirming that Gen. Romeo Poquiz made this statement.",
+        "verdict": "Refuted",
+        "message": "VERA Files reports that this did not happen. Retrieved passages support 0 of 1 factual components. 1 component is contradicted by retrieved passages.",
         "politically_sensitive": true,
         "flags": [
           "politically_sensitive"
         ],
         "cache_hit": false,
-        "corroboration_count": 0,
-        "primary_evidence": null,
-        "supporting_sources": [],
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "VERA Files",
+          "title": "FACT CHECK: Romeo Poquiz did NOT make viral statement vs Marcoses",
+          "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+          "status": "extracted",
+          "word_count": 466,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: Romeo Poquiz did NOT make viral statement vs Marcoses",
+            "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+            "status": "extracted",
+            "word_count": 466,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
         "search_status": "ok",
-        "total_search_results": 109,
+        "total_search_results": 105,
         "searched_articles": 33,
         "extracted_articles": 33,
         "source_summary": [
           {
             "source": "VERA Files",
-            "results_found": 13,
+            "results_found": 12,
             "articles_checked": 3,
             "articles_extracted": 3
           },
@@ -998,7 +916,7 @@
           },
           {
             "source": "ABS-CBN News",
-            "results_found": 10,
+            "results_found": 9,
             "articles_checked": 3,
             "articles_extracted": 3
           },
@@ -1010,13 +928,13 @@
           },
           {
             "source": "Philippine Daily Inquirer",
-            "results_found": 10,
+            "results_found": 9,
             "articles_checked": 3,
             "articles_extracted": 3
           },
           {
             "source": "Philippine Star",
-            "results_found": 10,
+            "results_found": 9,
             "articles_checked": 3,
             "articles_extracted": 3
           },
@@ -1051,8 +969,30 @@
             "articles_extracted": 3
           }
         ],
-        "sources": [],
-        "evidence_sources": [],
+        "sources": [
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: Romeo Poquiz did NOT make viral statement vs Marcoses",
+            "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+            "status": "extracted",
+            "word_count": 466,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: Romeo Poquiz did NOT make viral statement vs Marcoses",
+            "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+            "status": "extracted",
+            "word_count": 466,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
         "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
         "fallback": {
           "openai": {
@@ -1061,7 +1001,7 @@
             "error": null,
             "result": {
               "verdict": "Not Found",
-              "reason": "No evidence confirms Gen. Poquiz's statement about Marcos Jr. and Araneta-Marcos lacking a mandate.",
+              "reason": "The evidence states that Poquiz did not make the claim about Marcos and Araneta-Marcos lacking a mandate.",
               "supporting_urls": [],
               "fallback_method": "openai_rag"
             }
@@ -1214,7 +1154,7 @@
             "segment_id": 0,
             "disposition": "excluded",
             "claim_indexes": [],
-            "reason": "Fragmented title with no independently checkable factual assertion."
+            "reason": "Segment is only a partial name/title and does not contain a checkable factual assertion."
           },
           {
             "segment_id": 1,
@@ -1222,7 +1162,7 @@
             "claim_indexes": [
               0
             ],
-            "reason": "Reported indirect statement by Gen. Romeo Poquiz is a checkable attributed statement."
+            "reason": "Reported indirect statement attributed to Romeo Poquiz; required speech segment."
           }
         ],
         "grouping": [],
@@ -1233,20 +1173,20 @@
         "claims": [
           {
             "claim_id": 1,
-            "claim_text": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
-            "normalized_claim": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+            "claim_text": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+            "normalized_claim": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
             "claim_type": "attributed_statement",
             "risk_tags": [],
             "verification_focus": "speaker_attribution",
             "attribution": {
-              "speaker": "Gen. Romeo Poquiz",
-              "role": null,
-              "statement": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+              "speaker": "Romeo Poquiz",
+              "role": "Retired Philippine Air Force Maj. Gen.",
+              "statement": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
               "source": null,
               "program": null,
               "date": null
             },
-            "search_query": "Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
+            "search_query": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.",
             "source_passages": [
               {
                 "segment_id": 1,
@@ -1258,7 +1198,7 @@
               "removed_unsupported_fields": [],
               "field_checks": {
                 "speaker": "grounded",
-                "role": "absent",
+                "role": "grounded",
                 "source": "absent",
                 "program": "absent",
                 "date": "absent"
@@ -1268,13 +1208,8 @@
             "is_quote_derived": false
           }
         ],
-        "ignored_segments": [
-          {
-            "text": "Retired Philippine Air Force Maj.",
-            "segment_type": "uncheckable"
-          }
-        ],
-        "post_type": "mixed_content",
+        "ignored_segments": [],
+        "post_type": "factual_only",
         "contains_opinion": false,
         "contains_recommendation": false
       },
@@ -1289,22 +1224,22 @@
         "articles": []
       },
       "timings": {
-        "request_id": "80005dd320624032b8066b9c56a3126a",
+        "request_id": "3be1284f67df417ba32249eb14855f7a",
         "request_type": "verify_text",
         "stages": [
           {
             "stage": "text.detect_language",
-            "duration_seconds": 0.0106,
+            "duration_seconds": 0.0095,
             "status": "ok"
           },
           {
             "stage": "text.translate_to_english",
-            "duration_seconds": 0.0005,
+            "duration_seconds": 0.0011,
             "status": "ok"
           },
           {
             "stage": "text.profile_content",
-            "duration_seconds": 3.9234,
+            "duration_seconds": 2.9292,
             "status": "ok"
           },
           {
@@ -1314,22 +1249,22 @@
           },
           {
             "stage": "text.political_check",
-            "duration_seconds": 0.0041,
+            "duration_seconds": 0.0043,
             "status": "ok"
           },
           {
             "stage": "text.extract_claims",
-            "duration_seconds": 4.3098,
+            "duration_seconds": 4.108,
             "status": "ok"
           },
           {
             "stage": "text.mark_quote_derived_claims",
-            "duration_seconds": 0.0012,
+            "duration_seconds": 0.0011,
             "status": "ok"
           },
           {
             "stage": "text.shared_event_evidence_pool",
-            "duration_seconds": 0.0011,
+            "duration_seconds": 0.0009,
             "status": "ok"
           },
           {
@@ -1349,37 +1284,37 @@
           },
           {
             "stage": "claim_1.search_and_extract",
-            "duration_seconds": 18.3484,
+            "duration_seconds": 18.6722,
             "status": "ok"
           },
           {
             "stage": "claim_1.search_status",
-            "duration_seconds": 0.0834,
+            "duration_seconds": 0.0944,
             "status": "ok"
           },
           {
             "stage": "claim_1.generate_verdict",
-            "duration_seconds": 11.9003,
+            "duration_seconds": 10.1983,
             "status": "ok"
           },
           {
             "stage": "claim_1.openai_rag_fallback",
-            "duration_seconds": 1.483,
+            "duration_seconds": 1.6836,
             "status": "ok"
           },
           {
             "stage": "claim_1.fallback_total",
-            "duration_seconds": 1.5128,
+            "duration_seconds": 1.7112,
             "status": "ok"
           },
           {
             "stage": "claim_1.public_evidence_sources",
-            "duration_seconds": 0.0266,
+            "duration_seconds": 0.0262,
             "status": "ok"
           },
           {
             "stage": "claim_1.component_evidence_review",
-            "duration_seconds": 9.3038,
+            "duration_seconds": 10.0738,
             "status": "ok"
           },
           {
@@ -1389,28 +1324,48 @@
           },
           {
             "stage": "text.verify_claims_total",
-            "duration_seconds": 41.4865,
+            "duration_seconds": 40.9542,
             "status": "ok"
           },
           {
             "stage": "verify_text.total",
-            "duration_seconds": 49.7476,
+            "duration_seconds": 48.0171,
             "status": "ok"
           }
         ]
       }
     },
-    "corroboration_count": 0,
-    "primary_evidence": null,
-    "supporting_sources": [],
+    "corroboration_count": 1,
+    "primary_evidence": {
+      "source": "VERA Files",
+      "title": "FACT CHECK: Romeo Poquiz did NOT make viral statement vs Marcoses",
+      "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+      "status": "extracted",
+      "word_count": 466,
+      "evidence_method": "component_review",
+      "extraction_quality": "full",
+      "evidence_type": "full_text"
+    },
+    "supporting_sources": [
+      {
+        "source": "VERA Files",
+        "title": "FACT CHECK: Romeo Poquiz did NOT make viral statement vs Marcoses",
+        "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+        "status": "extracted",
+        "word_count": 466,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
     "search_status": "ok",
-    "total_search_results": 109,
+    "total_search_results": 105,
     "searched_articles": 33,
     "extracted_articles": 33,
     "source_summary": [
       {
         "source": "VERA Files",
-        "results_found": 13,
+        "results_found": 12,
         "articles_checked": 3,
         "articles_extracted": 3
       },
@@ -1422,7 +1377,7 @@
       },
       {
         "source": "ABS-CBN News",
-        "results_found": 10,
+        "results_found": 9,
         "articles_checked": 3,
         "articles_extracted": 3
       },
@@ -1434,13 +1389,13 @@
       },
       {
         "source": "Philippine Daily Inquirer",
-        "results_found": 10,
+        "results_found": 9,
         "articles_checked": 3,
         "articles_extracted": 3
       },
       {
         "source": "Philippine Star",
-        "results_found": 10,
+        "results_found": 9,
         "articles_checked": 3,
         "articles_extracted": 3
       },
@@ -1475,8 +1430,30 @@
         "articles_extracted": 3
       }
     ],
-    "sources": [],
-    "evidence_sources": [],
+    "sources": [
+      {
+        "source": "VERA Files",
+        "title": "FACT CHECK: Romeo Poquiz did NOT make viral statement vs Marcoses",
+        "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+        "status": "extracted",
+        "word_count": 466,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "evidence_sources": [
+      {
+        "source": "VERA Files",
+        "title": "FACT CHECK: Romeo Poquiz did NOT make viral statement vs Marcoses",
+        "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+        "status": "extracted",
+        "word_count": 466,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
     "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim."
   }
 }

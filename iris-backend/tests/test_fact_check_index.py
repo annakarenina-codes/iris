@@ -48,6 +48,21 @@ class FactCheckIndexTests(unittest.TestCase):
         self.assertIn('poquiz', found[0]['matched_terms'])
         self.assertTrue(found[0]['title'].startswith('Fact Check Romeo Poquiz'))
 
+    def test_the_person_named_outranks_a_much_used_surname(self):
+        # Counting shared words alone hid this fact-check behind general Marcos stories.
+        crowded = PAGES.copy()
+        crowded['https://verafiles.org/post-sitemap13.xml'] = """<urlset>
+ <url><loc>https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses</loc></url>
+ <url><loc>https://verafiles.org/articles/marcos-jr-and-first-lady-open-new-hospital</loc></url>
+ <url><loc>https://verafiles.org/articles/president-marcos-jr-signs-budget</loc></url>
+ <url><loc>https://verafiles.org/articles/marcos-jr-meets-air-force-officials</loc></url>
+</urlset>"""
+        claim = ('Retired Philippine Air Force Maj. Gen. Romeo Poquiz said President Ferdinand Marcos Jr. '
+                 'and First Lady Liza Araneta-Marcos no longer have a mandate to lead the country.')
+        with patch.object(index, '_get', side_effect=lambda url: crowded.get(url)):
+            found = index.matching_articles(claim, get_vera_source())
+        self.assertEqual(found[0]['matched_terms'], ['poquiz', 'romeo'])
+
     def test_only_article_sitemaps_are_read_and_listing_urls_are_skipped(self):
         with patch.object(index, '_get', side_effect=self.fake_get):
             index.matching_articles(CLAIM, get_vera_source())

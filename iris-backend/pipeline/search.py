@@ -62,6 +62,8 @@ REQUEST_TIMEOUT_SECONDS = 10
 RESULTS_PER_SOURCE = 5
 MIN_RESULTS_BEFORE_BACKUP = 2
 MAX_ARTICLES_PER_SOURCE = 3
+# Sitemap matches take at most two of a fact-checker's slots, leaving room for search hits.
+MAX_INDEX_ARTICLES = 2
 RECENCY_WINDOW = "pm"  # Brave freshness: past month. Ranks recent coverage; never evidence.
 SEARCH_RATE_LIMIT_RETRY_SECONDS = 1.5
 MIN_EXCERPT_WORDS = 8
@@ -270,7 +272,7 @@ def _interleave_pass_results(searches: List[Dict[str, object]]) -> List[Dict[str
 def fact_check_search(claim_text: str) -> Dict[str, object]:
     """A pass over the fact-checkers' own sitemaps, for articles web search does not return."""
     results = [{**result, 'search_pass': 'fact_check_index', 'pass_rank': rank}
-               for rank, result in enumerate(fact_check_candidates(claim_text))]
+               for rank, result in enumerate(fact_check_candidates(claim_text, MAX_INDEX_ARTICLES))]
     return {'query': claim_text, 'search_pass': 'fact_check_index', 'freshness': None,
             'total_results': len(results), 'results': results, 'source_reports': []}
 
@@ -285,6 +287,8 @@ def search_with_backup(
     """
     Runs every search pass for one claim and merges their results.
 
+    0. fact_check_index: fact-checks found in a fact-checker's own sitemap, first so a
+       targeted match is always read.
     1. primary: the English query.
     2. recent: the same query restricted to recent pages, so current coverage
        is not pushed out by older articles on the same subject.
@@ -301,9 +305,12 @@ def search_with_backup(
         searches.append(search_sources(original_language_query, search_pass="original_language"))
         used_queries.add(original_language_query.casefold())
 
+    # The index lookup exists because web search misses these articles, so its candidate must
+    # not be pushed out of the fact-checker's three article slots by ordinary search hits: the
+    # VERA Files fact-check that settles a claim was lost this way.
     fact_checks = fact_check_search(fact_check_text or primary_query)
     if fact_checks['results']:
-        searches.append(fact_checks)
+        searches.insert(0, fact_checks)
 
     combined_results = _interleave_pass_results(searches)
     should_backup = bool(

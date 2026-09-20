@@ -865,6 +865,38 @@ def review_components(claim, articles, source_context=''):
                 continue
             evidence.append({"url": article["url"], "text": text})
             remaining -= len(text)
+        def with_refutation_check(review):
+            """
+            Gives a claim that found no evidence one look at the fact-checker's own findings.
+
+            A fact-check that refutes a claim rarely contains a passage that supports it, so the
+            first pass drops it and the entailment stage, where a denial is recognised, never
+            runs. Only VERA Files is read, and only when its passages share distinctive words
+            with the claim.
+            """
+            nonlocal stage
+            if review.get('verdict') != 'Not Found':
+                return review
+            stage = 'refutation_check'
+            fact_checks = refutation_passages(claim, evidence, publishers)
+            if not fact_checks:
+                return review
+            try:
+                return ask_checked(
+                    REFUTATION_INSTRUCTION,
+                    {'claim': claim, 'source_context_not_evidence': source_context,
+                     'components': [{'component_id': i, 'text': part['component']}
+                                    for i, part in enumerate(review['components'])],
+                     'fact_check_passages': fact_checks},
+                    REFUTATION_SCHEMA, 'published_refutation_check',
+                    lambda answer: apply_published_refutation(review, answer, fact_checks),
+                    model=review_model)
+            except Exception as error:
+                # An extra opinion that fails leaves the honest Not Found in place.
+                event('component.refutation_check_failed', error_type=type(error).__name__,
+                      reason=str(error)[:200])
+                return review
+
         stage = 'assessment'
         passages = select_assessment_passages(claim, indexed_passages(evidence))
         schema = assessment_schema(len(components), len(passages))
@@ -911,7 +943,7 @@ def review_components(claim, articles, source_context=''):
                       if part['status'] in {'supported', 'partially_supported'}]
         if not candidates:
             reviewed['partition_model'] = review_model
-            return reviewed
+            return with_refutation_check(reviewed)
         stage = 'event_identity_check'
         identity_input = event_identity_input(claim, reviewed, evidence, source_context)
         before_identity = reviewed['verdict']
@@ -938,7 +970,7 @@ def review_components(claim, articles, source_context=''):
                       for i, part in enumerate(reviewed['components'])
                       if part['status'] in {'supported', 'partially_supported'}]
         if not candidates:
-            return reviewed
+            return with_refutation_check(reviewed)
         stage = 'entailment_check'
         # Only articles that supplied a candidate passage are needed to resolve references;
         # sending every article multiplied token use and triggered provider rate limits.
@@ -1049,27 +1081,7 @@ def review_components(claim, articles, source_context=''):
         result['entailment_model'] = review_model
         event('component.entailment_checked', before=reviewed['verdict'], after=result['verdict'],
               checks=result['entailment_checks'])
-        # A fact-check that refutes a claim rarely contains a passage that supports it, so the
-        # first pass drops it and the entailment stage never sees the denial. Ask directly.
-        if result['verdict'] == 'Not Found':
-            stage = 'refutation_check'
-            fact_check_passages = refutation_passages(claim, evidence, publishers)
-            if fact_check_passages:
-                try:
-                    result = ask_checked(
-                        REFUTATION_INSTRUCTION,
-                        {'claim': claim, 'source_context_not_evidence': source_context,
-                         'components': [{'component_id': i, 'text': part['component']}
-                                        for i, part in enumerate(result['components'])],
-                         'fact_check_passages': fact_check_passages},
-                        REFUTATION_SCHEMA, 'published_refutation_check',
-                        lambda answer: apply_published_refutation(result, answer, fact_check_passages),
-                        model=review_model)
-                except Exception as error:
-                    # An extra opinion that fails leaves the honest Not Found in place.
-                    event('component.refutation_check_failed', error_type=type(error).__name__,
-                          reason=str(error)[:200])
-        return result
+        return with_refutation_check(result)
     except Exception as error:
         code = 'invalid_review_response' if isinstance(error, (ValueError, TypeError, KeyError, IndexError)) else 'review_provider_failed'
         if isinstance(error, TimeoutError) or type(error).__name__ == 'APITimeoutError':

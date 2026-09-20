@@ -1,20 +1,1756 @@
 {
   "case_id": "V02",
   "input_sha256": "9bc3ca24fb8a8a5fe532d232bb0d0149447a9d3dd6b2b170c4267f38a4dca34f",
-  "started_utc": "2026-09-20T09:17:49.228654+00:00",
-  "http_status": 503,
-  "seconds": 57.693,
-  "trace_id": "51928f4be2d2412d8c8bb70a2fe85f60",
+  "started_utc": "2026-09-20T09:45:38.722357+00:00",
+  "http_status": 200,
+  "seconds": 32.454,
+  "trace_id": "ed3c978797514ecb8d03ca2fac21e486",
   "cache_policy": "reads and writes bypassed",
   "cache_version": "week7-refuted-v33",
   "response": {
-    "status": "processing_error",
-    "error": "component_review_failed",
-    "message": "IRIS could not complete the evidence review. Please retry; no verdict was issued for this claim.",
-    "retryable": true,
-    "verdict": null,
-    "evidence_sources": [],
-    "reason_code": "invalid_review_response",
-    "failed_stage": "evidence_review"
+    "verdict": "Refuted",
+    "message": "VERA Files reports that this did not happen. Retrieved passages support 0 of 1 factual components.",
+    "original_text": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+    "translated_text": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+    "detected_language": "english",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 1,
+    "claim_extraction_status": "ok",
+    "post_type": "fact_only",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_to_verification",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+        "normalized_claim": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Ferdinand Marcos Jr.",
+          "role": "President",
+          "statement": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "grounded",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Refuted",
+          "components": [
+            {
+              "component": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+              "status": "not_supported",
+              "citations": [],
+              "event_group_id": 0,
+              "context": {
+                "start": 0,
+                "end": 128,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "President Ferdinand Marcos Jr.",
+                      "start": 0,
+                      "end": 30
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "he",
+                      "start": 46,
+                      "end": 48
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "announced",
+                      "start": 31,
+                      "end": 40
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "will step down from office in response to the Sept. 21 anti-corruption rallies.",
+                      "start": 49,
+                      "end": 128
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+                      "start": 0,
+                      "end": 128
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+                      "start": 46,
+                      "end": 128
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "Sept. 21",
+                      "start": 95,
+                      "end": 103
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "President Ferdinand Marcos Jr.",
+                      "start": 0,
+                      "end": 30
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0,
+                  1
+                ],
+                "component_id": 0,
+                "assertion": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 128
+                },
+                "context_is_evidence": false
+              },
+              "event_rejections": [
+                {
+                  "component_id": 0,
+                  "url": "https://www.philstar.com/headlines/2025/11/18/2488144/bongbong-marcos-will-not-resign-says-malacaang",
+                  "status": "mismatched",
+                  "reason": "Passages 0 and 3 from Philstar explicitly state that President Ferdinand Marcos Jr. will not step down and that resignation is not an option for the administration. There is no mention of any announcement by Marcos Jr. that he will resign in response to the Sept. 21 rallies."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://www.gmanetwork.com/news/topstories/nation/1002792/marcos-has-no-plans-to-resign-palace-says/story/",
+                  "status": "mismatched",
+                  "reason": "GMA News passages 16-18 quote Malacañang and Press Officer Claire Castro stating that Marcos Jr. has no plans to resign and that calls for his resignation are merely wishes of others. There is no evidence of an announcement by Marcos Jr. to step down."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+                  "status": "mismatched",
+                  "reason": "VERA Files passages 41-57 directly address the claim, stating that the supposed resignation statement is fake, fabricated, and that neither the president nor Malacañang released such a statement. They confirm no such announcement was made."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/",
+                  "status": "mismatched",
+                  "reason": "Rappler passages 65-77 fact-check the claim, stating that there are no official statements or credible reports of Marcos Jr. announcing his resignation. They clarify that the president is not resigning and that the claim is false."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://newsinfo.inquirer.net/2112633/groups-urging-marcos-to-resign-gather-along-edsa",
+                  "status": "mismatched",
+                  "reason": "Inquirer passages 90, 91, and 98 report on groups calling for Marcos Jr.'s resignation during the Sept. 21 rallies, but do not mention any announcement by Marcos Jr. that he will step down. The coverage is about protester demands, not presidential action."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://www.abs-cbn.com/news/nation/2025/11/30/marcos-jr-won-t-be-distracted-by-resignation-calls-gomez-1355",
+                  "status": "mismatched",
+                  "reason": "ABS-CBN passages 105, 107, 116, 117, and 120 state that Marcos Jr. will not be distracted by calls to resign and that the administration is focused on accountability, not resignation. There is no mention of any resignation announcement."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://mb.com.ph/2025/10/14/marcos-resign-is-a-pointless-call-destabilization-plot-coming-from-adminvp-sara",
+                  "status": "mismatched",
+                  "reason": "Manila Bulletin passages 125 and 126 state that Marcos Jr. will not step down and that calls for his resignation are pointless. There is no evidence of an announcement to resign."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://newsinfo.inquirer.net/2306171/palace-appeals-for-peaceful-sept-21-demonstrations",
+                  "status": "mismatched",
+                  "reason": "Inquirer passages 133, 134, 135, 138, and 140 discuss calls from groups for Marcos Jr. to resign and the Palace's response, but do not mention any resignation announcement by Marcos Jr. The context is about protester demands and government response."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://www.dzrh.com.ph/post/palace-hits-back-at-vp-saras-camp-over-call-for-marcos-resignation-delusional",
+                  "status": "mismatched",
+                  "reason": "DZRH passages 146, 153, and 154 show the Palace rejecting calls for Marcos Jr.'s resignation and describing such demands as delusional. There is no mention of any resignation announcement by Marcos Jr."
+                }
+              ],
+              "evidence_relation": "contradicted",
+              "review_reason": "Passage 3 refers to the graphic as 'fake,' indicating that the claim about President Ferdinand Marcos Jr. announcing his resignation in response to the Sept. 21 anti-corruption rallies is fabricated. This is a direct denial by the fact-checker of the occurrence of the claimed event."
+            }
+          ],
+          "supporting_urls": [
+            "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake"
+          ],
+          "reason": "VERA Files reports that this did not happen. Retrieved passages support 0 of 1 factual components.",
+          "entailment_checks": [],
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Claim that President Ferdinand Marcos Jr. announced he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+              "sources": {
+                "https://www.philstar.com/headlines/2025/11/18/2488144/bongbong-marcos-will-not-resign-says-malacaang": {
+                  "status": "mismatched",
+                  "passage_ids": [
+                    0,
+                    3
+                  ],
+                  "reason": "Passages 0 and 3 from Philstar explicitly state that President Ferdinand Marcos Jr. will not step down and that resignation is not an option for the administration. There is no mention of any announcement by Marcos Jr. that he will resign in response to the Sept. 21 rallies.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/headlines/2025/11/18/2488144/bongbong-marcos-will-not-resign-says-malacaang",
+                      "quote": "MANILA, Philippines — President Ferdinand Marcos Jr. will not step down, said Malacañang on Tuesday, November 18."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2025/11/18/2488144/bongbong-marcos-will-not-resign-says-malacaang",
+                      "quote": "“Is this an option? The president is still working and keeps on working for the country. So it is not an option for the administration, for the President to resign,” Castro said in a mix of English and Filipino."
+                    }
+                  ],
+                  "context_status": "conflicting",
+                  "temporal_context": {
+                    "status": "conflicting",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        21
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                },
+                "https://www.gmanetwork.com/news/topstories/nation/1002792/marcos-has-no-plans-to-resign-palace-says/story/": {
+                  "status": "mismatched",
+                  "passage_ids": [
+                    16,
+                    17,
+                    18
+                  ],
+                  "reason": "GMA News passages 16-18 quote Malacañang and Press Officer Claire Castro stating that Marcos Jr. has no plans to resign and that calls for his resignation are merely wishes of others. There is no evidence of an announcement by Marcos Jr. to step down.",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002792/marcos-has-no-plans-to-resign-palace-says/story/",
+                      "quote": "President Ferdinand “Bongbong” Marcos Jr. has no plans to resign from office, Malacañang said on Friday following remarks from Vice President Sara Duterte’s camp that she is prepared to take over."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002792/marcos-has-no-plans-to-resign-palace-says/story/",
+                      "quote": "“Unang-una, walang magre-resign,” Palace Press Officer Undersecretary Claire Castro told GMA News’ Unang Balita in an interview."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002792/marcos-has-no-plans-to-resign-palace-says/story/",
+                      "quote": "(First of all, no one will resign.) “Wish lang nila 'yun dahil ang Pangulo tumutupad sa kanyang tungkulin at nagtatrabaho para sa bayan, sa bansa, at sa taumbayan. So kung wish nila na magre-resign ang Pangulo, I'm sorry,” she added."
+                    }
+                  ],
+                  "context_status": "conflicting",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        21
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                },
+                "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake": {
+                  "status": "mismatched",
+                  "passage_ids": [
+                    41,
+                    42,
+                    43,
+                    48,
+                    49,
+                    50,
+                    55,
+                    57
+                  ],
+                  "reason": "VERA Files passages 41-57 directly address the claim, stating that the supposed resignation statement is fake, fabricated, and that neither the president nor Malacañang released such a statement. They confirm no such announcement was made.",
+                  "citations": [
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+                      "quote": "A statement supposedly from President Ferdinand Marcos Jr. announcing that he will step down from office in response to the Sept. 21 anti-corruption rallies is circulating online."
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+                      "quote": "This is fake."
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+                      "quote": "Malacañang Palace did not release such a statement."
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+                      "quote": "This is fabricated."
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+                      "quote": "The president did not make such a remark, nor did the Palace publish the graphic."
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+                      "quote": "A review of Marcos’ official social media pages has not carried any such resignation statement."
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+                      "quote": "There is no such statement published by the Presidential Communications Office either."
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+                      "quote": "But she made no mention about the president’s supposed resignation."
+                    }
+                  ],
+                  "context_status": "conflicting",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/": {
+                  "status": "mismatched",
+                  "passage_ids": [
+                    65,
+                    66,
+                    67,
+                    74,
+                    75,
+                    76,
+                    77
+                  ],
+                  "reason": "Rappler passages 65-77 fact-check the claim, stating that there are no official statements or credible reports of Marcos Jr. announcing his resignation. They clarify that the president is not resigning and that the claim is false.",
+                  "citations": [
+                    {
+                      "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/",
+                      "quote": "Claim: President Ferdinand “Bongbong” Marcos Jr. announces his resignation following the protests denouncing corruption in the government’s flood control projects."
+                    },
+                    {
+                      "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/",
+                      "quote": "Why we fact-checked this: On September 21, a Facebook page named “Surigao del Sur Ngayon” posted a graphic about Marcos’ alleged resignation."
+                    },
+                    {
+                      "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/",
+                      "quote": "The post’s caption reads: “In the midst of large protests in different parts of the country, President Ferdinand ‘Bongbong’ Marcos Jr. gave a statement where he announced his scheduled resignation next week.”"
+                    },
+                    {
+                      "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/",
+                      "quote": "The facts: The President is not resigning."
+                    },
+                    {
+                      "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/",
+                      "quote": "There are no official statements from Malacañang or the Presidential Communications Office , nor are there reports from credible news outlets about Marcos supposedly stepping down as president."
+                    },
+                    {
+                      "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/",
+                      "quote": "In an interview with dzMM on September 21, Palace Press Officer Claire Castro said the President was not afraid of the protests escalating into an ouster movement."
+                    },
+                    {
+                      "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/",
+                      "quote": "She emphasized that it was Marcos himself who urged citizens to bring their grievances to the streets and protest systemic corruption."
+                    }
+                  ],
+                  "context_status": "conflicting",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://newsinfo.inquirer.net/2112633/groups-urging-marcos-to-resign-gather-along-edsa": {
+                  "status": "mismatched",
+                  "passage_ids": [
+                    90,
+                    91,
+                    98
+                  ],
+                  "reason": "Inquirer passages 90, 91, and 98 report on groups calling for Marcos Jr.'s resignation during the Sept. 21 rallies, but do not mention any announcement by Marcos Jr. that he will step down. The coverage is about protester demands, not presidential action.",
+                  "citations": [
+                    {
+                      "url": "https://newsinfo.inquirer.net/2112633/groups-urging-marcos-to-resign-gather-along-edsa",
+                      "quote": "Protesters gathered on Sunday, Sept. 21, 2025, along Epifanio Delos Santos Avenue—just meters from the Trillion Peso March on White Plains Avenue—to call on President Ferdinand Marcos Jr. to resign over alleged anomalies in flood-control projects."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2112633/groups-urging-marcos-to-resign-gather-along-edsa",
+                      "quote": "(Photo by Jason Sigales/INQUIRER.net) MANILA, Philippines — While the anti-corruption rallies Baha sa Luneta and Trillion Peso March were underway, other groups calling on President Ferdinand Marcos Jr.\ngroups demanding President Ferdinand Marcos Jr.’s resignation gathered along Edsa on Sunday."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2112633/groups-urging-marcos-to-resign-gather-along-edsa",
+                      "quote": "Some of the groups organizing the Baha sa Luneta and Trillion Peso March rallies have called for Marcos and Vice President Duterte to be held accountable over alleged anomalies in flood-control projects."
+                    }
+                  ],
+                  "context_status": "conflicting",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://www.abs-cbn.com/news/nation/2025/11/30/marcos-jr-won-t-be-distracted-by-resignation-calls-gomez-1355": {
+                  "status": "mismatched",
+                  "passage_ids": [
+                    105,
+                    107,
+                    116,
+                    117,
+                    120
+                  ],
+                  "reason": "ABS-CBN passages 105, 107, 116, 117, and 120 state that Marcos Jr. will not be distracted by calls to resign and that the administration is focused on accountability, not resignation. There is no mention of any resignation announcement.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2025/11/30/marcos-jr-won-t-be-distracted-by-resignation-calls-gomez-1355",
+                      "quote": "Ryan Baldemor, PPA Pool MANILA — President Ferdinand Marcos Jr. will not be \"distracted\" by any calls to step down or resign, according to Communications Secretary Dave Gomez."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2025/11/30/marcos-jr-won-t-be-distracted-by-resignation-calls-gomez-1355",
+                      "quote": "“He will finish the job — the job that he began,” Gomez told ANC Sunday, November 30."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2025/11/30/marcos-jr-won-t-be-distracted-by-resignation-calls-gomez-1355",
+                      "quote": "TO MARCOS ADMIN Akbayan Partylist Representative Percy Cendaña said that the November 30 protest is a “sequel” to the September 21 anti-corruption demonstration."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2025/11/30/marcos-jr-won-t-be-distracted-by-resignation-calls-gomez-1355",
+                      "quote": "“September 21 [protest] is a warning, today is an ultimatum. Binibigyan natin ng ultimatum ang administrasyon. Kasi so far, inip na inip na tayo doon sa progress o kawalan nang progress at bagal ng pace nung accountability measures,” Cendaña told ANC."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/news/nation/2025/11/30/marcos-jr-won-t-be-distracted-by-resignation-calls-gomez-1355",
+                      "quote": "When asked if they are not calling for the resignation or removal of Marcos Jr. at this point, Cendaña responded that they are calling for a “careful examination of evidence.\""
+                    }
+                  ],
+                  "context_status": "conflicting",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://mb.com.ph/2025/10/14/marcos-resign-is-a-pointless-call-destabilization-plot-coming-from-adminvp-sara": {
+                  "status": "mismatched",
+                  "passage_ids": [
+                    125,
+                    126
+                  ],
+                  "reason": "Manila Bulletin passages 125 and 126 state that Marcos Jr. will not step down and that calls for his resignation are pointless. There is no evidence of an announcement to resign.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2025/10/14/marcos-resign-is-a-pointless-call-destabilization-plot-coming-from-adminvp-sara",
+                      "quote": "He will not step down from power)."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2025/10/14/marcos-resign-is-a-pointless-call-destabilization-plot-coming-from-adminvp-sara",
+                      "quote": "So, Marcos resign is a pointless call."
+                    }
+                  ],
+                  "context_status": "conflicting",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        21
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                },
+                "https://newsinfo.inquirer.net/2306171/palace-appeals-for-peaceful-sept-21-demonstrations": {
+                  "status": "mismatched",
+                  "passage_ids": [
+                    133,
+                    134,
+                    135,
+                    138,
+                    140
+                  ],
+                  "reason": "Inquirer passages 133, 134, 135, 138, and 140 discuss calls from groups for Marcos Jr. to resign and the Palace's response, but do not mention any resignation announcement by Marcos Jr. The context is about protester demands and government response.",
+                  "citations": [
+                    {
+                      "url": "https://newsinfo.inquirer.net/2306171/palace-appeals-for-peaceful-sept-21-demonstrations",
+                      "quote": "Her remarks came as the Bagong Alyansang Makabayan (Bayan) urged Marcos to step down due to issues of supposed systemic corruption...."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2306171/palace-appeals-for-peaceful-sept-21-demonstrations",
+                      "quote": "The Palace has urged protesters planning to join the Sept. 21 rallies to remain peaceful as they air their grievances."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2306171/palace-appeals-for-peaceful-sept-21-demonstrations",
+                      "quote": "At a briefing, Palace Press Officer Claire Castro said police units have heightened security preparations for the rallies set for Sept. 21, which marks the 54th anniversary of the declaration of martial law."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2306171/palace-appeals-for-peaceful-sept-21-demonstrations",
+                      "quote": "Castro said President Ferdinand Marcos Jr.\nREAD: Cayetano, Lacson spar over anti-corruption drive · Castro also said the Marcos administration’s actions on the flood control controversy should be considered in assessing protesters’ calls for the president to resign."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2306171/palace-appeals-for-peaceful-sept-21-demonstrations",
+                      "quote": "Her remarks came as the Bagong Alyansang Makabayan (Bayan) urged Marcos to step down due to issues of supposed systemic corruption."
+                    }
+                  ],
+                  "context_status": "conflicting",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://www.dzrh.com.ph/post/palace-hits-back-at-vp-saras-camp-over-call-for-marcos-resignation-delusional": {
+                  "status": "mismatched",
+                  "passage_ids": [
+                    146,
+                    153,
+                    154
+                  ],
+                  "reason": "DZRH passages 146, 153, and 154 show the Palace rejecting calls for Marcos Jr.'s resignation and describing such demands as delusional. There is no mention of any resignation announcement by Marcos Jr.",
+                  "citations": [
+                    {
+                      "url": "https://www.dzrh.com.ph/post/palace-hits-back-at-vp-saras-camp-over-call-for-marcos-resignation-delusional",
+                      "quote": "Malacañang on Tuesday hit back at Vice President Sara Duterte’s camp over its call for President Ferdinand Marcos Jr. to resign, describing the demand as “definitely, absolutely delusional.”"
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/palace-hits-back-at-vp-saras-camp-over-call-for-marcos-resignation-delusional",
+                      "quote": "Castro also rejected the demand for Marcos to resign, saying it had no legal basis."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/palace-hits-back-at-vp-saras-camp-over-call-for-marcos-resignation-delusional",
+                      "quote": "“So definitely, the demand for the President to resign without any legal basis… is definitely, absolutely delusional,” she said."
+                    }
+                  ],
+                  "context_status": "conflicting",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        21
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                }
+              }
+            }
+          ],
+          "original_claim": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "refutation_check": {
+            "denied": true,
+            "same_occurrence": true,
+            "component_ids": [
+              0
+            ],
+            "passage_ids": [
+              3
+            ],
+            "reason": "Passage 3 refers to the graphic as 'fake,' indicating that the claim about President Ferdinand Marcos Jr. announcing his resignation in response to the Sept. 21 anti-corruption rallies is fabricated. This is a direct denial by the fact-checker of the occurrence of the claimed event."
+          }
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-nbi-chief-matibag-did-not-step-down",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/an-historic-poll-puts-peace-to-the-test-in-the-philippines",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/video/daily-wrap/september-9-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/fact-check/sara-duterte-replace-ferdinand-marcos-jr-president-flood-control-projects/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2025/11/30/marcos-jr-won-t-be-distracted-by-resignation-calls-gomez-1355",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-marcos-jr-won-t-interfere-with-impeachment-conviction-threshold-issue-1610",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/24/marcos-on-corruption-in-sona-abangan-ang-susunod-na-kabanata-1317",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002009/sara-duterte-calls-on-marcos-to-resign-wala-siyang-utang-na-loob-sa-taumbayan/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002792/marcos-has-no-plans-to-resign-palace-says/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/910546/duterte-marcos-uniteam-ends/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2112633/groups-urging-marcos-to-resign-gather-along-edsa",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306171/palace-appeals-for-peaceful-sept-21-demonstrations",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2186211/ncrpo-to-protesters-marcos-resign-calls-ok-but-avoid-red-flags-in-edsa",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/19/2557299/president-marcos-has-no-plans-resign-palace",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2025/11/18/2488144/bongbong-marcos-will-not-resign-says-malacaang",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/nation/2026/09/13/2555894/security-tightened-metro-manila-ahead-september-21-rallies",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2025/10/14/marcos-resign-is-a-pointless-call-destabilization-plot-coming-from-adminvp-sara",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/duterte-camps-call-for-marcos-to-resign-absolutely-delusional-palace",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/14/pbbm-wants-to-leave-an-accessible-government-better-philippines",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1250590",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284250",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1277328",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/president-marcos-advances-diplomacy-reforms-and-anti-corruption-efforts-in-2025/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/san-juan-city-to-host-50-agency-handog-ng-pangulo-on-sept-14/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/president-marcos-says-anti-corruption-drive-remains-among-governments-top-priorities/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/various-cabinet-secretaries-to-submit-courtesy-resignation-in-compliance-with-marcos-directive",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/palace-hits-back-at-vp-saras-camp-over-call-for-marcos-resignation-delusional",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/duterte-calls-marcos-ungrateful-to-filipinos-who-elected-him",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/news-in-context-a-template-for-regime-change",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/opinion-will-president-marcos-limp-towards-the-end-of-his-term-it-s-time-for-him-to-give-it-his-best-shot",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-nbi-chief-matibag-did-not-step-down",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/an-historic-poll-puts-peace-to-the-test-in-the-philippines",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/video/daily-wrap/september-9-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/fact-check/sara-duterte-replace-ferdinand-marcos-jr-president-flood-control-projects/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2025/11/30/marcos-jr-won-t-be-distracted-by-resignation-calls-gomez-1355",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-marcos-jr-won-t-interfere-with-impeachment-conviction-threshold-issue-1610",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/24/marcos-on-corruption-in-sona-abangan-ang-susunod-na-kabanata-1317",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002009/sara-duterte-calls-on-marcos-to-resign-wala-siyang-utang-na-loob-sa-taumbayan/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002792/marcos-has-no-plans-to-resign-palace-says/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/910546/duterte-marcos-uniteam-ends/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2112633/groups-urging-marcos-to-resign-gather-along-edsa",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306171/palace-appeals-for-peaceful-sept-21-demonstrations",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2186211/ncrpo-to-protesters-marcos-resign-calls-ok-but-avoid-red-flags-in-edsa",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/19/2557299/president-marcos-has-no-plans-resign-palace",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2025/11/18/2488144/bongbong-marcos-will-not-resign-says-malacaang",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/nation/2026/09/13/2555894/security-tightened-metro-manila-ahead-september-21-rallies",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2025/10/14/marcos-resign-is-a-pointless-call-destabilization-plot-coming-from-adminvp-sara",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/duterte-camps-call-for-marcos-to-resign-absolutely-delusional-palace",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/14/pbbm-wants-to-leave-an-accessible-government-better-philippines",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1250590",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284250",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1277328",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/president-marcos-advances-diplomacy-reforms-and-anti-corruption-efforts-in-2025/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/san-juan-city-to-host-50-agency-handog-ng-pangulo-on-sept-14/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/president-marcos-says-anti-corruption-drive-remains-among-governments-top-priorities/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/various-cabinet-secretaries-to-submit-courtesy-resignation-in-compliance-with-marcos-directive",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/palace-hits-back-at-vp-saras-camp-over-call-for-marcos-resignation-delusional",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/duterte-calls-marcos-ungrateful-to-filipinos-who-elected-him",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/news-in-context-a-template-for-regime-change",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/opinion-will-president-marcos-limp-towards-the-end-of-his-term-it-s-time-for-him-to-give-it-his-best-shot",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies."
+        },
+        "scoring_claim": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+        "search_query": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [
+          "high_risk_claim"
+        ],
+        "claim_hash": "11f237314c40c7a6ad91303ff3d6deae86b808344b8a06e8547e923e72113136",
+        "cache_version": "week7-refuted-v33",
+        "verdict": "Refuted",
+        "message": "VERA Files reports that this did not happen. Retrieved passages support 0 of 1 factual components.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "VERA Files",
+          "title": "FACT CHECK: NO Marcos ‘resignation statement’ after Sept. 21 protests; graphic is FAKE",
+          "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+          "status": "extracted",
+          "word_count": 723,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: NO Marcos ‘resignation statement’ after Sept. 21 protests; graphic is FAKE",
+            "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+            "status": "extracted",
+            "word_count": 723,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 95,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: NO Marcos ‘resignation statement’ after Sept. 21 protests; graphic is FAKE",
+            "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+            "status": "extracted",
+            "word_count": 723,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: NO Marcos ‘resignation statement’ after Sept. 21 protests; graphic is FAKE",
+            "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+            "status": "extracted",
+            "word_count": 723,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence confirms that Marcos did not announce his resignation in response to the protests.",
+              "supporting_urls": [
+                "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+                "https://www.rappler.com/newsbreak/fact-check/ferdinand-marcos-jr-resignation-flood-control-corruption-rallies/"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "president",
+          "ferdinand marcos",
+          "marcos jr",
+          "corruption"
+        ],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [
+            "president",
+            "ferdinand marcos",
+            "marcos jr"
+          ],
+          "political_institutions": [],
+          "government_controversy": [
+            "corruption"
+          ],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules",
+        "error": null,
+        "post_type": "fact_only",
+        "confidence": 0.94,
+        "ambiguity_score": 0.0,
+        "ambiguity_reasons": [],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_to_verification",
+        "verification_text": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+        "normalized_verification_text": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.94,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.37,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.94,
+            "second_label": "forecast_or_projection_detected",
+            "second_label_score": 0.37,
+            "score_gap": 0.57,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_to_verification",
+            "reason_codes": [],
+            "user_notification": null,
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": false,
+          "status": "not_needed",
+          "error": null,
+          "result": null
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "The segment reports a specific attributed statement by President Ferdinand Marcos Jr. about stepping down, which is a checkable speech act."
+          }
+        ],
+        "grouping": [],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+            "normalized_claim": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [
+              "high_risk_claim"
+            ],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Ferdinand Marcos Jr.",
+              "role": "President",
+              "statement": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies."
+              }
+            ],
+            "evidence_context": "President Ferdinand Marcos Jr. announced that he will step down from office in response to the Sept. 21 anti-corruption rallies.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "grounded",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "ed3c978797514ecb8d03ca2fac21e486",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0006,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0004,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 0.013,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0039,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 3.2702,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0008,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0006,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0024,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 11.1623,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0928,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 1.9103,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 2.1152,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 2.1437,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0279,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 13.5866,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 29.1276,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 32.4295,
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    "corroboration_count": 1,
+    "primary_evidence": {
+      "source": "VERA Files",
+      "title": "FACT CHECK: NO Marcos ‘resignation statement’ after Sept. 21 protests; graphic is FAKE",
+      "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+      "status": "extracted",
+      "word_count": 723,
+      "evidence_method": "component_review",
+      "extraction_quality": "full",
+      "evidence_type": "full_text"
+    },
+    "supporting_sources": [
+      {
+        "source": "VERA Files",
+        "title": "FACT CHECK: NO Marcos ‘resignation statement’ after Sept. 21 protests; graphic is FAKE",
+        "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+        "status": "extracted",
+        "word_count": 723,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "search_status": "ok",
+    "total_search_results": 95,
+    "searched_articles": 33,
+    "extracted_articles": 33,
+    "source_summary": [
+      {
+        "source": "VERA Files",
+        "results_found": 12,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Rappler",
+        "results_found": 10,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "ABS-CBN News",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "GMA News",
+        "results_found": 7,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Daily Inquirer",
+        "results_found": 7,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Star",
+        "results_found": 7,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Manila Bulletin",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine News Agency",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Information Agency",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "DZRH News",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "OneNews.PH",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      }
+    ],
+    "sources": [
+      {
+        "source": "VERA Files",
+        "title": "FACT CHECK: NO Marcos ‘resignation statement’ after Sept. 21 protests; graphic is FAKE",
+        "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+        "status": "extracted",
+        "word_count": 723,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "evidence_sources": [
+      {
+        "source": "VERA Files",
+        "title": "FACT CHECK: NO Marcos ‘resignation statement’ after Sept. 21 protests; graphic is FAKE",
+        "url": "https://verafiles.org/articles/fact-check-no-marcos-resignation-statement-after-sept-21-protests-graphic-is-fake",
+        "status": "extracted",
+        "word_count": 723,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim."
   }
 }

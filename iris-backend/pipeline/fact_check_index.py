@@ -14,6 +14,7 @@ from iris_trace.core import traced, event
 
 import re
 import time
+from collections import Counter
 from typing import Dict, List, Optional
 from urllib.parse import urlsplit
 
@@ -92,14 +93,17 @@ def matching_articles(claim: str, source: Dict[str, object], limit: int = MAX_CA
     wanted = _terms(claim)
     if not wanted or not source.get('sitemap'):
         return []
+    urls = [clean_article_url(url) for url in recent_article_urls(str(source['sitemap']))]
+    urls = [url for url in urls if url and not article_url_rejection(url, source['name'])]
+    # A name the archive mentions once identifies an article; "marcos" or "president" does not.
+    # Counting matches alone let a general Marcos story outrank the fact-check naming the person.
+    appearances = Counter(term for url in urls for term in _terms(urlsplit(url).path))
     scored = []
-    for url in recent_article_urls(str(source['sitemap'])):
-        url = clean_article_url(url)
-        if not url or article_url_rejection(url, source['name']):
-            continue
+    for url in urls:
         shared = wanted & _terms(urlsplit(url).path)
         if len(shared) >= MIN_SHARED_TERMS:
-            scored.append((len(shared), url, sorted(shared)))
+            weight = sum(1 / appearances[term] for term in shared)
+            scored.append((weight, url, sorted(shared)))
     scored.sort(key=lambda item: -item[0])
     return [{'source': source['name'], 'title': _title_from_url(url), 'url': url,
              'description': '', 'extra_snippets': [], 'matched_terms': shared}

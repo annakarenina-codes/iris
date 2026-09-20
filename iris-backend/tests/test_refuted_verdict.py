@@ -200,12 +200,14 @@ class RefutationCheckTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     apply_published_refutation(self.not_found(), {**self.answer(), **bad}, passages)
 
-    def test_the_check_runs_only_for_a_claim_that_ended_not_found(self):
+    def test_every_review_exit_reaches_the_check(self):
         import inspect
         from pipeline import component_evidence
         body = inspect.getsource(component_evidence.review_components)
-        self.assertIn("if result['verdict'] == 'Not Found':", body)
+        self.assertIn("if review.get('verdict') != 'Not Found':", body)
         self.assertIn('refutation_passages(claim, evidence, publishers)', body)
+        # Every way the review can end: nothing proposed, nothing left after identity, entailment.
+        self.assertEqual(body.count('return with_refutation_check('), 3)
 
 
 class ClientContractTests(unittest.TestCase):

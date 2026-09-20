@@ -86,6 +86,37 @@ class SearchPassTests(unittest.TestCase):
                 for t in (f'{label}-1', f'{label}-2', 'shared')]}
         return search_one
 
+    def vera_hits(self, count):
+        def search_one(query, source, count_=search.RESULTS_PER_SOURCE, freshness=None):
+            results = [] if source['name'] != 'VERA Files' else [
+                {'source': 'VERA Files', 'title': f'search-{i}', 'description': '', 'extra_snippets': [],
+                 'url': f'https://verafiles.org/articles/search-hit-{i}'} for i in range(count)]
+            return {'source': source['name'], 'query': query, 'status': 'ok', 'error': None, 'results': results}
+        return search_one
+
+    def test_a_sitemap_fact_check_is_read_even_when_search_fills_the_source(self):
+        # The VERA Files fact-check that settles a claim was lost behind three search hits.
+        found = {'source': 'VERA Files', 'title': 'FACT CHECK: statement is fabricated', 'description': '',
+                 'extra_snippets': [], 'matched_terms': ['poquiz', 'romeo'],
+                 'url': 'https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement'}
+        with patch.object(search, 'brave_search', side_effect=self.vera_hits(3)),              patch.object(search, 'fact_check_candidates', return_value=[found]):
+            result = search.search_with_backup('Poquiz said the Marcoses have lost their mandate')
+        self.assertEqual(result['search_passes'][0], 'fact_check_index')
+        vera = [r['url'] for r in result['results'] if r['source'] == 'VERA Files']
+        self.assertEqual(vera[0], found['url'])
+        self.assertIn(found['url'], vera[:search.MAX_ARTICLES_PER_SOURCE])
+
+    def test_sitemap_matches_leave_room_for_search_hits(self):
+        candidates = [{'source': 'VERA Files', 'title': f'index-{i}', 'description': '', 'extra_snippets': [],
+                       'matched_terms': ['a', 'b'], 'url': f'https://verafiles.org/articles/index-{i}'}
+                      for i in range(2)]
+        with patch.object(search, 'brave_search', side_effect=self.vera_hits(3)),              patch.object(search, 'fact_check_candidates', return_value=candidates) as lookup:
+            result = search.search_with_backup('a claim')
+        self.assertEqual(lookup.call_args[0][1], search.MAX_INDEX_ARTICLES)
+        vera = [r['url'] for r in result['results'] if r['source'] == 'VERA Files']
+        self.assertEqual(len(vera[:search.MAX_ARTICLES_PER_SOURCE]), 3)
+        self.assertTrue(any('search-hit' in url for url in vera[:search.MAX_ARTICLES_PER_SOURCE]))
+
     def test_primary_recent_and_original_language_passes_all_run(self):
         calls = []
         with patch.object(search, 'brave_search', side_effect=self.fake_search(calls)), \

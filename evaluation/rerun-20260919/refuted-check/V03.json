@@ -1,10 +1,10 @@
 {
   "case_id": "V03",
   "input_sha256": "ea74e7c37a193388b0c9ac581a3e545770fb48a943724ecb27615c7914564225",
-  "started_utc": "2026-09-20T09:19:02.011023+00:00",
+  "started_utc": "2026-09-20T09:46:14.365481+00:00",
   "http_status": 200,
-  "seconds": 28.721,
-  "trace_id": "3dc98dd4139742ca92ad2be1148beaab",
+  "seconds": 29.066,
+  "trace_id": "6d3fd4a8a0084a0fa91c27429fd905c0",
   "cache_policy": "reads and writes bypassed",
   "cache_version": "week7-refuted-v33",
   "response": {
@@ -62,7 +62,6 @@
               "component": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz endorsed Vice President Sara Duterte for president in a speech in Quezon City.",
               "status": "not_supported",
               "citations": [],
-              "event_group_id": 0,
               "context": {
                 "start": 0,
                 "end": 130,
@@ -113,86 +112,30 @@
                   "end": 130
                 },
                 "context_is_evidence": false
-              },
-              "event_rejections": [
-                {
-                  "component_id": 0,
-                  "url": "https://www.onenews.ph/articles/perspective-the-trauma-of-a-military-intervention",
-                  "status": "uncertain",
-                  "reason": "Passage 30 states that retired generals led by Romeo Poquiz have called on Marcos to resign and that they wanted Vice President Sara Duterte to replace Marcos, but it does not specify that Poquiz personally endorsed Sara Duterte for president, nor does it mention a speech in Quezon City. Passage 31 further clarifies the group's openness to a civilian-military council but again does not confirm a personal endorsement by Poquiz or a speech in Quezon City. No passage in Source 0 directly supports the full claim as stated."
-                },
-                {
-                  "component_id": 0,
-                  "url": "https://verafiles.org/articles/the-3-untold-secrets-of-benjamin-magalong",
-                  "status": "uncertain",
-                  "reason": "Passage 124 mentions ex Air Force general Romeo Poquiz being present at a group event with Duterte loyalists, but there is no mention of Poquiz endorsing Sara Duterte for president or making a speech in Quezon City. No other passage in Source 1 addresses this claim."
-                }
-              ]
+              }
             }
           ],
           "supporting_urls": [],
           "reason": "Retrieved passages support 0 of 1 factual components.",
-          "entailment_checks": [],
-          "event_identity_checks": [
-            {
-              "group_id": 0,
-              "component_ids": [
-                0
-              ],
-              "referent": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz endorsing Vice President Sara Duterte for president in a speech in Quezon City.",
-              "sources": {
-                "https://www.onenews.ph/articles/perspective-the-trauma-of-a-military-intervention": {
-                  "status": "uncertain",
-                  "passage_ids": [
-                    30,
-                    31
-                  ],
-                  "reason": "Passage 30 states that retired generals led by Romeo Poquiz have called on Marcos to resign and that they wanted Vice President Sara Duterte to replace Marcos, but it does not specify that Poquiz personally endorsed Sara Duterte for president, nor does it mention a speech in Quezon City. Passage 31 further clarifies the group's openness to a civilian-military council but again does not confirm a personal endorsement by Poquiz or a speech in Quezon City. No passage in Source 0 directly supports the full claim as stated.",
-                  "citations": [
-                    {
-                      "url": "https://www.onenews.ph/articles/perspective-the-trauma-of-a-military-intervention",
-                      "quote": "Some retired generals, led by Romeo Poquiz, have called on Marcos to resign due to corruption issues and the president’s sister's allegations that he is a drug user."
-                    },
-                    {
-                      "url": "https://www.onenews.ph/articles/perspective-the-trauma-of-a-military-intervention",
-                      "quote": "They wanted Vice President Sara Duterte to replace Marcos, but they are also open to the idea of a civilian-military council to run the state."
-                    }
-                  ],
-                  "context_status": "unresolved",
-                  "temporal_context": {
-                    "status": "unresolved",
-                    "enforced": false,
-                    "reason": "No explicit event-time anchor; semantic event review still required."
-                  }
-                },
-                "https://verafiles.org/articles/the-3-untold-secrets-of-benjamin-magalong": {
-                  "status": "uncertain",
-                  "passage_ids": [
-                    124
-                  ],
-                  "reason": "Passage 124 mentions ex Air Force general Romeo Poquiz being present at a group event with Duterte loyalists, but there is no mention of Poquiz endorsing Sara Duterte for president or making a speech in Quezon City. No other passage in Source 1 addresses this claim.",
-                  "citations": [
-                    {
-                      "url": "https://verafiles.org/articles/the-3-untold-secrets-of-benjamin-magalong",
-                      "quote": "Greco Belgica and ex Air Force general Romeo Poquiz were there."
-                    }
-                  ],
-                  "context_status": "unresolved",
-                  "temporal_context": {
-                    "status": "unresolved",
-                    "enforced": false,
-                    "reason": "No explicit event-time anchor; semantic event review still required."
-                  }
-                }
-              }
-            }
-          ],
+          "assessment_model": "gpt-4.1-2025-04-14",
           "original_claim": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz endorsed Vice President Sara Duterte for president in a speech in Quezon City.",
-          "event_identity_model": "gpt-4.1-2025-04-14",
-          "partition_model": "gpt-4.1-2025-04-14"
+          "partition_model": "gpt-4.1-2025-04-14",
+          "refutation_check": {
+            "denied": false,
+            "same_occurrence": false,
+            "component_ids": [],
+            "passage_ids": [],
+            "reason": "None of the supplied passages from VERA Files directly address or deny the claim that Retired Philippine Air Force Maj. Gen. Romeo Poquiz endorsed Vice President Sara Duterte for president in a speech in Quezon City. The passages discuss other statements and events, but do not mention or refute this specific claim."
+          }
         },
         "review_error": null,
         "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
           {
             "url": "https://verafiles.org/articles/the-3-untold-secrets-of-benjamin-magalong",
             "matches": true,
@@ -201,12 +144,6 @@
           },
           {
             "url": "https://verafiles.org/articles/fact-check-no-endorsement-for-vp-sara-from-milf-inc-graphic-ai-generated",
-            "matches": true,
-            "subject": null,
-            "reason": "not_referential_incident"
-          },
-          {
-            "url": "https://verafiles.org/articles/mali-ta-minute-mali-ta-overload-sa-kasagsagan-ng-impeachment-trial-ni-vice-president-sara-duterte",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -394,6 +331,18 @@
         ],
         "evidence_gate_audit": [
           {
+            "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
             "url": "https://verafiles.org/articles/the-3-untold-secrets-of-benjamin-magalong",
             "stage": "attribution_anchors",
             "matches": true,
@@ -407,20 +356,6 @@
           },
           {
             "url": "https://verafiles.org/articles/fact-check-no-endorsement-for-vp-sara-from-milf-inc-graphic-ai-generated",
-            "stage": "attribution_anchors",
-            "matches": false,
-            "missing": [
-              "speaker"
-            ],
-            "anchor_checks": {
-              "speaker": "missing_or_unmatched",
-              "source": "not_required",
-              "program": "not_required",
-              "date": "not_required"
-            }
-          },
-          {
-            "url": "https://verafiles.org/articles/mali-ta-minute-mali-ta-overload-sa-kasagsagan-ng-impeachment-trial-ni-vice-president-sara-duterte",
             "stage": "attribution_anchors",
             "matches": false,
             "missing": [
@@ -848,13 +783,13 @@
         "primary_evidence": null,
         "supporting_sources": [],
         "search_status": "ok",
-        "total_search_results": 95,
+        "total_search_results": 94,
         "searched_articles": 33,
         "extracted_articles": 33,
         "source_summary": [
           {
             "source": "VERA Files",
-            "results_found": 12,
+            "results_found": 11,
             "articles_checked": 3,
             "articles_extracted": 3
           },
@@ -929,7 +864,7 @@
             "error": null,
             "result": {
               "verdict": "Not Found",
-              "reason": "No evidence confirms that Romeo Poquiz endorsed Sara Duterte in a speech.",
+              "reason": "No evidence confirms that Poquiz endorsed Sara Duterte for president in a speech.",
               "supporting_urls": [],
               "fallback_method": "openai_rag"
             }
@@ -1151,7 +1086,7 @@
         "articles": []
       },
       "timings": {
-        "request_id": "3dc98dd4139742ca92ad2be1148beaab",
+        "request_id": "6d3fd4a8a0084a0fa91c27429fd905c0",
         "request_type": "verify_text",
         "stages": [
           {
@@ -1161,12 +1096,12 @@
           },
           {
             "stage": "text.translate_to_english",
-            "duration_seconds": 1.291,
+            "duration_seconds": 1.4249,
             "status": "ok"
           },
           {
             "stage": "text.profile_content",
-            "duration_seconds": 1.6959,
+            "duration_seconds": 1.9651,
             "status": "ok"
           },
           {
@@ -1181,7 +1116,7 @@
           },
           {
             "stage": "text.extract_claims",
-            "duration_seconds": 3.3745,
+            "duration_seconds": 3.1942,
             "status": "ok"
           },
           {
@@ -1206,32 +1141,32 @@
           },
           {
             "stage": "claim_1.political_flags",
-            "duration_seconds": 0.0015,
+            "duration_seconds": 0.0014,
             "status": "ok"
           },
           {
             "stage": "claim_1.search_and_extract",
-            "duration_seconds": 9.4049,
+            "duration_seconds": 10.2249,
             "status": "ok"
           },
           {
             "stage": "claim_1.search_status",
-            "duration_seconds": 0.0985,
+            "duration_seconds": 0.0876,
             "status": "ok"
           },
           {
             "stage": "claim_1.generate_verdict",
-            "duration_seconds": 2.0228,
+            "duration_seconds": 1.8342,
             "status": "ok"
           },
           {
             "stage": "claim_1.openai_rag_fallback",
-            "duration_seconds": 1.3006,
+            "duration_seconds": 1.3661,
             "status": "ok"
           },
           {
             "stage": "claim_1.fallback_total",
-            "duration_seconds": 1.3286,
+            "duration_seconds": 1.3933,
             "status": "ok"
           },
           {
@@ -1241,7 +1176,7 @@
           },
           {
             "stage": "claim_1.component_evidence_review",
-            "duration_seconds": 9.2914,
+            "duration_seconds": 8.7305,
             "status": "ok"
           },
           {
@@ -1251,12 +1186,12 @@
           },
           {
             "stage": "text.verify_claims_total",
-            "duration_seconds": 22.3327,
+            "duration_seconds": 22.4538,
             "status": "ok"
           },
           {
             "stage": "verify_text.total",
-            "duration_seconds": 28.7048,
+            "duration_seconds": 29.048,
             "status": "ok"
           }
         ]
@@ -1266,13 +1201,13 @@
     "primary_evidence": null,
     "supporting_sources": [],
     "search_status": "ok",
-    "total_search_results": 95,
+    "total_search_results": 94,
     "searched_articles": 33,
     "extracted_articles": 33,
     "source_summary": [
       {
         "source": "VERA Files",
-        "results_found": 12,
+        "results_found": 11,
         "articles_checked": 3,
         "articles_extracted": 3
       },
