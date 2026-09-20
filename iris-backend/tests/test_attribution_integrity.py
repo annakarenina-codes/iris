@@ -124,10 +124,19 @@ class AttributionGateTests(unittest.TestCase):
         result = self.iris.attribution_evidence_gate(article, claim)
         self.assertEqual(result['missing'], ['statement'])
 
-    def test_required_program_and_date_cannot_be_ignored(self):
+    def test_a_required_program_cannot_be_ignored(self):
         result = self.gate('Art Samaniego Jr.', 'Art Samaniego Jr. spoke on DZRH News July 14.',
                            source='DZRH News', program='Special on Saturday', date='July 4')
-        self.assertEqual(result['missing'], ['program', 'date'])
+        self.assertEqual(result['missing'], ['program'])
+
+    def test_a_date_the_article_does_not_state_is_unconfirmed_rather_than_missing(self):
+        # A news story rarely reprints the date, so excluding the article threw away the
+        # coverage too (saved case C06). The verdict is capped instead; see cap_unconfirmed_date.
+        result = self.gate('Art Samaniego Jr.', 'Art Samaniego Jr. spoke on DZRH News July 14.',
+                           source='DZRH News', date='July 4')
+        self.assertNotIn('date', result['missing'])
+        self.assertEqual(result['anchor_checks']['date'], 'unconfirmed')
+        self.assertFalse(result['date_confirmed'])
 
     def test_saved_malacanang_article_passes_accent_gate(self):
         case = next(c for c in self.cases if c['name'] == 'diacritic')

@@ -36,6 +36,38 @@ def attribution_phrase_match(phrase, text):
     return _contains_tokens(required, text) or _contains_tokens(required, without_quoted_nicknames(text))
 
 
+# A date is written many ways in Philippine coverage: "Sept. 18", "September 18",
+# "Setyembre 18", "18 September". Comparing the claim's spelling to the article's rejected
+# the right article for its wording (saved case C06).
+MONTH_ALIASES = {
+    1: ['january', 'jan', 'enero'], 2: ['february', 'feb', 'pebrero'],
+    3: ['march', 'mar', 'marso'], 4: ['april', 'apr', 'abril'],
+    5: ['may', 'mayo'], 6: ['june', 'jun', 'hunyo'], 7: ['july', 'jul', 'hulyo'],
+    8: ['august', 'aug', 'agosto'], 9: ['september', 'sept', 'sep', 'setyembre'],
+    10: ['october', 'oct', 'oktubre'], 11: ['november', 'nov', 'nobyembre'],
+    12: ['december', 'dec', 'disyembre'],
+}
+MONTHS = {alias: number for number, aliases in MONTH_ALIASES.items() for alias in aliases}
+
+
+def _date_parts(phrase):
+    words = re.findall(r"[^\W_]+", str(phrase or '').lower())
+    month = next((MONTHS[word] for word in words if word in MONTHS), None)
+    day = next((int(word) for word in words if word.isdigit() and 1 <= int(word) <= 31), None)
+    return month, day
+
+
+def date_phrase_match(phrase, text):
+    """True when the text states the same calendar date, however it is written."""
+    month, day = _date_parts(phrase)
+    if month is None or day is None:
+        return attribution_phrase_match(phrase, text)
+    haystack = ' ' + ' '.join(re.findall(r"[^\W_]+", str(text or '').lower())) + ' '
+    days = {str(day), f'{day:02d}'}
+    return any(f' {alias} {written} ' in haystack or f' {written} {alias} ' in haystack
+               for alias in MONTH_ALIASES[month] for written in days)
+
+
 TITLES = {'sen', 'senator', 'sens', 'rep', 'reps', 'representative', 'cong', 'congressman', 'congresswoman',
           'sec', 'secretary', 'usec', 'undersecretary', 'gov', 'governor', 'mayor', 'vice', 'president',
           'vp', 'atty', 'attorney', 'dr', 'engr', 'gen', 'general', 'brig', 'maj', 'col', 'lt', 'police',

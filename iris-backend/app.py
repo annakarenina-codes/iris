@@ -9,7 +9,8 @@ from urllib.parse import urlparse
 import requests
 from flask import Flask, request, jsonify
 from pipeline.cache import get_cached_verdict, hash_claim, save_cached_verdict
-from pipeline.attribution_integrity import attribution_phrase_match, speaker_phrase_match
+from pipeline.attribution_integrity import (attribution_phrase_match, date_phrase_match,
+                                            speaker_phrase_match)
 from pipeline.evidence_urls import article_url_rejection
 from pipeline.claim_extractor import extract_claims
 from pipeline.component_evidence import REFUTED_VERDICT
@@ -40,7 +41,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-refuted-v33"
+RESULT_CACHE_VERSION = "week7-date-anchor-v34"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 # A verdict that asserts something about the world has to show the source it rests on.
 VERDICTS_NEEDING_EVIDENCE = POSITIVE_VERDICTS | {REFUTED_VERDICT}
@@ -470,7 +471,7 @@ def attribution_evidence_gate(article, claim, anchors_only=False):
         anchor_checks["speaker"] = "missing_or_unmatched"
         missing.append("speaker")
 
-    for key in ["source", "program", "date"]:
+    for key in ["source", "program"]:
         value = attribution.get(key)
         if key == "source" and is_platform_reference(value):
             anchor_checks[key] = "platform_reference_not_required"
@@ -480,6 +481,16 @@ def attribution_evidence_gate(article, claim, anchors_only=False):
                               "normalized_phrase_match" if matched else "unmatched")
         if value and not matched:
             missing.append(key)
+
+    # A news story rarely reprints the calendar date of the event it reports, so requiring it
+    # threw away the coverage as well as the stale article (saved case C06: 13 of 15 articles
+    # stated no date at all). An unconfirmed date no longer excludes the article; it caps the
+    # verdict at Partially Verified, and a conflicting date is still refused by the component
+    # review's event identity, year and occurrence rules.
+    claimed_date = attribution.get("date")
+    date_confirmed = bool(claimed_date) and date_phrase_match(claimed_date, article_text)
+    anchor_checks["date"] = ("not_required" if not claimed_date else
+                             "normalized_phrase_match" if date_confirmed else "unconfirmed")
 
     statement = attribution.get("statement") or claim.get("normalized_claim")
     # Non-reviewed legacy callers may only accept a literal statement match.
@@ -492,7 +503,27 @@ def attribution_evidence_gate(article, claim, anchors_only=False):
         "matches": not missing,
         "missing": missing,
         "anchor_checks": anchor_checks,
+        "date_confirmed": date_confirmed,
     }
+
+
+def cap_unconfirmed_date(verdict, message, claim, articles):
+    """
+    Keeps a claim off Verified while no shown source states the date it asserts.
+
+    The component review caps a verdict when it resolved the claim's time itself. This is the
+    same rule applied to the claim's attribution date, so the ceiling does not depend on what
+    the review's context extraction happened to capture.
+    """
+    claimed_date = (claim.get("attribution") or {}).get("date")
+    if verdict != "Verified" or not claimed_date:
+        return verdict, message
+    if any(attribution_evidence_gate(article, claim, anchors_only=True)["date_confirmed"]
+           for article in articles):
+        return verdict, message
+    event('verdict.date_unconfirmed', claimed_date=claimed_date)
+    return "Partially Verified", (
+        f"{message} No shown source states {claimed_date}, so the date itself is unconfirmed.")
 
 
 def unique_evidence_sources(candidates):
@@ -1086,6 +1117,10 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
                 compact_evidence_source(article, "component_review") for article in eligible
                 if article.get("url") in component_review["supporting_urls"]
             ])
+            final_verdict, final_message = cap_unconfirmed_date(
+                final_verdict, final_message, claim,
+                [article for article in eligible
+                 if article.get("url") in component_review["supporting_urls"]])
 
     if final_verdict in VERDICTS_NEEDING_EVIDENCE and not evidence_sources:
         event('verdict.evidence_gate', before=final_verdict, after='Not Found', reason='No valid public evidence')
