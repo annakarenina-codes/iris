@@ -1,21 +1,30 @@
 # IRIS held-out batch 1: posts and expected results
 #
-# One "### POST" block per post. Lines starting with # are ignored. Blocks whose text is empty are skipped.
+# One "### POST" block per post. Lines starting with # are ignored. Empty blocks are skipped.
 # Paste the post text exactly as shown between the <<< and >>> lines.
 # Fill EXPECTED OVERALL, EXPECTED CLAIMS and REFERENCES BEFORE running IRIS (see README.md).
 #
 # Category:          news | filipino | quote | false_claim | opinion_satire | other
-# EXPECTED OVERALL:  Verified | Partially Verified | Not Found | No Checkable Claims
+# IMAGE:             for a post whose words are in a picture: images/H07.jpg (see below).
+#                    Leave blank for a text post. Never retype the words of an image here:
+#                    IRIS must read them itself, and a wrong reading is a result worth having.
+# EXPECTED OVERALL:  Verified | Partially Verified | Not Found | Refuted | No Checkable Claims
 # EXPECTED CLAIMS:   one "- " line per checkable statement, ending with "=> <expected verdict>"
 # REFERENCES:        one "- " line per article URL that supports (or, for false claims, debunks) the post
 #
-# The EXAMPLE block below is fictional and is never run.
+# Image posts: save the picture in this folder's images/ directory, as a phone screenshot
+# rather than a cropped or sharpened copy, under 8 MB, .jpg .jpeg .png .webp .bmp .tif .tiff.
+# If the post has BOTH a picture and a caption, put the picture in IMAGE and leave TEXT empty:
+# IRIS reads one or the other, the way the extension and the phone app do.
+#
+# The EXAMPLE blocks below are fictional and are never run.
 
 ### POST EXAMPLE
 Page: Example News PH
 Post URL: https://www.facebook.com/example/posts/123
 Date posted: 2026-09-21
 Category: filipino
+IMAGE:
 TEXT:
 <<<
 Nagbukas na ang bagong tulay sa Bayan ng Halimbawa ngayong Lunes, ayon sa lokal na pamahalaan.
@@ -26,13 +35,30 @@ EXPECTED CLAIMS:
 - The new bridge in the Town of Halimbawa opened on Monday, according to the local government. => Verified
 REFERENCES:
 - https://www.example.com/news/halimbawa-bridge-opens
-NOTES: Fictional example of the format.
+NOTES: Fictional example of a text post.
+
+### POST EXAMPLE-IMAGE
+Page: Example Page
+Post URL: https://www.facebook.com/example/posts/456
+Date posted: 2026-09-22
+Category: false_claim
+IMAGE: images/EXAMPLE.jpg
+TEXT:
+<<<
+>>>
+EXPECTED OVERALL: Refuted
+EXPECTED CLAIMS:
+- Example Official said the agency will stop all payouts this month. => Refuted
+REFERENCES:
+- https://verafiles.org/articles/fact-check-example-payout-statement-is-fake
+NOTES: Fictional example of an image post. VERA Files debunked this statement graphic.
 
 ### POST H01
 Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -48,6 +74,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -63,6 +90,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -78,6 +106,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -93,6 +122,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -108,6 +138,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -123,6 +154,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -138,6 +170,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -153,6 +186,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -168,6 +202,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -183,6 +218,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -198,6 +234,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -213,6 +250,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -228,6 +266,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -243,6 +282,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -258,6 +298,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -273,6 +314,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -288,6 +330,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -303,6 +346,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -318,6 +362,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -333,6 +378,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -348,6 +394,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -363,6 +410,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -378,6 +426,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>
@@ -393,6 +442,7 @@ Page:
 Post URL:
 Date posted:
 Category:
+IMAGE:
 TEXT:
 <<<
 >>>

@@ -9,6 +9,7 @@ IRIS held-out batch: validate posts, run IRIS, write the review sheet, score jud
 See README.md in this folder for the procedure.
 """
 import argparse
+import base64
 import hashlib
 import importlib.util
 import json
@@ -25,7 +26,11 @@ from unittest.mock import patch
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-OVERALL = ['Verified', 'Partially Verified', 'Not Found', 'No Checkable Claims']
+OVERALL = ['Verified', 'Partially Verified', 'Not Found', 'Refuted', 'No Checkable Claims']
+CLAIM_VERDICTS = OVERALL[:4]
+# Matches pipeline/ocr.py, so a file this runner accepts is a file IRIS can read.
+MAX_IMAGE_BYTES = 8 * 1024 * 1024
+IMAGE_SUFFIXES = {'.jpg', '.jpeg', '.png', '.webp', '.bmp', '.tif', '.tiff'}
 CATEGORIES = ['news', 'filipino', 'quote', 'false_claim', 'opinion_satire', 'other']
 JUDGMENTS = {
     'correct': 'the verdict and its evidence are right',
@@ -33,6 +38,7 @@ JUDGMENTS = {
     'false_negative': 'Not Found, but an approved source supports it',
     'wrong_level': 'Verified vs Partially Verified is wrong, otherwise sound',
     'technical': 'Review Failed or another technical failure',
+    'ocr_error': 'an image post where OCR misread the text, so IRIS checked the wrong words',
     'cannot_judge': 'you cannot tell what the right answer is',
 }
 POSITIVE = {'Verified', 'Partially Verified'}
@@ -90,26 +96,41 @@ def finish_post(post):
         'id': post['id'], 'page': fields.get('page', ''), 'url': fields.get('post url', ''),
         'date': fields.get('date posted', ''), 'category': fields.get('category', '').lower(),
         'notes': fields.get('notes', ''), 'text': '\n'.join(post['text_lines']).strip(),
+        'image': fields.get('image', ''),
         'expected': expected,
         'expected_fingerprint': hashlib.sha256(json.dumps(expected, sort_keys=True).encode('utf-8')).hexdigest(),
     }
 
 
 def runnable(posts):
-    return [p for p in posts if p['id'] != 'EXAMPLE' and p['text']]
+    # An image post carries its words in the picture, so it needs no TEXT block.
+    return [p for p in posts if not p['id'].startswith('EXAMPLE') and (p['text'] or p['image'])]
 
 
-def check_post(post):
+def image_path(folder, post):
+    return (folder / post['image']).resolve() if post.get('image') else None
+
+
+def check_post(post, folder=HERE):
     errors, warnings = [], []
     expected = post['expected']
+    picture = image_path(folder, post)
+    if picture is not None:
+        if not picture.is_file():
+            errors.append(f'IMAGE not found: {post["image"]}')
+        elif picture.suffix.lower() not in IMAGE_SUFFIXES:
+            errors.append(f'IMAGE must be one of {", ".join(sorted(IMAGE_SUFFIXES))}: {post["image"]}')
+        elif picture.stat().st_size > MAX_IMAGE_BYTES:
+            errors.append(f'IMAGE is larger than the {MAX_IMAGE_BYTES} byte OCR limit: {post["image"]}')
     if expected['overall'] not in OVERALL:
         errors.append(f"EXPECTED OVERALL must be one of: {', '.join(OVERALL)}")
     if expected['overall'] != 'No Checkable Claims':
         if not expected['claims']:
             errors.append('list at least one EXPECTED CLAIMS line')
         for claim in expected['claims']:
-            if claim['verdict'] not in OVERALL[:3]:
-                errors.append(f"claim needs '=> Verified', '=> Partially Verified' or '=> Not Found': {claim['text'][:60]}")
+            if claim['verdict'] not in CLAIM_VERDICTS:
+                errors.append('claim needs "=> " and one of ' + ', '.join(CLAIM_VERDICTS)
+                              + f": {claim['text'][:60]}")
         if not expected['references']:
             warnings.append('no REFERENCES listed')
     if post['category'] not in CATEGORIES:
@@ -121,12 +142,14 @@ def validate(folder, quiet=False):
     posts = runnable(parse_posts(folder / 'posts.txt'))
     ok = True
     for post in posts:
-        errors, warnings = check_post(post)
+        errors, warnings = check_post(post, folder)
         ok = ok and not errors
         if not quiet or errors:
             status = 'ERROR' if errors else 'ok'
-            print(f"{post['id']:6s} {status:5s} {post['category'] or '-':15s} {post['expected']['overall'] or '-':20s} "
-                  f"{len(post['expected']['claims'])} claim(s) | {' '.join(post['text'].split())[:60]}")
+            shown = post['image'] if post['image'] else ' '.join(post['text'].split())[:60]
+            print(f"{post['id']:6s} {status:5s} {'image' if post['image'] else 'text':5s} "
+                  f"{post['category'] or '-':15s} {post['expected']['overall'] or '-':20s} "
+                  f"{len(post['expected']['claims'])} claim(s) | {shown}")
             for message in errors:
                 print('        error:', message)
             for message in warnings:
@@ -165,10 +188,17 @@ def run(folder, only=None):
                 continue
             started = datetime.now(timezone.utc).isoformat()
             before = time.monotonic()
+            picture = image_path(folder, post)
             try:
                 with app.app.test_client() as client:
-                    response = client.post('/verify', json={'text': post['text'], 'debug': True,
-                                                            'platform': 'heldout-batch-1'})
+                    if picture is not None:
+                        # The image IS the post: IRIS reads it exactly as the phone app would.
+                        payload = {'image_base64': base64.b64encode(picture.read_bytes()).decode('ascii'),
+                                   'debug': True, 'platform': 'heldout-batch-1'}
+                        response = client.post('/verify-image', json=payload)
+                    else:
+                        response = client.post('/verify', json={'text': post['text'], 'debug': True,
+                                                                'platform': 'heldout-batch-1'})
                 result = {'http_status': response.status_code, 'trace_id': response.headers.get('X-IRIS-Trace-ID'),
                           'response': response.get_json()}
             except Exception as error:
@@ -179,12 +209,16 @@ def run(folder, only=None):
                     store.flush()
             result.update(post_id=post['id'], started_utc=started, seconds=round(time.monotonic() - before, 3),
                           git_commit=commit, cache_version=app.RESULT_CACHE_VERSION,
-                          cache_policy='reads and writes bypassed', post=post)
+                          cache_policy='reads and writes bypassed', post=post,
+                          input_type='image' if picture is not None else 'text')
             target.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
             body = result.get('response') or {}
-            print(json.dumps({'post': post['id'], 'http': result['http_status'], 'seconds': result['seconds'],
-                              'verdicts': [c.get('verdict') for c in body.get('claims', [])] or [body.get('verdict')]},
-                             ensure_ascii=False), flush=True)
+            line = {'post': post['id'], 'http': result['http_status'], 'seconds': result['seconds'],
+                    'verdicts': [c.get('verdict') for c in body.get('claims', [])] or [body.get('verdict')]}
+            if result['input_type'] == 'image':
+                line['ocr'] = {'status': body.get('ocr_status'), 'words': body.get('ocr_word_count'),
+                               'confidence': body.get('ocr_confidence'), 'low': body.get('ocr_low_confidence')}
+            print(json.dumps(line, ensure_ascii=False), flush=True)
             time.sleep(3)
     store = app.app.extensions.get('iris_trace_store')
     if store:
@@ -284,8 +318,16 @@ def write_report(folder, posts, results):
         lines += [f"  - {c['text']} => {c['verdict']}" for c in post['expected']['claims']]
         lines += [f"  - reference: <{r}>" for r in post['expected']['references']]
         lines += ['', '<details><summary>Post text</summary>', '',
-                  '> ' + post['text'].replace('\n', '\n> '), '', '</details>', '',
-                  f"HTTP {result.get('http_status')} · {result.get('seconds')}s · TRACE `{result.get('trace_id')}` · "
+                  '> ' + (post['text'] or '(the post is the image)').replace('\n', '\n> '),
+                  '', '</details>', '']
+        if result.get('input_type') == 'image':
+            # An image result cannot be judged without seeing the words OCR actually produced.
+            lines += [f"**Image:** `{post.get('image')}` · OCR {body.get('ocr_status')} · "
+                      f"{body.get('ocr_word_count')} words · confidence {body.get('ocr_confidence')}"
+                      + (' · **low confidence**' if body.get('ocr_low_confidence') else ''), '',
+                      '<details><summary>What OCR read</summary>', '',
+                      '> ' + str(body.get('ocr_text') or '').replace('\n', '\n> '), '', '</details>', '']
+        lines += [f"HTTP {result.get('http_status')} · {result.get('seconds')}s · TRACE `{result.get('trace_id')}` · "
                   f"overall **{body.get('verdict')}** · commit `{str(result.get('git_commit'))[:7]}`", '']
         ignored = body.get('ignored_segments') or []
         if ignored:
@@ -302,7 +344,7 @@ def score(folder):
     posts = {p['id']: p for p in runnable(parse_posts(folder / 'posts.txt'))}
     results = load_results(folder)
     review = parse_review(folder / 'review.txt')
-    problems, counts, by_category = [], {name: 0 for name in JUDGMENTS}, {}
+    problems, counts, by_category, by_input = [], {name: 0 for name in JUDGMENTS}, {}, {}
     routing = {'correct': 0, 'wrong': 0}
     missed, positives_judged, false_claim_posts, false_claim_fp = 0, 0, 0, 0
     for post_id, result in results.items():
@@ -311,6 +353,9 @@ def score(folder):
         category = post.get('category') or 'other'
         bucket = by_category.setdefault(category, {'posts': 0, 'correct': 0, 'judged': 0, 'false_positive': 0})
         bucket['posts'] += 1
+        kind = result.get('input_type') or 'text'
+        input_bucket = by_input.setdefault(kind, {'posts': 0, 'correct': 0, 'judged': 0, 'false_positive': 0})
+        input_bucket['posts'] += 1
         if post.get('expected_fingerprint') != result['post'].get('expected_fingerprint'):
             problems.append(f'{post_id}: expected results were edited after IRIS ran (evaluation is no longer blind)')
         if entry['routing'] in routing:
@@ -331,10 +376,13 @@ def score(folder):
             if judgment != 'cannot_judge':
                 bucket['judged'] += 1
                 bucket['correct'] += judgment == 'correct'
+                input_bucket['judged'] += 1
+                input_bucket['correct'] += judgment == 'correct'
             if claim.get('verdict') in POSITIVE and judgment != 'cannot_judge':
                 positives_judged += 1
             if judgment == 'false_positive':
                 bucket['false_positive'] += 1
+                input_bucket['false_positive'] += 1
                 post_fp = True
         if category == 'false_claim':
             false_claim_posts += 1
@@ -356,6 +404,7 @@ def score(folder):
               f'| False negatives (of judged claims) | {pct(counts["false_negative"], judged)} |',
               f'| Wrong verification level | {pct(counts["wrong_level"], judged)} |',
               f'| Technical failures (claims) | {pct(counts["technical"], judged)} |',
+              f'| OCR misreads (claims) | {pct(counts["ocr_error"], judged)} |',
               f'| Cannot judge (excluded above) | {counts["cannot_judge"]} |',
               f'| Routing correct (posts) | {pct(routing["correct"], routing["correct"] + routing["wrong"])} |',
               f'| Checkable statements IRIS missed | {missed} |',
@@ -366,6 +415,9 @@ def score(folder):
               '## By category', '', '| Category | Posts | Claim accuracy | False positives |', '|---|---|---|---|']
     for category, bucket in sorted(by_category.items()):
         lines.append(f"| {category} | {bucket['posts']} | {pct(bucket['correct'], bucket['judged'])} | {bucket['false_positive']} |")
+    lines += ['', '## By input', '', '| Input | Posts | Claim accuracy | False positives |', '|---|---|---|---|']
+    for kind, bucket in sorted(by_input.items()):
+        lines.append(f"| {kind} | {bucket['posts']} | {pct(bucket['correct'], bucket['judged'])} | {bucket['false_positive']} |")
     lines += ['', 'Development cases are excluded by design. Scores describe this batch only, on the commits listed, '
               'with the verdict cache bypassed.']
     (folder / 'SCORES.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')

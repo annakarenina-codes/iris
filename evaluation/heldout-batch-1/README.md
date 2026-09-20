@@ -17,8 +17,21 @@ Fill in [posts.txt](posts.txt). Each `### POST Hxx` block is one post; unused bl
   | False or fact-checked claims, as they circulated | 4 | `false_claim` |
   | Opinion, satire, rhetorical or non-news posts | 4 | `opinion_satire` |
 
-- Paste the post text **exactly as shown**, between the `<<<` and `>>>` lines, including hashtags and "See more"/"See less" if you would select them in real use. Text-only posts; image checks are not part of this runner.
+- Paste the post text **exactly as shown**, between the `<<<` and `>>>` lines, including hashtags and "See more"/"See less" if you would select them in real use.
 - For false claims: find a VERA Files or Rappler fact-check first, then paste the claim as it circulated, not the fact-check's headline.
+
+### Image posts
+
+Fabricated statements usually circulate as pictures, so the batch should contain some. Save the picture in [images/](images), give its path in the block's `IMAGE:` field (`images/H07.jpg`), and leave `TEXT:` empty.
+
+- **Do not retype the words of the image into TEXT.** That would test IRIS without the part that reads the picture, and a misread name or number is a real result worth recording.
+- Save it as a phone screenshot, not a cropped or sharpened copy: under 8 MB, `.jpg .jpeg .png .webp .bmp .tif .tiff`.
+- If a post has both a picture and a caption, use the picture. IRIS reads one or the other, as the extension and the phone app do.
+- The runner sends these to `/verify-image`, and records what OCR read next to the verdict, so an image failure can be attributed to the reading or to the checking.
+
+### Posts by VERA Files
+
+Two posts by VERA Files itself are worth including, because an expert will try one. Expect either result, and record which happened: **Verified** when IRIS checks the post's own statement ("VERA Files found X is fake") against the fact-check, or **Refuted** when it checks the claim inside the post. Both are right. Note in the thesis that such a check rests on one publisher, the same one that made the post: `corroboration_count` in the result shows how many sources stood behind the verdict. Prefer one fact-check card and one piece of their ordinary reporting, so the two posts do not test the same path twice.
 
 ## 2. Write your expected results before running IRIS (you)
 
@@ -26,7 +39,7 @@ Fill in `EXPECTED OVERALL`, `EXPECTED CLAIMS` and `REFERENCES` **before** step 3
 
 `EXPECTED OVERALL` is one of: `Verified`, `Partially Verified`, `Not Found`, `No Checkable Claims`.
 
-IRIS has no "False" label. A false claim is handled correctly when IRIS returns **Not Found**, or marks the part **contradicted**; a Verified or Partially Verified result on a false claim is a **false positive**, the most serious error.
+`Refuted` is IRIS's verdict for a claim that VERA Files has published a finding against; it was added on 20 September 2026 and only VERA Files can trigger it. For a false claim, **Refuted** is the best outcome and **Not Found** is acceptable, since no fact-check may exist yet. A **Verified or Partially Verified result on a false claim is a false positive**, the most serious error.
 
 ## 3. Run IRIS (Claude or you)
 
