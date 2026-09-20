@@ -257,17 +257,57 @@ def _get_reader(easyocr, languages: Tuple[str, ...]):
     return _READER_CACHE[cache_key]
 
 
-def _region_position(region: Dict[str, object]) -> Tuple[float, float]:
-    bbox = region.get("bbox") or []
+def _region_bounds(region: Dict[str, object]) -> Tuple[float, float, float, float]:
     xs = []
     ys = []
 
-    for point in bbox:
+    for point in region.get("bbox") or []:
         if isinstance(point, (list, tuple)) and len(point) >= 2:
             xs.append(float(point[0]))
             ys.append(float(point[1]))
 
-    return (min(ys or [0.0]), min(xs or [0.0]))
+    return (min(xs or [0.0]), min(ys or [0.0]), max(xs or [0.0]), max(ys or [0.0]))
+
+
+def _region_position(region: Dict[str, object]) -> Tuple[float, float]:
+    left, top, _, _ = _region_bounds(region)
+    return (top, left)
+
+
+LINE_TOLERANCE = 0.6
+# How close two boxes must be before the reader treats them as one. The default merges
+# neighbouring words in a tightly set graphic, which turned "MILF AT INC, Nagdeklara ng suporta"
+# into "MILFATINC, NAGDEKLARANG SUPORTAKAY" and left held-out post H19 unsearchable.
+BOX_MERGE_WIDTH = 0.1
+
+
+def reading_order(regions: List[Dict[str, object]]) -> List[Dict[str, object]]:
+    """
+    Orders text boxes the way the picture is read: each line left to right, lines top to bottom.
+
+    Ordering by the top edge of every box put the words of one line in the order their boxes
+    happened to start, which scrambled a quotation into nonsense whenever the letters of a line
+    sat at slightly different heights (held-out post H18, where half the statement was lost).
+    """
+    lines: List[Dict[str, object]] = []
+    for region in sorted(regions, key=_region_position):
+        _, top, _, bottom = _region_bounds(region)
+        centre, height = (top + bottom) / 2, max(1.0, bottom - top)
+        for line in lines:
+            if abs(centre - line["centre"]) <= LINE_TOLERANCE * max(height, line["height"]):
+                line["regions"].append(region)
+                line["centre"] = sum((_region_bounds(r)[1] + _region_bounds(r)[3]) / 2
+                                     for r in line["regions"]) / len(line["regions"])
+                line["height"] = max(line["height"], height)
+                break
+        else:
+            lines.append({"centre": centre, "height": height, "regions": [region]})
+
+    lines.sort(key=lambda line: line["centre"])
+    ordered = []
+    for line in lines:
+        ordered.extend(sorted(line["regions"], key=lambda r: _region_bounds(r)[0]))
+    return ordered
 
 
 def _clean_text(text: str) -> str:
@@ -312,7 +352,7 @@ def _parse_easyocr_result(raw_result) -> List[Dict[str, object]]:
             "bbox": [[float(coordinate) for coordinate in point] for point in bbox],
         })
 
-    regions = sorted(regions, key=_region_position)
+    regions = reading_order(regions)
     return regions[:OCR_MAX_REGIONS]
 
 
@@ -422,7 +462,7 @@ def extract_text_from_image(
 
     try:
         with span('image.recognition', {'image': preprocessed['metadata']}) as recognition:
-            raw_result = reader.readtext(preprocessed["image"])
+            raw_result = reader.readtext(preprocessed["image"], width_ths=BOX_MERGE_WIDTH)
             if recognition is not None:
                 recognition['output'] = raw_result
     except Exception as error:

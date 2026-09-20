@@ -1,0 +1,1539 @@
+{
+  "response": {
+    "verdict": "No Checkable Claims",
+    "message": "IRIS did not find factual claims that can be checked against approved sources.",
+    "original_text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
+    "translated_text": "EGMN 'Upon our return to Malacanang, I will behead BBM' and his whole clan. You Ilocanos, prepare yourselves, many of you will also have your heads cut off: Sebasfihn [:yöv\"wvë%Cy, DIeí?\n\"Baste\"",
+    "detected_language": "tagalog",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 0,
+    "claim_extraction_status": "not_run_content_profiler",
+    "post_type": "unclear",
+    "content_profile_status": "ok",
+    "content_profile_route": "stop_no_checkable_claims",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s1",
+        "text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí?",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "low_classifier_confidence"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s2",
+        "text": "\"Baste\"",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "vague_claim"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      }
+    ],
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "bbm",
+          "malacanang"
+        ],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [
+            "bbm"
+          ],
+          "political_institutions": [
+            "malacanang"
+          ],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.54,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "vague_claim"
+        ],
+        "contains_factual_claims": false,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": false,
+        "recommended_route": "stop_no_checkable_claims",
+        "verification_text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
+        "normalized_verification_text": "EGMN 'Upon our return to Malacanang, I will behead BBM' and his whole clan. You Ilocanos, prepare yourselves, many of you will also have your heads cut off: Sebasfihn [:yöv\"wvë%Cy, DIeí?\n\"Baste\"",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí?",
+            "translated_text": "EGMN 'Upon our return to Malacanang, I will behead BBM' and his whole clan.",
+            "scores": {
+              "factual_claim": 0.22,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.33,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.33,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.03,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "unattributed"
+          },
+          {
+            "segment_id": "s2",
+            "text": "\"Baste\"",
+            "translated_text": "You Ilocanos, prepare yourselves, many of you will also have your heads cut off: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.33,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.75
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.75,
+            "second_label": "quote",
+            "second_label_score": 0.33,
+            "score_gap": 0.42,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "unattributed"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí?",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s2",
+            "text": "\"Baste\"",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "quote",
+                "top_label_score": 0.9,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reported_speech",
+                  "direct_quote"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "quote",
+                "top_label_score": 0.8,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reported_speech",
+                  "direct_quote"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "ocr": {
+        "status": "ok",
+        "text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
+        "raw_text": "NEWS EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
+        "raw_regions": [
+          {
+            "text": "NEWS",
+            "confidence": 0.8479,
+            "bbox": [
+              [
+                42.0,
+                12.0
+              ],
+              [
+                130.0,
+                12.0
+              ],
+              [
+                130.0,
+                44.0
+              ],
+              [
+                42.0,
+                44.0
+              ]
+            ]
+          },
+          {
+            "text": "EGMN",
+            "confidence": 0.5485,
+            "bbox": [
+              [
+                306.0,
+                528.0
+              ],
+              [
+                464.0,
+                528.0
+              ],
+              [
+                464.0,
+                600.0
+              ],
+              [
+                306.0,
+                600.0
+              ]
+            ]
+          },
+          {
+            "text": "'Pagbalik namin sa Malacanang pupugutan",
+            "confidence": 0.7955,
+            "bbox": [
+              [
+                9.0,
+                590.0
+              ],
+              [
+                751.0,
+                590.0
+              ],
+              [
+                751.0,
+                667.0
+              ],
+              [
+                9.0,
+                667.0
+              ]
+            ]
+          },
+          {
+            "text": "ko ng ulo",
+            "confidence": 0.8326,
+            "bbox": [
+              [
+                21.0,
+                655.0
+              ],
+              [
+                193.0,
+                655.0
+              ],
+              [
+                193.0,
+                719.0
+              ],
+              [
+                21.0,
+                719.0
+              ]
+            ]
+          },
+          {
+            "text": "si",
+            "confidence": 0.9929,
+            "bbox": [
+              [
+                197.0,
+                661.0
+              ],
+              [
+                239.0,
+                661.0
+              ],
+              [
+                239.0,
+                707.0
+              ],
+              [
+                197.0,
+                707.0
+              ]
+            ]
+          },
+          {
+            "text": "BBM'",
+            "confidence": 0.6024,
+            "bbox": [
+              [
+                244.0,
+                656.0
+              ],
+              [
+                332.0,
+                656.0
+              ],
+              [
+                332.0,
+                710.0
+              ],
+              [
+                244.0,
+                710.0
+              ]
+            ]
+          },
+          {
+            "text": "at",
+            "confidence": 0.9989,
+            "bbox": [
+              [
+                336.0,
+                654.0
+              ],
+              [
+                388.0,
+                654.0
+              ],
+              [
+                388.0,
+                708.0
+              ],
+              [
+                336.0,
+                708.0
+              ]
+            ]
+          },
+          {
+            "text": "buong",
+            "confidence": 0.9962,
+            "bbox": [
+              [
+                394.8492070888625,
+                650.095242533175
+              ],
+              [
+                513.6689686863078,
+                666.8728289535053
+              ],
+              [
+                503.1507929111375,
+                723.904757466825
+              ],
+              [
+                384.33103131369216,
+                708.1271710464947
+              ]
+            ]
+          },
+          {
+            "text": "angkan niya",
+            "confidence": 0.7685,
+            "bbox": [
+              [
+                513.0,
+                655.0
+              ],
+              [
+                739.0,
+                655.0
+              ],
+              [
+                739.0,
+                721.0
+              ],
+              [
+                513.0,
+                721.0
+              ]
+            ]
+          },
+          {
+            "text": "Yung\"",
+            "confidence": 0.4224,
+            "bbox": [
+              [
+                23.867574810534634,
+                710.0922063442613
+              ],
+              [
+                122.54879545824167,
+                726.5274955922965
+              ],
+              [
+                111.13242518946537,
+                784.9077936557387
+              ],
+              [
+                11.451204541758322,
+                768.4725044077035
+              ]
+            ]
+          },
+          {
+            "text": "mga [locano",
+            "confidence": 0.6737,
+            "bbox": [
+              [
+                111.0,
+                719.0
+              ],
+              [
+                331.0,
+                719.0
+              ],
+              [
+                331.0,
+                779.0
+              ],
+              [
+                111.0,
+                779.0
+              ]
+            ]
+          },
+          {
+            "text": "humanda",
+            "confidence": 0.9433,
+            "bbox": [
+              [
+                334.0,
+                718.0
+              ],
+              [
+                506.0,
+                718.0
+              ],
+              [
+                506.0,
+                772.0
+              ],
+              [
+                334.0,
+                772.0
+              ]
+            ]
+          },
+          {
+            "text": "kayo",
+            "confidence": 0.9992,
+            "bbox": [
+              [
+                505.83024238924725,
+                714.0984300965588
+              ],
+              [
+                600.4051724620903,
+                727.1762142909065
+              ],
+              [
+                590.1697576107528,
+                786.9015699034412
+              ],
+              [
+                494.5948275379098,
+                773.8237857090935
+              ]
+            ]
+          },
+          {
+            "text": "marami",
+            "confidence": 0.8257,
+            "bbox": [
+              [
+                588.0,
+                721.0
+              ],
+              [
+                739.0,
+                721.0
+              ],
+              [
+                739.0,
+                775.0
+              ],
+              [
+                588.0,
+                775.0
+              ]
+            ]
+          },
+          {
+            "text": "ring mapupugutan ng ulo sa inyo:",
+            "confidence": 0.6231,
+            "bbox": [
+              [
+                18.0,
+                775.0
+              ],
+              [
+                600.0,
+                775.0
+              ],
+              [
+                600.0,
+                851.0
+              ],
+              [
+                18.0,
+                851.0
+              ]
+            ]
+          },
+          {
+            "text": "Sebasfihn",
+            "confidence": 0.2002,
+            "bbox": [
+              [
+                240.0,
+                842.0
+              ],
+              [
+                352.0,
+                842.0
+              ],
+              [
+                352.0,
+                874.0
+              ],
+              [
+                240.0,
+                874.0
+              ]
+            ]
+          },
+          {
+            "text": "[:yöv\"wvë%Cy,",
+            "confidence": 0.0033,
+            "bbox": [
+              [
+                290.0,
+                872.0
+              ],
+              [
+                466.0,
+                872.0
+              ],
+              [
+                466.0,
+                900.0
+              ],
+              [
+                290.0,
+                900.0
+              ]
+            ]
+          },
+          {
+            "text": "DIeí?",
+            "confidence": 0.0851,
+            "bbox": [
+              [
+                430.0,
+                842.0
+              ],
+              [
+                516.0,
+                842.0
+              ],
+              [
+                516.0,
+                874.0
+              ],
+              [
+                430.0,
+                874.0
+              ]
+            ]
+          },
+          {
+            "text": "\"Baste\"",
+            "confidence": 0.6971,
+            "bbox": [
+              [
+                353.0,
+                841.0
+              ],
+              [
+                429.0,
+                841.0
+              ],
+              [
+                429.0,
+                877.0
+              ],
+              [
+                353.0,
+                877.0
+              ]
+            ]
+          }
+        ],
+        "excluded_regions": [
+          {
+            "text": "NEWS",
+            "reason": "section_label"
+          }
+        ],
+        "word_count": 33,
+        "confidence": 0.6491,
+        "low_confidence": false,
+        "warnings": [],
+        "error": null,
+        "image": {
+          "original_format": "jpeg",
+          "original_size": [
+            706,
+            845
+          ],
+          "byte_size": 69713,
+          "preprocessing": {
+            "grayscale": true,
+            "autocontrast": true,
+            "contrast_factor": 1.4,
+            "denoised": true,
+            "histogram_equalized": true,
+            "resized": true,
+            "scale": 1.065,
+            "normalized_size": [
+              751,
+              900
+            ],
+            "original_shortest_side": 706
+          }
+        },
+        "regions": [
+          {
+            "text": "EGMN",
+            "confidence": 0.5485,
+            "bbox": [
+              [
+                306.0,
+                528.0
+              ],
+              [
+                464.0,
+                528.0
+              ],
+              [
+                464.0,
+                600.0
+              ],
+              [
+                306.0,
+                600.0
+              ]
+            ]
+          },
+          {
+            "text": "'Pagbalik namin sa Malacanang pupugutan",
+            "confidence": 0.7955,
+            "bbox": [
+              [
+                9.0,
+                590.0
+              ],
+              [
+                751.0,
+                590.0
+              ],
+              [
+                751.0,
+                667.0
+              ],
+              [
+                9.0,
+                667.0
+              ]
+            ]
+          },
+          {
+            "text": "ko ng ulo",
+            "confidence": 0.8326,
+            "bbox": [
+              [
+                21.0,
+                655.0
+              ],
+              [
+                193.0,
+                655.0
+              ],
+              [
+                193.0,
+                719.0
+              ],
+              [
+                21.0,
+                719.0
+              ]
+            ]
+          },
+          {
+            "text": "si",
+            "confidence": 0.9929,
+            "bbox": [
+              [
+                197.0,
+                661.0
+              ],
+              [
+                239.0,
+                661.0
+              ],
+              [
+                239.0,
+                707.0
+              ],
+              [
+                197.0,
+                707.0
+              ]
+            ]
+          },
+          {
+            "text": "BBM'",
+            "confidence": 0.6024,
+            "bbox": [
+              [
+                244.0,
+                656.0
+              ],
+              [
+                332.0,
+                656.0
+              ],
+              [
+                332.0,
+                710.0
+              ],
+              [
+                244.0,
+                710.0
+              ]
+            ]
+          },
+          {
+            "text": "at",
+            "confidence": 0.9989,
+            "bbox": [
+              [
+                336.0,
+                654.0
+              ],
+              [
+                388.0,
+                654.0
+              ],
+              [
+                388.0,
+                708.0
+              ],
+              [
+                336.0,
+                708.0
+              ]
+            ]
+          },
+          {
+            "text": "buong",
+            "confidence": 0.9962,
+            "bbox": [
+              [
+                394.8492070888625,
+                650.095242533175
+              ],
+              [
+                513.6689686863078,
+                666.8728289535053
+              ],
+              [
+                503.1507929111375,
+                723.904757466825
+              ],
+              [
+                384.33103131369216,
+                708.1271710464947
+              ]
+            ]
+          },
+          {
+            "text": "angkan niya",
+            "confidence": 0.7685,
+            "bbox": [
+              [
+                513.0,
+                655.0
+              ],
+              [
+                739.0,
+                655.0
+              ],
+              [
+                739.0,
+                721.0
+              ],
+              [
+                513.0,
+                721.0
+              ]
+            ]
+          },
+          {
+            "text": "Yung\"",
+            "confidence": 0.4224,
+            "bbox": [
+              [
+                23.867574810534634,
+                710.0922063442613
+              ],
+              [
+                122.54879545824167,
+                726.5274955922965
+              ],
+              [
+                111.13242518946537,
+                784.9077936557387
+              ],
+              [
+                11.451204541758322,
+                768.4725044077035
+              ]
+            ]
+          },
+          {
+            "text": "mga [locano",
+            "confidence": 0.6737,
+            "bbox": [
+              [
+                111.0,
+                719.0
+              ],
+              [
+                331.0,
+                719.0
+              ],
+              [
+                331.0,
+                779.0
+              ],
+              [
+                111.0,
+                779.0
+              ]
+            ]
+          },
+          {
+            "text": "humanda",
+            "confidence": 0.9433,
+            "bbox": [
+              [
+                334.0,
+                718.0
+              ],
+              [
+                506.0,
+                718.0
+              ],
+              [
+                506.0,
+                772.0
+              ],
+              [
+                334.0,
+                772.0
+              ]
+            ]
+          },
+          {
+            "text": "kayo",
+            "confidence": 0.9992,
+            "bbox": [
+              [
+                505.83024238924725,
+                714.0984300965588
+              ],
+              [
+                600.4051724620903,
+                727.1762142909065
+              ],
+              [
+                590.1697576107528,
+                786.9015699034412
+              ],
+              [
+                494.5948275379098,
+                773.8237857090935
+              ]
+            ]
+          },
+          {
+            "text": "marami",
+            "confidence": 0.8257,
+            "bbox": [
+              [
+                588.0,
+                721.0
+              ],
+              [
+                739.0,
+                721.0
+              ],
+              [
+                739.0,
+                775.0
+              ],
+              [
+                588.0,
+                775.0
+              ]
+            ]
+          },
+          {
+            "text": "ring mapupugutan ng ulo sa inyo:",
+            "confidence": 0.6231,
+            "bbox": [
+              [
+                18.0,
+                775.0
+              ],
+              [
+                600.0,
+                775.0
+              ],
+              [
+                600.0,
+                851.0
+              ],
+              [
+                18.0,
+                851.0
+              ]
+            ]
+          },
+          {
+            "text": "Sebasfihn",
+            "confidence": 0.2002,
+            "bbox": [
+              [
+                240.0,
+                842.0
+              ],
+              [
+                352.0,
+                842.0
+              ],
+              [
+                352.0,
+                874.0
+              ],
+              [
+                240.0,
+                874.0
+              ]
+            ]
+          },
+          {
+            "text": "[:yöv\"wvë%Cy,",
+            "confidence": 0.0033,
+            "bbox": [
+              [
+                290.0,
+                872.0
+              ],
+              [
+                466.0,
+                872.0
+              ],
+              [
+                466.0,
+                900.0
+              ],
+              [
+                290.0,
+                900.0
+              ]
+            ]
+          },
+          {
+            "text": "DIeí?",
+            "confidence": 0.0851,
+            "bbox": [
+              [
+                430.0,
+                842.0
+              ],
+              [
+                516.0,
+                842.0
+              ],
+              [
+                516.0,
+                874.0
+              ],
+              [
+                430.0,
+                874.0
+              ]
+            ]
+          },
+          {
+            "text": "\"Baste\"",
+            "confidence": 0.6971,
+            "bbox": [
+              [
+                353.0,
+                841.0
+              ],
+              [
+                429.0,
+                841.0
+              ],
+              [
+                429.0,
+                877.0
+              ],
+              [
+                353.0,
+                877.0
+              ]
+            ]
+          }
+        ],
+        "image_authenticity_checked": false
+      },
+      "timings": {
+        "request_id": "b89bbed559fe417189e0cfc0befdfaa4",
+        "request_type": "verify_image",
+        "stages": [
+          {
+            "stage": "image.decode_and_validate",
+            "duration_seconds": 0.0013,
+            "status": "ok"
+          },
+          {
+            "stage": "image.extract_text_from_image",
+            "duration_seconds": 4.4593,
+            "status": "ok"
+          },
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0086,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 1.6167,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 1.9514,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0003,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "text.coverage_scope",
+            "duration_seconds": 0.0003,
+            "status": "ok"
+          },
+          {
+            "stage": "image.verify_extracted_text_total",
+            "duration_seconds": 3.5807,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_image.total",
+            "duration_seconds": 8.0419,
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    "input_type": "image",
+    "ocr_status": "ok",
+    "ocr_text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
+    "ocr_confidence": 0.6491,
+    "ocr_word_count": 33,
+    "ocr_low_confidence": false,
+    "ocr_warnings": [],
+    "ocr_regions": [
+      {
+        "text": "EGMN",
+        "confidence": 0.5485,
+        "bbox": [
+          [
+            306.0,
+            528.0
+          ],
+          [
+            464.0,
+            528.0
+          ],
+          [
+            464.0,
+            600.0
+          ],
+          [
+            306.0,
+            600.0
+          ]
+        ]
+      },
+      {
+        "text": "'Pagbalik namin sa Malacanang pupugutan",
+        "confidence": 0.7955,
+        "bbox": [
+          [
+            9.0,
+            590.0
+          ],
+          [
+            751.0,
+            590.0
+          ],
+          [
+            751.0,
+            667.0
+          ],
+          [
+            9.0,
+            667.0
+          ]
+        ]
+      },
+      {
+        "text": "ko ng ulo",
+        "confidence": 0.8326,
+        "bbox": [
+          [
+            21.0,
+            655.0
+          ],
+          [
+            193.0,
+            655.0
+          ],
+          [
+            193.0,
+            719.0
+          ],
+          [
+            21.0,
+            719.0
+          ]
+        ]
+      },
+      {
+        "text": "si",
+        "confidence": 0.9929,
+        "bbox": [
+          [
+            197.0,
+            661.0
+          ],
+          [
+            239.0,
+            661.0
+          ],
+          [
+            239.0,
+            707.0
+          ],
+          [
+            197.0,
+            707.0
+          ]
+        ]
+      },
+      {
+        "text": "BBM'",
+        "confidence": 0.6024,
+        "bbox": [
+          [
+            244.0,
+            656.0
+          ],
+          [
+            332.0,
+            656.0
+          ],
+          [
+            332.0,
+            710.0
+          ],
+          [
+            244.0,
+            710.0
+          ]
+        ]
+      },
+      {
+        "text": "at",
+        "confidence": 0.9989,
+        "bbox": [
+          [
+            336.0,
+            654.0
+          ],
+          [
+            388.0,
+            654.0
+          ],
+          [
+            388.0,
+            708.0
+          ],
+          [
+            336.0,
+            708.0
+          ]
+        ]
+      },
+      {
+        "text": "buong",
+        "confidence": 0.9962,
+        "bbox": [
+          [
+            394.8492070888625,
+            650.095242533175
+          ],
+          [
+            513.6689686863078,
+            666.8728289535053
+          ],
+          [
+            503.1507929111375,
+            723.904757466825
+          ],
+          [
+            384.33103131369216,
+            708.1271710464947
+          ]
+        ]
+      },
+      {
+        "text": "angkan niya",
+        "confidence": 0.7685,
+        "bbox": [
+          [
+            513.0,
+            655.0
+          ],
+          [
+            739.0,
+            655.0
+          ],
+          [
+            739.0,
+            721.0
+          ],
+          [
+            513.0,
+            721.0
+          ]
+        ]
+      },
+      {
+        "text": "Yung\"",
+        "confidence": 0.4224,
+        "bbox": [
+          [
+            23.867574810534634,
+            710.0922063442613
+          ],
+          [
+            122.54879545824167,
+            726.5274955922965
+          ],
+          [
+            111.13242518946537,
+            784.9077936557387
+          ],
+          [
+            11.451204541758322,
+            768.4725044077035
+          ]
+        ]
+      },
+      {
+        "text": "mga [locano",
+        "confidence": 0.6737,
+        "bbox": [
+          [
+            111.0,
+            719.0
+          ],
+          [
+            331.0,
+            719.0
+          ],
+          [
+            331.0,
+            779.0
+          ],
+          [
+            111.0,
+            779.0
+          ]
+        ]
+      },
+      {
+        "text": "humanda",
+        "confidence": 0.9433,
+        "bbox": [
+          [
+            334.0,
+            718.0
+          ],
+          [
+            506.0,
+            718.0
+          ],
+          [
+            506.0,
+            772.0
+          ],
+          [
+            334.0,
+            772.0
+          ]
+        ]
+      },
+      {
+        "text": "kayo",
+        "confidence": 0.9992,
+        "bbox": [
+          [
+            505.83024238924725,
+            714.0984300965588
+          ],
+          [
+            600.4051724620903,
+            727.1762142909065
+          ],
+          [
+            590.1697576107528,
+            786.9015699034412
+          ],
+          [
+            494.5948275379098,
+            773.8237857090935
+          ]
+        ]
+      },
+      {
+        "text": "marami",
+        "confidence": 0.8257,
+        "bbox": [
+          [
+            588.0,
+            721.0
+          ],
+          [
+            739.0,
+            721.0
+          ],
+          [
+            739.0,
+            775.0
+          ],
+          [
+            588.0,
+            775.0
+          ]
+        ]
+      },
+      {
+        "text": "ring mapupugutan ng ulo sa inyo:",
+        "confidence": 0.6231,
+        "bbox": [
+          [
+            18.0,
+            775.0
+          ],
+          [
+            600.0,
+            775.0
+          ],
+          [
+            600.0,
+            851.0
+          ],
+          [
+            18.0,
+            851.0
+          ]
+        ]
+      },
+      {
+        "text": "Sebasfihn",
+        "confidence": 0.2002,
+        "bbox": [
+          [
+            240.0,
+            842.0
+          ],
+          [
+            352.0,
+            842.0
+          ],
+          [
+            352.0,
+            874.0
+          ],
+          [
+            240.0,
+            874.0
+          ]
+        ]
+      },
+      {
+        "text": "[:yöv\"wvë%Cy,",
+        "confidence": 0.0033,
+        "bbox": [
+          [
+            290.0,
+            872.0
+          ],
+          [
+            466.0,
+            872.0
+          ],
+          [
+            466.0,
+            900.0
+          ],
+          [
+            290.0,
+            900.0
+          ]
+        ]
+      },
+      {
+        "text": "DIeí?",
+        "confidence": 0.0851,
+        "bbox": [
+          [
+            430.0,
+            842.0
+          ],
+          [
+            516.0,
+            842.0
+          ],
+          [
+            516.0,
+            874.0
+          ],
+          [
+            430.0,
+            874.0
+          ]
+        ]
+      },
+      {
+        "text": "\"Baste\"",
+        "confidence": 0.6971,
+        "bbox": [
+          [
+            353.0,
+            841.0
+          ],
+          [
+            429.0,
+            841.0
+          ],
+          [
+            429.0,
+            877.0
+          ],
+          [
+            353.0,
+            877.0
+          ]
+        ]
+      }
+    ],
+    "image_authenticity_checked": false
+  },
+  "post": {
+    "id": "H20",
+    "page": "Tito Pacheco Gonzaga",
+    "url": "https://www.facebook.com/share/p/191xxQBDYQ/",
+    "date": "2026-09-09",
+    "category": "false_claim",
+    "notes": "",
+    "text": "",
+    "image": "images/H20.jpg",
+    "image_text": "\"Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM at buong angkan niya. Yung mga Ilocano, humanda kayo marami ring mapupugutan ng ulo sa inyo.\" Sebastian \"Baste\" Duterte Mayor, Davao City",
+    "expected": {
+      "overall": "Refuted",
+      "claims": [],
+      "references": [
+        "https://verafiles.org/articles/fact-check-baste-duterte-did-not-threaten-to-behead-bbm-his-family-ilocanos"
+      ]
+    },
+    "expected_fingerprint": "35555233c332156406f2084be2b405e81c373f0632c96fc9117d0cab1830607a"
+  }
+}
