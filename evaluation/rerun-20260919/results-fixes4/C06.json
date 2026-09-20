@@ -1,0 +1,4138 @@
+{
+  "case_id": "C06",
+  "input_sha256": "56d1690877a69fb1c6df9da82772fd04c6a9a74c4c706ca56f8f8b67502db406",
+  "started_utc": "2026-09-20T03:41:17.058253+00:00",
+  "http_status": 200,
+  "seconds": 73.467,
+  "trace_id": "935c0c67da7242f5afbfb725748b8fd2",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-platform-source-v28",
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 3 extracted claims individually.",
+    "original_text": "'HINDI AKO NABABAGAY SA MUNDONG ITO'\nLOOK: Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.\nIn a Facebook post, Padilla endorsed several allies to run as Vice President Sara Duterte's running mate instead, including Sens. Alan Peter Cayetano, Imee Marcos, Bong Go, and Ronald \"Bato\" dela Rosa, along with Rep. Rodante Marcoleta and former legal counsel Salvador Panelo.\n\"Halata naman po na hindi ako nababagay sa mundong ito,\" Padilla said, concluding with: \"Revolutionaries do not sit on thrones; they tear them down.\"",
+    "translated_text": "'HINDI AKO NABABAGAY SA MUNDONG ITO'\nLOOK: Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.\nIn a Facebook post, Padilla endorsed several allies to run as Vice President Sara Duterte's running mate instead, including Sens. Alan Peter Cayetano, Imee Marcos, Bong Go, and Ronald \"Bato\" dela Rosa, along with Rep. Rodante Marcoleta and former legal counsel Salvador Panelo.\n\"Halata naman po na hindi ako nababagay sa mundong ito,\" Padilla said, concluding with: \"Revolutionaries do not sit on thrones; they tear them down.\"",
+    "detected_language": "english",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 3,
+    "claim_extraction_status": "ok",
+    "post_type": "unclear",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_with_caution",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": true,
+    "ignored_segments": [
+      {
+        "text": "HINDI AKO NABABAGAY SA MUNDONG ITO",
+        "segment_type": "uncheckable"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+        "normalized_claim": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Sen. Robinhood “Robin” Padilla",
+          "role": null,
+          "statement": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+          "source": "Facebook post",
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [
+            "role",
+            "date"
+          ],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "absent",
+            "source": "grounded",
+            "program": "absent",
+            "date": "not_in_input"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+              "status": "not_supported",
+              "citations": [],
+              "event_group_id": 0,
+              "context": {
+                "start": 0,
+                "end": 202,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Sen. Robinhood “Robin” Padilla",
+                      "start": 0,
+                      "end": 30
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "he",
+                      "start": 67,
+                      "end": 69
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "announced",
+                      "start": 31,
+                      "end": 40
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "wants to focus on raising his young children",
+                      "start": 125,
+                      "end": 169
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections",
+                      "start": 0,
+                      "end": 113
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "he wants to focus on raising his young children",
+                      "start": 122,
+                      "end": 169
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "on Friday, Sept. 18",
+                      "start": 41,
+                      "end": 60
+                    }
+                  ],
+                  "negation": [
+                    {
+                      "origin": "claim",
+                      "quote": "no plans of running in future elections",
+                      "start": 74,
+                      "end": 113
+                    }
+                  ],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "Sen. Robinhood “Robin” Padilla",
+                      "start": 0,
+                      "end": 30
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "he",
+                      "start": 67,
+                      "end": 69
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "ungrounded_dropped": [
+                  {
+                    "field": "action",
+                    "origin": "claim",
+                    "quote": "wants to focus on living a quiet Islamic life"
+                  },
+                  {
+                    "field": "event",
+                    "origin": "claim",
+                    "quote": "he wants to focus on living a quiet Islamic life"
+                  }
+                ],
+                "component_id": 0,
+                "assertion": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 202
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_rejections": [
+                {
+                  "component_id": 0,
+                  "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+                  "status": "uncertain",
+                  "reason": "Selected identity passages do not establish the required event time."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+                  "status": "uncertain",
+                  "reason": "Selected identity passages do not establish the required event time."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+                  "status": "uncertain",
+                  "reason": "Selected identity passages do not establish the required event time."
+                }
+              ]
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "entailment_checks": [],
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+              "sources": {
+                "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028": {
+                  "status": "uncertain",
+                  "passage_ids": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+                      "quote": "CEBU, Philippines — Gipahibalo ni Sen. Robin Padilla nga wala na siyay plano nga modagan pag-usab sa bisan unsang posisyon sa 2028 elections, ug magpokus na sa iyang pamilya ."
+                    },
+                    {
+                      "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+                      "quote": "Sa iyang Facebook post, matud sa Senador nga gagmay pa ang iyang mga anak ug gusto niya nga makabaton og malinawon nga kinabuhi."
+                    },
+                    {
+                      "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+                      "quote": "“Wala na po akong planong tumakbo sa pulitika. Maliliit pa ang aking mga anak, at isang tahimik na buhay-Islami ang aking pinapangarap at minimithi,” matud niya."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        18
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                },
+                "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte": {
+                  "status": "uncertain",
+                  "passage_ids": [
+                    20
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+                      "quote": "Senator Robin Padilla said he no longer plans to run for public office, citing his young children and his desire for a quiet Islamic life."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        18
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                },
+                "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/": {
+                  "status": "uncertain",
+                  "passage_ids": [
+                    28,
+                    29,
+                    30
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+                      "quote": "Tila buo na ang desisyon ni Sen. Robin Padilla na huwag nang lumahok pa sa politika pagkatapos ng kaniyang termino."
+                    },
+                    {
+                      "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+                      "quote": "Sa isang Facebook post nitong Biyernes, Setyembre 18, sinabi niyang tahimik na buhay-Islami lang daw ang kaniyang hinahangad."
+                    },
+                    {
+                      "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+                      "quote": "“Wala na po akong planong tumakbo sa pulitika."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        18
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                }
+              }
+            }
+          ],
+          "original_claim": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-padilla-did-not-admit-getting-turned-on-by-vp-sara-graphic-is-fake",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-reported-sightings-of-sara-duterte-visiting-milf-camp-photos-are-ai-generated",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-sara-duterte-mugshot-ai-generated",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/tambay-philippine-cooperatives-senatorial-election/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/elections/sara-duterte-impeachment-barely-registers-campaigns-barmm-nears/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/22/padilla-to-prosecution-in-vp-sara-s-impeachment-sana-wag-kayong-one-sided-1720",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/in-privilege-speech-padilla-argues-vp-duterte-has-immunity-from-suit-1743",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/robin-padilla-doj-subpoena-dela-rosa-escape-1002",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/995152/robin-padilla-says-he-believes-in-istian-communism-muslim-muakhat/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001151/live-updates-arrest-warrant-vs-sara-duterte-september-4-2026/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/977311/robin-padilla-tatakbong-vp-candidate-sa-2028-kapag-inutos-ni-ex-pres-duterte/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/418456/kahit-sunugin-mo-ko-mangangamoy-rodrigo-duterte-ako",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305586/robin-padilla-subpoenaed-over-obstruction-of-justice-complaint",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2260675/robin-padilla-lashes-out-at-critics-over-sara-dutertes-kill-remark-video",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/banat/opinyon/2026/09/17/2556824/saln-ug-basura",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/07/16/angel-sa-pagiging-komunista-ni-robin-nasaan-ka-nung-panahong-nirered-tag-ako/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1171946",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1230085",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/press-releases/2022/06/19/statement-on-the-inauguration-of-mayor-inday-sara-duterte-carpio-as-vice-president",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2022/06/20/thousands-flock-to-watch-inday-sara-oath-taking",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/impeachment-court-suspends-trial-tomorrow-sept-9-for-exhibit-marking",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/robin-padilla-open-to-vp-bid-with-sara-duterte-in-2028-if-asked-by-ex-pres-duterte",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/minority-duty-bound-to-block-impeachment",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bam-aquino-lp-shut-down-robin-padilla-on-use-of-aliases",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sara-imee-versus-leni-risa-in-2028",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-padilla-did-not-admit-getting-turned-on-by-vp-sara-graphic-is-fake",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-reported-sightings-of-sara-duterte-visiting-milf-camp-photos-are-ai-generated",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-sara-duterte-mugshot-ai-generated",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/people/tambay-philippine-cooperatives-senatorial-election/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/elections/sara-duterte-impeachment-barely-registers-campaigns-barmm-nears/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/22/padilla-to-prosecution-in-vp-sara-s-impeachment-sana-wag-kayong-one-sided-1720",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/in-privilege-speech-padilla-argues-vp-duterte-has-immunity-from-suit-1743",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/robin-padilla-doj-subpoena-dela-rosa-escape-1002",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/995152/robin-padilla-says-he-believes-in-istian-communism-muslim-muakhat/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001151/live-updates-arrest-warrant-vs-sara-duterte-september-4-2026/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/977311/robin-padilla-tatakbong-vp-candidate-sa-2028-kapag-inutos-ni-ex-pres-duterte/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://bandera.inquirer.net/418456/kahit-sunugin-mo-ko-mangangamoy-rodrigo-duterte-ako",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305586/robin-padilla-subpoenaed-over-obstruction-of-justice-complaint",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2260675/robin-padilla-lashes-out-at-critics-over-sara-dutertes-kill-remark-video",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/banat/opinyon/2026/09/17/2556824/saln-ug-basura",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/07/16/angel-sa-pagiging-komunista-ni-robin-nasaan-ka-nung-panahong-nirered-tag-ako/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1171946",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1230085",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/press-releases/2022/06/19/statement-on-the-inauguration-of-mayor-inday-sara-duterte-carpio-as-vice-president",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2022/06/20/thousands-flock-to-watch-inday-sara-oath-taking",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/impeachment-court-suspends-trial-tomorrow-sept-9-for-exhibit-marking",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/robin-padilla-open-to-vp-bid-with-sara-duterte-in-2028-if-asked-by-ex-pres-duterte",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/minority-duty-bound-to-block-impeachment",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bam-aquino-lp-shut-down-robin-padilla-on-use-of-aliases",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sara-imee-versus-leni-risa-in-2028",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": true,
+        "quote_paraphrase": {
+          "status": "ok",
+          "paraphrase": "Sen. Robinhood \"Robin\" Padilla announced on September 18 that he will not run in future elections and intends to focus on raising his young children and living a quiet Islamic life.",
+          "method": "openai",
+          "error": null,
+          "used_for_scoring": true
+        },
+        "scoring_claim": "Sen. Robinhood \"Robin\" Padilla announced on September 18 that he will not run in future elections and intends to focus on raising his young children and living a quiet Islamic life.",
+        "search_query": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+        "event_search_query": "Sara Duterte HINDI AKO NABABAGAY SA MUNDONG ITO' LOOK Sen. Robinhood Padilla Friday Sept Islamic Facebook",
+        "retrieval_strategy": "event_pool_only",
+        "risk_tags": [],
+        "claim_hash": "cfbd684b904e99da0cc270d7e2eee51075e67e21925ebde48597f74d6385f1f5",
+        "cache_version": "week7-platform-source-v28",
+        "verdict": "Not Found",
+        "message": "IRIS did not find enough approved-source evidence confirming that Sen. Robinhood “Robin” Padilla made this statement with Facebook post attribution.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 92,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence confirms Sen. Padilla's announcement about not running in future elections.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+        "normalized_claim": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Sen. Robinhood “Robin” Padilla",
+          "role": null,
+          "statement": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+          "source": "Facebook post",
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [
+            "role",
+            "date"
+          ],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "absent",
+            "source": "grounded",
+            "program": "absent",
+            "date": "not_in_input"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+              "status": "not_supported",
+              "citations": [],
+              "event_group_id": 0,
+              "context": {
+                "start": 0,
+                "end": 203,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Padilla",
+                      "start": 0,
+                      "end": 7
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo",
+                      "start": 96,
+                      "end": 202
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "endorsed several allies to run as Vice President Sara Duterte's running mate",
+                      "start": 8,
+                      "end": 84
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "to run as Vice President Sara Duterte's running mate",
+                      "start": 32,
+                      "end": 84
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+                      "start": 8,
+                      "end": 203
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate",
+                      "start": 0,
+                      "end": 84
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo",
+                      "start": 86,
+                      "end": 202
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "source_context",
+                      "quote": "on Friday, Sept. 18",
+                      "start": 84,
+                      "end": 103
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": [
+                    {
+                      "origin": "source_context",
+                      "quote": "Padilla",
+                      "start": 66,
+                      "end": 73
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 203
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim",
+                "ungrounded_dropped": [
+                  {
+                    "field": "event",
+                    "origin": "source_context",
+                    "quote": "In a Facebook post, Padilla endorsed several allies to run as Vice President Sara Duterte's running mate instead, including Sens. Alan Peter Cayetano, Imee Marcos, Bong Go, and Ronald \"Bato\" dela Rosa, along with Rep. Rodante Marcoleta and former legal counsel Salvador Panelo."
+                  }
+                ],
+                "context_reviewed": true
+              },
+              "event_rejections": [
+                {
+                  "component_id": 0,
+                  "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+                  "status": "uncertain",
+                  "reason": "Selected identity passages do not establish the required event time."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+                  "status": "uncertain",
+                  "reason": "Selected identity passages do not establish the required event time."
+                }
+              ]
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "entailment_checks": [],
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+              "sources": {
+                "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options": {
+                  "status": "uncertain",
+                  "passage_ids": [
+                    8,
+                    9
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+                      "quote": "Robin instead recommended Go and Panelo to Duterte's vice president, as well as other Sens."
+                    },
+                    {
+                      "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+                      "quote": "Alan Peter Cayetano, Imee Marcos, Ronald dela Rosa and Rodante Marcoleta."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        18
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                },
+                "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte": {
+                  "status": "uncertain",
+                  "passage_ids": [
+                    28
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+                      "quote": "Padilla named Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald dela Rosa, Rodante Marcoleta, and Salvador Panelo as potential running mates for Vice President Sara Duterte."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        18
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                }
+              }
+            }
+          ],
+          "original_claim": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-padilla-did-not-admit-getting-turned-on-by-vp-sara-graphic-is-fake",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-reported-sightings-of-sara-duterte-visiting-milf-camp-photos-are-ai-generated",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-sara-duterte-mugshot-ai-generated",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/tambay-philippine-cooperatives-senatorial-election/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/elections/sara-duterte-impeachment-barely-registers-campaigns-barmm-nears/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/22/padilla-to-prosecution-in-vp-sara-s-impeachment-sana-wag-kayong-one-sided-1720",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/in-privilege-speech-padilla-argues-vp-duterte-has-immunity-from-suit-1743",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/robin-padilla-doj-subpoena-dela-rosa-escape-1002",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/995152/robin-padilla-says-he-believes-in-istian-communism-muslim-muakhat/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001151/live-updates-arrest-warrant-vs-sara-duterte-september-4-2026/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/977311/robin-padilla-tatakbong-vp-candidate-sa-2028-kapag-inutos-ni-ex-pres-duterte/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/418456/kahit-sunugin-mo-ko-mangangamoy-rodrigo-duterte-ako",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305586/robin-padilla-subpoenaed-over-obstruction-of-justice-complaint",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2260675/robin-padilla-lashes-out-at-critics-over-sara-dutertes-kill-remark-video",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/banat/opinyon/2026/09/17/2556824/saln-ug-basura",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/07/16/angel-sa-pagiging-komunista-ni-robin-nasaan-ka-nung-panahong-nirered-tag-ako/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1171946",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1230085",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/press-releases/2022/06/19/statement-on-the-inauguration-of-mayor-inday-sara-duterte-carpio-as-vice-president",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2022/06/20/thousands-flock-to-watch-inday-sara-oath-taking",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/impeachment-court-suspends-trial-tomorrow-sept-9-for-exhibit-marking",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/robin-padilla-open-to-vp-bid-with-sara-duterte-in-2028-if-asked-by-ex-pres-duterte",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/minority-duty-bound-to-block-impeachment",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bam-aquino-lp-shut-down-robin-padilla-on-use-of-aliases",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sara-imee-versus-leni-risa-in-2028",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-padilla-did-not-admit-getting-turned-on-by-vp-sara-graphic-is-fake",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-reported-sightings-of-sara-duterte-visiting-milf-camp-photos-are-ai-generated",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-sara-duterte-mugshot-ai-generated",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/people/tambay-philippine-cooperatives-senatorial-election/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/elections/sara-duterte-impeachment-barely-registers-campaigns-barmm-nears/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/22/padilla-to-prosecution-in-vp-sara-s-impeachment-sana-wag-kayong-one-sided-1720",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/in-privilege-speech-padilla-argues-vp-duterte-has-immunity-from-suit-1743",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/robin-padilla-doj-subpoena-dela-rosa-escape-1002",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/995152/robin-padilla-says-he-believes-in-istian-communism-muslim-muakhat/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001151/live-updates-arrest-warrant-vs-sara-duterte-september-4-2026/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/977311/robin-padilla-tatakbong-vp-candidate-sa-2028-kapag-inutos-ni-ex-pres-duterte/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://bandera.inquirer.net/418456/kahit-sunugin-mo-ko-mangangamoy-rodrigo-duterte-ako",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305586/robin-padilla-subpoenaed-over-obstruction-of-justice-complaint",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2260675/robin-padilla-lashes-out-at-critics-over-sara-dutertes-kill-remark-video",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/banat/opinyon/2026/09/17/2556824/saln-ug-basura",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/07/16/angel-sa-pagiging-komunista-ni-robin-nasaan-ka-nung-panahong-nirered-tag-ako/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1171946",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1230085",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/press-releases/2022/06/19/statement-on-the-inauguration-of-mayor-inday-sara-duterte-carpio-as-vice-president",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2022/06/20/thousands-flock-to-watch-inday-sara-oath-taking",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/impeachment-court-suspends-trial-tomorrow-sept-9-for-exhibit-marking",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/robin-padilla-open-to-vp-bid-with-sara-duterte-in-2028-if-asked-by-ex-pres-duterte",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/minority-duty-bound-to-block-impeachment",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bam-aquino-lp-shut-down-robin-padilla-on-use-of-aliases",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sara-imee-versus-leni-risa-in-2028",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": true,
+        "quote_paraphrase": {
+          "status": "ok",
+          "paraphrase": "Padilla endorsed several allies, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo, to run as Vice President Sara Duterte's running mate.",
+          "method": "openai",
+          "error": null,
+          "used_for_scoring": true
+        },
+        "scoring_claim": "Padilla endorsed several allies, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo, to run as Vice President Sara Duterte's running mate.",
+        "search_query": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+        "event_search_query": "Sara Duterte HINDI AKO NABABAGAY SA MUNDONG ITO' LOOK Sen. Robinhood Padilla Friday Sept Islamic Facebook",
+        "retrieval_strategy": "event_pool_only",
+        "risk_tags": [],
+        "claim_hash": "d6fea1aa1960822283e85bf23db16231f2fe48ec862bc939ed74b90cc13df9c6",
+        "cache_version": "week7-platform-source-v28",
+        "verdict": "Not Found",
+        "message": "IRIS did not find enough approved-source evidence confirming that Sen. Robinhood “Robin” Padilla made this statement with Facebook post attribution.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 92,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not confirm Padilla endorsing specific allies for Sara Duterte's running mate.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 3,
+        "claim_text": "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito. Revolutionaries do not sit on thrones; they tear them down.\"",
+        "normalized_claim": "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito. Revolutionaries do not sit on thrones; they tear them down.\"",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Sen. Robinhood “Robin” Padilla",
+          "role": null,
+          "statement": "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito. Revolutionaries do not sit on thrones; they tear them down.\"",
+          "source": "Facebook post",
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [
+            "role",
+            "date"
+          ],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "absent",
+            "source": "grounded",
+            "program": "absent",
+            "date": "not_in_input"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito.",
+              "status": "not_supported",
+              "citations": [],
+              "event_group_id": 0,
+              "context": {
+                "start": 0,
+                "end": 69,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Padilla",
+                      "start": 0,
+                      "end": 7
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "said",
+                      "start": 8,
+                      "end": 12
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "said: \"Halata naman po na hindi ako nababagay sa mundong ito.",
+                      "start": 8,
+                      "end": 69
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Halata naman po na hindi ako nababagay sa mundong ito.",
+                      "start": 15,
+                      "end": 69
+                    },
+                    {
+                      "origin": "source_context",
+                      "quote": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+                      "start": 43,
+                      "end": 245
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "source_context",
+                      "quote": "on Friday, Sept. 18",
+                      "start": 84,
+                      "end": 103
+                    }
+                  ],
+                  "negation": [
+                    {
+                      "origin": "claim",
+                      "quote": "hindi",
+                      "start": 34,
+                      "end": 39
+                    }
+                  ],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "Padilla",
+                      "start": 0,
+                      "end": 7
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 69
+                },
+                "context_is_evidence": false,
+                "context_reviewed": true
+              },
+              "event_rejections": [
+                {
+                  "component_id": 0,
+                  "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+                  "status": "uncertain",
+                  "reason": "Selected identity passages do not establish the required event time."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+                  "status": "uncertain",
+                  "reason": "Selected identity passages do not establish the required event time."
+                },
+                {
+                  "component_id": 0,
+                  "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+                  "status": "uncertain",
+                  "reason": "Selected identity passages do not establish the required event time."
+                }
+              ]
+            },
+            {
+              "component": "Revolutionaries do not sit on thrones; they tear them down.\"",
+              "status": "not_supported",
+              "citations": [],
+              "event_group_id": 0,
+              "context": {
+                "start": 70,
+                "end": 130,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Revolutionaries",
+                      "start": 70,
+                      "end": 85
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "Padilla",
+                      "start": 0,
+                      "end": 7
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "do not sit on thrones; they tear them down.",
+                      "start": 86,
+                      "end": 129
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "Revolutionaries do not sit on thrones; they tear them down.\"",
+                      "start": 70,
+                      "end": 130
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Revolutionaries do not sit on thrones; they tear them down.",
+                      "start": 70,
+                      "end": 129
+                    },
+                    {
+                      "origin": "source_context",
+                      "quote": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+                      "start": 43,
+                      "end": 245
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "source_context",
+                      "quote": "on Friday, Sept. 18",
+                      "start": 84,
+                      "end": 103
+                    }
+                  ],
+                  "negation": [
+                    {
+                      "origin": "claim",
+                      "quote": "do not",
+                      "start": 86,
+                      "end": 92
+                    }
+                  ],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "Padilla",
+                      "start": 0,
+                      "end": 7
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  1
+                ],
+                "component_id": 1,
+                "assertion": "Revolutionaries do not sit on thrones; they tear them down.\"",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 70,
+                  "end": 130
+                },
+                "context_is_evidence": false,
+                "context_reviewed": true
+              },
+              "event_rejections": [
+                {
+                  "component_id": 1,
+                  "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+                  "status": "uncertain",
+                  "reason": "Selected identity passages do not establish the required event time."
+                },
+                {
+                  "component_id": 1,
+                  "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+                  "status": "uncertain",
+                  "reason": "Selected identity passages do not establish the required event time."
+                }
+              ]
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 2 factual components.",
+          "entailment_checks": [],
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0,
+                1
+              ],
+              "referent": "Senator Robin Padilla's statement about not belonging in politics and quoting, \"Revolutionaries do not sit on thrones; they tear them down.\" in the context of announcing no plans to run for office again.",
+              "sources": {
+                "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options": {
+                  "status": "uncertain",
+                  "passage_ids": [
+                    10
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+                      "quote": "\"Maraming salamat po sa napakaraming kaibigan na nagtutulak sa aking pananatili sa pulitika, pero halata naman po na hindi ako nababagay sa mundong ito,\" Padilla added, ending with the quote \"Revolutionaries do not sit on thrones; they tear them down.\""
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        18
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                },
+                "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte": {
+                  "status": "uncertain",
+                  "passage_ids": [
+                    27,
+                    29
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+                      "quote": "“Maraming salamat po sa napakaraming kaibigan na nagtutulak sa aking pananatili sa pulitika, pero halata naman po na hindi ako nababagay sa mundong ito (Thank you very much to the many friends who have encouraged me to remain in politics, but it is clear that I am not suited for this world),” he said."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+                      "quote": "He thanked supporters who urged him to stay in politics but said he was not suited for the political world, ending his post with a quote about revolutionaries."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        18
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                },
+                "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028": {
+                  "status": "uncertain",
+                  "passage_ids": [
+                    39
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+                      "quote": "“Hala naman po na hindi ako nababagay sa mundong ito,” niya pa."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        18
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                }
+              }
+            }
+          ],
+          "original_claim": "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito. Revolutionaries do not sit on thrones; they tear them down.\"",
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-padilla-did-not-admit-getting-turned-on-by-vp-sara-graphic-is-fake",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-reported-sightings-of-sara-duterte-visiting-milf-camp-photos-are-ai-generated",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-sara-duterte-mugshot-ai-generated",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/tambay-philippine-cooperatives-senatorial-election/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/elections/sara-duterte-impeachment-barely-registers-campaigns-barmm-nears/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/22/padilla-to-prosecution-in-vp-sara-s-impeachment-sana-wag-kayong-one-sided-1720",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/in-privilege-speech-padilla-argues-vp-duterte-has-immunity-from-suit-1743",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/robin-padilla-doj-subpoena-dela-rosa-escape-1002",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/995152/robin-padilla-says-he-believes-in-istian-communism-muslim-muakhat/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001151/live-updates-arrest-warrant-vs-sara-duterte-september-4-2026/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/977311/robin-padilla-tatakbong-vp-candidate-sa-2028-kapag-inutos-ni-ex-pres-duterte/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/418456/kahit-sunugin-mo-ko-mangangamoy-rodrigo-duterte-ako",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305586/robin-padilla-subpoenaed-over-obstruction-of-justice-complaint",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2260675/robin-padilla-lashes-out-at-critics-over-sara-dutertes-kill-remark-video",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/banat/opinyon/2026/09/17/2556824/saln-ug-basura",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/07/16/angel-sa-pagiging-komunista-ni-robin-nasaan-ka-nung-panahong-nirered-tag-ako/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1171946",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1230085",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/press-releases/2022/06/19/statement-on-the-inauguration-of-mayor-inday-sara-duterte-carpio-as-vice-president",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2022/06/20/thousands-flock-to-watch-inday-sara-oath-taking",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/impeachment-court-suspends-trial-tomorrow-sept-9-for-exhibit-marking",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/robin-padilla-open-to-vp-bid-with-sara-duterte-in-2028-if-asked-by-ex-pres-duterte",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/minority-duty-bound-to-block-impeachment",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bam-aquino-lp-shut-down-robin-padilla-on-use-of-aliases",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sara-imee-versus-leni-risa-in-2028",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-padilla-did-not-admit-getting-turned-on-by-vp-sara-graphic-is-fake",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-reported-sightings-of-sara-duterte-visiting-milf-camp-photos-are-ai-generated",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-sara-duterte-mugshot-ai-generated",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/people/tambay-philippine-cooperatives-senatorial-election/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/elections/sara-duterte-impeachment-barely-registers-campaigns-barmm-nears/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/22/padilla-to-prosecution-in-vp-sara-s-impeachment-sana-wag-kayong-one-sided-1720",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/in-privilege-speech-padilla-argues-vp-duterte-has-immunity-from-suit-1743",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/robin-padilla-doj-subpoena-dela-rosa-escape-1002",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/995152/robin-padilla-says-he-believes-in-istian-communism-muslim-muakhat/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001151/live-updates-arrest-warrant-vs-sara-duterte-september-4-2026/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/977311/robin-padilla-tatakbong-vp-candidate-sa-2028-kapag-inutos-ni-ex-pres-duterte/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://bandera.inquirer.net/418456/kahit-sunugin-mo-ko-mangangamoy-rodrigo-duterte-ako",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2305586/robin-padilla-subpoenaed-over-obstruction-of-justice-complaint",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2260675/robin-padilla-lashes-out-at-critics-over-sara-dutertes-kill-remark-video",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/banat/opinyon/2026/09/17/2556824/saln-ug-basura",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/07/16/angel-sa-pagiging-komunista-ni-robin-nasaan-ka-nung-panahong-nirered-tag-ako/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1171946",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1230085",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/press-releases/2022/06/19/statement-on-the-inauguration-of-mayor-inday-sara-duterte-carpio-as-vice-president",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2022/06/20/thousands-flock-to-watch-inday-sara-oath-taking",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/impeachment-court-suspends-trial-tomorrow-sept-9-for-exhibit-marking",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/robin-padilla-open-to-vp-bid-with-sara-duterte-in-2028-if-asked-by-ex-pres-duterte",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/minority-duty-bound-to-block-impeachment",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bam-aquino-lp-shut-down-robin-padilla-on-use-of-aliases",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sara-imee-versus-leni-risa-in-2028",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "platform_reference_not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": true,
+        "quote_paraphrase": {
+          "status": "ok",
+          "paraphrase": "Padilla stated that it is evident he does not belong in this world, as revolutionaries do not sit on thrones but rather tear them down.",
+          "method": "openai",
+          "error": null,
+          "used_for_scoring": true
+        },
+        "scoring_claim": "Padilla stated that it is evident he does not belong in this world, as revolutionaries do not sit on thrones but rather tear them down.",
+        "search_query": "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito. Revolutionaries do not sit on thrones; they tear them down.\"",
+        "event_search_query": "Sara Duterte HINDI AKO NABABAGAY SA MUNDONG ITO' LOOK Sen. Robinhood Padilla Friday Sept Islamic Facebook",
+        "retrieval_strategy": "event_pool_only",
+        "risk_tags": [],
+        "claim_hash": "49764cf34706a66f94edac94b75e98680cc35906f13e05605fdac62e6b33e66b",
+        "cache_version": "week7-platform-source-v28",
+        "verdict": "Not Found",
+        "message": "IRIS did not find enough approved-source evidence confirming that Sen. Robinhood “Robin” Padilla made this statement with Facebook post attribution.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 92,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence supports Padilla's statement about belonging in this world or revolutionaries tearing down thrones.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "president",
+          "vice president",
+          "senator",
+          "senators",
+          "representative",
+          "bato dela rosa",
+          "robin padilla"
+        ],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [
+            "president",
+            "vice president",
+            "senator",
+            "senators",
+            "representative",
+            "bato dela rosa",
+            "robin padilla"
+          ],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.46,
+        "ambiguity_score": 0.4,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice",
+          "quote_context_needed",
+          "reported_attribution_needs_verification"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": true,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "verification_text": "'HINDI AKO NABABAGAY SA MUNDONG ITO'\nLOOK: Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.\nIn a Facebook post, Padilla endorsed several allies to run as Vice President Sara Duterte's running mate instead, including Sens.\nAlan Peter Cayetano, Imee Marcos, Bong Go, and Ronald \"Bato\" dela Rosa, along with Rep. Rodante Marcoleta and former legal counsel Salvador Panelo.\n\"Halata naman po na hindi ako nababagay sa mundong ito,\" Padilla said, concluding with: \"Revolutionaries do not sit on thrones; they tear them down.\"",
+        "normalized_verification_text": "'HINDI AKO NABABAGAY SA MUNDONG ITO'\nLOOK: Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.\nIn a Facebook post, Padilla endorsed several allies to run as Vice President Sara Duterte's running mate instead, including Sens.\nAlan Peter Cayetano, Imee Marcos, Bong Go, and Ronald \"Bato\" dela Rosa, along with Rep. Rodante Marcoleta and former legal counsel Salvador Panelo.\n\"Halata naman po na hindi ako nababagay sa mundong ito,\" Padilla said, concluding with: \"Revolutionaries do not sit on thrones; they tear them down.\"",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "'HINDI AKO NABABAGAY SA MUNDONG ITO'",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.33,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.33,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.03,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "unattributed"
+          },
+          {
+            "segment_id": "s2",
+            "text": "LOOK: Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.64,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.33,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.9,
+            "second_label": "quote",
+            "second_label_score": 0.33,
+            "score_gap": 0.31,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "openai_factual_claim_advice"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "unattributed"
+          },
+          {
+            "segment_id": "s3",
+            "text": "In a Facebook post, Padilla endorsed several allies to run as Vice President Sara Duterte's running mate instead, including Sens.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.44,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.44,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.14,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s4",
+            "text": "Alan Peter Cayetano, Imee Marcos, Bong Go, and Ronald \"Bato\" dela Rosa, along with Rep. Rodante Marcoleta and former legal counsel Salvador Panelo.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.2,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.33,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.33,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.03,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "unattributed"
+          },
+          {
+            "segment_id": "s5",
+            "text": "\"Halata naman po na hindi ako nababagay sa mundong ito,\" Padilla said, concluding with: \"Revolutionaries do not sit on thrones; they tear them down.\"",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.32,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.53,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.32,
+            "second_label": "factual_claim",
+            "second_label_score": 0.32,
+            "score_gap": 0.21,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "quote_context_needed",
+              "reported_attribution_needs_verification"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "reported"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.3,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "low_classifier_confidence",
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "factual_claim",
+                "top_label_score": 0.9,
+                "eligible_for_verification": true,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "unclear",
+                "top_label_score": 0.4,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s4",
+                "top_label": "unclear",
+                "top_label_score": 0.3,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "low_classifier_confidence",
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s5",
+                "top_label": "quote",
+                "top_label_score": 0.8,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "quote_context_needed",
+                  "reported_attribution_needs_verification"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "Unattributed quotation with no speaker or event context; not checkable as a factual or attributed statement."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "Reports Padilla's announcement and reasoning as an attributed statement."
+          },
+          {
+            "segment_id": 2,
+            "disposition": "checkable",
+            "claim_indexes": [
+              1
+            ],
+            "reason": "Reports Padilla's endorsement of allies as an attributed statement."
+          },
+          {
+            "segment_id": 3,
+            "disposition": "checkable",
+            "claim_indexes": [
+              1
+            ],
+            "reason": "Lists the specific individuals Padilla endorsed, enriching the previous claim."
+          },
+          {
+            "segment_id": 4,
+            "disposition": "checkable",
+            "claim_indexes": [
+              2
+            ],
+            "reason": "Directly quotes Padilla's statement, which must be preserved as a reported utterance."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "Sen. Robinhood Padilla announced that he has no plans of running in future elections and wants to focus on raising his young children and living a quiet Islamic life."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              2
+            ],
+            "assertions": [
+              "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito. Revolutionaries do not sit on thrones; they tear them down.\""
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+            "normalized_claim": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Sen. Robinhood “Robin” Padilla",
+              "role": null,
+              "statement": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+              "source": "Facebook post",
+              "program": null,
+              "date": null
+            },
+            "search_query": "Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.",
+            "source_passages": [
+              {
+                "segment_id": 1,
+                "quote": "LOOK: Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life."
+              }
+            ],
+            "evidence_context": "'HINDI AKO NABABAGAY SA MUNDONG ITO'\nLOOK: Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.\nIn a Facebook post, Padilla endorsed several allies to run as Vice President Sara Duterte's running mate instead, including Sens.\nAlan Peter Cayetano, Imee Marcos, Bong Go, and Ronald \"Bato\" dela Rosa, along with Rep. Rodante Marcoleta and former legal counsel Salvador Panelo.\n\"Halata naman po na hindi ako nababagay sa mundong ito,\" Padilla said, concluding with: \"Revolutionaries do not sit on thrones; they tear them down.\"",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [
+                "role",
+                "date"
+              ],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "absent",
+                "source": "grounded",
+                "program": "absent",
+                "date": "not_in_input"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": true
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+            "normalized_claim": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Sen. Robinhood “Robin” Padilla",
+              "role": null,
+              "statement": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+              "source": "Facebook post",
+              "program": null,
+              "date": null
+            },
+            "search_query": "Padilla endorsed several allies to run as Vice President Sara Duterte's running mate, including Alan Peter Cayetano, Imee Marcos, Bong Go, Ronald 'Bato' dela Rosa, Rodante Marcoleta, and Salvador Panelo.",
+            "source_passages": [
+              {
+                "segment_id": 2,
+                "quote": "In a Facebook post, Padilla endorsed several allies to run as Vice President Sara Duterte's running mate instead, including Sens."
+              },
+              {
+                "segment_id": 3,
+                "quote": "Alan Peter Cayetano, Imee Marcos, Bong Go, and Ronald \"Bato\" dela Rosa, along with Rep. Rodante Marcoleta and former legal counsel Salvador Panelo."
+              }
+            ],
+            "evidence_context": "'HINDI AKO NABABAGAY SA MUNDONG ITO'\nLOOK: Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.\nIn a Facebook post, Padilla endorsed several allies to run as Vice President Sara Duterte's running mate instead, including Sens.\nAlan Peter Cayetano, Imee Marcos, Bong Go, and Ronald \"Bato\" dela Rosa, along with Rep. Rodante Marcoleta and former legal counsel Salvador Panelo.\n\"Halata naman po na hindi ako nababagay sa mundong ito,\" Padilla said, concluding with: \"Revolutionaries do not sit on thrones; they tear them down.\"",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [
+                "role",
+                "date"
+              ],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "absent",
+                "source": "grounded",
+                "program": "absent",
+                "date": "not_in_input"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": true
+          },
+          {
+            "claim_id": 3,
+            "claim_text": "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito. Revolutionaries do not sit on thrones; they tear them down.\"",
+            "normalized_claim": "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito. Revolutionaries do not sit on thrones; they tear them down.\"",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Sen. Robinhood “Robin” Padilla",
+              "role": null,
+              "statement": "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito. Revolutionaries do not sit on thrones; they tear them down.\"",
+              "source": "Facebook post",
+              "program": null,
+              "date": null
+            },
+            "search_query": "Padilla said: \"Halata naman po na hindi ako nababagay sa mundong ito. Revolutionaries do not sit on thrones; they tear them down.\"",
+            "source_passages": [
+              {
+                "segment_id": 4,
+                "quote": "\"Halata naman po na hindi ako nababagay sa mundong ito,\" Padilla said, concluding with: \"Revolutionaries do not sit on thrones; they tear them down.\""
+              }
+            ],
+            "evidence_context": "'HINDI AKO NABABAGAY SA MUNDONG ITO'\nLOOK: Sen. Robinhood “Robin” Padilla announced on Friday, Sept. 18, that he has no plans of running in future elections, saying he wants to focus on raising his young children and living a quiet Islamic life.\nIn a Facebook post, Padilla endorsed several allies to run as Vice President Sara Duterte's running mate instead, including Sens.\nAlan Peter Cayetano, Imee Marcos, Bong Go, and Ronald \"Bato\" dela Rosa, along with Rep. Rodante Marcoleta and former legal counsel Salvador Panelo.\n\"Halata naman po na hindi ako nababagay sa mundong ito,\" Padilla said, concluding with: \"Revolutionaries do not sit on thrones; they tear them down.\"",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [
+                "role",
+                "date"
+              ],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "absent",
+                "source": "grounded",
+                "program": "absent",
+                "date": "not_in_input"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": true
+          }
+        ],
+        "ignored_segments": [
+          {
+            "text": "HINDI AKO NABABAGAY SA MUNDONG ITO",
+            "segment_type": "uncheckable"
+          }
+        ],
+        "post_type": "mixed_content",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": true,
+        "status": "ok",
+        "query": "Sara Duterte HINDI AKO NABABAGAY SA MUNDONG ITO' LOOK Sen. Robinhood Padilla Friday Sept Islamic Facebook",
+        "total_search_results": 92,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "articles": [
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: Padilla did NOT admit getting turned on by VP Sara; graphic is FAKE",
+            "url": "https://verafiles.org/articles/fact-check-padilla-did-not-admit-getting-turned-on-by-vp-sara-graphic-is-fake",
+            "status": "extracted",
+            "word_count": 97,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: NO reported sightings of Sara Duterte visiting MILF camp; photos are AI-GENERATED",
+            "url": "https://verafiles.org/articles/fact-check-no-reported-sightings-of-sara-duterte-visiting-milf-camp-photos-are-ai-generated",
+            "status": "extracted",
+            "word_count": 25,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: Sara Duterte mugshot AI-GENERATED",
+            "url": "https://verafiles.org/articles/fact-check-sara-duterte-mugshot-ai-generated",
+            "status": "extracted",
+            "word_count": 63,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Rappler",
+            "title": "[Tambay] Kaya ba ng mga kooperatiba na maghalal ng senador?",
+            "url": "https://www.rappler.com/people/tambay-philippine-cooperatives-senatorial-election/",
+            "status": "extracted",
+            "word_count": 1114,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "Sara Duterte trial barely registers in BARMM campaigns as election nears",
+            "url": "https://www.rappler.com/philippines/elections/sara-duterte-impeachment-barely-registers-campaigns-barmm-nears/",
+            "status": "extracted",
+            "word_count": 1131,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "Robin Padilla",
+            "url": "https://www.rappler.com/people/n97484601-robin-padilla/",
+            "status": "extracted",
+            "word_count": 574,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Padilla to prosecution in VP Sara's impeachment: Sana 'wag kayong one-sided | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/22/padilla-to-prosecution-in-vp-sara-s-impeachment-sana-wag-kayong-one-sided-1720",
+            "status": "extracted",
+            "word_count": 710,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "In privilege speech, Padilla argues VP Duterte has immunity from suit | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/7/in-privilege-speech-padilla-argues-vp-duterte-has-immunity-from-suit-1743",
+            "status": "extracted",
+            "word_count": 430,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "‘Walang pagtakas’: Padilla to appear before DOJ to answer obstruction of justice raps linked to Dela Rosa escape | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/robin-padilla-doj-subpoena-dela-rosa-escape-1002",
+            "status": "extracted",
+            "word_count": 711,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Robin Padilla says he believes in Christian communism, Muslim Muakhat",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/995152/robin-padilla-says-he-believes-in-istian-communism-muslim-muakhat/story/",
+            "status": "extracted",
+            "word_count": 527,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "ICYMI LIVE UPDATES: Arrest warrant vs. Sara Duterte (September 5, 2026)",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001151/live-updates-arrest-warrant-vs-sara-duterte-september-4-2026/story/",
+            "status": "extracted",
+            "word_count": 1779,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Robin Padilla, tatakbong VP candidate sa 2028 kapag inutos ni ex-Pres. Duterte",
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/977311/robin-padilla-tatakbong-vp-candidate-sa-2028-kapag-inutos-ni-ex-pres-duterte/story/",
+            "status": "extracted",
+            "word_count": 282,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Robin Padilla: Kahit sunugin mo ‘ko, mangangamoy Rodrigo Duterte ako!",
+            "url": "https://bandera.inquirer.net/418456/kahit-sunugin-mo-ko-mangangamoy-rodrigo-duterte-ako",
+            "status": "extracted",
+            "word_count": 52,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Robin Padilla subpoenaed over obstruction of justice complaint",
+            "url": "https://newsinfo.inquirer.net/2305586/robin-padilla-subpoenaed-over-obstruction-of-justice-complaint",
+            "status": "extracted",
+            "word_count": 89,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Padilla lashes out at critics over Sara Duterte’s kill remark video",
+            "url": "https://newsinfo.inquirer.net/2260675/robin-padilla-lashes-out-at-critics-over-sara-dutertes-kill-remark-video",
+            "status": "extracted",
+            "word_count": 54,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Robin, dili na modagan karong 2028",
+            "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2026/09/19/2557313/robin-dili-na-modagan-karong-2028",
+            "status": "extracted",
+            "word_count": 282,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Robin Padilla reiterates no plans to run again, floats allies as VP options",
+            "url": "https://www.philstar.com/entertainment/2026/09/19/2557390/robin-padilla-reiterates-no-plans-run-again-floats-allies-vp-options",
+            "status": "extracted",
+            "word_count": 617,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "SALN ug basura",
+            "url": "https://www.philstar.com/banat/opinyon/2026/09/17/2556824/saln-ug-basura",
+            "status": "extracted",
+            "word_count": 279,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Padilla says he has no plans to stay in politics, names 6 possible running mates for VP Duterte",
+            "url": "https://mb.com.ph/2026/09/18/padilla-says-he-has-no-plans-to-stay-in-politics-names-6-possible-running-mates-for-vp-duterte",
+            "status": "extracted",
+            "word_count": 219,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "'Wala siyang hiya!’ VP Sara, tumirada kay PBBM-Balita",
+            "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+            "status": "extracted",
+            "word_count": 133,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Angel sa pagiging 'komunista' ni Robin: 'Nasaan ka nung panahong nirered-tag ako?'-Balita",
+            "url": "https://balita.mb.com.ph/2026/07/16/angel-sa-pagiging-komunista-ni-robin-nasaan-ka-nung-panahong-nirered-tag-ako/",
+            "status": "extracted",
+            "word_count": 213,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Duterte says Robin Padilla ‘more than just an actor’ | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1171946",
+            "status": "extracted",
+            "word_count": 87,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Baste Duterte, 4 others subpoenaed as impeachment threshold vote nears | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "status": "extracted",
+            "word_count": 46,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "VP Sara: No need to volunteer for my security | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1230085",
+            "status": "extracted",
+            "word_count": 191,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "PIA - Statement on the inauguration of Mayor Inday Sara Duterte-Carpio as Vice President",
+            "url": "https://mirror.pia.gov.ph/press-releases/2022/06/19/statement-on-the-inauguration-of-mayor-inday-sara-duterte-carpio-as-vice-president",
+            "status": "extracted",
+            "word_count": 9,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "Remulla: No interference from PBBM, Ombudsman in Romualdez arrest - Philippine Information Agency",
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "status": "extracted",
+            "word_count": 104,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "PIA - Thousands flock to watch Inday Sara oath-taking",
+            "url": "https://mirror.pia.gov.ph/news/2022/06/20/thousands-flock-to-watch-inday-sara-oath-taking",
+            "status": "extracted",
+            "word_count": 172,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Day 13 of VP Sara Duterte impeachment trial | August 5, 2026",
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "status": "extracted",
+            "word_count": 2821,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Day 23 of VP Sara Duterte impeachment trial | September 8, 2026",
+            "url": "https://www.dzrh.com.ph/post/impeachment-court-suspends-trial-tomorrow-sept-9-for-exhibit-marking",
+            "status": "extracted",
+            "word_count": 926,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Robin Padilla open to VP bid with Sara Duterte in 2028 if asked by ex-Pres. Duterte",
+            "url": "https://www.dzrh.com.ph/post/robin-padilla-open-to-vp-bid-with-sara-duterte-in-2028-if-asked-by-ex-pres-duterte",
+            "status": "extracted",
+            "word_count": 676,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "OneNews.PH",
+            "title": "‘Minority Duty-Bound To Block Impeachment’ | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/minority-duty-bound-to-block-impeachment",
+            "status": "extracted",
+            "word_count": 482,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "OneNews.PH",
+            "title": "Bam Aquino, LP Shut Down Robin Padilla On Use Of Aliases | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/bam-aquino-lp-shut-down-robin-padilla-on-use-of-aliases",
+            "status": "extracted",
+            "word_count": 359,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "OneNews.PH",
+            "title": "Sara-Imee Versus Leni-Risa In 2028? | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/sara-imee-versus-leni-risa-in-2028",
+            "status": "extracted",
+            "word_count": 515,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ]
+      },
+      "timings": {
+        "request_id": "935c0c67da7242f5afbfb725748b8fd2",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 3.3893,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.002,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 10.8844,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0046,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 8.0744,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.quote_paraphrase",
+            "duration_seconds": 1.3324,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0024,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 0.1462,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0742,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 1.7508,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.4334,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.4605,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0243,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 11.249,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.quote_paraphrase",
+            "duration_seconds": 1.2339,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0022,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 0.1414,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0713,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 1.7619,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.3647,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.3933,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0267,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 11.73,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.quote_paraphrase",
+            "duration_seconds": 1.2188,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.political_flags",
+            "duration_seconds": 0.0016,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.search_and_extract",
+            "duration_seconds": 0.1417,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.search_status",
+            "duration_seconds": 0.0715,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.generate_verdict",
+            "duration_seconds": 1.8704,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.openai_rag_fallback",
+            "duration_seconds": 1.4269,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.fallback_total",
+            "duration_seconds": 1.4623,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.public_evidence_sources",
+            "duration_seconds": 0.0363,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.component_evidence_review",
+            "duration_seconds": 12.3802,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 51.0228,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 73.4098,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}
