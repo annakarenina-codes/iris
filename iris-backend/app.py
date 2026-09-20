@@ -11,10 +11,11 @@ from flask import Flask, request, jsonify
 from pipeline.cache import get_cached_verdict, hash_claim, save_cached_verdict
 from pipeline.attribution_integrity import (attribution_phrase_match, date_phrase_match,
                                             speaker_phrase_match)
-from pipeline.evidence_urls import article_url_rejection
+from pipeline.evidence_urls import article_url_rejection, is_opinion_url
 from pipeline.claim_extractor import extract_claims
 from pipeline.component_evidence import REFUTED_VERDICT
 from pipeline.content_profiler import profile_content
+from pipeline.coverage_scope import OUT_OF_SCOPE_VERDICT, out_of_scope_message, philippine_scope
 from pipeline.event_retrieval import (
     build_event_search_query,
     mark_quote_derived_claims,
@@ -41,7 +42,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-date-anchor-v34"
+RESULT_CACHE_VERSION = "week7-scope-opinion-v35"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 # A verdict that asserts something about the world has to show the source it rests on.
 VERDICTS_NEEDING_EVIDENCE = POSITIVE_VERDICTS | {REFUTED_VERDICT}
@@ -524,6 +525,51 @@ def cap_unconfirmed_date(verdict, message, claim, articles):
     event('verdict.date_unconfirmed', claimed_date=claimed_date)
     return "Partially Verified", (
         f"{message} No shown source states {claimed_date}, so the date itself is unconfirmed.")
+
+
+def build_out_of_scope_response(text, translated, language, debug_enabled, opinion_result,
+                                political_result, content_profile, scope):
+    """Tells the reader IRIS does not cover this subject, instead of reporting Not Found."""
+    return build_response({
+        "verdict": OUT_OF_SCOPE_VERDICT,
+        "message": out_of_scope_message(scope.get("subject")),
+        "original_text": text,
+        "translated_text": translated,
+        "detected_language": language,
+        "politically_sensitive": political_result["politically_sensitive"],
+        "flags": ["outside_philippine_coverage"]
+                 + (["politically_sensitive"] if political_result["politically_sensitive"] else []),
+        "claim_count": 0,
+        "claim_extraction_status": "not_run_outside_coverage",
+        "post_type": content_profile["post_type"],
+        "content_profile_status": content_profile["status"],
+        "content_profile_route": "stop_outside_philippine_coverage",
+        "coverage_scope": scope,
+        "contains_opinion": content_profile["contains_opinion"] or opinion_result["is_opinion"],
+        "contains_recommendation": content_profile["contains_recommendation"],
+        "contains_forecast_or_projection": content_profile["contains_forecast_or_projection"],
+        "contains_satire_or_humor": content_profile["contains_satire_or_humor"],
+        "contains_quote": content_profile["contains_quote"],
+        "ignored_segments": combine_ignored_segments(content_profile),
+    }, debug_enabled, opinion_result, political_result, content_profile)
+
+
+def is_opinion_article(article):
+    """True when the article is a column or commentary rather than reporting."""
+    return bool(article) and (bool(article.get("is_opinion")) or is_opinion_url(article.get("url")))
+
+
+def opinion_evidence_blocked(article, claim):
+    """
+    Keeps opinion writing out of the evidence for a factual claim.
+
+    A column argues; it does not report. Saved case B07 supported a factual claim with an
+    Inquirer opinion piece and a VERA Files commentary. For an attributed statement the column
+    is still admissible, because a claim about what a columnist wrote is proven by the column.
+    """
+    if claim.get("claim_type") == ATTRIBUTED_CLAIM_TYPE:
+        return False
+    return is_opinion_article(article)
 
 
 def unique_evidence_sources(candidates):
@@ -1081,8 +1127,13 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
         eligible = [article for article in search_result["articles"]
                     if compact_evidence_source(article)
                     and article.get("text")
+                    and not opinion_evidence_blocked(article, claim)
                     and attribution_evidence_gate(article, claim, anchors_only=True)["matches"]
                     and incident_evidence_gate(article, context_anchor)["matches"]]
+        opinion_excluded = [article.get("url") for article in search_result["articles"]
+                            if article.get("text") and opinion_evidence_blocked(article, claim)]
+        if opinion_excluded:
+            event('evidence.opinion_excluded', urls=opinion_excluded, claim_type=claim.get("claim_type"))
         # Most relevant first, so the reviewer's evidence budget holds the best articles.
         relevance = {article["url"]: article["similarity_score"]
                      for article in verdict_result.get("ranked_articles") or []}
@@ -1502,6 +1553,16 @@ def verify_text_payload(text, debug_enabled=False, timings=None):
     politically_sensitive = political_result["politically_sensitive"]
 
     event('text.route', eligible=content_profile['eligible_for_verification'], route=content_profile['recommended_route'], ignored_segments=content_profile.get('ignored_segments'))
+    scope = timed_stage(timings, "text.coverage_scope", lambda: philippine_scope(text, translated))
+    if content_profile["eligible_for_verification"] and not scope["in_scope"]:
+        # Eleven Philippine publishers have nothing to say about a galaxy 24 million light-years
+        # away (saved case B16), and three Not Found verdicts read as a failed check.
+        event('stage.skipped', stages=['claims.extract','event.retrieve','claim.process'],
+              reason='outside_philippine_coverage', subject=scope.get('subject'))
+        response = build_out_of_scope_response(text, translated, language, debug_enabled,
+                                               opinion_result, political_result, content_profile, scope)
+        return complete_response(response)
+
     if not content_profile["eligible_for_verification"]:
         event('stage.skipped', stages=['claims.extract','event.retrieve','claim.process'], reason=content_profile['recommended_route'])
         response = build_profiler_stop_response(

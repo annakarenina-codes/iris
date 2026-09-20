@@ -602,6 +602,9 @@ def _build_article_from_result(result: Dict[str, object]) -> Dict[str, object]:
         "source": result.get("source"),
         "title": extraction.get("title") or result.get("title"),
         "url": extraction.get("url") or url,
+        # Carried from the publisher's own section labels; a URL alone cannot show it.
+        "sections": extraction.get("sections") or [],
+        "is_opinion": bool(extraction.get("is_opinion")),
         "description": extraction.get("description") or result.get("description"),
         "status": extraction.get("status"),
         "word_count": extraction.get("word_count", 0),

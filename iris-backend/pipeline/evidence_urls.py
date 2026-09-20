@@ -14,6 +14,24 @@ def clean_article_url(url):
         return ''
 
 
+# A column is its author's argument, not the publisher reporting a fact. Saved case B07
+# supported a factual claim with an Inquirer opinion piece and a Rappler thought-leaders column.
+OPINION_HOSTS = {'opinion.inquirer.net'}
+OPINION_SEGMENTS = {'opinion', 'opinions', 'opinyon', 'column', 'columns', 'columnist',
+                    'editorial', 'editorials', 'commentary', 'voices', 'thought-leaders',
+                    'blog', 'blogs'}
+
+
+def is_opinion_url(url):
+    """True for a publisher's opinion, column or editorial section."""
+    parts = urlsplit(clean_article_url(url))
+    host = (parts.hostname or '').lower()
+    if host in OPINION_HOSTS:
+        return True
+    segments = {unquote(segment).casefold() for segment in parts.path.split('/') if segment}
+    return bool(segments & OPINION_SEGMENTS)
+
+
 def article_url_rejection(url, expected_source=None):
     try:
         parts = urlsplit(clean_article_url(url))

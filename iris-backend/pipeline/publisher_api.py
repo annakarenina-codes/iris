@@ -15,6 +15,7 @@ from __future__ import annotations
 from iris_trace.core import traced, event
 
 import re
+import time
 from html import unescape
 from typing import Dict, List, Optional
 
@@ -30,13 +31,38 @@ from pipeline.sources import get_source_by_name
 
 REQUEST_TIMEOUT_SECONDS = 10
 MAX_SEARCH_RESULTS = 5
-FIELDS = 'link,title,content,date'
+FIELDS = 'link,title,content,date,categories'
+CATEGORY_CACHE_SECONDS = 3600
+# VERA Files files its columns under these, and its fact-checks under FACT CHECK.
+OPINION_CATEGORIES = {'commentary', 'first person', "chit's desk", "bullit's eye", 'reviews'}
+_categories = {}
 
 
 def content_api(source_name: str) -> Optional[str]:
     """The article API this source publishes, when it declares one."""
     source = get_source_by_name(source_name)
     return (source or {}).get('content_api')
+
+
+def category_names(api: str, ids) -> List[str]:
+    """Names of a post's categories, so a column can be told from a report."""
+    if not ids:
+        return []
+    cached = _categories.get(api)
+    if not cached or time.time() - float(cached['fetched']) >= CATEGORY_CACHE_SECONDS:
+        try:
+            response = requests.get(api.rsplit('/', 1)[0] + '/categories', params={'per_page': 100},
+                                    timeout=REQUEST_TIMEOUT_SECONDS,
+                                    headers={'User-Agent': 'Mozilla/5.0 (compatible; IRIS fact-check reader)',
+                                             'Accept': 'application/json'})
+            response.raise_for_status()
+            names = {int(item['id']): unescape(str(item.get('name') or '')) for item in response.json()}
+        except Exception as error:  # pragma: no cover - a naming failure must not block evidence
+            event('retrieval.publisher_categories_unavailable', error=type(error).__name__)
+            return []
+        cached = {'fetched': time.time(), 'names': names}
+        _categories[api] = cached
+    return [cached['names'][i] for i in ids if i in cached['names']]
 
 
 def _text(html: str) -> str:
@@ -91,10 +117,13 @@ def article_from_api(url: str, source_name: str) -> Optional[Dict[str, object]]:
         words = len(re.findall(r'\b\w+\b', text))
         if words < MIN_METADATA_WORDS:
             continue
+        sections = category_names(api, post.get('categories') or [])
         return remember_article(normalized_url, {
             'url': normalized_url,
             'status': 'extracted',
             'error': None,
+            'sections': sections,
+            'is_opinion': any(name.casefold() in OPINION_CATEGORIES for name in sections),
             'title': _text(post.get('title', {}).get('rendered', '')) or None,
             'description': '',
             'text': text,
