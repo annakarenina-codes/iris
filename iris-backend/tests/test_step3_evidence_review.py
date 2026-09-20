@@ -141,7 +141,8 @@ class ConsistencyRecheckTests(unittest.TestCase):
         self.assertNotIn('CONSISTENCY RECHECK', calls[-2]['messages'][0]['content'])
 
     def test_recheck_happens_once_and_can_still_reject(self):
-        refusal = {'checks': {'0': check(supported=False, ids=[0], reason='Different interview.')}}
+        refusal = {'checks': {'0': {**check(supported=False, ids=[0], reason='Different interview.'),
+                                    'same_subject_and_event': False}}}
         result, calls = run_review(self.CLAIM, [self.FULL, self.PARTIAL], self.replies(refusal, refusal))
         self.assertEqual(result['verdict'], 'Not Found')
         self.assertEqual(len(calls), 5)

@@ -39,7 +39,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-platform-source-v28"
+RESULT_CACHE_VERSION = "week7-partial-support-v29"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 REVIEW_FAILED_VERDICT = "Review Failed"
 REVIEW_FAILED_MESSAGE = (

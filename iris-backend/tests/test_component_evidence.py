@@ -158,6 +158,19 @@ class ComponentTests(unittest.TestCase):
         self.assertEqual(schema['required'], ['0', '1'])
         self.assertEqual(schema['properties']['1']['properties']['passage_ids']['items']['maximum'], 2)
 
+    def test_undated_passage_leaves_the_year_unconfirmed(self):
+        claim = 'The fan meeting is set for October 10, 2026.'
+        article = {'url': 'https://example.org/fanmeet',
+                   'text': 'The fan meeting is set for October 10, organizers said.'}
+        reviewed = validate_review(claim, [claim], [{'component_id': 0, 'status': 'supported',
+            'citations': [{'url': article['url'], 'quote': article['text']}]}], [article])
+        final = apply_entailment_checks(claim, reviewed, [{
+            'component_id': 0, 'same_subject_and_event': True, 'assertion_supported': True,
+            'qualifiers_preserved': True, 'contradicted': False, 'citation_ids': [0],
+            'reason': 'Same fan meeting.'}], [article])
+        self.assertEqual(final['verdict'], 'Partially Verified')
+        self.assertEqual(final['components'][0]['status'], 'partially_supported')
+
     def test_different_year_cannot_pass_even_when_model_approves(self):
         claim = 'Carpenter delivered oral testimony during the 2015 hearing.'
         quote = 'Carpenter delivered oral testimony during the 2016 hearing.'

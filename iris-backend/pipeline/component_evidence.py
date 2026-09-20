@@ -270,7 +270,7 @@ def entailment_schema(candidates):
 def apply_entailment_checks(claim, reviewed, checks, articles):
     """An independent review can remove proposed support, never fabricate a citation."""
     candidates = [(i, part) for i, part in enumerate(reviewed['components'])
-                  if part['status'] == 'supported']
+                  if part['status'] in {'supported', 'partially_supported'}]
     if not isinstance(checks, list) or len(checks) != len(candidates):
         raise ValueError('incomplete_entailment_checks')
     assessments = [{'component_id': i, 'status': part['status'], 'citations': part['citations']}
@@ -289,23 +289,35 @@ def apply_entailment_checks(claim, reviewed, checks, articles):
                 or any(type(i) is not int or i < 0 or i >= len(part['citations']) for i in ids)):
             raise ValueError('invalid_entailment_citation_ids')
         contradicted = check.get('contradicted', False)
-        supported = (all(check[k] for k in
-                         ('same_subject_and_event', 'assertion_supported', 'qualifiers_preserved'))
-                     and bool(ids) and not contradicted)
+        same_event = check['same_subject_and_event'] and bool(ids) and not contradicted
+        supported = same_event and check['assertion_supported'] and check['qualifiers_preserved']
+        partial = same_event and not supported
         # A nearby year is not the asserted year, even if the model says yes.
         years = set(re.findall(r'\b(?:19|20)\d{2}\b', part['component']))
         cited_years = set(re.findall(r'\b(?:19|20)\d{2}\b',
                                     ' '.join(part['citations'][i]['quote'] for i in ids)))
         if supported and not years.issubset(cited_years):
+            # A different year is a different event; an undated passage only leaves it unconfirmed.
             supported = False
+            partial = not cited_years
             check['qualifiers_preserved'] = False
-            check['reason'] = f"Selected passages do not contain the asserted year(s): {', '.join(sorted(years - cited_years))}."
-        assessments[index]['status'] = 'supported' if supported else 'not_supported'
-        assessments[index]['citations'] = [part['citations'][i] for i in ids] if supported else []
+            check['reason'] = (f"Selected passages do not contain the asserted year(s): "
+                               f"{', '.join(sorted(years - cited_years))}."
+                               + ('' if partial else f" They state a different year: "
+                                  f"{', '.join(sorted(cited_years))}."))
+        if supported and part.get('time_unconfirmed'):
+            # The event matches, but no passage states the claimed date: support stays partial.
+            supported, partial = False, True
+            check['time_unconfirmed'] = True
+        assessments[index]['status'] = ('supported' if supported
+                                        else 'partially_supported' if partial else 'not_supported')
+        assessments[index]['citations'] = [part['citations'][i] for i in ids] if supported or partial else []
     result = validate_review(claim, [p['component'] for p in reviewed['components']], assessments, articles)
     result['entailment_checks'] = checks
     for part in result['components']:
-        part['evidence_relation'] = 'supported' if part['status'] == 'supported' else 'not_established'
+        part['evidence_relation'] = ('supported' if part['status'] == 'supported'
+                                     else 'partially_supported' if part['status'] == 'partially_supported'
+                                     else 'not_established')
     for check in checks:
         part = result['components'][check['component_id']]
         part['review_reason'] = check['reason']
@@ -481,8 +493,14 @@ def apply_event_identity_checks(claim, reviewed, groups, payload, articles):
                                                 'uncertain': 'unresolved'}[decision['status']]
             decisions[url]['temporal_context'] = temporal
             if decision['status'] == 'matched' and temporal['enforced'] and temporal['status'] != 'matching':
-                decisions[url].update(status='mismatched' if temporal['status'] == 'conflicting' else 'uncertain',
-                                      context_status=temporal['status'], reason=temporal['reason'])
+                if temporal['status'] == 'conflicting':
+                    decisions[url].update(status='mismatched', context_status='conflicting',
+                                          reason=temporal['reason'])
+                else:
+                    # No passage states the claimed date: the source still covers the event, but
+                    # the date stays unconfirmed, so this source can only support partially.
+                    decisions[url].update(context_status='unresolved', time_unconfirmed=True,
+                                          reason=temporal['reason'])
         audit.append({'group_id': group_id, 'component_ids': group['component_ids'],
                       'referent': group['referent'], 'sources': decisions})
     if set(memberships) != set(range(count)):
@@ -508,10 +526,17 @@ def apply_event_identity_checks(claim, reviewed, groups, payload, articles):
                 for citation in decision['citations']:
                     if citation not in accepted:
                         accepted.append(citation)
-        assessments.append({'component_id': i, 'status': part['status'], 'citations': accepted})
+        unconfirmed = accepted and all(decisions[c['url']].get('time_unconfirmed') for c in accepted)
+        status = part['status']
+        if unconfirmed and status == 'supported':
+            status = 'partially_supported'
+        assessments.append({'component_id': i, 'status': status, 'citations': accepted,
+                            'time_unconfirmed': bool(unconfirmed)})
     final = validate_review(claim, [p['component'] for p in reviewed['components']], assessments, articles)
     for i, part in enumerate(final['components']):
         part['event_group_id'] = memberships[i]
+        if assessments[i].get('time_unconfirmed'):
+            part['time_unconfirmed'] = True
         if 'context' in reviewed['components'][i]:
             part['context'] = deepcopy(reviewed['components'][i]['context'])
         if 'review_reason' in reviewed['components'][i]:
@@ -538,13 +563,13 @@ def validate_review(claim, components, assessments, articles):
         if (not isinstance(assessment, dict) or type(assessment.get('component_id')) is not int
                 or assessment['component_id'] != index):
             raise ValueError("Component assessment IDs do not match")
-        if (assessment.get('status') not in {'supported', 'not_supported'}
+        if (assessment.get('status') not in {'supported', 'partially_supported', 'not_supported'}
                 or not isinstance(assessment.get('citations'), list)
                 or any(not isinstance(c, dict) or not isinstance(c.get('url'), str)
                        or not isinstance(c.get('quote'), str) for c in assessment['citations'])):
             raise ValueError('Invalid component assessment shape')
         quotes = []
-        if assessment.get("status") == "supported":
+        if assessment.get("status") in {"supported", "partially_supported"}:
             for citation in assessment.get("citations", []):
                 url, quote = citation.get("url"), citation.get("quote")
                 if (url in lookup and isinstance(quote, str) and len(quote.strip()) >= 20
@@ -552,12 +577,21 @@ def validate_review(claim, components, assessments, articles):
                     quotes.append({"url": url, "quote": quote})
                     if url not in urls:
                         urls.append(url)
-        results.append({"component": component, "status": "supported" if quotes else "not_supported",
-                        "citations": quotes})
+        status = assessment.get("status") if quotes else "not_supported"
+        results.append({"component": component, "status": status, "citations": quotes})
     count = sum(r["status"] == "supported" for r in results)
-    verdict = "Verified" if count == len(results) else "Partially Verified" if count else "Not Found"
+    partial = sum(r["status"] == "partially_supported" for r in results)
+    # Partial support is evidence about the same event that leaves one detail unconfirmed:
+    # it can never reach Verified on its own, but it is not the same as no evidence.
+    verdict = ("Verified" if count == len(results)
+               else "Partially Verified" if count or partial else "Not Found")
+    reason = f"Retrieved passages support {count} of {len(results)} factual components."
+    if partial:
+        reason += (f" {partial} component{'s' if partial > 1 else ''} "
+                   f"{'are' if partial > 1 else 'is'} partially supported: the same event is "
+                   "covered, but a stated detail or date is not confirmed.")
     return {"status": "ok", "verdict": verdict, "components": results, "supporting_urls": urls,
-            "reason": f"Retrieved passages support {count} of {len(results)} factual components."}
+            "reason": reason}
 
 
 @traced('claim.component_review', dependency=True)
@@ -738,7 +772,8 @@ def review_components(claim, articles, source_context=''):
         candidates = [{'component_id': i, 'assertion_fragment': part['component'],
                        'passages': [{'citation_id': j, **citation}
                                     for j, citation in enumerate(part['citations'])]}
-                      for i, part in enumerate(reviewed['components']) if part['status'] == 'supported']
+                      for i, part in enumerate(reviewed['components'])
+                      if part['status'] in {'supported', 'partially_supported'}]
         if not candidates:
             reviewed['partition_model'] = review_model
             return reviewed
@@ -765,7 +800,8 @@ def review_components(claim, articles, source_context=''):
         candidates = [{'component_id': i, 'assertion_fragment': part['component'],
                        'passages': [{'citation_id': j, **citation}
                                     for j, citation in enumerate(part['citations'])]}
-                      for i, part in enumerate(reviewed['components']) if part['status'] == 'supported']
+                      for i, part in enumerate(reviewed['components'])
+                      if part['status'] in {'supported', 'partially_supported'}]
         if not candidates:
             return reviewed
         stage = 'entailment_check'
@@ -791,7 +827,8 @@ def review_components(claim, articles, source_context=''):
             'must retain their scope. Mere compatibility or inference is not explicit support. '
             'For a fragment, assess the relationship it has in the complete sentence, not just '
             'its isolated words. All factual details in the component must be supported; if '
-            'only some are covered, assertion_supported is false and explain the missing detail. '
+            'only some are covered, assertion_supported is false and explain the missing detail; '
+            'the application then records partial support when the subject and event still match. '
             'Plural references such as these issues inherit ALL their antecedents in the claim. '
             'Evidence for only one issue does not prove the asserted purpose or rationale for '
             'all of them. Discussing topics together does not establish a stated causal or '

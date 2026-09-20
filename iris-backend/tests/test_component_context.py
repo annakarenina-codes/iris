@@ -151,8 +151,12 @@ class ComponentContextTests(unittest.TestCase):
         payload = event_identity_input(claim, review, [article])
         final = apply_event_identity_checks(claim, review, [{'component_ids': [0], 'referent': claim,
             'sources': {'0': {'status': 'matched', 'passage_ids': [0], 'reason': 'Model approved.'}}}], payload, [article])
-        self.assertEqual(final['verdict'], 'Not Found')
-        self.assertEqual(final['event_identity_checks'][0]['sources'][article['url']]['context_status'], 'unresolved')
+        self.assertEqual(final['verdict'], 'Partially Verified')
+        self.assertEqual(final['components'][0]['status'], 'partially_supported')
+        self.assertTrue(final['components'][0]['time_unconfirmed'])
+        source = final['event_identity_checks'][0]['sources'][article['url']]
+        self.assertEqual(source['context_status'], 'unresolved')
+        self.assertTrue(source['time_unconfirmed'])
 
     def test_date_matching_still_needs_semantic_identity(self):
         claim = 'Alex was arrested on September 17.'
