@@ -11,6 +11,12 @@ _SOCIAL_UI = re.compile(
     r'(?:\s*[\u00b7|,]?\s*\d[\d,.]*\s*[kmb]?\s+(?:likes|reactions|comments|shares|views))*)', re.I)
 
 
+# Below this the reader is guessing. Held-out post H20 ended with '[:yov"wve%Cy,' at 0.00 and
+# a mangled name at 0.09, and that tail dropped the profiler's confidence far enough that the
+# whole post was answered "no checkable claims".
+UNREADABLE_CONFIDENCE = 0.15
+
+
 @traced('image.layout')
 def select_content_regions(regions):
     rejected = []
@@ -19,11 +25,13 @@ def select_content_regions(regions):
         text = region.get("text", "").strip()
         confidence = region.get("confidence", 1.0)
         # Do not silently erase low-confidence words or negations from a claim.
-        noise = confidence < 0.45 and not re.search(r"[A-Za-z]", text)
+        unreadable = confidence < UNREADABLE_CONFIDENCE
+        noise = unreadable or (confidence < 0.45 and not re.search(r"[A-Za-z]", text))
         label = text.upper() in {"LOCAL NEWS", "LOCAL", "NEWS", "BREAKING NEWS"}
         interface = bool(_SOCIAL_UI.fullmatch(text))
         if noise or label or interface:
             rejected.append({"text": text, "reason": 'social_interface' if interface else
+                             "unreadable" if unreadable else
                              "low_confidence_symbols" if noise else "section_label"})
         else:
             retained.append(region)

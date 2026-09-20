@@ -339,14 +339,16 @@ def _refutation_terms(text):
             if len(word) >= 4 and word not in REFUTATION_STOPWORDS}
 
 
-def refutation_passages(claim, articles, published_by):
+def refutation_passages(claim, articles, published_by, source_context=''):
     """
     Passages from the accredited fact-checker that are plausibly about this claim.
 
     Only VERA Files can refute a claim, and a fact-check about something else is not worth
     a model call, so passages must share distinctive words with the claim first.
     """
-    wanted = _refutation_terms(claim)
+    # A claim read out of a picture can lose the name that the fact-check is filed under,
+    # so the post's own words count towards deciding whether to ask about a fact-check.
+    wanted = _refutation_terms(claim) | _refutation_terms(source_context)
     fact_checks = [article for article in articles
                    if is_refuting_source(published_by.get(article['url']))]
     related = [passage for passage in indexed_passages(fact_checks)
@@ -902,7 +904,7 @@ def review_components(claim, articles, source_context=''):
             if review.get('verdict') != 'Not Found':
                 return review
             stage = 'refutation_check'
-            fact_checks = refutation_passages(claim, evidence, publishers)
+            fact_checks = refutation_passages(claim, evidence, publishers, source_context)
             if not fact_checks:
                 return review
             try:

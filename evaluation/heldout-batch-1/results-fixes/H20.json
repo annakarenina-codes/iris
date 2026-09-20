@@ -1,46 +1,1716 @@
 {
   "response": {
-    "verdict": "No Checkable Claims",
-    "message": "IRIS did not find factual claims that can be checked against approved sources.",
-    "original_text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
-    "translated_text": "EGMN 'Upon our return to Malacanang, I will behead BBM' and his whole clan. You Ilocanos, prepare yourselves, many of you will also have your heads cut off: Sebasfihn [:yöv\"wvë%Cy, DIeí?\n\"Baste\"",
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 2 extracted claims individually.",
+    "original_text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\"",
+    "translated_text": "EGMN 'When we return to Malacanang, I will behead BBM' and his whole clan. You [locanos, prepare yourselves, many of you will also be beheaded: Sebasfihn 'Baste'.",
     "detected_language": "tagalog",
     "politically_sensitive": true,
     "flags": [
       "politically_sensitive"
     ],
-    "claim_count": 0,
-    "claim_extraction_status": "not_run_content_profiler",
+    "claim_count": 2,
+    "claim_extraction_status": "ok",
     "post_type": "unclear",
     "content_profile_status": "ok",
-    "content_profile_route": "stop_no_checkable_claims",
+    "content_profile_route": "proceed_with_caution",
     "contains_opinion": false,
     "contains_recommendation": false,
     "contains_forecast_or_projection": false,
     "contains_satire_or_humor": false,
     "contains_quote": false,
-    "ignored_segments": [
+    "ignored_segments": [],
+    "claims": [
       {
-        "segment_id": "s1",
-        "text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí?",
-        "segment_type": "unclear",
-        "reason_codes": [
-          "low_classifier_confidence"
+        "claim_id": 1,
+        "claim_text": "Sebasfihn 'Baste' said: 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya.",
+        "normalized_claim": "Sebasfihn 'Baste' said: 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Sebasfihn 'Baste'",
+          "role": null,
+          "statement": "Sebasfihn 'Baste' said: 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "absent",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "no_evidence",
+          "verdict": "Not Found",
+          "reason": "No valid extracted evidence satisfied the claim's required anchors.",
+          "supporting_urls": [],
+          "components": []
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-hindi-nag-resign-si-bbm-siya-pa-rin-ang-pangulo",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/ninoy-and-august-21-in-my-thoughts",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-davao-city-mayor-baste-duterte-bumaligtad-sa-pagsuporta-kay-marcos",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/analysis-marcos-jr-bbm-equals-new-taxes-again/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/inside-track/bulacan-water-woes-continue-despite-primewater-rebrand/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/pastilan-settle-score-baste-duterte-nicolas-torre/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/03/27/22/baste-duterte-hopes-father-will-back-bbm-sees-signs",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/18/-handang-maging-pangulo-o-panggulo-malaca-ang-blasts-sara-duterte-anew-2025",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/03/04/17/baste-duterte-fair-naman-ako-pero-loyal-hindi-ko-alam",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/984330/nbi-baste-duterte-remarks-subpoena/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/pepito-manaloto-o-ber-sa-lutang-si-maria-ep-220-teaser/138575/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/939461/baste-duterte-to-marcos-we-will-stand-up-we-will-fight-back/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/410025/baste-duterte-minura-si-pbbm-tatay-ko-pinakulong-mo-pi-ka",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2296541/palace-on-nlex-gridlock-bakit-ka-pa-papasok-kung-trapik-na",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/401021/pbbm-papalagan-ang-banta-ni-vp-sara-hindi-dapat-pinapalampas",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/opinion/2025/12/31/2497849/paglikoy-ni-bbm",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/27/2552100/bam-shuts-down-robin-use-aliases",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/supreme/2016/05/21/1585264/baste",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/04/15/nbi-dapat-na-imbestigahan-death-threats-sa-pangulousec-castro/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2017/12/19/baeby-baste-meant-to-be-sa-showbiz/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1252227",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284251",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/features/2024/01/25/pbbms-pabahay-program-safe-haven-for-indigenous-people-in-cotabato",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/pinangunahan-ni-pbbm-ang-pamamahagi-ng-bigas-sa-maynila-layuning-wakasan-ang-gutom-sa-loob-ng-kaniyang-termino/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/baste-duterte-slams-pbbm-over-flood-control-and-governance-issues-in-rage-coalition-speech",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/comelec-9779percent-of-barmm-poll-ers-received-so-far",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/nbi-forms-task-force-to-probe-threats-vs-pbbm-other-govt-officials",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bbm-sara-maintain-lead-in-pulse-survey-rivals-remain-unfazed",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/nearly-p11-per-liter-diesel-price-hike-seen-p5-for-gas",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/baste-duterte-to-bongbong-marcos-my-father-gave-yours-hero-s-burial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
         ],
-        "recommended_route": "stop_no_checkable_claims",
-        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-hindi-nag-resign-si-bbm-siya-pa-rin-ang-pangulo",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/ninoy-and-august-21-in-my-thoughts",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-davao-city-mayor-baste-duterte-bumaligtad-sa-pagsuporta-kay-marcos",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/analysis-marcos-jr-bbm-equals-new-taxes-again/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/inside-track/bulacan-water-woes-continue-despite-primewater-rebrand/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/pastilan-settle-score-baste-duterte-nicolas-torre/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/03/27/22/baste-duterte-hopes-father-will-back-bbm-sees-signs",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/18/-handang-maging-pangulo-o-panggulo-malaca-ang-blasts-sara-duterte-anew-2025",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/03/04/17/baste-duterte-fair-naman-ako-pero-loyal-hindi-ko-alam",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/984330/nbi-baste-duterte-remarks-subpoena/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/pepito-manaloto-o-ber-sa-lutang-si-maria-ep-220-teaser/138575/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/939461/baste-duterte-to-marcos-we-will-stand-up-we-will-fight-back/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://bandera.inquirer.net/410025/baste-duterte-minura-si-pbbm-tatay-ko-pinakulong-mo-pi-ka",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2296541/palace-on-nlex-gridlock-bakit-ka-pa-papasok-kung-trapik-na",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://bandera.inquirer.net/401021/pbbm-papalagan-ang-banta-ni-vp-sara-hindi-dapat-pinapalampas",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/opinion/2025/12/31/2497849/paglikoy-ni-bbm",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/27/2552100/bam-shuts-down-robin-use-aliases",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/supreme/2016/05/21/1585264/baste",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/04/15/nbi-dapat-na-imbestigahan-death-threats-sa-pangulousec-castro/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/11/wala-siyang-hiya-vp-sara-tumirada-kay-pbbm/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://balita.mb.com.ph/2017/12/19/baeby-baste-meant-to-be-sa-showbiz/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1252227",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284251",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/features/2024/01/25/pbbms-pabahay-program-safe-haven-for-indigenous-people-in-cotabato",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/pinangunahan-ni-pbbm-ang-pamamahagi-ng-bigas-sa-maynila-layuning-wakasan-ang-gutom-sa-loob-ng-kaniyang-termino/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/baste-duterte-slams-pbbm-over-flood-control-and-governance-issues-in-rage-coalition-speech",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/comelec-9779percent-of-barmm-poll-ers-received-so-far",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/nbi-forms-task-force-to-probe-threats-vs-pbbm-other-govt-officials",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bbm-sara-maintain-lead-in-pulse-survey-rivals-remain-unfazed",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/nearly-p11-per-liter-diesel-price-hike-seen-p5-for-gas",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/baste-duterte-to-bongbong-marcos-my-father-gave-yours-hero-s-burial",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Sebasfihn 'Baste' said: 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya."
+        },
+        "scoring_claim": "Sebasfihn 'Baste' said: 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya.",
+        "search_query": "Sebasfihn 'Baste' said: 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya.",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "4fac71bed9ebfb518244e165d53df499307bd5c01d6c3c251bdd4ff8d2df4760",
+        "cache_version": "week7-scripture-dates-v37",
+        "verdict": "Not Found",
+        "message": "IRIS did not find enough approved-source evidence confirming that Sebasfihn 'Baste' made this statement.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 131,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not confirm the specific claim about Sebasfihn 'Baste' making a threat against BBM.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
       },
       {
-        "segment_id": "s2",
-        "text": "\"Baste\"",
-        "segment_type": "unclear",
-        "reason_codes": [
-          "vague_claim"
+        "claim_id": 2,
+        "claim_text": "Sebasfihn 'Baste' said: 'Yung mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo.'",
+        "normalized_claim": "Sebasfihn 'Baste' said: 'Yung mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo.'",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Sebasfihn 'Baste'",
+          "role": null,
+          "statement": "Sebasfihn 'Baste' said: 'Yung mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo.'",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "absent",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "no_evidence",
+          "verdict": "Not Found",
+          "reason": "No valid extracted evidence satisfied the claim's required anchors.",
+          "supporting_urls": [],
+          "components": []
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-pahayag-ni-sotto-na-katigasan-ng-ulo-n",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/genz-urged-turn-political-frustration-into-sustained-action",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-davao-city-mayor-baste-duterte-bumaligtad-sa-pagsuporta-kay-marcos",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/voices/rappler-blogs/129374-elements-anatomy-jejomar-binay-campaign-speeches/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/pastilan-settle-score-baste-duterte-nicolas-torre/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/140442-drug-suspects-surrender-pampanga/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/amp/2020/5/9/fresh-scoops/idiniin-ni-coco-martin-na-hindi-ito-ang-panahon-pa-25934",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://news.abs-cbn.com/news/08/27/17/bodega-ng",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/03/27/22/baste-duterte-hopes-father-will-back-bbm-sees-signs",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/984330/nbi-baste-duterte-remarks-subpoena/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/videos/family-feud-anong-ginagawa-ng-lalaki-pag-may-nakakasalubong-na-magandang-babae-episode-1079/326410/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/420700/full-text-president-aquino-s-eulogy-at-the-necrological-service-for-fallen-saf-men/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/80532/sa-mga-naputulan-dahil-sa-paputok-buti-nga",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/453948/katherine-luna-napaiyak-hindi-nyo-lang-ako-hinusgahan-binastos-nyo-pa-ko",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/410025/baste-duterte-minura-si-pbbm-tatay-ko-pinakulong-mo-pi-ka",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/supreme/2016/05/21/1585264/baste",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pang-masa/pm-sports",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/music/2025/09/22/2474658/marching-beats-why-tatsulok-upuan-kapangyarihan-are-fave-protest-anthems",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bannawag.mb.com.ph/2024/10/25/allon-ti-biag-walo-a-dekada-a-panagdaliasat-30/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/08/24/kamay-ng-pulis-na-naputol-sa-pagresponde-naikabit-na/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2017/12/19/baeby-baste-meant-to-be-sa-showbiz/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1169897",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282305",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/luzon/calabarzon/calabarzon-police-intensify-oplan-bantay-dangal-vs-sex-offenders/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/deped-tightens-measures-to-curb-violence-bullying-in-schools/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/pbbm-replies-to-funny-netizen-questions-shares-lighthearted-holiday-advice/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/silg-remulla-slams-baste-dutertes-tirade-vs-marcos-ang-yabang-puro-salita",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ridon-urges-vp-duterte-to-face-legal-process-over-grave-threats-case-tama-na-po-ang-drama",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/baste-duterte-slams-pbbm-over-flood-control-and-governance-issues-in-rage-coalition-speech",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/kayo-ang-boss-niya",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/baste-duterte-to-bongbong-marcos-my-father-gave-yours-hero-s-burial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/speaker-house-of-the-people-on-the-right-side-of-history",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
         ],
-        "recommended_route": "stop_no_checkable_claims",
-        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-pahayag-ni-sotto-na-katigasan-ng-ulo-n",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/genz-urged-turn-political-frustration-into-sustained-action",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-davao-city-mayor-baste-duterte-bumaligtad-sa-pagsuporta-kay-marcos",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/voices/rappler-blogs/129374-elements-anatomy-jejomar-binay-campaign-speeches/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/pastilan-settle-score-baste-duterte-nicolas-torre/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/philippines/140442-drug-suspects-surrender-pampanga/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/amp/2020/5/9/fresh-scoops/idiniin-ni-coco-martin-na-hindi-ito-ang-panahon-pa-25934",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://news.abs-cbn.com/news/08/27/17/bodega-ng",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/03/27/22/baste-duterte-hopes-father-will-back-bbm-sees-signs",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/984330/nbi-baste-duterte-remarks-subpoena/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/videos/family-feud-anong-ginagawa-ng-lalaki-pag-may-nakakasalubong-na-magandang-babae-episode-1079/326410/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/420700/full-text-president-aquino-s-eulogy-at-the-necrological-service-for-fallen-saf-men/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://bandera.inquirer.net/80532/sa-mga-naputulan-dahil-sa-paputok-buti-nga",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://bandera.inquirer.net/453948/katherine-luna-napaiyak-hindi-nyo-lang-ako-hinusgahan-binastos-nyo-pa-ko",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://bandera.inquirer.net/410025/baste-duterte-minura-si-pbbm-tatay-ko-pinakulong-mo-pi-ka",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/supreme/2016/05/21/1585264/baste",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/pang-masa/pm-sports",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/music/2025/09/22/2474658/marching-beats-why-tatsulok-upuan-kapangyarihan-are-fave-protest-anthems",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://bannawag.mb.com.ph/2024/10/25/allon-ti-biag-walo-a-dekada-a-panagdaliasat-30/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/08/24/kamay-ng-pulis-na-naputol-sa-pagresponde-naikabit-na/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://balita.mb.com.ph/2017/12/19/baeby-baste-meant-to-be-sa-showbiz/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1169897",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282305",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/news/luzon/calabarzon/calabarzon-police-intensify-oplan-bantay-dangal-vs-sex-offenders/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/news/deped-tightens-measures-to-curb-violence-bullying-in-schools/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/news/pbbm-replies-to-funny-netizen-questions-shares-lighthearted-holiday-advice/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/silg-remulla-slams-baste-dutertes-tirade-vs-marcos-ang-yabang-puro-salita",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ridon-urges-vp-duterte-to-face-legal-process-over-grave-threats-case-tama-na-po-ang-drama",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/baste-duterte-slams-pbbm-over-flood-control-and-governance-issues-in-rage-coalition-speech",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/kayo-ang-boss-niya",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/baste-duterte-to-bongbong-marcos-my-father-gave-yours-hero-s-burial",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/speaker-house-of-the-people-on-the-right-side-of-history",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Sebasfihn 'Baste' said: 'Yung mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo.'"
+        },
+        "scoring_claim": "Sebasfihn 'Baste' said: 'Yung mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo.'",
+        "search_query": "Sebasfihn 'Baste' said: 'Yung mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo.'",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "da73cedbf5577dadb16ec057ad90a2657140296509a615b9c0df65338b78f373",
+        "cache_version": "week7-scripture-dates-v37",
+        "verdict": "Not Found",
+        "message": "IRIS did not find enough approved-source evidence confirming that Sebasfihn 'Baste' made this statement.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 135,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 15,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not confirm the specific claim about Sebasfihn 'Baste' making that statement.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
       }
     ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
     "debug": {
       "opinion_analysis": {
         "is_opinion": false,
@@ -71,27 +1741,27 @@
         "method": "local_rules_with_openai_advice",
         "error": null,
         "post_type": "unclear",
-        "confidence": 0.54,
-        "ambiguity_score": 0.65,
+        "confidence": 0.33,
+        "ambiguity_score": 0.85,
         "ambiguity_reasons": [
           "low_classifier_confidence",
-          "vague_claim"
+          "needs_claim_extraction_review"
         ],
-        "contains_factual_claims": false,
+        "contains_factual_claims": true,
         "contains_opinion": false,
         "contains_recommendation": false,
         "contains_forecast_or_projection": false,
         "contains_satire_or_humor": false,
         "contains_quote": false,
-        "eligible_for_verification": false,
-        "recommended_route": "stop_no_checkable_claims",
-        "verification_text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
-        "normalized_verification_text": "EGMN 'Upon our return to Malacanang, I will behead BBM' and his whole clan. You Ilocanos, prepare yourselves, many of you will also have your heads cut off: Sebasfihn [:yöv\"wvë%Cy, DIeí?\n\"Baste\"",
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "verification_text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\"",
+        "normalized_verification_text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\"",
         "segments": [
           {
             "segment_id": "s1",
-            "text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí?",
-            "translated_text": "EGMN 'Upon our return to Malacanang, I will behead BBM' and his whole clan.",
+            "text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\"",
+            "translated_text": null,
             "scores": {
               "factual_claim": 0.22,
               "opinion": 0.05,
@@ -107,65 +1777,18 @@
             "second_label": "unclear",
             "second_label_score": 0.3,
             "score_gap": 0.03,
-            "eligible_for_verification": false,
-            "recommended_route": "stop_no_checkable_claims",
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
             "reason_codes": [
-              "low_classifier_confidence"
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
             ],
-            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
-            "speech_scope": "unattributed"
-          },
-          {
-            "segment_id": "s2",
-            "text": "\"Baste\"",
-            "translated_text": "You Ilocanos, prepare yourselves, many of you will also have your heads cut off: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
-            "scores": {
-              "factual_claim": 0.1,
-              "opinion": 0.05,
-              "forecast_or_projection_detected": 0.05,
-              "quote": 0.33,
-              "satire_or_humor": 0.05,
-              "call_to_action": 0.05,
-              "contextual_background": 0.05,
-              "unclear": 0.75
-            },
-            "top_label": "unclear",
-            "top_label_score": 0.75,
-            "second_label": "quote",
-            "second_label_score": 0.33,
-            "score_gap": 0.42,
-            "eligible_for_verification": false,
-            "recommended_route": "stop_no_checkable_claims",
-            "reason_codes": [
-              "vague_claim"
-            ],
-            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
             "speech_scope": "unattributed"
           }
         ],
-        "ignored_segments": [
-          {
-            "segment_id": "s1",
-            "text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí?",
-            "segment_type": "unclear",
-            "reason_codes": [
-              "low_classifier_confidence"
-            ],
-            "recommended_route": "stop_no_checkable_claims",
-            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
-          },
-          {
-            "segment_id": "s2",
-            "text": "\"Baste\"",
-            "segment_type": "unclear",
-            "reason_codes": [
-              "vague_claim"
-            ],
-            "recommended_route": "stop_no_checkable_claims",
-            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
-          }
-        ],
-        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "ignored_segments": [],
+        "user_notification": null,
         "openai_profile": {
           "used": true,
           "status": "ok",
@@ -175,30 +1798,151 @@
               {
                 "segment_id": "s1",
                 "top_label": "quote",
-                "top_label_score": 0.9,
-                "eligible_for_verification": true,
-                "reason_codes": [
-                  "reported_speech",
-                  "direct_quote"
-                ]
-              },
-              {
-                "segment_id": "s2",
-                "top_label": "quote",
                 "top_label_score": 0.8,
                 "eligible_for_verification": true,
                 "reason_codes": [
                   "reported_speech",
-                  "direct_quote"
+                  "contains_attribution"
                 ]
               }
             ]
           }
         }
       },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0,
+              1
+            ],
+            "reason": "Both statements are direct quotations attributed to Sebasfihn 'Baste', making them checkable attributed statements."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "Sebasfihn 'Baste' said: 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "Sebasfihn 'Baste' said: 'Yung mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo.'"
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Sebasfihn 'Baste' said: 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya.",
+            "normalized_claim": "Sebasfihn 'Baste' said: 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Sebasfihn 'Baste'",
+              "role": null,
+              "statement": "Sebasfihn 'Baste' said: 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya.",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "Sebasfihn 'Baste' said: 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya.",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\""
+              }
+            ],
+            "evidence_context": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\"",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "absent",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "from_image": true,
+            "original_language_query": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\"",
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "Sebasfihn 'Baste' said: 'Yung mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo.'",
+            "normalized_claim": "Sebasfihn 'Baste' said: 'Yung mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo.'",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Sebasfihn 'Baste'",
+              "role": null,
+              "statement": "Sebasfihn 'Baste' said: 'Yung mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo.'",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "Sebasfihn 'Baste' said: 'Yung mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo.'",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\""
+              }
+            ],
+            "evidence_context": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\"",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "absent",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "from_image": true,
+            "original_language_query": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\"",
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
       "ocr": {
         "status": "ok",
-        "text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
+        "text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\"",
         "raw_text": "NEWS EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
         "raw_regions": [
           {
@@ -624,10 +2368,18 @@
           {
             "text": "NEWS",
             "reason": "section_label"
+          },
+          {
+            "text": "[:yöv\"wvë%Cy,",
+            "reason": "unreadable"
+          },
+          {
+            "text": "DIeí?",
+            "reason": "unreadable"
           }
         ],
-        "word_count": 33,
-        "confidence": 0.6491,
+        "word_count": 29,
+        "confidence": 0.7353,
         "low_confidence": false,
         "warnings": [],
         "error": null,
@@ -985,50 +2737,6 @@
             ]
           },
           {
-            "text": "[:yöv\"wvë%Cy,",
-            "confidence": 0.0033,
-            "bbox": [
-              [
-                290.0,
-                872.0
-              ],
-              [
-                466.0,
-                872.0
-              ],
-              [
-                466.0,
-                900.0
-              ],
-              [
-                290.0,
-                900.0
-              ]
-            ]
-          },
-          {
-            "text": "DIeí?",
-            "confidence": 0.0851,
-            "bbox": [
-              [
-                430.0,
-                842.0
-              ],
-              [
-                516.0,
-                842.0
-              ],
-              [
-                516.0,
-                874.0
-              ],
-              [
-                430.0,
-                874.0
-              ]
-            ]
-          },
-          {
             "text": "\"Baste\"",
             "confidence": 0.6971,
             "bbox": [
@@ -1054,32 +2762,32 @@
         "image_authenticity_checked": false
       },
       "timings": {
-        "request_id": "b89bbed559fe417189e0cfc0befdfaa4",
+        "request_id": "3f86e6bb389749ba97b9374feff7fc38",
         "request_type": "verify_image",
         "stages": [
           {
             "stage": "image.decode_and_validate",
-            "duration_seconds": 0.0013,
+            "duration_seconds": 0.0015,
             "status": "ok"
           },
           {
             "stage": "image.extract_text_from_image",
-            "duration_seconds": 4.4593,
+            "duration_seconds": 4.2268,
             "status": "ok"
           },
           {
             "stage": "text.detect_language",
-            "duration_seconds": 0.0086,
+            "duration_seconds": 0.0008,
             "status": "ok"
           },
           {
             "stage": "text.translate_to_english",
-            "duration_seconds": 1.6167,
+            "duration_seconds": 1.5693,
             "status": "ok"
           },
           {
             "stage": "text.profile_content",
-            "duration_seconds": 1.9514,
+            "duration_seconds": 1.5523,
             "status": "ok"
           },
           {
@@ -1098,13 +2806,133 @@
             "status": "ok"
           },
           {
+            "stage": "text.extract_claims",
+            "duration_seconds": 6.9448,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0016,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0014,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 15.4379,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0864,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 1.8887,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.4252,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.462,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.028,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0012,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 13.327,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0804,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 1.7114,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.7121,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.7468,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0269,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 36.2836,
+            "status": "ok"
+          },
+          {
             "stage": "image.verify_extracted_text_total",
-            "duration_seconds": 3.5807,
+            "duration_seconds": 46.3777,
             "status": "ok"
           },
           {
             "stage": "verify_image.total",
-            "duration_seconds": 8.0419,
+            "duration_seconds": 50.6067,
             "status": "ok"
           }
         ]
@@ -1112,9 +2940,9 @@
     },
     "input_type": "image",
     "ocr_status": "ok",
-    "ocr_text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn [:yöv\"wvë%Cy, DIeí? \"Baste\"",
-    "ocr_confidence": 0.6491,
-    "ocr_word_count": 33,
+    "ocr_text": "EGMN 'Pagbalik namin sa Malacanang pupugutan ko ng ulo si BBM' at buong angkan niya Yung\" mga [locano humanda kayo marami ring mapupugutan ng ulo sa inyo: Sebasfihn \"Baste\"",
+    "ocr_confidence": 0.7353,
+    "ocr_word_count": 29,
     "ocr_low_confidence": false,
     "ocr_warnings": [],
     "ocr_regions": [
@@ -1444,50 +3272,6 @@
           ],
           [
             240.0,
-            874.0
-          ]
-        ]
-      },
-      {
-        "text": "[:yöv\"wvë%Cy,",
-        "confidence": 0.0033,
-        "bbox": [
-          [
-            290.0,
-            872.0
-          ],
-          [
-            466.0,
-            872.0
-          ],
-          [
-            466.0,
-            900.0
-          ],
-          [
-            290.0,
-            900.0
-          ]
-        ]
-      },
-      {
-        "text": "DIeí?",
-        "confidence": 0.0851,
-        "bbox": [
-          [
-            430.0,
-            842.0
-          ],
-          [
-            516.0,
-            842.0
-          ],
-          [
-            516.0,
-            874.0
-          ],
-          [
-            430.0,
             874.0
           ]
         ]

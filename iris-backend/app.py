@@ -996,7 +996,13 @@ def build_claim_search_result(
         original_language_query=(
             claim.get("original_language_query") if language in ["tagalog", "taglish"] else None
         ),
-        fact_check_text=claim.get("claim_text") or normalized_claim,
+        # A picture's claim can lose the very name that finds its fact-check: held-out post
+        # H18 kept "EDU MANZANO" in the reading and lost it from the claim, while the fact-check
+        # is filed under his name. The sitemap lookup ranks by rare words, so giving it the
+        # post's own words costs nothing and finds what the claim cannot.
+        fact_check_text=" ".join(part for part in [
+            claim.get("claim_text") or normalized_claim,
+            claim.get("evidence_context", "") if claim.get("from_image") else ""] if part),
     )
 
     if has_event_articles:
@@ -1514,7 +1520,7 @@ def build_ocr_stop_response(ocr_result, debug_enabled):
     return add_ocr_response_fields(response, ocr_result, debug_enabled)
 
 @traced('text.process', dependency=False)
-def verify_text_payload(text, debug_enabled=False, timings=None):
+def verify_text_payload(text, debug_enabled=False, timings=None, from_image=False):
     owns_timings = timings is None
     timings = timings or RequestTimings("verify_text")
 
@@ -1669,6 +1675,7 @@ def verify_text_payload(text, debug_enabled=False, timings=None):
     for claim in claim_extraction['claims']:
         # Context identifies the incident for pronouns; it is never supporting evidence.
         claim['evidence_context'] = normalized_verification_text or verification_text
+        claim['from_image'] = from_image
         if language in ["tagalog", "taglish"]:
             claim['original_language_query'] = original_language_query(
                 claim.get('claim_text') or claim.get('normalized_claim') or '', text, translated)
@@ -1840,7 +1847,7 @@ def verify_image():
     response = timed_stage(
         timings,
         "image.verify_extracted_text_total",
-        lambda: verify_text_payload(ocr_result["text"], debug_enabled, timings),
+        lambda: verify_text_payload(ocr_result["text"], debug_enabled, timings, from_image=True),
     )
     response = add_ocr_response_fields(response, ocr_result, debug_enabled)
     response = finalize_response(

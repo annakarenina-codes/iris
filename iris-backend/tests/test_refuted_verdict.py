@@ -242,7 +242,7 @@ class RefutationCheckTests(unittest.TestCase):
         from pipeline import component_evidence
         body = inspect.getsource(component_evidence.review_components)
         self.assertIn("if review.get('verdict') != 'Not Found':", body)
-        self.assertIn('refutation_passages(claim, evidence, publishers)', body)
+        self.assertIn('refutation_passages(claim, evidence, publishers, source_context)', body)
         # Every way the review can end: nothing proposed, nothing left after identity, entailment.
         self.assertEqual(body.count('return with_refutation_check('), 3)
 

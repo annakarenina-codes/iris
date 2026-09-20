@@ -1,7 +1,7 @@
 {
   "response": {
-    "verdict": "Not Found",
-    "message": "Retrieved passages support 0 of 1 factual components.",
+    "verdict": "Refuted",
+    "message": "VERA Files reports that this did not happen. Retrieved passages support 0 of 1 factual components. 1 component is contradicted by retrieved passages.",
     "original_text": "UPDATE FROM THE HAGUE September 10, 2026 GOOD MEWISI MAJORITY OF ICC JUDGES BEECT IHEEVIDENCE AND MOVE TO END THE TRIAL BEFORE THE YEAR ENDS DJYOS SALAMAT KAAYO GINOO Cour Penale Internationale Internetional Crminal Cour StAY SIAY informed; United Tomgrrow PREVAILS JUSTICE For Fairfr",
     "translated_text": "UPDATE FROM THE HAGUE September 10, 2026 GOOD MEWISI MAJORITY OF ICC JUDGES BEECT IHEEVIDENCE AND MOVE TO END THE TRIAL BEFORE THE YEAR ENDS DJYOS SALAMAT KAAYO GINOO Cour Penale Internationale Internetional Crminal Cour StAY SIAY informed; United Tomgrrow PREVAILS JUSTICE For Fairfr",
     "detected_language": "english",
@@ -13,7 +13,7 @@
     "content_profile_status": "ok",
     "content_profile_route": "proceed_with_caution",
     "contains_opinion": true,
-    "contains_recommendation": false,
+    "contains_recommendation": true,
     "contains_forecast_or_projection": false,
     "contains_satire_or_humor": false,
     "contains_quote": false,
@@ -25,6 +25,10 @@
       {
         "text": "DJYOS SALAMAT KAAYO GINOO",
         "segment_type": "opinion"
+      },
+      {
+        "text": "StAY SIAY informed;",
+        "segment_type": "recommendation"
       },
       {
         "text": "United Tomgrrow PREVAILS JUSTICE For Fairfr",
@@ -42,12 +46,14 @@
         "attribution_integrity": null,
         "component_review": {
           "status": "ok",
-          "verdict": "Not Found",
+          "verdict": "Refuted",
           "components": [
             {
               "component": "A majority of ICC judges have reviewed the evidence and moved to end the trial before the year ends.",
               "status": "not_supported",
               "citations": [],
+              "evidence_relation": "contradicted",
+              "review_reason": "Passages 1, 4, and 5 explicitly state that the ICC has denied the claim that a majority of ICC judges have reviewed the evidence and moved to end the trial before the year ends. Instead, they confirm the trial is still scheduled to proceed, and the ICC's Public Affairs Unit disowned the circulating claims. Therefore, the assertion is directly contradicted by the cited evidence.",
               "context": {
                 "start": 0,
                 "end": 100,
@@ -130,19 +136,207 @@
                 },
                 "context_is_evidence": false,
                 "context_reviewed": true
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial"
+          ],
+          "reason": "VERA Files reports that this did not happen. Retrieved passages support 0 of 1 factual components. 1 component is contradicted by retrieved passages.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": false,
+              "qualifiers_preserved": false,
+              "contradicted": true,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "denial",
+              "citation_ids": [
+                1,
+                4,
+                5
+              ],
+              "reason": "Passages 1, 4, and 5 explicitly state that the ICC has denied the claim that a majority of ICC judges have reviewed the evidence and moved to end the trial before the year ends. Instead, they confirm the trial is still scheduled to proceed, and the ICC's Public Affairs Unit disowned the circulating claims. Therefore, the assertion is directly contradicted by the cited evidence.",
+              "component_id": 0,
+              "denial_urls": [
+                "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial"
+              ]
+            }
+          ],
+          "original_claim": "A majority of ICC judges have reviewed the evidence and moved to end the trial before the year ends.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Claim that a majority of ICC judges have reviewed the evidence and moved to end the trial before the year ends (regarding the Duterte ICC trial).",
+              "sources": {
+                "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0,
+                    1,
+                    2,
+                    5,
+                    6,
+                    7,
+                    8
+                  ],
+                  "reason": "Source 0 directly addresses the claim, referencing a graphic and social media posts that claim a majority of ICC judges have reviewed the evidence and moved to end the trial before the year ends. The article explicitly states this is false, and the ICC has denied such a move, confirming the trial is still scheduled to proceed. The identity of the event (the Duterte ICC trial and the claim about judges ending it early) is established and directly discussed.",
+                  "citations": [
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+                      "quote": "A graphic circulating online claims that the judges assigned to former president Rodrigo Duterte’s case in the International Criminal Court have rejected the evidence and moved to end his trial."
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+                      "quote": "This is false."
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+                      "quote": "The ICC has denied this and reiterated that the trial will push through, with the opening still scheduled for Nov. 30."
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+                      "quote": "The graphic bore the text: “UPDATE FROM THE HAGUE. GOOD NEWS! MAJORITY OF ICC JUDGES REJECT THE EVIDENCE AND MOVE TO END THE TRIAL BEFORE THE YEAR ENDS.”"
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+                      "quote": "The post also read: “UPDATE FROM THE HAGUE. A developing update is drawing attention: reports circulating online claim that a majority of ICC judges may reject key evidence and could move toward ending the trial before the year ends. What happens next could have major implications. Stay informed, follow verified developments, and wait for official court announcements before drawing conclusions. For updates, facts, and the latest developments—stay tuned. #ICC #TheHague #Philippines #Justice #Duterte.”"
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+                      "quote": "In a Sept. 11 email to VERA Files, the ICC’s Public Affairs Unit disowned the circulating claims."
+                    },
+                    {
+                      "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+                      "quote": "“Contrary to what these social media posts say, the opening of the trial is still scheduled for 30 November, and the Chamber will hold a hearing next week on 16 September to discuss preparations for the trial,” a portion of the email said."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.philstar.com/headlines/2026/09/16/2556737/icc-asks-prosecutors-trim-witnesses-evidence-duterte-trial": {
+                  "status": "matched",
+                  "passage_ids": [
+                    17,
+                    19,
+                    30,
+                    37,
+                    38
+                  ],
+                  "reason": "Source 1 discusses the current status of the ICC trial against Duterte, including judges' efforts to streamline the case and conclude it as quickly as possible, but explicitly notes that no final decision has been made to end the trial before the year ends. The passages confirm the context is the Duterte ICC trial and address the status of judicial decisions, matching the event identity.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/16/2556737/icc-asks-prosecutors-trim-witnesses-evidence-duterte-trial",
+                      "quote": "MANILA, Philippines — International Criminal Court judges have asked prosecutors to reduce the number of witnesses and identify the evidence they consider essential against former President Rodrigo Duterte — an attempt to narrow the case before his trial opens November 30."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/16/2556737/icc-asks-prosecutors-trim-witnesses-evidence-duterte-trial",
+                      "quote": "\"It really is important, even more important than normal, that we conclude the case as quickly as possible,\" she said."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/16/2556737/icc-asks-prosecutors-trim-witnesses-evidence-duterte-trial",
+                      "quote": "\"For the many reasons that I don't have to go into, we are very anxious that this [case] concludes as swiftly as his possible in the circumstances,\" Korner said."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/16/2556737/icc-asks-prosecutors-trim-witnesses-evidence-duterte-trial",
+                      "quote": "Korner said the chamber intends to sit continuously, from November 30 until the week before the Christmas break and then from January until the Easter break, instead of in blocks separated by breaks as the Registry proposed."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/16/2556737/icc-asks-prosecutors-trim-witnesses-evidence-duterte-trial",
+                      "quote": "She said no final decision has been made."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.philstar.com/headlines/2026/06/21/2536699/icc-issues-rules-duterte-trial": {
+                  "status": "matched",
+                  "passage_ids": [
+                    55,
+                    56,
+                    60
+                  ],
+                  "reason": "Source 2 covers the ICC trial protocols and scheduling for Duterte's case, confirming the trial is proceeding and that decisions on evidence presentation are pending, not that the trial is being ended early. The event identity (Duterte ICC trial and judicial decisions about evidence and trial schedule) is established.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/06/21/2536699/icc-issues-rules-duterte-trial",
+                      "quote": "MANILA, Philippines — Trial judges of the International Criminal Court (ICC) have issued the protocols for the conduct of the upcoming crimes against humanity trial of former president Rodrigo Duterte."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/06/21/2536699/icc-issues-rules-duterte-trial",
+                      "quote": "In a 23-page decision released on Friday night, the ICC Trial Chamber III laid down the directions for the conduct of the trial proceedings scheduled to begin on Nov. 30."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/06/21/2536699/icc-issues-rules-duterte-trial",
+                      "quote": "“The Chamber will issue a separate decision on the length and timing of the presentation of evidence by the prosecution after receipt of the prosecution’s final list of evidence,” the decision read."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.gmanetwork.com/regionaltv/news/114245/icc-sets-trial-date-for-duterte-case-on-nov-30-2026/story/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    71,
+                    72,
+                    73,
+                    77
+                  ],
+                  "reason": "Source 3 confirms the ICC trial for Duterte is scheduled to begin November 30, 2026, and discusses the trial's scheduling and related judicial decisions. There is no mention of a move to end the trial before the year ends, but the event identity (Duterte ICC trial and judicial actions) is clearly established.",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/regionaltv/news/114245/icc-sets-trial-date-for-duterte-case-on-nov-30-2026/story/",
+                      "quote": "The International Criminal Court (ICC) Trial Chamber III on Wednesday set the opening of the trial of former President Rodrigo Duterte’s crime against humanity case over his war on illegal drugs during his time as President and Davao City mayor on November 30, 2026."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/regionaltv/news/114245/icc-sets-trial-date-for-duterte-case-on-nov-30-2026/story/",
+                      "quote": "“The start of trial, we are prepared to accede to the prosecution’s application of the 30th of November as the start of trial,” Presiding Judge Joanna Korner said during the case’s first status conference."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/regionaltv/news/114245/icc-sets-trial-date-for-duterte-case-on-nov-30-2026/story/",
+                      "quote": "According to Korner, the trial will run daily until a judicial recess."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/regionaltv/news/114245/icc-sets-trial-date-for-duterte-case-on-nov-30-2026/story/",
+                      "quote": "During the conference, Korner said the ICC prosecution wants to begin Duterte’s trial on November 30 while Duterte’s defense team did not want to propose a date until matters regarding his fitness were resolved."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
               }
             }
           ],
-          "supporting_urls": [],
-          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
           "assessment_model": "gpt-4.1-2025-04-14",
-          "original_claim": "A majority of ICC judges have reviewed the evidence and moved to end the trial before the year ends.",
-          "partition_model": "gpt-4.1-2025-04-14"
+          "entailment_model": "gpt-4.1-2025-04-14"
         },
         "review_error": null,
         "incident_evidence_audit": [
           {
-            "url": "https://verafiles.org/articles/trillanes-and-silent-majority-group-complaint-before-ombudsman-vs-sara-duterte-cites-madriaga-affidavit",
+            "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -342,7 +536,7 @@
         ],
         "evidence_gate_audit": [
           {
-            "url": "https://verafiles.org/articles/trillanes-and-silent-majority-group-complaint-before-ombudsman-vs-sara-duterte-cites-madriaga-affidavit",
+            "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
@@ -555,22 +749,42 @@
         "risk_tags": [],
         "claim_hash": "ddf3ae0e4c5acf20bb1d05d5a4844a3558269f1a84fd3cfdd579f49e712ecf68",
         "cache_version": "week7-scripture-dates-v37",
-        "verdict": "Not Found",
-        "message": "Retrieved passages support 0 of 1 factual components.",
+        "verdict": "Refuted",
+        "message": "VERA Files reports that this did not happen. Retrieved passages support 0 of 1 factual components. 1 component is contradicted by retrieved passages.",
         "politically_sensitive": false,
         "flags": [],
         "cache_hit": false,
-        "corroboration_count": 0,
-        "primary_evidence": null,
-        "supporting_sources": [],
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "VERA Files",
+          "title": "FACT CHECK: NO move from ICC judges to end Rodrigo Duterte’s trial",
+          "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+          "status": "extracted",
+          "word_count": 477,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: NO move from ICC judges to end Rodrigo Duterte’s trial",
+            "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+            "status": "extracted",
+            "word_count": 477,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
         "search_status": "ok",
-        "total_search_results": 97,
+        "total_search_results": 98,
         "searched_articles": 33,
         "extracted_articles": 33,
         "source_summary": [
           {
             "source": "VERA Files",
-            "results_found": 11,
+            "results_found": 12,
             "articles_checked": 3,
             "articles_extracted": 3
           },
@@ -635,8 +849,30 @@
             "articles_extracted": 3
           }
         ],
-        "sources": [],
-        "evidence_sources": [],
+        "sources": [
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: NO move from ICC judges to end Rodrigo Duterte’s trial",
+            "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+            "status": "extracted",
+            "word_count": 477,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "VERA Files",
+            "title": "FACT CHECK: NO move from ICC judges to end Rodrigo Duterte’s trial",
+            "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+            "status": "extracted",
+            "word_count": 477,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
         "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
         "fallback": {
           "openai": {
@@ -645,7 +881,7 @@
             "error": null,
             "result": {
               "verdict": "Not Found",
-              "reason": "The evidence does not confirm that a majority of ICC judges have reviewed evidence to end the trial before year-end.",
+              "reason": "The evidence explicitly states there is no move to end the trial before the year ends.",
               "supporting_urls": [],
               "fallback_method": "openai_rag"
             }
@@ -819,6 +1055,7 @@
               }
             ],
             "evidence_context": "UPDATE FROM THE HAGUE September 10, 2026 GOOD MEWISI MAJORITY OF ICC JUDGES BEECT IHEEVIDENCE AND MOVE TO END THE TRIAL BEFORE THE YEAR ENDS DJYOS SALAMAT KAAYO GINOO Cour Penale Internationale Internetional Crminal Cour StAY SIAY informed;\nUnited Tomgrrow PREVAILS JUSTICE For Fairfr",
+            "from_image": true,
             "is_quote_derived": false
           }
         ],
@@ -832,13 +1069,17 @@
             "segment_type": "opinion"
           },
           {
+            "text": "StAY SIAY informed;",
+            "segment_type": "recommendation"
+          },
+          {
             "text": "United Tomgrrow PREVAILS JUSTICE For Fairfr",
             "segment_type": "opinion"
           }
         ],
         "post_type": "mixed_content",
         "contains_opinion": true,
-        "contains_recommendation": false
+        "contains_recommendation": true
       },
       "shared_evidence_pool": {
         "used": false,
@@ -2077,37 +2318,37 @@
         "image_authenticity_checked": false
       },
       "timings": {
-        "request_id": "7fc0dcf5ae7c416fb756eba01e0865b3",
+        "request_id": "18d37c58044d4ea89039345bef8817dd",
         "request_type": "verify_image",
         "stages": [
           {
             "stage": "image.decode_and_validate",
-            "duration_seconds": 0.0111,
+            "duration_seconds": 0.0096,
             "status": "ok"
           },
           {
             "stage": "image.extract_text_from_image",
-            "duration_seconds": 5.4415,
+            "duration_seconds": 3.8467,
             "status": "ok"
           },
           {
             "stage": "text.detect_language",
-            "duration_seconds": 0.0111,
+            "duration_seconds": 0.001,
             "status": "ok"
           },
           {
             "stage": "text.translate_to_english",
-            "duration_seconds": 0.0003,
+            "duration_seconds": 0.0005,
             "status": "ok"
           },
           {
             "stage": "text.profile_content",
-            "duration_seconds": 2.3143,
+            "duration_seconds": 1.9838,
             "status": "ok"
           },
           {
             "stage": "text.opinion_filter",
-            "duration_seconds": 0.0004,
+            "duration_seconds": 0.0003,
             "status": "ok"
           },
           {
@@ -2117,12 +2358,12 @@
           },
           {
             "stage": "text.coverage_scope",
-            "duration_seconds": 1.2538,
+            "duration_seconds": 1.3583,
             "status": "ok"
           },
           {
             "stage": "text.extract_claims",
-            "duration_seconds": 3.5573,
+            "duration_seconds": 4.5815,
             "status": "ok"
           },
           {
@@ -2147,42 +2388,42 @@
           },
           {
             "stage": "claim_1.political_flags",
-            "duration_seconds": 0.0012,
+            "duration_seconds": 0.0011,
             "status": "ok"
           },
           {
             "stage": "claim_1.search_and_extract",
-            "duration_seconds": 14.5326,
+            "duration_seconds": 11.0524,
             "status": "ok"
           },
           {
             "stage": "claim_1.search_status",
-            "duration_seconds": 0.0926,
+            "duration_seconds": 0.0905,
             "status": "ok"
           },
           {
             "stage": "claim_1.generate_verdict",
-            "duration_seconds": 1.8087,
+            "duration_seconds": 1.7791,
             "status": "ok"
           },
           {
             "stage": "claim_1.openai_rag_fallback",
-            "duration_seconds": 1.3817,
+            "duration_seconds": 1.8325,
             "status": "ok"
           },
           {
             "stage": "claim_1.fallback_total",
-            "duration_seconds": 1.412,
+            "duration_seconds": 1.8568,
             "status": "ok"
           },
           {
             "stage": "claim_1.public_evidence_sources",
-            "duration_seconds": 0.0247,
+            "duration_seconds": 0.0258,
             "status": "ok"
           },
           {
             "stage": "claim_1.component_evidence_review",
-            "duration_seconds": 8.1667,
+            "duration_seconds": 13.7894,
             "status": "ok"
           },
           {
@@ -2192,33 +2433,53 @@
           },
           {
             "stage": "text.verify_claims_total",
-            "duration_seconds": 26.1144,
+            "duration_seconds": 28.6794,
             "status": "ok"
           },
           {
             "stage": "image.verify_extracted_text_total",
-            "duration_seconds": 33.265,
+            "duration_seconds": 36.6232,
             "status": "ok"
           },
           {
             "stage": "verify_image.total",
-            "duration_seconds": 38.7181,
+            "duration_seconds": 40.4802,
             "status": "ok"
           }
         ]
       }
     },
-    "corroboration_count": 0,
-    "primary_evidence": null,
-    "supporting_sources": [],
+    "corroboration_count": 1,
+    "primary_evidence": {
+      "source": "VERA Files",
+      "title": "FACT CHECK: NO move from ICC judges to end Rodrigo Duterte’s trial",
+      "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+      "status": "extracted",
+      "word_count": 477,
+      "evidence_method": "component_review",
+      "extraction_quality": "full",
+      "evidence_type": "full_text"
+    },
+    "supporting_sources": [
+      {
+        "source": "VERA Files",
+        "title": "FACT CHECK: NO move from ICC judges to end Rodrigo Duterte’s trial",
+        "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+        "status": "extracted",
+        "word_count": 477,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
     "search_status": "ok",
-    "total_search_results": 97,
+    "total_search_results": 98,
     "searched_articles": 33,
     "extracted_articles": 33,
     "source_summary": [
       {
         "source": "VERA Files",
-        "results_found": 11,
+        "results_found": 12,
         "articles_checked": 3,
         "articles_extracted": 3
       },
@@ -2283,8 +2544,30 @@
         "articles_extracted": 3
       }
     ],
-    "sources": [],
-    "evidence_sources": [],
+    "sources": [
+      {
+        "source": "VERA Files",
+        "title": "FACT CHECK: NO move from ICC judges to end Rodrigo Duterte’s trial",
+        "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+        "status": "extracted",
+        "word_count": 477,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "evidence_sources": [
+      {
+        "source": "VERA Files",
+        "title": "FACT CHECK: NO move from ICC judges to end Rodrigo Duterte’s trial",
+        "url": "https://verafiles.org/articles/fact-check-no-move-from-icc-judges-to-end-rodrigo-dutertes-trial",
+        "status": "extracted",
+        "word_count": 477,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
     "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
     "input_type": "image",
     "ocr_status": "ok",

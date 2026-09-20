@@ -1,9 +1,9 @@
 {
   "response": {
     "verdict": "Not Found",
-    "message": "Retrieved passages support 0 of 3 factual components.",
-    "original_text": "66 DALAWANGD KLASE LANG ArGD NAGTATANGGOL KAY D BBM: ISANG MAY > BAYAD AT ISANG [ MAY SAYAD. EDU MANZANO PH Notustd",
-    "translated_text": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT.\nEDU MANZANO PH Notustd",
+    "message": "Retrieved passages support 0 of 1 factual components.",
+    "original_text": "66 DALAWANGD KLASE LANG ArGD NAGTATANGGOL KAY D BBM: ISANG MAY > BAYAD AT ISANG [ MAY SAYAD. EDU MANZANO PH",
+    "translated_text": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.\nEDU MANZANO PH",
     "detected_language": "tagalog",
     "politically_sensitive": true,
     "flags": [
@@ -22,7 +22,7 @@
     "ignored_segments": [
       {
         "segment_id": "s2",
-        "text": "EDU MANZANO PH Notustd",
+        "text": "EDU MANZANO PH",
         "segment_type": "unclear",
         "reason_codes": [],
         "recommended_route": "stop_no_checkable_claims",
@@ -32,8 +32,8 @@
     "claims": [
       {
         "claim_id": 1,
-        "claim_text": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT.",
-        "normalized_claim": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT.",
+        "claim_text": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
+        "normalized_claim": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
         "claim_type": "factual_claim",
         "verification_focus": "factual_claim",
         "attribution": null,
@@ -43,12 +43,12 @@
           "verdict": "Not Found",
           "components": [
             {
-              "component": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM:",
+              "component": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
               "status": "not_supported",
               "citations": [],
               "context": {
                 "start": 0,
-                "end": 43,
+                "end": 83,
                 "anchors": {
                   "subject": [
                     {
@@ -56,22 +56,46 @@
                       "quote": "ArGD",
                       "start": 18,
                       "end": 22
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "ONE",
+                      "start": 42,
+                      "end": 45
                     }
                   ],
                   "action": [
                     {
                       "origin": "claim",
-                      "quote": "DEFENDING KAY D BBM",
+                      "quote": "DEFENDS",
                       "start": 23,
-                      "end": 42
+                      "end": 30
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "WITH > PAYMENT",
+                      "start": 46,
+                      "end": 60
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "WITH DEFECT.",
+                      "start": 71,
+                      "end": 83
                     }
                   ],
                   "event": [
                     {
                       "origin": "claim",
-                      "quote": "ArGD DEFENDING KAY D BBM",
+                      "quote": "ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
                       "start": 18,
-                      "end": 42
+                      "end": 83
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "ONE WITH > PAYMENT",
+                      "start": 42,
+                      "end": 60
                     }
                   ],
                   "time": [],
@@ -81,131 +105,41 @@
                 "proposed_ids": [
                   0
                 ],
-                "component_id": 0,
-                "assertion": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM:",
-                "source_reference": {
-                  "origin": "claim",
-                  "start": 0,
-                  "end": 43
-                },
-                "context_is_evidence": false
-              }
-            },
-            {
-              "component": "ONE WITH > PAYMENT",
-              "status": "not_supported",
-              "citations": [],
-              "context": {
-                "start": 44,
-                "end": 62,
-                "anchors": {
-                  "subject": [
-                    {
-                      "origin": "claim",
-                      "quote": "ONE",
-                      "start": 44,
-                      "end": 47
-                    }
-                  ],
-                  "action": [
-                    {
-                      "origin": "claim",
-                      "quote": "WITH > PAYMENT",
-                      "start": 48,
-                      "end": 62
-                    }
-                  ],
-                  "event": [
-                    {
-                      "origin": "claim",
-                      "quote": "ONE WITH > PAYMENT",
-                      "start": 44,
-                      "end": 62
-                    }
-                  ],
-                  "time": [],
-                  "negation": [],
-                  "speaker": []
-                },
-                "proposed_ids": [
-                  1
-                ],
-                "component_id": 1,
-                "assertion": "ONE WITH > PAYMENT",
-                "source_reference": {
-                  "origin": "claim",
-                  "start": 44,
-                  "end": 62
-                },
-                "context_is_evidence": false
-              }
-            },
-            {
-              "component": "AND ONE [ WITH A DEFECT.",
-              "status": "not_supported",
-              "citations": [],
-              "context": {
-                "start": 63,
-                "end": 87,
-                "anchors": {
-                  "subject": [
-                    {
-                      "origin": "claim",
-                      "quote": "ONE",
-                      "start": 44,
-                      "end": 47
-                    }
-                  ],
-                  "action": [
-                    {
-                      "origin": "claim",
-                      "quote": "WITH A DEFECT",
-                      "start": 73,
-                      "end": 86
-                    }
-                  ],
-                  "event": [],
-                  "time": [],
-                  "negation": [],
-                  "speaker": []
-                },
-                "proposed_ids": [
-                  2
-                ],
                 "ungrounded_dropped": [
                   {
                     "field": "event",
                     "origin": "claim",
-                    "quote": "ONE WITH A DEFECT"
+                    "quote": "ONE WITH DEFECT."
                   }
                 ],
-                "component_id": 2,
-                "assertion": "AND ONE [ WITH A DEFECT.",
+                "component_id": 0,
+                "assertion": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
                 "source_reference": {
                   "origin": "claim",
-                  "start": 63,
-                  "end": 87
+                  "start": 0,
+                  "end": 83
                 },
-                "context_is_evidence": false
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
               }
             }
           ],
           "supporting_urls": [],
-          "reason": "Retrieved passages support 0 of 3 factual components.",
+          "reason": "Retrieved passages support 0 of 1 factual components.",
           "assessment_model": "gpt-4.1-2025-04-14",
-          "original_claim": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT.",
+          "original_claim": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
           "partition_model": "gpt-4.1-2025-04-14"
         },
         "review_error": null,
         "incident_evidence_audit": [
           {
-            "url": "https://verafiles.org/articles/fact-check-no-sara-duterte-flip-flop-on-bbms-alleged-drug-use",
+            "url": "https://verafiles.org/articles/dumbfounded",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://verafiles.org/articles/the-resounding-fall-of-loren-legarda",
+            "url": "https://verafiles.org/articles/the-absurdity-that-is-pia-cayetano",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -217,13 +151,13 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.rappler.com/philippines/archive-video-sara-duterte-kill-president-marcos-no-joke-statement/",
+            "url": "https://www.rappler.com/business/239973-ask-the-tax-whiz-compromise-settlement/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.rappler.com/philippines/elections/results-barmm-2026/",
+            "url": "https://www.rappler.com/business/search-philippine-stock-exchange-market-index-elusive-inflection-point/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -241,25 +175,25 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.abs-cbn.com/news/2026/8/25/duterte-masterminded-confidential-fund-scam-prosecution-maintains-1936",
+            "url": "https://www.abs-cbn.com/entertainment/02/03/10/pacquiao-impersonator-defends-boxer",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.abs-cbn.com/news/07/03/20/defensor-addresses-criticism-on-abs-cbn-franchise-hearing",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/music/2026/8/6/k-pop-group-the-boyz-moves-forward-with-9-members-under-new-label-1411",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://aphrodite.gmanetwork.com/corporate/quarterlyreports/2021_full_1650331529.pdf",
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/995614/2-suspek-sa-pagpatay-sa-pro-bbm-vlogger-na-si-mima-alicia-tukoy-na-ng-pnp/story/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.gmanetwork.com/news/topstories/metro/1003060/businesswoman-nabbed-for-124-qualified-theft-charges-in-mandaluyong-city/story/",
+            "url": "https://www.gmanetwork.com/news/showbiz/showbizabroad/1003018/h-e-r-and-liza-soberano-on-forgotten-island-philippine-folklore-and-their-new-song-brb/story/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -289,13 +223,13 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.philstar.com/opinion/2026/06/17/2535761/defensors-blue-ribbon-hearing-blasts-bbm-sandro-martin-chiz",
+            "url": "https://www.philstar.com/opinion/2026/07/03/2539417/mike-defensors-many-controversies-2006-2026",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.philstar.com/opinion/2026/08/26/2551798/bbm-dont-take-us-fools",
+            "url": "https://www.philstar.com/opinion/2026/09/21/2557679/editorial-no-golden-age",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -307,13 +241,7 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://mb.com.ph/2026/06/26/sc-clarifies-rights-of-homeowners-in-a-residential-subdivision",
-            "matches": true,
-            "subject": null,
-            "reason": "not_referential_incident"
-          },
-          {
-            "url": "https://mb.com.ph/2026/09/20/groups-demand-accountability-fight-corruption-ahead-of-martial-law-anniversary",
+            "url": "https://mb.com.ph/2026/09/01/foreign-debt-service-burden-climbs-to-621-billion-at-end-may-on-higher-principal-payments",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -325,13 +253,19 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.pna.gov.ph/articles/1194048",
+            "url": "https://mb.com.ph/2021/11/14/sc-affirms-ca-ruling-to-refund-or-replace-purchased-car-with-product-imperfection/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.pna.gov.ph/articles/1284425",
+            "url": "https://www.pna.gov.ph/articles/1261305",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283968",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -343,13 +277,13 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://pia.gov.ph/news/page/66/?article=731339562962",
+            "url": "https://pia.gov.ph/news/page/86/?article=841358147799",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "url": "https://pia.gov.ph/news/government-work-classes-suspended-in-ncr-16-provinces-due-to-habagat/",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -361,7 +295,13 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.dzrh.com.ph/post/over-15k-police-deployment-for-martial-law-anniv-not-overkill-pnp",
+            "url": "https://www.dzrh.com.ph/post/afp-spokesperson-interview-dpd",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/cayetano-says-she-feels-pressured-fears-liberty-in-impeachment-trial",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -373,25 +313,19 @@
             "reason": "not_referential_incident"
           },
           {
-            "url": "https://www.dzrh.com.ph/post/malacanang-philippine-flag-raised-on-pag-asa-cays",
-            "matches": true,
-            "subject": null,
-            "reason": "not_referential_incident"
-          },
-          {
-            "url": "https://www.onenews.ph/articles/bbm-sara-maintain-lead-in-pulse-survey-rivals-remain-unfazed",
-            "matches": true,
-            "subject": null,
-            "reason": "not_referential_incident"
-          },
-          {
-            "url": "https://www.onenews.ph/articles/bfar-vessel-hit-by-china-coast-guard-ship",
+            "url": "https://www.onenews.ph/articles/bong-go-no-reward-system-during-war-on-drugs",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
           },
           {
             "url": "https://www.onenews.ph/articles/sagot-for-sale-scheme-two-women-reveal-how-they-get-paid-for-answering-students-modules",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/no-ruling-yet-to-make-bonoan-state-witness",
             "matches": true,
             "subject": null,
             "reason": "not_referential_incident"
@@ -399,13 +333,13 @@
         ],
         "evidence_gate_audit": [
           {
-            "url": "https://verafiles.org/articles/fact-check-no-sara-duterte-flip-flop-on-bbms-alleged-drug-use",
+            "url": "https://verafiles.org/articles/dumbfounded",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
           },
           {
-            "url": "https://verafiles.org/articles/the-resounding-fall-of-loren-legarda",
+            "url": "https://verafiles.org/articles/the-absurdity-that-is-pia-cayetano",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
@@ -417,13 +351,13 @@
             "missing": []
           },
           {
-            "url": "https://www.rappler.com/philippines/archive-video-sara-duterte-kill-president-marcos-no-joke-statement/",
+            "url": "https://www.rappler.com/business/239973-ask-the-tax-whiz-compromise-settlement/",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
           },
           {
-            "url": "https://www.rappler.com/philippines/elections/results-barmm-2026/",
+            "url": "https://www.rappler.com/business/search-philippine-stock-exchange-market-index-elusive-inflection-point/",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
@@ -441,25 +375,25 @@
             "missing": []
           },
           {
-            "url": "https://www.abs-cbn.com/news/2026/8/25/duterte-masterminded-confidential-fund-scam-prosecution-maintains-1936",
+            "url": "https://www.abs-cbn.com/entertainment/02/03/10/pacquiao-impersonator-defends-boxer",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
           },
           {
-            "url": "https://www.abs-cbn.com/news/07/03/20/defensor-addresses-criticism-on-abs-cbn-franchise-hearing",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/music/2026/8/6/k-pop-group-the-boyz-moves-forward-with-9-members-under-new-label-1411",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
           },
           {
-            "url": "https://aphrodite.gmanetwork.com/corporate/quarterlyreports/2021_full_1650331529.pdf",
+            "url": "https://www.gmanetwork.com/news/balitambayan/balita/995614/2-suspek-sa-pagpatay-sa-pro-bbm-vlogger-na-si-mima-alicia-tukoy-na-ng-pnp/story/",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
           },
           {
-            "url": "https://www.gmanetwork.com/news/topstories/metro/1003060/businesswoman-nabbed-for-124-qualified-theft-charges-in-mandaluyong-city/story/",
+            "url": "https://www.gmanetwork.com/news/showbiz/showbizabroad/1003018/h-e-r-and-liza-soberano-on-forgotten-island-philippine-folklore-and-their-new-song-brb/story/",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
@@ -489,13 +423,13 @@
             "missing": []
           },
           {
-            "url": "https://www.philstar.com/opinion/2026/06/17/2535761/defensors-blue-ribbon-hearing-blasts-bbm-sandro-martin-chiz",
+            "url": "https://www.philstar.com/opinion/2026/07/03/2539417/mike-defensors-many-controversies-2006-2026",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
           },
           {
-            "url": "https://www.philstar.com/opinion/2026/08/26/2551798/bbm-dont-take-us-fools",
+            "url": "https://www.philstar.com/opinion/2026/09/21/2557679/editorial-no-golden-age",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
@@ -507,13 +441,7 @@
             "missing": []
           },
           {
-            "url": "https://mb.com.ph/2026/06/26/sc-clarifies-rights-of-homeowners-in-a-residential-subdivision",
-            "stage": "attribution_anchors",
-            "matches": true,
-            "missing": []
-          },
-          {
-            "url": "https://mb.com.ph/2026/09/20/groups-demand-accountability-fight-corruption-ahead-of-martial-law-anniversary",
+            "url": "https://mb.com.ph/2026/09/01/foreign-debt-service-burden-climbs-to-621-billion-at-end-may-on-higher-principal-payments",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
@@ -525,13 +453,19 @@
             "missing": []
           },
           {
-            "url": "https://www.pna.gov.ph/articles/1194048",
+            "url": "https://mb.com.ph/2021/11/14/sc-affirms-ca-ruling-to-refund-or-replace-purchased-car-with-product-imperfection/",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
           },
           {
-            "url": "https://www.pna.gov.ph/articles/1284425",
+            "url": "https://www.pna.gov.ph/articles/1261305",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283968",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
@@ -543,13 +477,13 @@
             "missing": []
           },
           {
-            "url": "https://pia.gov.ph/news/page/66/?article=731339562962",
+            "url": "https://pia.gov.ph/news/page/86/?article=841358147799",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
           },
           {
-            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "url": "https://pia.gov.ph/news/government-work-classes-suspended-in-ncr-16-provinces-due-to-habagat/",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
@@ -561,7 +495,13 @@
             "missing": []
           },
           {
-            "url": "https://www.dzrh.com.ph/post/over-15k-police-deployment-for-martial-law-anniv-not-overkill-pnp",
+            "url": "https://www.dzrh.com.ph/post/afp-spokesperson-interview-dpd",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/cayetano-says-she-feels-pressured-fears-liberty-in-impeachment-trial",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
@@ -573,25 +513,19 @@
             "missing": []
           },
           {
-            "url": "https://www.dzrh.com.ph/post/malacanang-philippine-flag-raised-on-pag-asa-cays",
-            "stage": "attribution_anchors",
-            "matches": true,
-            "missing": []
-          },
-          {
-            "url": "https://www.onenews.ph/articles/bbm-sara-maintain-lead-in-pulse-survey-rivals-remain-unfazed",
-            "stage": "attribution_anchors",
-            "matches": true,
-            "missing": []
-          },
-          {
-            "url": "https://www.onenews.ph/articles/bfar-vessel-hit-by-china-coast-guard-ship",
+            "url": "https://www.onenews.ph/articles/bong-go-no-reward-system-during-war-on-drugs",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
           },
           {
             "url": "https://www.onenews.ph/articles/sagot-for-sale-scheme-two-women-reveal-how-they-get-paid-for-answering-students-modules",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/no-ruling-yet-to-make-bonoan-state-witness",
             "stage": "attribution_anchors",
             "matches": true,
             "missing": []
@@ -603,17 +537,17 @@
           "status": "not_needed",
           "method": "not_run",
           "error": null,
-          "paraphrase": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT."
+          "paraphrase": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT."
         },
-        "scoring_claim": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT.",
-        "search_query": "two kinds of ArGD defending Kay D BBM payment defect 66",
+        "scoring_claim": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
+        "search_query": "ArGD defenses Kay D BBM two kinds payment defect 66",
         "event_search_query": null,
         "retrieval_strategy": "claim_search_only",
         "risk_tags": [],
-        "claim_hash": "4b75d0e856a608698c25bd551de2c472bcd487e1f58fdcd1b411df398166e4c6",
+        "claim_hash": "474ade6d30a0ed8435524262444dc6a75167b55914bfc79760a853a6178efe09",
         "cache_version": "week7-scripture-dates-v37",
         "verdict": "Not Found",
-        "message": "Retrieved passages support 0 of 3 factual components.",
+        "message": "Retrieved passages support 0 of 1 factual components.",
         "politically_sensitive": true,
         "flags": [
           "politically_sensitive"
@@ -623,73 +557,73 @@
         "primary_evidence": null,
         "supporting_sources": [],
         "search_status": "ok",
-        "total_search_results": 143,
+        "total_search_results": 113,
         "searched_articles": 33,
         "extracted_articles": 33,
         "source_summary": [
           {
             "source": "VERA Files",
-            "results_found": 14,
+            "results_found": 11,
             "articles_checked": 3,
             "articles_extracted": 3
           },
           {
             "source": "Rappler",
-            "results_found": 14,
+            "results_found": 11,
             "articles_checked": 3,
             "articles_extracted": 3
           },
           {
             "source": "ABS-CBN News",
-            "results_found": 9,
+            "results_found": 4,
             "articles_checked": 3,
             "articles_extracted": 3
           },
           {
             "source": "GMA News",
-            "results_found": 15,
+            "results_found": 11,
             "articles_checked": 3,
             "articles_extracted": 3
           },
           {
             "source": "Philippine Daily Inquirer",
-            "results_found": 13,
+            "results_found": 11,
             "articles_checked": 3,
             "articles_extracted": 3
           },
           {
             "source": "Philippine Star",
-            "results_found": 12,
+            "results_found": 14,
             "articles_checked": 3,
             "articles_extracted": 3
           },
           {
             "source": "Manila Bulletin",
-            "results_found": 13,
+            "results_found": 10,
             "articles_checked": 3,
             "articles_extracted": 3
           },
           {
             "source": "Philippine News Agency",
-            "results_found": 15,
+            "results_found": 13,
             "articles_checked": 3,
             "articles_extracted": 3
           },
           {
             "source": "Philippine Information Agency",
-            "results_found": 12,
+            "results_found": 9,
             "articles_checked": 3,
             "articles_extracted": 3
           },
           {
             "source": "DZRH News",
-            "results_found": 13,
+            "results_found": 10,
             "articles_checked": 3,
             "articles_extracted": 3
           },
           {
             "source": "OneNews.PH",
-            "results_found": 13,
+            "results_found": 9,
             "articles_checked": 3,
             "articles_extracted": 3
           }
@@ -704,7 +638,7 @@
             "error": null,
             "result": {
               "verdict": "Not Found",
-              "reason": "The evidence does not mention any kinds of ArGD or specific claims about payment or defects.",
+              "reason": "The evidence does not support the specific claim about ArGD defending Kay D BBM.",
               "supporting_urls": [],
               "fallback_method": "openai_rag"
             }
@@ -756,12 +690,12 @@
         "eligible_for_verification": true,
         "recommended_route": "verify_factual_claims_only",
         "verification_text": "66 DALAWANGD KLASE LANG ArGD NAGTATANGGOL KAY D BBM: ISANG MAY > BAYAD AT ISANG [ MAY SAYAD.",
-        "normalized_verification_text": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT.",
+        "normalized_verification_text": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
         "segments": [
           {
             "segment_id": "s1",
             "text": "66 DALAWANGD KLASE LANG ArGD NAGTATANGGOL KAY D BBM: ISANG MAY > BAYAD AT ISANG [ MAY SAYAD.",
-            "translated_text": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT.",
+            "translated_text": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
             "scores": {
               "factual_claim": 0.32,
               "opinion": 0.05,
@@ -788,8 +722,8 @@
           },
           {
             "segment_id": "s2",
-            "text": "EDU MANZANO PH Notustd",
-            "translated_text": "EDU MANZANO PH Notustd",
+            "text": "EDU MANZANO PH",
+            "translated_text": "EDU MANZANO PH",
             "scores": {
               "factual_claim": 0.1,
               "opinion": 0.05,
@@ -815,7 +749,7 @@
         "ignored_segments": [
           {
             "segment_id": "s2",
-            "text": "EDU MANZANO PH Notustd",
+            "text": "EDU MANZANO PH",
             "segment_type": "unclear",
             "reason_codes": [],
             "recommended_route": "stop_no_checkable_claims",
@@ -860,7 +794,7 @@
             "claim_indexes": [
               0
             ],
-            "reason": "The segment asserts a factual classification about ArGD defending Kay D BBM."
+            "reason": "The segment asserts a factual classification of ArGD defenses for Kay D BBM."
           }
         ],
         "grouping": [],
@@ -871,19 +805,20 @@
         "claims": [
           {
             "claim_id": 1,
-            "claim_text": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT.",
-            "normalized_claim": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT.",
+            "claim_text": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
+            "normalized_claim": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
             "claim_type": "factual_claim",
             "risk_tags": [],
-            "search_query": "two kinds of ArGD defending Kay D BBM payment defect",
+            "search_query": "ArGD defenses Kay D BBM two kinds payment defect",
             "verification_focus": "factual_claim",
             "source_passages": [
               {
                 "segment_id": 0,
-                "quote": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT."
+                "quote": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT."
               }
             ],
-            "evidence_context": "66 TWO KINDS ONLY ArGD DEFENDING KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH A DEFECT.",
+            "evidence_context": "66 TWO KINDS ONLY ArGD DEFENDS KAY D BBM: ONE WITH > PAYMENT AND ONE [ WITH DEFECT.",
+            "from_image": true,
             "original_language_query": "66 DALAWANGD KLASE LANG ArGD NAGTATANGGOL KAY D BBM: ISANG MAY > BAYAD AT ISANG [ MAY SAYAD.",
             "is_quote_derived": false
           }
@@ -905,7 +840,7 @@
       },
       "ocr": {
         "status": "ok",
-        "text": "66 DALAWANGD KLASE LANG ArGD NAGTATANGGOL KAY D BBM: ISANG MAY > BAYAD AT ISANG [ MAY SAYAD. EDU MANZANO PH Notustd",
+        "text": "66 DALAWANGD KLASE LANG ArGD NAGTATANGGOL KAY D BBM: ISANG MAY > BAYAD AT ISANG [ MAY SAYAD. EDU MANZANO PH",
         "raw_text": "66 DALAWANGD KLASE LANG ArGD NAGTATANGGOL KAY D BBM: ISANG MAY > BAYAD AT ISANG [ MAY SAYAD. EDU MANZANO PH Notustd",
         "raw_regions": [
           {
@@ -1327,9 +1262,14 @@
             ]
           }
         ],
-        "excluded_regions": [],
-        "word_count": 20,
-        "confidence": 0.7541,
+        "excluded_regions": [
+          {
+            "text": "Notustd",
+            "reason": "unreadable"
+          }
+        ],
+        "word_count": 19,
+        "confidence": 0.7889,
         "low_confidence": false,
         "warnings": [],
         "error": null,
@@ -1750,79 +1690,57 @@
                 911.0
               ]
             ]
-          },
-          {
-            "text": "Notustd",
-            "confidence": 0.0922,
-            "bbox": [
-              [
-                445.0,
-                903.0
-              ],
-              [
-                697.0,
-                903.0
-              ],
-              [
-                697.0,
-                965.0
-              ],
-              [
-                445.0,
-                965.0
-              ]
-            ]
           }
         ],
         "image_authenticity_checked": false
       },
       "timings": {
-        "request_id": "fde0df74d1b64f6eb8665b32d5711d7b",
+        "request_id": "7c1e43eb5f2f459ab6df7a854a00a759",
         "request_type": "verify_image",
         "stages": [
           {
             "stage": "image.decode_and_validate",
-            "duration_seconds": 0.0029,
+            "duration_seconds": 0.0027,
             "status": "ok"
           },
           {
             "stage": "image.extract_text_from_image",
-            "duration_seconds": 6.1074,
+            "duration_seconds": 6.5059,
             "status": "ok"
           },
           {
             "stage": "text.detect_language",
-            "duration_seconds": 0.0358,
+            "duration_seconds": 0.0097,
             "status": "ok"
           },
           {
             "stage": "text.translate_to_english",
-            "duration_seconds": 2.9864,
+            "duration_seconds": 2.8004,
             "status": "ok"
           },
           {
             "stage": "text.profile_content",
-            "duration_seconds": 1.7837,
+            "duration_seconds": 2.1879,
             "status": "ok"
           },
           {
             "stage": "text.opinion_filter",
-            "duration_seconds": 0.0005,
+            "duration_seconds": 0.0008,
             "status": "ok"
           },
           {
             "stage": "text.political_check",
-            "duration_seconds": 0.004,
+            "duration_seconds": 0.0041,
             "status": "ok"
           },
           {
             "stage": "text.coverage_scope",
-            "duration_seconds": 1.336,
+            "duration_seconds": 1.2484,
             "status": "ok"
           },
           {
             "stage": "text.extract_claims",
-            "duration_seconds": 2.6056,
+            "duration_seconds": 2.8643,
             "status": "ok"
           },
           {
@@ -1832,7 +1750,7 @@
           },
           {
             "stage": "text.shared_event_evidence_pool",
-            "duration_seconds": 0.0009,
+            "duration_seconds": 0.0008,
             "status": "ok"
           },
           {
@@ -1847,42 +1765,42 @@
           },
           {
             "stage": "claim_1.political_flags",
-            "duration_seconds": 0.0011,
+            "duration_seconds": 0.001,
             "status": "ok"
           },
           {
             "stage": "claim_1.search_and_extract",
-            "duration_seconds": 38.0137,
+            "duration_seconds": 20.2804,
             "status": "ok"
           },
           {
             "stage": "claim_1.search_status",
-            "duration_seconds": 2.0425,
+            "duration_seconds": 0.0822,
             "status": "ok"
           },
           {
             "stage": "claim_1.generate_verdict",
-            "duration_seconds": 33.3001,
+            "duration_seconds": 10.0959,
             "status": "ok"
           },
           {
             "stage": "claim_1.openai_rag_fallback",
-            "duration_seconds": 5.9475,
+            "duration_seconds": 1.688,
             "status": "ok"
           },
           {
             "stage": "claim_1.fallback_total",
-            "duration_seconds": 7.9681,
+            "duration_seconds": 1.7271,
             "status": "ok"
           },
           {
             "stage": "claim_1.public_evidence_sources",
-            "duration_seconds": 1.983,
+            "duration_seconds": 0.0368,
             "status": "ok"
           },
           {
             "stage": "claim_1.component_evidence_review",
-            "duration_seconds": 12.3873,
+            "duration_seconds": 8.5046,
             "status": "ok"
           },
           {
@@ -1892,17 +1810,17 @@
           },
           {
             "stage": "text.verify_claims_total",
-            "duration_seconds": 99.7739,
+            "duration_seconds": 40.8233,
             "status": "ok"
           },
           {
             "stage": "image.verify_extracted_text_total",
-            "duration_seconds": 108.5386,
+            "duration_seconds": 49.9515,
             "status": "ok"
           },
           {
             "stage": "verify_image.total",
-            "duration_seconds": 114.6498,
+            "duration_seconds": 56.4612,
             "status": "ok"
           }
         ]
@@ -1912,73 +1830,73 @@
     "primary_evidence": null,
     "supporting_sources": [],
     "search_status": "ok",
-    "total_search_results": 143,
+    "total_search_results": 113,
     "searched_articles": 33,
     "extracted_articles": 33,
     "source_summary": [
       {
         "source": "VERA Files",
-        "results_found": 14,
+        "results_found": 11,
         "articles_checked": 3,
         "articles_extracted": 3
       },
       {
         "source": "Rappler",
-        "results_found": 14,
+        "results_found": 11,
         "articles_checked": 3,
         "articles_extracted": 3
       },
       {
         "source": "ABS-CBN News",
-        "results_found": 9,
+        "results_found": 4,
         "articles_checked": 3,
         "articles_extracted": 3
       },
       {
         "source": "GMA News",
-        "results_found": 15,
+        "results_found": 11,
         "articles_checked": 3,
         "articles_extracted": 3
       },
       {
         "source": "Philippine Daily Inquirer",
-        "results_found": 13,
+        "results_found": 11,
         "articles_checked": 3,
         "articles_extracted": 3
       },
       {
         "source": "Philippine Star",
-        "results_found": 12,
+        "results_found": 14,
         "articles_checked": 3,
         "articles_extracted": 3
       },
       {
         "source": "Manila Bulletin",
-        "results_found": 13,
+        "results_found": 10,
         "articles_checked": 3,
         "articles_extracted": 3
       },
       {
         "source": "Philippine News Agency",
-        "results_found": 15,
+        "results_found": 13,
         "articles_checked": 3,
         "articles_extracted": 3
       },
       {
         "source": "Philippine Information Agency",
-        "results_found": 12,
+        "results_found": 9,
         "articles_checked": 3,
         "articles_extracted": 3
       },
       {
         "source": "DZRH News",
-        "results_found": 13,
+        "results_found": 10,
         "articles_checked": 3,
         "articles_extracted": 3
       },
       {
         "source": "OneNews.PH",
-        "results_found": 13,
+        "results_found": 9,
         "articles_checked": 3,
         "articles_extracted": 3
       }
@@ -1988,9 +1906,9 @@
     "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
     "input_type": "image",
     "ocr_status": "ok",
-    "ocr_text": "66 DALAWANGD KLASE LANG ArGD NAGTATANGGOL KAY D BBM: ISANG MAY > BAYAD AT ISANG [ MAY SAYAD. EDU MANZANO PH Notustd",
-    "ocr_confidence": 0.7541,
-    "ocr_word_count": 20,
+    "ocr_text": "66 DALAWANGD KLASE LANG ArGD NAGTATANGGOL KAY D BBM: ISANG MAY > BAYAD AT ISANG [ MAY SAYAD. EDU MANZANO PH",
+    "ocr_confidence": 0.7889,
+    "ocr_word_count": 19,
     "ocr_low_confidence": false,
     "ocr_warnings": [],
     "ocr_regions": [
@@ -2387,28 +2305,6 @@
           [
             449.0,
             911.0
-          ]
-        ]
-      },
-      {
-        "text": "Notustd",
-        "confidence": 0.0922,
-        "bbox": [
-          [
-            445.0,
-            903.0
-          ],
-          [
-            697.0,
-            903.0
-          ],
-          [
-            697.0,
-            965.0
-          ],
-          [
-            445.0,
-            965.0
           ]
         ]
       }
