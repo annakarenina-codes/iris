@@ -12,6 +12,7 @@ from pipeline.cache import get_cached_verdict, hash_claim, save_cached_verdict
 from pipeline.attribution_integrity import attribution_phrase_match, speaker_phrase_match
 from pipeline.evidence_urls import article_url_rejection
 from pipeline.claim_extractor import extract_claims
+from pipeline.component_evidence import REFUTED_VERDICT
 from pipeline.content_profiler import profile_content
 from pipeline.event_retrieval import (
     build_event_search_query,
@@ -39,8 +40,10 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-publisher-api-v32"
+RESULT_CACHE_VERSION = "week7-refuted-v33"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
+# A verdict that asserts something about the world has to show the source it rests on.
+VERDICTS_NEEDING_EVIDENCE = POSITIVE_VERDICTS | {REFUTED_VERDICT}
 REVIEW_FAILED_VERDICT = "Review Failed"
 REVIEW_FAILED_MESSAGE = (
     "IRIS could not complete the evidence review for this claim, so no verdict was "
@@ -1084,7 +1087,7 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
                 if article.get("url") in component_review["supporting_urls"]
             ])
 
-    if final_verdict in POSITIVE_VERDICTS and not evidence_sources:
+    if final_verdict in VERDICTS_NEEDING_EVIDENCE and not evidence_sources:
         event('verdict.evidence_gate', before=final_verdict, after='Not Found', reason='No valid public evidence')
         final_verdict = "Not Found"
         final_message = (

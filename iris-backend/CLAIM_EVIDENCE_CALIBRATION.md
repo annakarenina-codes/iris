@@ -263,3 +263,48 @@ their directory names do not indicate acceptance. Do not mix those outcomes.
 The ten-case workbook and source approvals are not automatically changed by this
 implementation. Use the run's review report before marking accuracy items passed.
 The current report is `evaluation/trace-ten-cases/claim-evidence-review.md`.
+
+## Refuted: reporting a claim the evidence settles as false (20 September 2026)
+
+Before this change IRIS had no way to report a claim the evidence settles as false. Saved case C08 claim 2 ("Retired Maj. Gen. Romeo Poquiz made a statement against the Marcoses") came out **Not Found** even though VERA Files had published that it found no record of the statement. "Not Found" tells the reader nothing was found, which is the opposite of what had happened.
+
+### What the reviewer is now asked
+
+The entailment review already answered `contradicted`. It now also answers `contradiction_kind`:
+
+| value | meaning |
+|---|---|
+| `none` | the passages support the claim, or are silent about it |
+| `different_detail` | the same occurrence is reported with a different number, date, speaker or outcome |
+| `denial` | a passage reports **as its own finding** that the event did not happen: a statement, document or image is fabricated or falsely attributed, no record of it exists, or the person or office named denied it |
+
+The instruction now states that a denial is a contradiction even though it asserts no rival fact ("there are no records of X making this statement" contradicts "X made this statement"), and that a merely silent passage denies nothing. Under the previous wording the reviewer read `contradicted` as requiring a rival fact and answered false, in its own words: "There is no contradiction in the sense of a passage stating the opposite … but the cited passage is clear that the statement was not made."
+
+### When a denial becomes the Refuted verdict
+
+All five conditions must hold (`apply_refutation` in [pipeline/component_evidence.py](pipeline/component_evidence.py)):
+
+1. `contradicted` is true and `contradiction_kind` is `denial`.
+2. The reviewer cited the passages it relied on (`citation_ids` is not empty).
+3. `same_subject_and_event` is true.
+4. `same_occurrence` is true: this occasion, not another one that fits the words.
+5. The cited article was published by **VERA Files**.
+
+The source rule is deliberate. VERA Files is the only IFCN-accredited fact-checking organisation in the Philippines and the only approved source whose work is dedicated to finding and correcting false claims. Rappler is an IFCN signatory but is a news outlet, so a sentence of its reporting is not treated as a published finding. Every other source's denial leaves the claim at Not Found (`is_refuting_source` in [pipeline/sources.py](pipeline/sources.py)).
+
+A differing detail is never a refutation: a wrong number or date leaves a claim unverified, not false.
+
+The passages handed to the reviewer carry only a URL and text, never a publisher name, so the review passes the URL-to-publisher mapping separately. Without it the VERA rule silently never matches.
+
+### What the reader sees
+
+The verdict is `Refuted` and the reason begins "VERA Files reports that this did not happen." The fact-check leads the evidence list, and the same evidence gate that guards Verified downgrades a Refuted verdict with no displayable source to Not Found. The Chrome extension shows a red card and the Android client a red chip.
+
+### Limit: the denial has to reach the entailment stage
+
+Only components that the first review pass proposes as supported reach the entailment check, and that is where a denial is recognised. A fact-check that plainly refutes a claim often produces no passage that *supports* it, so the first pass drops the component and the claim stays Not Found. Observed on 20 September with two posts carrying claims VERA Files has refuted:
+
+- "Marcos announced he will step down after the Sept. 21 rallies": the first pass proposed support, the entailment check returned `contradiction_kind: denial` citing the VERA fact-check, and the review produced **Refuted**.
+- "Poquiz said the Marcoses no longer have a mandate": the first pass proposed nothing, so no entailment check ran and the claim stayed **Not Found**.
+
+Closing this gap needs a refutation check that runs when a review ends Not Found and a VERA Files fact-check is among the retrieved articles.

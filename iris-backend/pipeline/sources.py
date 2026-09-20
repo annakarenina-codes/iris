@@ -14,6 +14,8 @@ Each source declares how IRIS reads its articles:
 FULL_TEXT = "full_text"
 SEARCH_EXCERPT = "search_excerpt"
 
+REFUTING_SOURCE_NAME = "VERA Files"
+
 VERA_SOURCE = {
     "name": "VERA Files",
     "domain": "verafiles.org",
@@ -130,6 +132,18 @@ def get_source_by_name(name):
 
 def is_fact_check_source(name):
     return name in FACT_CHECK_SOURCE_NAMES
+
+
+def is_refuting_source(name):
+    """
+    True for the one source whose published denial can make a claim Refuted.
+
+    VERA Files is the only IFCN-accredited fact-checking organisation in the
+    Philippines and the only approved source whose work is dedicated to finding and
+    correcting false claims. Rappler is an IFCN signatory but is a news outlet, so a
+    sentence of its reporting does not carry the same finding. See SOURCES.md.
+    """
+    return name == REFUTING_SOURCE_NAME
 
 
 def uses_search_excerpts(name):

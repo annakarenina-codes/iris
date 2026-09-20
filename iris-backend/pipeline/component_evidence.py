@@ -7,6 +7,7 @@ import re
 import time
 from copy import deepcopy
 from pipeline.text_boundaries import split_statement_segments
+from pipeline.sources import is_refuting_source, REFUTING_SOURCE_NAME
 from pipeline.component_context import (CONTEXT_SCHEMA, prepare_components, attach_context,
     temporal_context_decision, needs_context_review, merge_context_review)
 
@@ -52,6 +53,9 @@ def rate_limit_retry_delay(error, attempt=0):
         return None
 
 
+REFUTED_VERDICT = 'Refuted'
+
+
 class ComponentReviewError(RuntimeError):
     """A processing failure, never a factual verdict."""
 
@@ -68,7 +72,7 @@ def require_completed_review(review):
         raise ComponentReviewError(review.get('error_code', 'component_review_failed'),
                                    review.get('failed_stage', 'evidence_review'))
     if (review.get('status') not in {'ok', 'no_evidence'}
-            or review.get('verdict') not in {'Verified', 'Partially Verified', 'Not Found'}
+            or review.get('verdict') not in {'Verified', 'Partially Verified', 'Not Found', REFUTED_VERDICT}
             or not isinstance(review.get('supporting_urls'), list)
             or not isinstance(review.get('components'), list)
             or not isinstance(review.get('reason'), str)
@@ -247,11 +251,13 @@ ENTAILMENT_SCHEMA = {
             'same_occurrence': {'type': 'boolean'},
             'missing_kind': {'type': 'string',
                              'enum': ['none', 'detail', 'date', 'subject_or_event', 'other']},
+            'contradiction_kind': {'type': 'string',
+                                   'enum': ['none', 'denial', 'different_detail']},
             'citation_ids': {'type': 'array', 'items': {'type': 'integer'}},
             'reason': {'type': 'string'},
         }, 'required': ['component_id', 'same_subject_and_event', 'assertion_supported',
                         'qualifiers_preserved', 'contradicted', 'same_occurrence', 'missing_kind',
-                        'citation_ids', 'reason']}}},
+                        'contradiction_kind', 'citation_ids', 'reason']}}},
     'required': ['checks'],
 }
 
@@ -271,7 +277,8 @@ def entailment_schema(candidates):
     return schema
 
 
-def apply_entailment_checks(claim, reviewed, checks, articles):
+
+def apply_entailment_checks(claim, reviewed, checks, articles, published_by=None):
     """An independent review can remove proposed support, never fabricate a citation."""
     candidates = [(i, part) for i, part in enumerate(reviewed['components'])
                   if part['status'] in {'supported', 'partially_supported'}]
@@ -314,6 +321,10 @@ def apply_entailment_checks(claim, reviewed, checks, articles):
                                f"{', '.join(sorted(years - cited_years))}."
                                + ('' if partial else f" They state a different year: "
                                   f"{', '.join(sorted(cited_years))}."))
+        # A denial speaks about this claim only when it is about this very occurrence.
+        check['denial_urls'] = sorted({part['citations'][i]['url'] for i in ids}) if (
+            contradicted and check.get('contradiction_kind') == 'denial'
+            and check['same_subject_and_event'] and same_occurrence) else []
         if (check.get('missing_kind') == 'date' or part.get('time_unconfirmed')) and not same_occurrence:
             # Another occasion that happens to fit the words is not this claim's event.
             supported = partial = False
@@ -339,6 +350,29 @@ def apply_entailment_checks(claim, reviewed, checks, articles):
     if contradicted:
         result['reason'] += (f" {contradicted} component{'s' if contradicted > 1 else ''} "
                              f"{'are' if contradicted > 1 else 'is'} contradicted by retrieved passages.")
+    return apply_refutation(result, checks, published_by
+                            or {a.get('url'): a.get('source') for a in articles})
+
+
+def apply_refutation(result, checks, published_by):
+    """
+    Turns a fact-checker's published denial into a Refuted verdict.
+
+    Saved case C08: VERA Files reported that it found no record of the statement a post
+    attributed to Romeo Poquiz, and IRIS answered "Not Found", which reads as "nothing was
+    found" when the opposite had been established. Only VERA Files can trigger this, and
+    only for a denial about the same occurrence that the review itself cited.
+    """
+    refuting = [url for check in checks for url in check.get('denial_urls', [])
+                if is_refuting_source(published_by.get(url))]
+    if not refuting:
+        return result
+    result['verdict'] = REFUTED_VERDICT
+    result['reason'] = f"{REFUTING_SOURCE_NAME} reports that this did not happen. " + result['reason']
+    # The fact-check is what the user has to be shown, so it leads the evidence list.
+    result['supporting_urls'] = (list(dict.fromkeys(refuting))
+                                 + [url for url in result['supporting_urls'] if url not in refuting])
+    event('verdict.refuted', urls=result['supporting_urls'])
     return result
 
 
@@ -733,6 +767,9 @@ def review_components(claim, articles, source_context=''):
               contexts=contexts)
         # Full extracted text, not an article-opening snippet; cap total context explicitly.
         evidence = []
+        # The passages the model sees carry no publisher name; the mapping is kept beside them
+        # because only a VERA Files denial may refute a claim.
+        publishers = {article['url']: article.get('source') for article in articles}
         remaining = 60000
         for article in articles:
             if remaining <= 0:
@@ -870,8 +907,16 @@ def review_components(claim, articles, source_context=''):
             'require every passage to repeat a quotation or detail, and list only the passages '
             'that support the assertion in citation_ids. Set contradicted true only when a '
             'passage about the same subject and event explicitly states something incompatible '
-            '(a different number, date, speaker or outcome, or a denial), and name that passage '
-            'in the reason; otherwise contradicted is false.')
+            'with the claim, and name that passage in the reason; otherwise contradicted is '
+            'false. contradiction_kind names which kind it is. "different_detail": a passage '
+            'states a different number, date, speaker or outcome for the same occurrence. '
+            '"denial": a passage reports as its own finding that the event did not happen - '
+            'that a statement, document or image is fabricated or falsely attributed, that no '
+            'record of it exists, or that the person or office named denied it. A denial is a '
+            'contradiction even though it asserts no rival fact: "there are no records of X '
+            'making this statement" contradicts "X made this statement", so set contradicted '
+            'true and contradiction_kind "denial". A passage that is merely silent about the '
+            'claim denies nothing: contradicted false and contradiction_kind "none".')
 
         def entail(selected, instruction, earlier_checks=None):
             def validated(checked):
@@ -879,7 +924,8 @@ def review_components(claim, articles, source_context=''):
                 if earlier_checks is not None:
                     replacements = {check['component_id']: check for check in checks}
                     checks = [replacements.get(check['component_id'], check) for check in earlier_checks]
-                apply_entailment_checks(claim, deepcopy(base_reviewed), deepcopy(checks), evidence)
+                apply_entailment_checks(claim, deepcopy(base_reviewed), deepcopy(checks), evidence,
+                                        published_by=publishers)
                 return checks
 
             return ask_checked(
@@ -903,7 +949,8 @@ def review_components(claim, articles, source_context=''):
                 'assertion_supported false only if that passage concerns a different subject or '
                 'event, or another passage explicitly contradicts it (then set contradicted true).'),
                 earlier_checks=checks)
-        result = apply_entailment_checks(claim, deepcopy(base_reviewed), checks, evidence)
+        result = apply_entailment_checks(claim, deepcopy(base_reviewed), checks, evidence,
+                                         published_by=publishers)
         attach_context(result, contexts, claim)
         result['event_identity_checks'] = reviewed['event_identity_checks']
         result['event_identity_model'] = review_model

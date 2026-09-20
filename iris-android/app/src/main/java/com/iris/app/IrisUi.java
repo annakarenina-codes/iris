@@ -33,6 +33,9 @@ final class IrisUi {
     static final int AMBER = Color.rgb(120, 53, 15);
     static final int AMBER_BG = Color.rgb(255, 251, 235);
     static final int AMBER_BORDER = Color.rgb(252, 211, 77);
+    static final int RED = Color.rgb(127, 29, 29);
+    static final int RED_BG = Color.rgb(254, 242, 242);
+    static final int RED_BORDER = Color.rgb(248, 113, 113);
     static final int GRAY = Color.rgb(55, 65, 81);
     static final int GRAY_BG = Color.rgb(249, 250, 251);
     static final int GRAY_BORDER = Color.rgb(209, 213, 219);
@@ -215,6 +218,7 @@ final class IrisUi {
         String normalized = verdict == null ? "" : verdict.toLowerCase();
         if (normalized.equals("verified")) return GREEN;
         if (normalized.equals("partially verified")) return AMBER;
+        if (normalized.equals("refuted")) return RED;
         return GRAY;
     }
 
@@ -222,6 +226,7 @@ final class IrisUi {
         String normalized = verdict == null ? "" : verdict.toLowerCase();
         if (normalized.equals("verified")) return GREEN_BG;
         if (normalized.equals("partially verified")) return AMBER_BG;
+        if (normalized.equals("refuted")) return RED_BG;
         return GRAY_BG;
     }
 
@@ -229,6 +234,7 @@ final class IrisUi {
         String normalized = verdict == null ? "" : verdict.toLowerCase();
         if (normalized.equals("verified")) return GREEN_BORDER;
         if (normalized.equals("partially verified")) return AMBER_BORDER;
+        if (normalized.equals("refuted")) return RED_BORDER;
         return GRAY_BORDER;
     }
 

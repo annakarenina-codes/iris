@@ -356,6 +356,15 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       };
     }
 
+    if (normalized === "refuted") {
+      return {
+        icon: "X",
+        color: "#7F1D1D",
+        bg: "#FEF2F2",
+        border: "#F87171"
+      };
+    }
+
     if (normalized.includes("opinion")) {
       return {
         icon: "i",
