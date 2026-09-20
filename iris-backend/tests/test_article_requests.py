@@ -26,8 +26,10 @@ class RequestVolumeTests(unittest.TestCase):
     def setUp(self):
         extractor._article_cache.clear()
         extractor._host_last_request.clear()
+        extractor._host_cooling_until.clear()
         self.addCleanup(extractor._article_cache.clear)
         self.addCleanup(extractor._host_last_request.clear)
+        self.addCleanup(extractor._host_cooling_until.clear)
         self.sleeps = []
         patcher = patch.object(extractor.time, 'sleep', self.sleeps.append)
         patcher.start()
@@ -53,9 +55,28 @@ class RequestVolumeTests(unittest.TestCase):
     def test_a_failed_download_is_not_remembered(self):
         with patch.object(extractor.requests, 'get', return_value=page(status=429)) as get:
             failed = extractor.extract_article_text(VERA)
-            extractor.extract_article_text(VERA)
         self.assertEqual(failed['status'], 'error')
-        self.assertEqual(get.call_count, 2 * (extractor.RATE_LIMITED_RETRIES + 1))
+        self.assertEqual(get.call_count, extractor.RATE_LIMITED_RETRIES + 1)
+
+    def test_a_publisher_that_refuses_requests_is_left_alone(self):
+        # Retrying every article of a publisher answering 429 turned one scan into minutes.
+        with patch.object(extractor.requests, 'get', return_value=page(status=429)) as get:
+            extractor.extract_article_text(VERA)
+            calls_after_first = get.call_count
+            second = extractor.extract_article_text(OTHER)
+        self.assertEqual(get.call_count, calls_after_first, 'the second article must not be fetched')
+        self.assertEqual(second['status'], 'error')
+        self.assertIn('rate limiting', second['error'])
+        self.assertTrue(extractor.host_is_cooling(OTHER))
+
+    def test_another_publisher_is_unaffected_by_the_cooldown(self):
+        extractor.cool_host(VERA)
+        gma = 'https://www.gmanetwork.com/news/topstories/nation/1/story/'
+        self.assertFalse(extractor.host_is_cooling(gma))
+        with patch.object(extractor.requests, 'get', return_value=page(url=gma)) as get:
+            result = extractor.extract_article_text(gma)
+        self.assertEqual(get.call_count, 1)
+        self.assertEqual(result['status'], 'extracted')
 
     def test_a_rate_limited_page_is_retried_and_then_read(self):
         answers = [page(status=429), page()]

@@ -242,34 +242,63 @@ def _extraction_quality(word_count: int) -> str:
     return "full" if word_count >= THIN_ARTICLE_WORDS else "thin"
 
 
-RATE_LIMITED_RETRIES = 2
+RATE_LIMITED_RETRIES = 1
 RATE_LIMITED_WAIT_SECONDS = 2
 HOST_REQUEST_INTERVAL_SECONDS = 1.0
+# Two at a time per publisher, never one: a strict queue made every article of a slow
+# publisher wait for the one before it, in this request and in every other request the
+# server was serving, which turned a single image scan into minutes of waiting.
+HOST_PARALLEL_REQUESTS = 2
+# A publisher that answers 429 is left alone for a while instead of being retried article by
+# article. Its search excerpts are still read, so the claim keeps its evidence.
+HOST_COOLDOWN_SECONDS = 60
 ARTICLE_CACHE_SECONDS = 900
 ARTICLE_CACHE_MAX = 500
-_host_locks = {}
+_host_slots = {}
 _host_last_request = {}
+_host_cooling_until = {}
 _host_locks_guard = threading.Lock()
 _article_cache = {}
 _article_cache_guard = threading.Lock()
 
 
-def _host_lock(url):
-    """One request at a time per publisher: parallel fetches are what trigger 429s."""
-    host = urlsplit(url).netloc.lower()
+def _host_of(url):
+    return urlsplit(url).netloc.lower()
+
+
+def _host_slot(url):
+    """A few requests at a time per publisher, so one slow page cannot block the rest."""
     with _host_locks_guard:
-        return _host_locks.setdefault(host, threading.Lock())
+        return _host_slots.setdefault(_host_of(url), threading.Semaphore(HOST_PARALLEL_REQUESTS))
 
 
 def _wait_for_host(url):
-    """Leaves a gap between requests to the same publisher, which VERA Files requires."""
-    host = urlsplit(url).netloc.lower()
-    previous = _host_last_request.get(host)
-    if previous is not None:
-        delay = HOST_REQUEST_INTERVAL_SECONDS - (time.monotonic() - previous)
-        if delay > 0:
-            time.sleep(delay)
-    _host_last_request[host] = time.monotonic()
+    """
+    Leaves a gap between requests to the same publisher, which VERA Files requires.
+
+    The waiting happens before a slot is taken, never while holding one.
+    """
+    host = _host_of(url)
+    with _host_locks_guard:
+        previous = _host_last_request.get(host)
+        now = time.monotonic()
+        delay = 0.0 if previous is None else HOST_REQUEST_INTERVAL_SECONDS - (now - previous)
+        _host_last_request[host] = now + max(0.0, delay)
+    if delay > 0:
+        time.sleep(delay)
+
+
+def host_is_cooling(url):
+    """True while a publisher that answered 429 is being left alone."""
+    with _host_locks_guard:
+        until = _host_cooling_until.get(_host_of(url))
+    return bool(until and time.monotonic() < until)
+
+
+def cool_host(url):
+    with _host_locks_guard:
+        _host_cooling_until[_host_of(url)] = time.monotonic() + HOST_COOLDOWN_SECONDS
+    event('retrieval.host_cooling', host=_host_of(url), seconds=HOST_COOLDOWN_SECONDS)
 
 
 def cached_article(url):
@@ -340,18 +369,30 @@ def extract_article_text(url: str) -> Dict[str, object]:
         event('retrieval.article_cached', url=normalized_url)
         return reused
 
+    if host_is_cooling(normalized_url):
+        return {
+            "url": normalized_url,
+            "status": "error",
+            "error": "Publisher is rate limiting requests; its search excerpts are used instead.",
+            "title": None,
+            "text": "",
+            "word_count": 0,
+            "extraction_quality": "unavailable",
+        }
+
     try:
-        with _host_lock(normalized_url):
-            _wait_for_host(normalized_url)
+        _wait_for_host(normalized_url)
+        with _host_slot(normalized_url):
             response = requests.get(normalized_url, headers=headers, timeout=REQUEST_TIMEOUT_SECONDS)
             for attempt in range(RATE_LIMITED_RETRIES):
                 if getattr(response, "status_code", None) != 429:
                     break
-                # VERA Files answers 429 when several of its pages are fetched at once,
-                # which cost IRIS the C08 fact-check entirely.
-                time.sleep(RATE_LIMITED_WAIT_SECONDS * (attempt + 1))
-                _wait_for_host(normalized_url)
+                # One retry, then the publisher is left alone: retrying every article of a
+                # publisher that is refusing them is what made a scan take minutes.
+                time.sleep(RATE_LIMITED_WAIT_SECONDS)
                 response = requests.get(normalized_url, headers=headers, timeout=REQUEST_TIMEOUT_SECONDS)
+        if getattr(response, "status_code", None) == 429:
+            cool_host(normalized_url)
         response.raise_for_status()
     except requests.RequestException as error:
         return {
