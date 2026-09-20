@@ -43,7 +43,31 @@ TITLES = {'sen', 'senator', 'sens', 'rep', 'reps', 'representative', 'cong', 'co
           'interior', 'education', 'senator-judge'}
 
 
-def speaker_variants(speaker):
+NAME_WITH_NICKNAME = re.compile(
+    r"([^\W\d_]+)\s*[\"\u201c\u2018\']\s*([^\W\d_]+)\s*[\"\u201d\u2019\']\s*([^\W\d_]+)")
+
+
+def source_nickname_variants(tokens, source_text):
+    """
+    Name forms the post spells out: "Robinhood \u201cRobin\u201d Padilla" ties Robinhood to Robin.
+
+    Only used when the post itself writes both forms next to the same family name, so the
+    equivalence comes from the submitted text, never from outside knowledge.
+    """
+    variants = []
+    for match in NAME_WITH_NICKNAME.finditer(str(source_text or '')):
+        parts = [attribution_tokens(part) for part in match.groups()]
+        if not all(len(part) == 1 for part in parts):
+            continue
+        given, nickname, family = (part[0] for part in parts)
+        if given in tokens and family in tokens:
+            for variant in ([nickname, family], [given, family]):
+                if variant not in variants:
+                    variants.append(variant)
+    return variants
+
+
+def speaker_variants(speaker, source_text=''):
     """
     Name forms the post itself supplies: with or without a quoted nickname, with or without titles.
 
@@ -60,17 +84,17 @@ def speaker_variants(speaker):
         # The nickname stands in for the given name: Robinhood Padilla -> Robin Padilla.
         forms.append(attribution_tokens(nickname.group(1)) + untitled[1:])
     variants = []
-    for form in forms:
+    for form in forms + source_nickname_variants(plain, source_text):
         if len(form) >= min(2, len(given)) and form not in variants:
             variants.append(form)
     return variants
 
 
-def speaker_phrase_match(speaker, text):
+def speaker_phrase_match(speaker, text, source_text=''):
     """True when any name form of this speaker appears in the text as written."""
     texts = (text, without_quoted_nicknames(text))
     return any(_contains_tokens(variant, candidate)
-               for variant in speaker_variants(speaker) for candidate in texts)
+               for variant in speaker_variants(speaker, source_text) for candidate in texts)
 
 
 _CREDIT_LINE = re.compile(

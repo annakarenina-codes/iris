@@ -179,6 +179,27 @@ class SpeakerTests(unittest.TestCase):
         self.assertTrue(speaker_phrase_match(
             'Antonio Carpio', 'former Supreme Court senior associate justice Antonio Carpio said'))
 
+    def test_nickname_spelled_out_in_the_post_ties_the_name_forms(self):
+        from pipeline.attribution_integrity import speaker_phrase_match, speaker_variants
+        # C06: the extractor returned "Sen. Robinhood Padilla"; the post supplies the nickname.
+        self.assertEqual(speaker_variants('Sen. Robinhood Padilla', self.POST),
+                         [['sen', 'robinhood', 'padilla'], ['robinhood', 'padilla'], ['robin', 'padilla']])
+        self.assertTrue(speaker_phrase_match('Sen. Robinhood Padilla',
+                                             'Senator Robin Padilla said he will not run.', self.POST))
+        self.assertTrue(speaker_phrase_match('Sen. Robinhood Padilla',
+                                             'Robinhood Padilla announced.', self.POST))
+
+    def test_without_the_post_the_nickname_is_not_assumed(self):
+        from pipeline.attribution_integrity import speaker_phrase_match
+        self.assertFalse(speaker_phrase_match('Sen. Robinhood Padilla',
+                                              'Senator Robin Padilla said he will not run.'))
+
+    def test_post_nickname_does_not_admit_a_different_person(self):
+        from pipeline.attribution_integrity import speaker_phrase_match
+        for text in ['Daniel Padilla spoke.', 'Robin Duterte spoke.']:
+            self.assertFalse(speaker_phrase_match('Sen. Robinhood Padilla', text, self.POST), text)
+        self.assertFalse(speaker_phrase_match('Sara Duterte', 'Rodrigo Duterte spoke.', self.POST))
+
     def test_named_speaker_survives_grounding(self):
         from pipeline.attribution_integrity import ground_attribution
         claim = {'claim_type': 'attributed_statement', 'claim_text': self.POST, 'normalized_claim': self.POST,

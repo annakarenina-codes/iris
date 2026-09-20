@@ -39,7 +39,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-speaker-variants-v26"
+RESULT_CACHE_VERSION = "week7-post-name-forms-v27"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 REVIEW_FAILED_VERDICT = "Review Failed"
 REVIEW_FAILED_MESSAGE = (
@@ -394,13 +394,13 @@ def phrase_is_covered(phrase, text, text_terms=None):
     return attribution_phrase_match(phrase, text)
 
 
-def speaker_is_covered(speaker, text, text_terms):
+def speaker_is_covered(speaker, text, text_terms, source_text=''):
     """Requires named attribution evidence, not just generic topic overlap."""
     if not speaker:
         return False
 
     # Accepts only the name forms the post itself supplies (nickname, titles), never a new name.
-    return speaker_phrase_match(speaker, text)
+    return speaker_phrase_match(speaker, text, source_text)
 
 
 def statement_is_covered(statement, text_terms):
@@ -448,7 +448,7 @@ def attribution_evidence_gate(article, claim, anchors_only=False):
         # An unresolved speaker ("the judges") is not evidence of a wrong source: requiring a name
         # IRIS never had rejected every article. The component review still decides attribution.
         anchor_checks["speaker"] = "unresolved_not_required"
-    elif speaker_is_covered(speaker, article_text, text_terms):
+    elif speaker_is_covered(speaker, article_text, text_terms, claim.get("evidence_context", "")):
         anchor_checks["speaker"] = "normalized_phrase_match"
     else:
         anchor_checks["speaker"] = "missing_or_unmatched"
