@@ -101,3 +101,56 @@ class RequestVolumeTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class SharedReadTests(unittest.TestCase):
+    """Claims checked at the same time read a page once between them."""
+
+    def setUp(self):
+        for store in (extractor._article_cache, extractor._being_read,
+                      extractor._host_last_request, extractor._host_cooling_until):
+            store.clear()
+            self.addCleanup(store.clear)
+        patcher = patch.object(extractor.time, 'sleep', lambda _seconds: None)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def test_two_claims_wanting_one_page_read_it_once(self):
+        import threading
+        started, release, results = threading.Event(), threading.Event(), {}
+
+        def slow_get(*_args, **_kwargs):
+            started.set()
+            release.wait(5)
+            return page()
+
+        with patch.object(extractor.requests, 'get', side_effect=slow_get) as get:
+            first = threading.Thread(target=lambda: results.update(a=extractor.extract_article_text(VERA)))
+            first.start()
+            self.assertTrue(started.wait(5), 'the first read should have begun')
+            second = threading.Thread(target=lambda: results.update(b=extractor.extract_article_text(VERA)))
+            second.start()
+            release.set()
+            first.join(10)
+            second.join(10)
+
+        self.assertEqual(get.call_count, 1, 'the page should be read once for both claims')
+        self.assertEqual(results['a']['text'], results['b']['text'])
+
+    def test_a_second_read_after_the_first_finishes_comes_from_the_cache(self):
+        with patch.object(extractor.requests, 'get', return_value=page()) as get:
+            extractor.extract_article_text(VERA)
+            extractor.extract_article_text(VERA)
+        self.assertEqual(get.call_count, 1)
+        self.assertEqual(extractor._being_read, {}, 'the marker must not be left behind')
+
+    def test_a_failed_read_leaves_no_marker(self):
+        with patch.object(extractor.requests, 'get', return_value=page(status=429)):
+            extractor.extract_article_text(VERA)
+        self.assertEqual(extractor._being_read, {})
+
+    def test_a_skipped_url_leaves_no_marker(self):
+        with patch.object(extractor.requests, 'get') as get:
+            extractor.extract_article_text('https://verafiles.org/?s=poquiz')
+        get.assert_not_called()
+        self.assertEqual(extractor._being_read, {})

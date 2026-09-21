@@ -260,6 +260,29 @@ _host_cooling_until = {}
 _host_locks_guard = threading.Lock()
 _article_cache = {}
 _article_cache_guard = threading.Lock()
+# Claims of one post look for the same articles: every claim of saved case A02 wants the same
+# thirty-three. Read one after another they came from the cache, but claims are checked
+# together now and would each fetch the same page at the same moment.
+_being_read = {}
+_being_read_guard = threading.Lock()
+JOIN_WAIT_SECONDS = 20
+
+
+def _claim_the_read(url):
+    """(True, signal) when this thread should read the page, (False, signal) when another is."""
+    with _being_read_guard:
+        waiting = _being_read.get(url)
+        if waiting is not None:
+            return False, waiting
+        _being_read[url] = threading.Event()
+        return True, _being_read[url]
+
+
+def _finish_the_read(url):
+    with _being_read_guard:
+        waiting = _being_read.pop(url, None)
+    if waiting is not None:
+        waiting.set()
 
 
 def _host_of(url):
@@ -321,7 +344,7 @@ def remember_article(url, article):
 
 
 @traced('retrieval.article_extract', dependency=True)
-def extract_article_text(url: str) -> Dict[str, object]:
+def _read_article(url: str) -> Dict[str, object]:
     """
     Downloads and extracts readable text from a news article URL.
 
@@ -464,3 +487,34 @@ def extract_article_text(url: str) -> Dict[str, object]:
         "extraction_method": extraction_method,
         "extraction_quality": _extraction_quality(words),
     })
+
+
+def extract_article_text(url: str) -> Dict[str, object]:
+    """
+    Reads an article, letting the claims of one post share a single read of each page.
+
+    Checked one after another, a second claim found the page in the cache. Checked together,
+    both would fetch it at the same moment, so whoever arrives second waits for the first.
+    """
+    normalized_url = normalize_article_url(url)
+    reused = cached_article(normalized_url)
+    if reused is not None:
+        event('retrieval.article_cached', url=normalized_url)
+        return reused
+
+    reading, waiting = _claim_the_read(normalized_url)
+    if not reading:
+        waiting.wait(JOIN_WAIT_SECONDS)
+        joined = cached_article(normalized_url)
+        if joined is not None:
+            event('retrieval.article_joined', url=normalized_url)
+            return joined
+        # The first read failed or is still going: read it here rather than return nothing.
+        reading, _ = _claim_the_read(normalized_url)
+        if not reading:
+            return _read_article(url)
+
+    try:
+        return _read_article(url)
+    finally:
+        _finish_the_read(normalized_url)
