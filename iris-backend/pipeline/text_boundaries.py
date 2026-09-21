@@ -25,6 +25,17 @@ def quote_spans(text):
     return sorted(spans)
 
 
+# Verbs that hand a quotation to its speaker. "she shared" and "she says" were missing, so a
+# quotation introduced that way was not seen as reported speech and could be set aside as opinion
+# (the Atasha Muhlach post diagnosed on 22 September, held-out post H17).
+REPORTED_QUOTE_VERBS = re.compile(
+    r'\b(?:asked|answered|replied|said|says|say|stated|states|furthered|told|tells|responded|'
+    r'warned|shared|shares|added|adds|explained|explains|recalled|recalls|admitted|admits|'
+    r'revealed|reveals|wrote|writes|posted|declared|stressed|insisted|noted|lamented|quipped|'
+    r'remarked|emphasized|emphasised|pointed out|according to|'
+    r'sinabi|aniya|ani|ayon|sagot|tanong|dagdag|giit|paliwanag|wika|saad)\b', re.I)
+
+
 def has_reported_quote(text):
     spans = quote_spans(text)
     if not spans:
@@ -32,9 +43,7 @@ def has_reported_quote(text):
     # A reporting verb inside the quotation is not an attribution by the post.
     outside = ''.join(' ' if any(a <= i < b for a, b in spans) else char
                       for i, char in enumerate(text))
-    return bool(re.search(
-        r'\b(?:asked|answered|replied|said|stated|furthered|told|responded|'
-        r'warned|sinabi|aniya|ayon|sagot|tanong)\b', outside, re.I))
+    return bool(REPORTED_QUOTE_VERBS.search(outside))
 
 
 def is_attribution_tail(text):

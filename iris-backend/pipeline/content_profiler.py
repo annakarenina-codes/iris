@@ -92,6 +92,13 @@ OPINION_WORDS = [
     "generous mentor",
 ]
 
+GENERIC_COMPARATIVES = {"best", "better", "worst"}
+
+REPORTED_SPEECH = re.compile(
+    r"\b(?:opens? up|opened up|shared|shares|said|says|told|tells|revealed|reveals|recalled|"
+    r"recalls|admitted|admits|explained|explains|talked about|talks about|spoke about|"
+    r"speaks about|described|describes|according to)\b")
+
 CALL_TO_ACTION_MARKERS = [
     "should",
     "must",
@@ -396,6 +403,23 @@ def _clamp_score(score: float) -> float:
     return round(max(0.05, min(0.95, score)), 2)
 
 
+def _opinion_words(segment: str, normalized: str) -> List[str]:
+    """
+    Opinion words that are the post's own judgement, not part of what someone is reported saying.
+
+    "Atasha Muhlach opens up about the best advice she received" reports what she said; the
+    superlative is hers, not the post's. A generic comparative in a sentence that attributes
+    speech to a named person no longer marks it as opinion, which had set aside every sentence of
+    that post but its hashtags (diagnosed 22 September). Opinion phrases and every other opinion
+    word still count, and so does a comparative with nobody named.
+    """
+    words = _matched_terms(normalized, OPINION_WORDS)
+    if (words and set(words) <= GENERIC_COMPARATIVES and _has_named_person_or_place(segment)
+            and REPORTED_SPEECH.search(normalized)):
+        return []
+    return words
+
+
 def _base_scores(segment: str) -> Tuple[Dict[str, float], Dict[str, List[str]]]:
     normalized = _normalize(segment)
     word_count = len(segment.split())
@@ -403,7 +427,7 @@ def _base_scores(segment: str) -> Tuple[Dict[str, float], Dict[str, List[str]]]:
         "factual": _matched_terms(normalized, FACTUAL_MARKERS),
         "entities": _matched_terms(normalized, ENTITY_MARKERS),
         "opinion_phrases": _matched_terms(normalized, OPINION_PHRASES),
-        "opinion_words": _matched_terms(normalized, OPINION_WORDS),
+        "opinion_words": _opinion_words(segment, normalized),
         "call_to_action": _matched_terms(normalized, CALL_TO_ACTION_MARKERS),
         "forecast": _matched_terms(normalized, FORECAST_MARKERS),
         "future_time": _matched_terms(normalized, FUTURE_TIME_MARKERS),
@@ -1051,9 +1075,13 @@ def _merge_openai_segment_advice(
             ai_score = _safe_float(ai_segment.get("top_label_score"))
             ai_eligible = ai_segment.get("eligible_for_verification") is True
 
+            # A quotation the model finds checkable is checkable: what IRIS checks is that the
+            # speaker said it. Advice labelled "quote" used to be dropped, which set aside the
+            # quotation of the Atasha Muhlach post (22 September). Imagined or anticipated speech
+            # is still stopped by the speech rules applied when the profile is rebuilt below.
             if (
                 ai_eligible
-                and ai_label == "factual_claim"
+                and ai_label in {"factual_claim", "quote"}
             ):
                 # Routing is not a verdict. An uncalibrated generated number
                 # must not veto an explicit finding of checkable content.

@@ -201,5 +201,22 @@ def ground_attribution(claim, source_text):
         "field_checks": field_checks,
         "incidental_credits": credits,
     }
-    claim["search_query"] = assertion
+    claim["search_query"] = speaker_query(attribution.get("speaker"), assertion, source_text)
     return claim
+
+
+def speaker_query(speaker, assertion, source_text=""):
+    """
+    The claim's own sentence as its search query, with the speaker's name when it lacks one.
+
+    Attributed claims search with the full sentence (the keyword queries tried on 19 September
+    dropped decisive terms). A sentence that names its speaker only as "she" or by surname then
+    searched without the name: "..., she shared." found nothing about Atasha Muhlach, while the
+    same words with her name found the ABS-CBN story (diagnosed 22 September).
+    """
+    assertion = str(assertion or "")
+    if not speaker or speaker_phrase_match(speaker, assertion, source_text):
+        return assertion
+    name = " ".join(word for word in str(speaker).split()
+                    if attribution_tokens(word) and attribution_tokens(word)[0] not in TITLES)
+    return f"{name or speaker} {assertion}".strip()
