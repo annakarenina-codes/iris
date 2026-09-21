@@ -46,7 +46,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-scripture-dates-v37"
+RESULT_CACHE_VERSION = "week7-ocr-speed-v38"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 # A verdict that asserts something about the world has to show the source it rests on.
 VERDICTS_NEEDING_EVIDENCE = POSITIVE_VERDICTS | {REFUTED_VERDICT}
