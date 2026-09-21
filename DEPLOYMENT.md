@@ -117,11 +117,29 @@ read what is and is not sent.
 
 ## 4. The phone
 
+Put the access token in `iris-android/local.properties` first, beside the `sdk.dir` line
+Android Studio already wrote there. The file is gitignored, so it stays off GitHub:
+
+```
+iris.accessToken=YOUR_TOKEN_HERE
+```
+
 There is no signing configuration in `app/build.gradle`, so `assembleRelease` produces an
-APK that Android will refuse to install. Build the debug one, which is signed automatically:
+APK that Android will refuse to install. Build the debug one, which is signed automatically.
+
+Gradle 9.4 needs Java 17 or newer, and the system Java on the development machine is 16, so
+the build has to be pointed at the JDK that ships with Android Studio. In **PowerShell**,
+which is what Windows opens by default — note `;` rather than `&&`, which PowerShell 5.1
+does not accept:
+
+```powershell
+$env:JAVA_HOME = "C:\Program Files\Android\Android Studio\jbr"; cd iris-android; .\gradlew assembleDebug
+```
+
+In **bash** (Git Bash, macOS, Linux):
 
 ```bash
-cd iris-android && ./gradlew assembleDebug
+cd iris-android && JAVA_HOME="/c/Program Files/Android/Android Studio/jbr" ./gradlew assembleDebug
 ```
 
 The APK lands at `app/build/outputs/apk/debug/app-debug.apk`. Copy it to the phone and open
