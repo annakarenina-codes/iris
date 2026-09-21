@@ -168,9 +168,36 @@ Push to the connected branch and Railway rebuilds. Participants keep the same UR
 nothing but a gap of about a minute.
 
 Two things are erased by every redeploy, because they live on the container's own disk:
-`iris_cache.sqlite3` and `.iris-trace/`. **If you want to keep TRACE records from a session,
-attach a Railway volume before it starts.** The verdict cache is only a cache; losing it
-costs speed, not results.
+`iris_cache.sqlite3` and `.iris-trace/`. The verdict cache is only a cache; losing it costs
+speed, not results. TRACE records are not replaceable, so they need more care.
+
+### Turning TRACE on for a hosted backend
+
+It is off by default and answers 404, which is the right setting for a public address. To
+record what happens inside each check during a session:
+
+1. Attach a **Volume** to the service, mounted at `/data`.
+2. Set three variables:
+
+   | name | value |
+   |---|---|
+   | `IRIS_TRACE_ENABLED` | `true` |
+   | `IRIS_TRACE_TOKEN` | a second secret, not the API one |
+   | `IRIS_TRACE_PATH` | `/data/traces.sqlite3` |
+
+The path matters as much as the volume. TRACE writes next to `app.py` unless told otherwise,
+which is the disk that gets thrown away — a volume with the default path saves nothing.
+
+`IRIS_TRACE_TOKEN` is not optional here. Without it TRACE refuses every request that did not
+come from the machine it runs on, so a hosted viewer would answer 403 to you as well.
+
+Then open `https://<your-service>.up.railway.app/debug/` and sign in with username `trace` and
+the token as the password.
+
+Worth knowing before you switch it on: TRACE records `request.input`, which is the text each
+participant submitted. For a study that is often exactly the data worth having, but it is
+participant data sitting on a server, and collecting it should match what your consent form
+says.
 
 ## 7. Known limits
 
