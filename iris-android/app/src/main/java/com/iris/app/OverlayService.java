@@ -21,6 +21,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -52,6 +53,11 @@ public class OverlayService extends Service {
 
     private static final String NOTIFICATION_CHANNEL_ID = "iris_bubble";
     private static final int NOTIFICATION_ID = 8201;
+    // A tap on the bubble while the panel is open arrives twice: once as ACTION_OUTSIDE on
+    // the panel, which closes it, and again as a click on the bubble, which would open it
+    // straight back up. The second half of that gesture is ignored.
+    private static final long BUBBLE_REOPEN_GUARD_MS = 400;
+
     private static final int STATE_IDLE = 0;
     private static final int STATE_INPUT = 1;
     private static final int STATE_SCANNING = 2;
@@ -72,6 +78,7 @@ public class OverlayService extends Service {
     private boolean moved;
     private ValueAnimator snapAnimator;
     private int state = STATE_IDLE;
+    private long panelDismissedAt;
     private long requestToken;
     private IrisResultData resultData;
     private int claimIndex;
@@ -285,22 +292,40 @@ public class OverlayService extends Service {
     }
 
     private void handleBubbleTap() {
+        // The panel has just closed itself because this same tap landed outside it. Opening it
+        // again here is what made the panel look like it refused to be put away.
+        if (SystemClock.uptimeMillis() - panelDismissedAt < BUBBLE_REOPEN_GUARD_MS) return;
+
+        // Scanning and results are both worth keeping, so the bubble hides and shows them
+        // rather than ending them. A check that is running keeps running.
         if (state == STATE_SCANNING) {
             if (panel == null) showScanningPanel(currentInputType);
-            else removePanelView();
+            else hidePanel();
             return;
         }
 
-        if (state == STATE_RESULT && panel == null) {
-            showResultPanel();
+        if (state == STATE_RESULT) {
+            if (panel == null) showResultPanel();
+            else hidePanel();
             return;
         }
 
-        if (state == STATE_INPUT || state == STATE_RESULT || state == STATE_ERROR) {
+        if (state == STATE_INPUT || state == STATE_ERROR) {
             resetToIdle();
         } else {
             showInputPanel();
         }
+    }
+
+    /**
+     * Puts the panel away without ending what it was showing.
+     *
+     * The state and any result stay as they are, so tapping the bubble brings the same panel
+     * back. Only resetToIdle throws the result away, and only a button says to do that.
+     */
+    private void hidePanel() {
+        removePanelView();
+        panelDismissedAt = SystemClock.uptimeMillis();
     }
 
     private void showInputPanel() {
@@ -370,7 +395,7 @@ public class OverlayService extends Service {
         state = STATE_SCANNING;
         setBubbleActive(true);
 
-        LinearLayout card = createPanelShell("SCANNING", view -> cancelActiveScan());
+        LinearLayout card = createPanelShell("SCANNING", view -> hidePanel());
         LinearLayout body = IrisUi.vertical(this, 18);
 
         TextView title = IrisUi.title(this, "IRIS is scanning...", 19);
@@ -395,6 +420,12 @@ public class OverlayService extends Service {
         detail.setGravity(Gravity.CENTER);
         body.addView(detail, IrisUi.spaced(this, 8));
 
+        // Stopping the check is a decision, so it gets a button that says so. The X beside it
+        // only puts the panel away, and the check carries on behind it.
+        Button cancel = IrisUi.secondaryButton(this, "Cancel check");
+        cancel.setOnClickListener(view -> cancelActiveScan());
+        body.addView(cancel, IrisUi.spaced(this, 16));
+
         card.addView(body, IrisUi.matchWrap());
         showPanelView(card, false, panelHeightEstimate());
     }
@@ -418,7 +449,7 @@ public class OverlayService extends Service {
         state = STATE_RESULT;
         setBubbleActive(false);
 
-        LinearLayout card = createPanelShell("VERIFICATION RESULT", view -> resetToIdle());
+        LinearLayout card = createPanelShell("VERIFICATION RESULT", view -> hidePanel());
         LinearLayout body = IrisUi.vertical(this, 16);
 
         if (resultData.claims.isEmpty()) {
@@ -442,6 +473,15 @@ public class OverlayService extends Service {
         LinearLayout.LayoutParams scrollParams = IrisUi.matchWrap();
         scrollParams.height = resultBodyHeight();
         card.addView(scrollView, scrollParams);
+
+        // Outside the scrolling area, so it is reachable without reading to the bottom first.
+        // This is the one control that discards the result; the X only puts it away.
+        LinearLayout footer = IrisUi.vertical(this, 0);
+        Button done = IrisUi.secondaryButton(this, "Done");
+        done.setOnClickListener(view -> resetToIdle());
+        footer.addView(done, IrisUi.spaced(this, 12));
+        card.addView(footer, IrisUi.matchWrap());
+
         showPanelView(card, false, resultPanelHeightEstimate());
     }
 
@@ -534,7 +574,11 @@ public class OverlayService extends Service {
         panel.setFocusableInTouchMode(focusable);
         panel.setOnKeyListener((view, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                resetToIdle();
+                if (state == STATE_SCANNING || state == STATE_RESULT) {
+                    hidePanel();
+                } else {
+                    resetToIdle();
+                }
                 return true;
             }
             return false;
@@ -561,8 +605,8 @@ public class OverlayService extends Service {
         positionPanelNearBubble(heightEstimate);
         panel.setOnTouchListener((view, event) -> {
             if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-                if (state == STATE_SCANNING) {
-                    removePanelView();
+                if (state == STATE_SCANNING || state == STATE_RESULT) {
+                    hidePanel();
                 } else {
                     resetToIdle();
                 }
@@ -621,11 +665,12 @@ public class OverlayService extends Service {
     }
 
     private int resultPanelHeightEstimate() {
-        return IrisUi.dp(this, 590);
+        return IrisUi.dp(this, 650);
     }
 
     private int resultBodyHeight() {
-        int available = getResources().getDisplayMetrics().heightPixels - IrisUi.dp(this, 190);
+        // 190 for the header and padding, and 58 more for the Done button below the scroll.
+        int available = getResources().getDisplayMetrics().heightPixels - IrisUi.dp(this, 248);
         return Math.max(IrisUi.dp(this, 360), Math.min(IrisUi.dp(this, 520), available));
     }
 
