@@ -6,10 +6,11 @@ import android.content.SharedPreferences;
 final class IrisPrefs {
     private static final String PREFS = "iris_settings";
     private static final String BACKEND_URL = "backend_url";
+    private static final String BACKEND_URL_BUILT_IN = "backend_url_built_in";
     private static final String BUBBLE_ENABLED = "bubble_enabled";
     private static final String BUBBLE_X = "bubble_x";
     private static final String BUBBLE_Y = "bubble_y";
-    private static final String DEFAULT_BACKEND_URL = "http://10.0.2.2:5000"; // iris:backend-url
+    private static final String DEFAULT_BACKEND_URL = "https://iris-production-8342.up.railway.app"; // iris:backend-url
 
     private IrisPrefs() {}
 
@@ -28,9 +29,19 @@ final class IrisPrefs {
     }
 
     static String getBackendUrl(Context context) {
-        return context
-            .getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-            .getString(BACKEND_URL, DEFAULT_BACKEND_URL);
+        SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        String saved = settings.getString(BACKEND_URL, null);
+        String savedAgainst = settings.getString(BACKEND_URL_BUILT_IN, null);
+
+        // An address that was typed in belongs to the build it was typed into. When the
+        // built-in address changes -- a new deployment, or a move off the emulator -- an
+        // address saved against the old one is stale, and on a build where the backend card
+        // is hidden there would be no way left to correct it.
+        if (saved == null || !DEFAULT_BACKEND_URL.equals(savedAgainst)) {
+            return DEFAULT_BACKEND_URL;
+        }
+
+        return saved;
     }
 
     static void setBackendUrl(Context context, String value) {
@@ -39,6 +50,7 @@ final class IrisPrefs {
 
         SharedPreferences.Editor editor = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit();
         editor.putString(BACKEND_URL, cleaned);
+        editor.putString(BACKEND_URL_BUILT_IN, DEFAULT_BACKEND_URL);
         editor.apply();
     }
 

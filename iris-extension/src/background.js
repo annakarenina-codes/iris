@@ -4,7 +4,7 @@ const MENU_CHECK_IMAGE = "iris-check-image";
 // Written by scripts/set-backend-url.mjs. Each laptop that loads this folder unpacked gets its
 // own extension ID, so chrome.storage.sync does not carry the address between them and every
 // laptop would otherwise have to be configured by hand.
-const IRIS_DEFAULT_BACKEND_URL = "http://127.0.0.1:5000"; // iris:backend-url
+const IRIS_DEFAULT_BACKEND_URL = "https://iris-production-8342.up.railway.app"; // iris:backend-url
 
 // The slowest post measured took 195 seconds, so the deadline sits above that and below the
 // five minutes a hosting edge proxy usually allows. With no deadline at all a connection

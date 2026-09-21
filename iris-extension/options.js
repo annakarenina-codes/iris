@@ -1,5 +1,5 @@
 const DEFAULTS = {
-  irisBackendUrl: "http://127.0.0.1:5000", // iris:backend-url
+  irisBackendUrl: "https://iris-production-8342.up.railway.app", // iris:backend-url
   irisAccessToken: "",
   irisPanelEnabled: true,
   irisTheme: "system",
