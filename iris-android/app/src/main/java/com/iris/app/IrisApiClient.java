@@ -59,7 +59,10 @@ final class IrisApiClient {
                 JSONObject payload = new JSONObject();
                 payload.put("image_base64", base64);
                 payload.put("platform", "android");
-                postJsonPayload(context, "/verify-image", payload, callback);
+                // Already on a worker thread, reading the image, so this goes straight to
+                // the request rather than queueing a second hop. Attempt zero: the image
+                // path gets the same one retry as the text path.
+                postJsonPayload(context, "/verify-image", payload, callback, 0);
             } catch (Exception error) {
                 MAIN.post(() -> callback.onError(error.getMessage()));
             }
