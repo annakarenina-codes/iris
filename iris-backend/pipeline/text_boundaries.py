@@ -2,6 +2,21 @@
 
 import re
 
+# Verbs that hand a quotation to someone. Philippine reporting closes quotes with "shared",
+# "added" and "revealed" as often as with "said": a showbiz post ending in "she shared." was
+# read as the page's own words, and its one opinion word filed the whole quote as opinion.
+#
+# is_attribution_tail keeps its shorter list on purpose. It also decides where sentences end,
+# in the articles IRIS reads as well as in posts, and moving those boundaries is a separate
+# change with its own risks.
+REPORTED_SPEECH_VERBS = (
+    r'asked|answered|replied|said|stated|furthered|told|responded|warned|'
+    r'shared|added|explained|noted|revealed|recalled|admitted|recounted|remarked|stressed|'
+    r'emphasized|emphasised|insisted|disclosed|expressed|claimed|wrote|posted|argued|'
+    r'declared|quipped|'
+    r'sinabi|aniya|ayon|sagot|tanong'
+)
+
 
 def quote_spans(text):
     pairs = {'"': '"', "'": "'", '\u201c': '\u201d', '\u2018': '\u2019'}
@@ -32,9 +47,7 @@ def has_reported_quote(text):
     # A reporting verb inside the quotation is not an attribution by the post.
     outside = ''.join(' ' if any(a <= i < b for a, b in spans) else char
                       for i, char in enumerate(text))
-    return bool(re.search(
-        r'\b(?:asked|answered|replied|said|stated|furthered|told|responded|'
-        r'warned|sinabi|aniya|ayon|sagot|tanong)\b', outside, re.I))
+    return bool(re.search(r'\b(?:' + REPORTED_SPEECH_VERBS + r')\b', outside, re.I))
 
 
 def is_attribution_tail(text):

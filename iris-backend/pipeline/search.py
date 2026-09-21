@@ -680,3 +680,86 @@ def search_and_extract(
         "source_summary": _build_source_summary(search_result, articles),
         "search": search_result,
     }
+
+
+# An excerpt counts as reporting the quotation when it repeats most of its words. Held-out
+# posts showed why a bare keyword match is not enough: a PNoy speech and an Imelda Marcos story
+# both contain "magnakaw" without having anything to do with Sara Duterte.
+QUOTE_MATCH_SHARE = 0.6
+
+
+def _quote_words(text: str) -> set:
+    return {word.casefold() for word in re.findall(r"[^\W\d_]{4,}", text or "")}
+
+
+def _carries_quote(passage: str, quote_words: set) -> bool:
+    if not quote_words:
+        return False
+    return len(quote_words & _quote_words(passage)) / len(quote_words) >= QUOTE_MATCH_SHARE
+
+
+def _with_earlier_passages(excerpt: Dict[str, object], earlier: Dict[str, object]) -> Dict[str, object]:
+    """One page's passages from two searches, since each search is shown different ones."""
+    lines = (str(excerpt.get("text") or "") + "\n" + str(earlier.get("text") or "")).split("\n")
+    text = "\n".join(dict.fromkeys(line for line in lines if line.strip()))
+    return {**excerpt, "text": text, "word_count": len(text.split())}
+
+
+@traced('retrieval.quote_search', dependency=False)
+def search_quote_excerpts(
+    query: str,
+    quote: str,
+    pooled_articles: Optional[List[Dict[str, object]]] = None,
+) -> Dict[str, object]:
+    """
+    Searches every source for a quotation, keeping only what the search itself returns.
+
+    Nothing is downloaded. Downloads are what make a search slow -- the pool for Sara Duterte's
+    post took 28 seconds, nearly all of it reading pages -- while the searches themselves run
+    in parallel in about a second and a half. The Inquirer and Manila Bulletin reports that
+    carried her quotation are excerpt sources IRIS never downloads anyway: what Brave returns
+    for them is the evidence, and Brave returns the passage that matches what was asked.
+
+    A page the pool already read in full is left to the pool. A page the pool only has an
+    excerpt of gets both excerpts, because the pool's was cut for a different query.
+    """
+    quote_pass = search_sources(query, search_pass="quote")
+    # One pass, wrapped the way search_with_backup wraps several, because the helpers that
+    # group results by source read the source order from each pass's reports.
+    search_result = {
+        "primary_query": query,
+        "backup_query_used": False,
+        "original_language_query": None,
+        "search_passes": ["quote"],
+        "total_results": quote_pass["total_results"],
+        "results": quote_pass["results"],
+        "searches": [quote_pass],
+    }
+    quote_words = _quote_words(quote)
+    pooled = {
+        _article_url_key(article): article
+        for article in pooled_articles or []
+        if _article_url_key(article)
+    }
+
+    articles = []
+    for result in _article_targets_by_source_order(search_result, MAX_ARTICLES_PER_SOURCE):
+        earlier = pooled.get(_article_url_key(result))
+        if earlier and earlier.get("evidence_type") == "full_text" and earlier.get("status") == "extracted":
+            continue
+
+        excerpt = build_excerpt_article(result, "quote_search")
+        if excerpt.get("status") != "extracted" or not _carries_quote(excerpt.get("text"), quote_words):
+            continue
+        if earlier and earlier.get("status") == "extracted" and earlier.get("text"):
+            excerpt = _with_earlier_passages(excerpt, earlier)
+        articles.append(excerpt)
+
+    return {
+        "total_search_results": search_result["total_results"],
+        "searched_articles": len(articles),
+        "extracted_articles": len(articles),
+        "articles": articles,
+        "source_summary": _build_source_summary(search_result, articles),
+        "search": search_result,
+    }

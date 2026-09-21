@@ -113,6 +113,8 @@ def test_multi_claim_response_is_unchanged_and_scoped(app):
         profile_content=lambda t, tr: _fake_content_profile(t, tr),
         extract_claims=lambda *a: extracted,
         search_and_extract=lambda **kw: _fake_search_result(),
+        # Quote claims also search their quotation now; kept off the network like the pool.
+        search_quote_excerpts=lambda *a, **kw: {"articles": []},
         generate_verdict=_fake_verdict,
         get_cached_verdict=lambda *a: None,
         save_cached_verdict=lambda *a: None,

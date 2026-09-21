@@ -11,6 +11,7 @@ import re
 from typing import List, Optional
 
 from pipeline.content_profiler import _split_segments
+from pipeline.text_boundaries import quote_spans
 
 MONTHS = ("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec")
 DATE_PATTERN = re.compile(
@@ -24,6 +25,10 @@ MAX_ANCHORS = 4
 MAX_QUOTED_TITLE_WORDS = 6
 MAX_ORIGINAL_QUERY_WORDS = 30
 MIN_ALIGNED_OVERLAP = 0.34
+# Shorter than this and a quotation is a phrase, not something an article would repeat.
+QUOTE_QUERY_MIN_WORDS = 4
+QUOTE_QUERY_MAX_WORDS = 30
+_QUOTE_MARKS = re.compile(r"[\"\u201c\u201d\u2018\u2019]")
 
 
 def _date_in(text: str, month: str, day: str) -> bool:
@@ -122,3 +127,67 @@ def original_language_query(claim_text: str, original_text: str, translated_text
     if len(original_text.split()) <= MAX_ORIGINAL_QUERY_WORDS:
         return _trim_words(original_text)
     return None
+
+
+def _longest_quote(sentence: str) -> str:
+    """The longest quotation in a sentence, without its marks or the punctuation around it."""
+    best = ""
+    for start, end in quote_spans(sentence):
+        inner = _QUOTE_MARKS.sub(" ", sentence[start + 1:end - 1])
+        inner = re.sub(r"\s+", " ", inner).strip(" ,.;:!?'")
+        if len(inner.split()) > len(best.split()):
+            best = inner
+    return best
+
+
+def verbatim_quote_query(claim: dict, original_text: str, translated_text: Optional[str] = None) -> Optional[dict]:
+    """
+    The quotation a quote claim rests on, as the post wrote it, ready to search for directly.
+
+    A claim is often a translation or a paraphrase of what was said. The article that reported
+    the quotation carries the speaker's own words, in the language they were spoken, so those
+    are what find it. Sara Duterte's "Para kasi sa administrasyong Marcos..." turned up the
+    Inquirer and Manila Bulletin reports that carry it; its English translation found neither.
+
+    Works for any language, because the post is matched sentence by sentence rather than by
+    translating back: a Tagalog quote inside an English post (held-out H15) is found as it is.
+
+    Returns {"query", "quote"}, or None when the claim's sentence quotes nothing long enough.
+    """
+    claim_text = str(claim.get("claim_text") or claim.get("normalized_claim") or "")
+    claim_words = _content_words(claim_text)
+    originals = _split_segments(original_text or "")
+    if not claim_words or not originals:
+        return None
+
+    translations = []
+    if translated_text and translated_text != original_text:
+        candidates = _split_segments(translated_text)
+        if len(candidates) == len(originals):
+            translations = candidates
+
+    best_quote, best_share = "", 0.0
+    for index, sentence in enumerate(originals):
+        quote = _longest_quote(sentence)
+        if len(quote.split()) < QUOTE_QUERY_MIN_WORDS:
+            continue
+        # A translated sentence is compared in both languages, so an English claim still finds
+        # the Tagalog sentence it was translated from.
+        compared = sentence + " " + (translations[index] if translations else "")
+        share = len(claim_words & _content_words(compared)) / len(claim_words)
+        if share > best_share:
+            best_quote, best_share = quote, share
+
+    if best_share < MIN_ALIGNED_OVERLAP:
+        # The claim may keep the quotation itself even when no sentence of the post matches it.
+        best_quote = _longest_quote(claim_text)
+        if len(best_quote.split()) < QUOTE_QUERY_MIN_WORDS:
+            return None
+
+    speaker = str((claim.get("attribution") or {}).get("speaker") or "").split()
+    surname = speaker[-1] if speaker and speaker[-1][:1].isupper() else ""
+    words = best_quote.split()
+    if surname and surname.casefold() not in {word.casefold() for word in words}:
+        words = [surname, *words]
+
+    return {"query": _trim_words(" ".join(words), QUOTE_QUERY_MAX_WORDS), "quote": best_quote}

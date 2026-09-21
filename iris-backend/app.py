@@ -38,8 +38,8 @@ from pipeline.opinion_filter import is_opinion
 from pipeline.political_checker import flag_political, flag_claim_political
 from pipeline.quote_paraphraser import paraphrase_quote_claim
 from pipeline.safe_fetch import UnsafeImageURL, get_public_url
-from pipeline.search import merge_search_results, search_and_extract
-from pipeline.search_queries import anchored_query, original_language_query
+from pipeline.search import merge_search_results, search_and_extract, search_quote_excerpts
+from pipeline.search_queries import anchored_query, original_language_query, verbatim_quote_query
 from pipeline.translator import translate_to_english
 from pipeline.verdict_generator import generate_verdict
 
@@ -48,7 +48,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-ocr-speed-v38"
+RESULT_CACHE_VERSION = "week7-quote-search-v39"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 # A verdict that asserts something about the world has to show the source it rests on.
 VERDICTS_NEEDING_EVIDENCE = POSITIVE_VERDICTS | {REFUTED_VERDICT}
@@ -834,6 +834,8 @@ def build_claim_cache_basis(normalized_claim, claim, scoring_claim, shared_evide
 
     if claim.get("is_quote_derived"):
         parts.append("quote_derived:true")
+        if (claim.get("quote_search") or {}).get("query"):
+            parts.append(f"quote_search:{claim['quote_search']['query']}")
 
     if scoring_claim and scoring_claim != normalized_claim:
         parts.append(f"scoring_claim:{scoring_claim}")
@@ -985,6 +987,22 @@ def build_claim_search_result(
     has_event_articles = bool(event_search_result and event_search_result.get("articles"))
 
     if claim.get("is_quote_derived") and has_event_articles:
+        # A quote claim used to stop at the pool, so the quotation itself was never searched:
+        # the Tagalog words Sara Duterte said, and the words of held-out H15 and H16, were
+        # computed and then thrown away. The quotation is searched now, in the language it was
+        # said, without downloading anything, and added in front of the pool.
+        quote_search = claim.get("quote_search") or {}
+        if quote_search.get("query"):
+            quote_result = search_quote_excerpts(
+                quote_search["query"],
+                quote_search["quote"],
+                event_search_result.get("articles"),
+            )
+            if quote_result.get("articles"):
+                return (
+                    merge_search_results(quote_result, event_search_result),
+                    "quote_search_plus_event_pool",
+                )
         return (
             tag_search_result_articles(event_search_result, "event_context"),
             "event_pool_only",
@@ -1713,6 +1731,7 @@ def verify_text_payload(text, debug_enabled=False, timings=None, from_image=Fals
         if language in ["tagalog", "taglish"]:
             claim['original_language_query'] = original_language_query(
                 claim.get('claim_text') or claim.get('normalized_claim') or '', text, translated)
+        claim['quote_search'] = verbatim_quote_query(claim, text, translated)
     trace = CURRENT.get()
     if trace and trace.stop_claim is not None and trace.stop_claim not in {str(c['claim_id']) for c in claim_extraction['claims']}:
         from iris_trace.core import TargetNotReached

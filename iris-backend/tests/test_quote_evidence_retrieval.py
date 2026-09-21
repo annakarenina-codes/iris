@@ -233,6 +233,7 @@ class QuoteEvidenceRetrievalTests(unittest.TestCase):
             "is_opinion": iris_app.is_opinion,
             "extract_claims": iris_app.extract_claims,
             "search_and_extract": iris_app.search_and_extract,
+            "search_quote_excerpts": iris_app.search_quote_excerpts,
             "generate_verdict": iris_app.generate_verdict,
             "refine_with_openai_rag": iris_app.refine_with_openai_rag,
             "get_cached_verdict": iris_app.get_cached_verdict,
@@ -318,6 +319,10 @@ class QuoteEvidenceRetrievalTests(unittest.TestCase):
                 ],
             }
             iris_app.search_and_extract = fake_search
+            # This test is about reusing the event pool. The quotation search that now runs
+            # beside it is stubbed to find nothing, which is the case where quote claims route
+            # exactly as they did before; test_quote_search.py covers it finding something.
+            iris_app.search_quote_excerpts = lambda *a, **k: {"articles": []}
             iris_app.generate_verdict = _partial_verdict
             iris_app.refine_with_openai_rag = lambda claim, articles, verdict_result: {
                 "used": False,

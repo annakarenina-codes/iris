@@ -98,6 +98,20 @@ QUOTE_DERIVED_MARKERS = [
 ]
 
 
+# Facebook's furniture, not what a post says. A page's "READ MORE: <link>" footer and the
+# "See less" control put "READ MORE", "See" and the link's slug "Sarablamesadmin" into the one
+# query that finds evidence for every claim of Sara Duterte's post, crowding out the words that
+# name the event. Seven of the twenty-five held-out posts carry the same footer.
+_POST_CHROME = re.compile(
+    r"https?://\S+|\bwww\.\S+|\bread\s+more\b\s*:?|\bsee\s+(?:less|more)\b",
+    re.I,
+)
+
+
+def _without_post_chrome(text: str) -> str:
+    return re.sub(r"\s+", " ", _POST_CHROME.sub(" ", text or "")).strip()
+
+
 def _clean_markup(text: str) -> str:
     text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", str(text or ""))
     text = re.sub(r"\*\*([^*]+)\*\*", r"\1", text)
@@ -174,11 +188,11 @@ def build_event_search_query(
         str(claim.get("search_query") or claim.get("normalized_claim") or claim.get("claim_text") or "")
         for claim in (claims or [])
     )
-    source_text = " ".join([
+    source_text = _without_post_chrome(" ".join([
         _clean_markup(translated_text or ""),
         _clean_markup(text or ""),
         _clean_markup(claim_text),
-    ]).strip()
+    ]))
     normalized = source_text.lower()
     terms: List[str] = []
     seen = set()
