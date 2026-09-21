@@ -1,5 +1,5 @@
 const DEFAULTS = {
-  irisBackendUrl: "http://127.0.0.1:5000",
+  irisBackendUrl: "http://127.0.0.1:5000", // iris:backend-url
   irisPanelEnabled: true,
   irisTheme: "system",
   irisFontSize: "default",

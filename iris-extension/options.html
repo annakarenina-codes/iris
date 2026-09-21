@@ -20,12 +20,6 @@
 
       <form id="options-form">
         <section class="settings-card">
-          <label for="backend-url">Backend URL</label>
-          <input id="backend-url" name="backend-url" type="url" placeholder="http://127.0.0.1:5000" required />
-          <p>IRIS sends selected text to `/verify` and submitted images to `/verify-image` on this backend.</p>
-        </section>
-
-        <section class="settings-card">
           <label class="checkbox-row">
             <input id="panel-enabled" type="checkbox" />
             <span>Show floating panel automatically when text is selected</span>
@@ -34,11 +28,30 @@
             <input id="quiet-mode" type="checkbox" />
             <span>Quiet Mode: hide IRIS until a right-click check is triggered</span>
           </label>
+        </section>
+
+        <section class="settings-card">
+          <p class="privacy-note">
+            IRIS sends only the text you select, or the image you submit, to the verification
+            server. It does not read pages on its own and nothing is sent until you ask for a
+            check.
+          </p>
+        </section>
+
+        <!-- Kept reachable for whoever is running the study, folded away from whoever is
+             taking part in it. The fields still exist, so options.js is unchanged. -->
+        <details class="settings-card settings-advanced">
+          <summary>Developer settings</summary>
+
+          <label for="backend-url">Backend URL</label>
+          <input id="backend-url" name="backend-url" type="url" placeholder="http://127.0.0.1:5000" required />
+          <p>IRIS sends selected text to `/verify` and submitted images to `/verify-image` on this backend.</p>
+
           <label class="checkbox-row">
             <input id="debug-mode" type="checkbox" />
             <span>Send debug=true to the backend during calibration</span>
           </label>
-        </section>
+        </details>
 
         <section class="settings-grid">
           <label>

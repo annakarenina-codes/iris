@@ -2,7 +2,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   window.__IRIS_EXTENSION_CONTENT_LOADED__ = true;
 
   const STORAGE_DEFAULTS = {
-    irisBackendUrl: "http://127.0.0.1:5000",
+    irisBackendUrl: "http://127.0.0.1:5000", // iris:backend-url
     irisPanelEnabled: true,
     irisTheme: "system",
     irisFontSize: "default",

@@ -60,7 +60,9 @@ public class MainActivity extends Activity {
         body.addView(bubbleControlCard(), IrisUi.spaced(this, 14));
         body.addView(androidWorkflowCard(), IrisUi.spaced(this, 14));
         body.addView(sourceTrustCard(), IrisUi.spaced(this, 14));
-        body.addView(backendCard(), IrisUi.spaced(this, 14));
+        if (IrisPrefs.isBackendConfigurable()) {
+            body.addView(backendCard(), IrisUi.spaced(this, 14));
+        }
         body.addView(manualCheckCard(), IrisUi.spaced(this, 14));
         root.addView(body, IrisUi.matchWrap());
 
@@ -235,9 +237,9 @@ public class MainActivity extends Activity {
 
     private View manualCheckCard() {
         LinearLayout card = IrisUi.card(this, 18);
-        card.addView(IrisUi.eyebrow(this, "Backend testing"), IrisUi.matchWrap());
+        card.addView(IrisUi.eyebrow(this, "Check a claim"), IrisUi.matchWrap());
         card.addView(IrisUi.title(this, "Manual text and image check", 20), IrisUi.spaced(this, 3));
-        card.addView(IrisUi.muted(this, "Use this screen to test the backend directly without switching to another app.", 12.5f), IrisUi.spaced(this, 6));
+        card.addView(IrisUi.muted(this, "Paste a claim or choose a screenshot, and IRIS will check it against Philippine news sources.", 12.5f), IrisUi.spaced(this, 6));
 
         claimInput = new EditText(this);
         claimInput.setHint("Paste or type a claim to verify");

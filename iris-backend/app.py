@@ -1,6 +1,7 @@
 
 from iris_trace.core import traced, event, CURRENT, submit_context
 from concurrent.futures import ThreadPoolExecutor
+import hmac
 import logging
 import os
 import re
@@ -36,6 +37,7 @@ from pipeline.openai_fallback import refine_with_openai_rag
 from pipeline.opinion_filter import is_opinion
 from pipeline.political_checker import flag_political, flag_claim_political
 from pipeline.quote_paraphraser import paraphrase_quote_claim
+from pipeline.safe_fetch import UnsafeImageURL, get_public_url
 from pipeline.search import merge_search_results, search_and_extract
 from pipeline.search_queries import anchored_query, original_language_query
 from pipeline.translator import translate_to_english
@@ -1402,11 +1404,17 @@ def _get_image_bytes_from_url(image_url):
     response = None
 
     try:
-        response = requests.get(
+        response = get_public_url(
             image_url,
             headers=headers,
             stream=True,
             timeout=REMOTE_IMAGE_TIMEOUT_SECONDS,
+        )
+    except UnsafeImageURL as error:
+        return _image_input_error(
+            "unsafe_image_url",
+            str(error),
+            400,
         )
     except requests.exceptions.Timeout:
         return _image_input_error(
@@ -1802,6 +1810,58 @@ def component_review_error(error):
                     "failed_stage": error.stage}), 503
 
 
+API_TOKEN = os.getenv("IRIS_API_TOKEN", "").strip()
+
+# An 8 MB image arrives base64 encoded, so about 10.7 MB of JSON. Sixteen leaves room for that
+# and for the fields around it, and stops one oversized body from taking memory away from the
+# other people in a session -- there is one process serving all of them.
+app.config["MAX_CONTENT_LENGTH"] = int(os.getenv("IRIS_MAX_REQUEST_BYTES", str(16 * 1024 * 1024)))
+
+
+@app.route('/health')
+def health():
+    """
+    Answers the host's health check without loading a model.
+
+    The check runs every few seconds, so it stays cheap on purpose: it says the process is up
+    and serving, not that a verification would succeed.
+    """
+    return jsonify({"status": "ok", "service": "iris", "pipeline": RESULT_CACHE_VERSION})
+
+
+@app.before_request
+def require_token():
+    """
+    Asks callers of the verification endpoints for the shared token.
+
+    Every check spends OpenAI and Brave credit, so on a public address the endpoints cannot be
+    open to anyone who finds the URL. With IRIS_API_TOKEN unset nothing changes, which keeps
+    local development and the tests as they were. TRACE is not covered here because it does
+    its own, stricter check in iris_trace/web.py.
+    """
+    if not API_TOKEN or request.method == "OPTIONS":
+        return None
+
+    if not request.path.startswith("/verify"):
+        return None
+
+    offered = request.headers.get("X-IRIS-Token", "")
+    if not offered:
+        offered = request.headers.get("Authorization", "").removeprefix("Bearer ").strip()
+
+    if hmac.compare_digest(str(offered), API_TOKEN):
+        return None
+
+    return jsonify({
+        "status": "processing_error",
+        "error": "unauthorized",
+        "message": "This IRIS backend needs an access token. Set it in the IRIS options.",
+        "retryable": False,
+        "verdict": None,
+        "evidence_sources": [],
+    }), 401
+
+
 @app.route('/verify', methods=['POST'])
 def verify():
     data = request.get_json()
@@ -1882,4 +1942,11 @@ def verify_image():
     return jsonify(response)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Development only. On a host, gunicorn imports `app` from this file instead, so neither
+    # the reloader nor the Werkzeug debugger -- which runs whatever a caller sends it -- can
+    # ever be reached there. Debug is now something you ask for rather than something you get.
+    app.run(
+        host=os.getenv("IRIS_HOST", "127.0.0.1"),
+        port=int(os.getenv("PORT", "5000")),
+        debug=os.getenv("FLASK_DEBUG", "").lower() in {"1", "true", "yes"},
+    )

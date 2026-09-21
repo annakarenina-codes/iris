@@ -1,16 +1,28 @@
 const MENU_CHECK_SELECTION = "iris-check-selection";
 const MENU_CHECK_IMAGE = "iris-check-image";
-// Temporary calibration setting: 0 disables the request deadline. Restore 120000 after testing.
-const REQUEST_TIMEOUT_MS = 0;
+
+// Written by scripts/set-backend-url.mjs. Each laptop that loads this folder unpacked gets its
+// own extension ID, so chrome.storage.sync does not carry the address between them and every
+// laptop would otherwise have to be configured by hand.
+const IRIS_DEFAULT_BACKEND_URL = "http://127.0.0.1:5000"; // iris:backend-url
+const IRIS_ACCESS_TOKEN = ""; // iris:access-token
+
+// The slowest post measured took 195 seconds, so the deadline sits above that and below the
+// five minutes a hosting edge proxy usually allows. With no deadline at all a connection
+// dropped on mobile data left the panel waiting for a result that was never coming.
+const REQUEST_TIMEOUT_MS = 180000;
+// A dropped connection earns one retry. Per-claim verdicts are cached on the backend, so the
+// second attempt usually answers in seconds instead of running the whole pipeline again.
+const RETRY_DELAY_MS = 1500;
 
 function normalizeBackendUrl(value) {
-  const raw = String(value || "http://127.0.0.1:5000").trim();
+  const raw = String(value || IRIS_DEFAULT_BACKEND_URL).trim();
   return raw.replace(/\/+$/, "");
 }
 
 function readSettings() {
   return chrome.storage.sync.get({
-    irisBackendUrl: "http://127.0.0.1:5000",
+    irisBackendUrl: IRIS_DEFAULT_BACKEND_URL,
     irisDebugMode: false
   });
 }
@@ -97,9 +109,9 @@ async function postJson(url, payload) {
   try {
     const response = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: IRIS_ACCESS_TOKEN
+        ? { "Content-Type": "application/json", "X-IRIS-Token": IRIS_ACCESS_TOKEN }
+        : { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
       signal: controller.signal
     });
@@ -121,12 +133,27 @@ async function postJson(url, payload) {
     };
   } catch (error) {
     if (error?.name === "AbortError" && REQUEST_TIMEOUT_MS > 0) {
-      throw new Error(`IRIS did not finish the request within ${REQUEST_TIMEOUT_MS / 1000} seconds. Check your connection and that the backend is running, then try again.`);
+      const expired = new Error(`IRIS did not finish the request within ${REQUEST_TIMEOUT_MS / 1000} seconds. Check your connection and that the backend is running, then try again.`);
+      expired.timedOut = true;
+      throw expired;
     }
 
     throw error;
   } finally {
     if (timeoutId !== null) clearTimeout(timeoutId);
+  }
+}
+
+async function postJsonWithRetry(url, payload) {
+  try {
+    return await postJson(url, payload);
+  } catch (error) {
+    // A deadline that has already passed is not worth waiting through twice, and a second
+    // 180 seconds would exceed what the host will hold a connection open for anyway.
+    if (error?.timedOut) throw error;
+
+    await new Promise((resume) => setTimeout(resume, RETRY_DELAY_MS));
+    return postJson(url, payload);
   }
 }
 
@@ -218,7 +245,7 @@ async function verifyImage(sourceInput, tabId) {
     const settings = await readSettings();
     const backendUrl = normalizeBackendUrl(settings.irisBackendUrl);
     const result = await withWorkerAwake(
-      () => postJson(`${backendUrl}/verify-image`, buildImagePayload(source, settings)));
+      () => postJsonWithRetry(`${backendUrl}/verify-image`, buildImagePayload(source, settings)));
 
     if (!result.ok) {
       throw new Error(getBackendError(result));
@@ -248,7 +275,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
   if (message?.type === "IRIS_VERIFY_TEXT") {
     const backendUrl = normalizeBackendUrl(message.backendUrl);
-    postJson(`${backendUrl}/verify`, {
+    postJsonWithRetry(`${backendUrl}/verify`, {
       text: message.text || "",
       platform: "chrome",
       debug: Boolean(message.debug)

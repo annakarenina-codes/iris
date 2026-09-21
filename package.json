@@ -7,7 +7,9 @@
     "extension:dev": "npm --prefix iris-extension run dev",
     "app:build": "pnpm --dir iris-app build",
     "app:dev": "pnpm --dir iris-app dev",
-    "backend:run": "python iris-backend/app.py"
+    "backend:run": "python iris-backend/app.py",
+    "set-backend-url": "node scripts/set-backend-url.mjs",
+    "extension:test": "npm --prefix iris-extension test"
   },
   "workspaces": [
     "iris-extension",

@@ -26,8 +26,15 @@ final class IrisApiClient {
     }
 
     private static final int CONNECT_TIMEOUT_MS = 30000;
-    // Temporary calibration setting: 0 means unlimited read wait. Restore 120000 after testing.
-    private static final int READ_TIMEOUT_MS = 0;
+    // The slowest post measured took 195 seconds, so the deadline sits above that and below
+    // the five minutes a hosting edge proxy usually allows. With no deadline at all, a phone
+    // that lost mobile data mid-check waited on a result that was never coming.
+    private static final int READ_TIMEOUT_MS = 180000;
+    // A connection that never opened, or dropped part-way, earns one retry. Per-claim verdicts
+    // are cached on the backend, so a second attempt usually answers in seconds.
+    private static final int RETRY_DELAY_MS = 1500;
+    // Written by scripts/set-backend-url.mjs alongside the extension's copy.
+    private static final String ACCESS_TOKEN = ""; // iris:access-token
     private static final ExecutorService EXECUTOR = Executors.newCachedThreadPool();
     private static final Handler MAIN = new Handler(Looper.getMainLooper());
 
@@ -59,10 +66,32 @@ final class IrisApiClient {
     }
 
     private static void postJson(Context context, String path, JSONObject payload, Callback callback) {
-        EXECUTOR.execute(() -> postJsonPayload(context, path, payload, callback));
+        EXECUTOR.execute(() -> postJsonPayload(context, path, payload, callback, 0));
     }
 
-    private static void postJsonPayload(Context context, String path, JSONObject payload, Callback callback) {
+    /**
+     * Tries the request once more after a short pause, and says whether it did.
+     *
+     * Only the first failure is retried: a read that has already spent its 180 seconds is not
+     * worth spending another 180 on, and the caller decides which failures qualify.
+     */
+    private static boolean retryOnce(Context context, String path, JSONObject payload,
+                                     Callback callback, int attempt) {
+        if (attempt > 0) return false;
+
+        EXECUTOR.execute(() -> {
+            try {
+                Thread.sleep(RETRY_DELAY_MS);
+            } catch (InterruptedException interrupted) {
+                Thread.currentThread().interrupt();
+            }
+            postJsonPayload(context, path, payload, callback, attempt + 1);
+        });
+        return true;
+    }
+
+    private static void postJsonPayload(Context context, String path, JSONObject payload,
+                                        Callback callback, int attempt) {
         HttpURLConnection connection = null;
         boolean connected = false;
 
@@ -78,6 +107,9 @@ final class IrisApiClient {
             connection.setConnectTimeout(CONNECT_TIMEOUT_MS);
             connection.setReadTimeout(READ_TIMEOUT_MS);
             connection.setRequestProperty("Content-Type", "application/json");
+            if (!ACCESS_TOKEN.isEmpty()) {
+                connection.setRequestProperty("X-IRIS-Token", ACCESS_TOKEN);
+            }
             connection.setDoOutput(true);
             connection.connect();
             connected = true;
@@ -101,14 +133,23 @@ final class IrisApiClient {
 
             MAIN.post(() -> callback.onSuccess(response));
         } catch (SocketTimeoutException error) {
+            // A read that timed out has already waited the full deadline; only a connection
+            // that never opened is worth trying again.
+            if (!connected && retryOnce(context, path, payload, callback, attempt)) return;
+
             String message = connected
                 ? "IRIS connected to the backend, but the network timed out while waiting for a response. Please retry."
                 : "IRIS could not connect to " + IrisPrefs.getBackendUrl(context) + ". Check that the backend is running and local network access is allowed.";
             MAIN.post(() -> callback.onError(message));
         } catch (ConnectException error) {
+            if (retryOnce(context, path, payload, callback, attempt)) return;
+
             MAIN.post(() -> callback.onError("No connection to " + IrisPrefs.getBackendUrl(context)
                 + ". Check the backend address and make sure Flask is running."));
         } catch (Exception error) {
+            // The mobile-data case: the connection opened and then went away mid-response.
+            if (connected && retryOnce(context, path, payload, callback, attempt)) return;
+
             MAIN.post(() -> callback.onError(error.getMessage() == null ? "IRIS request failed." : error.getMessage()));
         } finally {
             if (connection != null) connection.disconnect();
