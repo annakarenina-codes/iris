@@ -79,6 +79,7 @@ public class OverlayService extends Service {
     private ValueAnimator snapAnimator;
     private int state = STATE_IDLE;
     private long panelDismissedAt;
+    private String pendingError;
     private long requestToken;
     private IrisResultData resultData;
     private int claimIndex;
@@ -310,7 +311,13 @@ public class OverlayService extends Service {
             return;
         }
 
-        if (state == STATE_INPUT || state == STATE_ERROR) {
+        if (state == STATE_ERROR) {
+            if (panel == null) showErrorPanel(pendingError);
+            else hidePanel();
+            return;
+        }
+
+        if (state == STATE_INPUT) {
             resetToIdle();
         } else {
             showInputPanel();
@@ -326,6 +333,9 @@ public class OverlayService extends Service {
     private void hidePanel() {
         removePanelView();
         panelDismissedAt = SystemClock.uptimeMillis();
+        // A result put away is still a result waiting to be read, so the bubble goes on
+        // saying so. A scan put away keeps pulsing instead, which says the same thing.
+        setBubbleReady(state == STATE_RESULT || state == STATE_ERROR);
     }
 
     private void showInputPanel() {
@@ -448,6 +458,7 @@ public class OverlayService extends Service {
 
         state = STATE_RESULT;
         setBubbleActive(false);
+        setBubbleReady(false);
 
         LinearLayout card = createPanelShell("VERIFICATION RESULT", view -> hidePanel());
         LinearLayout body = IrisUi.vertical(this, 16);
@@ -488,8 +499,9 @@ public class OverlayService extends Service {
     private void showErrorPanel(String message) {
         state = STATE_ERROR;
         setBubbleActive(false);
+        setBubbleReady(false);
 
-        LinearLayout card = createPanelShell("CHECK FAILED", view -> resetToIdle());
+        LinearLayout card = createPanelShell("CHECK FAILED", view -> hidePanel());
         LinearLayout body = IrisUi.vertical(this, 16);
         body.addView(errorCard(TextUtils.isEmpty(message) ? "IRIS could not complete the check." : message), IrisUi.matchWrap());
 
@@ -779,17 +791,49 @@ public class OverlayService extends Service {
             @Override
             public void onSuccess(String responseJson) {
                 if (token != requestToken) return;
-                resultData = IrisResultData.parse(responseJson, currentFallbackText, currentInputType);
-                claimIndex = 0;
-                showResultPanel();
+                deliverResult(responseJson);
             }
 
             @Override
             public void onError(String message) {
                 if (token != requestToken) return;
-                showErrorPanel(message);
+                deliverError(message);
             }
         });
+    }
+
+    /**
+     * Shows a finished result, or lets the bubble hold it until it is asked for.
+     *
+     * A panel that is not on screen was put away on purpose. Opening it the moment the check
+     * finishes takes that decision back, over whatever the phone is doing by then.
+     */
+    private void deliverResult(String responseJson) {
+        resultData = IrisResultData.parse(responseJson, currentFallbackText, currentInputType);
+        claimIndex = 0;
+        pendingError = null;
+
+        if (panel == null) {
+            state = STATE_RESULT;
+            setBubbleActive(false);
+            setBubbleReady(true);
+            return;
+        }
+
+        showResultPanel();
+    }
+
+    /** As deliverResult, for a check that failed. The message waits with the bubble. */
+    private void deliverError(String message) {
+        if (panel == null) {
+            state = STATE_ERROR;
+            pendingError = message;
+            setBubbleActive(false);
+            setBubbleReady(true);
+            return;
+        }
+
+        showErrorPanel(message);
     }
 
     private void verifyImageSource(Uri imageUri) {
@@ -807,15 +851,13 @@ public class OverlayService extends Service {
             @Override
             public void onSuccess(String responseJson) {
                 if (token != requestToken) return;
-                resultData = IrisResultData.parse(responseJson, currentFallbackText, currentInputType);
-                claimIndex = 0;
-                showResultPanel();
+                deliverResult(responseJson);
             }
 
             @Override
             public void onError(String message) {
                 if (token != requestToken) return;
-                showErrorPanel(message);
+                deliverError(message);
             }
         });
     }
@@ -836,6 +878,10 @@ public class OverlayService extends Service {
             bubble.setActive(active);
             bubble.setElevation(IrisUi.dp(this, active ? 18 : 12));
         }
+    }
+
+    private void setBubbleReady(boolean waiting) {
+        if (bubble != null) bubble.setReady(waiting);
     }
 
     private View navigator() {
@@ -1060,9 +1106,11 @@ public class OverlayService extends Service {
         state = STATE_IDLE;
         claimIndex = 0;
         resultData = null;
+        pendingError = null;
         currentFallbackText = "";
         currentInputType = "text";
         setBubbleActive(false);
+        setBubbleReady(false);
     }
 
     private void stopAndDisable() {

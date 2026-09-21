@@ -13,6 +13,9 @@ import android.widget.FrameLayout;
 public class IrisBubbleView extends FrameLayout {
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private boolean active;
+    // Something finished while the panel was put away. The bubble says so quietly and waits
+    // to be asked, rather than taking the screen back on its own.
+    private boolean ready;
     private float pulse;
     private ValueAnimator animator;
 
@@ -31,8 +34,28 @@ public class IrisBubbleView extends FrameLayout {
         if (active == value) return;
 
         active = value;
-        setContentDescription(active ? "IRIS is scanning. Open panel" : "Open IRIS panel");
+        // A new check replaces whatever was waiting to be read.
+        if (active) ready = false;
+        describe();
         updateMotion();
+    }
+
+    public void setReady(boolean value) {
+        if (ready == value) return;
+
+        ready = value;
+        describe();
+        invalidate();
+    }
+
+    private void describe() {
+        if (active) {
+            setContentDescription("IRIS is scanning. Open panel");
+        } else if (ready) {
+            setContentDescription("IRIS has a result ready. Open panel");
+        } else {
+            setContentDescription("Open IRIS panel");
+        }
     }
 
     private void updateMotion() {
@@ -90,6 +113,20 @@ public class IrisBubbleView extends FrameLayout {
         paint.setStrokeWidth(IrisUi.dp(getContext(), 2));
         paint.setColor(IrisUi.GRADIENT_END);
         canvas.drawCircle(centerX, centerY, radius - IrisUi.dp(getContext(), 1), paint);
+
+        if (!ready) return;
+
+        // A dot on the shoulder of the bubble, ringed in white so it reads against whatever
+        // is behind it. GRADIENT_END is too pale here; the mid violet carries.
+        float badge = IrisUi.dp(getContext(), 7);
+        float badgeX = centerX + radius * 0.7f;
+        float badgeY = centerY - radius * 0.7f;
+
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.WHITE);
+        canvas.drawCircle(badgeX, badgeY, badge + IrisUi.dp(getContext(), 2), paint);
+        paint.setColor(IrisUi.GRADIENT_MID);
+        canvas.drawCircle(badgeX, badgeY, badge, paint);
     }
 
     private void startPulse() {
