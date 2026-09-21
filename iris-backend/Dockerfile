@@ -19,10 +19,25 @@ RUN apt-get update \
 
 # The default torch wheel on PyPI carries the CUDA runtime with it: gigabytes of GPU code that
 # a Railway container has no card to run. The CPU index serves the same torch without it.
-RUN pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.1.0"
+#
+# torchvision comes from that same index, in the same command, pinned beside it. easyocr
+# depends on torchvision, so letting requirements.txt fetch it separately got a PyPI build
+# compiled against a different torch, and importing it failed with "operator torchvision::nms
+# does not exist". The two are a matched pair or they are nothing.
+RUN pip install --index-url https://download.pytorch.org/whl/cpu "torch==2.13.0+cpu" "torchvision==0.28.0+cpu"
 
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+
+# The same pins are repeated as constraints so that nothing in requirements.txt can quietly
+# swap one half of the pair for a PyPI build, and the CPU index is offered alongside PyPI so
+# the pinned versions stay findable if pip does decide to touch them.
+RUN printf 'torch==2.13.0+cpu\ntorchvision==0.28.0+cpu\n' > /tmp/torch-pins.txt \
+ && pip install --extra-index-url https://download.pytorch.org/whl/cpu -c /tmp/torch-pins.txt -r requirements.txt
+
+# Fails here, cheaply and legibly, if the pair ever comes apart. Importing torchvision is what
+# registers its operators against torch, so a mismatch surfaces now rather than part-way
+# through a model download several minutes later.
+RUN python -c "import torch, torchvision; print('torch', torch.__version__, '/ torchvision', torchvision.__version__)"
 
 COPY . .
 
