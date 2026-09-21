@@ -217,150 +217,84 @@ class QuoteEvidenceRetrievalTests(unittest.TestCase):
         self.assertEqual(article["extraction_quality"], "full")
         self.assertGreaterEqual(article["word_count"], article_module.THIN_ARTICLE_WORDS)
 
+    @patch('pipeline.component_evidence.prepare_component_review')
     @patch('pipeline.component_evidence.review_components')
-    def test_quote_claims_reuse_abs_cbn_event_pool_and_score_paraphrases(self, component_review):
-        # This is a retrieval-routing test; evidence reasoning has its own fixtures.
+    def test_every_quote_claim_searches_and_sees_what_the_others_found(self, component_review, prepare):
+        # Quote claims used to read one search built for the whole post and never search on
+        # their own. Each claim now searches; an article one claim finds is offered to the others.
         component_review.return_value = {
             'status': 'ok', 'verdict': 'Partially Verified',
             'reason': 'Stubbed component review for retrieval isolation.',
             'components': [{'component': 'fixture', 'status': 'supported', 'citations': []}],
             'supporting_urls': [ABS_CBN_URL],
         }
-        originals = {
-            "detect_language": iris_app.detect_language,
-            "translate_to_english": iris_app.translate_to_english,
-            "profile_content": iris_app.profile_content,
-            "is_opinion": iris_app.is_opinion,
-            "extract_claims": iris_app.extract_claims,
-            "search_and_extract": iris_app.search_and_extract,
-            "generate_verdict": iris_app.generate_verdict,
-            "refine_with_openai_rag": iris_app.refine_with_openai_rag,
-            "get_cached_verdict": iris_app.get_cached_verdict,
-            "save_cached_verdict": iris_app.save_cached_verdict,
-            "paraphrase_quote_claim": iris_app.paraphrase_quote_claim,
+        prepare.side_effect = lambda claim, source_context='': {
+            'status': 'ok', 'claim': claim, 'source_context': source_context, 'contexts': []}
+        weather = {
+            "source": "GMA News", "title": "Rain over Luzon",
+            "url": "https://www.gmanetwork.com/news/weather/content/1/rain-over-luzon/story/",
+            "description": "", "status": "extracted", "word_count": 40, "error": None,
+            "extraction_method": "paragraphs", "extraction_quality": "thin",
+            "text": "Rain is expected over Luzon this weekend, the weather bureau said.",
         }
+        originals = {name: getattr(iris_app, name) for name in (
+            "detect_language", "translate_to_english", "profile_content", "is_opinion",
+            "extract_claims", "search_and_extract", "get_cached_verdict", "save_cached_verdict")}
         search_calls = []
 
         def fake_search(primary_query, backup_query=None, **_):
             search_calls.append(primary_query)
+            if "evaluation" in primary_query:
+                # This claim's own search misses the hearing report its siblings find.
+                result = _abs_cbn_event_search_result(primary_query)
+                result["articles"] = [weather]
+                return result
             return _abs_cbn_event_search_result(primary_query)
 
-        def fake_paraphrase(claim):
-            claim_text = claim["normalized_claim"]
-            if "not an investigation" in claim_text:
-                paraphrase = "Wamil answered that the process was an evaluation, not an investigation."
-            elif "define" in claim_text:
-                paraphrase = "Padilla asked Wamil to define confidential, and Wamil replied that it meant classified."
-            else:
-                paraphrase = "Padilla asked Wamil whether auditors were in charge of evaluating confidential funds."
-
-            return {
-                "used_for_scoring": True,
-                "status": "ok",
-                "method": "test_stub",
-                "error": None,
-                "paraphrase": paraphrase,
-            }
-
+        claims = [
+            ("\"But you are the ones in charge of the investigation regarding the confidential "
+             "funds, is that correct?\" Padilla asked Wamil."),
+            "\"It is not an investigation. It is an evaluation,\" the witness answered.",
+            ("Padilla then asked Wamil to define \"confidential,\" to which the auditor "
+             "replied, \"classified.\""),
+        ]
         try:
             iris_app.detect_language = lambda text: "english"
             iris_app.translate_to_english = lambda text, language: text
             iris_app.profile_content = lambda text, translated: _fake_content_profile()
-            iris_app.is_opinion = lambda text: {
-                "is_opinion": False,
-                "matched_phrases": [],
-                "matched_words": [],
-            }
+            iris_app.is_opinion = lambda text: {"is_opinion": False, "matched_phrases": [], "matched_words": []}
             iris_app.extract_claims = lambda text, translated: {
-                "status": "ok",
-                "method": "test_stub",
-                "error": None,
-                "post_type": "fact_only",
-                "contains_opinion": False,
-                "contains_recommendation": False,
-                "ignored_segments": [],
-                "claims": [
-                    {
-                        "claim_id": 1,
-                        "claim_text": (
-                            "\"But you are the ones in charge of the investigation "
-                            "regarding the confidential funds, is that correct?\" "
-                            "Padilla asked Wamil."
-                        ),
-                        "normalized_claim": (
-                            "\"But you are the ones in charge of the investigation "
-                            "regarding the confidential funds, is that correct?\" "
-                            "Padilla asked Wamil."
-                        ),
-                        "claim_type": "factual_claim",
-                        "risk_tags": [],
-                    },
-                    {
-                        "claim_id": 2,
-                        "claim_text": "\"It is not an investigation. It is an evaluation,\" the witness answered.",
-                        "normalized_claim": "\"It is not an investigation. It is an evaluation,\" the witness answered.",
-                        "claim_type": "factual_claim",
-                        "risk_tags": [],
-                    },
-                    {
-                        "claim_id": 3,
-                        "claim_text": (
-                            "Padilla then asked Wamil to define \"confidential,\" "
-                            "to which the auditor replied, \"classified.\""
-                        ),
-                        "normalized_claim": (
-                            "Padilla then asked Wamil to define \"confidential,\" "
-                            "to which the auditor replied, \"classified.\""
-                        ),
-                        "claim_type": "factual_claim",
-                        "risk_tags": [],
-                    },
-                ],
+                "status": "ok", "method": "test_stub", "error": None, "post_type": "fact_only",
+                "contains_opinion": False, "contains_recommendation": False, "ignored_segments": [],
+                "claims": [{"claim_id": i, "claim_text": text, "normalized_claim": text,
+                            "claim_type": "factual_claim", "risk_tags": []}
+                           for i, text in enumerate(claims, 1)],
             }
             iris_app.search_and_extract = fake_search
-            iris_app.generate_verdict = _partial_verdict
-            iris_app.refine_with_openai_rag = lambda claim, articles, verdict_result: {
-                "used": False,
-                "status": "not_needed",
-                "error": None,
-                "result": None,
-            }
             iris_app.get_cached_verdict = lambda claim_hash: None
             iris_app.save_cached_verdict = lambda claim_hash, claim_text, result: None
-            iris_app.paraphrase_quote_claim = fake_paraphrase
-
-            client = iris_app.app.test_client()
-            response = client.post(
-                "/verify",
-                json={"text": PADILLA_WAMIL_POST, "debug": True},
-            )
+            response = iris_app.app.test_client().post("/verify", json={"text": PADILLA_WAMIL_POST, "debug": True})
             payload = response.get_json()
         finally:
             for name, value in originals.items():
                 setattr(iris_app, name, value)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(component_review.call_count, 3)
-        self.assertEqual(len(search_calls), 1)
-        self.assertIn("Robinhood Padilla", search_calls[0])
-        self.assertTrue(payload["debug"]["shared_evidence_pool"]["used"])
-        self.assertEqual(
-            payload["debug"]["shared_evidence_pool"]["source_summary"][0]["source"],
-            "ABS-CBN News",
-        )
-        self.assertEqual(
-            payload["debug"]["shared_evidence_pool"]["articles"][0]["extraction_quality"],
-            "full",
-        )
-
-        claims = payload["claims"]
-        self.assertEqual(claims[0]["verdict"], "Partially Verified")
-        self.assertEqual(claims[2]["verdict"], "Partially Verified")
-        self.assertTrue(claims[1]["is_quote_derived"])
-        self.assertTrue(claims[1]["quote_paraphrase"]["used_for_scoring"])
-        self.assertIn("evaluation", claims[1]["scoring_claim"])
-        self.assertTrue(all(claim["retrieval_strategy"] == "event_pool_only" for claim in claims))
-        self.assertTrue(all(claim["sources"][0]["source"] == "ABS-CBN News" for claim in claims))
+        # One search per claim, each in the claim's own words; no search built for the whole post.
+        self.assertEqual(len(search_calls), 3)
+        self.assertNotIn("shared_evidence_pool", payload["debug"])
+        self.assertEqual(payload["debug"]["post_evidence_pool"]["found_by_several_claims"], 1)
+        claims_out = payload["claims"]
+        self.assertTrue(all(claim["is_quote_derived"] for claim in claims_out))
+        self.assertEqual(claims_out[0]["retrieval_strategy"], "claim_search_only")
+        # The second claim's own search missed the hearing report; its siblings' copy reached it.
+        self.assertEqual(claims_out[1]["retrieval_strategy"], "claim_search_plus_post_pool")
+        self.assertEqual(claims_out[1]["shared_evidence"]["urls"], [ABS_CBN_URL])
+        self.assertEqual(claims_out[1]["sources"][0]["url"], ABS_CBN_URL)
+        # Reviews run a few at a time, so the second claim's call is found by its text.
+        reviewed = next(call for call in component_review.call_args_list if call.args[0] == claims[1])
+        self.assertIn(ABS_CBN_URL, [article["url"] for article in reviewed.args[1]])
+        self.assertEqual(prepare.call_count, 3)
 
 
 if __name__ == "__main__":

@@ -13,8 +13,10 @@ from __future__ import annotations
 from iris_trace.core import traced, event
 
 import re
+import threading
 import time
 from collections import Counter
+from concurrent.futures import Future, ThreadPoolExecutor, TimeoutError as FutureTimeout
 from typing import Dict, List, Optional
 from urllib.parse import urlsplit
 
@@ -26,10 +28,18 @@ except ImportError:  # pragma: no cover - depends on local environment setup
 from pipeline.evidence_urls import article_url_rejection, clean_article_url
 from pipeline.sources import get_fact_check_sources
 
-REQUEST_TIMEOUT_SECONDS = 10
+# A sitemap is read in the background, so it may take as long as the publisher needs: the newest
+# VERA Files page was 627 KB and took 23 seconds on 22 September, past the old ten-second limit.
+REQUEST_TIMEOUT_SECONDS = 30
 RECENT_SITEMAP_PAGES = 2          # newest pages only: recent fact-checks, not the whole archive
 ARTICLE_SITEMAP = re.compile(r'/(?:post|article|news)-sitemap\d*\.xml$', re.I)
 CACHE_SECONDS = 3600
+# An index missing a page that failed is used as it is, and read again in the background after
+# ten minutes rather than kept for an hour.
+PARTIAL_CACHE_SECONDS = 600
+# How long a claim waits for an index that has never been read. Every later claim is answered
+# from memory at once, and a stale index is refreshed behind it rather than in front of it.
+LOOKUP_WAIT_SECONDS = 6
 MAX_CANDIDATES = 3
 MIN_SHARED_TERMS = 2
 STOPWORDS = {
@@ -39,6 +49,8 @@ STOPWORDS = {
     'which', 'with', 'would', 'photo', 'check', 'checks',
 }
 _cache: Dict[str, Dict[str, object]] = {}
+_loading: Dict[str, Future] = {}
+_loading_guard = threading.Lock()
 
 
 def _terms(text: str) -> set:
@@ -58,29 +70,74 @@ def _get(url: str) -> Optional[str]:
         return None
 
 
-def recent_article_urls(sitemap_url: str, pages: int = RECENT_SITEMAP_PAGES) -> List[str]:
-    """Article URLs from the newest pages of a publisher's sitemap, cached in process."""
-    cached = _cache.get(sitemap_url)
-    if cached and time.time() - float(cached['fetched']) < CACHE_SECONDS:
-        return list(cached['urls'])
-    if requests is None:
-        return []
+def _load(sitemap_url: str, pages: int) -> List[str]:
+    """Reads the sitemap index and its newest article pages, and keeps what was read."""
     index = _get(sitemap_url)
     if not index:
         return []
     locations = [url for url in re.findall(r"<loc>\s*([^<\s]+)\s*</loc>", index) if url.endswith('.xml')]
     # Article pages only: a sitemap index also lists tag, category and author pages.
     sitemaps = [url for url in locations if ARTICLE_SITEMAP.search(url)] or locations or [sitemap_url]
+    wanted = sitemaps[-pages:]
+    with ThreadPoolExecutor(max_workers=max(1, len(wanted))) as executor:
+        read = list(executor.map(lambda sitemap: index if sitemap == sitemap_url else _get(sitemap), wanted))
     urls: List[str] = []
-    for sitemap in sitemaps[-pages:]:
-        page = index if sitemap == sitemap_url else _get(sitemap)
-        if not page:
-            continue
-        urls.extend(url for url in re.findall(r"<loc>\s*([^<\s]+)\s*</loc>", page)
-                    if not url.endswith('.xml'))
-    _cache[sitemap_url] = {'fetched': time.time(), 'urls': urls}
-    event('factcheck.index_loaded', sitemap=sitemap_url, urls=len(urls))
+    for page in read:
+        if page:
+            urls.extend(url for url in re.findall(r"<loc>\s*([^<\s]+)\s*</loc>", page)
+                        if not url.endswith('.xml'))
+    complete = all(read)
+    _cache[sitemap_url] = {'fetched': time.time(), 'urls': urls,
+                           'lifetime': CACHE_SECONDS if complete else PARTIAL_CACHE_SECONDS}
+    event('factcheck.index_loaded', sitemap=sitemap_url, urls=len(urls), complete=complete)
     return urls
+
+
+def _start_load(sitemap_url: str, pages: int) -> Future:
+    """One background read per sitemap at a time; claims arriving together share it."""
+    with _loading_guard:
+        future = _loading.get(sitemap_url)
+        if future is not None and not future.done():
+            return future
+        future = Future()
+        _loading[sitemap_url] = future
+
+    def read():
+        try:
+            future.set_result(_load(sitemap_url, pages))
+        except Exception as error:  # pragma: no cover - a failed read leaves the old index in place
+            future.set_result([])
+            event('factcheck.index_unavailable', url=sitemap_url, error=type(error).__name__)
+
+    # A daemon thread: a publisher taking half a minute must not keep the process from exiting.
+    threading.Thread(target=read, name='iris-sitemap', daemon=True).start()
+    return future
+
+
+def recent_article_urls(sitemap_url: str, pages: int = RECENT_SITEMAP_PAGES,
+                        wait: float = LOOKUP_WAIT_SECONDS) -> List[str]:
+    """
+    Article URLs from the newest pages of a publisher's sitemap.
+
+    The lookup ran inside every claim's search, and the search waited for it: on 22 September a
+    slow VERA Files page held each claim for 20 seconds after the web search had finished. An
+    index already in memory is now answered at once, and one that is stale or incomplete is read
+    again in the background. Only a first read is waited for, and never for long.
+    """
+    cached = _cache.get(sitemap_url)
+    fresh = cached and time.time() - float(cached['fetched']) < float(cached.get('lifetime', CACHE_SECONDS))
+    if fresh:
+        return list(cached['urls'])
+    if requests is None:
+        return list(cached['urls']) if cached else []
+    future = _start_load(sitemap_url, pages)
+    if cached:
+        return list(cached['urls'])
+    try:
+        return list(future.result(timeout=wait))
+    except FutureTimeout:
+        event('factcheck.index_pending', sitemap=sitemap_url, waited_seconds=wait)
+        return []
 
 
 def _title_from_url(url: str) -> str:

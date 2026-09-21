@@ -13,7 +13,7 @@ import requests
 from flask import Flask, request, jsonify
 from pipeline.cache import get_cached_verdict, hash_claim, save_cached_verdict
 from pipeline.attribution_integrity import (attribution_phrase_match, date_phrase_match,
-                                            is_calendar_date, speaker_phrase_match)
+                                            is_calendar_date, speaker_phrase_match, speaker_query)
 from pipeline.evidence_urls import article_url_rejection, is_opinion_url
 from pipeline.checkable_claims import only_general_statements
 from pipeline.claim_extractor import extract_claims
@@ -21,11 +21,7 @@ from pipeline.component_evidence import REFUTED_VERDICT
 from pipeline.content_profiler import profile_content
 from pipeline.coverage_scope import (OUT_OF_SCOPE_VERDICT, SCRIPTURE_VERDICT, out_of_scope_message,
                                      philippine_scope, scriptural_narrative, scripture_message)
-from pipeline.event_retrieval import (
-    build_event_search_query,
-    mark_quote_derived_claims,
-)
-from pipeline.keyword_fallback import keyword_overlap_verdict
+from pipeline.event_retrieval import mark_quote_derived_claims
 from pipeline.language_detector import detect_language
 from pipeline.ocr import (
     MAX_IMAGE_BYTES,
@@ -33,22 +29,20 @@ from pipeline.ocr import (
     extract_text_from_image,
     validate_image_bytes,
 )
-from pipeline.openai_fallback import refine_with_openai_rag
 from pipeline.opinion_filter import is_opinion
 from pipeline.political_checker import flag_political, flag_claim_political
-from pipeline.quote_paraphraser import paraphrase_quote_claim
+from pipeline.quotation_context import restore_original_quotations
 from pipeline.safe_fetch import UnsafeImageURL, get_public_url
-from pipeline.search import merge_search_results, search_and_extract
+from pipeline.search import search_and_extract
 from pipeline.search_queries import anchored_query, original_language_query
 from pipeline.translator import translate_to_english
-from pipeline.verdict_generator import generate_verdict
 
 app = Flask(__name__)
 app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-ocr-speed-v38"
+RESULT_CACHE_VERSION = "week8-own-search-v39"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 # A verdict that asserts something about the world has to show the source it rests on.
 VERDICTS_NEEDING_EVIDENCE = POSITIVE_VERDICTS | {REFUTED_VERDICT}
@@ -353,34 +347,6 @@ def compact_evidence_source(article, evidence_method="semantic_similarity"):
     return source
 
 
-def find_extracted_article_by_url(articles, url):
-    """Finds the fetched article record for a URL returned by a fallback."""
-    normalized_url = normalize_evidence_url(url)
-    if not normalized_url:
-        return None
-
-    for article in articles:
-        if normalize_evidence_url(article.get("url")) == normalized_url:
-            return article
-
-    return None
-
-
-def merge_scored_article(scored_article, articles):
-    """Combines scorer metadata with the fetched article text record."""
-    full_article = find_extracted_article_by_url(articles, scored_article.get("url"))
-    if not full_article:
-        return scored_article
-
-    merged = dict(full_article)
-    merged.update({
-        key: value
-        for key, value in scored_article.items()
-        if key not in {"text", "description", "error"}
-    })
-    return merged
-
-
 def evidence_text(article):
     """Combines article fields used for strict attribution anchor checks."""
     return " ".join([
@@ -601,93 +567,6 @@ def unique_evidence_sources(candidates):
     return evidence_sources
 
 
-def evidence_sources_from_verdict(verdict_result, articles, claim):
-    """Returns the semantic evidence links that met the support threshold."""
-    candidates = []
-    for article in verdict_result.get("supporting_sources") or []:
-        merged_article = merge_scored_article(article, articles)
-        gate = attribution_evidence_gate(merged_article, claim)
-        if not gate["matches"]:
-            continue
-
-        source = compact_evidence_source(merged_article)
-        if source:
-            if claim.get("claim_type") == ATTRIBUTED_CLAIM_TYPE:
-                source["attribution_match"] = {
-                    "speaker": True,
-                    "source": bool((claim.get("attribution") or {}).get("source")),
-                    "program": bool((claim.get("attribution") or {}).get("program")),
-                    "date": bool((claim.get("attribution") or {}).get("date")),
-                    "statement": True,
-                }
-            candidates.append(source)
-
-    return unique_evidence_sources(candidates)
-
-
-def evidence_sources_from_openai_fallback(openai_fallback, articles, claim):
-    """Maps OpenAI-selected supporting URLs back to fetched article records."""
-    result = openai_fallback.get("result") or {}
-    supporting_urls = result.get("supporting_urls") or []
-    candidates = []
-
-    for url in supporting_urls:
-        article = find_extracted_article_by_url(articles, url)
-        if article and not attribution_evidence_gate(article, claim)["matches"]:
-            continue
-
-        source = compact_evidence_source(article, "openai_rag")
-        if source:
-            candidates.append(source)
-
-    return unique_evidence_sources(candidates)
-
-
-def evidence_sources_from_keyword_fallback(keyword_fallback, articles, claim):
-    """Maps the local fallback's best source back to fetched article evidence."""
-    if not keyword_fallback:
-        return []
-
-    keyword_source = keyword_fallback.get("primary_keyword_source") or {}
-    article = find_extracted_article_by_url(articles, keyword_source.get("url"))
-    if article and not attribution_evidence_gate(article, claim)["matches"]:
-        return []
-
-    source = compact_evidence_source(article, "keyword_overlap")
-
-    return [source] if source else []
-
-
-@traced('claim.evidence_gate', dependency=False)
-def build_public_evidence_sources(final_verdict, verdict_result, fallback_result, articles, claim):
-    """
-    Produces the only source list that should be shown as evidence.
-
-    Search-result links and failed/skipped extraction links stay out of this
-    list so IRIS never presents unverified URLs as proof.
-    """
-    if final_verdict not in POSITIVE_VERDICTS:
-        return []
-
-    semantic_sources = evidence_sources_from_verdict(verdict_result, articles, claim)
-    if semantic_sources:
-        return semantic_sources
-
-    openai_sources = evidence_sources_from_openai_fallback(
-        fallback_result["openai_fallback"],
-        articles,
-        claim,
-    )
-    if openai_sources:
-        return openai_sources
-
-    return evidence_sources_from_keyword_fallback(
-        fallback_result["keyword_fallback"],
-        articles,
-        claim,
-    )
-
-
 def evidence_source_count(evidence_sources):
     """Counts unique approved outlets represented in public evidence links."""
     source_names = {
@@ -785,46 +664,7 @@ def contextualize_attribution_message(claim, verdict, message):
     return message
 
 
-@traced('claim.fallback')
-def apply_low_confidence_fallback(
-    claim_text,
-    articles,
-    verdict_result,
-    timings=None,
-    stage_prefix="",
-):
-    """Runs OpenAI RAG first, then local keyword overlap if OpenAI cannot run."""
-    openai_result = timed_stage(
-        timings,
-        f"{stage_prefix}openai_rag_fallback",
-        lambda: refine_with_openai_rag(claim_text, articles, verdict_result),
-    )
-    keyword_result = None
-    event('verdict.semantic', verdict=verdict_result.get('verdict'), reason=verdict_result.get('reason'))
-    final_verdict = verdict_result["verdict"]
-    final_message = verdict_result["reason"]
-
-    if openai_result["status"] == "ok" and openai_result["result"]:
-        final_verdict = openai_result["result"]["verdict"]
-        final_message = openai_result["result"]["reason"]
-    elif openai_result["status"] not in ["not_needed", "no_evidence"]:
-        keyword_result = timed_stage(
-            timings,
-            f"{stage_prefix}keyword_overlap_fallback",
-            lambda: keyword_overlap_verdict(claim_text, articles),
-        )
-        final_verdict = keyword_result["verdict"]
-        final_message = keyword_result["reason"]
-
-    return {
-        "verdict": final_verdict,
-        "message": final_message,
-        "openai_fallback": openai_result,
-        "keyword_fallback": keyword_result,
-    }
-
-
-def build_claim_cache_basis(normalized_claim, claim, scoring_claim, shared_evidence_pool):
+def build_claim_cache_basis(normalized_claim, claim, scoring_claim=None, shared_evidence_pool=None):
     """Keeps quote/event-context cache entries separate from standalone checks."""
     parts = [normalized_claim]
     if claim.get('claim_text'):
@@ -844,153 +684,28 @@ def build_claim_cache_basis(normalized_claim, claim, scoring_claim, shared_evide
     return "\n".join(parts)
 
 
-def should_build_event_pool(claims, content_profile):
-    """Runs shared event retrieval only when it can help a multi-claim post."""
-    if not claims:
-        return False
-
-    if any(claim.get("is_quote_derived") for claim in claims):
-        return True
-
-    return bool(content_profile.get("contains_quote")) and len(claims) > 1
-
-
-def tag_search_result_articles(search_result, evidence_pool):
-    """Copies a search result and tags every article with its pool role."""
-    if not search_result:
-        return None
-
-    tagged = dict(search_result)
-    tagged["articles"] = [
-        {
-            **article,
-            "evidence_pool": article.get("evidence_pool") or evidence_pool,
-        }
-        for article in search_result.get("articles") or []
-    ]
-    return tagged
-
-
-@traced('event.retrieve', dependency=False)
-def build_shared_event_evidence_pool(
-    text,
-    translated_text,
-    claims,
-    content_profile,
-):
-    """Searches the broader post event once and returns a reusable pool."""
-    if not should_build_event_pool(claims, content_profile):
-        return {
-            "used": False,
-            "status": "not_needed",
-            "query": None,
-            "search_result": None,
-        }
-
-    query = build_event_search_query(
-        text=text,
-        translated_text=translated_text,
-        claims=claims,
-    )
-    if not query:
-        return {
-            "used": False,
-            "status": "empty_query",
-            "query": None,
-            "search_result": None,
-        }
-
-    search_result = search_and_extract(primary_query=query)
-    search_result = tag_search_result_articles(search_result, "event_context")
-
-    return {
-        "used": True,
-        "status": "ok",
-        "query": query,
-        "search_result": search_result,
-        "total_search_results": search_result["total_search_results"],
-        "searched_articles": search_result["searched_articles"],
-        "extracted_articles": search_result["extracted_articles"],
-        "source_summary": search_result["source_summary"],
-    }
-
-
-def summarize_shared_evidence_pool(shared_evidence_pool):
-    """Returns a compact debug-safe summary without full article text."""
-    if not shared_evidence_pool:
-        return {
-            "used": False,
-            "status": "not_run",
-        }
-
-    search_result = shared_evidence_pool.get("search_result") or {}
-    return {
-        "used": bool(shared_evidence_pool.get("used")),
-        "status": shared_evidence_pool.get("status"),
-        "query": shared_evidence_pool.get("query"),
-        "total_search_results": shared_evidence_pool.get("total_search_results", 0),
-        "searched_articles": shared_evidence_pool.get("searched_articles", 0),
-        "extracted_articles": shared_evidence_pool.get("extracted_articles", 0),
-        "source_summary": shared_evidence_pool.get("source_summary", []),
-        "articles": [
-            {
-                "source": article.get("source"),
-                "title": article.get("title"),
-                "url": article.get("url"),
-                "status": article.get("status"),
-                "word_count": article.get("word_count"),
-                "extraction_quality": article.get("extraction_quality"),
-                "evidence_type": article.get("evidence_type"),
-            }
-            for article in search_result.get("articles") or []
-        ],
-    }
-
-
-def quote_paraphrase_for_claim(claim, timings, stage_prefix):
-    """Returns paraphrase metadata and the claim text to use for scoring."""
-    default_result = {
-        "used_for_scoring": False,
-        "status": "not_needed",
-        "method": "not_run",
-        "error": None,
-        "paraphrase": claim["normalized_claim"],
-    }
-
-    if not claim.get("is_quote_derived"):
-        event('stage.skipped', stages=['claim.paraphrase'], reason='Claim is not quote derived')
-        return default_result
-
-    return timed_stage(
-        timings,
-        f"{stage_prefix}quote_paraphrase",
-        lambda: paraphrase_quote_claim(claim),
-    )
-
-
 @traced('claim.retrieve', dependency=False)
-def build_claim_search_result(
-    claim,
-    language,
-    retrieval_query,
-    normalized_claim,
-    shared_evidence_pool,
-):
-    """Chooses event-only, claim-only, or claim-plus-event retrieval."""
-    event_search_result = (
-        shared_evidence_pool.get("search_result")
-        if shared_evidence_pool and shared_evidence_pool.get("used")
-        else None
-    )
-    has_event_articles = bool(event_search_result and event_search_result.get("articles"))
+def build_claim_search_result(claim, language, retrieval_query, normalized_claim, shared_evidence_pool=None):
+    """
+    Searches for this one claim, in its own words.
 
-    if claim.get("is_quote_derived") and has_event_articles:
-        return (
-            tag_search_result_articles(event_search_result, "event_context"),
-            "event_pool_only",
-        )
-
-    claim_search_result = search_and_extract(
+    Claims taken from quotations used to skip this and read only one search built for the whole
+    post out of its capitalised words ("... READ MORE Sarablamesadmin See Para administration").
+    The claim's own query, its Filipino sentence and the fact-check lookup never ran, and the
+    article that verifies the quotation was never found (diagnosed 22 September; held-out H15 and
+    H16 lost their references the same way). Every claim now searches on its own, and what the
+    claims of a post find is shared between them afterwards.
+    """
+    attribution = claim.get("attribution") or {}
+    translated_query = None
+    if claim.get("quote_translation"):
+        # The claim keeps a quotation in the language it was said in; its English rendering
+        # searches for reporting that printed the quotation in English. It takes the place of the
+        # original-language pass, whose words the claim itself now carries.
+        translated_query = (speaker_query(attribution.get("speaker"), claim["quote_translation"])
+                            if claim.get("claim_type") == ATTRIBUTED_CLAIM_TYPE
+                            else claim["quote_translation"])
+    search_result = search_and_extract(
         primary_query=retrieval_query,
         backup_query=(
             normalized_claim
@@ -998,7 +713,8 @@ def build_claim_search_result(
             else claim["claim_text"] if language in ["tagalog", "taglish"] else None
         ),
         original_language_query=(
-            claim.get("original_language_query") if language in ["tagalog", "taglish"] else None
+            None if translated_query
+            else claim.get("original_language_query") if language in ["tagalog", "taglish"] else None
         ),
         # A picture's claim can lose the very name that finds its fact-check: held-out post
         # H18 kept "EDU MANZANO" in the reading and lost it from the claim, while the fact-check
@@ -1007,163 +723,182 @@ def build_claim_search_result(
         fact_check_text=" ".join(part for part in [
             claim.get("claim_text") or normalized_claim,
             claim.get("evidence_context", "") if claim.get("from_image") else ""] if part),
+        translated_query=translated_query,
     )
+    return search_result, "claim_search_only"
 
-    if has_event_articles:
-        return (
-            merge_search_results(claim_search_result, event_search_result),
-            "claim_search_plus_event_pool",
-        )
 
-    return claim_search_result, "claim_search_only"
+def plan_claim(claim, timings=None):
+    """The claim's search query, incident anchor and cache key, which every later stage reads."""
+    from pipeline.claim_context import incident_anchor, contextual_search_query
+    normalized_claim = claim["normalized_claim"]
+    context_anchor = incident_anchor(normalized_claim, claim.get('evidence_context', ''))
+    retrieval_query = contextual_search_query(claim.get("search_query") or normalized_claim, context_anchor)
+    # Keep the claim's dates, numbers and short titles that the generated query dropped.
+    retrieval_query = anchored_query(retrieval_query, claim.get("claim_text") or normalized_claim)
+    stage_prefix = f"claim_{claim.get('claim_id', 'unknown')}."
+    cache_basis = build_claim_cache_basis(normalized_claim, claim)
+    claim_hash = timed_stage(timings, f"{stage_prefix}hash_claim", lambda: hash_claim(cache_basis))
+    return {"normalized_claim": normalized_claim, "context_anchor": context_anchor,
+            "retrieval_query": retrieval_query, "stage_prefix": stage_prefix, "claim_hash": claim_hash}
+
+
+def cached_claim_result(plan, timings=None):
+    cached = timed_stage(timings, f"{plan['stage_prefix']}cache_lookup",
+                         lambda: get_cached_verdict(plan["claim_hash"]))
+    if cached and cached.get("cache_version") == RESULT_CACHE_VERSION:
+        return cached
+    return None
+
+
+@traced('claim.gather', dependency=False)
+def gather_claim_evidence(claim, language, plan, timings=None):
+    """
+    The part of a claim's check that does not depend on the post's other claims.
+
+    After the claim's own search, two things run at once: the reviewer splits the claim into
+    components, which needs only the claim and the post, and the passages that were found are
+    embedded for ranking. The split used to wait for the embedding. It is only asked for when
+    the search returned an article the review could read, so a claim with nothing to review costs
+    no model call. Nothing here decides a verdict.
+    """
+    from pipeline.component_evidence import prepare_component_review, warm_passage_embeddings
+    stage_prefix = plan["stage_prefix"]
+    search_result, strategy = timed_stage(
+        timings, f"{stage_prefix}search_and_extract",
+        lambda: build_claim_search_result(claim, language, plan["retrieval_query"],
+                                          plan["normalized_claim"]))
+    search_status = timed_stage(timings, f"{stage_prefix}search_status",
+                                lambda: get_search_status(search_result))
+    readable = [article for article in search_result.get("articles") or []
+                if article.get("status") == "extracted" and article.get("text")
+                and compact_evidence_source(article)]
+    prepared = None
+    if search_status["status"] == "ok" and readable:
+        with ThreadPoolExecutor(max_workers=1, thread_name_prefix="iris-prepare") as executor:
+            preparing = submit_context(
+                executor, timed_stage, timings, f"{stage_prefix}component_prepare",
+                lambda: prepare_component_review(claim.get("claim_text") or plan["normalized_claim"],
+                                                 claim.get("evidence_context", "")))
+            timed_stage(timings, f"{stage_prefix}embed_passages", lambda: warm_passage_embeddings(
+                readable, claim.get("claim_text") or plan["normalized_claim"], claim.get("quote_translation")))
+            prepared = preparing.result()
+    return {"plan": plan, "search_result": search_result, "retrieval_strategy": strategy,
+            "search_status": search_status, "prepared": prepared}
+
+
+# At most this many articles found by a post's other claims join one claim's evidence.
+MAX_SHARED_ARTICLES = max(0, int(os.getenv("IRIS_MAX_SHARED_ARTICLES", "12")))
+SHARED_ARTICLE_MIN_TERMS = 2
+
+
+def post_article_pool(gathered):
+    """Every readable article the claims of a post found, once each, with the claims that found it."""
+    pool, by_url = [], {}
+    for claim_id, found in gathered.items():
+        for article in (found.get("search_result") or {}).get("articles") or []:
+            key = normalize_evidence_url(article.get("url"))
+            if not key or article.get("status") != "extracted" or not article.get("text"):
+                continue
+            if key in by_url:
+                by_url[key]["found_by"].append(claim_id)
+                continue
+            by_url[key] = {"key": key, "article": article, "found_by": [claim_id]}
+            pool.append(by_url[key])
+    return pool
+
+
+def shared_candidates(claim, own_articles, pool, limit=MAX_SHARED_ARTICLES):
+    """
+    Articles the post's other claims found that this claim's own search did not.
+
+    The claims of a post are about the same events, and one claim's search can find what another
+    needs: held-out post H17 verified its first claim on an ABS-CBN story that also printed the
+    quotation of its second claim, which the second claim's own search never returned. The
+    articles sharing most of the claim's words come first. They pass every gate and review a
+    claim's own articles pass; sharing them is not evidence by itself.
+    """
+    own = {normalize_evidence_url(article.get("url")) for article in own_articles}
+    wanted = set(evidence_terms(" ".join(str(claim.get(key) or "")
+                                         for key in ("claim_text", "normalized_claim"))))
+    ranked = []
+    for order, entry in enumerate(pool):
+        if entry["key"] in own:
+            continue
+        overlap = len(wanted & set(evidence_terms(evidence_text(entry["article"]))))
+        if overlap >= SHARED_ARTICLE_MIN_TERMS:
+            ranked.append((-overlap, order, entry["article"]))
+    ranked.sort(key=lambda item: item[:2])
+    return [{**article, "evidence_pool": "post_shared"} for _, _, article in ranked[:limit]]
 
 
 @traced('claim.process', dependency=False)
-def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
-    """Runs search, scoring, fallback, and caching for one extracted claim."""
-    normalized_claim = claim["normalized_claim"]
-    retrieval_query = claim.get("search_query") or normalized_claim
-    from pipeline.claim_context import incident_anchor, contextual_search_query, incident_evidence_gate
-    context_anchor = incident_anchor(normalized_claim, claim.get('evidence_context', ''))
-    retrieval_query = contextual_search_query(retrieval_query, context_anchor)
-    # Keep the claim's dates, numbers and short titles that the generated query dropped.
-    retrieval_query = anchored_query(retrieval_query, claim.get("claim_text") or normalized_claim)
-    claim_id = claim.get("claim_id", "unknown")
-    stage_prefix = f"claim_{claim_id}."
-
-    quote_paraphrase = quote_paraphrase_for_claim(
-        claim,
-        timings,
-        stage_prefix,
-    )
-    scoring_claim = quote_paraphrase.get("paraphrase") or normalized_claim
-    cache_basis = build_claim_cache_basis(
-        normalized_claim,
-        claim,
-        scoring_claim,
-        shared_evidence_pool,
-    )
-    claim_hash = timed_stage(
-        timings,
-        f"{stage_prefix}hash_claim",
-        lambda: hash_claim(cache_basis),
-    )
-    cached_result = timed_stage(
-        timings,
-        f"{stage_prefix}cache_lookup",
-        lambda: get_cached_verdict(claim_hash),
-    )
-
-    if cached_result and cached_result.get("cache_version") == RESULT_CACHE_VERSION:
-        event('stage.skipped', stages=['claim.retrieve','claim.semantic','claim.fallback','claim.component_review'], reason='Matching cache entry reused')
-        event('cache.hit', claim_id=claim['claim_id'], cache_version=cached_result.get('cache_version'), downstream='retrieval and review bypassed')
+def verify_claim(claim, language, timings=None, gathered=None, shared_articles=None):
+    """Checks one claim against its own search, the post's shared articles and the component review."""
+    from pipeline.claim_context import incident_evidence_gate
+    plan = (gathered or {}).get("plan") or plan_claim(claim, timings)
+    cached_result = gathered.get("cached") if gathered else cached_claim_result(plan, timings)
+    if cached_result:
+        event('stage.skipped', stages=['claim.gather', 'claim.retrieve', 'claim.component_review'],
+              reason='Matching cache entry reused')
+        event('cache.hit', claim_id=claim['claim_id'], cache_version=cached_result.get('cache_version'),
+              downstream='retrieval and review bypassed')
         cached_result["claim_id"] = claim["claim_id"]
         cached_result["claim_text"] = claim["claim_text"]
         cached_result["is_quote_derived"] = bool(claim.get("is_quote_derived"))
         cached_result["cache_hit"] = True
         return cached_result
+    if not gathered or "search_result" not in gathered:
+        gathered = gather_claim_evidence(claim, language, plan, timings)
 
+    normalized_claim = plan["normalized_claim"]
+    stage_prefix = plan["stage_prefix"]
+    context_anchor = plan["context_anchor"]
     claim_flags = timed_stage(
         timings,
         f"{stage_prefix}political_flags",
         lambda: get_claim_flags(normalized_claim, claim),
     )
-    search_result = timed_stage(
-        timings,
-        f"{stage_prefix}search_and_extract",
-        lambda: build_claim_search_result(
-            claim,
-            language,
-            retrieval_query,
-            normalized_claim,
-            shared_evidence_pool,
-        ),
-    )
-    retrieval_strategy = search_result[1]
-    search_result = search_result[0]
-    search_status = timed_stage(
-        timings,
-        f"{stage_prefix}search_status",
-        lambda: get_search_status(search_result),
-    )
-    verdict_result = timed_stage(
-        timings,
-        f"{stage_prefix}generate_verdict",
-        lambda: generate_verdict(scoring_claim, search_result["articles"]),
-    )
-
-    final_verdict = verdict_result["verdict"]
-    final_message = verdict_result["reason"]
-    fallback_result = {
-        "openai_fallback": {
-            "used": False,
-            "status": "not_run",
-            "error": None,
-            "result": None,
-        },
-        "keyword_fallback": None,
-    }
-
-    if search_status["status"] != "ok":
-        final_verdict = search_status["verdict"]
-        final_message = search_status["message"]
-    else:
-        fallback_result = timed_stage(
-            timings,
-            f"{stage_prefix}fallback_total",
-            lambda: apply_low_confidence_fallback(
-                scoring_claim,
-                search_result["articles"],
-                verdict_result,
-                timings,
-                stage_prefix,
-            ),
-        )
-        event('verdict.fallback', before=final_verdict, after=fallback_result.get('verdict'), details=fallback_result)
-        final_verdict = fallback_result["verdict"]
-        final_message = fallback_result["message"]
-
-    evidence_sources = timed_stage(
-        timings,
-        f"{stage_prefix}public_evidence_sources",
-        lambda: build_public_evidence_sources(
-            final_verdict,
-            verdict_result,
-            fallback_result,
-            search_result["articles"],
-            claim,
-        ),
-    )
+    search_result = gathered["search_result"]
+    search_status = gathered["search_status"]
+    own_articles = list(search_result.get("articles") or [])
+    shared = shared_candidates(claim, own_articles, shared_articles) if shared_articles else []
+    candidates = own_articles + shared
+    # A claim whose own search came back empty can still be checked on what its siblings found;
+    # a search that failed or is not configured stays a technical result.
+    search_ok = search_status["status"] == "ok" or (search_status["status"] == "no_results" and bool(shared))
+    final_verdict = search_status.get("verdict")
+    final_message = search_status.get("message")
+    evidence_sources = []
+    eligible = []
 
     component_review = None
     review_error = None
-    if search_status["status"] == "ok":
+    if search_ok:
         from pipeline.component_evidence import (
             ComponentReviewError,
             require_completed_review,
             review_components,
         )
-        eligible = [article for article in search_result["articles"]
+        eligible = [article for article in candidates
                     if compact_evidence_source(article)
                     and article.get("text")
                     and not opinion_evidence_blocked(article, claim)
                     and attribution_evidence_gate(article, claim, anchors_only=True)["matches"]
                     and incident_evidence_gate(article, context_anchor)["matches"]]
-        opinion_excluded = [article.get("url") for article in search_result["articles"]
+        opinion_excluded = [article.get("url") for article in candidates
                             if article.get("text") and opinion_evidence_blocked(article, claim)]
         if opinion_excluded:
             event('evidence.opinion_excluded', urls=opinion_excluded, claim_type=claim.get("claim_type"))
-        # Most relevant first, so the reviewer's evidence budget holds the best articles.
-        relevance = {article["url"]: article["similarity_score"]
-                     for article in verdict_result.get("ranked_articles") or []}
-        eligible.sort(key=lambda article: -relevance.get(article.get("url"), -1.0))
         event('evidence.incident_gate', anchor=context_anchor, articles=[
             {'url': article.get('url'), **incident_evidence_gate(article, context_anchor)}
-            for article in search_result['articles']])
+            for article in candidates])
         component_review = timed_stage(
             timings, f"{stage_prefix}component_evidence_review",
             lambda: review_components(claim.get('claim_text') or normalized_claim, eligible,
-                                      source_context=claim.get('evidence_context', '')),
+                                      source_context=claim.get('evidence_context', ''),
+                                      prepared=gathered.get("prepared"),
+                                      claim_translation=claim.get("quote_translation")),
         ) if eligible else {"status": "no_evidence", "verdict": "Not Found",
                             "reason": "No valid extracted evidence satisfied the claim's required anchors.",
                             "supporting_urls": [], "components": []}
@@ -1174,13 +909,13 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
                             "retryable": True}
         if review_error:
             # A failed review is reported for this claim only; other claims keep their results.
-            event('verdict.review_failed', before=final_verdict, after=REVIEW_FAILED_VERDICT,
-                  **review_error)
+            event('verdict.review_failed', before=None, after=REVIEW_FAILED_VERDICT, **review_error)
             final_verdict = REVIEW_FAILED_VERDICT
             final_message = REVIEW_FAILED_MESSAGE
             evidence_sources = []
         else:
-            event('verdict.component_review', before=final_verdict, after=component_review.get('verdict'), details=component_review)
+            event('verdict.component_review', before=None, after=component_review.get('verdict'),
+                  details=component_review)
             final_verdict = component_review["verdict"]
             final_message = component_review["reason"]
             evidence_sources = unique_evidence_sources([
@@ -1205,6 +940,7 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
         final_verdict,
         final_message,
     )
+    shared_used = [article.get("url") for article in eligible if article.get("evidence_pool") == "post_shared"]
 
     claim_result = {
         "claim_id": claim["claim_id"],
@@ -1214,29 +950,32 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
         "verification_focus": claim.get("verification_focus", claim.get("claim_type", "factual_claim")),
         "attribution": claim.get("attribution"),
         "attribution_integrity": claim.get("attribution_integrity"),
+        "quote_translation": claim.get("quote_translation"),
+        "restored_quotations": claim.get("restored_quotations"),
         "component_review": component_review,
         "review_error": review_error,
         "incident_evidence_audit": [
             {'url': article.get('url'), **incident_evidence_gate(article, context_anchor)}
-            for article in search_result['articles']
+            for article in candidates
         ],
         "evidence_gate_audit": [
             {"url": article.get("url"), "stage": "attribution_anchors",
              **attribution_evidence_gate(article, claim, anchors_only=True)}
-            for article in search_result["articles"] if article.get("status") == "extracted"
+            for article in candidates if article.get("status") == "extracted"
         ],
         "is_quote_derived": bool(claim.get("is_quote_derived")),
-        "quote_paraphrase": quote_paraphrase,
-        "scoring_claim": scoring_claim,
-        "search_query": retrieval_query,
-        "event_search_query": (
-            shared_evidence_pool.get("query")
-            if shared_evidence_pool and shared_evidence_pool.get("used")
-            else None
-        ),
-        "retrieval_strategy": retrieval_strategy,
+        # Kept for clients and reports that read them: the paraphrase and the similarity score
+        # it fed no longer run, since the component review decided every verdict without them.
+        "quote_paraphrase": {"used_for_scoring": False, "status": "not_run", "method": "not_run",
+                             "error": None, "paraphrase": normalized_claim},
+        "scoring_claim": normalized_claim,
+        "search_query": plan["retrieval_query"],
+        "event_search_query": None,
+        "retrieval_strategy": ("claim_search_plus_post_pool" if shared_used
+                               else gathered.get("retrieval_strategy") or "claim_search_only"),
+        "shared_evidence": {"offered": len(shared), "eligible": len(shared_used), "urls": shared_used},
         "risk_tags": claim.get("risk_tags", []),
-        "claim_hash": claim_hash,
+        "claim_hash": plan["claim_hash"],
         "cache_version": RESULT_CACHE_VERSION,
         "verdict": final_verdict,
         "message": final_message,
@@ -1247,10 +986,10 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
         "primary_evidence": evidence_sources[0] if evidence_sources else None,
         "supporting_sources": evidence_sources,
         "search_status": search_status["status"],
-        "total_search_results": search_result["total_search_results"],
-        "searched_articles": search_result["searched_articles"],
-        "extracted_articles": search_result["extracted_articles"],
-        "source_summary": search_result["source_summary"],
+        "total_search_results": search_result.get("total_search_results", 0),
+        "searched_articles": search_result.get("searched_articles", 0),
+        "extracted_articles": search_result.get("extracted_articles", 0),
+        "source_summary": search_result.get("source_summary", []),
         "sources": evidence_sources,
         "evidence_sources": evidence_sources,
         "evidence_policy": (
@@ -1259,43 +998,60 @@ def verify_claim(claim, language, timings=None, shared_evidence_pool=None):
             "program/date anchors when those anchors are part of the claim."
         ),
         "fallback": {
-            "openai": fallback_result["openai_fallback"],
-            "keyword_overlap": fallback_result["keyword_fallback"],
+            "openai": {"used": False, "status": "not_run", "error": None, "result": None},
+            "keyword_overlap": None,
         },
     }
 
-    if search_status["status"] == "ok" and not review_error:
+    if search_ok and not review_error:
         timed_stage(
             timings,
             f"{stage_prefix}cache_save",
-            lambda: save_cached_verdict(claim_hash, normalized_claim, claim_result),
+            lambda: save_cached_verdict(plan["claim_hash"], normalized_claim, claim_result),
         )
 
     event('claim.final', result=claim_result)
     return claim_result
 
-# A claim spends its time waiting for publishers and the review models, and the claims of one
-# post wait on different ones. Checking them together is what keeps a long post inside the
-# ninety seconds the phone app allows: held-out post H25 spent 238 seconds on eight claims
-# checked in turn. Three at a time keeps well inside the provider rate limits that the review
-# already retries around.
+# The claims of a post search at the same time: a search waits on Brave and publishers, and
+# claims searched one after another were what made a long post slow. Five at a time keeps the
+# process inside the Brave plan's 50 requests a second (search.py paces every request anyway).
+SEARCH_CLAIM_WORKERS = max(1, int(os.getenv("IRIS_SEARCH_CLAIM_WORKERS", "5")))
+# Reviews wait on the review model, three at a time as before: well inside its token limit, and
+# kind to the other people using the same backend.
 CLAIM_WORKERS = max(1, int(os.getenv("IRIS_CLAIM_WORKERS", "3")))
 
 
-
-
-
-def verify_claims(claims, language, timings, shared_evidence_pool):
-    """Checks every claim of a post, a few at a time, in the order they were extracted."""
-    if len(claims) < 2 or CLAIM_WORKERS < 2:
-        return [verify_claim(claim, language, timings, shared_evidence_pool) for claim in claims]
-
-    with ThreadPoolExecutor(max_workers=min(CLAIM_WORKERS, len(claims)),
-                            thread_name_prefix="iris-claim") as executor:
-        futures = [submit_context(executor, verify_claim, claim, language, timings,
-                                  shared_evidence_pool)
-                   for claim in claims]
+def _each(fn, items, workers, prefix):
+    """fn(*item) for every item, a few at a time, results in the order of the items."""
+    if len(items) < 2 or workers < 2:
+        return [fn(*item) for item in items]
+    with ThreadPoolExecutor(max_workers=min(workers, len(items)), thread_name_prefix=prefix) as executor:
+        futures = [submit_context(executor, fn, *item) for item in items]
         return [future.result() for future in futures]
+
+
+def verify_claims(claims, language, timings):
+    """
+    Checks every claim of a post: first all of them search, then they are reviewed.
+
+    Searching first lets each claim's review see what the post's other claims found, and puts the
+    waiting on Brave and publishers into one stretch at the start instead of once per round of
+    reviews. Returns the claim results in extraction order and a summary of the shared pool.
+    """
+    plans = [plan_claim(claim, timings) for claim in claims]
+    cached = [cached_claim_result(plan, timings) for plan in plans]
+    pending = [(claim, language, plan, timings) for claim, plan, hit in zip(claims, plans, cached) if not hit]
+    found = _each(gather_claim_evidence, pending, SEARCH_CLAIM_WORKERS, "iris-search")
+    gathered = {str(item[0].get("claim_id")): evidence for item, evidence in zip(pending, found)}
+    pool = post_article_pool(gathered) if len(claims) > 1 else []
+    work = [(claim, language, timings,
+             {"plan": plan, "cached": hit} if hit else gathered[str(claim.get("claim_id"))],
+             pool)
+            for claim, plan, hit in zip(claims, plans, cached)]
+    results = _each(verify_claim, work, CLAIM_WORKERS, "iris-claim")
+    return results, {"articles": len(pool), "claims_searched": len(pending),
+                     "found_by_several_claims": sum(1 for entry in pool if len(entry["found_by"]) > 1)}
 
 
 def raise_if_every_review_failed(claim_results):
@@ -1702,8 +1458,10 @@ def verify_text_payload(text, debug_enabled=False, timings=None, from_image=Fals
         return complete_response(response)
 
     from pipeline.attribution_integrity import ground_attribution
+    # Quotations go back into the words they were said in before anything searches with them.
     claim_extraction["claims"] = [
-        ground_attribution(claim, text + "\n" + (translated or ""))
+        ground_attribution(restore_original_quotations(claim, text, translated),
+                           text + "\n" + (translated or ""))
         for claim in claim_extraction["claims"]
     ]
     for claim in claim_extraction['claims']:
@@ -1717,7 +1475,7 @@ def verify_text_payload(text, debug_enabled=False, timings=None, from_image=Fals
     if trace and trace.stop_claim is not None and trace.stop_claim not in {str(c['claim_id']) for c in claim_extraction['claims']}:
         from iris_trace.core import TargetNotReached
         raise TargetNotReached(trace.stop_after, 'Claim ID was not extracted; downstream retrieval was not started.')
-    # Step 5: Mark quote-derived claims and build one reusable event pool.
+    # Step 5: Mark quote-derived claims.
     claim_extraction["claims"] = timed_stage(
         timings,
         "text.mark_quote_derived_claims",
@@ -1726,22 +1484,12 @@ def verify_text_payload(text, debug_enabled=False, timings=None, from_image=Fals
             content_profile,
         ),
     )
-    shared_evidence_pool = timed_stage(
-        timings,
-        "text.shared_event_evidence_pool",
-        lambda: build_shared_event_evidence_pool(
-            text,
-            translated,
-            claim_extraction["claims"],
-            content_profile,
-        ),
-    )
 
-    # Step 6: Verify each extracted factual claim independently.
-    claim_results = timed_stage(
+    # Step 6: Verify every claim. The claims of a post search together and share what they find.
+    claim_results, post_pool = timed_stage(
         timings,
         "text.verify_claims_total",
-        lambda: verify_claims(claim_extraction["claims"], language, timings, shared_evidence_pool),
+        lambda: verify_claims(claim_extraction["claims"], language, timings),
     )
     raise_if_every_review_failed(claim_results)
     overall = build_overall_verdict(claim_results)
@@ -1783,9 +1531,7 @@ def verify_text_payload(text, debug_enabled=False, timings=None, from_image=Fals
 
     if debug_enabled:
         response["debug"]["claim_extraction"] = claim_extraction
-        response["debug"]["shared_evidence_pool"] = summarize_shared_evidence_pool(
-            shared_evidence_pool
-        )
+        response["debug"]["post_evidence_pool"] = post_pool
 
     return complete_response(response)
 

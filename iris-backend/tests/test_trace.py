@@ -87,7 +87,7 @@ def test_error_dictionary_is_not_hidden_by_completed_call(app):
 
 
 def test_multi_claim_response_is_unchanged_and_scoped(app):
-    from test_week4_app import _fake_content_profile, _fake_search_result, _fake_verdict
+    from test_week4_app import _fake_content_profile, _fake_search_result
 
     extracted = {
         "status": "ok",
@@ -113,15 +113,8 @@ def test_multi_claim_response_is_unchanged_and_scoped(app):
         profile_content=lambda t, tr: _fake_content_profile(t, tr),
         extract_claims=lambda *a: extracted,
         search_and_extract=lambda **kw: _fake_search_result(),
-        generate_verdict=_fake_verdict,
         get_cached_verdict=lambda *a: None,
         save_cached_verdict=lambda *a: None,
-        refine_with_openai_rag=lambda *a: {
-            "status": "not_needed",
-            "used": False,
-            "result": None,
-            "error": None,
-        },
     ):
         with app.test_client() as client:
             app.config["IRIS_TRACE_ENABLED"] = False
@@ -422,7 +415,7 @@ def test_stop_configuration_does_not_hide_real_failure(app):
 
 
 def test_recorded_text_replay_uses_saved_dependencies(app):
-    from test_week4_app import _fake_content_profile, _fake_search_result, _fake_verdict
+    from test_week4_app import _fake_content_profile, _fake_search_result
 
     calls = []
 
@@ -442,26 +435,14 @@ def test_recorded_text_replay_uses_saved_dependencies(app):
         calls.append("search")
         return _fake_search_result()
 
-    @traced("claim.semantic", dependency=True)
-    def semantic(claim, articles):
-        calls.append("semantic")
-        return _fake_verdict(claim, articles)
-
-    @traced("claim.fallback_ai", dependency=True)
-    def fallback(*args):
-        calls.append("fallback")
-        return {"status": "not_needed", "used": False, "result": None, "error": None}
-
     with patch.multiple(
         iris,
         detect_language=lambda t: "english",
         profile_content=lambda t, tr: _fake_content_profile(t, tr),
         extract_claims=extract,
         search_and_extract=search,
-        generate_verdict=semantic,
         get_cached_verdict=lambda *a: None,
         save_cached_verdict=lambda *a: None,
-        refine_with_openai_rag=fallback,
     ):
         with app.test_client() as client:
             source = client.post("/verify", json={"text": "DOH reports dengue cases."})

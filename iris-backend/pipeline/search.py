@@ -14,10 +14,12 @@ from __future__ import annotations
 
 from iris_trace.core import traced, submit_context
 
+from collections import deque
 from concurrent.futures import ThreadPoolExecutor
 import html
 import os
 import re
+import threading
 import time
 from typing import Dict, List, Optional
 
@@ -67,8 +69,36 @@ MAX_INDEX_ARTICLES = 2
 RECENCY_WINDOW = "pm"  # Brave freshness: past month. Ranks recent coverage; never evidence.
 SEARCH_RATE_LIMIT_RETRY_SECONDS = 1.5
 MIN_EXCERPT_WORDS = 8
-MAX_SEARCH_WORKERS = _env_int("IRIS_SEARCH_WORKERS", 8)
+# Eleven sources, so one pass is one wave of requests rather than eight and then three.
+MAX_SEARCH_WORKERS = _env_int("IRIS_SEARCH_WORKERS", 11)
 MAX_ARTICLE_EXTRACTION_WORKERS = _env_int("IRIS_ARTICLE_WORKERS", 8)
+# The Brave plan answers 50 requests a second. Passes and claims now search at the same time,
+# so every request in the process takes its turn here and the sum stays under the plan's limit.
+BRAVE_REQUESTS_PER_SECOND = _env_int("IRIS_BRAVE_REQUESTS_PER_SECOND", 40)
+
+
+class _RequestPace:
+    """At most `per_second` requests start in any one-second window, across every thread."""
+
+    def __init__(self, per_second: int):
+        self.per_second = per_second
+        self._started: deque = deque()
+        self._lock = threading.Lock()
+
+    def wait_turn(self) -> None:
+        while True:
+            with self._lock:
+                now = time.monotonic()
+                while self._started and now - self._started[0] >= 1.0:
+                    self._started.popleft()
+                if len(self._started) < self.per_second:
+                    self._started.append(now)
+                    return
+                delay = 1.0 - (now - self._started[0])
+            time.sleep(max(delay, 0.01))
+
+
+_BRAVE_PACE = _RequestPace(BRAVE_REQUESTS_PER_SECOND)
 
 
 def _get_api_key() -> Optional[str]:
@@ -130,6 +160,7 @@ def brave_search(
         params["freshness"] = freshness
 
     try:
+        _BRAVE_PACE.wait_turn()
         response = requests.get(
             BRAVE_SEARCH_URL,
             headers=headers,
@@ -138,6 +169,7 @@ def brave_search(
         )
         if getattr(response, "status_code", None) == 429:
             time.sleep(SEARCH_RATE_LIMIT_RETRY_SECONDS)
+            _BRAVE_PACE.wait_turn()
             response = requests.get(
                 BRAVE_SEARCH_URL,
                 headers=headers,
@@ -283,32 +315,46 @@ def search_with_backup(
     original_language_query: Optional[str] = None,
     recency: bool = True,
     fact_check_text: Optional[str] = None,
+    translated_query: Optional[str] = None,
 ) -> Dict[str, object]:
     """
     Runs every search pass for one claim and merges their results.
 
     0. fact_check_index: fact-checks found in a fact-checker's own sitemap, first so a
        targeted match is always read.
-    1. primary: the English query.
+    1. primary: the claim's own query.
     2. recent: the same query restricted to recent pages, so current coverage
        is not pushed out by older articles on the same subject.
     3. original_language: the post's own Filipino/Taglish sentence, when given.
-    4. backup: the older fallback, only when too few results were found.
+    4. translated: an English rendering of a quotation the claim keeps in its own language.
+    5. backup: the older fallback, only when too few results were found.
+
+    The passes are independent, so they run at the same time: one after another they cost a
+    claim about eight seconds of waiting on Brave (saved case B10). Results are still merged in
+    pass order, so what is read does not depend on which request answered first.
     """
-    searches = [search_sources(primary_query)]
+    passes = [(primary_query, None, "primary")]
     if recency:
-        searches.append(search_sources(primary_query, freshness=RECENCY_WINDOW, search_pass="recent"))
+        passes.append((primary_query, RECENCY_WINDOW, "recent"))
 
     used_queries = {primary_query.strip().casefold()}
     original_language_query = (original_language_query or "").strip()
-    if original_language_query and original_language_query.casefold() not in used_queries:
-        searches.append(search_sources(original_language_query, search_pass="original_language"))
-        used_queries.add(original_language_query.casefold())
+    translated_query = (translated_query or "").strip()
+    for name, query in (("original_language", original_language_query), ("translated", translated_query)):
+        if query and query.casefold() not in used_queries:
+            passes.append((query, None, name))
+            used_queries.add(query.casefold())
+
+    with ThreadPoolExecutor(max_workers=len(passes) + 1, thread_name_prefix="iris-pass") as executor:
+        pass_futures = [submit_context(executor, search_sources, query, freshness, name)
+                        for query, freshness, name in passes]
+        index_future = submit_context(executor, fact_check_search, fact_check_text or primary_query)
+        searches = [future.result() for future in pass_futures]
+        fact_checks = index_future.result()
 
     # The index lookup exists because web search misses these articles, so its candidate must
     # not be pushed out of the fact-checker's three article slots by ordinary search hits: the
     # VERA Files fact-check that settles a claim was lost this way.
-    fact_checks = fact_check_search(fact_check_text or primary_query)
     if fact_checks['results']:
         searches.insert(0, fact_checks)
 
@@ -328,6 +374,7 @@ def search_with_backup(
         "primary_query": primary_query,
         "backup_query_used": should_backup,
         "original_language_query": original_language_query or None,
+        "translated_query": translated_query or None,
         "search_passes": [search["search_pass"] for search in searches],
         "total_results": len(combined_results),
         "results": combined_results,
@@ -651,6 +698,7 @@ def search_and_extract(
     max_articles_per_source: int = MAX_ARTICLES_PER_SOURCE,
     original_language_query: Optional[str] = None,
     fact_check_text: Optional[str] = None,
+    translated_query: Optional[str] = None,
 ) -> Dict[str, object]:
     """
     Searches approved sources and extracts readable article text from each source.
@@ -663,6 +711,7 @@ def search_and_extract(
         backup_query,
         original_language_query=original_language_query,
         fact_check_text=fact_check_text,
+        translated_query=translated_query,
     )
     article_targets = _article_targets_by_source_order(
         search_result,

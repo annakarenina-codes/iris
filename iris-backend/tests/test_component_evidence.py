@@ -273,20 +273,21 @@ class ComponentTests(unittest.TestCase):
         self.assertEqual(body['evidence_sources'], [])
         self.assertEqual(body['failed_stage'], 'partition')
 
-    def test_failure_cannot_reuse_positive_fallback_or_write_cache(self):
+    def test_failed_review_is_never_a_verdict_and_never_cached(self):
         import app as iris
         claim = {'claim_id': 1, 'claim_text': 'Padilla asked Wamil about medicines.',
                  'normalized_claim': 'Padilla questioned Wamil.',
                  'claim_type': 'attributed_statement'}
-        article = {'url': 'https://www.philstar.com/headlines/example', 'text': 'Some evidence.'}
+        article = {'url': 'https://www.philstar.com/headlines/example', 'text': 'Some evidence.',
+                   'status': 'extracted'}
         search_result = {'articles': [article], 'total_search_results': 1, 'searched_articles': 1,
                          'extracted_articles': 1, 'source_summary': []}
-        with patch.object(iris, 'quote_paraphrase_for_claim', return_value={}),              patch.object(iris, 'get_cached_verdict', return_value=None),              patch.object(iris, 'get_claim_flags', return_value={'politically_sensitive': False, 'flags': []}),              patch.object(iris, 'build_claim_search_result', return_value=(search_result, 'test')),              patch.object(iris, 'get_search_status', return_value={'status': 'ok'}),              patch.object(iris, 'generate_verdict', return_value={'verdict': 'Verified', 'reason': 'test'}),              patch.object(iris, 'apply_low_confidence_fallback', return_value={
-                 'verdict': 'Verified', 'message': 'test', 'openai_fallback': {}, 'keyword_fallback': None}),              patch.object(iris, 'build_public_evidence_sources', return_value=[article]),              patch.object(iris, 'compact_evidence_source', return_value=article),              patch.object(iris, 'attribution_evidence_gate', return_value={'matches': True}),              patch('pipeline.component_evidence.review_components', return_value={
+        prepared = {'status': 'ok', 'claim': claim['claim_text'], 'source_context': '', 'contexts': []}
+        with patch.object(iris, 'get_cached_verdict', return_value=None),              patch.object(iris, 'get_claim_flags', return_value={'politically_sensitive': False, 'flags': []}),              patch.object(iris, 'build_claim_search_result', return_value=(search_result, 'test')),              patch.object(iris, 'get_search_status', return_value={'status': 'ok'}),              patch.object(iris, 'compact_evidence_source', return_value=article),              patch.object(iris, 'attribution_evidence_gate', return_value={'matches': True}),              patch('pipeline.component_evidence.prepare_component_review', return_value=prepared) as prepare,              patch('pipeline.component_evidence.review_components', return_value={
                  'status': 'error', 'verdict': None, 'error_code': 'review_rate_limited',
                  'failed_stage': 'entailment_check'}) as review,              patch.object(iris, 'save_cached_verdict') as save:
             result = iris.verify_claim(claim, 'english')
-        # The failed claim gets an explicit technical status, never the positive fallback.
+        # The failed claim gets an explicit technical status, never a verdict.
         self.assertEqual(result['verdict'], iris.REVIEW_FAILED_VERDICT)
         self.assertEqual(result['review_error'], {'reason_code': 'review_rate_limited',
                                                   'failed_stage': 'entailment_check', 'retryable': True})
@@ -294,6 +295,9 @@ class ComponentTests(unittest.TestCase):
         self.assertIsNone(result['primary_evidence'])
         save.assert_not_called()
         self.assertEqual(review.call_args.args[0], claim['claim_text'])
+        # The components were split while the evidence was still being found, and reused.
+        prepare.assert_called_once()
+        self.assertIs(review.call_args.kwargs['prepared'], prepared)
 
     def test_request_fails_only_when_every_claim_review_failed(self):
         import app as iris

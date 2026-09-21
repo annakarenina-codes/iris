@@ -94,7 +94,9 @@ def _get_reason(verdict: str, best_score: float) -> str:
 # Reading an article is expensive; reading it again for the next claim of the same post is
 # waste. Held-out post H25 spent 236 of its 329 seconds here, encoding the same articles once
 # per claim, one at a time. The score of an article is exactly what it was before.
-EMBEDDING_CACHE_MAX = 4000
+# Passages are cached here as well as articles: one review scores several hundred, and the claims
+# of a post score mostly the same ones. 40,000 vectors of 384 floats is about 60 MB.
+EMBEDDING_CACHE_MAX = 40000
 ENCODE_BATCH = 16
 _embeddings: Dict[str, object] = {}
 _embeddings_guard = threading.Lock()
@@ -108,7 +110,7 @@ def _embedding_key(text: str) -> str:
     return hashlib.sha1(text.encode("utf-8", "ignore")).hexdigest()
 
 
-def article_embeddings(texts: List[str]) -> List[object]:
+def text_embeddings(texts: List[str]) -> List[object]:
     """The vector for each text, encoding in one batch whatever is not already known."""
     model = get_model()
     keys = [_embedding_key(text) for text in texts]
@@ -116,6 +118,7 @@ def article_embeddings(texts: List[str]) -> List[object]:
         unknown = list(dict.fromkeys(
             text for text, key in zip(texts, keys) if text and key not in _embeddings))
 
+    fresh = {}
     if unknown:
         with _encode_guard:
             # Another claim may have encoded these while this one waited for its turn.
@@ -128,9 +131,15 @@ def article_embeddings(texts: List[str]) -> List[object]:
                         if len(_embeddings) >= EMBEDDING_CACHE_MAX:
                             _embeddings.pop(next(iter(_embeddings)), None)
                         _embeddings[_embedding_key(text)] = vector
+                        fresh[_embedding_key(text)] = vector
 
+    # What this call encoded is returned from here, so a cache full enough to evict an entry
+    # before it is read cannot leave a hole in the answer.
     with _embeddings_guard:
-        return [_embeddings.get(key) for key in keys]
+        return [fresh.get(key) if key in fresh else _embeddings.get(key) for key in keys]
+
+
+article_embeddings = text_embeddings
 
 
 def _score_article(claim_embedding, article: Dict[str, object],

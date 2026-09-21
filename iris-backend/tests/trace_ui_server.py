@@ -7,7 +7,7 @@ import base64
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / "tests")]
 import app as iris
-from test_week4_app import _fake_content_profile, _fake_search_result, _fake_verdict
+from test_week4_app import _fake_content_profile, _fake_search_result
 from iris_trace.core import event, traced, CURRENT
 from iris_trace.web import store_for
 from PIL import Image
@@ -85,15 +85,8 @@ with patch.multiple(
     profile_content=lambda t, tr: _fake_content_profile(t, tr),
     extract_claims=extract,
     search_and_extract=lambda **kw: _fake_search_result(),
-    generate_verdict=_fake_verdict,
     get_cached_verdict=lambda *a: None,
     save_cached_verdict=lambda *a: None,
-    refine_with_openai_rag=lambda *a: {
-        "status": "not_needed",
-        "used": False,
-        "result": None,
-        "error": None,
-    },
     extract_text_from_image=ocr,
 ):
     with iris.app.test_client() as client:

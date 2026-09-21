@@ -76,7 +76,7 @@ For repeated claim boundaries, specify **both** `stop_after` and `claim_id`:
 {"case_id":"CLAIM-STOP-001","mode":"text","allow_live":true,"input":{"text":"Your multi-claim post"},"stop_after":"claim.semantic","claim_id":"2"}
 ```
 
-Use the actual extracted claim ID shown in TRACE; it is not necessarily the displayed ordinal. Supported claim boundaries include paraphrase, cache read, political check, retrieval, semantic scoring, AI/keyword fallback, component review, evidence gate and complete claim processing. Calibration bypasses both cache reads and writes. Unknown claim IDs stop before shared retrieval. Bypassed targets return `target_not_reached`; actual errors remain errors.
+Use the actual extracted claim ID shown in TRACE; it is not necessarily the displayed ordinal. Supported claim boundaries include cache read, retrieval, component preparation (the claim split, run while evidence is gathered), evidence gathering, political check, component review and complete claim processing. A claim's retrieval and preparation run before any claim is reviewed, because the claims of a post search together and share what they find. Calibration bypasses both cache reads and writes. Unknown claim IDs stop before shared retrieval. Bypassed targets return `target_not_reached`; actual errors remain errors.
 
 Per-source and per-article parallel tasks are not cooperative stop boundaries because other work may already be dispatched. Inspect their spans and use saved component fixtures. A stop run is partial and is not a final fact-check verdict. Stop controls are only exposed through calibration, not ordinary client payloads.
 

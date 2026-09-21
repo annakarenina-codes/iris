@@ -1,8 +1,10 @@
 """Explicit speech framing, shared by screening and extraction (not truth checks)."""
 
 import re
+from copy import deepcopy
 
-from pipeline.text_boundaries import quote_spans
+from iris_trace.core import event
+from pipeline.text_boundaries import quote_spans, split_statement_segments
 
 
 class QuotationExtractionError(RuntimeError):
@@ -110,3 +112,88 @@ def validate_speech_coverage(payload, segments):
                                      for key in ('claim_text', 'normalized_claim')) for c in linked):
                 raise ValueError(f'reported_utterance_shortened:segment_{index}')
     return payload
+
+
+QUOTE_EDGES = " \t\n\"'\u201c\u201d\u2018\u2019,.;:!?"
+
+
+def _inner(utterance):
+    return utterance.strip(QUOTE_EDGES)
+
+
+def translated_quotations(original_text, translated_text):
+    """
+    Pairs each quotation of the post with its translation: [(translated words, original words)].
+
+    The translator works sentence by sentence and returns one line per sentence, so the Nth
+    line holds the Nth sentence; the Nth quotation of a sentence is paired with the Nth
+    quotation of its line. A quotation left as it was is not a pair.
+    """
+    original_text, translated_text = str(original_text or ''), str(translated_text or '')
+    if not translated_text or translated_text == original_text:
+        return []
+    originals = split_statement_segments(original_text)
+    translations = [line for line in translated_text.split('\n') if line.strip()]
+    if len(translations) != len(originals):
+        translations = split_statement_segments(translated_text)
+    if len(translations) != len(originals):
+        event('claims.quotation_restore_unaligned', originals=len(originals), translations=len(translations))
+        return []
+    pairs = []
+    for original, translation in zip(originals, translations):
+        said, rendered = utterances(original), utterances(translation)
+        if len(said) != len(rendered):
+            continue
+        for spoken, english in zip(said, rendered):
+            if comparable_utterance(spoken) != comparable_utterance(english) and _inner(spoken):
+                pairs.append((_inner(english), _inner(spoken)))
+    return pairs
+
+
+def _replace_words(text, words, replacement):
+    """Replaces the span of text holding these words in order, whatever lies between them."""
+    tokens = re.findall(r"\w+(?:['\u2019]\w+)*", words)
+    if not tokens:
+        return text, False
+    pattern = r"(?<!\w)" + r"\W+".join(re.escape(token) for token in tokens) + r"(?!\w)"
+    match = re.search(pattern, text, re.I)
+    if not match:
+        return text, False
+    return text[:match.start()] + replacement + text[match.end():], True
+
+
+def restore_original_quotations(claim, original_text, translated_text):
+    """
+    Puts a quotation back in the words it was said in, keeping the English as a search aid.
+
+    A post read as Tagalog is translated whole, so its claims carried quotations in English:
+    "Para kasi sa administrasyong Marcos, mas madali ang maging inutil..." became "Because for the
+    Marcos administration, it is easier to be useless..." (diagnosed 22 September). Reporting
+    prints the words as said, so the claim now carries them; the English rendering of the whole
+    claim is kept as quote_translation, for one extra search pass and as a note to the reviewer.
+    """
+    pairs = translated_quotations(original_text, translated_text)
+    if not pairs:
+        return claim
+    restored = deepcopy(claim)
+    before = str(claim.get('claim_text') or claim.get('normalized_claim') or '')
+    applied = []
+    # Longest first: a headline often repeats the opening of the full quotation (saved case
+    # A08), and replacing the short one first would leave the long one half translated.
+    for english, spoken in sorted(pairs, key=lambda pair: -len(pair[0])):
+        changed = False
+        for key in ('claim_text', 'normalized_claim'):
+            if restored.get(key):
+                restored[key], hit = _replace_words(restored[key], english, spoken)
+                changed = changed or hit
+        attribution = restored.get('attribution')
+        if isinstance(attribution, dict) and attribution.get('statement'):
+            attribution['statement'], _ = _replace_words(attribution['statement'], english, spoken)
+        if changed:
+            applied.append({'original': spoken, 'translation': english})
+    if not applied:
+        return claim
+    restored['quote_translation'] = before
+    restored['restored_quotations'] = applied
+    event('claims.quotation_restored', claim_id=claim.get('claim_id'), restored=len(applied))
+    return restored

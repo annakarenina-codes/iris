@@ -333,3 +333,20 @@ Only components that the first review pass proposes as supported reach the entai
 - "Poquiz said the Marcoses no longer have a mandate": the first pass proposed nothing, so no entailment check ran and the claim stayed **Not Found**.
 
 This gap is closed by the refutation check described above. C08 now returns Verified for "at least two Facebook posts are claiming..." and **Refuted** for "Poquiz made a statement against the Marcoses", citing the fact-check.
+
+## Quotations, speakers and shared evidence (22 September 2026)
+
+Two posts diagnosed that day failed for reasons that also explained most of the held-out batch's false negatives among quotations (H15, H16, H17).
+
+### What changed
+
+- **Every claim searches on its own.** Quotation claims used to read only a search built for the whole post. They now run their own passes, and the claims of a post share what they find: up to 12 articles from the post's other claims join a claim's evidence, the ones sharing most of its words first, and pass every gate and review a claim's own articles pass. H17 verified its first claim on an ABS-CBN story that also printed its second claim's quotation, which the second claim's own search never returned.
+- **A quotation keeps its words.** A post read as Tagalog is translated whole, and its claims used to carry quotations in English. The original words are put back after extraction (`restore_original_quotations` in [pipeline/quotation_context.py](pipeline/quotation_context.py)), longest quotation first, so a headline repeating the opening of a quotation cannot leave it half translated. The English rendering is kept as `quote_translation`: it is searched as its own pass and shown to the reviewer as `claim_english_rendering_not_evidence`, with the instruction that it is a translation for matching English reporting and never evidence.
+- **The speaker is named in the search.** An attributed claim is searched with its full sentence, and a sentence that names its speaker only as "she" or by surname now gets the name in front (`speaker_query`). "..., she shared." found nothing about Atasha Muhlach; the same words with her name found the ABS-CBN story.
+- **Quotations reach checking.** The profiler's model advice is accepted when it labels a segment a checkable quotation (imagined or anticipated speech is still stopped by the speech rules), more verbs hand a quotation to its speaker ("shared", "says", "added", "wrote" and others), and "best", "better" or "worst" in a sentence reporting what a named person said is no longer read as the post's own opinion.
+- **Evidence is ranked by its best passage.** When a claim's articles do not all fit the reviewer's 60,000 characters, they used to be ranked by an embedding of each article's opening; a live-updates page carrying the quotation far down its page ranked 28th of 28 and was cut. Articles are now ranked by their best passage.
+- **The claim split runs early.** Partitioning a claim into components needs only the claim and the post, so it runs beside the passage embedding instead of after it (`prepare_component_review`), and only when the search returned an article the review could read.
+- **Removed:** the post-wide event search, the gpt-4o-mini RAG fallback, and the article-opening similarity score with the quotation paraphrase that fed it. The component review decided every verdict without them; the fallback's answer was overwritten on every claim.
+
+Checked against the full backend tests, a request-by-request comparison of the old and new review (identical when a claim has no restored quotation), and the 34 development cases.
+

@@ -29,14 +29,21 @@ Publication dates returned by the search provider are deliberately **not** recor
 
 ## Search passes
 
-Each claim is searched against every source in up to four passes ([pipeline/search.py](pipeline/search.py)):
+Every claim is searched on its own, in its own words, against every source ([pipeline/search.py](pipeline/search.py)). The passes of one claim run at the same time, and their results are merged in pass order, so what is read never depends on which request answered first:
 
-1. **primary**: the claim's English query, with any date, number or short quoted title from the claim that the generated query dropped appended to it ([pipeline/search_queries.py](pipeline/search_queries.py)).
+1. **primary**: the claim's query, with any date, number or short quoted title from the claim that the generated query dropped appended to it ([pipeline/search_queries.py](pipeline/search_queries.py)). An attributed claim that names its speaker only as "she" or by surname gets the speaker's name in front.
 2. **recent**: the same query restricted to the past month (Brave `freshness=pm`), so current coverage is not pushed out of the top results by older articles on the same subject. This only ranks search results. A publication date is never evidence: retrieved text must state the claimed date itself.
 3. **original_language**: for Filipino/Taglish posts, the post's own sentence that the claim was translated from.
-4. **backup**: the previous fallback, only when the other passes return fewer than two results.
+4. **translated**: when the claim keeps a quotation in the language it was said in, the claim with that quotation in English. It takes the place of the original-language pass, whose words the claim itself then carries.
+5. **backup**: the previous fallback, only when the other passes return fewer than two results.
 
-Up to three articles per source are read, taking each pass's best result before any pass's second. Before evidence review, eligible articles are ordered by semantic similarity to the claim, so the reviewer's 60,000-character evidence budget holds the most relevant articles.
+The fact-checkers' sitemap lookup runs beside the passes and never holds them up: an index already in memory is answered at once and refreshed in the background, and only a first read is waited for, at most six seconds.
+
+Up to three articles per source are read, taking each pass's best result before any pass's second. All the claims of a post search at the same time, and every Brave request in the process takes its turn under a limit of 40 a second (the plan allows 50).
+
+Every readable article that any claim of a post found is offered to the post's other claims: at most 12 per claim, those sharing most of the claim's words first. Offered articles pass the same gates and the same component review as a claim's own, so sharing an article is never evidence by itself.
+
+The reviewer reads at most 60,000 characters, each article cut to its first 12,000. When a claim's articles do not all fit, they are ranked by their best passage, not by their opening, so where in an article the evidence sits no longer decides whether it is read.
 
 Known limit: some pages are not in the search provider's index at all (for example the GMA article for saved case A09, which does not appear even for its exact headline, and GMA's 24 Oras video transcript pages). No query change can retrieve those.
 
@@ -68,3 +75,18 @@ Changes ([pipeline/publisher_api.py](pipeline/publisher_api.py)):
 Request volume ([pipeline/article_extractor.py](pipeline/article_extractor.py)): a post with several claims used to download the same article once per claim. Readings are now cached in process for 15 minutes per URL, requests to one publisher are serialised and spaced at least 1 second apart, and a 429 is retried twice. C08 read the VERA fact-check in 1.6 seconds.
 
 Result: C08 claim 1 is **Verified** on the VERA fact-check `fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses`, which IRIS previously could not read at all.
+
+## Change record: 22 September 2026 — every claim searches, quotations keep their words
+
+Reason: a Sara Duterte post came back Not Found for a quotation that Inquirer and GMA both printed. Claims taken from quotations did not search on their own at all: they read a single search built for the whole post from its capitalised words, so neither the claim's words, nor its Filipino sentence, nor the fact-check lookup was ever searched. The same path accounted for held-out posts H15 and H16. The post was also read as Tagalog and translated whole, so the claim carried the quotation in English rather than as said.
+
+Changes:
+
+1. Every claim runs its own passes; the post-wide search is gone. The claims of a post share what they find, as described above.
+2. A quotation translated with its post is put back in its original words in the claim; the English rendering becomes the `translated` pass and is shown to the reviewer as a non-evidence aid (`claim_english_rendering_not_evidence`).
+3. The passes of a claim, and the claims of a post, search at the same time under a process-wide Brave limit.
+4. The sitemap lookup no longer holds up a search (see above). The newest VERA Files sitemap page was 627 KB and took 23 seconds that day.
+5. Articles that do not all fit the reviewer's budget are ranked by their best passage. Only passages sharing a distinctive word with the claim are embedded, at most 400 a claim, and embeddings are cached for the whole process.
+
+Cache version `week8-own-search-v39`.
+
