@@ -32,6 +32,7 @@ except ImportError:  # pragma: no cover - depends on local environment setup
     def load_dotenv():
         return False
 
+from pipeline.search_queries import distinctive_quote_words
 from pipeline.article_extractor import extract_article_text
 from pipeline.fact_check_index import fact_check_candidates
 from pipeline.publisher_api import article_from_api
@@ -682,20 +683,19 @@ def search_and_extract(
     }
 
 
-# An excerpt counts as reporting the quotation when it repeats most of its words. Held-out
-# posts showed why a bare keyword match is not enough: a PNoy speech and an Imelda Marcos story
-# both contain "magnakaw" without having anything to do with Sara Duterte.
+# An excerpt reports the quotation when it names the speaker and repeats most of the words
+# only that quotation would use. A PNoy speech says "magnakaw" and is not a report of Sara
+# Duterte; seventeen Tagalog pages say "hindi" and "siya" and are not reports of an auditor.
 QUOTE_MATCH_SHARE = 0.6
 
 
-def _quote_words(text: str) -> set:
-    return {word.casefold() for word in re.findall(r"[^\W\d_]{4,}", text or "")}
-
-
-def _carries_quote(passage: str, quote_words: set) -> bool:
-    if not quote_words:
+def _carries_quote(passage: str, quote_words: set, speaker: str) -> bool:
+    if not quote_words or not speaker:
         return False
-    return len(quote_words & _quote_words(passage)) / len(quote_words) >= QUOTE_MATCH_SHARE
+    if not re.search(rf"\b{re.escape(speaker)}\b", passage or "", re.I):
+        return False
+    found = distinctive_quote_words(passage)
+    return len(quote_words & found) / len(quote_words) >= QUOTE_MATCH_SHARE
 
 
 def _with_earlier_passages(excerpt: Dict[str, object], earlier: Dict[str, object]) -> Dict[str, object]:
@@ -709,6 +709,7 @@ def _with_earlier_passages(excerpt: Dict[str, object], earlier: Dict[str, object
 def search_quote_excerpts(
     query: str,
     quote: str,
+    speaker: str,
     pooled_articles: Optional[List[Dict[str, object]]] = None,
 ) -> Dict[str, object]:
     """
@@ -735,7 +736,7 @@ def search_quote_excerpts(
         "results": quote_pass["results"],
         "searches": [quote_pass],
     }
-    quote_words = _quote_words(quote)
+    quote_words = distinctive_quote_words(quote)
     pooled = {
         _article_url_key(article): article
         for article in pooled_articles or []
@@ -749,7 +750,7 @@ def search_quote_excerpts(
             continue
 
         excerpt = build_excerpt_article(result, "quote_search")
-        if excerpt.get("status") != "extracted" or not _carries_quote(excerpt.get("text"), quote_words):
+        if excerpt.get("status") != "extracted" or not _carries_quote(excerpt.get("text"), quote_words, speaker):
             continue
         if earlier and earlier.get("status") == "extracted" and earlier.get("text"):
             excerpt = _with_earlier_passages(excerpt, earlier)

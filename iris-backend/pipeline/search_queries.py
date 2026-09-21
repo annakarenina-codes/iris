@@ -29,6 +29,36 @@ MIN_ALIGNED_OVERLAP = 0.34
 QUOTE_QUERY_MIN_WORDS = 4
 QUOTE_QUERY_MAX_WORDS = 30
 _QUOTE_MARKS = re.compile(r"[\"\u201c\u201d\u2018\u2019]")
+# A quotation is recognised by the words only it would use. The first run counted "hindi" and
+# "siya" among the words of an auditor's Tagalog answer in saved case A02, and seventeen
+# unrelated Tagalog pages -- SALN rules, the Dacera case, Binay -- passed as reports of it.
+QUOTE_FUNCTION_WORDS = frozenset("""
+    that this with from have they them their there then than what which when where while were
+    been will would could should just only also about into your yours some very even because
+    these those being does here said know
+    hindi siya sila kami tayo kayo niya nila namin natin ninyo para kasi nang naman lang lamang
+    pero kung kaya dahil ngayon yung iyon iyan dito doon diyan talaga sana pala baka wala
+    mayroon meron ganun ganoon ganito kanya kanila akin atin amin inyo kaysa maging yata kapag
+    habang upang bago pati lahat isang mula hanggang tungkol nasa ayon
+""".split())
+# Fewer than this and a quotation says too little of its own to be told apart from others.
+QUOTE_MIN_DISTINCT_WORDS = 2
+# Titles and generational suffixes are not how an article names someone.
+_NAME_SUFFIXES = frozenset({"jr", "jr.", "sr", "sr.", "ii", "iii", "iv"})
+
+
+def distinctive_quote_words(text: str) -> set:
+    """The words of a quotation that belong to it rather than to the language it is in."""
+    return {word.casefold() for word in re.findall(r"[^\W\d_]{4,}", text or "")
+            if word.casefold() not in QUOTE_FUNCTION_WORDS}
+
+
+def speaker_surname(claim: dict) -> str:
+    """The name an article would call the speaker by, or "" when the claim does not say."""
+    parts = str((claim.get("attribution") or {}).get("speaker") or "").split()
+    while parts and parts[-1].casefold().rstrip(",") in _NAME_SUFFIXES:
+        parts.pop()
+    return parts[-1].rstrip(",") if parts and parts[-1][:1].isupper() else ""
 
 
 def _date_in(text: str, month: str, day: str) -> bool:
@@ -152,7 +182,8 @@ def verbatim_quote_query(claim: dict, original_text: str, translated_text: Optio
     Works for any language, because the post is matched sentence by sentence rather than by
     translating back: a Tagalog quote inside an English post (held-out H15) is found as it is.
 
-    Returns {"query", "quote"}, or None when the claim's sentence quotes nothing long enough.
+    Returns {"query", "quote", "speaker"}, or None when the claim's sentence quotes nothing
+    distinctive enough, or the claim does not say who spoke.
     """
     claim_text = str(claim.get("claim_text") or claim.get("normalized_claim") or "")
     claim_words = _content_words(claim_text)
@@ -184,10 +215,15 @@ def verbatim_quote_query(claim: dict, original_text: str, translated_text: Optio
         if len(best_quote.split()) < QUOTE_QUERY_MIN_WORDS:
             return None
 
-    speaker = str((claim.get("attribution") or {}).get("speaker") or "").split()
-    surname = speaker[-1] if speaker and speaker[-1][:1].isupper() else ""
+    # Without a name, a search cannot tell whose words it has found: an article that repeats
+    # the quotation is only a report of it if it also names who said it.
+    surname = speaker_surname(claim)
+    if not surname or len(distinctive_quote_words(best_quote)) < QUOTE_MIN_DISTINCT_WORDS:
+        return None
+
     words = best_quote.split()
-    if surname and surname.casefold() not in {word.casefold() for word in words}:
+    if surname.casefold() not in {word.casefold() for word in words}:
         words = [surname, *words]
 
-    return {"query": _trim_words(" ".join(words), QUOTE_QUERY_MAX_WORDS), "quote": best_quote}
+    return {"query": _trim_words(" ".join(words), QUOTE_QUERY_MAX_WORDS),
+            "quote": best_quote, "speaker": surname}

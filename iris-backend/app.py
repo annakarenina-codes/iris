@@ -48,7 +48,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week7-quote-search-v39"
+RESULT_CACHE_VERSION = "week7-quote-search-v40"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 # A verdict that asserts something about the world has to show the source it rests on.
 VERDICTS_NEEDING_EVIDENCE = POSITIVE_VERDICTS | {REFUTED_VERDICT}
@@ -996,6 +996,7 @@ def build_claim_search_result(
             quote_result = search_quote_excerpts(
                 quote_search["query"],
                 quote_search["quote"],
+                quote_search["speaker"],
                 event_search_result.get("articles"),
             )
             if quote_result.get("articles"):

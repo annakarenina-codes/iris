@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from pipeline import content_profiler as profiler
 from pipeline.event_retrieval import build_event_search_query
 from pipeline.search import search_quote_excerpts
-from pipeline.search_queries import verbatim_quote_query
+from pipeline.search_queries import distinctive_quote_words, speaker_surname, verbatim_quote_query
 from pipeline.text_boundaries import has_reported_quote
 
 # The two posts reported from testing on 21 September.
@@ -151,7 +151,7 @@ class QuoteSearchTests(unittest.TestCase):
         found = {"query": "q", "total_results": len(results), "results": results,
                  "source_reports": reports}
         with patch("pipeline.search.search_sources", return_value=found):
-            return search_quote_excerpts("Duterte " + SARA_QUOTE, SARA_QUOTE, pooled)
+            return search_quote_excerpts("Duterte " + SARA_QUOTE, SARA_QUOTE, "Duterte", pooled)
 
     def test_an_excerpt_that_repeats_the_quotation_is_kept(self):
         inquirer = _result("https://newsinfo.inquirer.net/2308694/sara-duterte-blames",
@@ -201,12 +201,64 @@ class QuoteSearchTests(unittest.TestCase):
         import app
 
         column = _result("https://opinion.inquirer.net/194280/a-column-on-duterte",
-                         "Philippine Daily Inquirer", f"“{SARA_QUOTE},” she said.")
+                         "Philippine Daily Inquirer", f"“{SARA_QUOTE},” Duterte said.")
         found = self.search([column])["articles"]
 
         self.assertEqual(len(found), 1)
         self.assertTrue(app.opinion_evidence_blocked(found[0], {"claim_type": "factual_claim"}))
         self.assertFalse(app.opinion_evidence_blocked(found[0], {"claim_type": "attributed_statement"}))
+
+
+WAMIL_QUOTE = "Hindi po siya imbestigasyon. Evaluation po"
+
+
+class SpeakerAndFunctionWordTests(unittest.TestCase):
+    """
+    The first full run kept 21 excerpts for an auditor's Tagalog answer in saved case A02, and
+    17 of them never mentioned him: they shared "hindi" and "siya", two of the commonest words
+    in the language. Put in front of the pool, they crowded out the Manila Bulletin excerpt
+    that had verified the claim, which went from Verified to Not Found.
+    """
+
+    def search(self, results):
+        reports = [{"source": name, "results": []}
+                   for name in dict.fromkeys(result["source"] for result in results)]
+        found = {"query": "q", "total_results": len(results), "results": results,
+                 "source_reports": reports}
+        with patch("pipeline.search.search_sources", return_value=found):
+            return search_quote_excerpts("Wamil " + WAMIL_QUOTE, WAMIL_QUOTE, "Wamil")
+
+    def test_function_words_are_not_a_quotations_own_words(self):
+        self.assertEqual(distinctive_quote_words(WAMIL_QUOTE), {"imbestigasyon", "evaluation"})
+
+    def test_a_page_that_shares_the_words_but_not_the_speaker_is_not_a_report_of_him(self):
+        unrelated = _result("https://verafiles.org/articles/responsibilidad-ng-mga-opisyal",
+                            "VERA Files",
+                            "Hindi pa rin siya humarap sa imbestigasyon, at walang evaluation ng komite.")
+        reported = _result("https://www.dzrh.com.ph/post/wamil-says-confidential-funds",
+                           "DZRH News",
+                           "“Hindi po siya imbestigasyon. Evaluation po,” Wamil told the court.")
+
+        kept = [a["url"] for a in self.search([unrelated, reported])["articles"]]
+
+        self.assertEqual(kept, [reported["url"]])
+
+    def test_a_claim_that_does_not_say_who_spoke_is_not_searched(self):
+        post = "“The budget will be passed before the end of the month,” she said."
+        claim = {"claim_text": post, "attribution": {"speaker": "she"}}
+
+        self.assertIsNone(verbatim_quote_query(claim, post, post))
+
+    def test_a_quotation_made_of_function_words_is_not_searched(self):
+        post = "“Hindi naman siya para doon,” sabi ni Wamil."
+        claim = {"claim_text": post, "attribution": {"speaker": "Roderick Wamil"}}
+
+        self.assertIsNone(verbatim_quote_query(claim, post, post))
+
+    def test_a_generational_suffix_is_not_the_name_an_article_uses(self):
+        self.assertEqual(speaker_surname({"attribution": {"speaker": "Art Samaniego Jr."}}), "Samaniego")
+        self.assertEqual(speaker_surname({"attribution": {"speaker": "Roderick Wamil"}}), "Wamil")
+        self.assertEqual(speaker_surname({"attribution": {"speaker": "the witness"}}), "")
 
 
 class RetrievalTests(unittest.TestCase):
@@ -221,7 +273,8 @@ class RetrievalTests(unittest.TestCase):
 
     def test_a_quote_claim_now_searches_its_quotation_first(self):
         claim = {"is_quote_derived": True, "claim_text": "x",
-                 "quote_search": {"query": "Duterte " + SARA_QUOTE, "quote": SARA_QUOTE}}
+                 "quote_search": {"query": "Duterte " + SARA_QUOTE, "quote": SARA_QUOTE,
+                                  "speaker": "Duterte"}}
         found = {"articles": [{"url": "https://newsinfo.inquirer.net/2308694/a",
                                "status": "extracted", "text": SARA_QUOTE}],
                  "total_search_results": 1, "source_summary": [], "search": {}}
@@ -245,7 +298,7 @@ class RetrievalTests(unittest.TestCase):
 
     def test_a_quote_search_that_finds_nothing_leaves_the_pool_as_it_was(self):
         claim = {"is_quote_derived": True, "claim_text": "x",
-                 "quote_search": {"query": "q", "quote": "q q q q"}}
+                 "quote_search": {"query": "q", "quote": "q q q q", "speaker": "Q"}}
         empty = {"articles": [], "total_search_results": 0, "source_summary": [], "search": {}}
 
         with patch.object(self.app, "search_quote_excerpts", return_value=empty):
