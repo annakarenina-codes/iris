@@ -1,0 +1,305 @@
+{
+  "case_id": "B16",
+  "input_sha256": "67888fe47038452030d118aa3089d434e8ed030739040fc4409ccbd53e2e0e31",
+  "started_utc": "2026-09-21T11:02:55.337635+00:00",
+  "http_status": 200,
+  "seconds": 4.151,
+  "trace_id": "2d304f1c3a6f4996a9b27831ec5670a2",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-quote-search-v40",
+  "response": {
+    "verdict": "Outside Philippine Coverage",
+    "message": "IRIS checks Philippine news against Philippine news sources. This post is about NASA Hubble Space Telescope image, which those sources do not cover, so IRIS did not check it. This is not a judgment about whether the post is true.",
+    "original_text": "SWIRLING PINK AND PURPLE IN SPACE NASA’s Hubble Space Telescope showcased a breathtaking image of spiral galaxy NGC 4258, featuring its arms created by a central supermassive black hole. “In this composite view, NASA Chandra X-ray’s data (royal blue) show superheated shockwaves created by central black hole jets, along with Hubble's optical data (red, yellow, pale blue) and NASA Webb’s infrared view of dust filaments (orange),” the space agency wrote on Tuesday. The galaxy is located approximately 24 million light-years from Earth in the constellation Canes Venatici. (Instagram/NASA Hubble)",
+    "translated_text": "SWIRLING PINK AND PURPLE IN SPACE NASA’s Hubble Space Telescope showcased a breathtaking image of spiral galaxy NGC 4258, featuring its arms created by a central supermassive black hole. “In this composite view, NASA Chandra X-ray’s data (royal blue) show superheated shockwaves created by central black hole jets, along with Hubble's optical data (red, yellow, pale blue) and NASA Webb’s infrared view of dust filaments (orange),” the space agency wrote on Tuesday. The galaxy is located approximately 24 million light-years from Earth in the constellation Canes Venatici. (Instagram/NASA Hubble)",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [
+      "outside_philippine_coverage"
+    ],
+    "claim_count": 0,
+    "claim_extraction_status": "not_run_outside_coverage",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "stop_outside_philippine_coverage",
+    "coverage_scope": {
+      "in_scope": false,
+      "subject": "NASA Hubble Space Telescope image",
+      "reason": "The post discusses a space image from NASA with no connection to the Philippines.",
+      "decided_by": "review"
+    },
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": true,
+    "ignored_segments": [
+      {
+        "segment_id": "s4",
+        "text": "(Instagram/NASA Hubble)",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "vague_claim"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      }
+    ],
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "mixed_content",
+        "confidence": 0.62,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice",
+          "quote_context_needed",
+          "reported_attribution_needs_verification",
+          "vague_claim"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": true,
+        "eligible_for_verification": true,
+        "recommended_route": "verify_factual_claims_only",
+        "verification_text": "SWIRLING PINK AND PURPLE IN SPACE NASA’s Hubble Space Telescope showcased a breathtaking image of spiral galaxy NGC 4258, featuring its arms created by a central supermassive black hole.\n“In this composite view, NASA Chandra X-ray’s data (royal blue) show superheated shockwaves created by central black hole jets, along with Hubble's optical data (red, yellow, pale blue) and NASA Webb’s infrared view of dust filaments (orange),” the space agency wrote on Tuesday.\nThe galaxy is located approximately 24 million light-years from Earth in the constellation Canes Venatici.",
+        "normalized_verification_text": "SWIRLING PINK AND PURPLE IN SPACE NASA’s Hubble Space Telescope showcased a breathtaking image of spiral galaxy NGC 4258, featuring its arms created by a central supermassive black hole.\n“In this composite view, NASA Chandra X-ray’s data (royal blue) show superheated shockwaves created by central black hole jets, along with Hubble's optical data (red, yellow, pale blue) and NASA Webb’s infrared view of dust filaments (orange),” the space agency wrote on Tuesday.\nThe galaxy is located approximately 24 million light-years from Earth in the constellation Canes Venatici.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "SWIRLING PINK AND PURPLE IN SPACE NASA’s Hubble Space Telescope showcased a breathtaking image of spiral galaxy NGC 4258, featuring its arms created by a central supermassive black hole.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.42,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.42,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.12,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "“In this composite view, NASA Chandra X-ray’s data (royal blue) show superheated shockwaves created by central black hole jets, along with Hubble's optical data (red, yellow, pale blue) and NASA Webb’s infrared view of dust filaments (orange),” the space agency wrote on Tuesday.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.53,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.8,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.23,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "openai_factual_claim_advice",
+              "quote_context_needed",
+              "reported_attribution_needs_verification"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "unattributed"
+          },
+          {
+            "segment_id": "s3",
+            "text": "The galaxy is located approximately 24 million light-years from Earth in the constellation Canes Venatici.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.52,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.52,
+            "second_label": "opinion",
+            "second_label_score": 0.05,
+            "score_gap": 0.47,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s4",
+            "text": "(Instagram/NASA Hubble)",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.75
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.75,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.65,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s4",
+            "text": "(Instagram/NASA Hubble)",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS will verify only the factual segments and skip non-checkable parts.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "factual_claim",
+                "top_label_score": 0.8,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "quote_context_needed",
+                  "reported_attribution_needs_verification"
+                ]
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s4",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "vague_claim"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "timings": {
+        "request_id": "2d304f1c3a6f4996a9b27831ec5670a2",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0018,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 2.7136,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0019,
+            "status": "ok"
+          },
+          {
+            "stage": "text.coverage_scope",
+            "duration_seconds": 1.4239,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 4.1442,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

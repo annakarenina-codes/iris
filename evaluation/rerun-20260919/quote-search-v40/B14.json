@@ -1,0 +1,2093 @@
+{
+  "case_id": "B14",
+  "input_sha256": "ef9347365c06fa368bc58d8c35812677f981ce904abd5df337bfa255011a73b3",
+  "started_utc": "2026-09-21T10:34:20.226052+00:00",
+  "http_status": 200,
+  "seconds": 50.654,
+  "trace_id": "613a2d5465e54c62aa1e26f592ef1a89",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-quote-search-v40",
+  "response": {
+    "verdict": "Verified",
+    "message": "Retrieved evidence supports that Antonio Carpio made this statement. This verifies the attribution, not the underlying claim by itself.",
+    "original_text": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+    "translated_text": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+    "detected_language": "english",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 1,
+    "claim_extraction_status": "ok",
+    "post_type": "fact_only",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_with_caution",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": true,
+    "ignored_segments": [],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+        "normalized_claim": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Antonio Carpio",
+          "role": "former Supreme Court senior associate justice",
+          "statement": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "grounded",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+                  "quote": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said."
+                },
+                {
+                  "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+                  "quote": "“A senator who is a detention prisoner cannot hold public office, thus, he cannot attend Senate sessions or vote. Necessarily, he cannot be included in determining any quorum or majority vote,” he said in a text message to The Philippine STAR on Sunday, June 7."
+                },
+                {
+                  "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+                  "quote": "“A senator who is a detention prisoner cannot hold public office, thus, he cannot attend Senate sessions or vote. Necessarily, he cannot be included in determining any quorum or majority vote,” he said in a text message to The STAR yesterday."
+                },
+                {
+                  "url": "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged",
+                  "quote": "(The Supreme Court has dismissed the petition.) Quoth former SC Justice Antonio Carpio: “A senator who is a detention prisoner cannot hold public office, thus, he cannot attend Senate sessions or vote. Necessarily, he cannot be included in determining any quorum or majority vote.”"
+                },
+                {
+                  "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+                  "quote": "MANILA, Philippines — A senator who is detained for criminal charges cannot be included in a Senate quorum count or majority vote, according to retired Supreme Court (SC) Senior Associate Justice Antonio Carpio."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Multiple passages explicitly quote former Supreme Court senior associate justice Antonio Carpio stating that a senator who is a detention prisoner cannot hold public office and cannot be included in determining any quorum or majority vote. The passages attribute the statement directly to Carpio, preserving all qualifiers and details. There is no contradiction or missing detail.",
+              "context": {
+                "start": 0,
+                "end": 211,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "A senator who is a detention prisoner",
+                      "start": 1,
+                      "end": 38
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "he",
+                      "start": 78,
+                      "end": 80
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "cannot hold public office",
+                      "start": 39,
+                      "end": 64
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "cannot be included in determining any quorum or majority vote",
+                      "start": 81,
+                      "end": 142
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "A senator who is a detention prisoner cannot hold public office",
+                      "start": 1,
+                      "end": 64
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "he cannot be included in determining any quorum or majority vote",
+                      "start": 78,
+                      "end": 142
+                    }
+                  ],
+                  "time": [],
+                  "negation": [
+                    {
+                      "origin": "claim",
+                      "quote": "cannot",
+                      "start": 39,
+                      "end": 45
+                    }
+                  ],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "former Supreme Court senior associate justice Antonio Carpio said",
+                      "start": 145,
+                      "end": 210
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 211
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+            "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+            "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "reason": "Multiple passages explicitly quote former Supreme Court senior associate justice Antonio Carpio stating that a senator who is a detention prisoner cannot hold public office and cannot be included in determining any quorum or majority vote. The passages attribute the statement directly to Carpio, preserving all qualifiers and details. There is no contradiction or missing detail.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Former Supreme Court senior associate justice Antonio Carpio stated that a senator who is a detention prisoner cannot hold public office and cannot be included in determining any quorum or majority vote.",
+              "sources": {
+                "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0,
+                    2
+                  ],
+                  "reason": "Passages 0 and 2 directly quote Antonio Carpio stating that a senator who is a detention prisoner cannot hold public office and cannot be included in determining any quorum or majority vote.",
+                  "citations": [
+                    {
+                      "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+                      "quote": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said."
+                    },
+                    {
+                      "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+                      "quote": "“A senator who is a detention prisoner cannot hold public office, thus, he cannot attend Senate sessions or vote. Necessarily, he cannot be included in determining any quorum or majority vote,” he said in a text message to The Philippine STAR on Sunday, June 7."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio": {
+                  "status": "matched",
+                  "passage_ids": [
+                    9,
+                    10
+                  ],
+                  "reason": "Passages 9 and 10 quote Antonio Carpio making the same statement about detained senators not being able to hold public office or be included in quorum or majority vote counts.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+                      "quote": "MANILA, Philippines — A senator who is detained for criminal charges cannot be included in a Senate quorum count or majority vote, according to retired Supreme Court (SC) Senior Associate Justice Antonio Carpio."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+                      "quote": "“A senator who is a detention prisoner cannot hold public office, thus, he cannot attend Senate sessions or vote. Necessarily, he cannot be included in determining any quorum or majority vote,” he said in a text message to The STAR yesterday."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged": {
+                  "status": "matched",
+                  "passage_ids": [
+                    27
+                  ],
+                  "reason": "Passage 27 quotes former SC Justice Antonio Carpio with the same statement as in the claim, establishing identity.",
+                  "citations": [
+                    {
+                      "url": "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged",
+                      "quote": "(The Supreme Court has dismissed the petition.) Quoth former SC Justice Antonio Carpio: “A senator who is a detention prisoner cannot hold public office, thus, he cannot attend Senate sessions or vote. Necessarily, he cannot be included in determining any quorum or majority vote.”"
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://www.rappler.com/philippines/emerging-legal-argument-fewer-16-votes-convict-vp-sara-duterte/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/992013/how-will-a-detained-senator-affect-impeachment-ex-justice-nupl-weigh-in/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/06/09/2533753/12-senators-had-valid-quorum-reorganize-senate-carpio",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/carpios-contradictions",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/victims-counsels-ask-icc-to-rule-duterte-fit-for-trial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-sheet-explaining-martial-law",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/antonio-carpio-motion-tro-supreme-court-anti-terrorism-law/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/antonio-carpio-says-ntc-cannot-block-websites-groups-can-challenge-order/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/carpio-morales-up-law-professors-file-petition-vs-anti-terror-law/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://news.abs-cbn.com/news/12/25/19/ph-cant-complain-vs-us-ban-on-officials-behind-de-lima-detention-ex-justice-carpio",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/puno-senate-has-sole-power-to-interpret-impeachment-rules-1208",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/amp/news/12/25/19/ph-cant-complain-vs-us-ban-on-officials-behind-de-lima-detention-ex-justice-carpio",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002678/only-21-senators-qualified-to-vote-in-sara-duterte-impeachment-carpio/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/988663/carpio-philippine-courts-icc-arrest-warrant/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/275/the-impeachment-trial-of-vice-president-sara-duterte/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2001984/sc-detainees-cannot-be-imprisoned-beyond-their-sentence",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://opinion.inquirer.net/194564/from-cell-to-session",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/1537027/carpio-insists-bongbong-marcos-still-a-certified-convict-marcos-camp-hits-political-antic",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/10/2555320/sandiganbayan-orders-romualdez-detained-new-quezon-city-jail",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2021/05/04/2095874/justices-zero-longer-detention-without-warrant-under-anti-terror-law",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2022/08/05/release-prisoners-who-have-served-jail-termsunless-further-detention-is-warranted-by-law/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/21/ahead-of-oral-arguments-house-prosecution-lays-down-reasons-why-vp-sara-conviction-threshold-must-be-lowered",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2020/11/20/sc-sets-oral-arguments-on-37-petitions-vs-anti-terror-law-on-jan-19/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/index.php/articles/1240811",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282480",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1206581",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/supreme-court-sc-statement/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/justice-reform-gains-ground-as-ph-opens-20th-justice-zone-in-la-union/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/controversial-court-rulings-in-the-ph-over-the-past-year",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/qc-prosecutors-office-dismisses-mans-carpio-complaint-against-lawmakers-amlc-officials",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/balansyado-atty-neil-abayon-member-legal-team-of-atty-mans-carpio",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://www.rappler.com/philippines/emerging-legal-argument-fewer-16-votes-convict-vp-sara-duterte/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/992013/how-will-a-detained-senator-affect-impeachment-ex-justice-nupl-weigh-in/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/06/09/2533753/12-senators-had-valid-quorum-reorganize-senate-carpio",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/carpios-contradictions",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/victims-counsels-ask-icc-to-rule-duterte-fit-for-trial",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-sheet-explaining-martial-law",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/philippines/antonio-carpio-motion-tro-supreme-court-anti-terrorism-law/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/philippines/antonio-carpio-says-ntc-cannot-block-websites-groups-can-challenge-order/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/philippines/carpio-morales-up-law-professors-file-petition-vs-anti-terror-law/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://news.abs-cbn.com/news/12/25/19/ph-cant-complain-vs-us-ban-on-officials-behind-de-lima-detention-ex-justice-carpio",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/puno-senate-has-sole-power-to-interpret-impeachment-rules-1208",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/amp/news/12/25/19/ph-cant-complain-vs-us-ban-on-officials-behind-de-lima-detention-ex-justice-carpio",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002678/only-21-senators-qualified-to-vote-in-sara-duterte-impeachment-carpio/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/988663/carpio-philippine-courts-icc-arrest-warrant/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/275/the-impeachment-trial-of-vice-president-sara-duterte/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2001984/sc-detainees-cannot-be-imprisoned-beyond-their-sentence",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://opinion.inquirer.net/194564/from-cell-to-session",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/1537027/carpio-insists-bongbong-marcos-still-a-certified-convict-marcos-camp-hits-political-antic",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/10/2555320/sandiganbayan-orders-romualdez-detained-new-quezon-city-jail",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2021/05/04/2095874/justices-zero-longer-detention-without-warrant-under-anti-terror-law",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2022/08/05/release-prisoners-who-have-served-jail-termsunless-further-detention-is-warranted-by-law/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/21/ahead-of-oral-arguments-house-prosecution-lays-down-reasons-why-vp-sara-conviction-threshold-must-be-lowered",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2020/11/20/sc-sets-oral-arguments-on-37-petitions-vs-anti-terror-law-on-jan-19/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/index.php/articles/1240811",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282480",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1206581",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/news/supreme-court-sc-statement/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/news/justice-reform-gains-ground-as-ph-opens-20th-justice-zone-in-la-union/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/controversial-court-rulings-in-the-ph-over-the-past-year",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/qc-prosecutors-office-dismisses-mans-carpio-complaint-against-lawmakers-amlc-officials",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/balansyado-atty-neil-abayon-member-legal-team-of-atty-mans-carpio",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          }
+        ],
+        "is_quote_derived": true,
+        "quote_paraphrase": {
+          "status": "ok",
+          "paraphrase": "Former Supreme Court senior associate justice Antonio Carpio stated that a senator who is a detention prisoner cannot hold public office and cannot be included in determining any quorum or majority vote.",
+          "method": "openai",
+          "error": null,
+          "used_for_scoring": true
+        },
+        "scoring_claim": "Former Supreme Court senior associate justice Antonio Carpio stated that a senator who is a detention prisoner cannot hold public office and cannot be included in determining any quorum or majority vote.",
+        "search_query": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+        "event_search_query": "Necessarily Supreme Court Antonio Carpio cannot detention prisoner hold public",
+        "retrieval_strategy": "quote_search_plus_event_pool",
+        "risk_tags": [],
+        "claim_hash": "4d8bfc99cbb721508670097955646b9d0773cab4e21fd13e6774b346b7a3580a",
+        "cache_version": "week7-quote-search-v40",
+        "verdict": "Verified",
+        "message": "Retrieved evidence supports that Antonio Carpio made this statement. This verifies the attribution, not the underlying claim by itself.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 3,
+        "primary_evidence": {
+          "source": "OneNews.PH",
+          "title": "Detained Senator Can’t Hold Public Office – Carpio | OneNews.PH",
+          "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+          "status": "extracted",
+          "word_count": 347,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_pool": "event_context",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "OneNews.PH",
+            "title": "Detained Senator Can’t Hold Public Office – Carpio | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+            "status": "extracted",
+            "word_count": 347,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Detained senator can’t hold public office – Carpio",
+            "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+            "status": "extracted",
+            "word_count": 350,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "In hiding, jail, ICU, or hostaged | Inquirer Opinion",
+            "url": "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged",
+            "status": "extracted",
+            "word_count": 242,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_pool": "claim_specific",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 148,
+        "searched_articles": 37,
+        "extracted_articles": 37,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 15,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 15,
+            "articles_checked": 4,
+            "articles_extracted": 4
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 15,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 13,
+            "articles_checked": 4,
+            "articles_extracted": 4
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 12,
+            "articles_checked": 4,
+            "articles_extracted": 4
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 14,
+            "articles_checked": 4,
+            "articles_extracted": 4
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 15,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "OneNews.PH",
+            "title": "Detained Senator Can’t Hold Public Office – Carpio | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+            "status": "extracted",
+            "word_count": 347,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Detained senator can’t hold public office – Carpio",
+            "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+            "status": "extracted",
+            "word_count": 350,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "In hiding, jail, ICU, or hostaged | Inquirer Opinion",
+            "url": "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged",
+            "status": "extracted",
+            "word_count": 242,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_pool": "claim_specific",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "OneNews.PH",
+            "title": "Detained Senator Can’t Hold Public Office – Carpio | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+            "status": "extracted",
+            "word_count": 347,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Detained senator can’t hold public office – Carpio",
+            "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+            "status": "extracted",
+            "word_count": 350,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "In hiding, jail, ICU, or hostaged | Inquirer Opinion",
+            "url": "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged",
+            "status": "extracted",
+            "word_count": 242,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_pool": "claim_specific",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": false,
+            "status": "not_needed",
+            "error": null,
+            "result": null
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "vote",
+          "senator"
+        ],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [
+            "vote"
+          ],
+          "public_officials": [
+            "senator"
+          ],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules",
+        "error": null,
+        "post_type": "fact_only",
+        "confidence": 0.82,
+        "ambiguity_score": 0.0,
+        "ambiguity_reasons": [
+          "quote_context_needed",
+          "reported_attribution_needs_verification"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": true,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "verification_text": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+        "normalized_verification_text": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.82,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.53,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.35,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.82,
+            "second_label": "quote",
+            "second_label_score": 0.53,
+            "score_gap": 0.29,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "quote_context_needed",
+              "reported_attribution_needs_verification"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "reported"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": false,
+          "status": "not_needed",
+          "error": null,
+          "result": null
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "This segment is a reported direct quotation attributed to Antonio Carpio, which is a checkable attributed statement."
+          }
+        ],
+        "grouping": [],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+            "normalized_claim": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Antonio Carpio",
+              "role": "former Supreme Court senior associate justice",
+              "statement": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said."
+              }
+            ],
+            "evidence_context": "“A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote,” former Supreme Court senior associate justice Antonio Carpio said.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "grounded",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "from_image": false,
+            "quote_search": {
+              "query": "Carpio A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote",
+              "quote": "A senator who is a detention prisoner cannot hold public office…Necessarily, he cannot be included in determining any quorum or majority vote",
+              "speaker": "Carpio"
+            },
+            "is_quote_derived": true
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": true,
+        "status": "ok",
+        "query": "Necessarily Supreme Court Antonio Carpio cannot detention prisoner hold public",
+        "total_search_results": 94,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "articles": [
+          {
+            "source": "VERA Files",
+            "title": "Carpio’s contradictions - VERA Files",
+            "url": "https://verafiles.org/articles/carpios-contradictions",
+            "status": "extracted",
+            "word_count": 215,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "VERA Files",
+            "title": "Victims' counsels ask ICC to rule Duterte fit for trial - VERA Files",
+            "url": "https://verafiles.org/articles/victims-counsels-ask-icc-to-rule-duterte-fit-for-trial",
+            "status": "extracted",
+            "word_count": 24,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "VERA Files",
+            "title": "​VERA FILES FACT SHEET: Explaining martial law - VERA Files",
+            "url": "https://verafiles.org/articles/vera-files-fact-sheet-explaining-martial-law",
+            "status": "extracted",
+            "word_count": 136,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Rappler",
+            "title": "Carpio reminds SC of past cases in latest push for anti-terror law TRO",
+            "url": "https://www.rappler.com/philippines/antonio-carpio-motion-tro-supreme-court-anti-terrorism-law/",
+            "status": "extracted",
+            "word_count": 570,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "Carpio: NTC can’t block websites, groups can challenge order",
+            "url": "https://www.rappler.com/philippines/antonio-carpio-says-ntc-cannot-block-websites-groups-can-challenge-order/",
+            "status": "extracted",
+            "word_count": 925,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "Carpio, Morales, UP Law profs file 11th petition vs anti-terror law",
+            "url": "https://www.rappler.com/philippines/carpio-morales-up-law-professors-file-petition-vs-anti-terror-law/",
+            "status": "extracted",
+            "word_count": 1155,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "PH can't complain vs US ban on officials behind De Lima detention: ex-justice Carpio | ABS-CBN News",
+            "url": "https://news.abs-cbn.com/news/12/25/19/ph-cant-complain-vs-us-ban-on-officials-behind-de-lima-detention-ex-justice-carpio",
+            "status": "extracted",
+            "word_count": 40,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Ex-CJ Puno: Senate has ‘sole power’ to interpret impeachment rules | ABS-CBN News",
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/puno-senate-has-sole-power-to-interpret-impeachment-rules-1208",
+            "status": "extracted",
+            "word_count": 1153,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "SS",
+            "url": "https://www.abs-cbn.com/amp/news/12/25/19/ph-cant-complain-vs-us-ban-on-officials-behind-de-lima-detention-ex-justice-carpio",
+            "status": "extracted",
+            "word_count": 104,
+            "extraction_quality": "thin",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Only 21 senators qualified to vote in Sara Duterte impeachment — Carpio",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002678/only-21-senators-qualified-to-vote-in-sara-duterte-impeachment-carpio/story/",
+            "status": "extracted",
+            "word_count": 862,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Carpio says Philippine courts unnecessary for ICC arrest warrant for Bato dela Rosa",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/988663/carpio-philippine-courts-icc-arrest-warrant/story/",
+            "status": "extracted",
+            "word_count": 505,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "The Impeachment Trial of Vice-President Sara Duterte",
+            "url": "https://www.gmanetwork.com/news/specials/content/275/the-impeachment-trial-of-vice-president-sara-duterte/",
+            "status": "extracted",
+            "word_count": 4372,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "SC: Detainees cannot be imprisoned beyond their sentence",
+            "url": "https://newsinfo.inquirer.net/2001984/sc-detainees-cannot-be-imprisoned-beyond-their-sentence",
+            "status": "extracted",
+            "word_count": 108,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "From cell to session | Inquirer Opinion",
+            "url": "https://opinion.inquirer.net/194564/from-cell-to-session",
+            "status": "extracted",
+            "word_count": 266,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Carpio insists Bongbong Marcos still a 'certified convict'; Marcos camp slams ‘political antic’ | Inquirer News",
+            "url": "https://newsinfo.inquirer.net/1537027/carpio-insists-bongbong-marcos-still-a-certified-convict-marcos-camp-hits-political-antic",
+            "status": "extracted",
+            "word_count": 146,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Detained senator can’t hold public office – Carpio",
+            "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+            "status": "extracted",
+            "word_count": 350,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Sandiganbayan orders Romualdez detained at New Quezon City Jail",
+            "url": "https://www.philstar.com/headlines/2026/09/10/2555320/sandiganbayan-orders-romualdez-detained-new-quezon-city-jail",
+            "status": "extracted",
+            "word_count": 298,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Justices zero in on longer detention without warrant under anti-terror law",
+            "url": "https://www.philstar.com/headlines/2021/05/04/2095874/justices-zero-longer-detention-without-warrant-under-anti-terror-law",
+            "status": "extracted",
+            "word_count": 1061,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Release prisoners who have served jail terms unless further detention is warranted by law",
+            "url": "https://mb.com.ph/2022/08/05/release-prisoners-who-have-served-jail-termsunless-further-detention-is-warranted-by-law/",
+            "status": "extracted",
+            "word_count": 72,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Ahead of oral arguments, House prosecution cites reasons why VP Sara conviction threshold must be lowered",
+            "url": "https://mb.com.ph/2026/09/21/ahead-of-oral-arguments-house-prosecution-lays-down-reasons-why-vp-sara-conviction-threshold-must-be-lowered",
+            "status": "extracted",
+            "word_count": 147,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - SC sets oral arguments on 37 petitions vs anti-terror law on Jan. 19",
+            "url": "https://mb.com.ph/2020/11/20/sc-sets-oral-arguments-on-37-petitions-vs-anti-terror-law-on-jan-19/",
+            "status": "extracted",
+            "word_count": 170,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Supreme Court in 2024: Clearance rate of 87% | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/index.php/articles/1240811",
+            "status": "extracted",
+            "word_count": 145,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Proposed 5-year barangay, SK term a ‘fix,’ not extension | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1282480",
+            "status": "extracted",
+            "word_count": 66,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "SC clears VP Sara’s husband, another lawyer in admin raps | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1206581",
+            "status": "extracted",
+            "word_count": 176,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "Supreme Court (SC) Statement - Philippine Information Agency",
+            "url": "https://pia.gov.ph/news/supreme-court-sc-statement/",
+            "status": "extracted",
+            "word_count": 107,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "Remulla: No interference from PBBM, Ombudsman in Romualdez arrest - Philippine Information Agency",
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "status": "extracted",
+            "word_count": 104,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "Justice reform gains ground as PH opens 20th Justice Zone in La Union - Philippine Information Agency",
+            "url": "https://pia.gov.ph/news/justice-reform-gains-ground-as-ph-opens-20th-justice-zone-in-la-union/",
+            "status": "extracted",
+            "word_count": 70,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Controversial court rulings in the PH in 2023",
+            "url": "https://www.dzrh.com.ph/post/controversial-court-rulings-in-the-ph-over-the-past-year",
+            "status": "extracted",
+            "word_count": 3967,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "DZRH News",
+            "title": "QC prosecutor’s office dismisses Mans Carpio complaint against lawmakers, AMLC officials",
+            "url": "https://www.dzrh.com.ph/post/qc-prosecutors-office-dismisses-mans-carpio-complaint-against-lawmakers-amlc-officials",
+            "status": "extracted",
+            "word_count": 289,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "DZRH News",
+            "title": "balansyado-atty-neil-abayon-member-legal-team-of-atty-mans-carpio | DZRH News",
+            "url": "https://www.dzrh.com.ph/post/balansyado-atty-neil-abayon-member-legal-team-of-atty-mans-carpio",
+            "status": "extracted",
+            "word_count": 60,
+            "extraction_quality": "thin",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "OneNews.PH",
+            "title": "Detained Senator Can’t Hold Public Office – Carpio | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+            "status": "extracted",
+            "word_count": 347,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "OneNews.PH",
+            "title": "Duterte Lawyers Seek More Medical Tests | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/duterte-lawyers-seek-more-medical-tests",
+            "status": "extracted",
+            "word_count": 681,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "OneNews.PH",
+            "title": "Romualdez Mugshots At Quezon City Jail Released | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released",
+            "status": "extracted",
+            "word_count": 514,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ]
+      },
+      "timings": {
+        "request_id": "613a2d5465e54c62aa1e26f592ef1a89",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.01,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 0.0052,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0003,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0014,
+            "status": "ok"
+          },
+          {
+            "stage": "text.coverage_scope",
+            "duration_seconds": 1.5012,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 4.7615,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0014,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 28.0906,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.quote_paraphrase",
+            "duration_seconds": 1.5906,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0021,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 3.2886,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.1123,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 1.2022,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 0.0938,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 0.1253,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0495,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 9.5336,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 16.241,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 50.6252,
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    "corroboration_count": 3,
+    "primary_evidence": {
+      "source": "OneNews.PH",
+      "title": "Detained Senator Can’t Hold Public Office – Carpio | OneNews.PH",
+      "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+      "status": "extracted",
+      "word_count": 347,
+      "evidence_method": "component_review",
+      "extraction_quality": "full",
+      "evidence_pool": "event_context",
+      "evidence_type": "full_text"
+    },
+    "supporting_sources": [
+      {
+        "source": "OneNews.PH",
+        "title": "Detained Senator Can’t Hold Public Office – Carpio | OneNews.PH",
+        "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+        "status": "extracted",
+        "word_count": 347,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_pool": "event_context",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Philippine Star",
+        "title": "Detained senator can’t hold public office – Carpio",
+        "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+        "status": "extracted",
+        "word_count": 350,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_pool": "event_context",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Philippine Daily Inquirer",
+        "title": "In hiding, jail, ICU, or hostaged | Inquirer Opinion",
+        "url": "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged",
+        "status": "extracted",
+        "word_count": 242,
+        "evidence_method": "component_review",
+        "extraction_quality": "excerpt",
+        "evidence_pool": "claim_specific",
+        "evidence_type": "search_excerpt"
+      }
+    ],
+    "search_status": "ok",
+    "total_search_results": 148,
+    "searched_articles": 37,
+    "extracted_articles": 37,
+    "source_summary": [
+      {
+        "source": "VERA Files",
+        "results_found": 15,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Rappler",
+        "results_found": 15,
+        "articles_checked": 4,
+        "articles_extracted": 4
+      },
+      {
+        "source": "ABS-CBN News",
+        "results_found": 15,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "GMA News",
+        "results_found": 13,
+        "articles_checked": 4,
+        "articles_extracted": 4
+      },
+      {
+        "source": "Philippine Daily Inquirer",
+        "results_found": 12,
+        "articles_checked": 4,
+        "articles_extracted": 4
+      },
+      {
+        "source": "Philippine Star",
+        "results_found": 14,
+        "articles_checked": 4,
+        "articles_extracted": 4
+      },
+      {
+        "source": "Manila Bulletin",
+        "results_found": 12,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine News Agency",
+        "results_found": 15,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Information Agency",
+        "results_found": 13,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "DZRH News",
+        "results_found": 14,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "OneNews.PH",
+        "results_found": 10,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      }
+    ],
+    "sources": [
+      {
+        "source": "OneNews.PH",
+        "title": "Detained Senator Can’t Hold Public Office – Carpio | OneNews.PH",
+        "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+        "status": "extracted",
+        "word_count": 347,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_pool": "event_context",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Philippine Star",
+        "title": "Detained senator can’t hold public office – Carpio",
+        "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+        "status": "extracted",
+        "word_count": 350,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_pool": "event_context",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Philippine Daily Inquirer",
+        "title": "In hiding, jail, ICU, or hostaged | Inquirer Opinion",
+        "url": "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged",
+        "status": "extracted",
+        "word_count": 242,
+        "evidence_method": "component_review",
+        "extraction_quality": "excerpt",
+        "evidence_pool": "claim_specific",
+        "evidence_type": "search_excerpt"
+      }
+    ],
+    "evidence_sources": [
+      {
+        "source": "OneNews.PH",
+        "title": "Detained Senator Can’t Hold Public Office – Carpio | OneNews.PH",
+        "url": "https://www.onenews.ph/articles/detained-senator-can-t-hold-public-office-carpio",
+        "status": "extracted",
+        "word_count": 347,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_pool": "event_context",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Philippine Star",
+        "title": "Detained senator can’t hold public office – Carpio",
+        "url": "https://www.philstar.com/headlines/2026/06/08/2533563/detained-senator-cant-hold-public-office-carpio",
+        "status": "extracted",
+        "word_count": 350,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_pool": "event_context",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Philippine Daily Inquirer",
+        "title": "In hiding, jail, ICU, or hostaged | Inquirer Opinion",
+        "url": "https://opinion.inquirer.net/192342/in-hiding-jail-icu-or-hostaged",
+        "status": "extracted",
+        "word_count": 242,
+        "evidence_method": "component_review",
+        "extraction_quality": "excerpt",
+        "evidence_pool": "claim_specific",
+        "evidence_type": "search_excerpt"
+      }
+    ],
+    "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim."
+  }
+}

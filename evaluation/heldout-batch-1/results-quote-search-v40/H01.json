@@ -1,0 +1,1988 @@
+{
+  "http_status": 200,
+  "trace_id": "677a500f40da41ff8d6ac47acbc12796",
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 2 extracted claims individually.",
+    "original_text": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open, where she will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.\nRead more in the comments section.",
+    "translated_text": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open, where she will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.\nRead more in the comments section.",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 2,
+    "claim_extraction_status": "ok",
+    "post_type": "unclear",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_with_caution",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "text": "Read more in the comments section.",
+        "segment_type": "uncheckable"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open.",
+        "normalized_claim": "Alex Eala received a bye to the second round of the 2026 Singapore Tennis Open.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502",
+                  "quote": "Charly Triballeau, AFP MANILA — Filipina tennis star Alex Eala has received a bye to the second round of the 2026 Singapore Tennis Open, where she is seeded third."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "The cited passage explicitly states that Filipina tennis star Alex Eala has received a bye to the second round of the 2026 Singapore Tennis Open, matching the subject, event, and all qualifiers of the claim. No contradictory information is present.",
+              "context": {
+                "start": 0,
+                "end": 96,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Filipina tennis star Alex Eala",
+                      "start": 0,
+                      "end": 30
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "received a bye",
+                      "start": 31,
+                      "end": 45
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open.",
+                      "start": 0,
+                      "end": 96
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "2026",
+                      "start": 69,
+                      "end": 73
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 96
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0
+              ],
+              "reason": "The cited passage explicitly states that Filipina tennis star Alex Eala has received a bye to the second round of the 2026 Singapore Tennis Open, matching the subject, event, and all qualifiers of the claim. No contradictory information is present.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open.",
+              "sources": {
+                "https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502": {
+                  "status": "matched",
+                  "passage_ids": [
+                    1
+                  ],
+                  "reason": "Passage 1 explicitly states: 'Filipina tennis star Alex Eala has received a bye to the second round of the 2026 Singapore Tennis Open, where she is seeded third.' This directly matches the claim's subject (Alex Eala), action (received a bye), event (2026 Singapore Tennis Open), and round (second round).",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502",
+                      "quote": "Charly Triballeau, AFP MANILA — Filipina tennis star Alex Eala has received a bye to the second round of the 2026 Singapore Tennis Open, where she is seeded third."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/the-joy-of-watching-alex-eala",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-11-trial-moves-from-wealth-records-to-vote-math",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-multi-billion-dollar-contract-offered-to-alex-eala-in-uae",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/sports/alex-eala-eyes-gold-asian-games-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/sports/alex-eala-full-gratitude-despite-painful-us-open-exit/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/p08972228-alex-eala/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/othersports/2026/9/21/tennis-alex-eala-gears-up-for-singapore-open-amid-merchandise-frenzy-1559",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/othersports/2026/9/6/eala-to-shift-focus-to-singapore-open-asian-games-after-us-open-heartbreak-1400",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1002943/alex-eala-s-2026-season-recap-ahead-of-the-asian-swing/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1002697/alex-eala-the-highest-ranked-wta-player-in-2026-asian-games-entry-list/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://sports.inquirer.net/695752/alex-eala-projected-as-no-3-seed-in-singapore-open",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://sports.inquirer.net/696028/alex-eala-gets-first-round-bye-in-singapore-open-as-no-3-seed",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://sports.inquirer.net/695340/alex-eala-to-play-at-asian-games-regardless-of-wta-decision-says-philta",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://interaksyon.philstar.com/sports/2026/09/21/319422/alex-eala-returns-to-singapore-as-wta-stars-gather-for-upgraded-tournament/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/08/29/2552628/eala-joins-upgraded-talent-laden-singapore-tennis-open",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/19/eala-seeded-no-3-gets-first-round-bye-in-singapore-open",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/09/07/before-asian-games-eala-will-rock-singapore-first/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/article/10934774/sports/span-stylecolor-rgb0-0-0-font-family-gilroy-font-size-15px-font-weight-400-text-align-left-white-space-normal-display-inline-importantafter-us-open-eala-sets-sights-on-singapore-tourneyspan",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1280989",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283416",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1274493",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/tennis-star-alex-eala-says-wimbledon-success-belongs-to-all-filipinos-vows-to-continue-carrying-ph-flag-with-pride/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/nation-commemorates-national-heroes-day-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/president-marcos-hails-alex-eala-as-ph-tennis-champion-vows-full-government-support/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/alex-eala-given-wildcard-slot-in-2026-philippine-womens-open",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/philta-alex-eala-committed-to-asian-games-campaign-regardless-of-wta-decision",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/princess-alex-unseats-wimbledon-champion",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/remullas-flying-to-france-for-co",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/eala-s-dream-run-blooms-at-wimbledon-as-she-makes-history-for-philippines",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/the-joy-of-watching-alex-eala",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-11-trial-moves-from-wealth-records-to-vote-math",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-multi-billion-dollar-contract-offered-to-alex-eala-in-uae",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/sports/alex-eala-eyes-gold-asian-games-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/sports/alex-eala-full-gratitude-despite-painful-us-open-exit/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/people/p08972228-alex-eala/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/othersports/2026/9/21/tennis-alex-eala-gears-up-for-singapore-open-amid-merchandise-frenzy-1559",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/othersports/2026/9/6/eala-to-shift-focus-to-singapore-open-asian-games-after-us-open-heartbreak-1400",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1002943/alex-eala-s-2026-season-recap-ahead-of-the-asian-swing/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1002697/alex-eala-the-highest-ranked-wta-player-in-2026-asian-games-entry-list/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://sports.inquirer.net/695752/alex-eala-projected-as-no-3-seed-in-singapore-open",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://sports.inquirer.net/696028/alex-eala-gets-first-round-bye-in-singapore-open-as-no-3-seed",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://sports.inquirer.net/695340/alex-eala-to-play-at-asian-games-regardless-of-wta-decision-says-philta",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://interaksyon.philstar.com/sports/2026/09/21/319422/alex-eala-returns-to-singapore-as-wta-stars-gather-for-upgraded-tournament/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/08/29/2552628/eala-joins-upgraded-talent-laden-singapore-tennis-open",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/19/eala-seeded-no-3-gets-first-round-bye-in-singapore-open",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/09/07/before-asian-games-eala-will-rock-singapore-first/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/article/10934774/sports/span-stylecolor-rgb0-0-0-font-family-gilroy-font-size-15px-font-weight-400-text-align-left-white-space-normal-display-inline-importantafter-us-open-eala-sets-sights-on-singapore-tourneyspan",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1280989",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283416",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1274493",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/tennis-star-alex-eala-says-wimbledon-success-belongs-to-all-filipinos-vows-to-continue-carrying-ph-flag-with-pride/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/nation-commemorates-national-heroes-day-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/president-marcos-hails-alex-eala-as-ph-tennis-champion-vows-full-government-support/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/alex-eala-given-wildcard-slot-in-2026-philippine-womens-open",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/philta-alex-eala-committed-to-asian-games-campaign-regardless-of-wta-decision",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/princess-alex-unseats-wimbledon-champion",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/remullas-flying-to-france-for-co",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/eala-s-dream-run-blooms-at-wimbledon-as-she-makes-history-for-philippines",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Alex Eala received a bye to the second round of the 2026 Singapore Tennis Open."
+        },
+        "scoring_claim": "Alex Eala received a bye to the second round of the 2026 Singapore Tennis Open.",
+        "search_query": "Alex Eala bye 2026 Singapore Tennis Open",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "cec57fa70cce5e0324710731e5479878eb722d5783ff439585bbe5329fc8092b",
+        "cache_version": "week7-quote-search-v40",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 1 of 1 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "ABS-CBN News",
+          "title": "Tennis: Alex Eala receives bye to round-of-16 in Singapore Tennis Open | ABS-CBN Sports",
+          "url": "https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502",
+          "status": "extracted",
+          "word_count": 336,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Tennis: Alex Eala receives bye to round-of-16 in Singapore Tennis Open | ABS-CBN Sports",
+            "url": "https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502",
+            "status": "extracted",
+            "word_count": 336,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 78,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Tennis: Alex Eala receives bye to round-of-16 in Singapore Tennis Open | ABS-CBN Sports",
+            "url": "https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502",
+            "status": "extracted",
+            "word_count": 336,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Tennis: Alex Eala receives bye to round-of-16 in Singapore Tennis Open | ABS-CBN Sports",
+            "url": "https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502",
+            "status": "extracted",
+            "word_count": 336,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Verified",
+              "reason": "The evidence confirms Alex Eala received a first round bye as the No. 3 seed at the Singapore Tennis Open.",
+              "supporting_urls": [
+                "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "She will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.",
+        "normalized_claim": "Alex Eala will face the winner between Tatiana Prozorova and Sofia Costoulas.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "She will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+                  "quote": "She awaits the winner of the first-round matchup between Russia’s Tatiana Prozorova and Belgium’s Sofia Costoulas."
+                },
+                {
+                  "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+                  "quote": "She awaits the winner of the first-round matchup between Russia’s Tatiana Prozorova and Belgium’s Sofia Costoulas."
+                },
+                {
+                  "url": "https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open",
+                  "quote": "Eala will face either No. 165 Tatiana Prozorova of Russia or No. 150 Sofia Costoulas of Belgium in the second round slated on Wednesday."
+                },
+                {
+                  "url": "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/",
+                  "quote": "Eala will await the winner of the match between world No. 165 Tatiana Prozorova and world No. 150 Sofia Costoulas to determine her second round opponent."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Multiple passages (0, 1, 5, 6) explicitly state that she (Alex Eala) will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas in the next round of the Singapore Tennis Open. The subject, event, and participants match exactly, and the passages refer to the same tournament and round. All qualifiers are preserved, and there is no contradiction or missing detail.",
+              "context": {
+                "start": 0,
+                "end": 90,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "She",
+                      "start": 0,
+                      "end": 3
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "will face",
+                      "start": 4,
+                      "end": 13
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "She will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.",
+                      "start": 0,
+                      "end": 90
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "She will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 90
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+            "https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open",
+            "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0,
+                1,
+                5,
+                6
+              ],
+              "reason": "Multiple passages (0, 1, 5, 6) explicitly state that she (Alex Eala) will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas in the next round of the Singapore Tennis Open. The subject, event, and participants match exactly, and the passages refer to the same tournament and round. All qualifiers are preserved, and there is no contradiction or missing detail.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "She will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Alex Eala will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas in the second round of the 2026 Singapore Tennis Open after receiving a first-round bye.",
+              "sources": {
+                "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open": {
+                  "status": "matched",
+                  "passage_ids": [
+                    2,
+                    9
+                  ],
+                  "reason": "Passages 2 and 9 explicitly state that Alex Eala awaits the winner of the first-round matchup between Russia’s Tatiana Prozorova and Belgium’s Sofia Costoulas, matching the claim's context and participants.",
+                  "citations": [
+                    {
+                      "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+                      "quote": "She awaits the winner of the first-round matchup between Russia’s Tatiana Prozorova and Belgium’s Sofia Costoulas."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+                      "quote": "She awaits the winner of the first-round matchup between Russia’s Tatiana Prozorova and Belgium’s Sofia Costoulas."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://mb.com.ph/2026/09/19/eala-seeded-no-3-gets-first-round-bye-in-singapore-open": {
+                  "status": "matched",
+                  "passage_ids": [
+                    15,
+                    17,
+                    19
+                  ],
+                  "reason": "Passages 15, 17, and 19 state that Eala awaits the winner between Sofia Costoulas and Tatiana Prozorova. Although Costoulas is described as Belarusian here (likely an error), the pairing and context match the claim and other sources, so identity is established.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/09/19/eala-seeded-no-3-gets-first-round-bye-in-singapore-open",
+                      "quote": "The 21-year-old Filipina tennis star awaits the winner between Belarusian Sofia Costoulas and Tatiana Prozorova in the tournament, which has top seed and French Open champion Mirra Andreeva, and second seed and two-time Grand Slam finalist Amanda ..."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/09/19/eala-seeded-no-3-gets-first-round-bye-in-singapore-open",
+                      "quote": "The 21-year-old Filipina tennis star awaits the winner between Belarusian Sofia Costoulas and Tatiana Prozorova in the tournament, which has top seed and French Open champion Mirra Andreeva, and second seed and two-time Grand Slam finalist Amanda Anisimova."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/09/19/eala-seeded-no-3-gets-first-round-bye-in-singapore-open",
+                      "quote": "The 21-year-old Filipina tennis star awaits the winner between Belarusian Sofia Costoulas and Tatiana Prozorova in the tournament, which has top seed and French Open champion Mirra Andreeva, and second seed and two-time Grand Slam finalist Amanda Anisimova."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open": {
+                  "status": "matched",
+                  "passage_ids": [
+                    25
+                  ],
+                  "reason": "Passage 25 states Eala will face either No. 165 Tatiana Prozorova of Russia or No. 150 Sofia Costoulas of Belgium in the second round, directly matching the claim.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open",
+                      "quote": "Eala will face either No. 165 Tatiana Prozorova of Russia or No. 150 Sofia Costoulas of Belgium in the second round slated on Wednesday."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    40
+                  ],
+                  "reason": "Passage 40 states Eala will await the winner of the match between world No. 165 Tatiana Prozorova and world No. 150 Sofia Costoulas to determine her second round opponent, matching the claim.",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/",
+                      "quote": "Eala will await the winner of the match between world No. 165 Tatiana Prozorova and world No. 150 Sofia Costoulas to determine her second round opponent."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/alex-ealas-phenomenal-run",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/duterte-defense-challenges-addition-of-8-incidents-sourced-from-trillanes-to-icc-trial-brief",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-multi-billion-dollar-contract-offered-to-alex-eala-in-uae",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/sports/things-to-know-alex-eala-philippines-first-grand-slam-singles-tennis-champion/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/sports/alex-eala-oleksandra-oliynykova-us-open-september-3-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/sports/results-alex-eala-mirra-andreeva-us-open-september-8-2022/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://news.abs-cbn.com/sports/07/17/21/alex-eala-tennis-milan",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/othersports/2026/9/2/tennis-us-open-alex-eala-mary-stoiana-result-1113",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://news.abs-cbn.com/sports/06/08/21/tennis-alex-eala-partner-ease-into-french-open-junior-doubles-quarters",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/974606/alex-eala-at-the-philippine-women-s-open-updated-schedule-and-results/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1001338/alex-eala-at-2026-us-open-results-highlights-and-recap/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://sports.inquirer.net/696338/alex-eala-battles-familiar-faces-in-road-to-singapore-open-crown",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://sports.inquirer.net/660627/tatiana-prozorova-rallies-to-reach-philippine-open-semifinals",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://cebudailynews.inquirer.net/708742/sports-tennis-alex-eala-career-ranking-updates",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/01/30/2504480/eala-bows-out-philippines-open",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/09/17/2556956/eala-still-see-action-china-post-asiad-wuhan-open-stint",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/19/eala-seeded-no-3-gets-first-round-bye-in-singapore-open",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2021/6/12/alex-eala-russian-partner-win-french-open-girls-doubles-crown",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/05/alex-eala-misses-relatives-wedding-after-second-round-win-at-us-open",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1267946",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283416",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1267754",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/tennis-star-alex-eala-says-wimbledon-success-belongs-to-all-filipinos-vows-to-continue-carrying-ph-flag-with-pride/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/president-marcos-hails-alex-eala-as-ph-tennis-champion-vows-full-government-support/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/president-marcos-congratulates-alex-eala-for-historic-wimbledon-win/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/alex-eala-sweeps-two-titles-in-milan-tournament",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/eala-falls-to-friend-jovic-in-us-open-exhibition",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/i-feel-so-much-love-eala-says-as-she-wins-first-wta-title",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/maya-completes-recycled-plastic-card-shift-unveils-bukad-special-edition",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/alex-eala-slips-in-wimbledon-debut-gets-praise-from-opponent",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/alex-ealas-phenomenal-run",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/duterte-defense-challenges-addition-of-8-incidents-sourced-from-trillanes-to-icc-trial-brief",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-multi-billion-dollar-contract-offered-to-alex-eala-in-uae",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/sports/things-to-know-alex-eala-philippines-first-grand-slam-singles-tennis-champion/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/sports/alex-eala-oleksandra-oliynykova-us-open-september-3-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/sports/results-alex-eala-mirra-andreeva-us-open-september-8-2022/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://news.abs-cbn.com/sports/07/17/21/alex-eala-tennis-milan",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/othersports/2026/9/2/tennis-us-open-alex-eala-mary-stoiana-result-1113",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://news.abs-cbn.com/sports/06/08/21/tennis-alex-eala-partner-ease-into-french-open-junior-doubles-quarters",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/974606/alex-eala-at-the-philippine-women-s-open-updated-schedule-and-results/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1001338/alex-eala-at-2026-us-open-results-highlights-and-recap/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://sports.inquirer.net/696338/alex-eala-battles-familiar-faces-in-road-to-singapore-open-crown",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://sports.inquirer.net/660627/tatiana-prozorova-rallies-to-reach-philippine-open-semifinals",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://cebudailynews.inquirer.net/708742/sports-tennis-alex-eala-career-ranking-updates",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/01/30/2504480/eala-bows-out-philippines-open",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/09/17/2556956/eala-still-see-action-china-post-asiad-wuhan-open-stint",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/19/eala-seeded-no-3-gets-first-round-bye-in-singapore-open",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2021/6/12/alex-eala-russian-partner-win-french-open-girls-doubles-crown",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/05/alex-eala-misses-relatives-wedding-after-second-round-win-at-us-open",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1267946",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283416",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1267754",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/tennis-star-alex-eala-says-wimbledon-success-belongs-to-all-filipinos-vows-to-continue-carrying-ph-flag-with-pride/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/president-marcos-hails-alex-eala-as-ph-tennis-champion-vows-full-government-support/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/president-marcos-congratulates-alex-eala-for-historic-wimbledon-win/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/alex-eala-sweeps-two-titles-in-milan-tournament",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/eala-falls-to-friend-jovic-in-us-open-exhibition",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/i-feel-so-much-love-eala-says-as-she-wins-first-wta-title",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/maya-completes-recycled-plastic-card-shift-unveils-bukad-special-edition",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/alex-eala-slips-in-wimbledon-debut-gets-praise-from-opponent",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Alex Eala will face the winner between Tatiana Prozorova and Sofia Costoulas."
+        },
+        "scoring_claim": "Alex Eala will face the winner between Tatiana Prozorova and Sofia Costoulas.",
+        "search_query": "Alex Eala match winner Tatiana Prozorova Sofia Costoulas s Tatiana Prozorova and Belgium",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "de3fa2c6e4ac1d1c468d4ea9eefc7dd3a9bf6482d9f3a47b3fb6f75709a769b2",
+        "cache_version": "week7-quote-search-v40",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 1 of 1 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 3,
+        "primary_evidence": {
+          "source": "DZRH News",
+          "title": "Alex Eala claims third seed, first-round bye at Singapore Tennis Open",
+          "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+          "status": "extracted",
+          "word_count": 365,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "DZRH News",
+            "title": "Alex Eala claims third seed, first-round bye at Singapore Tennis Open",
+            "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+            "status": "extracted",
+            "word_count": 365,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "No. 3 seed Eala gets first-round bye in Singapore Open",
+            "url": "https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open",
+            "status": "extracted",
+            "word_count": 416,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Alex Eala earns first round bye as No. 3 seed at Singapore Tennis Open",
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/",
+            "status": "extracted",
+            "word_count": 270,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 92,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "DZRH News",
+            "title": "Alex Eala claims third seed, first-round bye at Singapore Tennis Open",
+            "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+            "status": "extracted",
+            "word_count": 365,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "No. 3 seed Eala gets first-round bye in Singapore Open",
+            "url": "https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open",
+            "status": "extracted",
+            "word_count": 416,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Alex Eala earns first round bye as No. 3 seed at Singapore Tennis Open",
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/",
+            "status": "extracted",
+            "word_count": 270,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "DZRH News",
+            "title": "Alex Eala claims third seed, first-round bye at Singapore Tennis Open",
+            "url": "https://www.dzrh.com.ph/post/alex-eala-claims-third-seed-first-round-bye-at-singapore-tennis-open",
+            "status": "extracted",
+            "word_count": 365,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "No. 3 seed Eala gets first-round bye in Singapore Open",
+            "url": "https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open",
+            "status": "extracted",
+            "word_count": 416,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Alex Eala earns first round bye as No. 3 seed at Singapore Tennis Open",
+            "url": "https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/",
+            "status": "extracted",
+            "word_count": 270,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not confirm that Alex Eala will face the winner between Tatiana Prozorova and Sofia Costoulas.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.6,
+        "ambiguity_score": 0.38,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "verification_text": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open, where she will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.\nRead more in the comments section.",
+        "normalized_verification_text": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open, where she will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.\nRead more in the comments section.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open, where she will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.42,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.37,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.9,
+            "second_label": "forecast_or_projection_detected",
+            "second_label_score": 0.37,
+            "score_gap": 0.05,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review",
+              "openai_factual_claim_advice"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "Read more in the comments section.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "factual_claim",
+                "top_label_score": 0.9,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "checkable_event",
+                  "specific_details_provided"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "call_to_action",
+                "top_label_score": 0.8,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "not_checkable_claim",
+                  "directive_language"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0,
+              1
+            ],
+            "reason": "Contains two factual event assertions about Alex Eala's bye and her next opponent."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "Instructional/promotional content, not a factual claim."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "Alex Eala received a bye to the second round of the 2026 Singapore Tennis Open."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "Alex Eala will face the winner between Tatiana Prozorova and Sofia Costoulas."
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open.",
+            "normalized_claim": "Alex Eala received a bye to the second round of the 2026 Singapore Tennis Open.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Alex Eala bye 2026 Singapore Tennis Open",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open, where she will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas."
+              }
+            ],
+            "evidence_context": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open, where she will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.\nRead more in the comments section.",
+            "from_image": false,
+            "quote_search": null,
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "She will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.",
+            "normalized_claim": "Alex Eala will face the winner between Tatiana Prozorova and Sofia Costoulas.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Alex Eala match winner Tatiana Prozorova Sofia Costoulas",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open, where she will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas."
+              }
+            ],
+            "evidence_context": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open, where she will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.\nRead more in the comments section.",
+            "from_image": false,
+            "quote_search": null,
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [
+          {
+            "text": "Read more in the comments section.",
+            "segment_type": "uncheckable"
+          }
+        ],
+        "post_type": "mixed_content",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "677a500f40da41ff8d6ac47acbc12796",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0101,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0006,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 3.9402,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0048,
+            "status": "ok"
+          },
+          {
+            "stage": "text.coverage_scope",
+            "duration_seconds": 0.0007,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 6.5544,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0013,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0012,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 39.9477,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0585,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 44.1105,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.06,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 10.4391,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.5496,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.5717,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0157,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 12.7434,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 2.1477,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 2.1725,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0324,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 13.3785,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 9.5081,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 68.7051,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 79.234,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  },
+  "post_id": "H01",
+  "started_utc": "2026-09-21T11:09:04.644029+00:00",
+  "seconds": 79.426,
+  "git_commit": "b3c0ccb52e9ab46eace27cbf003644eed038b238",
+  "cache_version": "week7-quote-search-v40",
+  "cache_policy": "reads and writes bypassed",
+  "post": {
+    "id": "H01",
+    "page": "ABS-CBN News",
+    "url": "https://www.facebook.com/share/p/1BsAmJM25N/",
+    "date": "2026-09-20",
+    "category": "news",
+    "notes": "",
+    "text": "Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open, where she will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.\nRead more in the comments section.",
+    "image": "",
+    "image_text": "",
+    "expected": {
+      "overall": "Verified",
+      "claims": [],
+      "references": [
+        "https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502"
+      ]
+    },
+    "expected_fingerprint": "47a0f37f3e5a519647c6c674a26c4435efd82f4969021a40d0e2eb201a387883"
+  },
+  "input_type": "text"
+}

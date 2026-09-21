@@ -1,0 +1,2557 @@
+{
+  "http_status": 200,
+  "trace_id": "9c0ac48cd96c4607bc2a4013d609ebb3",
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 2 extracted claims individually.",
+    "original_text": "AIR QUALITY UPDATE\nAs of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.\nThe observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.\nCourtesy: EMB Central Office/Facebook\nVisit www.gmanetwork.com/news for updates",
+    "translated_text": "AIR QUALITY UPDATE\nAs of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.\nThe observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.\nCourtesy: EMB Central Office/Facebook\nVisit www.gmanetwork.com/news for updates",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 2,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s1",
+        "text": "AIR QUALITY UPDATE",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s4",
+        "text": "Courtesy: EMB Central Office/Facebook",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s5",
+        "text": "Visit www.gmanetwork.com/news for updates",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.",
+        "normalized_claim": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.",
+              "status": "not_supported",
+              "citations": [],
+              "evidence_relation": "not_established",
+              "review_reason": "The passages from citation_ids 1 and 2 state that the DENR-EMB continues to closely monitor air quality nationwide in areas affected by haze, which matches the subject and action of the claim. However, neither passage specifies the exact time 'As of 12:00 NN on Sunday, Sept. 20.' The closest temporal reference is 'Wednesday morning' and general ongoing monitoring, but not the precise date and time required by the claim. Therefore, the assertion is not fully supported due to the missing date/time qualifier.",
+              "context": {
+                "start": 0,
+                "end": 225,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB)",
+                      "start": 36,
+                      "end": 130
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "continues to closely monitor",
+                      "start": 131,
+                      "end": 159
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "continues to closely monitor air quality in several areas in the Philippines affected by haze.",
+                      "start": 131,
+                      "end": 225
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "As of 12:00 NN on Sunday, Sept. 20",
+                      "start": 0,
+                      "end": 34
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 225
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": false,
+              "qualifiers_preserved": false,
+              "contradicted": false,
+              "same_occurrence": false,
+              "missing_kind": "date",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                1,
+                2
+              ],
+              "reason": "The passages from citation_ids 1 and 2 state that the DENR-EMB continues to closely monitor air quality nationwide in areas affected by haze, which matches the subject and action of the claim. However, neither passage specifies the exact time 'As of 12:00 NN on Sunday, Sept. 20.' The closest temporal reference is 'Wednesday morning' and general ongoing monitoring, but not the precise date and time required by the claim. Therefore, the assertion is not fully supported due to the missing date/time qualifier.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.",
+              "sources": {
+                "https://www.philstar.com/the-freeman/cebu-news/2026/09/21/2557767/classes-suspended": {
+                  "status": "matched",
+                  "passage_ids": [
+                    12
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/the-freeman/cebu-news/2026/09/21/2557767/classes-suspended",
+                      "quote": "The EMB-7 continues to monitor ambient air quality in the region amid the transboundary haze from fires in Indonesia."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        20
+                      ]
+                    ],
+                    "missing_years": []
+                  },
+                  "time_unconfirmed": true
+                },
+                "https://www.dzrh.com.ph/post/denr-emb-metro-manila-air-quality-improves-amid-lingering-haze": {
+                  "status": "matched",
+                  "passage_ids": [
+                    28,
+                    35
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.dzrh.com.ph/post/denr-emb-metro-manila-air-quality-improves-amid-lingering-haze",
+                      "quote": "Air Quality update via DENR-EMB The DENR-EMB said it continues to closely monitor air quality nationwide through its network of Air Quality Monitoring Stations to assess the extent and potential impacts of the haze affecting several areas."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/denr-emb-metro-manila-air-quality-improves-amid-lingering-haze",
+                      "quote": "Air Quality update via DENR-EMB The DENR-EMB said it continues to closely monitor air quality nationwide through its network of Air Quality Monitoring Stations to assess the extent and potential impacts of the haze affecting several areas."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        20
+                      ]
+                    ],
+                    "missing_years": []
+                  },
+                  "time_unconfirmed": true
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14",
+          "refutation_check": {
+            "denied": false,
+            "same_occurrence": false,
+            "component_ids": [],
+            "passage_ids": [],
+            "reason": "Neither passage addresses or denies the claim about DENR-EMB monitoring air quality in the Philippines as of Sept. 20. Both passages discuss unrelated topics involving DENR activities in other contexts."
+          }
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-sheet-ano-ang-mangyayari-kapag-ang-mga-bakawan-ay-hindi-naitanim-nang-maayos",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/in-a-small-sanctuary-in-dauis-bohol-fisherfolk-are-guardians-of-the-sea",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/visayas/haze-metro-cebu-denr/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/environment/things-to-know-haze-air-quality-index/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/health-science/2026/9/1/public-urged-to-stay-indoors-mask-up-as-haze-persists-in-parts-of-ph-1541",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/health-science/2026/9/2/denr-metro-manila-air-quality-slightly-improved-unhealthy-air-now-affecting-visayas-mindanao-1601",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/health-science/2026/9/1/metro-manila-air-quality-reaches-acutely-unhealthy-levels-amid-haze-from-indonesia-0112",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/lifestyle/news/137827/denr-emb-continues-to-monitor-air-quality-amid-haze/story",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/metro/1000870/improved-metro-manila-air-quality-due-to-change-in-wind-direction-denr-emb/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2296580/public-urged-to-take-precautions-amid-metro-manila-haze",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2297542/air-quality-worsens-in-metro-cebu-amid-haze-from-indonesia",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2298265/iloilo-air-quality-unhealthy-for-sensitive-groups-as-haze-persists",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/cebu-news/2026/09/02/2553453/very-unhealthy",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/cebu-news/2026/09/21/2557767/classes-suspended",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2024/08/20/2379148/haze-metro-manila-caused-vog-denr",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/01/haze-may-linger-through-sept-3-rain-could-improve-air-qualitydenr",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/03/haze-from-indonesia-pushes-zamboanga-air-quality-to-unhealthy-levels",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283332",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283221",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283074",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/denr-emb-warns-of-unhealthy-effects-of-indonesia-haze-smoke/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/emb-doh-heighten-haze-monitoring-health-precautions-in-eastern-visayas/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/denr-emb-metro-manila-air-quality-improves-amid-lingering-haze",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/db-exclusive-engineer-jundy-del-socorro",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/haze-in-mm-caused-by-vog-denr",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/nearly-p11-per-liter-diesel-price-hike-seen-p5-for-gas",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/denr-flags-poor-air-quality-in-metro-manila",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-sheet-ano-ang-mangyayari-kapag-ang-mga-bakawan-ay-hindi-naitanim-nang-maayos",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/in-a-small-sanctuary-in-dauis-bohol-fisherfolk-are-guardians-of-the-sea",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/visayas/haze-metro-cebu-denr/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/environment/things-to-know-haze-air-quality-index/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/health-science/2026/9/1/public-urged-to-stay-indoors-mask-up-as-haze-persists-in-parts-of-ph-1541",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/health-science/2026/9/2/denr-metro-manila-air-quality-slightly-improved-unhealthy-air-now-affecting-visayas-mindanao-1601",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/health-science/2026/9/1/metro-manila-air-quality-reaches-acutely-unhealthy-levels-amid-haze-from-indonesia-0112",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/lifestyle/news/137827/denr-emb-continues-to-monitor-air-quality-amid-haze/story",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/metro/1000870/improved-metro-manila-air-quality-due-to-change-in-wind-direction-denr-emb/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2296580/public-urged-to-take-precautions-amid-metro-manila-haze",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2297542/air-quality-worsens-in-metro-cebu-amid-haze-from-indonesia",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2298265/iloilo-air-quality-unhealthy-for-sensitive-groups-as-haze-persists",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/cebu-news/2026/09/02/2553453/very-unhealthy",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/cebu-news/2026/09/21/2557767/classes-suspended",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2024/08/20/2379148/haze-metro-manila-caused-vog-denr",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/01/haze-may-linger-through-sept-3-rain-could-improve-air-qualitydenr",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/03/haze-from-indonesia-pushes-zamboanga-air-quality-to-unhealthy-levels",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283332",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283221",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283074",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/denr-emb-warns-of-unhealthy-effects-of-indonesia-haze-smoke/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/emb-doh-heighten-haze-monitoring-health-precautions-in-eastern-visayas/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/denr-emb-metro-manila-air-quality-improves-amid-lingering-haze",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/db-exclusive-engineer-jundy-del-socorro",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/haze-in-mm-caused-by-vog-denr",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/nearly-p11-per-liter-diesel-price-hike-seen-p5-for-gas",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/denr-flags-poor-air-quality-in-metro-manila",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze."
+        },
+        "scoring_claim": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.",
+        "search_query": "DENR-EMB air quality monitoring haze September 20 12 00",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "ecbd4cb972c9f5af607e9fb0dcd3c566037f835949841d8dcc99f016b49a07e4",
+        "cache_version": "week7-quote-search-v40",
+        "verdict": "Not Found",
+        "message": "Retrieved passages support 0 of 1 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 77,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not confirm the specific monitoring of air quality by DENR-EMB on Sept. 20.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "The observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+        "normalized_claim": "The observed haze in the Philippines is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Partially Verified",
+          "components": [
+            {
+              "component": "The observed haze is possibly associated with smoke and transboundary haze",
+              "status": "partially_supported",
+              "citations": [
+                {
+                  "url": "https://www.pna.gov.ph/articles/1283221",
+                  "quote": "The DENR-EMB said the haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds."
+                },
+                {
+                  "url": "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/",
+                  "quote": "\"The observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported towards the Philippines by prevailing winds,\" the DENR-EMB said."
+                },
+                {
+                  "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+                  "quote": "1, amid haze that the Department of Environment and Natural Resources-Environmental Management Bureau (DENR-EMB) said was “possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia.”"
+                },
+                {
+                  "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+                  "quote": "1, amid haze that the Department of Environment and Natural Resources-Environmental Management Bureau (DENR-EMB) said was “possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia.”"
+                },
+                {
+                  "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+                  "quote": "“The observed haze is possibly associate with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported towards the Philippines by prevailing winds,” the DENR said in a statement Tuesday."
+                },
+                {
+                  "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+                  "quote": "The observed haze is possibly caused by smoke and transboundary haze from fires in Kalimantan, Indonesia, that are being brought to our country by the southwest monsoon."
+                },
+                {
+                  "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+                  "quote": "Photo from DENR (REAL TIME – Ambient Air Quality Monitoring) The agency said the elevated PM2.5 levels may be associated with smoke and haze from ongoing fires in Kalimantan, Indonesia, which were transported toward the Philippines by prevailing winds."
+                },
+                {
+                  "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+                  "quote": "Photo from DENR (REAL TIME – Ambient Air Quality Monitoring) The agency said the elevated PM2.5 levels may be associated with smoke and haze from ongoing fires in Kalimantan, Indonesia, which were transported toward the Philippines by prevailing winds."
+                },
+                {
+                  "url": "https://www.pna.gov.ph/articles/1283074",
+                  "quote": "The observed haze is likely caused by smoke and transboundary haze from fires in Kalimantan, Indonesia, carried into the country by the southwest monsoon winds."
+                },
+                {
+                  "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+                  "quote": "observed haze is possibly caused by smoke and transboundary haze from fires in Kalimantan, Indonesia, that are being brought to our country by the southwest monsoon...."
+                }
+              ],
+              "evidence_relation": "partially_supported",
+              "review_reason": "Multiple passages explicitly state that the observed haze is possibly associated with smoke and transboundary haze, matching the claim's wording and intent. The subject (the observed haze) and the possible association with smoke and transboundary haze are directly supported by the cited statements from DENR-EMB and related advisories.",
+              "context": {
+                "start": 0,
+                "end": 74,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "The observed haze",
+                      "start": 0,
+                      "end": 17
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "is possibly associated with",
+                      "start": 18,
+                      "end": 45
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "is possibly associated with smoke and transboundary haze",
+                      "start": 18,
+                      "end": 74
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "The observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia",
+                      "start": 0,
+                      "end": 118
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "source_context",
+                      "quote": "As of 12:00 NN on Sunday, Sept. 20",
+                      "start": 0,
+                      "end": 34
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "The observed haze is possibly associated with smoke and transboundary haze",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 74
+                },
+                "context_is_evidence": false,
+                "ungrounded_dropped": [
+                  {
+                    "field": "event",
+                    "origin": "source_context",
+                    "quote": "The Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze."
+                  }
+                ],
+                "context_reviewed": true
+              },
+              "event_group_id": 0
+            },
+            {
+              "component": "from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+              "status": "partially_supported",
+              "citations": [
+                {
+                  "url": "https://www.pna.gov.ph/articles/1283221",
+                  "quote": "The DENR-EMB said the haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds."
+                },
+                {
+                  "url": "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/",
+                  "quote": "\"The observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported towards the Philippines by prevailing winds,\" the DENR-EMB said."
+                },
+                {
+                  "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+                  "quote": "In an advisory, the bureau said prevailing winds may have transported the haze toward the Philippines."
+                },
+                {
+                  "url": "https://www.pna.gov.ph/articles/1283074",
+                  "quote": "The observed haze is likely caused by smoke and transboundary haze from fires in Kalimantan, Indonesia, carried into the country by the southwest monsoon winds."
+                },
+                {
+                  "url": "https://www.pna.gov.ph/articles/1283074",
+                  "quote": "The observed haze is likely caused by smoke and transboundary haze from fires in Kalimantan, Indonesia, carried into the country by the southwest monsoon winds."
+                },
+                {
+                  "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+                  "quote": "“The observed haze is possibly associate with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported towards the Philippines by prevailing winds,” the DENR said in a statement Tuesday."
+                },
+                {
+                  "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+                  "quote": "The observed haze is possibly caused by smoke and transboundary haze from fires in Kalimantan, Indonesia, that are being brought to our country by the southwest monsoon."
+                },
+                {
+                  "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+                  "quote": "Photo from DENR (REAL TIME – Ambient Air Quality Monitoring) The agency said the elevated PM2.5 levels may be associated with smoke and haze from ongoing fires in Kalimantan, Indonesia, which were transported toward the Philippines by prevailing winds."
+                },
+                {
+                  "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+                  "quote": "Photo from DENR (REAL TIME – Ambient Air Quality Monitoring) The agency said the elevated PM2.5 levels may be associated with smoke and haze from ongoing fires in Kalimantan, Indonesia, which were transported toward the Philippines by prevailing winds."
+                },
+                {
+                  "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+                  "quote": "observed haze is possibly caused by smoke and transboundary haze from fires in Kalimantan, Indonesia, that are being brought to our country by the southwest monsoon...."
+                }
+              ],
+              "evidence_relation": "partially_supported",
+              "review_reason": "The passages explicitly state that the haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, and that this haze may have been transported to the Philippines by prevailing winds or the southwest monsoon. The qualifiers of possibility and the mechanism of transport are preserved. The subject and event are the same as in the claim.",
+              "context": {
+                "start": 75,
+                "end": 195,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "which",
+                      "start": 120,
+                      "end": 125
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "ongoing fires in Kalimantan, Indonesia",
+                      "start": 80,
+                      "end": 118
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "may have been transported",
+                      "start": 126,
+                      "end": 151
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "may have been transported toward the Philippines by prevailing winds",
+                      "start": 126,
+                      "end": 194
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "which may have been transported toward the Philippines by prevailing winds",
+                      "start": 120,
+                      "end": 194
+                    },
+                    {
+                      "origin": "source_context",
+                      "quote": "The observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+                      "start": 226,
+                      "end": 421
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  1
+                ],
+                "component_id": 1,
+                "assertion": "from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 75,
+                  "end": 195
+                },
+                "context_is_evidence": false,
+                "inherited_time_dropped": [
+                  {
+                    "origin": "source_context",
+                    "quote": "As of 12:00 NN on Sunday, Sept. 20",
+                    "start": 0,
+                    "end": 34
+                  }
+                ],
+                "context_reviewed": true
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.pna.gov.ph/articles/1283221",
+            "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/",
+            "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+            "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+            "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+            "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+            "https://www.pna.gov.ph/articles/1283074"
+          ],
+          "reason": "Retrieved passages support 0 of 2 factual components. 2 components are partially supported: the same event is covered, but a stated detail or date is not confirmed.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                9,
+                10
+              ],
+              "reason": "Multiple passages explicitly state that the observed haze is possibly associated with smoke and transboundary haze, matching the claim's wording and intent. The subject (the observed haze) and the possible association with smoke and transboundary haze are directly supported by the cited statements from DENR-EMB and related advisories.",
+              "component_id": 0,
+              "denial_urls": [],
+              "time_unconfirmed": true
+            },
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0,
+                1,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "reason": "The passages explicitly state that the haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, and that this haze may have been transported to the Philippines by prevailing winds or the southwest monsoon. The qualifiers of possibility and the mechanism of transport are preserved. The subject and event are the same as in the claim.",
+              "component_id": 1,
+              "denial_urls": [],
+              "time_unconfirmed": true
+            }
+          ],
+          "original_claim": "The observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0,
+                1
+              ],
+              "referent": "The observed haze in the Philippines is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+              "sources": {
+                "https://www.pna.gov.ph/articles/1283221": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.pna.gov.ph/articles/1283221",
+                      "quote": "The DENR-EMB said the haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        20
+                      ]
+                    ],
+                    "missing_years": []
+                  },
+                  "time_unconfirmed": true
+                },
+                "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    8
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/",
+                      "quote": "\"The observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported towards the Philippines by prevailing winds,\" the DENR-EMB said."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        20
+                      ]
+                    ],
+                    "missing_years": []
+                  },
+                  "time_unconfirmed": true
+                },
+                "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires": {
+                  "status": "matched",
+                  "passage_ids": [
+                    20,
+                    24
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+                      "quote": "1, amid haze that the Department of Environment and Natural Resources-Environmental Management Bureau (DENR-EMB) said was “possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia.”"
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+                      "quote": "In an advisory, the bureau said prevailing winds may have transported the haze toward the Philippines."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        20
+                      ]
+                    ],
+                    "missing_years": []
+                  },
+                  "time_unconfirmed": true
+                },
+                "https://www.pna.gov.ph/articles/1283074": {
+                  "status": "matched",
+                  "passage_ids": [
+                    28,
+                    30
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.pna.gov.ph/articles/1283074",
+                      "quote": "The observed haze is likely caused by smoke and transboundary haze from fires in Kalimantan, Indonesia, carried into the country by the southwest monsoon winds."
+                    },
+                    {
+                      "url": "https://www.pna.gov.ph/articles/1283074",
+                      "quote": "The observed haze is likely caused by smoke and transboundary haze from fires in Kalimantan, Indonesia, carried into the country by the southwest monsoon winds."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        20
+                      ]
+                    ],
+                    "missing_years": []
+                  },
+                  "time_unconfirmed": true
+                },
+                "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    50
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+                      "quote": "“The observed haze is possibly associate with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported towards the Philippines by prevailing winds,” the DENR said in a statement Tuesday."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        20
+                      ]
+                    ],
+                    "missing_years": []
+                  },
+                  "time_unconfirmed": true
+                },
+                "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    56,
+                    58
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+                      "quote": "observed haze is possibly caused by smoke and transboundary haze from fires in Kalimantan, Indonesia, that are being brought to our country by the southwest monsoon...."
+                    },
+                    {
+                      "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+                      "quote": "The observed haze is possibly caused by smoke and transboundary haze from fires in Kalimantan, Indonesia, that are being brought to our country by the southwest monsoon."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        20
+                      ]
+                    ],
+                    "missing_years": []
+                  },
+                  "time_unconfirmed": true
+                },
+                "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality": {
+                  "status": "matched",
+                  "passage_ids": [
+                    63,
+                    68
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+                      "quote": "Photo from DENR (REAL TIME – Ambient Air Quality Monitoring) The agency said the elevated PM2.5 levels may be associated with smoke and haze from ongoing fires in Kalimantan, Indonesia, which were transported toward the Philippines by prevailing winds."
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+                      "quote": "Photo from DENR (REAL TIME – Ambient Air Quality Monitoring) The agency said the elevated PM2.5 levels may be associated with smoke and haze from ongoing fires in Kalimantan, Indonesia, which were transported toward the Philippines by prevailing winds."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        20
+                      ]
+                    ],
+                    "missing_years": []
+                  },
+                  "time_unconfirmed": true
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/be-know-nationwide-smoking-ban-public-places",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/e-cigarette-marketing-in-the-philippines-glaringly-youth-oriented-and-feeding-the-tobacco-industrys-bottom-line",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/environment/things-to-know-haze-air-quality-index/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/240709-photos-indonesia-haze-reaches-philippines/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/31/indonesia-forest-fire-smoke-reaches-philippines-may-persist-for-days-up-scientist-says-2047",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/health-science/2026/9/1/smoke-from-indonesian-forest-fires-what-is-transboundary-haze-1955",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/world/2026/9/5/how-haze-from-indonesian-fires-impacts-southeast-asia-1457",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/content/1000714/haze-in-ph-caused-by-habagat-bringing-smoke-from-indonesia-says-denr-emb/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000916/explainer-how-does-haze-affect-your-health/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2297071/harmful-haze-from-indonesia-fires-to-affect-western-ph-pagasa",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2296580/public-urged-to-take-precautions-amid-metro-manila-haze",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2297173/doh-better-mask-up-amid-haze-from-indonesia-forest-fires/amp",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/nation/2026/09/20/2557495/haze-indonesia-forest-fires-affects-visayas-mindanao",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/world/2026/09/05/2554242/how-indonesian-fire-haze-affecting-southeast-asia-including-philippines",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://interaksyon.philstar.com/trends-spotlights/2026/09/02/318619/haze-alert-how-filipinos-stay-safe-poor-air-quality/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/01/forest-fire-particles-from-indonesia-reaching-philippines-due-to-strong-habagat-says-pagasa",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/01/ocd-urges-public-to-limit-outdoor-exposure-as-indonesia-haze-reaches-ph",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283286",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283221",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283074",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/denr-emb-warns-of-unhealthy-effects-of-indonesia-haze-smoke/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/haze-affecting-davao-regions-air-quality/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/denr-emb-metro-manila-air-quality-improves-amid-lingering-haze",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/orangutan-rescued-from-fire-zone-in-indonesias-borneo-battles-respiratory-illness",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/denr-flags-poor-air-quality-in-metro-manila",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/nearly-p11-per-liter-diesel-price-hike-seen-p5-for-gas",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/haze-in-mm-caused-by-vog-denr",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/be-know-nationwide-smoking-ban-public-places",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/e-cigarette-marketing-in-the-philippines-glaringly-youth-oriented-and-feeding-the-tobacco-industrys-bottom-line",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/environment/things-to-know-haze-air-quality-index/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/240709-photos-indonesia-haze-reaches-philippines/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/31/indonesia-forest-fire-smoke-reaches-philippines-may-persist-for-days-up-scientist-says-2047",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/health-science/2026/9/1/smoke-from-indonesian-forest-fires-what-is-transboundary-haze-1955",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/world/2026/9/5/how-haze-from-indonesian-fires-impacts-southeast-asia-1457",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/content/1000714/haze-in-ph-caused-by-habagat-bringing-smoke-from-indonesia-says-denr-emb/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000916/explainer-how-does-haze-affect-your-health/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2297071/harmful-haze-from-indonesia-fires-to-affect-western-ph-pagasa",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2296580/public-urged-to-take-precautions-amid-metro-manila-haze",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2297173/doh-better-mask-up-amid-haze-from-indonesia-forest-fires/amp",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/nation/2026/09/20/2557495/haze-indonesia-forest-fires-affects-visayas-mindanao",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/world/2026/09/05/2554242/how-indonesian-fire-haze-affecting-southeast-asia-including-philippines",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://interaksyon.philstar.com/trends-spotlights/2026/09/02/318619/haze-alert-how-filipinos-stay-safe-poor-air-quality/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/01/forest-fire-particles-from-indonesia-reaching-philippines-due-to-strong-habagat-says-pagasa",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/01/ocd-urges-public-to-limit-outdoor-exposure-as-indonesia-haze-reaches-ph",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283286",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283221",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283074",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/denr-emb-warns-of-unhealthy-effects-of-indonesia-haze-smoke/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/haze-affecting-davao-regions-air-quality/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/denr-emb-metro-manila-air-quality-improves-amid-lingering-haze",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/orangutan-rescued-from-fire-zone-in-indonesias-borneo-battles-respiratory-illness",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/denr-flags-poor-air-quality-in-metro-manila",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/nearly-p11-per-liter-diesel-price-hike-seen-p5-for-gas",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/haze-in-mm-caused-by-vog-denr",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "The observed haze in the Philippines is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds."
+        },
+        "scoring_claim": "The observed haze in the Philippines is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+        "search_query": "haze Kalimantan Indonesia smoke Philippines",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "20a26196cbac37dc6f77f13d5c86ff6691df232bd768726e51b84eeba5fc2876",
+        "cache_version": "week7-quote-search-v40",
+        "verdict": "Partially Verified",
+        "message": "Retrieved passages support 0 of 2 factual components. 2 components are partially supported: the same event is covered, but a stated detail or date is not confirmed.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 6,
+        "primary_evidence": {
+          "source": "Philippine News Agency",
+          "title": "Haze persists in some areas; Talisay City PM2.5 ‘acutely unhealthy’ | Philippine News Agency",
+          "url": "https://www.pna.gov.ph/articles/1283221",
+          "status": "extracted",
+          "word_count": 163,
+          "evidence_method": "component_review",
+          "extraction_quality": "excerpt",
+          "evidence_type": "search_excerpt"
+        },
+        "supporting_sources": [
+          {
+            "source": "Philippine News Agency",
+            "title": "Haze persists in some areas; Talisay City PM2.5 ‘acutely unhealthy’ | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283221",
+            "status": "extracted",
+            "word_count": 163,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "GMA News",
+            "title": "Haze, possibly from Indonesia fires, reached NCR, Calabarzon, Mimaropa, says DENR-EMB",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/",
+            "status": "extracted",
+            "word_count": 326,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - 11 NCR stations record ‘acutely unhealthy’ air amid haze possibly linked to Indonesia fires",
+            "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+            "status": "extracted",
+            "word_count": 142,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Haze prompts public safety advisory in Negros Island Region | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283074",
+            "status": "extracted",
+            "word_count": 178,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Rappler",
+            "title": "EMB: Haze may affect parts of Philippines until September 3",
+            "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+            "status": "extracted",
+            "word_count": 366,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "DOH, DENR urge public to protect themselves from dangers of haze, polluted air - Philippine Information Agency",
+            "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+            "status": "extracted",
+            "word_count": 87,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Several Metro Manila areas record very unhealthy to acutely unhealthy air quality",
+            "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+            "status": "extracted",
+            "word_count": 276,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 72,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "Philippine News Agency",
+            "title": "Haze persists in some areas; Talisay City PM2.5 ‘acutely unhealthy’ | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283221",
+            "status": "extracted",
+            "word_count": 163,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "GMA News",
+            "title": "Haze, possibly from Indonesia fires, reached NCR, Calabarzon, Mimaropa, says DENR-EMB",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/",
+            "status": "extracted",
+            "word_count": 326,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - 11 NCR stations record ‘acutely unhealthy’ air amid haze possibly linked to Indonesia fires",
+            "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+            "status": "extracted",
+            "word_count": 142,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Haze prompts public safety advisory in Negros Island Region | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283074",
+            "status": "extracted",
+            "word_count": 178,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Rappler",
+            "title": "EMB: Haze may affect parts of Philippines until September 3",
+            "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+            "status": "extracted",
+            "word_count": 366,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "DOH, DENR urge public to protect themselves from dangers of haze, polluted air - Philippine Information Agency",
+            "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+            "status": "extracted",
+            "word_count": 87,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Several Metro Manila areas record very unhealthy to acutely unhealthy air quality",
+            "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+            "status": "extracted",
+            "word_count": 276,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Philippine News Agency",
+            "title": "Haze persists in some areas; Talisay City PM2.5 ‘acutely unhealthy’ | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283221",
+            "status": "extracted",
+            "word_count": 163,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "GMA News",
+            "title": "Haze, possibly from Indonesia fires, reached NCR, Calabarzon, Mimaropa, says DENR-EMB",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/",
+            "status": "extracted",
+            "word_count": 326,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - 11 NCR stations record ‘acutely unhealthy’ air amid haze possibly linked to Indonesia fires",
+            "url": "https://mb.com.ph/2026/09/01/11-ncr-stations-record-acutely-unhealthy-air-amid-haze-possibly-linked-to-indonesia-fires",
+            "status": "extracted",
+            "word_count": 142,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Haze prompts public safety advisory in Negros Island Region | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283074",
+            "status": "extracted",
+            "word_count": 178,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Rappler",
+            "title": "EMB: Haze may affect parts of Philippines until September 3",
+            "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+            "status": "extracted",
+            "word_count": 366,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "DOH, DENR urge public to protect themselves from dangers of haze, polluted air - Philippine Information Agency",
+            "url": "https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/",
+            "status": "extracted",
+            "word_count": 87,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Several Metro Manila areas record very unhealthy to acutely unhealthy air quality",
+            "url": "https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality",
+            "status": "extracted",
+            "word_count": 276,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": false,
+            "status": "not_needed",
+            "error": null,
+            "result": null
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "mixed_content",
+        "confidence": 0.54,
+        "ambiguity_score": 0.6,
+        "ambiguity_reasons": [
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "verify_factual_claims_only",
+        "verification_text": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.\nThe observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+        "normalized_verification_text": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.\nThe observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "AIR QUALITY UPDATE",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.42,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.9,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.12,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review",
+              "openai_factual_claim_advice"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s3",
+            "text": "The observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.2,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.9,
+            "second_label": "factual_claim",
+            "second_label_score": 0.2,
+            "score_gap": 0.1,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review",
+              "openai_factual_claim_advice"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s4",
+            "text": "Courtesy: EMB Central Office/Facebook",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.2,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.2,
+            "score_gap": 0.1,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s5",
+            "text": "Visit www.gmanetwork.com/news for updates",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "AIR QUALITY UPDATE",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s4",
+            "text": "Courtesy: EMB Central Office/Facebook",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s5",
+            "text": "Visit www.gmanetwork.com/news for updates",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS will verify only the factual segments and skip non-checkable parts.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "contextual_background",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "factual_claim",
+                "top_label_score": 0.9,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "checkable_claim",
+                  "official_report"
+                ]
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "factual_claim",
+                "top_label_score": 0.9,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "checkable_claim",
+                  "official_report"
+                ]
+              },
+              {
+                "segment_id": "s4",
+                "top_label": "contextual_background",
+                "top_label_score": 0.6,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s5",
+                "top_label": "call_to_action",
+                "top_label_score": 0.8,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "This segment contains a factual assertion about DENR-EMB monitoring air quality in the Philippines as of a specific date."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "checkable",
+            "claim_indexes": [
+              1
+            ],
+            "reason": "This segment contains a factual assertion about the possible association of haze in the Philippines with smoke from fires in Kalimantan, Indonesia."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "The observed haze in the Philippines is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds."
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.",
+            "normalized_claim": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "DENR-EMB air quality monitoring haze September 20",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze."
+              }
+            ],
+            "evidence_context": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.\nThe observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+            "from_image": false,
+            "quote_search": null,
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "The observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+            "normalized_claim": "The observed haze in the Philippines is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "haze Kalimantan Indonesia smoke Philippines",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 1,
+                "quote": "The observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds."
+              }
+            ],
+            "evidence_context": "As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.\nThe observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.",
+            "from_image": false,
+            "quote_search": null,
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "9c0ac48cd96c4607bc2a4013d609ebb3",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0013,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 3.6076,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0004,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0017,
+            "status": "ok"
+          },
+          {
+            "stage": "text.coverage_scope",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 6.343,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.003,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0019,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0025,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0018,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 35.2567,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.066,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 1.051,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 37.1074,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0743,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.5946,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.6155,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0212,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 0.9384,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 0.0652,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 0.0877,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0544,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 21.5582,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 22.5841,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 60.9832,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 70.9647,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  },
+  "post_id": "H04",
+  "started_utc": "2026-09-21T11:12:33.916816+00:00",
+  "seconds": 71.008,
+  "git_commit": "b3c0ccb52e9ab46eace27cbf003644eed038b238",
+  "cache_version": "week7-quote-search-v40",
+  "cache_policy": "reads and writes bypassed",
+  "post": {
+    "id": "H04",
+    "page": "GMA News",
+    "url": "https://www.facebook.com/gmanews/posts/pfbid02Qu4R1DmE1yo7tiDwV1X7EdsaDqu2gTH5FTZZyeKbJHGT5kiHQmyBeaypSFBq6oktl?rdid=hqnyR6i5g0Y9Ei7I#",
+    "date": "2026-09-20",
+    "category": "news",
+    "notes": "",
+    "text": "AIR QUALITY UPDATE\nAs of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by haze.\nThe observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.\nCourtesy: EMB Central Office/Facebook\nVisit www.gmanetwork.com/news for updates",
+    "image": "",
+    "image_text": "",
+    "expected": {
+      "overall": "Verified",
+      "claims": [],
+      "references": [
+        "https://newsinfo.inquirer.net/2308390/iloilo-air-unhealthy-for-sensitive-groups-as-haze-persists"
+      ]
+    },
+    "expected_fingerprint": "1e4304ace31b3bceee322d82b22a14e2a8358427d464dcf7d2f3e9fb34189d79"
+  },
+  "input_type": "text"
+}
