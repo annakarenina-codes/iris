@@ -295,6 +295,53 @@ class SitemapLoading(unittest.TestCase):
         self.assertEqual(index._cache[self.SITEMAP]['lifetime'], index.CACHE_SECONDS)
 
 
+class QueriesAreSearchableByBrave(unittest.TestCase):
+    """Found by the 34-case check: quotation claims searching on their own for the first time."""
+
+    def test_straight_quotes_are_not_sent_as_an_exact_phrase(self):
+        query = search._build_domain_query('Robinhood Padilla "Kayo po ba ay naniniwala," the senator furthered.',
+                                           'site:dzrh.com.ph')
+        self.assertEqual(query, 'Robinhood Padilla Kayo po ba ay naniniwala, the senator furthered. site:dzrh.com.ph')
+
+    def test_a_query_longer_than_brave_allows_keeps_its_opening_words(self):
+        claim = 'Art Samaniego Jr. said ' + ' '.join(['naglalaro'] * 80)
+        query = search._build_domain_query(claim, 'site:verafiles.org/articles')
+        self.assertLessEqual(len(query), search.MAX_QUERY_CHARACTERS)
+        self.assertLessEqual(len(query.split()), search.MAX_QUERY_WORDS)
+        self.assertTrue(query.startswith('Art Samaniego Jr. said naglalaro naglalaro'))
+        self.assertTrue(query.endswith(' site:verafiles.org/articles'))
+
+    def test_a_query_of_many_words_stops_at_brave_word_limit(self):
+        query = search._build_domain_query(' '.join(['OJT'] * 70), 'site:pna.gov.ph')
+        self.assertEqual(len(query.split()), search.MAX_QUERY_WORDS)
+
+    def test_an_ordinary_query_is_unchanged(self):
+        self.assertEqual(search._build_domain_query('DepEd OJT 640 hours', 'site:pna.gov.ph'),
+                         'DepEd OJT 640 hours site:pna.gov.ph')
+
+
+class SharedArticlesAreRankedInBothLanguages(unittest.TestCase):
+    def test_english_reporting_of_a_filipino_quotation_is_offered_first(self):
+        # Saved case A02: the article carrying the exchange ranked outside the twelve offered.
+        import app as iris
+        quote = '"Kayo po ba ay naniniwala na ang mga confidential agent ay dapat magpakilala?" the senator furthered.'
+        claim = {'claim_text': quote, 'normalized_claim': quote,
+                 'quote_translation': '"Do you believe that confidential agents should identify themselves?" '
+                                      'the senator furthered.',
+                 'attribution': {'speaker': 'Robinhood Padilla'}}
+
+        def entry(url, text):
+            return {'key': url, 'article': {'url': url, 'status': 'extracted', 'title': '', 'text': text},
+                    'found_by': ['1']}
+
+        others = [entry(f'https://www.gmanetwork.com/news/{i}/', 'The senator said the confidential agent '
+                                                                'reports were audited.') for i in range(12)]
+        report = entry('https://www.dzrh.com.ph/post/day-13/', 'Senator-judge Robinhood Padilla asked whether '
+                                                              'confidential agents should identify themselves.')
+        offered = iris.shared_candidates(claim, [], others + [report], limit=12)
+        self.assertEqual(offered[0]['url'], report['article']['url'])
+
+
 class ClaimsWithNothingToReviewCostNoModelCall(unittest.TestCase):
     def test_the_split_is_not_asked_for_when_nothing_readable_was_found(self):
         import app as iris

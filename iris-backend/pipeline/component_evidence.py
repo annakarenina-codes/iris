@@ -256,21 +256,6 @@ def _by_best_passage(claim, texts, claim_translation=None):
     return [texts[i] for i in order]
 
 
-def warm_passage_embeddings(articles, claim='', claim_translation=None):
-    """Embeds the passages a review of these articles would score, ahead of the review itself."""
-    texts = [article["text"][:ARTICLE_CHARACTER_LIMIT] for article in articles if article.get("text")]
-    passages = [{'text': passage} for text in texts for passage in split_statement_segments(text)]
-    if sum(len(text) for text in texts) <= REVIEW_CHARACTER_BUDGET and len(passages) <= MAX_ASSESSMENT_PASSAGES:
-        return
-    try:
-        from pipeline.verdict_generator import text_embeddings
-        queries = [claim, claim_translation]
-        chosen = _embedding_candidates(queries, passages)
-        text_embeddings([query for query in queries if query] + [passages[i]['text'] for i in chosen])
-    except Exception as error:  # pragma: no cover - depends on local ML environment
-        event('component.passage_warmup_unavailable', error=type(error).__name__)
-
-
 def select_assessment_passages(claim, passages, limit=MAX_ASSESSMENT_PASSAGES, extra_queries=None):
     """
     Keeps the passages most similar to the claim when there are too many to review.

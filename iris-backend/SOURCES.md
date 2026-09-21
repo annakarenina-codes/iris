@@ -88,5 +88,12 @@ Changes:
 4. The sitemap lookup no longer holds up a search (see above). The newest VERA Files sitemap page was 627 KB and took 23 seconds that day.
 5. Articles that do not all fit the reviewer's budget are ranked by their best passage. Only passages sharing a distinctive word with the claim are embedded, at most 400 a claim, and embeddings are cached for the whole process.
 
-Cache version `week8-own-search-v39`.
+Follow-up the same day, from the 34-case check of these changes. Quotation claims searching on their own for the first time exposed two limits of the search provider:
+
+6. Straight double quotes are removed from every query. Brave reads them as an exact phrase, so a quotation typed with them could only be found worded exactly as the post worded it; in saved case A02 its five quotation claims got 2, 1, 0, 0 and 1 results. Curly quotes were never read that way.
+7. Every query is cut, at a word, to Brave's limit of 400 characters and 50 words with its site filter. Two claims of saved case A08, whole sentences carrying their Filipino quotation, were refused by every source (HTTP 422) and reported as a search failure.
+8. Articles shared between a post's claims are ranked on the claim's English rendering and speaker as well as its own words, so English reporting of a Filipino quotation is offered to it.
+9. Passages are embedded by the review, for the articles it reads, and no longer ahead of it for every article a claim's search could read. Claims embed one at a time, so that work queued up: once quotation claims found their articles, a post with nine of them (A08) waited 29 seconds for embedding where its reviews needed 5.
+
+Cache version `week8-own-search-v40`.
 

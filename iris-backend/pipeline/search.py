@@ -106,9 +106,33 @@ def _get_api_key() -> Optional[str]:
     return os.getenv("BRAVE_API_KEY") or os.getenv("BRAVE_SEARCH_API_KEY")
 
 
+# Brave refuses a query of more than 400 characters or 50 words, its site filter included, with
+# HTTP 422. Attributed claims are searched with their whole sentence, and one keeping a Filipino
+# quotation can run past that: in saved case A08 two claims of 599 and 520 characters failed on
+# every source, and the check reported that the sources could not be reached.
+MAX_QUERY_CHARACTERS = 400
+MAX_QUERY_WORDS = 50
+
+
 def _build_domain_query(query: str, site_query: str) -> str:
-    """Combines the claim with a site: filter for Brave Search."""
-    return f"{query} {site_query}".strip()
+    """
+    Combines the claim with a site: filter for Brave Search, within Brave's query limits.
+
+    Straight double quotes are removed: Brave reads them as "this exact phrase", so a quotation
+    typed with them was searched word for word, and a report that worded or transcribed it a
+    little differently could not be found. In saved case A02 the five quotation claims got 2, 1,
+    0, 0 and 1 results that way. Curly quotes were never read as phrases, so a post's typography
+    decided how it was searched. A query too long for Brave keeps its opening words, which name
+    the speaker and the subject.
+    """
+    site = str(site_query or "").strip()
+    room = MAX_QUERY_CHARACTERS - (len(site) + 1 if site else 0)
+    kept: List[str] = []
+    for word in str(query or "").replace('"', " ").split()[:MAX_QUERY_WORDS - len(site.split())]:
+        if len(" ".join([*kept, word])) > room:
+            break
+        kept.append(word)
+    return " ".join([*kept, site]).strip()
 
 
 @traced('retrieval.source_search', dependency=True)

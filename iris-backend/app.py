@@ -42,7 +42,7 @@ app.json.sort_keys = False
 from iris_trace.web import init_app as init_trace
 init_trace(app)
 logging.basicConfig(level=logging.INFO)
-RESULT_CACHE_VERSION = "week8-own-search-v39"
+RESULT_CACHE_VERSION = "week8-own-search-v40"
 POSITIVE_VERDICTS = {"Verified", "Partially Verified"}
 # A verdict that asserts something about the world has to show the source it rests on.
 VERDICTS_NEEDING_EVIDENCE = POSITIVE_VERDICTS | {REFUTED_VERDICT}
@@ -756,13 +756,17 @@ def gather_claim_evidence(claim, language, plan, timings=None):
     """
     The part of a claim's check that does not depend on the post's other claims.
 
-    After the claim's own search, two things run at once: the reviewer splits the claim into
-    components, which needs only the claim and the post, and the passages that were found are
-    embedded for ranking. The split used to wait for the embedding. It is only asked for when
-    the search returned an article the review could read, so a claim with nothing to review costs
-    no model call. Nothing here decides a verdict.
+    After the claim's own search, the reviewer splits the claim into components, which needs only
+    the claim and the post, while the post's other claims are still searching. It is only asked
+    for when the search returned an article the review could read, so a claim with nothing to
+    review costs no model call. Nothing here decides a verdict.
+
+    Passages are not embedded here. Embedding every readable article before the gates and the
+    reading budget were applied doubled the embedding a post with many claims waited for (in the
+    34-case check A08 needed 29 seconds of it, against 5 for what its reviews used), because
+    claims embed one at a time. The review embeds the passages of the articles it reads.
     """
-    from pipeline.component_evidence import prepare_component_review, warm_passage_embeddings
+    from pipeline.component_evidence import prepare_component_review
     stage_prefix = plan["stage_prefix"]
     search_result, strategy = timed_stage(
         timings, f"{stage_prefix}search_and_extract",
@@ -775,14 +779,10 @@ def gather_claim_evidence(claim, language, plan, timings=None):
                 and compact_evidence_source(article)]
     prepared = None
     if search_status["status"] == "ok" and readable:
-        with ThreadPoolExecutor(max_workers=1, thread_name_prefix="iris-prepare") as executor:
-            preparing = submit_context(
-                executor, timed_stage, timings, f"{stage_prefix}component_prepare",
-                lambda: prepare_component_review(claim.get("claim_text") or plan["normalized_claim"],
-                                                 claim.get("evidence_context", "")))
-            timed_stage(timings, f"{stage_prefix}embed_passages", lambda: warm_passage_embeddings(
-                readable, claim.get("claim_text") or plan["normalized_claim"], claim.get("quote_translation")))
-            prepared = preparing.result()
+        prepared = timed_stage(
+            timings, f"{stage_prefix}component_prepare",
+            lambda: prepare_component_review(claim.get("claim_text") or plan["normalized_claim"],
+                                             claim.get("evidence_context", "")))
     return {"plan": plan, "search_result": search_result, "retrieval_strategy": strategy,
             "search_status": search_status, "prepared": prepared}
 
@@ -819,8 +819,13 @@ def shared_candidates(claim, own_articles, pool, limit=MAX_SHARED_ARTICLES):
     claim's own articles pass; sharing them is not evidence by itself.
     """
     own = {normalize_evidence_url(article.get("url")) for article in own_articles}
-    wanted = set(evidence_terms(" ".join(str(claim.get(key) or "")
-                                         for key in ("claim_text", "normalized_claim"))))
+    # A quotation kept in Filipino shares few words with English reporting of it, so its English
+    # rendering and the speaker's name count too: in saved case A02 the article carrying the
+    # exchange ranked outside the twelve offered on the Filipino words alone, and first with them.
+    attribution = claim.get("attribution") or {}
+    wanted = set(evidence_terms(" ".join(str(value or "") for value in (
+        claim.get("claim_text"), claim.get("normalized_claim"), claim.get("quote_translation"),
+        attribution.get("speaker")))))
     ranked = []
     for order, entry in enumerate(pool):
         if entry["key"] in own:
