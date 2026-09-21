@@ -34,11 +34,23 @@ default wheel on PyPI carries a CUDA runtime that no Railway container can use) 
 both models at build time, so nobody's first check waits for 190 MB.
 
 1. Create a Railway project from this repository.
-2. Set the service's **Root Directory** to `iris-backend`. `railway.json` there selects the
-   Dockerfile and points the health check at `/health`.
-3. Add the variables below.
-4. Deploy, then open `https://<your-service>.up.railway.app/health`. It should answer
+2. Service → **Settings** → **Root Directory**: `/iris-backend`. It is a path, with a leading
+   slash — not a GitHub URL. This is the one setting the deploy cannot work without: Railway
+   finds the Dockerfile inside that folder on its own and builds from it.
+3. Optional: **Config File Path** → `/iris-backend/railway.json`. Railway's config file does
+   **not** follow the root directory, so it needs the full path from the repository root or it
+   is ignored. All it adds is the `/health` check and the restart policy; the deploy works
+   without it.
+4. Add the variables below.
+5. **Settings** → **Networking** → **Generate Domain**. Answer `8080` if it asks for a port.
+6. Deploy, then open `https://<your-service>.up.railway.app/health`. It should answer
    `{"status": "ok", ...}` without waking a model.
+
+If Railway cannot see your repositories at all, its GitHub App has not been given access to
+them. Go to `github.com/settings/installations` → **Railway** → **Configure**, accept any
+pending permission banner, and make sure this repository is selected. Then in Railway, **Add**
+→ **GitHub Repository** → **Refresh**. Deploying by pasting a public repo URL works, but that
+route does not watch the repository, so pushes will not redeploy on their own.
 
 ### Variables
 
