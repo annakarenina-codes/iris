@@ -6,11 +6,29 @@ android {
     namespace "com.iris.app"
     compileSdk 37
 
+    buildFeatures {
+        buildConfig true
+    }
+
     defaultConfig {
         applicationId "com.iris.app"
         minSdk 26
         targetSdk 37
         versionCode 1
         versionName "1.0"
+
+        // The access token is read from local.properties, which git ignores, so it reaches
+        // the installed app without ever reaching the public repository. Missing means empty,
+        // which is exactly right for a backend that has no token set.
+        buildConfigField "String", "IRIS_ACCESS_TOKEN", "\"${irisAccessToken()}\""
     }
+}
+
+def irisAccessToken() {
+    def properties = new Properties()
+    def file = rootProject.file("local.properties")
+    if (file.exists()) {
+        file.withInputStream { properties.load(it) }
+    }
+    return properties.getProperty("iris.accessToken", "")
 }

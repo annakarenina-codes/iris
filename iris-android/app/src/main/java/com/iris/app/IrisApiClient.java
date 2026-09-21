@@ -33,8 +33,9 @@ final class IrisApiClient {
     // A connection that never opened, or dropped part-way, earns one retry. Per-claim verdicts
     // are cached on the backend, so a second attempt usually answers in seconds.
     private static final int RETRY_DELAY_MS = 1500;
-    // Written by scripts/set-backend-url.mjs alongside the extension's copy.
-    private static final String ACCESS_TOKEN = ""; // iris:access-token
+    // Read from local.properties at build time, which git ignores. This repository is
+    // public, and a token committed to it is a token anyone can spend.
+    private static final String ACCESS_TOKEN = BuildConfig.IRIS_ACCESS_TOKEN;
     private static final ExecutorService EXECUTOR = Executors.newCachedThreadPool();
     private static final Handler MAIN = new Handler(Looper.getMainLooper());
 

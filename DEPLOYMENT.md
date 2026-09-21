@@ -58,16 +58,28 @@ URL can spend your OpenAI and Brave credit.
 
 ## 2. Point the clients at it
 
-One command writes the address and the token into all six places that hold them:
+One command writes the address into all five places that hold it:
 
 ```bash
-node scripts/set-backend-url.mjs https://your-service.up.railway.app YOUR_TOKEN
+node scripts/set-backend-url.mjs https://your-service.up.railway.app
 ```
 
 Run it before copying anything to the test machines. It is safe to repeat whenever the
 address changes. Note that it sets the Android default too, replacing the `10.0.2.2` emulator
 address — which is what you want for a hosted backend, and worth undoing if you go back to
 local development.
+
+**The token is deliberately not written by that script, because this repository is public.**
+A token committed here is a token anyone can spend. It goes in two places instead, neither of
+them tracked by git:
+
+| client | where |
+|---|---|
+| Chrome | Options → Developer settings → **Access token**, once per laptop. Stays in that browser. |
+| Android | `iris.accessToken=YOUR_TOKEN` in `iris-android/local.properties`, which `.gitignore` already covers. The build reads it into `BuildConfig`. |
+
+If you skip both, the clients send no token and a backend with `IRIS_API_TOKEN` set answers
+401 — which the panel shows as "This IRIS backend needs an access token."
 
 Setting a hosted address also hides the Android backend card, so participants cannot retype
 the server by accident. It reappears on its own whenever the built-in address points at a

@@ -47,6 +47,10 @@
           <input id="backend-url" name="backend-url" type="url" placeholder="http://127.0.0.1:5000" required />
           <p>IRIS sends selected text to `/verify` and submitted images to `/verify-image` on this backend.</p>
 
+          <label for="access-token">Access token</label>
+          <input id="access-token" name="access-token" type="password" autocomplete="off" placeholder="Leave empty for a backend without one" />
+          <p>Matches IRIS_API_TOKEN on the server. Kept in this browser only, never in the repository.</p>
+
           <label class="checkbox-row">
             <input id="debug-mode" type="checkbox" />
             <span>Send debug=true to the backend during calibration</span>

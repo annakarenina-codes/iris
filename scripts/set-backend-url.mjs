@@ -1,16 +1,18 @@
 #!/usr/bin/env node
 /**
- * Writes the backend address, and optionally the access token, into both clients at once.
+ * Writes the backend address into every client file that holds it.
  *
- *   node scripts/set-backend-url.mjs https://iris-production.up.railway.app <token>
+ *   node scripts/set-backend-url.mjs https://iris-production.up.railway.app
  *
- * Six files carry one of these values. Three laptops running the extension unpacked each get
- * a different extension ID, so chrome.storage.sync will not carry the address between them,
- * and the Android build has no options screen once a hosted address is set. Editing six files
- * by hand before copying the folder around is how one of them ends up pointing at a laptop
- * that is closed.
+ * The address is not a secret, so it lives in the source. The access token is, and this
+ * repository is public, so the token is deliberately NOT handled here:
  *
- * Run it again whenever the address changes; it rewrites in place and is safe to repeat.
+ *   - Chrome:  type it once per laptop under Options -> Developer settings. It stays in
+ *              that browser's storage.
+ *   - Android: put `iris.accessToken=...` in iris-android/local.properties, which git
+ *              ignores. The build reads it into BuildConfig.
+ *
+ * Run this again whenever the address changes; it rewrites in place and is safe to repeat.
  */
 
 import { readFileSync, writeFileSync } from "node:fs";
@@ -25,15 +27,11 @@ const FILES = [
   "iris-extension/popup.js",
   "iris-extension/options.js",
   "iris-android/app/src/main/java/com/iris/app/IrisPrefs.java",
-  "iris-android/app/src/main/java/com/iris/app/IrisApiClient.java",
 ];
 
-/** Replaces the quoted value that sits immediately before a `// iris:<marker>` comment. */
-function rewrite(text, marker, value) {
-  const pattern = new RegExp(
-    `("(?:[^"\\\\]|\\\\.)*")([\\s,;]*//\\s*iris:${marker}\\b)`,
-    "g",
-  );
+/** Replaces the quoted value that sits immediately before a `// iris:backend-url` comment. */
+function rewrite(text, value) {
+  const pattern = /("(?:[^"\\]|\\.)*")([\s,;]*\/\/\s*iris:backend-url\b)/g;
   let hits = 0;
   const next = text.replace(pattern, (_match, _quoted, tail) => {
     hits += 1;
@@ -43,10 +41,16 @@ function rewrite(text, marker, value) {
 }
 
 function main() {
-  const [rawUrl, rawToken] = process.argv.slice(2);
+  const [rawUrl, extra] = process.argv.slice(2);
 
   if (!rawUrl) {
-    console.error("usage: node scripts/set-backend-url.mjs <backend-url> [access-token]");
+    console.error("usage: node scripts/set-backend-url.mjs <backend-url>");
+    process.exit(1);
+  }
+
+  if (extra) {
+    console.error("This script takes the URL only. The access token is kept out of the");
+    console.error("repository on purpose -- see the comment at the top of this file.");
     process.exit(1);
   }
 
@@ -72,46 +76,26 @@ function main() {
     process.exit(1);
   }
 
-  const token = (rawToken || "").trim();
-  let urlWrites = 0;
-  let tokenWrites = 0;
+  let written = 0;
 
   for (const relative of FILES) {
     const path = join(ROOT, relative);
     const before = readFileSync(path, "utf8");
+    const { text, hits } = rewrite(before, url);
+    written += hits;
 
-    let after = before;
-    const withUrl = rewrite(after, "backend-url", url);
-    after = withUrl.text;
-    urlWrites += withUrl.hits;
-
-    if (rawToken !== undefined) {
-      const withToken = rewrite(after, "access-token", token);
-      after = withToken.text;
-      tokenWrites += withToken.hits;
-    }
-
-    if (after !== before) {
-      writeFileSync(path, after);
+    if (text !== before) {
+      writeFileSync(path, text);
       console.log(`  ${relative}`);
     }
   }
 
-  console.log(`\nbackend URL set to ${url} in ${urlWrites} place(s).`);
+  console.log(`\nBackend URL set to ${url} in ${written} place(s).`);
 
-  if (rawToken === undefined) {
-    console.log("No token given, so the token lines were left alone.");
-  } else if (token) {
-    console.log(`Access token written to ${tokenWrites} place(s).`);
-  } else {
-    console.log(`Access token cleared in ${tokenWrites} place(s).`);
-  }
-
-  if (!local && !token && rawToken === undefined) {
-    console.log(
-      "\nThis is a hosted address with no token set. Until IRIS_API_TOKEN is set on the\n" +
-        "server and passed here, anyone who finds the URL can spend your API credit.",
-    );
+  if (!local) {
+    console.log("\nThe token is separate, and is not written by this script:");
+    console.log("  Chrome   Options -> Developer settings -> Access token, on each laptop");
+    console.log("  Android  iris.accessToken=... in iris-android/local.properties");
   }
 }
 

@@ -1,5 +1,6 @@
 const DEFAULTS = {
   irisBackendUrl: "http://127.0.0.1:5000", // iris:backend-url
+  irisAccessToken: "",
   irisPanelEnabled: true,
   irisTheme: "system",
   irisFontSize: "default",
@@ -9,6 +10,7 @@ const DEFAULTS = {
 
 const form = document.getElementById("options-form");
 const backendUrl = document.getElementById("backend-url");
+const accessToken = document.getElementById("access-token");
 const panelEnabled = document.getElementById("panel-enabled");
 const quietMode = document.getElementById("quiet-mode");
 const debugMode = document.getElementById("debug-mode");
@@ -27,6 +29,7 @@ function setStatus(message) {
 
 function applyValues(values) {
   backendUrl.value = normalizeBackendUrl(values.irisBackendUrl);
+  accessToken.value = values.irisAccessToken || "";
   panelEnabled.checked = values.irisPanelEnabled !== false;
   quietMode.checked = Boolean(values.quietMode);
   debugMode.checked = Boolean(values.irisDebugMode);
@@ -43,6 +46,7 @@ form.addEventListener("submit", (event) => {
 
   const values = {
     irisBackendUrl: normalizeBackendUrl(backendUrl.value),
+    irisAccessToken: accessToken.value.trim(),
     irisPanelEnabled: panelEnabled.checked,
     quietMode: quietMode.checked,
     irisTheme: theme.value,

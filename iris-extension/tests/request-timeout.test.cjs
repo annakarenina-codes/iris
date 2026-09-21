@@ -8,7 +8,7 @@ const source = readFileSync(path.join(__dirname, '../src/background.js'), 'utf8'
 
 const DEADLINE_MS = 180000;
 
-function fixture(fetch, { token = null } = {}) {
+function fixture(fetch, { token = "" } = {}) {
   const deadlines = [];
   const calls = [];
   const listener = { addListener() {} };
@@ -32,15 +32,20 @@ function fixture(fetch, { token = null } = {}) {
     clearTimeout() {},
     chrome: {
       runtime: { onInstalled: listener, onStartup: listener, onMessage: listener },
-      contextMenus: { onClicked: listener }
+      contextMenus: { onClicked: listener },
+      // The token is kept in the browser rather than in the source, so the fixture has to
+      // answer for storage the way Chrome would.
+      storage: {
+        sync: {
+          async get(defaults) {
+            return { ...defaults, ...(token ? { irisAccessToken: token } : {}) };
+          }
+        }
+      }
     }
   });
 
-  const code = token === null
-    ? source
-    : source.replace('const IRIS_ACCESS_TOKEN = "";', `const IRIS_ACCESS_TOKEN = ${JSON.stringify(token)};`);
-
-  vm.runInContext(code, context);
+  vm.runInContext(source, context);
   return { context, deadlines, calls };
 }
 
@@ -58,7 +63,7 @@ test('text and image requests are given a 180 second deadline', async () => {
   }
 });
 
-test('no access token means no token header', async () => {
+test('no saved token means no token header', async () => {
   const { context, calls } = fixture(async () => ok());
   await vm.runInContext("postJson('http://localhost:5000/verify', {})", context);
 
@@ -66,7 +71,7 @@ test('no access token means no token header', async () => {
   assert.equal(calls[0].options.headers['Content-Type'], 'application/json');
 });
 
-test('a configured access token is sent with every request', async () => {
+test('a token saved in the browser is sent with every request', async () => {
   const { context, calls } = fixture(async () => ok(), { token: 'a-shared-secret' });
   await vm.runInContext("postJson('http://localhost:5000/verify', {})", context);
 

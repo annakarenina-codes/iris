@@ -5,7 +5,6 @@ const MENU_CHECK_IMAGE = "iris-check-image";
 // own extension ID, so chrome.storage.sync does not carry the address between them and every
 // laptop would otherwise have to be configured by hand.
 const IRIS_DEFAULT_BACKEND_URL = "http://127.0.0.1:5000"; // iris:backend-url
-const IRIS_ACCESS_TOKEN = ""; // iris:access-token
 
 // The slowest post measured took 195 seconds, so the deadline sits above that and below the
 // five minutes a hosting edge proxy usually allows. With no deadline at all a connection
@@ -25,6 +24,17 @@ function readSettings() {
     irisBackendUrl: IRIS_DEFAULT_BACKEND_URL,
     irisDebugMode: false
   });
+}
+
+// The token is typed into the options page and kept in the browser, never in a file. This
+// repository is public, and a token committed to it is a token anyone can spend.
+async function readAccessToken() {
+  try {
+    const stored = await chrome.storage.sync.get({ irisAccessToken: "" });
+    return String(stored.irisAccessToken || "").trim();
+  } catch (_error) {
+    return "";
+  }
 }
 
 function createContextMenus() {
@@ -101,6 +111,7 @@ async function withWorkerAwake(work) {
 }
 
 async function postJson(url, payload) {
+  const token = await readAccessToken();
   const controller = new AbortController();
   const timeoutId = REQUEST_TIMEOUT_MS > 0
     ? setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
@@ -109,8 +120,8 @@ async function postJson(url, payload) {
   try {
     const response = await fetch(url, {
       method: "POST",
-      headers: IRIS_ACCESS_TOKEN
-        ? { "Content-Type": "application/json", "X-IRIS-Token": IRIS_ACCESS_TOKEN }
+      headers: token
+        ? { "Content-Type": "application/json", "X-IRIS-Token": token }
         : { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
       signal: controller.signal
