@@ -31,7 +31,9 @@ RETRIEVAL_TARGETS = ['C04']
 PRIORITY = PASSED_ON_0918 + STEP3_TARGETS + RETRIEVAL_TARGETS
 REMAINING = ['A02', 'A03', 'A05', 'A06', 'A07', 'A08', 'A09', 'B01', 'B04', 'B05', 'B07', 'B08', 'B12',
              'B16', 'C06', 'C07', 'C08']
-ALL_CASES = PRIORITY + REMAINING
+# Reported from the deployed extension on 21 September; see reported-issues-20260921.
+REPORTED_0921 = ['D01', 'D02']
+ALL_CASES = PRIORITY + REMAINING + REPORTED_0921
 
 
 def read(path):

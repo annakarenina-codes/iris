@@ -209,12 +209,13 @@ def validate(folder, quiet=False):
 
 # ---------------------------------------------------------------- run
 
-def run(folder, only=None):
+def run(folder, only=None, out='results'):
     posts, ok = validate(folder, quiet=True)
     if not ok:
         print('Fix the errors above before running. Expected results must be written first.')
         return 1
-    results = folder / 'results'
+    # A rerun writes to its own folder, so the results that were scored are never overwritten.
+    results = folder / out
     results.mkdir(exist_ok=True)
     sys.path.insert(0, str(ROOT / 'iris-backend'))
     from dotenv import load_dotenv
@@ -489,6 +490,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('command', choices=['validate', 'run', 'review', 'score'])
     parser.add_argument('--posts', nargs='*', help='only these post IDs (run)')
+    parser.add_argument('--out', default='results',
+                        help='result folder for run, e.g. a rerun beside the scored results')
     parser.add_argument('--dir', default=str(HERE), help=argparse.SUPPRESS)
     args = parser.parse_args()
     folder = Path(args.dir)
@@ -496,7 +499,7 @@ def main():
         _, ok = validate(folder)
         return 0 if ok else 1
     if args.command == 'run':
-        return run(folder, args.posts)
+        return run(folder, args.posts, args.out)
     if args.command == 'review':
         write_review(folder)
         return 0
