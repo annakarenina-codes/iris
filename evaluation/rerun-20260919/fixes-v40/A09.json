@@ -1,0 +1,1027 @@
+{
+  "case_id": "A09",
+  "input_sha256": "6911f006b32cfe7659b891e3f6a657b79b359704bb024eb278db9b0de6b27888",
+  "started_utc": "2026-09-21T18:55:25.020249+00:00",
+  "http_status": 200,
+  "seconds": 33.139,
+  "trace_id": "3f4c3bceb16b48829515a4702b348ad9",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week8-own-search-v40",
+  "response": {
+    "verdict": "Not Found",
+    "message": "Retrieved passages support 0 of 1 factual components.",
+    "original_text": "Nananatili pa ring bagsak ang palitan ng piso kontra dolyar matapos magsara sa ₱62.513 = $1 ngayong Miyerkules, Setyembre 9.",
+    "translated_text": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+    "detected_language": "tagalog",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 1,
+    "claim_extraction_status": "ok",
+    "post_type": "fact_only",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_with_caution",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+        "normalized_claim": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "quote_translation": null,
+        "restored_quotations": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+              "status": "not_supported",
+              "citations": [],
+              "evidence_relation": "not_established",
+              "review_reason": "The passages confirm that the peso is at a record low of about 62.513 to the dollar and remains weak, but they do not specify the closing rate occurred on Wednesday, September 9, nor do they confirm the exact date of the occurrence. The claim's specific date is not established by the cited evidence.",
+              "context": {
+                "start": 0,
+                "end": 118,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "The exchange rate of the peso against the dollar",
+                      "start": 0,
+                      "end": 48
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "remains down",
+                      "start": 49,
+                      "end": 61
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "closing at ₱62.513 = $1",
+                      "start": 68,
+                      "end": 91
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "The exchange rate of the peso against the dollar remains down",
+                      "start": 0,
+                      "end": 61
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "closing at ₱62.513 = $1 on Wednesday, September 9.",
+                      "start": 68,
+                      "end": 118
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "on Wednesday, September 9.",
+                      "start": 92,
+                      "end": 118
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0,
+                  1
+                ],
+                "component_id": 0,
+                "assertion": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 118
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": false,
+              "qualifiers_preserved": false,
+              "contradicted": false,
+              "same_occurrence": false,
+              "missing_kind": "date",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0,
+                1
+              ],
+              "reason": "The passages confirm that the peso is at a record low of about 62.513 to the dollar and remains weak, but they do not specify the closing rate occurred on Wednesday, September 9, nor do they confirm the exact date of the occurrence. The claim's specific date is not established by the cited evidence.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+              "sources": {
+                "https://www.philstar.com/business/2026/09/11/2555390/whats-real-score": {
+                  "status": "matched",
+                  "passage_ids": [
+                    10,
+                    51
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/business/2026/09/11/2555390/whats-real-score",
+                      "quote": "The Philippine peso (vs US dollar) is about 62.513, a record all-time low."
+                    },
+                    {
+                      "url": "https://www.philstar.com/business/2026/09/11/2555390/whats-real-score",
+                      "quote": "With the peso hovering near its historic lows of 62+, inflated logistics and grocery costs will mar our holiday season."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        9
+                      ]
+                    ],
+                    "missing_years": []
+                  },
+                  "time_unconfirmed": true
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14",
+          "refutation_check": {
+            "denied": false,
+            "same_occurrence": false,
+            "component_ids": [],
+            "passage_ids": [],
+            "reason": "None of the supplied passages from VERA Files directly address or deny the claim that the peso closed at ₱62.513 = $1 on Wednesday, September 9. The passages either discuss other exchange rates, different dates, or general context about inflation and exchange rates, but do not specifically refute this claim or state that it did not happen."
+          }
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-post-revised-history-books-against-mar",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-duterte-not-coming-home-icc-orders-his-continued-detention",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-pahayag-ng-press-secretary-na-ang-inflation-ay-hindi-dahil-sa-anumang-mga-lokal-na-kadahilanan-nakaliligaw",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/business/philippine-peso-us-dollar-exchange-record-low-explainer/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/analysis-problem-philippine-peso-united-states-dollar-exchange-rate-now-57/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/business/philippine-peso-us-dollar-exchange-rate-september-2-2022/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/business/2026/9/2/peso-hits-new-all-time-low-of-p62-65-vs-dollar-during-intraday-trading-1041",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/business/2026/9/1/peso-sinks-to-new-historic-low-of-p62-40-vs-dollar-1640",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/business/2026/9/7/peso-hits-new-low-of-p62-77-vs-dollar-on-september-7-intraday-trading-1227",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/money/economy/1000911/peso-hits-4th-straight-record-low-at-p62-565-against-us-dollar/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/talakayan/845117/sino-ang-panalo-at-talo-sa-paghina-ng-piso-kontra-dolyar/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/money/economy/1002735/peso-psei-climb-after-fed-rate-hike/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://business.inquirer.net/608019/peso-falls-to-62-per-dollar-level",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://radyo.inquirer.net/73315/palitan-ng-piso-kontra-dolyar-lalong-dumausdos",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://business.inquirer.net/609949/shaky-peso-wobbles-to-new-record-low",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/business/2026/09/11/2555390/whats-real-score",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/business/2026/09/09/2554901/peso-plunges-new-record-low-vs-dollar",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/bansa/2022/06/22/2190197/halaga-ng-piso-vs-dolyar-pinakamababa-sa-mahigit-16-taon",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/11/peso-hits-new-record-low-of-6268-on-oil-surge-us-rate-fears",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2022/09/16/halaga-ng-piso-kontra-dolyar-bumagsak-ulit/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/record-low-peso-faces-more-pressure-as-oil-el-nino-strain-philippine-external-balances",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1260475",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282834",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1271435",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/luzon/cordilleras-inflation-rate-shows-slight-increase-in-september/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/mababang-presyo-sa-merkado-mararamdaman-kung-tuloy-tuloy-ang-pagbagal-ng-inflation/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/rise-in-september-inflation-rate-within-projected-range-palace/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/peso-hits-fresh-all-time-low-of-peso6175-vs-us-dollar",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/peso-hits-record-low-at-peso6205-against-us-dollar",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/peso-weakness-oil-prices-deliver-double-whammy-economist",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/peso-hits-fresh-record-low-61-847-to-us-dollar",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/psg-secret-vaccination-what-do-executive-privilege-compassionate-special-permit-mean",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/full-text-and-video-flooded-gates-of-corruption",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-post-revised-history-books-against-mar",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-duterte-not-coming-home-icc-orders-his-continued-detention",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-pahayag-ng-press-secretary-na-ang-inflation-ay-hindi-dahil-sa-anumang-mga-lokal-na-kadahilanan-nakaliligaw",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/business/philippine-peso-us-dollar-exchange-record-low-explainer/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/analysis-problem-philippine-peso-united-states-dollar-exchange-rate-now-57/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/business/philippine-peso-us-dollar-exchange-rate-september-2-2022/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/business/2026/9/2/peso-hits-new-all-time-low-of-p62-65-vs-dollar-during-intraday-trading-1041",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/business/2026/9/1/peso-sinks-to-new-historic-low-of-p62-40-vs-dollar-1640",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/business/2026/9/7/peso-hits-new-low-of-p62-77-vs-dollar-on-september-7-intraday-trading-1227",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/money/economy/1000911/peso-hits-4th-straight-record-low-at-p62-565-against-us-dollar/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/balitambayan/talakayan/845117/sino-ang-panalo-at-talo-sa-paghina-ng-piso-kontra-dolyar/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/money/economy/1002735/peso-psei-climb-after-fed-rate-hike/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://business.inquirer.net/608019/peso-falls-to-62-per-dollar-level",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://radyo.inquirer.net/73315/palitan-ng-piso-kontra-dolyar-lalong-dumausdos",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://business.inquirer.net/609949/shaky-peso-wobbles-to-new-record-low",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/business/2026/09/11/2555390/whats-real-score",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/business/2026/09/09/2554901/peso-plunges-new-record-low-vs-dollar",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/bansa/2022/06/22/2190197/halaga-ng-piso-vs-dolyar-pinakamababa-sa-mahigit-16-taon",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/11/peso-hits-new-record-low-of-6268-on-oil-surge-us-rate-fears",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://balita.mb.com.ph/2022/09/16/halaga-ng-piso-kontra-dolyar-bumagsak-ulit/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/record-low-peso-faces-more-pressure-as-oil-el-nino-strain-philippine-external-balances",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1260475",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282834",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1271435",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/luzon/cordilleras-inflation-rate-shows-slight-increase-in-september/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/mababang-presyo-sa-merkado-mararamdaman-kung-tuloy-tuloy-ang-pagbagal-ng-inflation/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/rise-in-september-inflation-rate-within-projected-range-palace/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/peso-hits-fresh-all-time-low-of-peso6175-vs-us-dollar",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/peso-hits-record-low-at-peso6205-against-us-dollar",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/peso-weakness-oil-prices-deliver-double-whammy-economist",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/peso-hits-fresh-record-low-61-847-to-us-dollar",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/psg-secret-vaccination-what-do-executive-privilege-compassionate-special-permit-mean",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/full-text-and-video-flooded-gates-of-corruption",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_run",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9."
+        },
+        "scoring_claim": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+        "search_query": "peso dollar exchange rate September 9 62.513",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "shared_evidence": {
+          "offered": 0,
+          "eligible": 0,
+          "urls": []
+        },
+        "risk_tags": [],
+        "claim_hash": "d79e3ef79c77321079728bda2616802559962af0deddcbd1ec59dbdfcb09f196",
+        "cache_version": "week8-own-search-v40",
+        "verdict": "Not Found",
+        "message": "Retrieved passages support 0 of 1 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 116,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": false,
+            "status": "not_run",
+            "error": null,
+            "result": null
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "fact_only",
+        "confidence": 0.9,
+        "ambiguity_score": 0.9,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "verification_text": "Nananatili pa ring bagsak ang palitan ng piso kontra dolyar matapos magsara sa ₱62.513 = $1 ngayong Miyerkules, Setyembre 9.",
+        "normalized_verification_text": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Nananatili pa ring bagsak ang palitan ng piso kontra dolyar matapos magsara sa ₱62.513 = $1 ngayong Miyerkules, Setyembre 9.",
+            "translated_text": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+            "scores": {
+              "factual_claim": 0.32,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.9,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.02,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review",
+              "openai_factual_claim_advice"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "factual_claim",
+                "top_label_score": 0.9,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "checkable_exchange_rate",
+                  "reported_date"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "This segment asserts a factual event about the peso-dollar exchange rate and its closing value on a specific date."
+          }
+        ],
+        "grouping": [],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+            "normalized_claim": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "peso dollar exchange rate September 9",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9."
+              }
+            ],
+            "evidence_context": "The exchange rate of the peso against the dollar remains down after closing at ₱62.513 = $1 on Wednesday, September 9.",
+            "from_image": false,
+            "original_language_query": "Nananatili pa ring bagsak ang palitan ng piso kontra dolyar matapos magsara sa ₱62.513 = $1 ngayong Miyerkules, Setyembre 9.",
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "post_evidence_pool": {
+        "articles": 0,
+        "claims_searched": 1,
+        "found_by_several_claims": 0
+      },
+      "timings": {
+        "request_id": "3f4c3bceb16b48829515a4702b348ad9",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 1.5095,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 1.7862,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0003,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "text.coverage_scope",
+            "duration_seconds": 0.0008,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 5.1583,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0008,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 10.5592,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0916,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_prepare",
+            "duration_seconds": 2.1184,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0023,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 11.6219,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 24.6602,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 33.1253,
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    "corroboration_count": 0,
+    "primary_evidence": null,
+    "supporting_sources": [],
+    "search_status": "ok",
+    "total_search_results": 116,
+    "searched_articles": 33,
+    "extracted_articles": 33,
+    "source_summary": [
+      {
+        "source": "VERA Files",
+        "results_found": 10,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Rappler",
+        "results_found": 12,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "ABS-CBN News",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "GMA News",
+        "results_found": 12,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Daily Inquirer",
+        "results_found": 12,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Star",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Manila Bulletin",
+        "results_found": 12,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine News Agency",
+        "results_found": 14,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Information Agency",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "DZRH News",
+        "results_found": 10,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "OneNews.PH",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      }
+    ],
+    "sources": [],
+    "evidence_sources": [],
+    "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim."
+  }
+}
