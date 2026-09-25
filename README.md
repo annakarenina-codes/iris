@@ -2,6 +2,31 @@
 
 IRIS, or Intelligent Real-Time Information Scanner, is organized here as one monorepo with separate projects for the backend, Chrome extension frontend, and Android app mockup.
 
+## Recent changes
+
+### Version control (this branch, `master`)
+
+- Initialized the monorepo as a Git repository with the full baseline committed and pushed to GitHub.
+- Commits are authored as **Miaowty**; `iris-android` and `iris-extension` are tracked as embedded repositories.
+
+### `iris-extension` — design token refresh and history detail
+
+- Introduced shared design tokens for radii, easing, and motion (`--iris-r-*`, `--iris-ease`, `--iris-fast`, `--iris-med`) so popup, options, and overlay surfaces follow one visual rhythm.
+- Reworked the brand gradient and layered shadows for better contrast past the gradient midpoint.
+- Dark theme now stays on the brand: surfaces are violet-tinted steps instead of flat gray, so light and dark read as one product.
+- History detail renders the full claim text in a blockquote — rows clamp to two lines, so the detail view is the only place the complete statement is readable.
+- Rebuilt `dist/` artifacts and refreshed interaction-test screenshots.
+
+### `iris-android` — dark theme, shared rendering, and tests
+
+- **Dark theme**: `IrisUi.applyTheme()` swaps a mutable palette at every creation boundary (Activity `onCreate`, overlay build); `values-night/styles.xml` provides night resources and the system night setting is respected by default.
+- The overlay repaints the theme on show and on configuration change instead of restarting the service, so a theme flip can never strand the bubble.
+- **Shared result rendering**: extracted `ResultRenderer` (claim panel, navigator, error card) out of `ResultActivity`, which now delegates instead of duplicating markup.
+- **History detail**: new `HistoryDetail` plus `OpenDetailTracker`, so only one recent-check detail can be expanded at a time and the panel can reposition for it.
+- **Unit tests**: JUnit 4 + Robolectric setup with `HistoryDetailTest` and `IrisResultDataTest`.
+- **Security hardening**: cleartext traffic is now denied globally and allowed only for emulator/localhost (`10.0.2.2`, `127.0.0.1`, `localhost`); `usesCleartextTraffic` removed from the manifest.
+- Added a violet keyboard focus ring for text fields, which previously had no visible focus state.
+
 ## Structure
 
 ```text
