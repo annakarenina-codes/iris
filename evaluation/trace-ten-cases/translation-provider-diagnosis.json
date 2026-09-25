@@ -1,0 +1,49 @@
+{
+  "library": "1.11.4",
+  "probes": [
+    {
+      "label": "short_auto",
+      "source": "auto",
+      "requests": [
+        {
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "page_title": "Google Translate",
+          "candidate_found": true,
+          "candidate_is_service_error": true
+        }
+      ],
+      "output": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+      "accepted": false
+    },
+    {
+      "label": "peso_auto",
+      "source": "auto",
+      "requests": [
+        {
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "page_title": "Google Translate",
+          "candidate_found": true,
+          "candidate_is_service_error": true
+        }
+      ],
+      "output": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+      "accepted": false
+    },
+    {
+      "label": "peso_explicit",
+      "source": "tl",
+      "requests": [
+        {
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "page_title": "Google Translate",
+          "candidate_found": false,
+          "candidate_is_service_error": false
+        }
+      ],
+      "error_type": "TranslationNotFound"
+    }
+  ]
+}

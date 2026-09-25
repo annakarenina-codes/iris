@@ -1,0 +1,66 @@
+{
+  "case": 1,
+  "trace_id": "87d7222cb55346639b6153dc6ed6d7f1",
+  "scope": "language, translation and profiling only; no final verdict test",
+  "started_utc": "2026-09-12T19:53:22.394280+00:00",
+  "original_text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+  "language": "english",
+  "translated_text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+  "profile": {
+    "status": "ok",
+    "method": "local_rules",
+    "error": null,
+    "post_type": "fact_only",
+    "confidence": 0.64,
+    "ambiguity_score": 0.0,
+    "ambiguity_reasons": [
+      "imaginary_qualifier_needs_context"
+    ],
+    "contains_factual_claims": true,
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "eligible_for_verification": true,
+    "recommended_route": "proceed_with_caution",
+    "verification_text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+    "normalized_verification_text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+    "segments": [
+      {
+        "segment_id": "s1",
+        "text": "The Philippines now owns China according to DAILY TRIBUNE’s own imaginary 9-dash line.",
+        "translated_text": null,
+        "scores": {
+          "factual_claim": 0.64,
+          "opinion": 0.05,
+          "forecast_or_projection_detected": 0.05,
+          "quote": 0.25,
+          "satire_or_humor": 0.05,
+          "call_to_action": 0.05,
+          "contextual_background": 0.05,
+          "unclear": 0.05
+        },
+        "top_label": "factual_claim",
+        "top_label_score": 0.64,
+        "second_label": "quote",
+        "second_label_score": 0.25,
+        "score_gap": 0.39,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "reason_codes": [
+          "imaginary_qualifier_needs_context"
+        ],
+        "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals."
+      }
+    ],
+    "ignored_segments": [],
+    "user_notification": null,
+    "openai_profile": {
+      "used": false,
+      "status": "not_needed",
+      "error": null,
+      "result": null
+    }
+  }
+}

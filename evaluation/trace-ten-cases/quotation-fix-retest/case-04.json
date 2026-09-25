@@ -1,0 +1,80 @@
+{
+  "case": 4,
+  "trace_id": "6ebdb9e91d4d4c4fa429eb9d5fbaddc2",
+  "scope": "language, translation and profiling only; no final verdict test",
+  "started_utc": "2026-09-12T20:03:54.043813+00:00",
+  "original_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn’t mean they’re co-parenting their daughter, Victoria Hope",
+  "language": "english",
+  "translated_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn’t mean they’re co-parenting their daughter, Victoria Hope",
+  "profile": {
+    "status": "ok",
+    "method": "local_rules_with_openai_advice",
+    "error": null,
+    "post_type": "unclear",
+    "confidence": 0.3,
+    "ambiguity_score": 0.95,
+    "ambiguity_reasons": [
+      "low_classifier_confidence",
+      "needs_claim_extraction_review"
+    ],
+    "contains_factual_claims": true,
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "eligible_for_verification": true,
+    "recommended_route": "proceed_with_caution",
+    "verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn’t mean they’re co-parenting their daughter, Victoria Hope",
+    "normalized_verification_text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn’t mean they’re co-parenting their daughter, Victoria Hope",
+    "segments": [
+      {
+        "segment_id": "s1",
+        "text": "Bea Borres and her ex, Meray Yamada, are back in the same frame, but Bea made it clear that their reunion doesn’t mean they’re co-parenting their daughter, Victoria Hope",
+        "translated_text": null,
+        "scores": {
+          "factual_claim": 0.3,
+          "opinion": 0.05,
+          "forecast_or_projection_detected": 0.05,
+          "quote": 0.05,
+          "satire_or_humor": 0.05,
+          "call_to_action": 0.05,
+          "contextual_background": 0.05,
+          "unclear": 0.3
+        },
+        "top_label": "unclear",
+        "top_label_score": 0.3,
+        "second_label": "unclear",
+        "second_label_score": 0.3,
+        "score_gap": 0.0,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "reason_codes": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review"
+        ],
+        "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals."
+      }
+    ],
+    "ignored_segments": [],
+    "user_notification": null,
+    "openai_profile": {
+      "used": true,
+      "status": "ok",
+      "error": null,
+      "result": {
+        "segments": [
+          {
+            "segment_id": "s1",
+            "top_label": "unclear",
+            "top_label_score": 0.5,
+            "eligible_for_verification": false,
+            "reason_codes": [
+              "no_checkable_claims"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

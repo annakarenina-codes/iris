@@ -1,0 +1,1089 @@
+[
+  {
+    "id": "A01",
+    "topic": "Imaginary nine-dash-line ownership",
+    "route": "caution",
+    "expected_behavior": "Preserve imaginary/satirical framing; do not assert literal ownership or invent missing image context.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "screening"
+    ],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "Imaginary framing did not become a literal ownership verdict; no claims were submitted for evidence review. Pass is limited to this routing behavior.",
+    "http": 200,
+    "seconds": 6.934,
+    "trace_id": "8dd9cd74946e46259e2897b925dfa468",
+    "capture": "complete",
+    "known_references": [],
+    "observed_verdicts": [
+      "No Checkable Claims"
+    ]
+  },
+  {
+    "id": "A02",
+    "topic": "Padilla-Wamil hearing exchanges",
+    "route": "verify",
+    "expected_behavior": "Preserve full attributed questions and replies, BARMM/terrorism, AOM/funds, evaluation correction, agent names and classified answer. Merge repeated utterances.",
+    "reference_ids": [
+      "S01"
+    ],
+    "historical_issue_categories": [
+      "translation",
+      "screening",
+      "claim_extraction",
+      "evidence_review"
+    ],
+    "result": "Failed",
+    "stage": "attribution",
+    "contributors": [
+      "component_context"
+    ],
+    "reason": "The correct ABS-CBN article was retrieved and extracted (491 words), but the Robinhood Padilla speaker anchor rejected Robin Padilla. Claim 2 also contains a detached recruitment component. This is not a missing-search result.",
+    "http": 200,
+    "seconds": 137.236,
+    "trace_id": "18ebdda0a7f847158d21b91db2ed7cd0",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "S01",
+        "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+        "in_recorded_search": true,
+        "extracted_in_run": true,
+        "credited": true,
+        "direct_status": "extracted",
+        "direct_words": 491,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Not Found",
+      "Not Found",
+      "Not Found",
+      "Verified",
+      "Not Found",
+      "Verified",
+      "Not Found"
+    ]
+  },
+  {
+    "id": "A03",
+    "topic": "Kent Carpenter biography and killing",
+    "route": "verify",
+    "expected_behavior": "Cover death, companion, investigation, police quote, 1975 work, written/oral testimony, tribunal ruling, Verde research, UNESCO advocacy and tributes. Exclude eulogy. Retain conflicting incident accounts and dates.",
+    "reference_ids": [
+      "S03",
+      "S04",
+      "S17",
+      "S18"
+    ],
+    "historical_issue_categories": [
+      "claim_extraction",
+      "evidence_review",
+      "technical"
+    ],
+    "result": "Failed",
+    "stage": "claim_extraction",
+    "contributors": [
+      "technical"
+    ],
+    "reason": "The extraction coverage ledger excludes UNESCO advocacy as evaluative, although advocacy is a checkable activity. The run then stops with review_rate_limited (HTTP 503); no final accuracy verdict is available. Summary and detailed death assertions remain separate.",
+    "http": 503,
+    "seconds": 125.468,
+    "trace_id": "41aee5e0d27648e6a55b185b032403bf",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "S03",
+        "url": "https://www.philstar.com/headlines/2026/07/15/2542349/universities-green-groups-demand-justice-slain-marine-biologist-kent-carpenter",
+        "in_recorded_search": false,
+        "extracted_in_run": false,
+        "credited": false,
+        "direct_status": "extracted",
+        "direct_words": 895,
+        "direct_error": null
+      },
+      {
+        "reference": "S04",
+        "url": "https://www.philstar.com/headlines/2026/07/15/2542350/robbery-eyed-american-scientists-killing-after-home-ransacked",
+        "in_recorded_search": true,
+        "extracted_in_run": true,
+        "credited": false,
+        "direct_status": "extracted",
+        "direct_words": 559,
+        "direct_error": null
+      },
+      {
+        "reference": "S17",
+        "url": "https://www.philstar.com/headlines/2016/07/12/1602113/verdict-philippines-wins-arbitration-case-vs-china/amp/",
+        "in_recorded_search": false,
+        "extracted_in_run": false,
+        "credited": false,
+        "direct_status": "extracted",
+        "direct_words": 547,
+        "direct_error": null
+      },
+      {
+        "reference": "S18",
+        "url": "https://www.gmanetwork.com/news/topstories/regions/994769/american-marine-biologist-shooting-negros/story/",
+        "in_recorded_search": true,
+        "extracted_in_run": true,
+        "credited": false,
+        "direct_status": "extracted",
+        "direct_words": 289,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      null
+    ]
+  },
+  {
+    "id": "A04",
+    "topic": "Bea Borres reunion and co-parenting denial",
+    "route": "verify",
+    "expected_behavior": "Retain reunion and scope of attributed denial. Not co-parenting as a couple is narrower than no co-parenting at all.",
+    "reference_ids": [
+      "S05"
+    ],
+    "historical_issue_categories": [
+      "screening"
+    ],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "Both reunion and the attributed co-parenting denial have direct ABS-CBN passages. The denial is labeled as attribution, not independent proof about private family arrangements.",
+    "http": 200,
+    "seconds": 50.278,
+    "trace_id": "886e77c7a5564d74835eeb5856e15f75",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "S05",
+        "url": "https://www.gmanetwork.com/entertainment/showbiznews/bea-borres-reacts-to-criticism-over-video-reunion-with-ex-boyfriend-meray-yamada/138114/",
+        "in_recorded_search": true,
+        "extracted_in_run": true,
+        "credited": true,
+        "direct_status": "extracted",
+        "direct_words": 317,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Verified",
+      "Verified"
+    ]
+  },
+  {
+    "id": "A05",
+    "topic": "Padilla Senate position and Duterte bail",
+    "route": "verify",
+    "expected_behavior": "Retain Article 11 Section 2 attribution, impeachment statement, complete request to Senate with recipient, and bail amount/count/people. No opinion-to-fact conversion.",
+    "reference_ids": [
+      "S15"
+    ],
+    "historical_issue_categories": [
+      "claim_extraction",
+      "evidence_review"
+    ],
+    "result": "Failed",
+    "stage": "technical",
+    "contributors": [],
+    "reason": "HTTP 503 review_rate_limited prevents a completed result. The saved extraction now includes both quoted statements and the bail fact; this improves coverage but does not prove their verdicts correct.",
+    "http": 503,
+    "seconds": 163.066,
+    "trace_id": "6fcfba9d73154f37b88e9402f1a0c3be",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "S15",
+        "url": "https://newsinfo.inquirer.net/2300646/padilla-why-not-extend-presidential-immunity-from-suit-to-vp-duterte",
+        "in_recorded_search": false,
+        "extracted_in_run": false,
+        "credited": false,
+        "direct_status": "error",
+        "direct_words": 0,
+        "direct_error": "Could not download article: 403 Client Error: Forbidden for url: https://newsinfo.inquirer.net/2300646/padilla-why-not-extend-presidential-immunity-from-suit-to-vp-duterte"
+      }
+    ],
+    "observed_verdicts": [
+      null
+    ]
+  },
+  {
+    "id": "A06",
+    "topic": "EDSA rehabilitation and Sonza criticism",
+    "route": "verify",
+    "expected_behavior": "Keep damage, locations, project start, estimated P1.2 billion, Sonza criticism and time-bounded no-response assertion. Do not conflate project budgets or invent as-of date.",
+    "reference_ids": [
+      "S07",
+      "S22"
+    ],
+    "historical_issue_categories": [
+      "translation",
+      "screening"
+    ],
+    "result": "Failed",
+    "stage": "evidence_review",
+    "contributors": [
+      "component_context"
+    ],
+    "reason": "The affected-area claim is Verified using December rehabilitation schedules, which establish where work began, not which sections later developed damage. The damage context was lost. Sonza attribution remains unconfirmed, not disproven.",
+    "http": 200,
+    "seconds": 149.681,
+    "trace_id": "8827cc9333844183a09bd5a5bf9ecbfd",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "S07",
+        "url": "https://tribune.net.ph/2026/08/10/p6-b-edsa-rehab-marred-by-potholes",
+        "in_recorded_search": false,
+        "extracted_in_run": false,
+        "credited": false,
+        "direct_status": "skipped",
+        "direct_words": 0,
+        "direct_error": "unapproved_publisher"
+      }
+    ],
+    "observed_verdicts": [
+      "Partially Verified",
+      "Verified",
+      "Verified",
+      "Not Found",
+      "Not Found",
+      "Not Found"
+    ]
+  },
+  {
+    "id": "A07",
+    "topic": "Padilla medicines and terrorism",
+    "route": "verify",
+    "expected_behavior": "Keep the entire assertion and separately assess background/exposure, medicines, terrorism and claimed funds rationale. Security rationale alone does not prove medicines rationale.",
+    "reference_ids": [
+      "S01"
+    ],
+    "historical_issue_categories": [
+      "evidence_review",
+      "technical"
+    ],
+    "result": "Failed",
+    "stage": "claim_extraction",
+    "contributors": [
+      "component_context"
+    ],
+    "reason": "The entire assertion appears as one claim and its funds rationale appears again as a second claim. Correct ABS-CBN evidence supports several components; the rationale remains unconfirmed. Partial support itself is not the failure; duplicated coverage is.",
+    "http": 200,
+    "seconds": 61.466,
+    "trace_id": "b06b89ddb36246c29b9d111fc5241283",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "S01",
+        "url": "https://www.abs-cbn.com/news/nation/2026/8/5/padilla-tests-auditor-on-knowledge-of-terrorism-security-threats-1501",
+        "in_recorded_search": true,
+        "extracted_in_run": true,
+        "credited": true,
+        "direct_status": "extracted",
+        "direct_words": 491,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Partially Verified",
+      "Not Found"
+    ]
+  },
+  {
+    "id": "A08",
+    "topic": "Samaniego video game interview",
+    "route": "verify",
+    "expected_behavior": "Preserve speaker, DZRH Special on Saturday July 4, quotations, online-contacts argument, more than 20 games, ratings argument and hypothetical cinema analogy. Other interview dates/stations are not the same event.",
+    "reference_ids": [
+      "S08"
+    ],
+    "historical_issue_categories": [
+      "translation",
+      "screening",
+      "claim_extraction",
+      "evidence_review"
+    ],
+    "result": "Cannot yet judge",
+    "stage": null,
+    "contributors": [],
+    "reason": "All eight claims are Not Found. Existing related coverage does not establish the exact DZRH/program/date/quotation combination. Do not relax attribution merely to force a positive verdict; exact-event reference remains a gap.",
+    "http": 200,
+    "seconds": 101.333,
+    "trace_id": "e803ed6ac434423b9ae2dc2a3c2f2fc4",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "S08",
+        "url": "https://www.philstar.com/headlines/2026/06/26/2537982/gorebox-developer-rejects-senate-invitation-tacloban-school-shooting-probe",
+        "in_recorded_search": false,
+        "extracted_in_run": false,
+        "credited": false,
+        "direct_status": "extracted",
+        "direct_words": 620,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Not Found",
+      "Not Found",
+      "Not Found",
+      "Not Found",
+      "Not Found",
+      "Not Found",
+      "Not Found",
+      "Not Found"
+    ]
+  },
+  {
+    "id": "A09",
+    "topic": "Peso closing exchange rate",
+    "route": "verify",
+    "expected_behavior": "Preserve PHP62.513 per USD1, Wednesday September 9, and distinguish low level from day-on-day depreciation.",
+    "reference_ids": [
+      "S20"
+    ],
+    "historical_issue_categories": [
+      "translation",
+      "screening"
+    ],
+    "result": "Failed",
+    "stage": "evidence_review",
+    "contributors": [
+      "article_extraction"
+    ],
+    "reason": "The partial verdict credits the direction of movement from an article about the previous session (62.625), while the asserted September 9 close is 62.513. Session/date context must stay attached. The known rate reference extracts only 43 words, an additional extraction limitation.",
+    "http": 200,
+    "seconds": 29.597,
+    "trace_id": "69bbd986147d43989f5f9e4807c4c95d",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "S20",
+        "url": "https://www.philstar.com/other-sections/forex-stocks/2026/09/09/2555147/162513",
+        "in_recorded_search": false,
+        "extracted_in_run": false,
+        "credited": false,
+        "direct_status": "extracted",
+        "direct_words": 43,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Partially Verified"
+    ]
+  },
+  {
+    "id": "A10",
+    "topic": "Ten National Artists",
+    "route": "verify",
+    "expected_behavior": "Retain announcement of ten artists and award description. Do not discard a documented announcement merely because recognition is forthcoming.",
+    "reference_ids": [
+      "S11",
+      "S12"
+    ],
+    "historical_issue_categories": [
+      "screening"
+    ],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "The ABS-CBN Lifestyle article directly supports ten new National Artists and the award description. This confirms the expanded publisher section is usable in this run.",
+    "http": 200,
+    "seconds": 25.797,
+    "trace_id": "1881304de2a5431e86b247c401395a6b",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "S11",
+        "url": "https://www.abs-cbn.com/lifestyle/people-culture-events/2026/9/9/ten-new-national-artists-named-2117",
+        "in_recorded_search": true,
+        "extracted_in_run": true,
+        "credited": true,
+        "direct_status": "extracted",
+        "direct_words": 144,
+        "direct_error": null
+      },
+      {
+        "reference": "S12",
+        "url": "https://www.philstar.com/lifestyle/2026/09/10/2555313/bing-lao-nicanor-tiongson-among-10-new-national-artists/amp/",
+        "in_recorded_search": false,
+        "extracted_in_run": false,
+        "credited": false,
+        "direct_status": "extracted",
+        "direct_words": 264,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Verified"
+    ]
+  },
+  {
+    "id": "B01",
+    "topic": "Perez death investigation / NBI Matibag",
+    "route": "verify",
+    "expected_behavior": "Keep reported death, investigation and named Matibag utterances tied to this death. Reporter credit is not a source condition. Reject unrelated NBI investigations.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "claim_extraction",
+      "attribution",
+      "evidence_review"
+    ],
+    "result": "Cannot yet judge",
+    "stage": null,
+    "contributors": [],
+    "reason": "Two Perez/mother claims have relevant Philstar passages. Matibag's case-specific announcement remains Not Found, correctly avoiding unrelated NBI investigations. Full-case pass requires a reference for the Matibag statement.",
+    "http": 200,
+    "seconds": 72.616,
+    "trace_id": "d00f406c0d0a43658f9152b6ee598be2",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Verified",
+      "Verified",
+      "Not Found"
+    ]
+  },
+  {
+    "id": "B02",
+    "topic": "Palace conviction threshold",
+    "route": "verify",
+    "expected_behavior": "Verify the Palace statement on the conviction threshold; normalize Malacanang typography without weakening the specific assertion.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "attribution"
+    ],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "Malacanang's hands-off position on the conviction vote threshold is directly supported by retrieved ABS-CBN and Philstar passages; the earlier attribution mismatch is not reproduced.",
+    "http": 200,
+    "seconds": 31.515,
+    "trace_id": "33f4b9f1aef84f7a8f7d5fbd453b69df",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Verified"
+    ]
+  },
+  {
+    "id": "B03",
+    "topic": "Palace advice on confidential operations",
+    "route": "verify",
+    "expected_behavior": "Keep the agency advice and Remulla reported plan with attribution. Distinguish announcement from completed operation.",
+    "reference_ids": [],
+    "historical_issue_categories": [],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "Evidence supports Palace advice to DILG and that Remulla announced the asylum denial. The latter is an attributed announcement, not proof that the disputed denial actually occurred.",
+    "http": 200,
+    "seconds": 56.327,
+    "trace_id": "7abc3c29077545669728d6d32032624a",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Verified",
+      "Verified"
+    ]
+  },
+  {
+    "id": "B04",
+    "topic": "ICC second detention review",
+    "route": "verify",
+    "expected_behavior": "Keep second review, detention decision and court reasons, pending fitness decision, and first appearance date. Preserve reporting time and no invented verdict on technical failure.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "technical"
+    ],
+    "result": "Failed",
+    "stage": "attribution",
+    "contributors": [],
+    "reason": "The expert-panel detention quotation is assigned a null speaker with role judges, then every article is rejected for missing speaker, including the relevant GMA and Philstar reports. Other court quotations were successfully reviewed.",
+    "http": 200,
+    "seconds": 173.702,
+    "trace_id": "9533b221447042b39829a9b503bcbe5d",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Verified",
+      "Verified",
+      "Verified",
+      "Verified",
+      "Not Found",
+      "Verified",
+      "Not Found"
+    ]
+  },
+  {
+    "id": "B05",
+    "topic": "Arrest after shooting ex-partner new companion",
+    "route": "verify",
+    "expected_behavior": "Keep victim relationship, online-taunt motive and arrest as one incident. Do not accept a generic arrest from another shooting.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "evidence_review"
+    ],
+    "result": "Failed",
+    "stage": "evidence_review",
+    "contributors": [
+      "component_context"
+    ],
+    "reason": "The reviewer explicitly recognizes a different victim/motive, but credits the detached component arrested using that different shooting. The resulting Partially Verified is unsafe cross-event support.",
+    "http": 200,
+    "seconds": 37.531,
+    "trace_id": "38ec7742fb634fa4bc90096702b5c4df",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Partially Verified"
+    ]
+  },
+  {
+    "id": "B06",
+    "topic": "Prediction about senator-judges motives",
+    "route": "stop",
+    "expected_behavior": "Treat predicted bias/public mood and hoped-for justice as commentary, not a documented voting decision.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "screening"
+    ],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "The political prediction/opinion produces no checkable claims and no search, consistent with the expected routing.",
+    "http": 200,
+    "seconds": 7.299,
+    "trace_id": "71fab88197744f36807abf7bf86e7b43",
+    "capture": "complete",
+    "known_references": [],
+    "observed_verdicts": [
+      "No Checkable Claims"
+    ]
+  },
+  {
+    "id": "B07",
+    "topic": "Vote wisely civic appeal",
+    "route": "stop",
+    "expected_behavior": "Under the stated news-verification scope, generic advocacy/hypothetical hiring analogies are not concrete reported events.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "screening",
+      "claim_extraction"
+    ],
+    "result": "Failed",
+    "stage": "screening",
+    "contributors": [
+      "claim_extraction",
+      "evidence_review"
+    ],
+    "reason": "Generic vote-wisely advocacy becomes six claims and consumes roughly four minutes. One value-laden consequence statement is Verified using vote-buying commentary. Opinion agreement is not factual verification.",
+    "http": 200,
+    "seconds": 243.977,
+    "trace_id": "99962408f55f470ab94002cf7e7a8de9",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Not Found",
+      "Not Found",
+      "Not Found",
+      "Not Found",
+      "Verified",
+      "Not Found"
+    ]
+  },
+  {
+    "id": "B08",
+    "topic": "Solar boy nickname",
+    "route": "caution",
+    "expected_behavior": "Do not resolve the nickname by guessing a formal name. Evaluative anonymous hearsay must not gain an invented speaker.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "claim_extraction",
+      "attribution"
+    ],
+    "result": "Cannot yet judge",
+    "stage": null,
+    "contributors": [],
+    "reason": "The unresolved nickname produces Not Found. No formal identity should be guessed. This is consistent with the accepted limitation, but cannot establish the underlying statement's truth.",
+    "http": 200,
+    "seconds": 18.626,
+    "trace_id": "3b76a3338add41c8b39a88f30bcece13",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Not Found"
+    ]
+  },
+  {
+    "id": "B09",
+    "topic": "Rhetorical mugshot questions",
+    "route": "stop",
+    "expected_behavior": "Do not invent an identified individual, detention event or missing photograph from this ambiguous rhetorical input.",
+    "reference_ids": [],
+    "historical_issue_categories": [],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "Rhetorical mugshot commentary stops without invented factual claims or unnecessary search.",
+    "http": 200,
+    "seconds": 6.146,
+    "trace_id": "e5b24beae1b24c3593b5e1998123373f",
+    "capture": "complete",
+    "known_references": [],
+    "observed_verdicts": [
+      "No Checkable Claims"
+    ]
+  },
+  {
+    "id": "B10",
+    "topic": "Loren return speculation and imprisonment",
+    "route": "verify",
+    "expected_behavior": "Separate speculation about future travel/motives from the reported former Speaker imprisonment in QC Payatas. Preserve the uncertainty.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "claim_extraction"
+    ],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "The factual former-Speaker jail clause is retained and supported by the matching ABS-CBN Payatas report; the speculative political return is not presented as a verified event.",
+    "http": 200,
+    "seconds": 36.689,
+    "trace_id": "b42a2dea2ddc4413a577197826e6126e",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Verified"
+    ]
+  },
+  {
+    "id": "B11",
+    "topic": "BIR VAT on system loss",
+    "route": "verify",
+    "expected_behavior": "Check the BIR tax action separately from congratulations and political appraisal.",
+    "reference_ids": [],
+    "historical_issue_categories": [],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "The BIR VAT removal fact is directly supported by the matching ABS-CBN report; congratulatory commentary is not turned into extra claims.",
+    "http": 200,
+    "seconds": 35.939,
+    "trace_id": "9f4e7939d77e4fe9bc567910a3437efc",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Verified"
+    ]
+  },
+  {
+    "id": "B12",
+    "topic": "Loren defense commentary",
+    "route": "verify",
+    "expected_behavior": "Keep actual interview/reporting, advocacy references, attributed defenses, twice-impeached assertion and relevant historical factual statements. Do not turn analogies or criticism into established allegations.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "claim_extraction",
+      "evidence_review"
+    ],
+    "result": "Failed",
+    "stage": "claim_extraction",
+    "contributors": [
+      "component_context",
+      "evidence_review"
+    ],
+    "reason": "The mixed essay loses checkable event/background details. Even a verbatim supported environmental-causes statement becomes Partially Verified after causes is split into an unsupported one-word component. De Lima's nearly seven years is also promoted to unqualified seven years.",
+    "http": 200,
+    "seconds": 190.972,
+    "trace_id": "98c4141140444f96872a20992d656a6f",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Verified",
+      "Partially Verified",
+      "Verified",
+      "Verified",
+      "Verified",
+      "Verified"
+    ]
+  },
+  {
+    "id": "B13",
+    "topic": "Imagined Robin questions",
+    "route": "stop",
+    "expected_behavior": "Retain anticipated hypothetical framing and all three questions. Do not verify that Robin actually asked them.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "screening",
+      "claim_extraction"
+    ],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "Anticipated/imagined Padilla questions are not treated as something he actually said; the run returns no checkable claims.",
+    "http": 200,
+    "seconds": 5.081,
+    "trace_id": "8b25eb2567d44fcca7f1abd95f31d753",
+    "capture": "complete",
+    "known_references": [],
+    "observed_verdicts": [
+      "No Checkable Claims"
+    ]
+  },
+  {
+    "id": "B14",
+    "topic": "Carpio detention and quorum quote",
+    "route": "verify",
+    "expected_behavior": "Check that Carpio made the complete statement. Do not substitute a legal ruling on its underlying correctness.",
+    "reference_ids": [],
+    "historical_issue_categories": [],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "The Carpio quotation is supported verbatim by the Philstar report. This is a pass for attribution, not an independent legal ruling.",
+    "http": 200,
+    "seconds": 25.116,
+    "trace_id": "cc285879231b430a9b319ddc7a827360",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Verified"
+    ]
+  },
+  {
+    "id": "B15",
+    "topic": "Byeon Woo-seok fan meeting",
+    "route": "verify",
+    "expected_behavior": "Retain Instagram action and specific tour, date including 2026, and venue. Treat different event/year/date as mismatch; exclude aesthetic praise.",
+    "reference_ids": [
+      "R-fanmeet"
+    ],
+    "historical_issue_categories": [
+      "retrieval"
+    ],
+    "result": "Failed",
+    "stage": "claim_extraction",
+    "contributors": [
+      "evidence_review",
+      "component_context"
+    ],
+    "reason": "An anonymous handsome opinion is extracted; an old Instagram photo report supports an unspecified current update. The correct fan-meeting article is found, but the date is downgraded because final selected passages omit 2026, even though event-identity evidence includes the explicit October 10, 2026 quote.",
+    "http": 200,
+    "seconds": 62.76,
+    "trace_id": "4a34a173550444c2a29a792726e0261f",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "R-fanmeet",
+        "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+        "in_recorded_search": true,
+        "extracted_in_run": true,
+        "credited": true,
+        "direct_status": "extracted",
+        "direct_words": 188,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Verified",
+      "No Search Results",
+      "Partially Verified"
+    ]
+  },
+  {
+    "id": "B16",
+    "topic": "NASA galaxy composite image",
+    "route": "out_of_scope",
+    "expected_behavior": "Under the user-stated Philippine scope, route to out of scope, not false/invalid; do not spend news-verification work on unrelated astronomy.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "screening"
+    ],
+    "result": "Failed",
+    "stage": "screening",
+    "contributors": [],
+    "reason": "The NASA-only post proceeds to three claims and search despite the expected Philippines scope restriction. Not Found does not explain that scope limitation.",
+    "http": 200,
+    "seconds": 62.153,
+    "trace_id": "00fdc22a6aa7421f9624450e1ae977cf",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Not Found",
+      "Not Found",
+      "Not Found"
+    ]
+  },
+  {
+    "id": "C01",
+    "topic": "Baste subpoena",
+    "route": "verify",
+    "expected_behavior": "Retain subpoena, trial relation, September 23 and unexplained-wealth allegation. Valid article/passage ownership is required.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "technical"
+    ],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "The GMA report explicitly states the subpoena and September 23 appearance date, alongside the unexplained-wealth trial context. An earlier ABS-CBN tentative-summons passage is not sufficient alone, but the later explicit GMA evidence supports the assertion.",
+    "http": 200,
+    "seconds": 62.517,
+    "trace_id": "e1c3850081db4c70a0daf497bcc29447",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Verified",
+      "Verified"
+    ]
+  },
+  {
+    "id": "C02",
+    "topic": "Zuckerberg DICT budget",
+    "route": "verify",
+    "expected_behavior": "Retain 2027 budget deferral, DICT, proposed summons and Facebook child-safety/violence rationale.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "technical"
+    ],
+    "result": "Failed",
+    "stage": "evidence_review",
+    "contributors": [
+      "component_context"
+    ],
+    "reason": "Philstar's extracted opening sentence matches the entire claim verbatim. The final reviewer nevertheless rejects violence and child safety while acknowledging that same passage confirms both. This is a contradictory evidence judgment, not missing retrieval.",
+    "http": 200,
+    "seconds": 32.178,
+    "trace_id": "8e4cfa57d4be406d9ea9bf37684dd5c6",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Partially Verified"
+    ]
+  },
+  {
+    "id": "C03",
+    "topic": "Eala and Wintour",
+    "route": "verify",
+    "expected_behavior": "Cover NYFW Michael Kors seating and complete Wintour US Open utterance. Do not mix related embedded entertainment stories into the evidence.",
+    "reference_ids": [
+      "R-eala"
+    ],
+    "historical_issue_categories": [
+      "retrieval",
+      "article_extraction"
+    ],
+    "result": "Failed",
+    "stage": "evidence_review",
+    "contributors": [
+      "component_context"
+    ],
+    "reason": "The correct ABS-CBN article and full Wintour quote are present. The reviewer rejects I think it is great because only one of two passages contains it, inventing a requirement that every passage repeat the whole quote. One valid supporting passage should not be cancelled by another passage's omission.",
+    "http": 200,
+    "seconds": 60.738,
+    "trace_id": "39eb98c29f8242ff94853bb466039221",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "R-eala",
+        "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+        "in_recorded_search": true,
+        "extracted_in_run": true,
+        "credited": true,
+        "direct_status": "extracted",
+        "direct_words": 427,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Verified",
+      "Partially Verified"
+    ]
+  },
+  {
+    "id": "C04",
+    "topic": "DepEd longer OJT",
+    "route": "verify",
+    "expected_behavior": "Cover employer feedback, proposed 80-160 to 640 hour increase and same-employer hiring prospects. Preserve proposal rather than completed implementation.",
+    "reference_ids": [
+      "R-deped"
+    ],
+    "historical_issue_categories": [
+      "retrieval"
+    ],
+    "result": "Failed",
+    "stage": "retrieval",
+    "contributors": [
+      "evidence_review",
+      "component_context",
+      "attribution"
+    ],
+    "reason": "The known GMA 640-hour article is absent from recorded search/extraction, but direct extraction returns 906 words including the figures. IRIS credits only Angara's job title toward the proposal, yielding misleading partial support; older employability coverage substitutes for the current statement. The final He added claim also loses explicit speaker resolution.",
+    "http": 200,
+    "seconds": 77.406,
+    "trace_id": "587bb27f53f3454d8a1016a72c514b24",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "R-deped",
+        "url": "https://www.gmanetwork.com/news/topstories/nation/1001536/are-k-12-grads-ready-for-work-adult-life-deped-eyes-longer-ojt/story/",
+        "in_recorded_search": false,
+        "extracted_in_run": false,
+        "credited": false,
+        "direct_status": "extracted",
+        "direct_words": 906,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Verified",
+      "Partially Verified",
+      "Not Found"
+    ]
+  },
+  {
+    "id": "C05",
+    "topic": "Rene Baterbonia UST",
+    "route": "verify",
+    "expected_behavior": "Preserve no prior UST connection and family comfort with UST, without confusing Rene with his father.",
+    "reference_ids": [
+      "R-rene"
+    ],
+    "historical_issue_categories": [
+      "retrieval"
+    ],
+    "result": "Passed",
+    "stage": null,
+    "contributors": [],
+    "reason": "The matching ABS-CBN sports article is retrieved and directly supports the lack of prior UST connection and the reported family support. The earlier missing-source symptom is not reproduced.",
+    "http": 200,
+    "seconds": 44.618,
+    "trace_id": "8fc91c9d45a240329eb182a787cec003",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "R-rene",
+        "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+        "in_recorded_search": true,
+        "extracted_in_run": true,
+        "credited": true,
+        "direct_status": "extracted",
+        "direct_words": 383,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Verified",
+      "Verified"
+    ]
+  },
+  {
+    "id": "C06",
+    "topic": "Padilla plans and political warnings",
+    "route": "verify",
+    "expected_behavior": "Retain no-future-election announcement, child/family rationale, endorsements and attributed quotations. Political warnings are per claim, including explicitly identified official speaker.",
+    "reference_ids": [],
+    "historical_issue_categories": [
+      "political_flags"
+    ],
+    "result": "Failed",
+    "stage": "claim_extraction",
+    "contributors": [
+      "attribution",
+      "political_flags"
+    ],
+    "reason": "The explicitly named Sen. Robinhood Padilla becomes a null speaker in attribution metadata, causing automatic speaker rejection. The final Padilla quotation also has politically_sensitive false despite the explicit official-speaker context. Exact-event reference evidence is still missing, so a positive verdict cannot yet be prescribed.",
+    "http": 200,
+    "seconds": 58.641,
+    "trace_id": "911363999e7f46f0b3b510cd934e6143",
+    "capture": "partial",
+    "known_references": [],
+    "observed_verdicts": [
+      "Not Found",
+      "Not Found",
+      "Not Found"
+    ]
+  },
+  {
+    "id": "C07",
+    "topic": "Moira September 17 media appearance",
+    "route": "verify",
+    "expected_behavior": "Keep September 17 QC appearance, October 4 concert, and healing remarks connected to that appearance. Older interviews are not proof of that event; supplied concert article gives only partial reference coverage.",
+    "reference_ids": [
+      "R-moira"
+    ],
+    "historical_issue_categories": [
+      "evidence_review"
+    ],
+    "result": "Failed",
+    "stage": "evidence_review",
+    "contributors": [
+      "component_context"
+    ],
+    "reason": "The September 17 media appearance remains unconfirmed, but the follow-on healing statement receives partial support from a 2022 breakup interview. The post's event context is lost across claims. The known September 14 Spotify article is only a related reference, not proof of the September 17 appearance.",
+    "http": 200,
+    "seconds": 53.897,
+    "trace_id": "d3000e9a9cda4ea8b6f7200e3d369b1c",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "R-moira",
+        "url": "https://www.abs-cbn.com/entertainment/showbiz/music/2026/9/14/moira-dela-torre-hits-11-million-followers-on-spotify-1247",
+        "in_recorded_search": false,
+        "extracted_in_run": false,
+        "credited": false,
+        "direct_status": "extracted",
+        "direct_words": 145,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Not Found",
+      "Partially Verified"
+    ]
+  },
+  {
+    "id": "C08",
+    "topic": "VERA Poquiz false attribution",
+    "route": "verify",
+    "expected_behavior": "Distinguish circulating allegation from assertion that it is fake. The allegation must not become an endorsed fact. Retrieve actual fact-check article, never a search page.",
+    "reference_ids": [
+      "R-vera"
+    ],
+    "historical_issue_categories": [
+      "retrieval",
+      "claim_extraction"
+    ],
+    "result": "Failed",
+    "stage": "claim_extraction",
+    "contributors": [
+      "retrieval"
+    ],
+    "reason": "This is fake is discarded as unclear instead of being linked to the preceding alleged quotation. The known VERA fact-check is absent from recorded retrieval, while direct extraction returns 530 words. Preserve the allegation and its denial without assuming either is true before review.",
+    "http": 200,
+    "seconds": 29.127,
+    "trace_id": "d8c6989b115443ae850f23213e23c55d",
+    "capture": "partial",
+    "known_references": [
+      {
+        "reference": "R-vera",
+        "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+        "in_recorded_search": false,
+        "extracted_in_run": false,
+        "credited": false,
+        "direct_status": "extracted",
+        "direct_words": 530,
+        "direct_error": null
+      }
+    ],
+    "observed_verdicts": [
+      "Not Found"
+    ]
+  }
+]

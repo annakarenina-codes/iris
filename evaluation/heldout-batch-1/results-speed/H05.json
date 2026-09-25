@@ -1,0 +1,1221 @@
+{
+  "response": {
+    "verdict": "Partially Verified",
+    "message": "Retrieved evidence is related to Senator JV Ejercito's statement, but IRIS did not find enough evidence to fully verify the attribution.",
+    "original_text": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP), Senator JV Ejercito said on Sunday.\nRead more:\nhttps://www.gmanetwork.com/.../vp-sara-yet-to.../story/",
+    "translated_text": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP), Senator JV Ejercito said on Sunday.\nRead more:\nhttps://www.gmanetwork.com/.../vp-sara-yet-to.../story/",
+    "detected_language": "english",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 1,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s2",
+        "text": "Read more:",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "vague_claim"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s3",
+        "text": "https://www.gmanetwork.com/.../vp-sara-yet-to.../story/",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "vague_claim"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP), Senator JV Ejercito said on Sunday.",
+        "normalized_claim": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP), Senator JV Ejercito said on Sunday.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Senator JV Ejercito",
+          "role": "Senator",
+          "statement": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP), Senator JV Ejercito said on Sunday.",
+          "source": null,
+          "program": null,
+          "date": "Sunday"
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "grounded",
+            "source": "absent",
+            "program": "absent",
+            "date": "grounded"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Partially Verified",
+          "components": [
+            {
+              "component": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP),",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+                  "quote": "At the same time, Ejercito bared that the Vice President has yet to confirm her attendance at the upcoming Senate deliberations for her office’s proposed P785.2-million budget for 2027."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "The cited passage explicitly states that Ejercito revealed the Vice President has yet to confirm her attendance at the upcoming Senate deliberations for her office’s proposed budget, which is the Senate budget hearing of the OVP. This directly supports the assertion, with all qualifiers preserved and no contradiction present.",
+              "context": {
+                "start": 0,
+                "end": 133,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Vice President Sara Duterte",
+                      "start": 0,
+                      "end": 27
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP)",
+                      "start": 28,
+                      "end": 132
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP)",
+                      "start": 28,
+                      "end": 132
+                    }
+                  ],
+                  "time": [],
+                  "negation": [
+                    {
+                      "origin": "claim",
+                      "quote": "has yet to confirm",
+                      "start": 28,
+                      "end": 46
+                    }
+                  ],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP),",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 133
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            },
+            {
+              "component": "Senator JV Ejercito said on Sunday.",
+              "status": "not_supported",
+              "citations": [],
+              "evidence_relation": "not_established",
+              "context": {
+                "start": 134,
+                "end": 169,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator JV Ejercito",
+                      "start": 134,
+                      "end": 153
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "said",
+                      "start": 154,
+                      "end": 158
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP)",
+                      "start": 0,
+                      "end": 132
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "on Sunday",
+                      "start": 159,
+                      "end": 168
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator JV Ejercito",
+                      "start": 134,
+                      "end": 153
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  1
+                ],
+                "component_id": 1,
+                "assertion": "Senator JV Ejercito said on Sunday.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 134,
+                  "end": 169
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold"
+          ],
+          "reason": "Retrieved passages support 1 of 2 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0
+              ],
+              "reason": "The cited passage explicitly states that Ejercito revealed the Vice President has yet to confirm her attendance at the upcoming Senate deliberations for her office’s proposed budget, which is the Senate budget hearing of the OVP. This directly supports the assertion, with all qualifiers preserved and no contradiction present.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP), Senator JV Ejercito said on Sunday.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0,
+                1
+              ],
+              "referent": "Senator JV Ejercito said that Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP).",
+              "sources": {
+                "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold": {
+                  "status": "matched",
+                  "passage_ids": [
+                    16
+                  ],
+                  "reason": "Passage 16 states: 'At the same time, Ejercito bared that the Vice President has yet to confirm her attendance at the upcoming Senate deliberations for her office’s proposed P785.2-million budget for 2027.' This directly supports both that Sara Duterte has not yet confirmed her attendance and that Senator JV Ejercito is the one who said this. The context of the budget hearing for the OVP is also established.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+                      "quote": "At the same time, Ejercito bared that the Vice President has yet to confirm her attendance at the upcoming Senate deliberations for her office’s proposed P785.2-million budget for 2027."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/butuyan-warns-of-return-of-duterte-impunity-if-icc-wont-confirm-charges",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/taxpayers-bear-high-cost-of-vp-saras-silence",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-9-army-denials-deepen-questions-on-secret-funds",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/sara-duterte-office-vice-president-budget-2027/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/video-sara-duterte-refuses-face-house-ovp-budget-hearing-demands-met/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/inside-track/bloodbath-ready-sara-duterte-appears-senate-skips-trial/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2025/9/29/vp-sara-duterte-shows-up-at-senate-budget-hearing-1038",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/8/senate-sets-new-schedule-for-impeachment-trial-budget-deliberations-1108",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/7/duterte-security-team-at-senate-no-confirmation-if-vp-to-attend-trial-1127",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999701/live-updates-sara-duterte-impeachment-trial-august-25-2026/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/960613/sara-duterte-arrives-at-senate-for-ovp-budget-hearing/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000798/live-updates-sara-duterte-impeachment-trial-september-2-2026/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2118763/sara-duterte-sets-conditions-for-budget-hearing-appearance",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2297793/ovp-tells-house-panel-duterte-will-be-absent-from-budget-hearing",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2289097/alonto-adiong-skipping-ovps-2027-budget-hearings-typical-for-duterte",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2025/10/03/2477229/sara-dutertes-absence-conditions-put-ovp-budget-risk-another-cut",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/02/2553555/sara-duterte-trial-recap-sept-2-michael-poa-stand",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/30/ejercito-senate-finance-panel-to-observe-sub-judice-rule-in-tackling-2027-national-budget",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/14/vp-sara-says-impeachment-complaint-lacks-evidence-as-senate-trial-continues",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/08/senate-impeachment-court-sets-new-schedule-of-duterte-trial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1234011",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283198",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1260203",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/prosecution-panel-says-well-prepared-for-vp-sara-impeachment-trial-at-senate-urges-public-to-monitor-participate-in-the-process/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/teacher-ikaw-naman-angara-leads-kick-off-of-national-teachers-month-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/press-releases/2022/06/19/statement-on-the-inauguration-of-mayor-inday-sara-duterte-carpio-as-vice-president",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/budget-hearings-may-proceed-alongside-impeachment-proceedings-ejercito",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/senate-schedule-a-challenge-amid-committee-hearings-impeachment-trial-ejercito",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/ovp-2027-budget-down-11-7-p51-million-sought-for-travel-in-2027",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/house-reduces-ovp-s-2026-budget-to-p733-million",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/witness-on-vp-secret-funds-request-made-before-plans",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/butuyan-warns-of-return-of-duterte-impunity-if-icc-wont-confirm-charges",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/taxpayers-bear-high-cost-of-vp-saras-silence",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-9-army-denials-deepen-questions-on-secret-funds",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/philippines/sara-duterte-office-vice-president-budget-2027/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/philippines/video-sara-duterte-refuses-face-house-ovp-budget-hearing-demands-met/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/inside-track/bloodbath-ready-sara-duterte-appears-senate-skips-trial/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2025/9/29/vp-sara-duterte-shows-up-at-senate-budget-hearing-1038",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/8/senate-sets-new-schedule-for-impeachment-trial-budget-deliberations-1108",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/7/duterte-security-team-at-senate-no-confirmation-if-vp-to-attend-trial-1127",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999701/live-updates-sara-duterte-impeachment-trial-august-25-2026/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/960613/sara-duterte-arrives-at-senate-for-ovp-budget-hearing/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000798/live-updates-sara-duterte-impeachment-trial-september-2-2026/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2118763/sara-duterte-sets-conditions-for-budget-hearing-appearance",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2297793/ovp-tells-house-panel-duterte-will-be-absent-from-budget-hearing",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2289097/alonto-adiong-skipping-ovps-2027-budget-hearings-typical-for-duterte",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2025/10/03/2477229/sara-dutertes-absence-conditions-put-ovp-budget-risk-another-cut",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/02/2553555/sara-duterte-trial-recap-sept-2-michael-poa-stand",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/30/ejercito-senate-finance-panel-to-observe-sub-judice-rule-in-tackling-2027-national-budget",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/14/vp-sara-says-impeachment-complaint-lacks-evidence-as-senate-trial-continues",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/08/senate-impeachment-court-sets-new-schedule-of-duterte-trial",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1234011",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283198",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1260203",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/news/prosecution-panel-says-well-prepared-for-vp-sara-impeachment-trial-at-senate-urges-public-to-monitor-participate-in-the-process/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/teacher-ikaw-naman-angara-leads-kick-off-of-national-teachers-month-2026/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/press-releases/2022/06/19/statement-on-the-inauguration-of-mayor-inday-sara-duterte-carpio-as-vice-president",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/budget-hearings-may-proceed-alongside-impeachment-proceedings-ejercito",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-13-of-vp-sara-duterte-impeachment-trial-or-august-5-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/senate-schedule-a-challenge-amid-committee-hearings-impeachment-trial-ejercito",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/ovp-2027-budget-down-11-7-p51-million-sought-for-travel-in-2027",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/house-reduces-ovp-s-2026-budget-to-p733-million",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/witness-on-vp-secret-funds-request-made-before-plans",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "unconfirmed"
+            },
+            "date_confirmed": false
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP), Senator JV Ejercito said on Sunday."
+        },
+        "scoring_claim": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP), Senator JV Ejercito said on Sunday.",
+        "search_query": "Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP), Senator JV Ejercito said on Sunday.",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "7101f19ea32a2ddb075ba17f536005f931db7895b2ce7d4ce23f7e8b70a328ca",
+        "cache_version": "week7-scripture-dates-v37",
+        "verdict": "Partially Verified",
+        "message": "Retrieved evidence is related to Senator JV Ejercito's statement, but IRIS did not find enough evidence to fully verify the attribution.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "Philippine Star",
+          "title": "Senate tackles today VP impeachment vote threshold",
+          "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+          "status": "extracted",
+          "word_count": 633,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Senate tackles today VP impeachment vote threshold",
+            "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+            "status": "extracted",
+            "word_count": 633,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 98,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Senate tackles today VP impeachment vote threshold",
+            "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+            "status": "extracted",
+            "word_count": 633,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Senate tackles today VP impeachment vote threshold",
+            "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+            "status": "extracted",
+            "word_count": 633,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not confirm whether Vice President Sara Duterte has confirmed her attendance at the Senate budget hearing.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "corroboration_count": 1,
+    "primary_evidence": {
+      "source": "Philippine Star",
+      "title": "Senate tackles today VP impeachment vote threshold",
+      "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+      "status": "extracted",
+      "word_count": 633,
+      "evidence_method": "component_review",
+      "extraction_quality": "full",
+      "evidence_type": "full_text"
+    },
+    "supporting_sources": [
+      {
+        "source": "Philippine Star",
+        "title": "Senate tackles today VP impeachment vote threshold",
+        "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+        "status": "extracted",
+        "word_count": 633,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "search_status": "ok",
+    "total_search_results": 98,
+    "searched_articles": 33,
+    "extracted_articles": 33,
+    "source_summary": [
+      {
+        "source": "VERA Files",
+        "results_found": 11,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Rappler",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "ABS-CBN News",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "GMA News",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Daily Inquirer",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Star",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Manila Bulletin",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine News Agency",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Information Agency",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "DZRH News",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "OneNews.PH",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      }
+    ],
+    "sources": [
+      {
+        "source": "Philippine Star",
+        "title": "Senate tackles today VP impeachment vote threshold",
+        "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+        "status": "extracted",
+        "word_count": 633,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "evidence_sources": [
+      {
+        "source": "Philippine Star",
+        "title": "Senate tackles today VP impeachment vote threshold",
+        "url": "https://www.philstar.com/headlines/2026/09/21/2557712/senate-tackles-today-vp-impeachment-vote-threshold",
+        "status": "extracted",
+        "word_count": 633,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim."
+  },
+  "seconds": 31.0
+}

@@ -1,0 +1,91 @@
+{
+  "case_id": "B05",
+  "scope": "Saved case article pool, not an exact replay of per-claim retrieval inputs.",
+  "trace_id": "63e29b6ac31b491baffe9579e4574312",
+  "timestamp_utc": "2026-09-19T03:55:52.323053+00:00",
+  "input_sha256": "b2583f2e46919352b1bd152b326d63e82313c5d6d9f2b5fb30bcc939ec2eec80",
+  "seconds": 5.651,
+  "old_verdict": "Partially Verified",
+  "cache": "not used; direct component review",
+  "new_searches": 0,
+  "models": {
+    "OPENAI_MODEL": "gpt-4o-mini",
+    "IRIS_EVIDENCE_REVIEW_MODEL": "gpt-4.1-2025-04-14"
+  },
+  "code_sha256": {
+    "component_context.py": "e13c299b7803a285dde07ab6d66007bddd03f918984868b3292c845703d8915f",
+    "component_evidence.py": "2544ef55ce14d9fea4e8dbf3a29416ec1707f45018811ec30f9faefad455d46f"
+  },
+  "review": {
+    "status": "ok",
+    "verdict": "Not Found",
+    "components": [
+      {
+        "component": "Man who shot ex's new partner after getting upset with online taunts arrested.",
+        "status": "not_supported",
+        "citations": [],
+        "context": {
+          "start": 0,
+          "end": 78,
+          "anchors": {
+            "subject": [
+              {
+                "origin": "claim",
+                "quote": "Man",
+                "start": 0,
+                "end": 3
+              }
+            ],
+            "action": [
+              {
+                "origin": "claim",
+                "quote": "shot ex's new partner after getting upset with online taunts",
+                "start": 8,
+                "end": 68
+              },
+              {
+                "origin": "claim",
+                "quote": "arrested",
+                "start": 69,
+                "end": 77
+              }
+            ],
+            "event": [
+              {
+                "origin": "claim",
+                "quote": "Man who shot ex's new partner after getting upset with online taunts",
+                "start": 0,
+                "end": 68
+              },
+              {
+                "origin": "claim",
+                "quote": "Man who shot ex's new partner after getting upset with online taunts arrested",
+                "start": 0,
+                "end": 77
+              }
+            ],
+            "time": [],
+            "negation": [],
+            "speaker": []
+          },
+          "proposed_ids": [
+            0,
+            1
+          ],
+          "component_id": 0,
+          "assertion": "Man who shot ex's new partner after getting upset with online taunts arrested.",
+          "source_reference": {
+            "origin": "claim",
+            "start": 0,
+            "end": 78
+          },
+          "context_is_evidence": false
+        }
+      }
+    ],
+    "supporting_urls": [],
+    "reason": "Retrieved passages support 0 of 1 factual components.",
+    "original_claim": "Man who shot ex's new partner after getting upset with online taunts arrested.",
+    "partition_model": "gpt-4.1-2025-04-14"
+  }
+}

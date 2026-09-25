@@ -1,0 +1,231 @@
+{
+  "run_timestamp": "2026-09-17T06:30:50.099848+00:00",
+  "basis_trace_id": "11530398d3ef40c6815f036fabd93f80",
+  "replay_trace_id": "c9544d1c92424e4090f41a94962778e5",
+  "mode": "Live OpenAI review; saved article; no fresh search, translation, extraction or HTTP endpoint run",
+  "cache": "bypassed (direct component review)",
+  "cache_version": "week7-event-identity-v13",
+  "claim": "Man shoots ex's new partner after getting upset over online taunts, arrested",
+  "article_url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+  "before": {
+    "status": "ok",
+    "verdict": "Partially Verified",
+    "components": [
+      {
+        "component": "Man shoots ex's new partner",
+        "status": "not_supported",
+        "citations": [],
+        "review_reason": "The passages describe a man shooting his ex-girlfriend (the victim), not his ex's new partner. The suspect is the former partner of the store owner (the victim's employer), and the victim is the woman who was shot. There is no evidence in the passages that the person shot was the ex's new partner. Therefore, the subject and event do not match the claim."
+      },
+      {
+        "component": "after getting upset over online taunts,",
+        "status": "not_supported",
+        "citations": [],
+        "review_reason": "The passages indicate the motive was the suspect's inability to accept the victim's new role managing the store after a breakup, not being upset over online taunts. There is no mention of online taunts or the suspect being upset over them. The causal relationship and specific trigger in the claim are not supported."
+      },
+      {
+        "component": "arrested",
+        "status": "supported",
+        "citations": [
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+            "quote": "</p><p>The 31-year-old suspect was immediately arrested the following day, January 17, in the town of Angono."
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+            "quote": "The suspect was reportedly unable to accept this arrangement, which drove him to commit the act.) </p><p>The suspect is now detained at the Taytay Municipal Police Station Custodial Facility and is facing charges of frustrated murder."
+          }
+        ],
+        "review_reason": "The passages explicitly state that the 31-year-old suspect was arrested the day after the shooting and is now detained at the police station. This directly supports the 'arrested' assertion for the same subject and event."
+      }
+    ],
+    "supporting_urls": [
+      "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/"
+    ],
+    "reason": "Retrieved passages support 1 of 3 factual components.",
+    "entailment_checks": [
+      {
+        "same_subject_and_event": false,
+        "assertion_supported": false,
+        "qualifiers_preserved": false,
+        "citation_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "reason": "The passages describe a man shooting his ex-girlfriend (the victim), not his ex's new partner. The suspect is the former partner of the store owner (the victim's employer), and the victim is the woman who was shot. There is no evidence in the passages that the person shot was the ex's new partner. Therefore, the subject and event do not match the claim.",
+        "component_id": 0
+      },
+      {
+        "same_subject_and_event": false,
+        "assertion_supported": false,
+        "qualifiers_preserved": false,
+        "citation_ids": [
+          0,
+          1
+        ],
+        "reason": "The passages indicate the motive was the suspect's inability to accept the victim's new role managing the store after a breakup, not being upset over online taunts. There is no mention of online taunts or the suspect being upset over them. The causal relationship and specific trigger in the claim are not supported.",
+        "component_id": 1
+      },
+      {
+        "same_subject_and_event": true,
+        "assertion_supported": true,
+        "qualifiers_preserved": true,
+        "citation_ids": [
+          0,
+          1
+        ],
+        "reason": "The passages explicitly state that the 31-year-old suspect was arrested the day after the shooting and is now detained at the police station. This directly supports the 'arrested' assertion for the same subject and event.",
+        "component_id": 2
+      }
+    ],
+    "partition_model": "gpt-4.1-2025-04-14",
+    "entailment_model": "gpt-4.1-2025-04-14"
+  },
+  "after": {
+    "status": "ok",
+    "verdict": "Not Found",
+    "components": [
+      {
+        "component": "Man shoots ex's new partner",
+        "status": "not_supported",
+        "citations": [],
+        "event_group_id": 0,
+        "event_rejections": [
+          {
+            "component_id": 0,
+            "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+            "status": "mismatched",
+            "reason": "The passages describe a man shooting a 23-year-old woman who was hosting a livestream. The suspect is the former live-in partner of the victim's employer, not the ex-partner of the victim. There is no mention of the victim being the suspect's ex's new partner, nor is there any evidence that the motive was being upset over online taunts. The motive described is the suspect's inability to accept the victim managing the store after the breakup with the store owner. The arrest is supported, but the identity and motive do not match the claim."
+          }
+        ]
+      },
+      {
+        "component": "after getting upset over online taunts,",
+        "status": "not_supported",
+        "citations": [],
+        "event_group_id": 0,
+        "event_rejections": [
+          {
+            "component_id": 1,
+            "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+            "status": "mismatched",
+            "reason": "The passages describe a man shooting a 23-year-old woman who was hosting a livestream. The suspect is the former live-in partner of the victim's employer, not the ex-partner of the victim. There is no mention of the victim being the suspect's ex's new partner, nor is there any evidence that the motive was being upset over online taunts. The motive described is the suspect's inability to accept the victim managing the store after the breakup with the store owner. The arrest is supported, but the identity and motive do not match the claim."
+          }
+        ]
+      },
+      {
+        "component": "arrested",
+        "status": "not_supported",
+        "citations": [],
+        "event_group_id": 0,
+        "event_rejections": [
+          {
+            "component_id": 2,
+            "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+            "status": "mismatched",
+            "reason": "The passages describe a man shooting a 23-year-old woman who was hosting a livestream. The suspect is the former live-in partner of the victim's employer, not the ex-partner of the victim. There is no mention of the victim being the suspect's ex's new partner, nor is there any evidence that the motive was being upset over online taunts. The motive described is the suspect's inability to accept the victim managing the store after the breakup with the store owner. The arrest is supported, but the identity and motive do not match the claim."
+          }
+        ]
+      }
+    ],
+    "supporting_urls": [],
+    "reason": "Retrieved passages support 0 of 3 factual components.",
+    "entailment_checks": [],
+    "event_identity_checks": [
+      {
+        "group_id": 0,
+        "component_ids": [
+          0,
+          1,
+          2
+        ],
+        "referent": "A man shoots his ex's new partner after getting upset over online taunts, and is arrested.",
+        "sources": {
+          "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/": {
+            "status": "mismatched",
+            "passage_ids": [
+              0,
+              2,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "reason": "The passages describe a man shooting a 23-year-old woman who was hosting a livestream. The suspect is the former live-in partner of the victim's employer, not the ex-partner of the victim. There is no mention of the victim being the suspect's ex's new partner, nor is there any evidence that the motive was being upset over online taunts. The motive described is the suspect's inability to accept the victim managing the store after the breakup with the store owner. The arrest is supported, but the identity and motive do not match the claim.",
+            "citations": [
+              {
+                "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+                "quote": "<p>The police arrested the suspect behind the shooting of a 23-year-old woman while she was hosting a livestreaming video online last January 16 in Barangay Sta."
+              },
+              {
+                "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+                "quote": "</p><p>The Taytay Municipal Police Station said the victim was shot on the head by the suspect who was wearing a face mask and a ballcap.</p><p>The victim slumped over instantly and was rushed by witnesses to the nearest hospital, having sustained a grazing bullet wound to the nape, the police added."
+              },
+              {
+                "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+                "quote": "</p><p>The 31-year-old suspect was immediately arrested the following day, January 17, in the town of Angono."
+              },
+              {
+                "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+                "quote": "Investigation showed he was a former live-in partner of the victim\u2019s employer."
+              },
+              {
+                "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+                "quote": "</p><p>\u201cNapag-alaman ng pulisya na ang suspek ay dating kinakasama ng may-ari ng tindahan kung saan nagtatrabaho ang biktima."
+              },
+              {
+                "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+                "quote": "Ang 'di pagkakaunawaan ng suspek at kanyang kinakasama na nauwi sa hiwalayan ay \u2018di umano\u2019y mula sa mga pagsusumbong ng biktima kaugnay sa mga nakaka relasyon pang iba ng suspek,\u201d the Taytay Municipal Police Station said."
+              },
+              {
+                "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+                "quote": "</p><p>(Police investigation revealed that the suspect is the former partner of the store owner where the victim is employed."
+              },
+              {
+                "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+                "quote": "The dispute between the suspect and his partner, which led to their breakup, was allegedly triggered by the victim reporting the suspect\u2019s other romantic involvements.) </p><p>\u201cDahil sa hiwalayan, nagparte parte ng ari-arian ang dating magkarelasyon, at ang pag-iintindi sa tindahan ay pinamamahalaan na mismo ng biktima na siyang \u2018di matanggap ng suspek kaya nagawa niya ang nasabing insidente.\u201d"
+              },
+              {
+                "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+                "quote": "</p><p>(Following the separation, the former couple divided their assets, and the management of the store was handed over to the victim."
+              },
+              {
+                "url": "https://www.gmanetwork.com/news/topstories/regions/973273/cops-nab-man-who-shot-ex-gf-during-live-selling-in-rizal/story/",
+                "quote": "The suspect was reportedly unable to accept this arrangement, which drove him to commit the act.) </p><p>The suspect is now detained at the Taytay Municipal Police Station Custodial Facility and is facing charges of frustrated murder."
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "event_identity_model": "gpt-4.1-2025-04-14",
+    "partition_model": "gpt-4.1-2025-04-14"
+  },
+  "seconds": 14.03,
+  "passed": false,
+  "positive_control": {
+    "kind": "Constructed same-incident partial-support control, not an original user request",
+    "claim": "The 31-year-old suspect who shot a 23-year-old livestream seller in Taytay on January 16 was arrested in Angono on January 17 and confessed to acting over online taunts.",
+    "result": {
+      "status": "error",
+      "verdict": null,
+      "components": [],
+      "supporting_urls": [],
+      "reason": "Component-level evidence review could not be completed.",
+      "error": "ValueError",
+      "error_code": "invalid_review_response",
+      "failed_stage": "event_identity_check"
+    },
+    "trace_id": "92534b4b3dc84588b69a4897f476e8cb",
+    "expected_verdict": "Partially Verified",
+    "passed": false
+  }
+}

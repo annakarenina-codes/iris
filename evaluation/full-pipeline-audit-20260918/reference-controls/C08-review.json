@@ -1,0 +1,104 @@
+{
+  "case_id": "C08",
+  "reference": "R-vera",
+  "trace_id": "b8e739e2c3e54e4d8de1a38fcb8224fb",
+  "review": {
+    "status": "ok",
+    "verdict": "Partially Verified",
+    "components": [
+      {
+        "component": "At least two Facebook posts are claiming that retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos.",
+        "status": "supported",
+        "citations": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+            "quote": "At least two Facebook posts falsely attributed a viral statement to retired Air Force Maj."
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+            "quote": "Gen. Romeo Poquiz denouncing the leadership of President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos claiming they no longer have a mandate to lead."
+          }
+        ],
+        "review_reason": "Passages 0 and 1 explicitly state that at least two Facebook posts falsely attributed a statement to retired Air Force Maj. Gen. Romeo Poquiz denouncing President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos. This directly supports the assertion fragment, including the number of posts, the subject (Poquiz), and the content of the alleged statement. The qualifiers about the posts being claims and the specific individuals involved are preserved.",
+        "event_group_id": 0
+      },
+      {
+        "component": "This is fake.",
+        "status": "not_supported",
+        "citations": [],
+        "event_group_id": 0
+      }
+    ],
+    "supporting_urls": [
+      "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses"
+    ],
+    "reason": "Retrieved passages support 1 of 2 factual components.",
+    "entailment_checks": [
+      {
+        "same_subject_and_event": true,
+        "assertion_supported": true,
+        "qualifiers_preserved": true,
+        "citation_ids": [
+          0,
+          1
+        ],
+        "reason": "Passages 0 and 1 explicitly state that at least two Facebook posts falsely attributed a statement to retired Air Force Maj. Gen. Romeo Poquiz denouncing President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos. This directly supports the assertion fragment, including the number of posts, the subject (Poquiz), and the content of the alleged statement. The qualifiers about the posts being claims and the specific individuals involved are preserved.",
+        "component_id": 0
+      }
+    ],
+    "event_identity_checks": [
+      {
+        "group_id": 0,
+        "component_ids": [
+          0,
+          1
+        ],
+        "referent": "At least two Facebook posts are claiming that retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos. This is fake.",
+        "sources": {
+          "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses": {
+            "status": "matched",
+            "passage_ids": [
+              4,
+              5,
+              6,
+              8,
+              10,
+              14
+            ],
+            "reason": "Passages 4 and 14 confirm that at least two Facebook posts attributed a statement to retired Maj. Gen. Romeo Poquiz against President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos. Passages 5, 6, 8, and 10 clarify that this attribution is fake and that there is no record of Poquiz making such a statement. The source directly addresses both the existence of the posts and the falsity of the claim, establishing identity for both components.",
+            "citations": [
+              {
+                "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+                "quote": "At least two Facebook posts falsely attributed a viral statement to retired Air Force Maj."
+              },
+              {
+                "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+                "quote": "Gen. Romeo Poquiz denouncing the leadership of President Ferdinand Marcos Jr. and First Lady Liza Araneta-Marcos claiming they no longer have a mandate to lead."
+              },
+              {
+                "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+                "quote": "This is fake."
+              },
+              {
+                "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+                "quote": "The graphic contains a photo of Poquiz and this fake quote attributed to him: \u201cHindi sobra na, kundi sobra sobra na. So, ano na? Liza at BBM, wala na kayong saysay sa Pilipinas para manatili pa. Hindi niyo pagmamay-ari ang Pilipinas. Tama na\u2026 (It\u2019s not just too much anymore, it\u2019s way, way too much. So, what now? Liza and BBM, there is no reason for you to stay in power. You do not own the Philippines. Enough is enough\u2026).\u201d"
+              },
+              {
+                "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+                "quote": "Contrary to what the post is implying, there are no records of Poquiz making this statement."
+              },
+              {
+                "url": "https://verafiles.org/articles/fact-check-romeo-poquiz-did-not-make-viral-statement-vs-marcoses",
+                "quote": "Posted by two Facebook users, the posts have so far collectively garnered 4,621 reactions, 1,106 comments, and 996 shares."
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "event_identity_model": "gpt-4.1-2025-04-14",
+    "partition_model": "gpt-4.1-2025-04-14",
+    "entailment_model": "gpt-4.1-2025-04-14"
+  },
+  "scope": "Fresh model review with known article supplied. Does not test search or claim extraction."
+}

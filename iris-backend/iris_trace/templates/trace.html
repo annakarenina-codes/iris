@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IRIS TRACE</title><link rel="stylesheet" href="{{ url_for('iris_trace.static', filename='trace.css') }}">
+<script defer src="{{ url_for('iris_trace.static', filename='trace.js') }}"></script></head>
+<body><header><div><strong>IRIS TRACE</strong><span>Request diagnostics and calibration</span></div><span class="badge">Calibration backend</span></header>
+<div id="notice" role="status" aria-live="polite"></div>
+<div class="layout"><aside aria-label="Request history"><h1>Requests</h1>
+<label>Search text, ID or platform<input id="search" type="search" placeholder="Search requests"></label>
+<label>Status<select id="status"><option value="">All statuses</option><option>running</option><option>completed</option><option>error</option><option>rejected</option><option>partial</option><option>incomplete</option><option>target_not_reached</option></select></label>
+<label class="check"><input id="follow" type="checkbox">Follow latest request</label>
+<button id="refresh">Refresh</button><p id="history-count" class="muted"></p><div id="history"></div>
+<div class="pager"><button id="previous">Previous</button><button id="next">Next</button></div>
+<details id="calibration"><summary>Run a calibration case</summary><p>Layout and local-profile fixtures run offline. Text/image checks may call your configured providers.</p>
+<label>Case JSON<textarea id="case" rows="12" spellcheck="false">{"case_id":"PROFILE-001","mode":"profile","input":{"text":"I think this is a wonderful idea."},"assertions":[]}</textarea></label>
+<button id="run-case">Run case</button><p id="run-message" role="status"></p></details>
+</aside><main><div class="workspace-tools"><div id="tabs" role="tablist" aria-label="Open requests"></div><button id="close-others">Close others</button></div>
+<section id="empty"><h2>Select a request</h2><p>Send a check from Chrome, Android, or the calibration form. Its trace appears here while the backend processes it.</p><p>Each request opens in its own tab. Closing a tab keeps its saved trace in history.</p><p class="muted">Completed means the operation ran. Correctness is evaluated separately using labeled assertions.</p></section><div id="workspaces"></div>
+<details class="compare"><summary>Compare two traces</summary><label>Baseline trace ID<input id="baseline" placeholder="Full trace ID"></label><label>Candidate trace ID<input id="candidate" placeholder="Full trace ID"></label><button id="compare">Compare stage outputs</button><div id="comparison"></div></details>
+</main></div></body></html>

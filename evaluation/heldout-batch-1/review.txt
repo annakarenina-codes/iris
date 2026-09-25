@@ -1,0 +1,327 @@
+# IRIS held-out batch 1: your judgment sheet
+#
+# For each post fill in Routing, Missed claims and one Judgment per claim. Existing entries are
+# kept when this sheet is regenerated.
+# Routing:       correct | wrong   (did IRIS rightly check, or rightly decline to check, this post?)
+# Missed claims: number of checkable statements IRIS did not extract (0 if none)
+# Judgment:
+#   correct         the verdict and its evidence are right
+#   false_positive  Verified/Partially Verified, but the claim is false or the evidence does not support it
+#   false_negative  Not Found, but an approved source supports it
+#   wrong_level     Verified vs Partially Verified is wrong, otherwise sound
+#   technical       Review Failed or another technical failure
+#   ocr_error       an image post where OCR misread the text, so IRIS checked the wrong words
+#   cannot_judge    you cannot tell what the right answer is
+
+### POST H01   IRIS: Multiple Claims Checked | 2 claim(s) | 86s
+Category: news | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Filipina tennis star Alex Eala received a bye to the second round of 2026 Singapore Tennis Open.
+  IRIS: Verified | evidence: https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502
+  Judgment (claim 1): correct
+CLAIM 2: She will face the winner between Russia's Tatiana Prozorova and Belgium's Sofia Costoulas.
+  IRIS: Verified | evidence: https://www.philstar.com/sports/2026/09/20/2557640/no-3-seed-eala-gets-first-round-bye-singapore-open, https://www.abs-cbn.com/sports/othersports/2026/9/20/tennis-alex-eala-receives-bye-to-round-of-16-in-singapore-tennis-open-1502, https://www.gmanetwork.com/news/sports/othersports/1002996/alex-eala-earns-first-round-bye-as-no-3-seed-at-singapore-tennis-open/story/
+  Judgment (claim 2): correct
+Comment: 
+
+### POST H02   IRIS: Verified | 1 claim(s) | 39s
+Category: news | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: On Sept. 14, residents of the Bangsamoro in the southern Philippines will elect regional parliamentary representatives.
+  IRIS: Verified | evidence: https://www.rappler.com/philippines/elections/results-winning-regional-political-parties-barmm-2026/, https://www.pna.gov.ph/articles/1283098, https://www.rappler.com/philippines/elections/guide-results-barmm-2026/, https://www.rappler.com/philippines/elections/results-barmm-2026/, https://www.pna.gov.ph/articles/1284074, https://www.inquirer.net/488668/live-updates-barmm-elections-sept-14-2026/, https://www.dzrh.com.ph/post/barmm-first-parliamentary-elections-or-september-14-2026, https://www.dzrh.com.ph/post/2026-barmm-parliamentary-elections-results, https://www.gmanetwork.com/news/topstories/nation/1001535/barmm-2026-elections-history-key-dates-candidates-and-everything-you-need-to-know/story/, https://www.philstar.com/headlines/2026/09/14/2556203/historic-barmm-vote-opens-under-shadow-killings-ballot-tampering
+  Judgment (claim 1): correct
+Comment: 
+
+### POST H03   IRIS: Verified | 1 claim(s) | 34s
+Category: news | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: PNP to deploy over 17,000 cops for 54th Martial Law anniversary
+  IRIS: Verified | evidence: https://newsinfo.inquirer.net/2308507/pnp-to-deploy-over-17000-cops-nationwide-on-martial-law-anniversary
+  Judgment (claim 1): correct
+Comment: 
+
+### POST H04   IRIS: Multiple Claims Checked | 2 claim(s) | 64s
+Category: news | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: As of 12:00 NN on Sunday, Sept. 20, the Department of Environment and Natural Resources–Environmental Management Bureau (DENR-EMB) continues to closely monitor air quality in several areas in the Philippines affected by 
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): correct
+CLAIM 2: The observed haze is possibly associated with smoke and transboundary haze from ongoing fires in Kalimantan, Indonesia, which may have been transported toward the Philippines by prevailing winds.
+  IRIS: Partially Verified | evidence: https://www.pna.gov.ph/articles/1283221, https://www.gmanetwork.com/news/topstories/nation/1000608/haze-possibly-from-indonesia-fires-reached-ncr-calabarzon-mimaropa/story/, https://www.pna.gov.ph/articles/1283332, https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/, https://pia.gov.ph/news/doh-denr-urge-public-to-protect-themselves-from-dangers-of-haze-polluted-air/, https://mb.com.ph/2026/09/01/ocd-urges-public-to-limit-outdoor-exposure-as-indonesia-haze-reaches-ph, https://www.dzrh.com.ph/post/several-metro-manila-areas-record-very-unhealthy-to-acutely-unhealthy-air-quality
+  Judgment (claim 2): wrong_level
+Comment: Claim 2: both components came back partially supported although the reviewer's own reason says the wording is nearly identical and the qualifiers are preserved.
+
+### POST H05   IRIS: Not Found | 1 claim(s) | 34s
+Category: news | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Vice President Sara Duterte has yet to confirm her attendance at the Senate budget hearing of the Office of the Vice President (OVP), Senator JV Ejercito said on Sunday.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): false_negative
+Comment: The GMA article the reviewer expected was never retrieved. IRIS also read the post as a statement by Sen. JV Ejercito, so 24 of 33 articles were rejected for not naming him.
+
+### POST H06   IRIS: Verified | 1 claim(s) | 47s
+Category: news | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: The Philippines won its first medal in the 2026 Asian Games in Nagoya, Japan, through the women's soft tennis team, as Bien Zoleta, Princess Catindig, Hilary Paas, Shyryn Salazar, and Christy Sañosa won the Philippines' 
+  IRIS: Verified | evidence: https://www.abs-cbn.com/sports/othersports/2026/9/20/soft-tennis-team-hopes-breakthrough-bronze-fuels-other-pinoy-athletes-1800, https://www.pna.gov.ph/index.php/articles/, https://www.rappler.com/sports/philippines-first-medal-soft-tennis-asian-games-2026/, https://www.gmanetwork.com/news/sports/othersports/1002993/philippines-gets-first-2026-asian-games-medal-as-women-s-soft-tennis-team-takes-bronze/story/, https://www.philstar.com/pang-masa/pm-sports/2026/09/19/2557243/soft-tennis-team-umukit-ng-kasaysayan-sa-asiad, https://www.philstar.com/pang-masa/pm-sports/2026/09/20/2557485/finals-target-ng-philippines-womens-soft-tennis-team, https://www.gmanetwork.com/news/sports/othersports/1003036/philippine-women-s-soft-tennis-team-relishes-asian-games-bronze-wins-new-fans-in-japan/story/, https://sports.inquirer.net/696229/asian-games-2026-ph-womens-soft-tennis-team-secures-bronze
+  Judgment (claim 1): correct
+Comment: 
+
+### POST H07   IRIS: Multiple Claims Checked | 2 claim(s) | 66s
+Category: news | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Fishermen catch fish in Laguna de Bay along the Taguig City shoreline on Sunday.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): correct
+CLAIM 2: Senator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 8
+  IRIS: Verified | evidence: https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced
+  Judgment (claim 2): correct
+Comment: 
+
+### POST H08   IRIS: Verified | 1 claim(s) | 27s
+Category: news | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Butuan haze eases, but air remains unhealthy for sensitive groups
+  IRIS: Verified | evidence: https://newsinfo.inquirer.net/2308383/butuan-haze-eases-but-air-remains-unhealthy-for-sensitive-groups
+  Judgment (claim 1): correct
+Comment: 
+
+### POST H09   IRIS: Verified | 1 claim(s) | 48s
+Category: filipino | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Residents of Calumpit and Hagonoy protested again to compel the government to address their grievances as some areas in Bulacan remain flooded.
+  IRIS: Verified | evidence: https://www.abs-cbn.com/news/regions/2026/9/20/flood-weary-calumpit-residents-take-to-streets-call-for-accountability-2005, https://newsinfo.inquirer.net/2112305/ghost-flood-control-projects-spark-protests-in-hagonoy-bulacan, https://newsinfo.inquirer.net/2112056/hagonoy-folk-long-suffering-from-floods-protest-vs-corruption, https://mb.com.ph/2025/09/21/bahain-ng-galit-hundreds-join-rally-vs-corruption-in-bulacan, https://www.gmanetwork.com/entertainment/showbiznews/timmy-cruz-calls-for-change-amid-persistent-flooding-in-her-bulacan-hometown/126185/, https://www.philstar.com/headlines/2026/08/31/2553081/hundreds-march-through-bulacan-floods-protest-vs-corruption, https://www.philstar.com/nation/2025/09/23/2474716/explain-flood-control-projects-congressman-asked, https://newsinfo.inquirer.net/2308257/hagonoy-bulacan-folk-march-anew-vs-flooding-woes, https://www.pna.gov.ph/articles/1254943, https://www.dzrh.com.ph/post/dizon-remains-hopeful-for-bulacan-amid-severe-flooding-hindi-pa-ako-nag-gi-give-up-mayroong-pag-asa-diyan, https://www.abs-cbn.com/news/nation/2026/8/29/flooding-hits-quezon-city-and-bulacan-due-to-heavy-rains-2149, https://www.pna.gov.ph/articles/1045519, https://www.gmanetwork.com/news/weather/content/1000158/live-updates-habagat-rains-affect-parts-of-ph-on-friday-aug-28-2026/story/
+  Judgment (claim 1): correct
+Comment: 
+
+### POST H10   IRIS: Not Found | 1 claim(s) | 39s
+Category: filipino | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Seven confirmed dead in the law enforcement operation of the combined forces of the PNP and AFP in Bgy. Bialong, Tugunan, which is a special geographic area of BARMM.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): wrong_level
+Comment: The passages confirm seven dead in the PNP/AFP operation in Tugunan; only "Bgy. Bialong" is unconfirmed. One missing detail on the same event should be Partially Verified.
+
+### POST H11   IRIS: Verified | 1 claim(s) | 39s
+Category: filipino | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Several groups gathered at the EDSA Shrine for the 'Walk for Truth and Justice,' a day before the anniversary of the 'Trillion-Peso March' which coincides with the 54th anniversary of the declaration of Martial Law.
+  IRIS: Verified | evidence: https://www.abs-cbn.com/news/nation/2026/9/20/groups-mark-martial-law-trillion-peso-march-anniversaries-with-edsa-protest-1316, https://qa.philstar.com/headlines/2026/09/20/2557636/groups-march-accountability-ahead-martial-law-anniversary
+  Judgment (claim 1): correct
+Comment: 
+
+### POST H12   IRIS: Verified | 1 claim(s) | 36s
+Category: filipino | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Progressive groups gathered at the EDSA Shrine this Sunday, Sept. 20, to commemorate the 54th anniversary of Martial Law.
+  IRIS: Verified | evidence: https://www.abs-cbn.com/news/nation/2026/9/20/groups-mark-martial-law-trillion-peso-march-anniversaries-with-edsa-protest-1316, https://mb.com.ph/2026/09/20/groups-demand-accountability-fight-corruption-ahead-of-martial-law-anniversary, https://qa.philstar.com/headlines/2026/09/20/2557636/groups-march-accountability-ahead-martial-law-anniversary, https://www.philstar.com/headlines/2026/09/20/2557636/groups-march-accountability-ahead-martial-law-anniversary
+  Judgment (claim 1): correct
+Comment: 
+
+### POST H13   IRIS: Multiple Claims Checked | 2 claim(s) | 91s
+Category: filipino | You expected: Partially Verified or Not Found
+Routing: correct
+Missed claims: 0
+CLAIM 1: A big-time oil price hike looms next week due to ongoing tensions in the Middle East.
+  IRIS: Verified | evidence: https://www.philstar.com/business/2026/09/07/2554634/fuel-prices-surge-sept-8-middle-east-tensions-intensify, https://www.gmanetwork.com/news/money/economy/1002757/big-time-oil-price-hike-of-up-to-p11-for-diesel-p5-for-gas-set-for-next-week/story/, https://www.gmanetwork.com/news/money/economy/978681/doe-warns-of-looming-fuel-price-hike-amid-middle-east-tensions/story/, https://business.inquirer.net/610658/another-fuel-price-hike-seen-next-week, https://www.pna.gov.ph/articles/1284326, https://www.onenews.ph/articles/over-p10-liter-fuel-price-hike-likely-doe, https://www.rappler.com/business/fuel-prices-adjustments-july-21-2026/, https://www.philstar.com/business/2026/09/14/2556240/pump-prices-jump-more-p4-liter-week, https://www.rappler.com/business/fuel-prices-adjustments-september-15-2026/
+  Judgment (claim 1): correct
+CLAIM 2: We interviewed Dir. Rino Abad of the DOE Oil Industry Management Bureau.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 2): correct
+Comment: 
+
+### POST H14   IRIS: Multiple Claims Checked | 5 claim(s) | 92s
+Category: quote | You expected: Partially Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Sen. Bong Go opposes the proposed increase in passport fees from P950 to P1,500.
+  IRIS: Partially Verified | evidence: https://mb.com.ph/2026/09/20/bong-go-opposes-passport-fee-hike-additional-burden-to-ofws, https://www.abs-cbn.com/news/business/2026/9/20/bong-go-proposal-to-raise-passport-fee-untimely-0914, https://balita.mb.com.ph/2024/08/27/kapatid-ni-alice-guo-isinalaysay-paano-sila-nakaalis-ng-bansa-gamit-maliit-na-boat/
+  Judgment (claim 1): wrong_level
+CLAIM 2: Sen. Bong Go said the higher cost would add to the financial burden of Filipinos, particularly overseas Filipino workers, amid rising prices.
+  IRIS: Partially Verified | evidence: https://www.abs-cbn.com/news/business/2026/9/20/bong-go-proposal-to-raise-passport-fee-untimely-0914, https://mb.com.ph/2026/09/20/bong-go-opposes-passport-fee-hike-additional-burden-to-ofws
+  Judgment (claim 2): wrong_level
+CLAIM 3: Sen. Bong Go urged the government to consider subsidizing the cost of passports instead.
+  IRIS: Partially Verified | evidence: https://www.abs-cbn.com/news/business/2026/9/20/bong-go-proposal-to-raise-passport-fee-untimely-0914
+  Judgment (claim 3): wrong_level
+CLAIM 4: Sen. Bong Go stressed that passports should be treated as a public service rather than a source of revenue.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 4): correct
+CLAIM 5: Sen. Bong Go said, “Ang kailangan ng mga Pilipino ngayon ay malasakit, hindi dagdag na pasakit. Serbisyo, hindi negosyo.”
+  IRIS: Not Found | evidence: none
+  Judgment (claim 5): correct
+Comment: The component review returned Verified for claims 1-3. The date ceiling added on 20 Sept downgraded them because the claims carry the anchor "Saturday" and no article prints it.
+
+### POST H15   IRIS: Multiple Claims Checked | 3 claim(s) | 69s
+Category: quote | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Sen. Robin Padilla said the South Cotabato school incident has strengthened his decision to leave politics, expressing frustration over Congress’ continued refusal to amend the Juvenile Justice and Welfare Act.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): false_negative
+CLAIM 2: “Hindi naman ako bulag at bingi,” Padilla said.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 2): false_negative
+CLAIM 3: Padilla earlier announced that he would no longer seek elective office in the next elections.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 3): false_negative
+Comment: The quote "Hindi naman ako bulag at bingi" appears in none of the 14 retrieved articles.
+
+### POST H16   IRIS: Not Found | 1 claim(s) | 44s
+Category: quote | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Chel Diokno said that higher penalties should be imposed on irresponsible gun owners who are found negligent in storing their firearms, stating, "Gun owners should also be given higher penalties if they are careless."
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): false_negative
+Comment: The gun-penalty statement was never retrieved; "Diokno" appears in 16 articles, the statement in none.
+
+### POST H17   IRIS: Multiple Claims Checked | 2 claim(s) | 62s
+Category: quote | You expected: Verified
+Routing: correct
+Missed claims: 0
+CLAIM 1: Janice de Belen is taking a step back when it comes to the rumored romance between her daughter, Kaila Estrada, and Daniel Padilla.
+  IRIS: Verified | evidence: https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/15/janice-de-belen-on-kaila-estrada-and-daniel-padilla-1109, https://www.philstar.com/entertainment/2026/04/30/2524479/janice-de-belen-advises-daughter-kaila-estrada-guard-your-heart, https://bandera.inquirer.net/444689/janice-de-belen-kay-kaila-estrada-guard-your-heart
+  Judgment (claim 1): correct
+CLAIM 2: Janice de Belen said: “It’s her life. She’s an adult.”
+  IRIS: Not Found | evidence: none
+  Judgment (claim 2): correct
+Comment: Claim 2 judged correct on the evidence IRIS had: the quote appears in none of the 16 retrieved articles, including the source that verified claim 1. Reviewer to confirm whether that article really carries the quote.
+
+### POST H18   IRIS: Multiple Claims Checked | 2 claim(s) | 91s
+Category: false_claim | You expected: Refuted
+Routing: correct
+Missed claims: 0
+CLAIM 1: There are two defenders named ArGD and BBM.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): ocr_error
+CLAIM 2: There is a person named Edu Manzano.
+  IRIS: Verified | evidence: https://www.rappler.com/people/p37564447-edu-manzano/, https://www.rappler.com/newsbreak/inside-track/edu-manzano-satire-contractors-nepotism-babies-flood-control-corruption/, https://mb.com.ph/2024/8/29/edu-manzano-shares-advice-for-son-luis-rumored-to-be-running-for-politics, https://www.pna.gov.ph/articles/1069236, https://www.abs-cbn.com/entertainment/studios/tv/2026/9/18/here-s-how-edu-manzano-s-sigabo-family-made-his-birthday-extra-special-0154, https://entertainment.inquirer.net/657326/edu-manzano-introduces-rumored-gf-ann-cuisia-as-his-life-partner, https://entertainment.inquirer.net/574546/edu-manzano-talks-about-being-a-father-to-his-children, https://www.gmanetwork.com/entertainment/showbiznews/edu-manzano-pokes-fun-at-ghost-flood-control-projects-with-ai-generated-memes/125592/, https://www.philstar.com/entertainment/2023/04/17/2259354/edu-manzano-recalls-fathers-influence-receiving-lasallian-achievement-award, https://www.abs-cbn.com/entertainment/showbiz/celebrities/2025/9/5/edu-manzano-delights-netizens-with-funny-memes-and-his-university-of-contractors-1647, https://www.abs-cbn.com/2019/1/18/fresh-scoops/edu-manzano-no-regrets-on-being-a-breadwinner-at-33790, https://verafiles.org/articles/fact-check-actor-edu-manzano-did-not-urge-marcos-to-resign, https://www.rappler.com/philippines/elections/230067-edu-manzano-stands-ground-san-juan-can-still-vote-for-me/, https://www.pna.gov.ph/articles/1069060, https://mb.com.ph/2026/05/15/edu-manzano-and-gf-anna-cuisia-clarify-role-in-peanut-gallery-media-network, https://verafiles.org/articles/vera-files-fact-check-death-hoaxes-local-celebrities-imelda
+  Judgment (claim 2): ocr_error
+Comment: 
+
+### POST H19   IRIS: Multiple Claims Checked | 2 claim(s) | 77s
+Category: false_claim | You expected: Refuted
+Routing: correct
+Missed claims: 0
+CLAIM 1: Moro Islamic Liberation Front (MILF), Iglesia ni Cristo (INC), and MILFATINC declared support for VPSara Duterte.
+  IRIS: Partially Verified | evidence: https://mb.com.ph/2022/5/7/mnlf-milf-jointly-endorse-robredo-duterte, https://www.philstar.com/headlines/2022/05/08/2179620/milf-mnlf-declare-support-robredo-and-sara-duterte, https://newsinfo.inquirer.net/1593634/mnlf-milf-endorse-robredo-for-president-sara-duterte-for-vp, https://www.pna.gov.ph/articles/1173590, https://www.rappler.com/newsbreak/inside-track/iglesia-ni-cristo-ferdinand-marcos-jr-sara-duterte/, https://www.dzrh.com.ph/post/iglesia-ni-cristo-endorses-marcos-jr-duterte-tandem, https://verafiles.org/articles/fact-check-no-reported-sightings-of-sara-duterte-visiting-milf-camp-photos-are-ai-generated
+  Judgment (claim 1): ocr_error
+CLAIM 2: There was an appeal from supporters for everyone to be together in 2028.
+  IRIS: Verified | evidence: https://verafiles.org/articles/fact-check-no-endorsement-for-vp-sara-from-milf-inc-graphic-ai-generated
+  Judgment (claim 2): false_positive
+Comment: Claim 2 was verified from VERA Files quoting the fake graphic in order to debunk it.
+
+### POST H20   IRIS: Multiple Claims Checked | 2 claim(s) | 51s
+Category: false_claim | You expected: Refuted
+Routing: correct
+Missed claims: 0
+CLAIM 1: EGMN said: 'Pagbalik namin sa Malacanang pupugutan buong ko ng ulo si BBM' at angkan niya
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): ocr_error
+CLAIM 2: Sebasttn "Baste" Diet said: 'kayo mga llocano; humanda marami ring mapupugutan ng ulo sa inyo'
+  IRIS: Not Found | evidence: none
+  Judgment (claim 2): ocr_error
+Comment: 
+
+### POST H21   IRIS: Not Found | 1 claim(s) | 38s
+Category: false_claim | You expected: Refuted
+Routing: correct
+Missed claims: 0
+CLAIM 1: A majority of ICC judges accepted the evidence and moved to end the trial before the year ends.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): ocr_error
+Comment: 
+
+### POST H22   IRIS: Multiple Claims Checked | 3 claim(s) | 97s
+Category: opinion_satire | You expected: No Checkable Claims
+Routing: wrong
+Missed claims: 0
+CLAIM 1: She had been suffering for 12 years.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): correct
+CLAIM 2: She believed that even touching the hem of His garment could change everything.
+  IRIS: Verified | evidence: https://mb.com.ph/2024/7/7/a-woman-touched-the-tassel-on-his-cloak
+  Judgment (claim 2): false_positive
+CLAIM 3: Jesus said, “Daughter, your faith has healed you.”
+  IRIS: Verified | evidence: https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage
+  Judgment (claim 3): false_positive
+Comment: Scripture should not be verified as news. Claim 3 was proven from a Philstar opinion column (an attributed statement, which the opinion rule exempts) and claim 2 from a Manila Bulletin religious reflection whose address carries no section marker. The Philstar link is also a qa. staging subdomain.
+
+### POST H23   IRIS: Multiple Claims Checked | 8 claim(s) | 231s
+Category: opinion_satire | You expected: No Checkable Claims
+Routing: wrong
+Missed claims: 0
+CLAIM 1: The location is 006 Mabini Extension, Cabanatuan City, Nueva Ecija.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): correct
+CLAIM 2: The rent is 2,000 pesos per month.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 2): correct
+CLAIM 3: Payment for electricity and water is separate.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 3): correct
+CLAIM 4: WiFi is not free.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 4): correct
+CLAIM 5: Two rooms are still available.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 5): correct
+CLAIM 6: Three more girls are needed for a long-term dorm arrangement with four people per room.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 6): correct
+CLAIM 7: If someone can afford to pay for the fourth person's share, they can have a room to themselves.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 7): correct
+CLAIM 8: The room is large and is near many places.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 8): correct
+Comment: Eight claims searched across eleven publishers, 231s, for a dorm-mate advertisement.
+
+### POST H24   IRIS: Outside Philippine Coverage | 0 claim(s) | 4s
+Category: opinion_satire | You expected: Opinion Detected or No Checkable Claims
+Routing: wrong
+Missed claims: 0
+Comment: Answered Outside Philippine Coverage; No Checkable Claims fits a post with nothing to check.
+
+### POST H25   IRIS: Multiple Claims Checked | 8 claim(s) | 238s
+Category: opinion_satire | You expected: Opinion Detected or No Checkable Claims
+Routing: wrong
+Missed claims: 0
+CLAIM 1: The owner of ASH invited the reviewer to visit.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 1): correct
+CLAIM 2: The reviewer visited ASH café on the day of writing.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 2): correct
+CLAIM 3: The reviewer did not inform ASH café in advance about their visit.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 3): correct
+CLAIM 4: ASH café is quiet, has low music, good coffee, and sockets.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 4): correct
+CLAIM 5: The table and chair height at ASH café are comfortable for working on a laptop.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 5): correct
+CLAIM 6: ASH café has Wi-Fi with a voucher.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 6): correct
+CLAIM 7: The reviewer used mobile data instead of the café's Wi-Fi due to concerns about shared Wi-Fi.
+  IRIS: Not Found | evidence: none
+  Judgment (claim 7): correct
+CLAIM 8: Cabanatuan has many coffee shops and restaurants.
+  IRIS: Verified | evidence: https://www.philstar.com/lifestyle/food-and-leisure/2022/11/04/2219973/lakbay-norte-food-trip-around-nueva-ecija
+  Judgment (claim 8): correct
+Comment: Eight claims searched, 238s, for a cafe review.
+

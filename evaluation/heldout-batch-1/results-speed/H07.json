@@ -1,0 +1,1828 @@
+{
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 2 extracted claims individually.",
+    "original_text": "Fishermen catch fish in Laguna de Bay along the Taguig City shoreline on Sunday.\nSenator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares. (Photos by Ryan Baldemor/The Philippine STAR)\nRELATED: https://tinyurl.com/53ny54kr",
+    "translated_text": "Fishermen catch fish in Laguna de Bay along the Taguig City shoreline on Sunday.\nSenator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares. (Photos by Ryan Baldemor/The Philippine STAR)\nRELATED: https://tinyurl.com/53ny54kr",
+    "detected_language": "english",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 2,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s4",
+        "text": "RELATED: https://tinyurl.com/53ny54kr",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "vague_claim"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "text": "(Photos by Ryan Baldemor/The Philippine STAR)",
+        "segment_type": "uncheckable"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Fishermen catch fish in Laguna de Bay along the Taguig City shoreline on Sunday.",
+        "normalized_claim": "Fishermen caught fish in Laguna de Bay along the Taguig City shoreline on Sunday.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "Fishermen catch fish in Laguna de Bay along the Taguig City shoreline on Sunday.",
+              "status": "not_supported",
+              "citations": [],
+              "evidence_relation": "not_established",
+              "review_reason": "Both passages confirm that fishermen catch fish in Laguna de Bay, including in the Taguig City area, but neither passage specifies that this occurred 'on Sunday.' The passages are about the general activity and do not establish the specific date or occurrence referenced in the claim.",
+              "context": {
+                "start": 0,
+                "end": 80,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Fishermen",
+                      "start": 0,
+                      "end": 9
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "catch",
+                      "start": 10,
+                      "end": 15
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Fishermen catch fish in Laguna de Bay along the Taguig City shoreline on Sunday.",
+                      "start": 0,
+                      "end": 80
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "on Sunday.",
+                      "start": 70,
+                      "end": 80
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Fishermen catch fish in Laguna de Bay along the Taguig City shoreline on Sunday.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 80
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_group_id": 0,
+              "event_rejections": [
+                {
+                  "component_id": 0,
+                  "url": "https://www.rappler.com/philippines/fishing-communities-ask-jobs-profit-share-laguna-de-bay-floating-solar-project/",
+                  "status": "uncertain",
+                  "reason": "Passages 55 and 56 from source 2 mention that Laguna de Bay provides for the needs of more than 24,000 people in the fishing industry, including 14,000 fishermen who depend on the lake. However, there is no specific mention of Taguig City or the Taguig shoreline, nor any reference to a particular day. Thus, the identity match is uncertain for this source."
+                }
+              ]
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": false,
+              "qualifiers_preserved": false,
+              "contradicted": false,
+              "same_occurrence": false,
+              "missing_kind": "date",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0,
+                1
+              ],
+              "reason": "Both passages confirm that fishermen catch fish in Laguna de Bay, including in the Taguig City area, but neither passage specifies that this occurred 'on Sunday.' The passages are about the general activity and do not establish the specific date or occurrence referenced in the claim.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "Fishermen catch fish in Laguna de Bay along the Taguig City shoreline on Sunday.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Fishermen catch fish in Laguna de Bay along the Taguig City shoreline on Sunday.",
+              "sources": {
+                "https://newsinfo.inquirer.net/858767/fish-pens-strangle-laguna-de-bay": {
+                  "status": "matched",
+                  "passage_ids": [
+                    2
+                  ],
+                  "reason": "Passage 2 from source 0 states, 'Fish pens and water hyacinths have long been choking Laguna de Bay, the country’s largest inland body of water, especially in this part of Taguig.' This establishes that fishing activity occurs in Laguna de Bay along the Taguig shoreline, supporting the identity of the event described in the claim. However, it does not specify the exact date (Sunday), but the location and activity (fishing in Taguig part of Laguna de Bay) are established.",
+                  "citations": [
+                    {
+                      "url": "https://newsinfo.inquirer.net/858767/fish-pens-strangle-laguna-de-bay",
+                      "quote": "Fish pens and water hyacinths have long been choking Laguna de Bay, the country’s largest inland body of water, especially in this part of Taguig."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.gmanetwork.com/news/topstories/nation/64717/fishermen-declare-war-vs-nuisance-janitor-fish/story/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    5
+                  ],
+                  "reason": "Passage 5 from source 1 states, 'Fishermen from Laguna and Rizal provinces, and Taguig City on Tuesday trooped to the Department of Environment and Natural Resources...' This confirms the existence of fishermen from Taguig City who fish in Laguna de Bay, matching the event's location and participant identity, though not the specific date (Sunday).",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/64717/fishermen-declare-war-vs-nuisance-janitor-fish/story/",
+                      "quote": "Fishermen from Laguna and Rizal provinces, and Taguig City on Tuesday trooped to the Department of Environment and Natural Resources along Visayas Avenue in Quezon City where they dumped 300 kilograms of the dreaded janitor fish."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.rappler.com/philippines/fishing-communities-ask-jobs-profit-share-laguna-de-bay-floating-solar-project/": {
+                  "status": "uncertain",
+                  "passage_ids": [
+                    55,
+                    56
+                  ],
+                  "reason": "Passages 55 and 56 from source 2 mention that Laguna de Bay provides for the needs of more than 24,000 people in the fishing industry, including 14,000 fishermen who depend on the lake. However, there is no specific mention of Taguig City or the Taguig shoreline, nor any reference to a particular day. Thus, the identity match is uncertain for this source.",
+                  "citations": [
+                    {
+                      "url": "https://www.rappler.com/philippines/fishing-communities-ask-jobs-profit-share-laguna-de-bay-floating-solar-project/",
+                      "quote": "Laguna de Bay provides for the needs of more than 24,000 people in the fishing industry, according to the Phil-WAVES 2016 Philippine country report."
+                    },
+                    {
+                      "url": "https://www.rappler.com/philippines/fishing-communities-ask-jobs-profit-share-laguna-de-bay-floating-solar-project/",
+                      "quote": "This includes the 14,000 fishermen who depend on the lake through capture fisheries and aquaculture."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14",
+          "refutation_check": {
+            "denied": false,
+            "same_occurrence": false,
+            "component_ids": [],
+            "passage_ids": [],
+            "reason": "None of the supplied passages from VERA Files address or deny the specific claim that fishermen catch fish in Laguna de Bay along the Taguig City shoreline on Sunday. The passages discuss fishing in other locations and general issues affecting fishermen, but do not mention or refute this particular event or claim."
+          }
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/diminishing-catch-in-overfished-bohol-waters",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fishermens-wives-take-on-odd-jobs-as-husbands-catch-dwindle",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/fishing-communities-ask-jobs-profit-share-laguna-de-bay-floating-solar-project/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/metro-manila/dpwh-laguna-de-bay-reclamation-taguig-cease-and-desist-order/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/video/daily-wrap/august-31-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/19/lacson-some-titled-areas-in-laguna-de-bay-are-still-underwater-1729",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/business/01/26/24/laguna-de-bay-to-open-1k-hectares-for-aquaculture",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/3/lacson-cayetano-taguig-infrastructure-1121",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/64717/fishermen-declare-war-vs-nuisance-janitor-fish/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/volleyball/1002677/alas-pilipinas-women-at-the-2026-asian-games-lineup-and-schedule/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/4/muddy-waters-dwindling-catch-laguna-de-bay-and-the-fishers-of-talim-island/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/1463849/program-for-laguna-de-bay-good-but-fishers-feel-forgotten",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2294982/laguna-de-bay-breaches-critical-mark-llda",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/858767/fish-pens-strangle-laguna-de-bay",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/02/23/2507294/reclamation-altering-laguna-de-bays-shores-and-lives-rely-it",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/nation/2026/08/23/2551141/2-missing-fishermen-rescued-batangas",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2024/04/20/2349105/no-reclamation-allowed-within-laguna-de-bay",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2024/1/18/agri-chief-eyes-laguna-lake-as-major-source-for-fish-production",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/29/missing-fisherman-found-dead-after-motor-banca-runs-aground-in-cagayan",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2024/1/17/agri-chief-eyes-laguna-lake-as-major-source-for-fish-production",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1217197",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1010855",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/2024/01/23/agri-chief-eyes-laguna-de-bay-as-major-fish-source-for-metro-manila",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/cebu-launches-twin-drives-fight-misinformation-promote-reading-habit/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2024/01/23/agri-chief-eyes-laguna-de-bay-as-major-fish-source-for-metro-manila",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/da-chief-wants-to-revive-laguna-de-bay-as-major-source-of-fish-for-metro-manila",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/cayetano-lacson-trade-barbs-anew-over-anti-corruption-probe",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/here's-what-happened-in-aliwan-fiesta-2023-grand-parade",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/no-reclamation-allowed-within-laguna-de-bay",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bfar-vessel-hit-by-china-coast-guard-ship",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/chinese-remove-pinoy-fishers-payao-in-wps",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/diminishing-catch-in-overfished-bohol-waters",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/fishermens-wives-take-on-odd-jobs-as-husbands-catch-dwindle",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/fishing-communities-ask-jobs-profit-share-laguna-de-bay-floating-solar-project/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/metro-manila/dpwh-laguna-de-bay-reclamation-taguig-cease-and-desist-order/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/video/daily-wrap/august-31-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/19/lacson-some-titled-areas-in-laguna-de-bay-are-still-underwater-1729",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/business/01/26/24/laguna-de-bay-to-open-1k-hectares-for-aquaculture",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/3/lacson-cayetano-taguig-infrastructure-1121",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/64717/fishermen-declare-war-vs-nuisance-janitor-fish/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/volleyball/1002677/alas-pilipinas-women-at-the-2026-asian-games-lineup-and-schedule/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/4/muddy-waters-dwindling-catch-laguna-de-bay-and-the-fishers-of-talim-island/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/1463849/program-for-laguna-de-bay-good-but-fishers-feel-forgotten",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2294982/laguna-de-bay-breaches-critical-mark-llda",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/858767/fish-pens-strangle-laguna-de-bay",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/02/23/2507294/reclamation-altering-laguna-de-bays-shores-and-lives-rely-it",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/nation/2026/08/23/2551141/2-missing-fishermen-rescued-batangas",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2024/04/20/2349105/no-reclamation-allowed-within-laguna-de-bay",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2024/1/18/agri-chief-eyes-laguna-lake-as-major-source-for-fish-production",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/29/missing-fisherman-found-dead-after-motor-banca-runs-aground-in-cagayan",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2024/1/17/agri-chief-eyes-laguna-lake-as-major-source-for-fish-production",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1217197",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1010855",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/2024/01/23/agri-chief-eyes-laguna-de-bay-as-major-fish-source-for-metro-manila",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/cebu-launches-twin-drives-fight-misinformation-promote-reading-habit/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2024/01/23/agri-chief-eyes-laguna-de-bay-as-major-fish-source-for-metro-manila",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/da-chief-wants-to-revive-laguna-de-bay-as-major-source-of-fish-for-metro-manila",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/cayetano-lacson-trade-barbs-anew-over-anti-corruption-probe",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/here's-what-happened-in-aliwan-fiesta-2023-grand-parade",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/no-reclamation-allowed-within-laguna-de-bay",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bfar-vessel-hit-by-china-coast-guard-ship",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/chinese-remove-pinoy-fishers-payao-in-wps",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Fishermen caught fish in Laguna de Bay along the Taguig City shoreline on Sunday."
+        },
+        "scoring_claim": "Fishermen caught fish in Laguna de Bay along the Taguig City shoreline on Sunday.",
+        "search_query": "fishermen catch fish Laguna de Bay Taguig City Sunday",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "af3b27b2ba738685224b30cfd0a28bc69985db0ac5f41f954f39fe8ec924c91f",
+        "cache_version": "week7-scripture-dates-v37",
+        "verdict": "Not Found",
+        "message": "Retrieved passages support 0 of 1 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 94,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence confirms fishermen caught fish in Laguna de Bay on Sunday.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "Senator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares.",
+        "normalized_claim": "Senator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Senator Ping Lacson",
+          "role": "Senator",
+          "statement": "Senator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares.",
+          "source": "Philippine Reclamation Authority",
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "grounded",
+            "source": "grounded",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Senator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced",
+                  "quote": "Moreover, Lacson said there are new findings from the Philippine Reclamation Authority (PRA) showing that unauthorized encroachment into Laguna Lake on the Taguig City side alone has reached 170 hectares - double the initial estimate of 85 hectares."
+                },
+                {
+                  "url": "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced",
+                  "quote": "“TAGUIG UPDATE: The scale of unauthorized encroachment into Laguna Lake has dramatically expanded. While initial estimates pointed to 85 hectares, our latest verification from the PRA reveals that 170 hectares on the Taguig side alone have been covered with soil,” he said in a post on X Saturday afternoon."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Passages 0 and 1 explicitly state that Senator Ping Lacson revealed new findings from the Philippine Reclamation Authority showing unauthorized encroachment/reclamation in Laguna Lake (Laguna de Bay) along the Taguig side has reached 170 hectares, double the initial estimate of 85 hectares. The details about the source (PRA), the subject (Lacson), the location (Taguig segment of Laguna de Bay), the figures (170 hectares, double 85 hectares), and the act of revealing/baring the findings are all present. The same occurrence is established as the statements are attributed to Lacson's recent public disclosures. No contradiction is present.",
+              "context": {
+                "start": 0,
+                "end": 231,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator Ping Lacson",
+                      "start": 0,
+                      "end": 19
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "unauthorized reclamation in Laguna de Bay along the Taguig segment",
+                      "start": 94,
+                      "end": 160
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "bared new findings from the Philippine Reclamation Authority",
+                      "start": 20,
+                      "end": 80
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "has reached 170 hectares – double his initial estimate of 85 hectares",
+                      "start": 161,
+                      "end": 230
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Senator Ping Lacson bared new findings from the Philippine Reclamation Authority",
+                      "start": 0,
+                      "end": 80
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares",
+                      "start": 94,
+                      "end": 230
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Senator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 231
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0,
+                1
+              ],
+              "reason": "Passages 0 and 1 explicitly state that Senator Ping Lacson revealed new findings from the Philippine Reclamation Authority showing unauthorized encroachment/reclamation in Laguna Lake (Laguna de Bay) along the Taguig side has reached 170 hectares, double the initial estimate of 85 hectares. The details about the source (PRA), the subject (Lacson), the location (Taguig segment of Laguna de Bay), the figures (170 hectares, double 85 hectares), and the act of revealing/baring the findings are all present. The same occurrence is established as the statements are attributed to Lacson's recent public disclosures. No contradiction is present.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "Senator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Senator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares.",
+              "sources": {
+                "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced": {
+                  "status": "matched",
+                  "passage_ids": [
+                    2,
+                    5
+                  ],
+                  "reason": "Passages 2 and 5 explicitly state that Lacson cited new findings from the PRA showing unauthorized encroachment in Laguna Lake on the Taguig side has reached 170 hectares, double the initial estimate of 85 hectares. This directly matches the claim's subject, action, and context.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced",
+                      "quote": "Moreover, Lacson said there are new findings from the Philippine Reclamation Authority (PRA) showing that unauthorized encroachment into Laguna Lake on the Taguig City side alone has reached 170 hectares - double the initial estimate of 85 hectares."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced",
+                      "quote": "“TAGUIG UPDATE: The scale of unauthorized encroachment into Laguna Lake has dramatically expanded. While initial estimates pointed to 85 hectares, our latest verification from the PRA reveals that 170 hectares on the Taguig side alone have been covered with soil,” he said in a post on X Saturday afternoon."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://newsinfo.inquirer.net/2308137/lacson-taguig-land-titles-include-underwater-areas": {
+                  "status": "matched",
+                  "passage_ids": [
+                    8,
+                    9,
+                    10
+                  ],
+                  "reason": "Passages 8, 9, and 10 confirm that Lacson, citing updated data from the PRA, stated unauthorized encroachment on the Taguig side of Laguna de Bay spans 170 hectares, matching the claim's subject and incident.",
+                  "citations": [
+                    {
+                      "url": "https://newsinfo.inquirer.net/2308137/lacson-taguig-land-titles-include-underwater-areas",
+                      "quote": "MANILA, Philippines — The unauthorized encroachment of land and lakeshore areas on the Taguig side of Laguna de Bay span 170 hectares including areas still underwater, Sen. Panfilo “Ping” Lacson said on Saturday, citing updated data from ..."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2308137/lacson-taguig-land-titles-include-underwater-areas",
+                      "quote": "Senator Panfilo 'Ping' Lacson – File photo MANILA, Philippines — The unauthorized encroachment of land and lakeshore areas on the Taguig side of Laguna de Bay span 170 hectares"
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2308137/lacson-taguig-land-titles-include-underwater-areas",
+                      "quote": "MANILA, Philippines — The unauthorized encroachment of land and lakeshore areas on the Taguig side of Laguna de Bay span 170 hectares including areas still underwater, Sen. Panfilo “Ping” Lacson said on Saturday, citing updated data from the Philippine Reclamation Authority (PRA)."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://newsinfo.inquirer.net/2307907/lacson-at-least-13-land-titles-cover-170-hectares-of-laguna-lake-encroachment": {
+                  "status": "matched",
+                  "passage_ids": [
+                    21,
+                    22,
+                    25
+                  ],
+                  "reason": "Passages 21, 22, and 25 show Lacson revealed, citing updated PRA data, that 13 land titles cover 170 hectares of encroachment on the Taguig side of Laguna Lake, which matches the claim's subject, action, and context.",
+                  "citations": [
+                    {
+                      "url": "https://newsinfo.inquirer.net/2307907/lacson-at-least-13-land-titles-cover-170-hectares-of-laguna-lake-encroachment",
+                      "quote": "(File photo by EDWIN BACASMAS / INQUIRER.net) MANILA, Philippines — At least 13 land titles cover 170 hectares of encroachment on the Taguig side of Laguna Lake, Sen. Panfilo “Ping” Lacson revealed on Saturday, Sept. 19."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2307907/lacson-at-least-13-land-titles-cover-170-hectares-of-laguna-lake-encroachment",
+                      "quote": "He cited the updated data from the Philippine Reclamation Authority (PRA)."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2307907/lacson-at-least-13-land-titles-cover-170-hectares-of-laguna-lake-encroachment",
+                      "quote": "“These are 13 titles covering an area of 170 hectares on the Taguig side of Laguna Lake,” he divulged."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/panfilo-ping-lacson",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/lacson-to-flood-control-mess-probe-detractors-shut-the-f-up",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/metro-manila/dpwh-laguna-de-bay-reclamation-taguig-cease-and-desist-order/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/vantage-point-drowning-concrete-why-philippine-flood-control-fails/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/n61661752-panfilo-lacson/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/4/lacson-flags-taguig-ghost-slope-protection-projects-laguna-lake-illegal-reclamation-1712",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/19/lacson-some-titled-areas-in-laguna-de-bay-are-still-underwater-1729",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/6/lacson-camp-45-case-studies-on-anomalous-flood-control-projects-in-taguig-submitted-to-ombudsman-1734",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/997725/lacson-calls-for-end-to-impunity-over-laguna-lake-reclamation-in-taguig/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000548/lacson-p3-7b-wasted-on-illegal-taguig-reclamation-projects/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000977/demolition-job-cayetano-lacson-fuel-clash-over-taguig-infra-projects/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2308137/lacson-taguig-land-titles-include-underwater-areas",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2307907/lacson-at-least-13-land-titles-cover-170-hectares-of-laguna-lake-encroachment",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2296150/lacson-p3-7b-wasted-in-taguig-reclamation",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/14/2556076/new-witnesses-taguig-infrastructure-projects-surface-lacson",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/10/2548222/ping-pra-seize-illegally-reclaimed-areas-taguig",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/31/2553083/lacson-p3713b-may-have-been-wasted-taguig-reclamation-projects",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/31/lacson-says-p3713-b-in-public-funds-wasted-on-illegal-taguig-reclamation-projects",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/04/lacson-says-taguig-ghost-project-probe-opens-cauldron-of-worms-seeks-forfeiture-of-reclaimed-land-in-favor-of-government",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1281008",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282218",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/pra-sole-authority-on-reclamation-key-to-flood-protection/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/malacanang-orders-alternative-work-arrangements-class-suspensions-due-to-heavy-rains/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/index.php?article=1231336974282",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/peso37-billion-spent-on-flood-control-projects-in-taguig-reclamation-areas-lacson",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/lacson-turns-over-evidence-on-alleged-taguig-ghost-projects-to-ombudsman",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dpwh-issues-cease-and-desist-order-on-alleged-illegal-reclamation-in-taguig",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/lacson-pra-to-seize-illegally-reclaimed-areas-in-taguig",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/senate-to-scrutinize-p107-b-flood-control-budget",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/ping-pushes-accountability-in-taguig-reclamation",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/panfilo-ping-lacson",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/lacson-to-flood-control-mess-probe-detractors-shut-the-f-up",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/philippines/metro-manila/dpwh-laguna-de-bay-reclamation-taguig-cease-and-desist-order/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/vantage-point-drowning-concrete-why-philippine-flood-control-fails/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/people/n61661752-panfilo-lacson/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/4/lacson-flags-taguig-ghost-slope-protection-projects-laguna-lake-illegal-reclamation-1712",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/19/lacson-some-titled-areas-in-laguna-de-bay-are-still-underwater-1729",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/6/lacson-camp-45-case-studies-on-anomalous-flood-control-projects-in-taguig-submitted-to-ombudsman-1734",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/997725/lacson-calls-for-end-to-impunity-over-laguna-lake-reclamation-in-taguig/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000548/lacson-p3-7b-wasted-on-illegal-taguig-reclamation-projects/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000977/demolition-job-cayetano-lacson-fuel-clash-over-taguig-infra-projects/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2308137/lacson-taguig-land-titles-include-underwater-areas",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2307907/lacson-at-least-13-land-titles-cover-170-hectares-of-laguna-lake-encroachment",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2296150/lacson-p3-7b-wasted-in-taguig-reclamation",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/14/2556076/new-witnesses-taguig-infrastructure-projects-surface-lacson",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/10/2548222/ping-pra-seize-illegally-reclaimed-areas-taguig",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/31/2553083/lacson-p3713b-may-have-been-wasted-taguig-reclamation-projects",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/31/lacson-says-p3713-b-in-public-funds-wasted-on-illegal-taguig-reclamation-projects",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/04/lacson-says-taguig-ghost-project-probe-opens-cauldron-of-worms-seeks-forfeiture-of-reclaimed-land-in-favor-of-government",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1281008",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282218",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/pra-sole-authority-on-reclamation-key-to-flood-protection/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/news/malacanang-orders-alternative-work-arrangements-class-suspensions-due-to-heavy-rains/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/news/index.php?article=1231336974282",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/peso37-billion-spent-on-flood-control-projects-in-taguig-reclamation-areas-lacson",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/lacson-turns-over-evidence-on-alleged-taguig-ghost-projects-to-ombudsman",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dpwh-issues-cease-and-desist-order-on-alleged-illegal-reclamation-in-taguig",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/lacson-pra-to-seize-illegally-reclaimed-areas-in-taguig",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/senate-to-scrutinize-p107-b-flood-control-budget",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/ping-pushes-accountability-in-taguig-reclamation",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "normalized_phrase_match",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Senator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares."
+        },
+        "scoring_claim": "Senator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares.",
+        "search_query": "Senator Ping Lacson bared new findings from the Philippine Reclamation Authority showing that unauthorized reclamation in Laguna de Bay along the Taguig segment has reached 170 hectares – double his initial estimate of 85 hectares.",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "f1cc3bc4fc98f04fb65dab0946f9061e17543c43760ed17132d0147cd38d71d1",
+        "cache_version": "week7-scripture-dates-v37",
+        "verdict": "Verified",
+        "message": "Retrieved evidence supports that Senator Ping Lacson made this statement with Philippine Reclamation Authority attribution. This verifies the attribution, not the underlying claim by itself.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "Manila Bulletin",
+          "title": "Manila Bulletin - Lacson: New witnesses on Taguig ghost projects have surfaced",
+          "url": "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced",
+          "status": "extracted",
+          "word_count": 263,
+          "evidence_method": "component_review",
+          "extraction_quality": "excerpt",
+          "evidence_type": "search_excerpt"
+        },
+        "supporting_sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Lacson: New witnesses on Taguig ghost projects have surfaced",
+            "url": "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced",
+            "status": "extracted",
+            "word_count": 263,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 86,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Lacson: New witnesses on Taguig ghost projects have surfaced",
+            "url": "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced",
+            "status": "extracted",
+            "word_count": 263,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Lacson: New witnesses on Taguig ghost projects have surfaced",
+            "url": "https://mb.com.ph/2026/09/13/lacson-new-witnesses-on-taguig-ghost-projects-have-surfaced",
+            "status": "extracted",
+            "word_count": 263,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not confirm the specific claim about unauthorized reclamation findings by Senator Lacson.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources"
+  },
+  "seconds": 38.2
+}

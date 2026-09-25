@@ -1,0 +1,1540 @@
+{
+  "case_id": "B02-EN-FB",
+  "input_sha256": "f59e33da581fc7504846bc98affb2d500362aa964f500a00f24405cd2b34f1b2",
+  "started_utc": "2026-09-19T11:58:54.950059+00:00",
+  "http_status": 200,
+  "seconds": 31.263,
+  "trace_id": "c118630c7b594e69bc27479e896dab69",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-institution-equivalence-v24",
+  "response": {
+    "verdict": "Verified",
+    "message": "Retrieved evidence supports that Malacañang made this statement. This verifies the attribution, not the underlying claim by itself.",
+    "original_text": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial. #VPOnTrial \nCheck the comments section for the full report.",
+    "translated_text": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial. #VPOnTrial \nCheck the comments section for the full report.",
+    "detected_language": "english",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 1,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s2",
+        "text": "#VPOnTrial",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "vague_claim"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "text": "Check the comments section for the full report.",
+        "segment_type": "uncheckable"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+        "normalized_claim": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Malacañang",
+          "role": null,
+          "statement": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [
+            "role"
+          ],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "not_in_input",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                  "quote": "MANILA, Philippines — Malacañang said Thursday, September 17, that it would stay out of the Senate impeachment court’s deliberations on the number of votes needed to convict Vice President Sara Duterte in her impeachment case."
+                },
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                  "quote": "This was backed by the Palace, saying that any decision that will come up from the senator-judges’ differing interpretations of the rule no longer concerns the administration."
+                },
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                  "quote": "“Muli, ang Palasyo ay hindi po manghihimasok kung ano man po ang sasabihin or magiging desisyon ng Senado dahil malinaw naman po ang sinabi ng mga justices natin. Dapat ito ay para sa katotohanan. Truth, fairness and justice,” Castro said in a press briefing."
+                },
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                  "quote": "(Again, the Palace will not intervene in the decisions of the Senate because our justices have made it clear already that the decision must be for truth."
+                },
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                  "quote": "(The Palace is not concerned, because whatever their opinions will be, those will be their decisions."
+                },
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                  "quote": "So whatever happens in the senate, that’s their responsibility, not the administration’s.) Philstar.com is one of the most vibrant, opinionated, discerning communities of readers on cyberspace."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Multiple passages explicitly state that Malacañang (the Palace) will not intervene or is not concerned with the Senate's deliberations or decisions regarding the number of votes needed to convict Vice President Sara Duterte in her impeachment trial. This is a faithful paraphrase of 'the president has no business interfering with the issue of the necessary votes.' The institutional equivalence of Malacañang and the president is standard. No cited passage contradicts this; all support the assertion.",
+              "context": {
+                "start": 0,
+                "end": 160,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "the president",
+                      "start": 16,
+                      "end": 29
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial",
+                      "start": 30,
+                      "end": 159
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial",
+                      "start": 16,
+                      "end": 159
+                    }
+                  ],
+                  "time": [],
+                  "negation": [
+                    {
+                      "origin": "claim",
+                      "quote": "no business",
+                      "start": 34,
+                      "end": 45
+                    }
+                  ],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "Malacañang said",
+                      "start": 0,
+                      "end": 15
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 160
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "citation_ids": [
+                0,
+                1,
+                2,
+                3,
+                5,
+                6
+              ],
+              "reason": "Multiple passages explicitly state that Malacañang (the Palace) will not intervene or is not concerned with the Senate's deliberations or decisions regarding the number of votes needed to convict Vice President Sara Duterte in her impeachment trial. This is a faithful paraphrase of 'the president has no business interfering with the issue of the necessary votes.' The institutional equivalence of Malacañang and the president is standard. No cited passage contradicts this; all support the assertion.",
+              "component_id": 0
+            }
+          ],
+          "original_claim": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+              "sources": {
+                "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0,
+                    2,
+                    3,
+                    12,
+                    15,
+                    16,
+                    17
+                  ],
+                  "reason": "Passages 0, 2, 3, 12, 15, 16, and 17 from the source explicitly state that Malacañang (the Palace) said it would not intervene or is not concerned with the Senate's decisions regarding the voting threshold for convicting Vice President Sara Duterte in her impeachment trial. The statements from Palace Press Officer Claire Castro confirm the Palace's position of non-interference, which matches the claim's referent.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                      "quote": "MANILA, Philippines — Malacañang said Thursday, September 17, that it would stay out of the Senate impeachment court’s deliberations on the number of votes needed to convict Vice President Sara Duterte in her impeachment case."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                      "quote": "“Muli, ang Palasyo ay hindi po manghihimasok kung ano man po ang sasabihin or magiging desisyon ng Senado dahil malinaw naman po ang sinabi ng mga justices natin. Dapat ito ay para sa katotohanan. Truth, fairness and justice,” Castro said in a press briefing."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                      "quote": "(Again, the Palace will not intervene in the decisions of the Senate because our justices have made it clear already that the decision must be for truth."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                      "quote": "This was backed by the Palace, saying that any decision that will come up from the senator-judges’ differing interpretations of the rule no longer concerns the administration."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                      "quote": "wala po sa administrasyon,” Castro said."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                      "quote": "(The Palace is not concerned, because whatever their opinions will be, those will be their decisions."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+                      "quote": "So whatever happens in the senate, that’s their responsibility, not the administration’s.) Philstar.com is one of the most vibrant, opinionated, discerning communities of readers on cyberspace."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/marcos-unsure-he-has-numbers-in-senate-for-duterte-impeachment",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-11-trial-moves-from-wealth-records-to-vote-math",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-10-confidential-fund-case-sharpens-as-court-revisits-vote-threshold",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/fact-check/no-ferdinand-marcos-jr-order-stop-impeachment-sara-duterte/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/vice-president-sara-duterte-impeachment-trial-updates-videos/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/malacanang-distances-sara-duterte-impeachment-complaint/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/17/palace-keeps-hands-off-policy-on-sara-duterte-impeachment-1627",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-marcos-jr-won-t-interfere-with-impeachment-conviction-threshold-issue-1610",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/11/sara-duterte-says-constitution-needs-to-be-followed-in-impeachment-conviction-threshold-1421",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/275/the-impeachment-trial-of-vice-president-sara-duterte/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/991123/prosecutors-independence-duterte-impeachment/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999701/live-updates-sara-duterte-impeachment-trial-august-25-2026/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2230689/palace-marcos-wont-meddle-in-duterte-impeachment-trial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306305/marcos-hands-off-on-duterte-impeachment-vote-threshold-palace",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2301130/highlights-day-22-of-sara-duterte-impeachment-trial-sept-7-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/07/09/2540894/palace-trial-will-be-bloody-if-truth-not-revealed",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/18/2557092/senate-warned-over-revising-impeachment-vote-threshold",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/06/marcos-wont-monitor-vp-impeachment-trial-palace-says-he-has-work-to-do",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/09/palace-senate-to-decide-on-subpoena-for-vp-sara",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/05/25/palace-wont-make-any-prejudgment-over-vp-saras-impeachment",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1279899",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283960",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1279164",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-releases/page/161/?category=national-economic-development-authority&start=5",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/cagayan-de-oro-lawyer-explains-constitutional-impeachment-process/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/marcos-wont-intervene-in-senate-impeachment-trial-vs-vp-sara-palace",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-17-of-vp-sara-duterte-impeachment-trial-or-august-24-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/vp-duterte-impeachment-will-not-disrupt-government-operationsmalacanang",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/impeachment-raps-versus-sara-duterte-sufficient-in-substance",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/only-10-votes-needed-to-reverse-16-vote-rule",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/marcos-i-have-no-role-in-sara-trial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/marcos-unsure-he-has-numbers-in-senate-for-duterte-impeachment",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-11-trial-moves-from-wealth-records-to-vote-math",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-10-confidential-fund-case-sharpens-as-court-revisits-vote-threshold",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/fact-check/no-ferdinand-marcos-jr-order-stop-impeachment-sara-duterte/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/vice-president-sara-duterte-impeachment-trial-updates-videos/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.rappler.com/philippines/malacanang-distances-sara-duterte-impeachment-complaint/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/17/palace-keeps-hands-off-policy-on-sara-duterte-impeachment-1627",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/palace-marcos-jr-won-t-interfere-with-impeachment-conviction-threshold-issue-1610",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/11/sara-duterte-says-constitution-needs-to-be-followed-in-impeachment-conviction-threshold-1421",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/275/the-impeachment-trial-of-vice-president-sara-duterte/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/991123/prosecutors-independence-duterte-impeachment/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999701/live-updates-sara-duterte-impeachment-trial-august-25-2026/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2230689/palace-marcos-wont-meddle-in-duterte-impeachment-trial",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306305/marcos-hands-off-on-duterte-impeachment-vote-threshold-palace",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2301130/highlights-day-22-of-sara-duterte-impeachment-trial-sept-7-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/07/09/2540894/palace-trial-will-be-bloody-if-truth-not-revealed",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/18/2557092/senate-warned-over-revising-impeachment-vote-threshold",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/07/06/marcos-wont-monitor-vp-impeachment-trial-palace-says-he-has-work-to-do",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/09/palace-senate-to-decide-on-subpoena-for-vp-sara",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://mb.com.ph/2026/05/25/palace-wont-make-any-prejudgment-over-vp-saras-impeachment",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1279899",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283960",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1279164",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/press-releases/page/161/?category=national-economic-development-authority&start=5",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://pia.gov.ph/news/cagayan-de-oro-lawyer-explains-constitutional-impeachment-process/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/marcos-wont-intervene-in-senate-impeachment-trial-vs-vp-sara-palace",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-17-of-vp-sara-duterte-impeachment-trial-or-august-24-2026",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/vp-duterte-impeachment-will-not-disrupt-government-operationsmalacanang",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/impeachment-raps-versus-sara-duterte-sufficient-in-substance",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/only-10-votes-needed-to-reverse-16-vote-rule",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.onenews.ph/articles/marcos-i-have-no-role-in-sara-trial",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial."
+        },
+        "scoring_claim": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+        "search_query": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "c7ec396b21e6a3e68d1ff2c7bf692edb7fc4d99796fd7d4bcadb0f622b75a24f",
+        "cache_version": "week7-institution-equivalence-v24",
+        "verdict": "Verified",
+        "message": "Retrieved evidence supports that Malacañang made this statement. This verifies the attribution, not the underlying claim by itself.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "Philippine Star",
+          "title": "Palace leaves impeachment vote threshold to Senate",
+          "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+          "status": "extracted",
+          "word_count": 519,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Palace leaves impeachment vote threshold to Senate",
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+            "status": "extracted",
+            "word_count": 519,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 91,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Palace leaves impeachment vote threshold to Senate",
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+            "status": "extracted",
+            "word_count": 519,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Palace leaves impeachment vote threshold to Senate",
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+            "status": "extracted",
+            "word_count": 519,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not confirm Malacañang's statement about the president's interference in the impeachment trial.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "president",
+          "vice president",
+          "malacanang",
+          "impeachment"
+        ],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [
+            "president",
+            "vice president"
+          ],
+          "political_institutions": [
+            "malacanang"
+          ],
+          "government_controversy": [
+            "impeachment"
+          ],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "mixed_content",
+        "confidence": 0.66,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice",
+          "reported_attribution_needs_verification",
+          "vague_claim"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "verify_factual_claims_only",
+        "verification_text": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.\nCheck the comments section for the full report.",
+        "normalized_verification_text": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.\nCheck the comments section for the full report.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.94,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.25,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.94,
+            "second_label": "quote",
+            "second_label_score": 0.25,
+            "score_gap": 0.69,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "openai_factual_claim_advice",
+              "reported_attribution_needs_verification"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "reported_indirect"
+          },
+          {
+            "segment_id": "s2",
+            "text": "#VPOnTrial",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.75
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.75,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.65,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s3",
+            "text": "Check the comments section for the full report.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s2",
+            "text": "#VPOnTrial",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS will verify only the factual segments and skip non-checkable parts.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "factual_claim",
+                "top_label_score": 0.9,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reported_attribution_needs_verification"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "vague_claim"
+                ]
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "Reported indirect statement by Malacañang is a checkable attributed statement."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "Instructional content, not a factual or attributed claim."
+          }
+        ],
+        "grouping": [],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+            "normalized_claim": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Malacañang",
+              "role": null,
+              "statement": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial."
+              }
+            ],
+            "evidence_context": "Malacañang said the president has no business interfering with the issue of the necessary votes to convict Vice President Sara Duterte in the impeachment trial.\nCheck the comments section for the full report.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [
+                "role"
+              ],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "not_in_input",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [
+          {
+            "text": "Check the comments section for the full report.",
+            "segment_type": "uncheckable"
+          }
+        ],
+        "post_type": "mixed_content",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "c118630c7b594e69bc27479e896dab69",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 2.1008,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0003,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 4.1555,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0013,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0017,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 11.2125,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.1126,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 2.077,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.4251,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.4647,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0316,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 9.8643,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 24.9739,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 31.2437,
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    "corroboration_count": 1,
+    "primary_evidence": {
+      "source": "Philippine Star",
+      "title": "Palace leaves impeachment vote threshold to Senate",
+      "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+      "status": "extracted",
+      "word_count": 519,
+      "evidence_method": "component_review",
+      "extraction_quality": "full",
+      "evidence_type": "full_text"
+    },
+    "supporting_sources": [
+      {
+        "source": "Philippine Star",
+        "title": "Palace leaves impeachment vote threshold to Senate",
+        "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+        "status": "extracted",
+        "word_count": 519,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "search_status": "ok",
+    "total_search_results": 91,
+    "searched_articles": 33,
+    "extracted_articles": 33,
+    "source_summary": [
+      {
+        "source": "VERA Files",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Rappler",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "ABS-CBN News",
+        "results_found": 6,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "GMA News",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Daily Inquirer",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Star",
+        "results_found": 7,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Manila Bulletin",
+        "results_found": 7,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine News Agency",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Information Agency",
+        "results_found": 7,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "DZRH News",
+        "results_found": 10,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "OneNews.PH",
+        "results_found": 10,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      }
+    ],
+    "sources": [
+      {
+        "source": "Philippine Star",
+        "title": "Palace leaves impeachment vote threshold to Senate",
+        "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+        "status": "extracted",
+        "word_count": 519,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "evidence_sources": [
+      {
+        "source": "Philippine Star",
+        "title": "Palace leaves impeachment vote threshold to Senate",
+        "url": "https://www.philstar.com/headlines/2026/09/17/2556957/palace-leaves-impeachment-vote-threshold-senate",
+        "status": "extracted",
+        "word_count": 519,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      }
+    ],
+    "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim."
+  }
+}

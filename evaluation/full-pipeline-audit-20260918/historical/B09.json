@@ -1,0 +1,1530 @@
+{
+  "trace": {
+    "id": "e510dea09852408da0d385dcdbe6d3a2",
+    "owner": "c92b59cabd7f4f8ba376a63b96983c4f",
+    "created": 1789621147.5206676,
+    "ended": 1789621152.4927082,
+    "status": "completed",
+    "platform": "chrome",
+    "input_type": "text",
+    "title": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+    "claim_count": 0,
+    "http_status": 200,
+    "capture_status": "complete",
+    "summary": {
+      "verdict": "No Checkable Claims",
+      "message": "IRIS did not find factual claims that can be checked against approved sources.",
+      "calibration_result": null,
+      "duration_ms": 4972.05,
+      "stop_after": null,
+      "target_reached": false
+    }
+  },
+  "events": [
+    {
+      "data": {},
+      "kind": "request.input",
+      "seq": 1,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 0.18,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "span_id": "aba56ae79a8b49ea89ececd614b95754",
+      "stage_id": "request.parse_validate",
+      "parent_span_id": null,
+      "input": null,
+      "kind": "span.start",
+      "seq": 2,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 0.33,
+      "claim_id": null
+    },
+    {
+      "span_id": "aba56ae79a8b49ea89ececd614b95754",
+      "stage_id": "request.parse_validate",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "json_object": true,
+        "content_type": "application/json",
+        "content_length": 105
+      },
+      "duration_ms": 0.37369999336078763,
+      "kind": "span.end",
+      "seq": 3,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 0.86,
+      "parent_span_id": "aba56ae79a8b49ea89ececd614b95754",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "platform": "chrome",
+        "debug": false
+      },
+      "kind": "request.input",
+      "seq": 4,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1.1,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "id": "040fefec4a3e4f4caef6abcb56addcf9",
+        "kind": "request_input"
+      },
+      "kind": "artifact",
+      "seq": 5,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1.3,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "source_sha256": "2a04993997d46a9e65f789813dcc0000d1e6f6fa68e81c7207b11f023b75bb18",
+        "code_commit": "add5d63bee5deb7c5efd0f035ee3af14bb1e5f65",
+        "dependencies": {
+          "Flask": "3.1.3",
+          "numpy": "2.5.1",
+          "easyocr": "1.7.2",
+          "sentence-transformers": "5.6.0",
+          "openai": "2.44.0"
+        },
+        "snapshot_policy": "First use in this process; restart after edits",
+        "semantic_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "verified_threshold": 0.85,
+        "partial_threshold": 0.5,
+        "settings": {
+          "OPENAI_MODEL": null,
+          "IRIS_OCR_GPU": null,
+          "IRIS_SEARCH_WORKERS": null,
+          "IRIS_ARTICLE_WORKERS": null,
+          "IRIS_OCR_LOW_CONFIDENCE": null
+        }
+      },
+      "kind": "runtime.configuration",
+      "seq": 6,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1.43,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "stage_id": "text.process",
+      "parent_span_id": null,
+      "input": {
+        "text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "debug_enabled": false
+      },
+      "kind": "span.start",
+      "seq": 7,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1.61,
+      "claim_id": null
+    },
+    {
+      "span_id": "d716c52fb1dd4cd7a617fe0b4bb71ff7",
+      "stage_id": "text.language",
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "input": {
+        "text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?"
+      },
+      "kind": "span.start",
+      "seq": 8,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1.69,
+      "claim_id": null
+    },
+    {
+      "span_id": "d716c52fb1dd4cd7a617fe0b4bb71ff7",
+      "stage_id": "text.language",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": "tagalog",
+      "duration_ms": 1.9167000136803836,
+      "kind": "span.end",
+      "seq": 9,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 3.72,
+      "parent_span_id": "d716c52fb1dd4cd7a617fe0b4bb71ff7",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.detect_language",
+        "duration_seconds": 0.0022,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 10,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 3.83,
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "claim_id": null
+    },
+    {
+      "span_id": "c1a1b3c395964479ad1783f4245eea43",
+      "stage_id": "text.translation",
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "input": {
+        "text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "language": "tagalog"
+      },
+      "kind": "span.start",
+      "seq": 11,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4.2,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "provider": "openai",
+        "model": "gpt-4o-mini",
+        "timeout_seconds": 45.0,
+        "max_retries": 0,
+        "segment_count": 3
+      },
+      "kind": "translation.request",
+      "seq": 12,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4.51,
+      "parent_span_id": "c1a1b3c395964479ad1783f4245eea43",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "provider": "openai",
+        "model": "gpt-4o-mini",
+        "segment_count": 3
+      },
+      "kind": "translation.success",
+      "seq": 13,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1928.05,
+      "parent_span_id": "c1a1b3c395964479ad1783f4245eea43",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "id": "669463b6a3a6475cafe0a8a51965c281",
+        "kind": "dependency"
+      },
+      "kind": "artifact",
+      "seq": 14,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1928.36,
+      "parent_span_id": "c1a1b3c395964479ad1783f4245eea43",
+      "claim_id": null
+    },
+    {
+      "span_id": "c1a1b3c395964479ad1783f4245eea43",
+      "stage_id": "text.translation",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?",
+      "duration_ms": 1924.1362999891862,
+      "kind": "span.end",
+      "seq": 15,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1928.47,
+      "parent_span_id": "c1a1b3c395964479ad1783f4245eea43",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.translate_to_english",
+        "duration_seconds": 1.9245,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 16,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1928.55,
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "claim_id": null
+    },
+    {
+      "span_id": "acdec6910e4542fa89c54c16876dd21c",
+      "stage_id": "text.profile",
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "input": {
+        "text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "translated_text": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?"
+      },
+      "kind": "span.start",
+      "seq": 17,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1929.01,
+      "claim_id": null
+    },
+    {
+      "span_id": "a9a8de61b34b45aa9fe27cd5705c3904",
+      "stage_id": "text.profile_local",
+      "parent_span_id": "acdec6910e4542fa89c54c16876dd21c",
+      "input": {
+        "text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "translated_text": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?"
+      },
+      "kind": "span.start",
+      "seq": 18,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1929.24,
+      "claim_id": null
+    },
+    {
+      "span_id": "a9a8de61b34b45aa9fe27cd5705c3904",
+      "stage_id": "text.profile_local",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "status": "ok",
+        "method": "local_rules",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.45,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "vague_claim"
+        ],
+        "contains_factual_claims": false,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": false,
+        "recommended_route": "stop_no_checkable_claims",
+        "verification_text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "normalized_verification_text": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Lahat may mugshots.",
+            "translated_text": "Everyone has mugshots.",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s2",
+            "text": "Eh si madam VP, bakit wala?",
+            "translated_text": "But what about Madam VP, why isn't there one?",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s3",
+            "text": "Special yan?",
+            "translated_text": "Is that special?",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.75
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.75,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.65,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Lahat may mugshots.",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s2",
+            "text": "Eh si madam VP, bakit wala?",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s3",
+            "text": "Special yan?",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "openai_profile": {
+          "used": false,
+          "status": "not_run",
+          "error": null,
+          "result": null
+        }
+      },
+      "duration_ms": 2.9232999950181693,
+      "kind": "span.end",
+      "seq": 19,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1933.07,
+      "parent_span_id": "a9a8de61b34b45aa9fe27cd5705c3904",
+      "claim_id": null
+    },
+    {
+      "span_id": "f9f05dddb5254e8997eec5da1e9f030c",
+      "stage_id": "text.profile_ai",
+      "parent_span_id": "acdec6910e4542fa89c54c16876dd21c",
+      "input": {
+        "text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "translated_text": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?",
+        "local_profile": {
+          "status": "ok",
+          "method": "local_rules",
+          "error": null,
+          "post_type": "unclear",
+          "confidence": 0.45,
+          "ambiguity_score": 0.65,
+          "ambiguity_reasons": [
+            "vague_claim"
+          ],
+          "contains_factual_claims": false,
+          "contains_opinion": false,
+          "contains_recommendation": false,
+          "contains_forecast_or_projection": false,
+          "contains_satire_or_humor": false,
+          "contains_quote": false,
+          "eligible_for_verification": false,
+          "recommended_route": "stop_no_checkable_claims",
+          "verification_text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+          "normalized_verification_text": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?",
+          "segments": [
+            {
+              "segment_id": "s1",
+              "text": "Lahat may mugshots.",
+              "translated_text": "Everyone has mugshots.",
+              "scores": {
+                "factual_claim": 0.1,
+                "opinion": 0.05,
+                "forecast_or_projection_detected": 0.05,
+                "quote": 0.05,
+                "satire_or_humor": 0.05,
+                "call_to_action": 0.05,
+                "contextual_background": 0.05,
+                "unclear": 0.3
+              },
+              "top_label": "unclear",
+              "top_label_score": 0.3,
+              "second_label": "factual_claim",
+              "second_label_score": 0.1,
+              "score_gap": 0.2,
+              "eligible_for_verification": false,
+              "recommended_route": "stop_no_checkable_claims",
+              "reason_codes": [],
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            },
+            {
+              "segment_id": "s2",
+              "text": "Eh si madam VP, bakit wala?",
+              "translated_text": "But what about Madam VP, why isn't there one?",
+              "scores": {
+                "factual_claim": 0.1,
+                "opinion": 0.05,
+                "forecast_or_projection_detected": 0.05,
+                "quote": 0.05,
+                "satire_or_humor": 0.05,
+                "call_to_action": 0.05,
+                "contextual_background": 0.05,
+                "unclear": 0.3
+              },
+              "top_label": "unclear",
+              "top_label_score": 0.3,
+              "second_label": "factual_claim",
+              "second_label_score": 0.1,
+              "score_gap": 0.2,
+              "eligible_for_verification": false,
+              "recommended_route": "stop_no_checkable_claims",
+              "reason_codes": [],
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            },
+            {
+              "segment_id": "s3",
+              "text": "Special yan?",
+              "translated_text": "Is that special?",
+              "scores": {
+                "factual_claim": 0.1,
+                "opinion": 0.05,
+                "forecast_or_projection_detected": 0.05,
+                "quote": 0.05,
+                "satire_or_humor": 0.05,
+                "call_to_action": 0.05,
+                "contextual_background": 0.05,
+                "unclear": 0.75
+              },
+              "top_label": "unclear",
+              "top_label_score": 0.75,
+              "second_label": "factual_claim",
+              "second_label_score": 0.1,
+              "score_gap": 0.65,
+              "eligible_for_verification": false,
+              "recommended_route": "stop_no_checkable_claims",
+              "reason_codes": [
+                "vague_claim"
+              ],
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "ignored_segments": [
+            {
+              "segment_id": "s1",
+              "text": "Lahat may mugshots.",
+              "segment_type": "unclear",
+              "reason_codes": [],
+              "recommended_route": "stop_no_checkable_claims",
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            },
+            {
+              "segment_id": "s2",
+              "text": "Eh si madam VP, bakit wala?",
+              "segment_type": "unclear",
+              "reason_codes": [],
+              "recommended_route": "stop_no_checkable_claims",
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            },
+            {
+              "segment_id": "s3",
+              "text": "Special yan?",
+              "segment_type": "unclear",
+              "reason_codes": [
+                "vague_claim"
+              ],
+              "recommended_route": "stop_no_checkable_claims",
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+          "openai_profile": {
+            "used": false,
+            "status": "not_run",
+            "error": null,
+            "result": null
+          }
+        }
+      },
+      "kind": "span.start",
+      "seq": 20,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 1934.27,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "id": "4ffbbae5f98d42299267442c4c6168ab",
+        "kind": "dependency"
+      },
+      "kind": "artifact",
+      "seq": 21,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4963.57,
+      "parent_span_id": "f9f05dddb5254e8997eec5da1e9f030c",
+      "claim_id": null
+    },
+    {
+      "span_id": "f9f05dddb5254e8997eec5da1e9f030c",
+      "stage_id": "text.profile_ai",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "used": true,
+        "status": "ok",
+        "error": null,
+        "result": {
+          "segments": [
+            {
+              "segment_id": "s1",
+              "top_label": "unclear",
+              "top_label_score": 0.7,
+              "eligible_for_verification": false,
+              "reason_codes": []
+            },
+            {
+              "segment_id": "s2",
+              "top_label": "unclear",
+              "top_label_score": 0.7,
+              "eligible_for_verification": false,
+              "reason_codes": []
+            },
+            {
+              "segment_id": "s3",
+              "top_label": "unclear",
+              "top_label_score": 0.7,
+              "eligible_for_verification": false,
+              "reason_codes": [
+                "vague_claim"
+              ]
+            }
+          ]
+        }
+      },
+      "duration_ms": 3029.1784000000916,
+      "kind": "span.end",
+      "seq": 22,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4963.77,
+      "parent_span_id": "f9f05dddb5254e8997eec5da1e9f030c",
+      "claim_id": null
+    },
+    {
+      "span_id": "2f66ca3ce5004916a9f6b23705188bdc",
+      "stage_id": "text.profile_merge",
+      "parent_span_id": "acdec6910e4542fa89c54c16876dd21c",
+      "input": {
+        "local_profile": {
+          "status": "ok",
+          "method": "local_rules",
+          "error": null,
+          "post_type": "unclear",
+          "confidence": 0.45,
+          "ambiguity_score": 0.65,
+          "ambiguity_reasons": [
+            "vague_claim"
+          ],
+          "contains_factual_claims": false,
+          "contains_opinion": false,
+          "contains_recommendation": false,
+          "contains_forecast_or_projection": false,
+          "contains_satire_or_humor": false,
+          "contains_quote": false,
+          "eligible_for_verification": false,
+          "recommended_route": "stop_no_checkable_claims",
+          "verification_text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+          "normalized_verification_text": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?",
+          "segments": [
+            {
+              "segment_id": "s1",
+              "text": "Lahat may mugshots.",
+              "translated_text": "Everyone has mugshots.",
+              "scores": {
+                "factual_claim": 0.1,
+                "opinion": 0.05,
+                "forecast_or_projection_detected": 0.05,
+                "quote": 0.05,
+                "satire_or_humor": 0.05,
+                "call_to_action": 0.05,
+                "contextual_background": 0.05,
+                "unclear": 0.3
+              },
+              "top_label": "unclear",
+              "top_label_score": 0.3,
+              "second_label": "factual_claim",
+              "second_label_score": 0.1,
+              "score_gap": 0.2,
+              "eligible_for_verification": false,
+              "recommended_route": "stop_no_checkable_claims",
+              "reason_codes": [],
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            },
+            {
+              "segment_id": "s2",
+              "text": "Eh si madam VP, bakit wala?",
+              "translated_text": "But what about Madam VP, why isn't there one?",
+              "scores": {
+                "factual_claim": 0.1,
+                "opinion": 0.05,
+                "forecast_or_projection_detected": 0.05,
+                "quote": 0.05,
+                "satire_or_humor": 0.05,
+                "call_to_action": 0.05,
+                "contextual_background": 0.05,
+                "unclear": 0.3
+              },
+              "top_label": "unclear",
+              "top_label_score": 0.3,
+              "second_label": "factual_claim",
+              "second_label_score": 0.1,
+              "score_gap": 0.2,
+              "eligible_for_verification": false,
+              "recommended_route": "stop_no_checkable_claims",
+              "reason_codes": [],
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            },
+            {
+              "segment_id": "s3",
+              "text": "Special yan?",
+              "translated_text": "Is that special?",
+              "scores": {
+                "factual_claim": 0.1,
+                "opinion": 0.05,
+                "forecast_or_projection_detected": 0.05,
+                "quote": 0.05,
+                "satire_or_humor": 0.05,
+                "call_to_action": 0.05,
+                "contextual_background": 0.05,
+                "unclear": 0.75
+              },
+              "top_label": "unclear",
+              "top_label_score": 0.75,
+              "second_label": "factual_claim",
+              "second_label_score": 0.1,
+              "score_gap": 0.65,
+              "eligible_for_verification": false,
+              "recommended_route": "stop_no_checkable_claims",
+              "reason_codes": [
+                "vague_claim"
+              ],
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "ignored_segments": [
+            {
+              "segment_id": "s1",
+              "text": "Lahat may mugshots.",
+              "segment_type": "unclear",
+              "reason_codes": [],
+              "recommended_route": "stop_no_checkable_claims",
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            },
+            {
+              "segment_id": "s2",
+              "text": "Eh si madam VP, bakit wala?",
+              "segment_type": "unclear",
+              "reason_codes": [],
+              "recommended_route": "stop_no_checkable_claims",
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            },
+            {
+              "segment_id": "s3",
+              "text": "Special yan?",
+              "segment_type": "unclear",
+              "reason_codes": [
+                "vague_claim"
+              ],
+              "recommended_route": "stop_no_checkable_claims",
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+          "openai_profile": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "segments": [
+                {
+                  "segment_id": "s1",
+                  "top_label": "unclear",
+                  "top_label_score": 0.7,
+                  "eligible_for_verification": false,
+                  "reason_codes": []
+                },
+                {
+                  "segment_id": "s2",
+                  "top_label": "unclear",
+                  "top_label_score": 0.7,
+                  "eligible_for_verification": false,
+                  "reason_codes": []
+                },
+                {
+                  "segment_id": "s3",
+                  "top_label": "unclear",
+                  "top_label_score": 0.7,
+                  "eligible_for_verification": false,
+                  "reason_codes": [
+                    "vague_claim"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "vague_claim"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "kind": "span.start",
+      "seq": 23,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4964.74,
+      "claim_id": null
+    },
+    {
+      "span_id": "2f66ca3ce5004916a9f6b23705188bdc",
+      "stage_id": "text.profile_merge",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.45,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "vague_claim"
+        ],
+        "contains_factual_claims": false,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": false,
+        "recommended_route": "stop_no_checkable_claims",
+        "verification_text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "normalized_verification_text": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Lahat may mugshots.",
+            "translated_text": "Everyone has mugshots.",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s2",
+            "text": "Eh si madam VP, bakit wala?",
+            "translated_text": "But what about Madam VP, why isn't there one?",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s3",
+            "text": "Special yan?",
+            "translated_text": "Is that special?",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.75
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.75,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.65,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Lahat may mugshots.",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s2",
+            "text": "Eh si madam VP, bakit wala?",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s3",
+            "text": "Special yan?",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "vague_claim"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "duration_ms": 0.07159999222494662,
+      "kind": "span.end",
+      "seq": 24,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4965.85,
+      "parent_span_id": "2f66ca3ce5004916a9f6b23705188bdc",
+      "claim_id": null
+    },
+    {
+      "span_id": "acdec6910e4542fa89c54c16876dd21c",
+      "stage_id": "text.profile",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.45,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "vague_claim"
+        ],
+        "contains_factual_claims": false,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": false,
+        "recommended_route": "stop_no_checkable_claims",
+        "verification_text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "normalized_verification_text": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Lahat may mugshots.",
+            "translated_text": "Everyone has mugshots.",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s2",
+            "text": "Eh si madam VP, bakit wala?",
+            "translated_text": "But what about Madam VP, why isn't there one?",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s3",
+            "text": "Special yan?",
+            "translated_text": "Is that special?",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.75
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.75,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.65,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Lahat may mugshots.",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s2",
+            "text": "Eh si madam VP, bakit wala?",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s3",
+            "text": "Special yan?",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "vague_claim"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "duration_ms": 3037.0490000059363,
+      "kind": "span.end",
+      "seq": 25,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4966.84,
+      "parent_span_id": "acdec6910e4542fa89c54c16876dd21c",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.profile_content",
+        "duration_seconds": 3.0383,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 26,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4967.13,
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "claim_id": null
+    },
+    {
+      "span_id": "0263b5309a8949dd9dc8ac70d495f505",
+      "stage_id": "text.opinion",
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "input": {
+        "text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?"
+      },
+      "kind": "span.start",
+      "seq": 27,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4967.73,
+      "claim_id": null
+    },
+    {
+      "span_id": "0263b5309a8949dd9dc8ac70d495f505",
+      "stage_id": "text.opinion",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "duration_ms": 0.1066999975591898,
+      "kind": "span.end",
+      "seq": 28,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4967.96,
+      "parent_span_id": "0263b5309a8949dd9dc8ac70d495f505",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.opinion_filter",
+        "duration_seconds": 0.0005,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 29,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4968.05,
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "claim_id": null
+    },
+    {
+      "span_id": "3c4aa3f249324c44a40083e134e0ea76",
+      "stage_id": "text.political",
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "input": {
+        "text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?"
+      },
+      "kind": "span.start",
+      "seq": 30,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4968.45,
+      "claim_id": null
+    },
+    {
+      "span_id": "3c4aa3f249324c44a40083e134e0ea76",
+      "stage_id": "text.political",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "duration_ms": 0.5993999948259443,
+      "kind": "span.end",
+      "seq": 31,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4969.25,
+      "parent_span_id": "3c4aa3f249324c44a40083e134e0ea76",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.political_check",
+        "duration_seconds": 0.0011,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 32,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4969.4,
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "eligible": false,
+        "route": "stop_no_checkable_claims",
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Lahat may mugshots.",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s2",
+            "text": "Eh si madam VP, bakit wala?",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s3",
+            "text": "Special yan?",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ]
+      },
+      "kind": "text.route",
+      "seq": 33,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4969.92,
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stages": [
+          "claims.extract",
+          "event.retrieve",
+          "claim.process"
+        ],
+        "reason": "stop_no_checkable_claims"
+      },
+      "kind": "stage.skipped",
+      "seq": 34,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4970.04,
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "verify_text.total",
+        "duration_seconds": 4.9685,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 35,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4970.11,
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "claim_id": null
+    },
+    {
+      "span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "stage_id": "text.process",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "verdict": "No Checkable Claims",
+        "message": "IRIS did not find factual claims that can be checked against approved sources.",
+        "original_text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "translated_text": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?",
+        "detected_language": "tagalog",
+        "politically_sensitive": false,
+        "flags": [],
+        "claim_count": 0,
+        "claim_extraction_status": "not_run_content_profiler",
+        "post_type": "unclear",
+        "content_profile_status": "ok",
+        "content_profile_route": "stop_no_checkable_claims",
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Lahat may mugshots.",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s2",
+            "text": "Eh si madam VP, bakit wala?",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s3",
+            "text": "Special yan?",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ]
+      },
+      "duration_ms": 4968.848700023955,
+      "kind": "span.end",
+      "seq": 36,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4970.98,
+      "parent_span_id": "bf0884a9a9b9454ca948d8f6fba627d4",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "verdict": "No Checkable Claims",
+        "message": "IRIS did not find factual claims that can be checked against approved sources.",
+        "original_text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "translated_text": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?",
+        "detected_language": "tagalog",
+        "politically_sensitive": false,
+        "flags": [],
+        "claim_count": 0,
+        "claim_extraction_status": "not_run_content_profiler",
+        "post_type": "unclear",
+        "content_profile_status": "ok",
+        "content_profile_route": "stop_no_checkable_claims",
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Lahat may mugshots.",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s2",
+            "text": "Eh si madam VP, bakit wala?",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s3",
+            "text": "Special yan?",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ]
+      },
+      "http_status": 200,
+      "error": null,
+      "kind": "request.result",
+      "seq": 37,
+      "trace_id": "e510dea09852408da0d385dcdbe6d3a2",
+      "offset_ms": 4971.92,
+      "parent_span_id": null,
+      "claim_id": null
+    }
+  ],
+  "artifacts": [
+    {
+      "kind": "request_input",
+      "sha256": "7e24f606fb6b896e2a5492991de8d1cfb9205ef862c99b1ff6a28917304b2bac",
+      "value": {
+        "text": "Lahat may mugshots. Eh si madam VP, bakit wala? Special yan?",
+        "platform": "chrome",
+        "debug": false,
+        "_trace_complete": true
+      }
+    },
+    {
+      "kind": "dependency",
+      "sha256": "55a1ff536a7a177f1da1307c6038562848f4575c34144a3375f556ec37921a92",
+      "value": {
+        "stage_id": "text.translation",
+        "input_sha256": "ed7a3f58664b187bb95f1913264eb772568cf25242f84db0dfdce9b94eb4f7b4",
+        "output": "Everyone has mugshots.\nBut what about Madam VP, why isn't there one?\nIs that special?",
+        "complete": true
+      }
+    },
+    {
+      "kind": "dependency",
+      "sha256": "31f851c0a26cabe24972850a065733126cb658440d74091bc4599f1ab7d65684",
+      "value": {
+        "stage_id": "text.profile_ai",
+        "input_sha256": "71121a0c90970783c8199badab1c91ad870b3514a266deba69f8199aaedf1eae",
+        "output": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "unclear",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "vague_claim"
+                ]
+              }
+            ]
+          }
+        },
+        "complete": true
+      }
+    }
+  ]
+}

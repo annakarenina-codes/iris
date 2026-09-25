@@ -1,0 +1,1799 @@
+{
+  "case": "eala",
+  "cache_version": "week7-source-review-repair-v16",
+  "seconds": 53.35,
+  "http_status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "Content-Length": "64964",
+    "X-IRIS-Trace-ID": "266cf5aafbca4ee89aca2d7aba0a45a8"
+  },
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 2 extracted claims individually.",
+    "original_text": "Filipina tennis star Alex Eala is spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.\n\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d Anna previously said in an interview at the US Open.",
+    "translated_text": "Filipina tennis star Alex Eala is spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.\n\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d Anna previously said in an interview at the US Open.",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 2,
+    "claim_extraction_status": "ok",
+    "post_type": "unclear",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_with_caution",
+    "contains_opinion": true,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": true,
+    "ignored_segments": [],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Filipina tennis star Alex Eala is spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.",
+        "normalized_claim": "Alex Eala was seated in the front row beside Anna Wintour at the Michael Kors fashion show during New York Fashion Week.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Alex Eala was seated in the front row beside Anna Wintour",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                  "quote": "Filipina tennis star Alex Eala was spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week."
+                }
+              ],
+              "review_reason": "The passage explicitly states: 'Filipina tennis star Alex Eala was spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.' This directly supports the assertion that Alex Eala was seated in the front row beside Anna Wintour.",
+              "event_group_id": 0,
+              "event_rejections": [
+                {
+                  "component_id": 0,
+                  "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                  "status": "mismatched",
+                  "reason": "Source 1 discusses Alex Eala meeting Anna Wintour and being seated in the front row with her, but specifically at the Tory Burch show, not the Michael Kors show. Passage 18 states, 'Eala attended the Tory Burch Spring/Summer 2027 show in New York, where she was seated in the front row alongside Wintour.' There is no mention of the Michael Kors show in this source, so it does not establish the same incident as described in the claim."
+                }
+              ]
+            },
+            {
+              "component": "at the Michael Kors fashion show",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                  "quote": "Filipina tennis star Alex Eala was spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week."
+                }
+              ],
+              "review_reason": "The passage says Alex Eala was seated in the front row beside Anna Wintour 'at the Michael Kors fashion show,' which directly supports the assertion fragment regarding the event location.",
+              "event_group_id": 0,
+              "event_rejections": [
+                {
+                  "component_id": 1,
+                  "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                  "status": "mismatched",
+                  "reason": "Source 1 discusses Alex Eala meeting Anna Wintour and being seated in the front row with her, but specifically at the Tory Burch show, not the Michael Kors show. Passage 18 states, 'Eala attended the Tory Burch Spring/Summer 2027 show in New York, where she was seated in the front row alongside Wintour.' There is no mention of the Michael Kors show in this source, so it does not establish the same incident as described in the claim."
+                }
+              ]
+            },
+            {
+              "component": "during New York Fashion Week.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                  "quote": "Filipina tennis star Alex Eala was spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week."
+                }
+              ],
+              "review_reason": "The passage includes the phrase 'during New York Fashion Week,' which matches the assertion fragment and preserves the qualifier about the timing of the event.",
+              "event_group_id": 0,
+              "event_rejections": [
+                {
+                  "component_id": 2,
+                  "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                  "status": "mismatched",
+                  "reason": "Source 1 discusses Alex Eala meeting Anna Wintour and being seated in the front row with her, but specifically at the Tory Burch show, not the Michael Kors show. Passage 18 states, 'Eala attended the Tory Burch Spring/Summer 2027 show in New York, where she was seated in the front row alongside Wintour.' There is no mention of the Michael Kors show in this source, so it does not establish the same incident as described in the claim."
+                }
+              ]
+            }
+          ],
+          "supporting_urls": [
+            "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307"
+          ],
+          "reason": "Retrieved passages support 3 of 3 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "citation_ids": [
+                0
+              ],
+              "reason": "The passage explicitly states: 'Filipina tennis star Alex Eala was spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.' This directly supports the assertion that Alex Eala was seated in the front row beside Anna Wintour.",
+              "component_id": 0
+            },
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "citation_ids": [
+                0
+              ],
+              "reason": "The passage says Alex Eala was seated in the front row beside Anna Wintour 'at the Michael Kors fashion show,' which directly supports the assertion fragment regarding the event location.",
+              "component_id": 1
+            },
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "citation_ids": [
+                0
+              ],
+              "reason": "The passage includes the phrase 'during New York Fashion Week,' which matches the assertion fragment and preserves the qualifier about the timing of the event.",
+              "component_id": 2
+            }
+          ],
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0,
+                1,
+                2
+              ],
+              "referent": "Alex Eala was seated in the front row beside Anna Wintour at the Michael Kors fashion show during New York Fashion Week.",
+              "sources": {
+                "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0,
+                    1,
+                    2,
+                    4,
+                    5
+                  ],
+                  "reason": "Multiple passages from source 0 explicitly state that Alex Eala was seated in the front row beside Anna Wintour at the Michael Kors fashion show during New York Fashion Week. For example, passage 0 says, 'Filipina tennis star Alex Eala was spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.' Additional passages (1, 2, 4, 5) reinforce this by referencing the event, the seating arrangement, and social media posts about the moment.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                      "quote": "Filipina tennis star Alex Eala was spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                      "quote": "Television host Keltie Knight shared a clip on TikTok showing Alex sitting next to the renowned fashion editor at the event."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                      "quote": "\u201cICONIC ANNA sighting at @Michael Kors \u2728 #NYFW #VOGUE #annawintour,\u201d Keltie wrote."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                      "quote": "\u201cWow! Alex with Anna Wintour.. \ud83d\ude33\ud83d\ude33\ud83d\ude33 Tennis star to fashionista \u2764\ufe0f,\u201d one fan wrote."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                      "quote": "@keltieknight ICONIC ANNA sighting at @Michael Kors \u2728 #NYFW #VOGUE #annawintour \u266c Danceteria - Madonna Anna previously shared how Alex caught her attention, particularly because of the young athlete\u2019s growing interest in fashion and willingness to learn more about the industry."
+                    }
+                  ]
+                },
+                "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week": {
+                  "status": "mismatched",
+                  "passage_ids": [
+                    17,
+                    18,
+                    20,
+                    21,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    27,
+                    28,
+                    29,
+                    30,
+                    31
+                  ],
+                  "reason": "Source 1 discusses Alex Eala meeting Anna Wintour and being seated in the front row with her, but specifically at the Tory Burch show, not the Michael Kors show. Passage 18 states, 'Eala attended the Tory Burch Spring/Summer 2027 show in New York, where she was seated in the front row alongside Wintour.' There is no mention of the Michael Kors show in this source, so it does not establish the same incident as described in the claim.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "MANILA, Philippines \u2014 Filipina tennis star Alex Eala had a star-studded encounter off the court as she crossed paths with fashion icon Anna Wintour and Hollywood actresses Sadie Sink and Amanda Seyfried during New York Fashion Week."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "Eala attended the Tory Burch Spring/Summer 2027 show in New York, where she was seated in the front row alongside Wintour and was in the same room with Amanda Seyfriend and musician Lauryn Hill."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "The appearance marked Eala\u2019s debut at New York Fashion Week, adding another milestone to what has been a remarkable year for the 20-year-old athlete."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "Eala has previously caught Wintour\u2019s attention for her growing interest in fashion."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "During an interview in August, Wintour cited Eala while discussing how tennis players have increasingly used fashion to express their personalities."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "Wintour mentioned tennis icons Serena Williams and Naomi Osaka before turning her attention to Eala, whom she described as a young Filipino star who is already showing an interest in fashion."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "\u201cYou could see even in such a young star how interested she is in fashion and how she wants to learn about it and follow it,\u201d Wintour said."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "Eala admitted to Culture maganzine that she was both excited and nervous attending her first fashion week."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "\u201cI\u2019m so excited. I\u2019m a little nervous. There\u2019s some amazing people in this room. I\u2019m so happy to be a part of it,\u201d she said."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "She also noted the similarities between sports and fashion, particularly when it comes to self-expression."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "\u201cSports and fashion are common in a way where you get to express yourself and you get to show your personality,\u201d she said."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "The tennis star attended the Tory Burch presentation in a red blazer paired with a blue-gray striped shirt and wide brown trousers."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "Her New York Fashion Week appearance came after her recent campaign at the US Open, where she advanced to the third round."
+                    },
+                    {
+                      "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+                      "quote": "A post shared by Alexandra Eala (@alex.eala) RELATED : Anna Wintour commends Alex Eala for fashion interest, skills Philstar.com is one of the most vibrant, opinionated, discerning communities of readers on cyberspace."
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/defining-philippine-style",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/50-years-a-fiesta-of-philippine-design",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/1002183/alex-eala-gets-spotlight-from-this-brand-at-new-york-fashion-week/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://usa.inquirer.net/209177/alex-eala-steps-into-spotlight-at-new-york-fashion-week",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://entertainment.inquirer.net/681802/alex-eala-serves-fashion-outside-court-and-anna-wintour-takes-notice",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/12/2555793/alex-eala-goes-black-white-michael-kors-calvin-klein-new-york-shows",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/04/10/meryl-streep-anna-wintour-break-the-internet-with-viral-vogue-cover",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2022/03/05/heart-evangelista-meets-vogue-editor-anna-wintour-during-paris-fashion-week/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1252034",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283416",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/features/2022/10/25/philippine-culture-fashion-in-the-eyes-of-the-ips",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/kalinga-promotes-weaving-industry-local-designers-in-laga-fashion-show-2025/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/defining-philippine-style",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/50-years-a-fiesta-of-philippine-design",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/1002183/alex-eala-gets-spotlight-from-this-brand-at-new-york-fashion-week/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/12/2555793/alex-eala-goes-black-white-michael-kors-calvin-klein-new-york-shows",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": true,
+        "quote_paraphrase": {
+          "status": "ok",
+          "paraphrase": "Alex Eala sat in the front row next to Anna Wintour at the Michael Kors fashion show during New York Fashion Week.",
+          "method": "openai",
+          "error": null,
+          "used_for_scoring": true
+        },
+        "scoring_claim": "Alex Eala sat in the front row next to Anna Wintour at the Michael Kors fashion show during New York Fashion Week.",
+        "search_query": "Alex Eala Anna Wintour Michael Kors New York Fashion Week",
+        "event_search_query": "Filipina Alex Eala Vogue Anna Wintour Michael Kors New York Fashion Week Filipino How",
+        "retrieval_strategy": "event_pool_only",
+        "risk_tags": [],
+        "claim_hash": "3cf18e7e51bc1e4e207efd8986f55f91d13127dde63e690ab79b4acdc00d8746",
+        "cache_version": "week7-source-review-repair-v16",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 3 of 3 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "ABS-CBN News",
+          "title": "Alex Eala shares front row with Anna Wintour at New York Fashion Week show | ABS-CBN Entertainment",
+          "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+          "status": "extracted",
+          "word_count": 427,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_pool": "event_context"
+        },
+        "supporting_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Alex Eala shares front row with Anna Wintour at New York Fashion Week show | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "status": "extracted",
+            "word_count": 427,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 36,
+        "searched_articles": 16,
+        "extracted_articles": 8,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "GMA News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          }
+        ],
+        "sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Alex Eala shares front row with Anna Wintour at New York Fashion Week show | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "status": "extracted",
+            "word_count": 427,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Alex Eala shares front row with Anna Wintour at New York Fashion Week show | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "status": "extracted",
+            "word_count": 427,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Verified",
+              "reason": "Alex Eala was confirmed to be seated next to Anna Wintour at the Michael Kors fashion show.",
+              "supporting_urls": [
+                "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "Anna Wintour said in an interview at the US Open: \u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great.\u201d",
+        "normalized_claim": "Anna Wintour said in an interview at the US Open: \u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great.\u201d",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Anna Wintour",
+          "role": null,
+          "statement": "Anna Wintour said in an interview at the US Open: \u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great.\u201d",
+          "source": "interview",
+          "program": "US Open",
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [
+            "role"
+          ],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "not_in_input",
+            "source": "grounded",
+            "program": "grounded",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Anna Wintour said in an interview at the US Open:",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                  "quote": "\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d she said in an interview at the US Open."
+                }
+              ],
+              "review_reason": "Citation 0 explicitly states: 'she said in an interview at the US Open,' directly supporting that Anna Wintour made the statement in an interview at the US Open. The subject (Anna Wintour) and event (the interview at the US Open) match exactly.",
+              "event_group_id": 0
+            },
+            {
+              "component": "\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                  "quote": "\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d she said in an interview at the US Open."
+                },
+                {
+                  "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+                  "quote": "\u201cAnd we had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion and how she wants to learn about it and follow it,\u201d Anna said."
+                },
+                {
+                  "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+                  "quote": "The fashion icon went on, referring to Eala: \"And we have the young Filipino star... you could see even in such a young star how interested she is in fashion and how she wants to learn about it and follow it.\""
+                }
+              ],
+              "review_reason": "All three citations contain the quoted statement or a faithful paraphrase, attributed to Anna Wintour, about the 'young Filipino star' and her interest in fashion. The subject (Anna Wintour), the referenced person (the young Filipino star), and the content of the statement are all preserved.",
+              "event_group_id": 0
+            },
+            {
+              "component": "How she wants to learn about it and follow it",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                  "quote": "\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d she said in an interview at the US Open."
+                },
+                {
+                  "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+                  "quote": "\u201cAnd we had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion and how she wants to learn about it and follow it,\u201d Anna said."
+                },
+                {
+                  "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+                  "quote": "The fashion icon went on, referring to Eala: \"And we have the young Filipino star... you could see even in such a young star how interested she is in fashion and how she wants to learn about it and follow it.\""
+                }
+              ],
+              "review_reason": "Each passage includes the phrase or a close paraphrase: 'how she wants to learn about it and follow it,' attributed to Anna Wintour and referring to the young Filipino star. The subject, event, and qualifiers are all preserved.",
+              "event_group_id": 0
+            },
+            {
+              "component": "and I think it\u2019s great.\u201d",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                  "quote": "\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d she said in an interview at the US Open."
+                }
+              ],
+              "review_reason": "Citation 0 contains the phrase 'and I think it\u2019s great,' as part of Anna Wintour's statement. The other citations do not include this specific phrase. The subject, event, and qualifier ('I think it\u2019s great') are all present in citation 0.",
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+            "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513"
+          ],
+          "reason": "Retrieved passages support 4 of 4 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "citation_ids": [
+                0
+              ],
+              "reason": "Citation 0 explicitly states: 'she said in an interview at the US Open,' directly supporting that Anna Wintour made the statement in an interview at the US Open. The subject (Anna Wintour) and event (the interview at the US Open) match exactly.",
+              "component_id": 0
+            },
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "citation_ids": [
+                0,
+                1,
+                2
+              ],
+              "reason": "All three citations contain the quoted statement or a faithful paraphrase, attributed to Anna Wintour, about the 'young Filipino star' and her interest in fashion. The subject (Anna Wintour), the referenced person (the young Filipino star), and the content of the statement are all preserved.",
+              "component_id": 1
+            },
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "citation_ids": [
+                0,
+                1,
+                2
+              ],
+              "reason": "Each passage includes the phrase or a close paraphrase: 'how she wants to learn about it and follow it,' attributed to Anna Wintour and referring to the young Filipino star. The subject, event, and qualifiers are all preserved.",
+              "component_id": 2
+            },
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "citation_ids": [
+                0
+              ],
+              "reason": "Citation 0 contains the phrase 'and I think it\u2019s great,' as part of Anna Wintour's statement. The other citations do not include this specific phrase. The subject, event, and qualifier ('I think it\u2019s great') are all present in citation 0.",
+              "component_id": 3
+            }
+          ],
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "referent": "Anna Wintour said in an interview at the US Open: \u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great.\u201d (referring to Alex Eala)",
+              "sources": {
+                "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307": {
+                  "status": "matched",
+                  "passage_ids": [
+                    6
+                  ],
+                  "reason": "Passage 6 directly quotes Anna Wintour saying the statement in an interview at the US Open, matching the claim's wording and context.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+                      "quote": "\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d she said in an interview at the US Open."
+                    }
+                  ]
+                },
+                "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513": {
+                  "status": "matched",
+                  "passage_ids": [
+                    19,
+                    21,
+                    22
+                  ],
+                  "reason": "Passage 19 confirms the interview was at the US Open and Anna Wintour was referring to Alex Eala. Passage 21 gives the quote, and passage 22 continues the sentiment, matching the claim.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+                      "quote": "In an interview with the US Open, Wintour observed Eala's interest in fashion based on her stylish looks on the court, and compared her to tennis greats Serena Williams and Naomi Osaka."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+                      "quote": "The fashion icon went on, referring to Eala: \"And we have the young Filipino star... you could see even in such a young star how interested she is in fashion and how she wants to learn about it and follow it.\""
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+                      "quote": "\"And I think it's great, it's wonderful how sports and fashion have become this wonderful sort of marriage.\""
+                    }
+                  ]
+                },
+                "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    35,
+                    36,
+                    37
+                  ],
+                  "reason": "Passage 35 provides the quote attributed to Anna Wintour about the young Filipino star (Alex Eala) and her interest in fashion, at the US Open. Passage 36 continues the sentiment, and passage 37 confirms the interview context at the US Open.",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+                      "quote": "\u201cAnd we had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion and how she wants to learn about it and follow it,\u201d Anna said."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+                      "quote": "\u201cAnd I think it\u2019s great, it\u2019s wonderful how sports and fashion have become this wonderful sort of marriage.\u201d"
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+                      "quote": "Anna gave the quick interview at sidelines of the US Open exhibition match of Roger Federer and Andy Roddick , where Alex was present with fellow tennis player Eva Lys."
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/defining-philippine-style",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/50-years-a-fiesta-of-philippine-design",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/1002183/alex-eala-gets-spotlight-from-this-brand-at-new-york-fashion-week/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://usa.inquirer.net/209177/alex-eala-steps-into-spotlight-at-new-york-fashion-week",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://entertainment.inquirer.net/681802/alex-eala-serves-fashion-outside-court-and-anna-wintour-takes-notice",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/12/2555793/alex-eala-goes-black-white-michael-kors-calvin-klein-new-york-shows",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/04/10/meryl-streep-anna-wintour-break-the-internet-with-viral-vogue-cover",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2022/03/05/heart-evangelista-meets-vogue-editor-anna-wintour-during-paris-fashion-week/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1252034",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283416",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/features/2022/10/25/philippine-culture-fashion-in-the-eyes-of-the-ips",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/kalinga-promotes-weaving-industry-local-designers-in-laga-fashion-show-2025/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/defining-philippine-style",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source",
+              "program"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "unmatched",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/50-years-a-fiesta-of-philippine-design",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source",
+              "program"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "unmatched",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "normalized_phrase_match",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "normalized_phrase_match",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/1002183/alex-eala-gets-spotlight-from-this-brand-at-new-york-fashion-week/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "normalized_phrase_match",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "normalized_phrase_match",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "normalized_phrase_match",
+              "program": "normalized_phrase_match",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/12/2555793/alex-eala-goes-black-white-michael-kors-calvin-klein-new-york-shows",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "unmatched",
+              "program": "normalized_phrase_match",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": true,
+        "quote_paraphrase": {
+          "status": "ok",
+          "paraphrase": "Anna Wintour stated in an interview at the US Open that a young Filipino star shows a strong interest in fashion and a desire to learn about it.",
+          "method": "openai",
+          "error": null,
+          "used_for_scoring": true
+        },
+        "scoring_claim": "Anna Wintour stated in an interview at the US Open that a young Filipino star shows a strong interest in fashion and a desire to learn about it.",
+        "search_query": "Anna Wintour said in an interview at the US Open: \u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great.\u201d",
+        "event_search_query": "Filipina Alex Eala Vogue Anna Wintour Michael Kors New York Fashion Week Filipino How",
+        "retrieval_strategy": "event_pool_only",
+        "risk_tags": [],
+        "claim_hash": "cfd0d0687be7ccf9d43afc5de4f75af48e371c730214c303faba910b9c0166b2",
+        "cache_version": "week7-source-review-repair-v16",
+        "verdict": "Verified",
+        "message": "Retrieved evidence supports that Anna Wintour made this statement with interview / \"US Open\" attribution. This verifies the attribution, not the underlying claim by itself.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 2,
+        "primary_evidence": {
+          "source": "ABS-CBN News",
+          "title": "Alex Eala shares front row with Anna Wintour at New York Fashion Week show | ABS-CBN Entertainment",
+          "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+          "status": "extracted",
+          "word_count": 427,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_pool": "event_context"
+        },
+        "supporting_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Alex Eala shares front row with Anna Wintour at New York Fashion Week show | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "status": "extracted",
+            "word_count": 427,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Next fashion icon? Alex Eala gets attention of former Vogue editor Anna Wintour | ABS-CBN Lifestyle",
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+            "status": "extracted",
+            "word_count": 336,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          },
+          {
+            "source": "GMA News",
+            "title": "Anna Wintour takes notice of Alex Eala",
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+            "status": "extracted",
+            "word_count": 360,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 36,
+        "searched_articles": 16,
+        "extracted_articles": 8,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "GMA News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          }
+        ],
+        "sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Alex Eala shares front row with Anna Wintour at New York Fashion Week show | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "status": "extracted",
+            "word_count": 427,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Next fashion icon? Alex Eala gets attention of former Vogue editor Anna Wintour | ABS-CBN Lifestyle",
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+            "status": "extracted",
+            "word_count": 336,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          },
+          {
+            "source": "GMA News",
+            "title": "Anna Wintour takes notice of Alex Eala",
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+            "status": "extracted",
+            "word_count": 360,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "Alex Eala shares front row with Anna Wintour at New York Fashion Week show | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "status": "extracted",
+            "word_count": 427,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Next fashion icon? Alex Eala gets attention of former Vogue editor Anna Wintour | ABS-CBN Lifestyle",
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+            "status": "extracted",
+            "word_count": 336,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          },
+          {
+            "source": "GMA News",
+            "title": "Anna Wintour takes notice of Alex Eala",
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+            "status": "extracted",
+            "word_count": 360,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Verified",
+              "reason": "Anna Wintour confirmed Alex Eala's strong interest in fashion during an interview at the US Open.",
+              "supporting_urls": [
+                "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files + 7 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": true,
+        "matched_phrases": [
+          "i think"
+        ],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.36,
+        "ambiguity_score": 0.5,
+        "ambiguity_reasons": [
+          "emotional_or_persuasive_language",
+          "low_classifier_confidence",
+          "needs_claim_extraction_review",
+          "quote_context_needed",
+          "reported_attribution_needs_verification"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": true,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": true,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "verification_text": "Filipina tennis star Alex Eala is spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.\n\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d Anna previously said in an interview at the US Open.",
+        "normalized_verification_text": "Filipina tennis star Alex Eala is spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.\n\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d Anna previously said in an interview at the US Open.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Filipina tennis star Alex Eala is spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.3,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.0,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d Anna previously said in an interview at the US Open.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.42,
+              "opinion": 0.5,
+              "forecast_or_projection_detected": 0.37,
+              "quote": 0.73,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.42,
+            "second_label": "opinion",
+            "second_label_score": 0.5,
+            "score_gap": 0.23,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "emotional_or_persuasive_language",
+              "quote_context_needed",
+              "reported_attribution_needs_verification"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "reported"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "low_classifier_confidence",
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "quote",
+                "top_label_score": 0.8,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "emotional_or_persuasive_language",
+                  "quote_context_needed",
+                  "reported_attribution_needs_verification"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "This segment asserts a factual event: Alex Eala was seated beside Anna Wintour at a fashion show."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "checkable",
+            "claim_indexes": [
+              1
+            ],
+            "reason": "This segment reports a direct quotation from Anna Wintour about Alex Eala's interest in fashion."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "Alex Eala was seated in the front row beside Anna Wintour at the Michael Kors fashion show during New York Fashion Week."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "Anna Wintour said: \u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great.\u201d"
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Filipina tennis star Alex Eala is spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.",
+            "normalized_claim": "Alex Eala was seated in the front row beside Anna Wintour at the Michael Kors fashion show during New York Fashion Week.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Alex Eala Anna Wintour Michael Kors New York Fashion Week",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Filipina tennis star Alex Eala is spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week."
+              }
+            ],
+            "evidence_context": "Filipina tennis star Alex Eala is spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.\n\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d Anna previously said in an interview at the US Open.",
+            "is_quote_derived": true
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "Anna Wintour said in an interview at the US Open: \u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great.\u201d",
+            "normalized_claim": "Anna Wintour said in an interview at the US Open: \u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great.\u201d",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Anna Wintour",
+              "role": null,
+              "statement": "Anna Wintour said in an interview at the US Open: \u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great.\u201d",
+              "source": "interview",
+              "program": "US Open",
+              "date": null
+            },
+            "search_query": "Anna Wintour said in an interview at the US Open: \u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great.\u201d",
+            "source_passages": [
+              {
+                "segment_id": 1,
+                "quote": "\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d Anna previously said in an interview at the US Open."
+              }
+            ],
+            "evidence_context": "Filipina tennis star Alex Eala is spotted seated in the front row beside Vogue\u2019s Anna Wintour at the Michael Kors fashion show during New York Fashion Week.\n\u201cWe had the young Filipino star, you know, you could see even in such a young star how interested she is in fashion. How she wants to learn about it and follow it and I think it\u2019s great,\u201d Anna previously said in an interview at the US Open.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [
+                "role"
+              ],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "not_in_input",
+                "source": "grounded",
+                "program": "grounded",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": true
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": true,
+        "status": "ok",
+        "query": "Filipina Alex Eala Vogue Anna Wintour Michael Kors New York Fashion Week Filipino How",
+        "total_search_results": 36,
+        "searched_articles": 16,
+        "extracted_articles": 8,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "GMA News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 3,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          }
+        ],
+        "articles": [
+          {
+            "source": "VERA Files",
+            "title": "Defining Philippine style",
+            "url": "https://verafiles.org/articles/defining-philippine-style",
+            "status": "extracted",
+            "word_count": 827,
+            "extraction_quality": "full"
+          },
+          {
+            "source": "VERA Files",
+            "title": "50 Years: A fiesta of Philippine design",
+            "url": "https://verafiles.org/articles/50-years-a-fiesta-of-philippine-design",
+            "status": "extracted",
+            "word_count": 862,
+            "extraction_quality": "full"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Alex Eala shares front row with Anna Wintour at New York Fashion Week show | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/14/alex-eala-shares-front-row-with-anna-wintour-at-new-york-fashion-week-show-2307",
+            "status": "extracted",
+            "word_count": 427,
+            "extraction_quality": "full"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Next fashion icon? Alex Eala gets attention of former Vogue editor Anna Wintour | ABS-CBN Lifestyle",
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/8/26/next-fashion-icon-alex-eala-gets-attention-of-former-vogue-editor-anna-wintour-1513",
+            "status": "extracted",
+            "word_count": 336,
+            "extraction_quality": "full"
+          },
+          {
+            "source": "GMA News",
+            "title": "Alex Eala gets spotlight from this brand at New York Fashion Week",
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/1002183/alex-eala-gets-spotlight-from-this-brand-at-new-york-fashion-week/story/",
+            "status": "extracted",
+            "word_count": 217,
+            "extraction_quality": "full"
+          },
+          {
+            "source": "GMA News",
+            "title": "Anna Wintour takes notice of Alex Eala",
+            "url": "https://www.gmanetwork.com/news/lifestyle/shoppingandfashion/999882/anna-wintour-takes-notice-of-alex-eala/story/",
+            "status": "extracted",
+            "word_count": 360,
+            "extraction_quality": "full"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Alex Eala steps into spotlight at New York Fashion Week",
+            "url": "https://usa.inquirer.net/209177/alex-eala-steps-into-spotlight-at-new-york-fashion-week",
+            "status": "error",
+            "word_count": 0,
+            "extraction_quality": "unavailable"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Alex Eala serves fashion outside court, and Anna Wintour takes notice",
+            "url": "https://entertainment.inquirer.net/681802/alex-eala-serves-fashion-outside-court-and-anna-wintour-takes-notice",
+            "status": "error",
+            "word_count": 0,
+            "extraction_quality": "unavailable"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Alex Eala meets Anna Wintour, Sadie Sink at New York Fashion Week",
+            "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/14/2556207/alex-eala-meets-anna-wintour-sadie-sink-new-york-fashion-week",
+            "status": "extracted",
+            "word_count": 395,
+            "extraction_quality": "full"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Alex Eala goes black, white for Michael Kors, Calvin Klein New York shows",
+            "url": "https://www.philstar.com/lifestyle/fashion-and-beauty/2026/09/12/2555793/alex-eala-goes-black-white-michael-kors-calvin-klein-new-york-shows",
+            "status": "extracted",
+            "word_count": 431,
+            "extraction_quality": "full"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Meryl Streep, Anna Wintour break the internet with viral Vogue cover",
+            "url": "https://mb.com.ph/2026/04/10/meryl-streep-anna-wintour-break-the-internet-with-viral-vogue-cover",
+            "status": "error",
+            "word_count": 0,
+            "extraction_quality": "unavailable"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Heart Evangelista meets Vogue editor Anna Wintour during Paris Fashion Week",
+            "url": "https://mb.com.ph/2022/03/05/heart-evangelista-meets-vogue-editor-anna-wintour-during-paris-fashion-week/",
+            "status": "error",
+            "word_count": 0,
+            "extraction_quality": "unavailable"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Vin d\u2019honneur: Philippine fashion diplomacy on display | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1252034",
+            "status": "error",
+            "word_count": 0,
+            "extraction_quality": "unavailable"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "US Open rolls out royal treatment for Filipino star Alex Eala | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283416",
+            "status": "error",
+            "word_count": 0,
+            "extraction_quality": "unavailable"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "PIA - Philippine culture, fashion in the eyes of the IPs",
+            "url": "https://mirror.pia.gov.ph/features/2022/10/25/philippine-culture-fashion-in-the-eyes-of-the-ips",
+            "status": "error",
+            "word_count": 0,
+            "extraction_quality": "unavailable"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "Kalinga promotes weaving industry, local designers in Laga Fashion Show 2025 - Philippine Information Agency",
+            "url": "https://pia.gov.ph/news/kalinga-promotes-weaving-industry-local-designers-in-laga-fashion-show-2025/",
+            "status": "error",
+            "word_count": 0,
+            "extraction_quality": "unavailable"
+          }
+        ]
+      },
+      "timings": {
+        "request_id": "266cf5aafbca4ee89aca2d7aba0a45a8",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0096,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 3.7165,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0008,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0061,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 8.394,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0031,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 8.2577,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.quote_paraphrase",
+            "duration_seconds": 1.3034,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0015,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 0.0541,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0357,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 9.5763,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 2.0284,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 2.0374,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0187,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 8.1234,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.quote_paraphrase",
+            "duration_seconds": 1.4023,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.008,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 0.0401,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0195,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 0.6428,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.7459,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.7558,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0151,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 7.4423,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 32.6344,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 53.0748,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

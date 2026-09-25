@@ -1,0 +1,304 @@
+{
+  "case_id": "B13",
+  "input_sha256": "022e2d15df3f6ccbeaad27792ff82fad622fbfbc1c564c7e1965721f4479af16",
+  "started_utc": "2026-09-19T06:59:56.587605+00:00",
+  "http_status": 200,
+  "seconds": 4.442,
+  "trace_id": "755a749220214e77878e7f92b7d5c9f4",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-search-passes-v19",
+  "response": {
+    "verdict": "No Checkable Claims",
+    "message": "IRIS did not find factual claims that can be checked against approved sources.",
+    "original_text": "Hinihintay ko tanong ni Robin sa former SC justices: “Saan kayo graduate?” “Nakaakyat na ba kayo ng bundok?” “Alam ba ninyo mga aliases ng mga heroes?”",
+    "translated_text": "I'm waiting for Robin's question to the former SC justices: \"Where did you graduate?\"\n\"Have you ever climbed a mountain?\"\n\"Do you know the aliases of the heroes?\"",
+    "detected_language": "tagalog",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 0,
+    "claim_extraction_status": "not_run_content_profiler",
+    "post_type": "satirical_or_comedic",
+    "content_profile_status": "ok",
+    "content_profile_route": "stop_no_checkable_claims",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": true,
+    "ignored_segments": [
+      {
+        "segment_id": "s1",
+        "text": "Hinihintay ko tanong ni Robin sa former SC justices: “Saan kayo graduate?”",
+        "segment_type": "satire_or_humor",
+        "reason_codes": [
+          "imagined_speech_not_reported",
+          "quote_context_needed",
+          "reported_attribution_needs_verification"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "This describes imagined or anticipated speech, not a reported statement."
+      },
+      {
+        "segment_id": "s2",
+        "text": "“Nakaakyat na ba kayo ng bundok?”",
+        "segment_type": "satire_or_humor",
+        "reason_codes": [
+          "imagined_speech_not_reported",
+          "low_classifier_confidence"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "This describes imagined or anticipated speech, not a reported statement."
+      },
+      {
+        "segment_id": "s3",
+        "text": "“Alam ba ninyo mga aliases ng mga heroes?”",
+        "segment_type": "satire_or_humor",
+        "reason_codes": [
+          "imagined_speech_not_reported",
+          "low_classifier_confidence"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "This describes imagined or anticipated speech, not a reported statement."
+      }
+    ],
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "satirical_or_comedic",
+        "confidence": 0.25,
+        "ambiguity_score": 0.57,
+        "ambiguity_reasons": [
+          "imagined_speech_not_reported",
+          "low_classifier_confidence",
+          "quote_context_needed",
+          "reported_attribution_needs_verification"
+        ],
+        "contains_factual_claims": false,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": true,
+        "eligible_for_verification": false,
+        "recommended_route": "stop_no_checkable_claims",
+        "verification_text": "Hinihintay ko tanong ni Robin sa former SC justices: “Saan kayo graduate?” “Nakaakyat na ba kayo ng bundok?” “Alam ba ninyo mga aliases ng mga heroes?”",
+        "normalized_verification_text": "I'm waiting for Robin's question to the former SC justices: \"Where did you graduate?\"\n\"Have you ever climbed a mountain?\"\n\"Do you know the aliases of the heroes?\"",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Hinihintay ko tanong ni Robin sa former SC justices: “Saan kayo graduate?”",
+            "translated_text": "I'm waiting for Robin's question to the former SC justices: \"Where did you graduate?\"",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.53,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "satire_or_humor",
+            "top_label_score": 0.1,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.23,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "imagined_speech_not_reported",
+              "quote_context_needed",
+              "reported_attribution_needs_verification"
+            ],
+            "user_notification": "This describes imagined or anticipated speech, not a reported statement.",
+            "speech_scope": "imagined"
+          },
+          {
+            "segment_id": "s2",
+            "text": "“Nakaakyat na ba kayo ng bundok?”",
+            "translated_text": "\"Have you ever climbed a mountain?\"",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.33,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "satire_or_humor",
+            "top_label_score": 0.33,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.03,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "imagined_speech_not_reported",
+              "low_classifier_confidence"
+            ],
+            "user_notification": "This describes imagined or anticipated speech, not a reported statement.",
+            "speech_scope": "imagined"
+          },
+          {
+            "segment_id": "s3",
+            "text": "“Alam ba ninyo mga aliases ng mga heroes?”",
+            "translated_text": "\"Do you know the aliases of the heroes?\"",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.33,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "satire_or_humor",
+            "top_label_score": 0.33,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.03,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "imagined_speech_not_reported",
+              "low_classifier_confidence"
+            ],
+            "user_notification": "This describes imagined or anticipated speech, not a reported statement.",
+            "speech_scope": "imagined"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Hinihintay ko tanong ni Robin sa former SC justices: “Saan kayo graduate?”",
+            "segment_type": "satire_or_humor",
+            "reason_codes": [
+              "imagined_speech_not_reported",
+              "quote_context_needed",
+              "reported_attribution_needs_verification"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "This describes imagined or anticipated speech, not a reported statement."
+          },
+          {
+            "segment_id": "s2",
+            "text": "“Nakaakyat na ba kayo ng bundok?”",
+            "segment_type": "satire_or_humor",
+            "reason_codes": [
+              "imagined_speech_not_reported",
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "This describes imagined or anticipated speech, not a reported statement."
+          },
+          {
+            "segment_id": "s3",
+            "text": "“Alam ba ninyo mga aliases ng mga heroes?”",
+            "segment_type": "satire_or_humor",
+            "reason_codes": [
+              "imagined_speech_not_reported",
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "This describes imagined or anticipated speech, not a reported statement."
+          }
+        ],
+        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "quote",
+                "top_label_score": 0.8,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reported_attribution_needs_verification"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "quote",
+                "top_label_score": 0.8,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reported_attribution_needs_verification"
+                ]
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "quote",
+                "top_label_score": 0.8,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reported_attribution_needs_verification"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "timings": {
+        "request_id": "755a749220214e77878e7f92b7d5c9f4",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.002,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 1.6359,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 2.7964,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0008,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 4.4367,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

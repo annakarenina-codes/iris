@@ -1,0 +1,3281 @@
+{
+  "case_id": "B15",
+  "input_sha256": "fad677869b351f5453fb61952574f398b9824ec644b246d13da1089636062de0",
+  "started_utc": "2026-09-20T13:08:44.311588+00:00",
+  "http_status": 200,
+  "seconds": 126.114,
+  "trace_id": "6d08958a3a3a4c149cdf64c59d6fb513",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-date-anchor-v34",
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 3 extracted claims individually.",
+    "original_text": "SOBRANG BOYFRIEND CODED NAMAN, OPPA! South Korean actor na si Byeon Woo-seok, nag-post sa Instagram ng kanyang photo update. “So handsome ,” komento naman ng isang netizen. Nakatakdang pumunta si Woo-seok sa Pilipinas sa October 10, 2026 para sa kanyang “The Secret Library” fan meeting tour na gaganapin sa SM Mall of Asia Arena. (Instagram/byeonwooseok)",
+    "translated_text": "SO MUCH BOYFRIEND CODE, OPPA!\nSouth Korean actor Byeon Woo-seok posted a photo update on Instagram.\n\"So handsome,\" commented a netizen.\nWoo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.\n(Instagram/byeonwooseok)",
+    "detected_language": "tagalog",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 3,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": true,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s5",
+        "text": "(Instagram/byeonwooseok)",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "vague_claim"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "text": "SO MUCH BOYFRIEND CODE, OPPA!",
+        "segment_type": "opinion"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "South Korean actor Byeon Woo-seok posted a photo update on Instagram.",
+        "normalized_claim": "Byeon Woo-seok posted a photo update on Instagram.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "South Korean actor Byeon Woo-seok posted a photo update on Instagram.",
+              "status": "not_supported",
+              "citations": [],
+              "evidence_relation": "not_established",
+              "review_reason": "The passage states that Byeon Woo-seok posted photos taken in Manila on his Instagram account, which supports the claim that he posted a photo update on Instagram. However, the passage does not specify when this occurred, so the specific occurrence (date/time) is not established.",
+              "context": {
+                "start": 0,
+                "end": 69,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "South Korean actor Byeon Woo-seok",
+                      "start": 0,
+                      "end": 33
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "posted",
+                      "start": 34,
+                      "end": 40
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "posted a photo update on Instagram.",
+                      "start": 34,
+                      "end": 69
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "South Korean actor Byeon Woo-seok posted a photo update on Instagram.",
+                      "start": 0,
+                      "end": 69
+                    },
+                    {
+                      "origin": "source_context",
+                      "quote": "South Korean actor Byeon Woo-seok posted a photo update on Instagram.",
+                      "start": 30,
+                      "end": 99
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "South Korean actor Byeon Woo-seok posted a photo update on Instagram.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 69
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim",
+                "context_reviewed": true
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": false,
+              "missing_kind": "date",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0
+              ],
+              "reason": "The passage states that Byeon Woo-seok posted photos taken in Manila on his Instagram account, which supports the claim that he posted a photo update on Instagram. However, the passage does not specify when this occurred, so the specific occurrence (date/time) is not established.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "South Korean actor Byeon Woo-seok posted a photo update on Instagram.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "South Korean actor Byeon Woo-seok posted a photo update on Instagram.",
+              "sources": {
+                "https://mb.com.ph/2024/6/25/korean-star-byeon-woo-seok-feels-the-love-of-filipinos-moved-to-tears-at-fan-meeting": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0
+                  ],
+                  "reason": "Passage 0 explicitly states that Korean star Byeon Woo-seok posted photos taken in Manila on his Instagram account, directly supporting the claim that he posted a photo update on Instagram.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2024/6/25/korean-star-byeon-woo-seok-feels-the-love-of-filipinos-moved-to-tears-at-fan-meeting",
+                      "quote": "Korean star Byeon Woo-seok posted these photos taken in Manila on his Instagram account (Instagram)"
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/inside-guo-tok-how-tiktok-fan-accounts-whitewashed-alice-guos-image-amid-pogo-probe",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-reported-sightings-of-sara-duterte-visiting-milf-camp-photos-are-ai-generated",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-meta-review-of-ph-politicians-socmed-accounts-for-removal",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/celebrities/byeon-woo-seok-korean-drama-lovely-runner-greatest-achievements/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/elections/guide-results-barmm-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/series/solo-leveling-live-action-byeon-woo-seok-netflix/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2025/5/9/korean-actor-byeon-woo-seok-returns-to-ph-for-fan-meet-on-july-19-1234",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/9/17/enhypen-adds-fan-sign-cafe-event-to-ph-visit-1531",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/photos/the-hottest-photos-of-byeon-woo-seok-aka-sun-jae-of-lovely-runner/20656/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/photos/upcoming-concerts-and-fan-meetings-in-ph-in-the-2nd-half-of-2026/27511/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/esnyr-nag-fangirl-sa-manila-fan-meet-ni-byeon-woo-seok/124484/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://entertainment.inquirer.net/683626/kim-chiu-receives-her-imbc-awards-best-global-star-trophy-from-south-korea",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/454739/kim-chiu-sa-naiuwing-best-global-star-mula-korea-an-honor-to-represent-ph",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2024/06/22/2364573/lovely-runner-star-byeon-woo-seok-newfound-fame-its-dream",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/opinion/2026/09/08/2554704/saying-goodbye",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://qa.philstar.com/entertainment/2025/07/20/2459385/belle-mariano-fangirls-over-byeon-woo-seok-manila-fan-meet",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2024/6/26/lovely-runner-star-byeon-woo-seok-reaches-10-million-followers-on-instagram",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/20/byeon-woo-seoks-agency-warns-against-privacy-invasions",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2024/6/25/korean-star-byeon-woo-seok-feels-the-love-of-filipinos-moved-to-tears-at-fan-meeting",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284399",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1244614",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/dot-7-anti-scam-drive-targets-fake-booking-accounts-preying-on-tourists/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/comelec-proclaims-9-lanao-del-sur-parliamentary-district-winners/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/water-level-sa-angat-dam-nagsimula-nang-umangat-matapos-ang-7-buwang-pagkatuyo/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/'lovely-runner'-actor-byeon-woo-seok-manila",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/hontiveros-calls-out-meta-yung-basura-niyo-linisin-niyo",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/seventeen's-scoups-jeonghan-to-resume-activities-following-hiatus",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/8-second-lead-male-characters-from-k-dramas-that-are-too-hard-to-forget-1",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/south-korean-actor-tapped-as-philippines-tourism-ambassador",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/inside-guo-tok-how-tiktok-fan-accounts-whitewashed-alice-guos-image-amid-pogo-probe",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-reported-sightings-of-sara-duterte-visiting-milf-camp-photos-are-ai-generated",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-meta-review-of-ph-politicians-socmed-accounts-for-removal",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/celebrities/byeon-woo-seok-korean-drama-lovely-runner-greatest-achievements/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/elections/guide-results-barmm-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/series/solo-leveling-live-action-byeon-woo-seok-netflix/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2025/5/9/korean-actor-byeon-woo-seok-returns-to-ph-for-fan-meet-on-july-19-1234",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/9/17/enhypen-adds-fan-sign-cafe-event-to-ph-visit-1531",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/photos/the-hottest-photos-of-byeon-woo-seok-aka-sun-jae-of-lovely-runner/20656/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/photos/upcoming-concerts-and-fan-meetings-in-ph-in-the-2nd-half-of-2026/27511/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/esnyr-nag-fangirl-sa-manila-fan-meet-ni-byeon-woo-seok/124484/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://entertainment.inquirer.net/683626/kim-chiu-receives-her-imbc-awards-best-global-star-trophy-from-south-korea",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://bandera.inquirer.net/454739/kim-chiu-sa-naiuwing-best-global-star-mula-korea-an-honor-to-represent-ph",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2024/06/22/2364573/lovely-runner-star-byeon-woo-seok-newfound-fame-its-dream",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/opinion/2026/09/08/2554704/saying-goodbye",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://qa.philstar.com/entertainment/2025/07/20/2459385/belle-mariano-fangirls-over-byeon-woo-seok-manila-fan-meet",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2024/6/26/lovely-runner-star-byeon-woo-seok-reaches-10-million-followers-on-instagram",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/20/byeon-woo-seoks-agency-warns-against-privacy-invasions",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2024/6/25/korean-star-byeon-woo-seok-feels-the-love-of-filipinos-moved-to-tears-at-fan-meeting",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284399",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1244614",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/dot-7-anti-scam-drive-targets-fake-booking-accounts-preying-on-tourists/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/comelec-proclaims-9-lanao-del-sur-parliamentary-district-winners/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/water-level-sa-angat-dam-nagsimula-nang-umangat-matapos-ang-7-buwang-pagkatuyo/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/'lovely-runner'-actor-byeon-woo-seok-manila",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/hontiveros-calls-out-meta-yung-basura-niyo-linisin-niyo",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/seventeen's-scoups-jeonghan-to-resume-activities-following-hiatus",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/8-second-lead-male-characters-from-k-dramas-that-are-too-hard-to-forget-1",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/romualdez-mugshots-at-quezon-city-jail-released",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/south-korean-actor-tapped-as-philippines-tourism-ambassador",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Byeon Woo-seok posted a photo update on Instagram."
+        },
+        "scoring_claim": "Byeon Woo-seok posted a photo update on Instagram.",
+        "search_query": "Byeon Woo-seok Instagram photo update",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "346346dead08d9a14b19462e20bc5b004df8285ec45dc74c2111c0ddae452cc3",
+        "cache_version": "week7-date-anchor-v34",
+        "verdict": "Not Found",
+        "message": "Retrieved passages support 0 of 1 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 115,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence confirms Byeon Woo-seok posted a photo update on Instagram.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "\"So handsome,\" commented a netizen.",
+        "normalized_claim": "\"So handsome,\" commented a netizen.",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "a netizen",
+          "role": null,
+          "statement": "\"So handsome,\" commented a netizen.",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "absent",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "\"So handsome,\" commented a netizen.",
+              "status": "not_supported",
+              "citations": [],
+              "context": {
+                "start": 0,
+                "end": 35,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "a netizen",
+                      "start": 25,
+                      "end": 34
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "commented",
+                      "start": 15,
+                      "end": 24
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "\"So handsome,\" commented a netizen.",
+                      "start": 0,
+                      "end": 35
+                    },
+                    {
+                      "origin": "source_context",
+                      "quote": "South Korean actor Byeon Woo-seok posted a photo update on Instagram.",
+                      "start": 30,
+                      "end": 99
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "a netizen",
+                      "start": 25,
+                      "end": 34
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "\"So handsome,\" commented a netizen.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 35
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim",
+                "context_reviewed": true
+              }
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "original_claim": "\"So handsome,\" commented a netizen.",
+          "partition_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-litrato-ni-isko-moreno-na-naka-dextros",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-michael-poas-remark-lambasting-terry-ridon-over-misleading-question-issue-fake",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/kahina-hinalang-fb-users-nag-post-ng-mass-resignations-sa-pnp",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/business/filipinos-online-reactions-ddb-department-tourism-love-the-philippines-campaign/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/opinion-your-face-hack-troll/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://factsfirstph-partners.rappler.com/2383/fact-check-rodrigo-duterte-did-not-express-support-leni-robredo/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://push.abs-cbn.com/2022/8/26/fresh-scoops/tingnan-sixto-dantes-bilang-si-yapu-yapu-kinag-201982",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://push.abs-cbn.com/2022/2/10/fresh-scoops/tingnan-regine-velasquez-muli-na-namang-naging-198469",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://push.abs-cbn.com/2021/10/12/fresh-scoops/mga-bagong-litrato-nina-diego-loyzaga-at-barbie-im-196278",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/vice-ganda-sobrang-latina-bilang-si-memerimar/135187/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/born-to-shine-pinaiyak-at-pinakilig-ang-netizens/133823/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/photos/kisses-delavin-spotted-ng-netizens-sa-isang-ballet-performance/24416/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/455076/joshua-garcia-nag-trending-sey-ng-netizens-welcome-to-haggard-era",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/352619/kristine-hermosa-binansagang-song-hye-kyo-ng-pilipinas-hirit-ni-oyo-boy",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://bandera.inquirer.net/392184/netizens-imbyerna-sa-eh-kasi-lalaki-comment-ni-toni-nakakadiri-ah",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pang-masa/pang-movies/2017/02/10/1670716/aktor-na-dating-nagsusuot-ng-gold-necklace-na-parang-kadena-wala-nang-dialogue-sa-mga-serye",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pang-masa/pang-movies/2024/03/26/2343390/zanjoe-ria-binaha-ng-pagbati-sa-pagpapakasal",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2021/02/28/2080886/kylie-pinatunayang-scripted-ang-proposal-prank-ni-jake",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2022/06/12/barbie-imperial-bakit-hiniling-na-makitira-muna-kina-sandro-marcos/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2024/05/11/zeinab-nagpalagabog-ng-alindog/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2024/07/07/resbak-ng-inuutangan-matapos-sabihang-mayabang-winner-sa-netizens/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1176713",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1117092",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1257648",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/pbbm-replies-to-funny-netizen-questions-shares-lighthearted-holiday-advice/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/pbbm-and-his-valentine-first-lady-liza-araneta-marcos-share-tips-on-how-to-maintain-a-healthy-long-lasting-relationship/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/kenkoy-comic-character-turned-adjective/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/lol-relate-repeat-how-these-15-viral-memes-defined-the-philippines-in-2025",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/carla-abellana-breaks-silence",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/common-sense-palace-says-rocket-launch-a-marker-of-progress-for-ph",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sing-galing-singtokers-niko-billy-and-yukii-talk-ideal-girl-guy-secret-nicknames-and-future-dreams-1",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/this-artist-captures-daily-life-in-phl-through-hyperrealistic-paintings",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/out-of-touch-joey-concepcion-draws-flak-for-trying-to-cancel-remote-work-setup-issues-clarification",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-litrato-ni-isko-moreno-na-naka-dextros",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-michael-poas-remark-lambasting-terry-ridon-over-misleading-question-issue-fake",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/kahina-hinalang-fb-users-nag-post-ng-mass-resignations-sa-pnp",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/business/filipinos-online-reactions-ddb-department-tourism-love-the-philippines-campaign/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/voices/thought-leaders/opinion-your-face-hack-troll/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://factsfirstph-partners.rappler.com/2383/fact-check-rodrigo-duterte-did-not-express-support-leni-robredo/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://push.abs-cbn.com/2022/8/26/fresh-scoops/tingnan-sixto-dantes-bilang-si-yapu-yapu-kinag-201982",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://push.abs-cbn.com/2022/2/10/fresh-scoops/tingnan-regine-velasquez-muli-na-namang-naging-198469",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://push.abs-cbn.com/2021/10/12/fresh-scoops/mga-bagong-litrato-nina-diego-loyzaga-at-barbie-im-196278",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/vice-ganda-sobrang-latina-bilang-si-memerimar/135187/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/born-to-shine-pinaiyak-at-pinakilig-ang-netizens/133823/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/photos/kisses-delavin-spotted-ng-netizens-sa-isang-ballet-performance/24416/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://bandera.inquirer.net/455076/joshua-garcia-nag-trending-sey-ng-netizens-welcome-to-haggard-era",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://bandera.inquirer.net/352619/kristine-hermosa-binansagang-song-hye-kyo-ng-pilipinas-hirit-ni-oyo-boy",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://bandera.inquirer.net/392184/netizens-imbyerna-sa-eh-kasi-lalaki-comment-ni-toni-nakakadiri-ah",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/pang-masa/pang-movies/2017/02/10/1670716/aktor-na-dating-nagsusuot-ng-gold-necklace-na-parang-kadena-wala-nang-dialogue-sa-mga-serye",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/pang-masa/pang-movies/2024/03/26/2343390/zanjoe-ria-binaha-ng-pagbati-sa-pagpapakasal",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2021/02/28/2080886/kylie-pinatunayang-scripted-ang-proposal-prank-ni-jake",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://balita.mb.com.ph/2022/06/12/barbie-imperial-bakit-hiniling-na-makitira-muna-kina-sandro-marcos/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://balita.mb.com.ph/2024/05/11/zeinab-nagpalagabog-ng-alindog/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://balita.mb.com.ph/2024/07/07/resbak-ng-inuutangan-matapos-sabihang-mayabang-winner-sa-netizens/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1176713",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1117092",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1257648",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/news/pbbm-replies-to-funny-netizen-questions-shares-lighthearted-holiday-advice/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/pbbm-and-his-valentine-first-lady-liza-araneta-marcos-share-tips-on-how-to-maintain-a-healthy-long-lasting-relationship/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/news/kenkoy-comic-character-turned-adjective/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/lol-relate-repeat-how-these-15-viral-memes-defined-the-philippines-in-2025",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/carla-abellana-breaks-silence",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/common-sense-palace-says-rocket-launch-a-marker-of-progress-for-ph",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sing-galing-singtokers-niko-billy-and-yukii-talk-ideal-girl-guy-secret-nicknames-and-future-dreams-1",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/this-artist-captures-daily-life-in-phl-through-hyperrealistic-paintings",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/out-of-touch-joey-concepcion-draws-flak-for-trying-to-cancel-remote-work-setup-issues-clarification",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "\"So handsome,\" commented a netizen."
+        },
+        "scoring_claim": "\"So handsome,\" commented a netizen.",
+        "search_query": "\"So handsome,\" commented a netizen.",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "6d609b3d0e14b1569041f584e1f9581efad8938bd28be3eac33cbaedc1e7fa6a",
+        "cache_version": "week7-date-anchor-v34",
+        "verdict": "Not Found",
+        "message": "IRIS did not find enough approved-source evidence confirming that a netizen made this statement.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 55,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence snippet mentions a netizen commenting \"So handsome.\"",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 3,
+        "claim_text": "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.",
+        "normalized_claim": "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his 'The Secret Library' fan meeting tour at SM Mall of Asia Arena.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://mb.com.ph/2026/06/09/byeon-woo-seok-to-hold-fan-meeting-in-manila-anew",
+                  "quote": "The Manila fan meeting is scheduled for October 10 at the SM Mall of Asia Arena, marking one of the key stops in the regional tour and underscoring his continued popularity in the Philippines."
+                },
+                {
+                  "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seoks-the-secret-library-in-manila-ticket-prices-seat-plan-and-fan-benefits/136151/",
+                  "quote": "More details have been released for 'Perfect Crown' actor Byeon Woo-seok 's upcoming fan meeting in Manila. Byeon Woo-seok will return to Manila on October 10 for his \"The Secret Library\" Asia Fanmeeting Tour at the SM Mall of Asia Arena. On July 22, PULP Live World released the official seat plan for Byeon Woo-seok's 'The Secret Library' in Manila."
+                },
+                {
+                  "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seoks-the-secret-library-in-manila-ticket-prices-seat-plan-and-fan-benefits/136151/",
+                  "quote": "Source: PULP Live World After kicking off in Seoul on July 4 and 5, the tour will continue in Bangkok (August 16), Yokohama (September 5 and 6), Singapore (September 18), Taipei (September 25), Manila (October 10), Jakarta (November 7), and Hong Kong (November 22)."
+                },
+                {
+                  "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/",
+                  "quote": "In a poster shared by VARO Entertainment on Tuesday (June 9), the Manila stop will be held at the Mall of Asia Arena on October 10."
+                },
+                {
+                  "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/",
+                  "quote": "View this post on Instagram A post shared by 바로엔터테인먼트 (@varoent_official) \"The Secret Library\" Asia Fanmeeting Tour will kick off in Seoul on July 4 and 5, before heading to Bangkok (August 16), Yokohama (September 5 and 6), Singapore (September 18), Taipei (September 25), Manila (October 10), Jakarta (November 7), and Hong Kong (November 22)."
+                },
+                {
+                  "url": "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet",
+                  "quote": "Byeon’s Manila fan meeting is scheduled on Oct. 10 at the SM Mall of Asia Arena."
+                },
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/8/1/byeon-woo-seok-shares-message-for-filipino-fans-ahead-of-the-secret-library-fan-meeting-in-manila-1649",
+                  "quote": "The Korean actor is set to headline The Secret Library in Manila on October 10 at the SM Mall of Asia Arena."
+                },
+                {
+                  "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/8/1/byeon-woo-seok-shares-message-for-filipino-fans-ahead-of-the-secret-library-fan-meeting-in-manila-1649",
+                  "quote": "\"Kumusta, Philippines? This is Byeon Woo-seok. Everyone, did you miss me a lot? I really missed your passionate cheers and love ever since our first fan meeting in Manila. Finally, I am going to meet our Tongtongs (his fans) on Saturday, October 10, 2026,\" he said."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Multiple passages explicitly state that Byeon Woo-seok is scheduled to hold his 'The Secret Library' fan meeting tour in Manila, Philippines, at the SM Mall of Asia Arena on October 10, 2026. The details about the event, including the date, venue, and tour name, are all directly confirmed. The cited passages refer to the same scheduled occurrence, with no contradictions or missing qualifiers.",
+              "context": {
+                "start": 0,
+                "end": 149,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Woo-seok",
+                      "start": 0,
+                      "end": 8
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "his \"The Secret Library\" fan meeting tour",
+                      "start": 71,
+                      "end": 112
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "is scheduled to go to the Philippines",
+                      "start": 9,
+                      "end": 46
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "to be held at SM Mall of Asia Arena",
+                      "start": 113,
+                      "end": 148
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Woo-seok is scheduled to go to the Philippines on October 10, 2026",
+                      "start": 0,
+                      "end": 66
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena",
+                      "start": 71,
+                      "end": 148
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "on October 10, 2026",
+                      "start": 47,
+                      "end": 66
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 149
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://mb.com.ph/2026/06/09/byeon-woo-seok-to-hold-fan-meeting-in-manila-anew",
+            "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seoks-the-secret-library-in-manila-ticket-prices-seat-plan-and-fan-benefits/136151/",
+            "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/",
+            "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet",
+            "https://www.abs-cbn.com/entertainment/showbiz/events/2026/8/1/byeon-woo-seok-shares-message-for-filipino-fans-ahead-of-the-secret-library-fan-meeting-in-manila-1649"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                3,
+                4,
+                5,
+                7,
+                8,
+                12,
+                13,
+                14
+              ],
+              "reason": "Multiple passages explicitly state that Byeon Woo-seok is scheduled to hold his 'The Secret Library' fan meeting tour in Manila, Philippines, at the SM Mall of Asia Arena on October 10, 2026. The details about the event, including the date, venue, and tour name, are all directly confirmed. The cited passages refer to the same scheduled occurrence, with no contradictions or missing qualifiers.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Byeon Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.",
+              "sources": {
+                "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729": {
+                  "status": "matched",
+                  "passage_ids": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+                      "quote": "Photo from actor's Instagram account South Korean actor Byeon Woo-seok is returning to the Philippines for a fan meeting, the event's local producer said Tuesday."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+                      "quote": "The event will be held at the Mall of Asia Arena on October 10, PULP Live World said."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+                      "quote": "The show is part of Woo-Seok's \"The Secret Library\" fan meeting tour, which will commence in Seoul in July before heading to other Asian stops."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [],
+                    "missing_years": [
+                      "2026"
+                    ]
+                  },
+                  "time_unconfirmed": true
+                },
+                "https://mb.com.ph/2026/06/09/byeon-woo-seok-to-hold-fan-meeting-in-manila-anew": {
+                  "status": "matched",
+                  "passage_ids": [
+                    9,
+                    11
+                  ],
+                  "reason": "Passage 9 states Byeon Woo-seok is set to return to Manila in October as part of his 2026 Asia fan meeting tour, titled \"The Secret Library.\" Passage 11 confirms the Manila fan meeting is scheduled for October 10 at the SM Mall of Asia Arena.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/06/09/byeon-woo-seok-to-hold-fan-meeting-in-manila-anew",
+                      "quote": "Korean actor Byeon Woo-seok is set to return to Manila this October as part of his 2026 Asia fan meeting tour, titled \"The Secret Library.\""
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/06/09/byeon-woo-seok-to-hold-fan-meeting-in-manila-anew",
+                      "quote": "The Manila fan meeting is scheduled for October 10 at the SM Mall of Asia Arena, marking one of the key stops in the regional tour and underscoring his continued popularity in the Philippines."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seoks-the-secret-library-in-manila-ticket-prices-seat-plan-and-fan-benefits/136151/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    12,
+                    19
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seoks-the-secret-library-in-manila-ticket-prices-seat-plan-and-fan-benefits/136151/",
+                      "quote": "More details have been released for 'Perfect Crown' actor Byeon Woo-seok 's upcoming fan meeting in Manila. Byeon Woo-seok will return to Manila on October 10 for his \"The Secret Library\" Asia Fanmeeting Tour at the SM Mall of Asia Arena. On July 22, PULP Live World released the official seat plan for Byeon Woo-seok's 'The Secret Library' in Manila."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seoks-the-secret-library-in-manila-ticket-prices-seat-plan-and-fan-benefits/136151/",
+                      "quote": "Source: PULP Live World After kicking off in Seoul on July 4 and 5, the tour will continue in Bangkok (August 16), Yokohama (September 5 and 6), Singapore (September 18), Taipei (September 25), Manila (October 10), Jakarta (November 7), and Hong Kong (November 22)."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [],
+                    "missing_years": [
+                      "2026"
+                    ]
+                  },
+                  "time_unconfirmed": true
+                },
+                "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    23,
+                    24,
+                    25
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/",
+                      "quote": "Perfect Crown actor Byeon Woo-seok is set to reunite with his Filipino fans as he brings his highly anticipated \"The Secret Library\" Asia Fanmeeting Tour to Manila this October."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/",
+                      "quote": "In a poster shared by VARO Entertainment on Tuesday (June 9), the Manila stop will be held at the Mall of Asia Arena on October 10."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/",
+                      "quote": "View this post on Instagram A post shared by 바로엔터테인먼트 (@varoent_official) \"The Secret Library\" Asia Fanmeeting Tour will kick off in Seoul on July 4 and 5, before heading to Bangkok (August 16), Yokohama (September 5 and 6), Singapore (September 18), Taipei (September 25), Manila (October 10), Jakarta (November 7), and Hong Kong (November 22)."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [],
+                    "missing_years": [
+                      "2026"
+                    ]
+                  },
+                  "time_unconfirmed": true
+                },
+                "https://www.philstar.com/entertainment/korean-wave/2026/06/09/2533984/perfect-crown-star-byeon-woo-seok-adds-manila-new-fan-meeting-tour": {
+                  "status": "matched",
+                  "passage_ids": [
+                    32,
+                    33,
+                    34
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/entertainment/korean-wave/2026/06/09/2533984/perfect-crown-star-byeon-woo-seok-adds-manila-new-fan-meeting-tour",
+                      "quote": "The final image on the agency's carousel was a fan meeting lineup that includes Manila among the Asian cities that the tour will be held."
+                    },
+                    {
+                      "url": "https://www.philstar.com/entertainment/korean-wave/2026/06/09/2533984/perfect-crown-star-byeon-woo-seok-adds-manila-new-fan-meeting-tour",
+                      "quote": "Varo Entertainment then announced that \"The Secret Library\" was the name of Woo-seok's next fan meeting tour in Asia, and the Philippines is indeed one of the stops."
+                    },
+                    {
+                      "url": "https://www.philstar.com/entertainment/korean-wave/2026/06/09/2533984/perfect-crown-star-byeon-woo-seok-adds-manila-new-fan-meeting-tour",
+                      "quote": "Woo-seok is set to take over the Mall of Asia Arena on October 10 before ending the tour the following month in Indonesia and Hong Kong."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [],
+                    "missing_years": [
+                      "2026"
+                    ]
+                  },
+                  "time_unconfirmed": true
+                },
+                "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet": {
+                  "status": "matched",
+                  "passage_ids": [
+                    47,
+                    49
+                  ],
+                  "reason": "Passage 47 states Byeon Woo-seok is bringing his 2026 Asia fan meeting tour, \"The Secret Library,\" to Manila in October. Passage 49 confirms the Manila fan meeting is scheduled on Oct. 10 at the SM Mall of Asia Arena.",
+                  "citations": [
+                    {
+                      "url": "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet",
+                      "quote": "South Korean actor Byeon Woo-seok is set to reunite with his Filipino fans as he brings his 2026 Asia fan meeting tour, “The Secret Library,” to Manila in October."
+                    },
+                    {
+                      "url": "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet",
+                      "quote": "Byeon’s Manila fan meeting is scheduled on Oct. 10 at the SM Mall of Asia Arena."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://www.abs-cbn.com/entertainment/showbiz/events/2026/8/1/byeon-woo-seok-shares-message-for-filipino-fans-ahead-of-the-secret-library-fan-meeting-in-manila-1649": {
+                  "status": "matched",
+                  "passage_ids": [
+                    51,
+                    53
+                  ],
+                  "reason": "Passage 51 states the Korean actor is set to headline The Secret Library in Manila on October 10 at the SM Mall of Asia Arena. Passage 53 quotes Woo-seok saying he will meet fans on Saturday, October 10, 2026, in the Philippines.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/8/1/byeon-woo-seok-shares-message-for-filipino-fans-ahead-of-the-secret-library-fan-meeting-in-manila-1649",
+                      "quote": "The Korean actor is set to headline The Secret Library in Manila on October 10 at the SM Mall of Asia Arena."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/8/1/byeon-woo-seok-shares-message-for-filipino-fans-ahead-of-the-secret-library-fan-meeting-in-manila-1649",
+                      "quote": "\"Kumusta, Philippines? This is Byeon Woo-seok. Everyone, did you miss me a lot? I really missed your passionate cheers and love ever since our first fan meeting in Manila. Finally, I am going to meet our Tongtongs (his fans) on Saturday, October 10, 2026,\" he said."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/inside-guo-tok-how-tiktok-fan-accounts-whitewashed-alice-guos-image-amid-pogo-probe",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/walang-pagkakaiba-yung-pagiging-tsinoy-ko-sa-pagiging-pinoy-nyo",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/celebrities/ticket-prices-seat-plan-choi-woo-shik-fan-meeting-manila-november-2023/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/special-non-working-days-proclamations-provinces-cities-municipalities-september-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/series/park-eun-bin-fan-meet-manila-october-2022/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/9/1/korean-actor-so-ji-sub-to-hold-manila-fan-meet-in-november-1130",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/8/1/byeon-woo-seok-shares-message-for-filipino-fans-ahead-of-the-secret-library-fan-meeting-in-manila-1649",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/so-ji-sub-invites-filipino-fans-to-manila-fan-meet-im-finally-going-to-meet-you-all/138605/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seoks-the-secret-library-in-manila-ticket-prices-seat-plan-and-fan-benefits/136151/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://entertainment.inquirer.net/683996/gong-yoo-looks-forward-to-meeting-filipino-fans",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pop.inquirer.net/362894/byeon-woo-seok-is-bringing-his-charm-to-manila-for-his-first-ever-asia-fan-meeting-tour",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/korean-wave/2026/06/09/2533984/perfect-crown-star-byeon-woo-seok-adds-manila-new-fan-meeting-tour",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/korean-wave/2026/09/09/2555087/so-ji-sub-show-releases-ticket-details-all-seated-manila-fan-meeting",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/2024/07/04/2367444/heartfelt-moments-and-human-barricades-byeon-woo-seok-manila-fan-meeting",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/06/09/byeon-woo-seok-to-hold-fan-meeting-in-manila-anew",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/20/byeon-woo-seoks-agency-warns-against-privacy-invasions",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2024/6/26/korean-star-byeon-woo-seok-feels-the-love-of-filipinos-moved-to-tears-at-fan-meeting",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1257228",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284399",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1073116",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/page/41/?by=Archived&division=&region=&start=827",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/sss-warns-members-uplift-beneficiaries-vs-email-text-scams/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/page/1386/?article=461364086652",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/'lovely-runner'-actor-byeon-woo-seok-manila",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/harry-potter-fans-can-keep-the-yule-ball-magic-going-until-december",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/gong-yoo-to-visit-the-manila-for-a-fan-meet",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/despite-controversy-seo-in-guk-happy-to-meet-pinoy-fans-in-manila",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/maya-completes-recycled-plastic-card-shift-unveils-bukad-special-edition",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/8-second-lead-male-characters-from-k-dramas-that-are-too-hard-to-forget-1",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/inside-guo-tok-how-tiktok-fan-accounts-whitewashed-alice-guos-image-amid-pogo-probe",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/walang-pagkakaiba-yung-pagiging-tsinoy-ko-sa-pagiging-pinoy-nyo",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/celebrities/ticket-prices-seat-plan-choi-woo-shik-fan-meeting-manila-november-2023/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/special-non-working-days-proclamations-provinces-cities-municipalities-september-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/series/park-eun-bin-fan-meet-manila-october-2022/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/9/1/korean-actor-so-ji-sub-to-hold-manila-fan-meet-in-november-1130",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/8/1/byeon-woo-seok-shares-message-for-filipino-fans-ahead-of-the-secret-library-fan-meeting-in-manila-1649",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/so-ji-sub-invites-filipino-fans-to-manila-fan-meet-im-finally-going-to-meet-you-all/138605/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seoks-the-secret-library-in-manila-ticket-prices-seat-plan-and-fan-benefits/136151/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://entertainment.inquirer.net/683996/gong-yoo-looks-forward-to-meeting-filipino-fans",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pop.inquirer.net/362894/byeon-woo-seok-is-bringing-his-charm-to-manila-for-his-first-ever-asia-fan-meeting-tour",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/korean-wave/2026/06/09/2533984/perfect-crown-star-byeon-woo-seok-adds-manila-new-fan-meeting-tour",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/korean-wave/2026/09/09/2555087/so-ji-sub-show-releases-ticket-details-all-seated-manila-fan-meeting",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/lifestyle/2024/07/04/2367444/heartfelt-moments-and-human-barricades-byeon-woo-seok-manila-fan-meeting",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/06/09/byeon-woo-seok-to-hold-fan-meeting-in-manila-anew",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/20/byeon-woo-seoks-agency-warns-against-privacy-invasions",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2024/6/26/korean-star-byeon-woo-seok-feels-the-love-of-filipinos-moved-to-tears-at-fan-meeting",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1257228",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284399",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1073116",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/page/41/?by=Archived&division=&region=&start=827",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/sss-warns-members-uplift-beneficiaries-vs-email-text-scams/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/'lovely-runner'-actor-byeon-woo-seok-manila",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/harry-potter-fans-can-keep-the-yule-ball-magic-going-until-december",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/gong-yoo-to-visit-the-manila-for-a-fan-meet",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/despite-controversy-seo-in-guk-happy-to-meet-pinoy-fans-in-manila",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/maya-completes-recycled-plastic-card-shift-unveils-bukad-special-edition",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/8-second-lead-male-characters-from-k-dramas-that-are-too-hard-to-forget-1",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his 'The Secret Library' fan meeting tour at SM Mall of Asia Arena."
+        },
+        "scoring_claim": "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his 'The Secret Library' fan meeting tour at SM Mall of Asia Arena.",
+        "search_query": "Woo-seok Philippines October 10 2026 The Secret Library fan meeting SM Mall of Asia Arena",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "069377260d4b7418e5c0e1479e882f8f81e43edabbdb439553a99d83732635fe",
+        "cache_version": "week7-date-anchor-v34",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 1 of 1 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 4,
+        "primary_evidence": {
+          "source": "Manila Bulletin",
+          "title": "Manila Bulletin - Byeon Woo-seok to hold fan meeting in Manila anew",
+          "url": "https://mb.com.ph/2026/06/09/byeon-woo-seok-to-hold-fan-meeting-in-manila-anew",
+          "status": "extracted",
+          "word_count": 102,
+          "evidence_method": "component_review",
+          "extraction_quality": "excerpt",
+          "evidence_type": "search_excerpt"
+        },
+        "supporting_sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Byeon Woo-seok to hold fan meeting in Manila anew",
+            "url": "https://mb.com.ph/2026/06/09/byeon-woo-seok-to-hold-fan-meeting-in-manila-anew",
+            "status": "extracted",
+            "word_count": 102,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "GMA News",
+            "title": "Byeon Woo-seok's 'The Secret Library' in Manila: Ticket prices, seat plan, and fan benefits",
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seoks-the-secret-library-in-manila-ticket-prices-seat-plan-and-fan-benefits/136151/",
+            "status": "extracted",
+            "word_count": 242,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Byeon Woo-seok to bring his 'The Secret Library' fan meet to Manila in October",
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/",
+            "status": "extracted",
+            "word_count": 179,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Byeon Woo-seok returning to Manila in October for new fan meet",
+            "url": "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet",
+            "status": "extracted",
+            "word_count": 143,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Byeon Woo-seok shares message for Filipino fans ahead of ‘The Secret Library’ fan meeting in Manila | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/8/1/byeon-woo-seok-shares-message-for-filipino-fans-ahead-of-the-secret-library-fan-meeting-in-manila-1649",
+            "status": "extracted",
+            "word_count": 389,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 115,
+        "searched_articles": 33,
+        "extracted_articles": 32,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 13,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 14,
+            "articles_checked": 3,
+            "articles_extracted": 2
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 11,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Byeon Woo-seok to hold fan meeting in Manila anew",
+            "url": "https://mb.com.ph/2026/06/09/byeon-woo-seok-to-hold-fan-meeting-in-manila-anew",
+            "status": "extracted",
+            "word_count": 102,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "GMA News",
+            "title": "Byeon Woo-seok's 'The Secret Library' in Manila: Ticket prices, seat plan, and fan benefits",
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seoks-the-secret-library-in-manila-ticket-prices-seat-plan-and-fan-benefits/136151/",
+            "status": "extracted",
+            "word_count": 242,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Byeon Woo-seok to bring his 'The Secret Library' fan meet to Manila in October",
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/",
+            "status": "extracted",
+            "word_count": 179,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Byeon Woo-seok returning to Manila in October for new fan meet",
+            "url": "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet",
+            "status": "extracted",
+            "word_count": 143,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Byeon Woo-seok shares message for Filipino fans ahead of ‘The Secret Library’ fan meeting in Manila | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/8/1/byeon-woo-seok-shares-message-for-filipino-fans-ahead-of-the-secret-library-fan-meeting-in-manila-1649",
+            "status": "extracted",
+            "word_count": 389,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - Byeon Woo-seok to hold fan meeting in Manila anew",
+            "url": "https://mb.com.ph/2026/06/09/byeon-woo-seok-to-hold-fan-meeting-in-manila-anew",
+            "status": "extracted",
+            "word_count": 102,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "GMA News",
+            "title": "Byeon Woo-seok's 'The Secret Library' in Manila: Ticket prices, seat plan, and fan benefits",
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seoks-the-secret-library-in-manila-ticket-prices-seat-plan-and-fan-benefits/136151/",
+            "status": "extracted",
+            "word_count": 242,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Byeon Woo-seok to bring his 'The Secret Library' fan meet to Manila in October",
+            "url": "https://www.gmanetwork.com/entertainment/showbiznews/byeon-woo-seok-to-bring-his-the-secret-library-fan-meet-to-manila-in-october/134245/",
+            "status": "extracted",
+            "word_count": 179,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Byeon Woo-seok returning to Manila in October for new fan meet",
+            "url": "https://entertainment.inquirer.net/673337/byeon-woo-seok-returning-to-manila-in-october-for-new-fan-meet",
+            "status": "extracted",
+            "word_count": 143,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Byeon Woo-seok shares message for Filipino fans ahead of ‘The Secret Library’ fan meeting in Manila | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/events/2026/8/1/byeon-woo-seok-shares-message-for-filipino-fans-ahead-of-the-secret-library-fan-meeting-in-manila-1649",
+            "status": "extracted",
+            "word_count": 389,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Partially Verified",
+              "reason": "Evidence confirms Woo-seok's fan meeting in October 2026 but lacks specific date and location details.",
+              "supporting_urls": [
+                "https://www.abs-cbn.com/entertainment/showbiz/events/2026/6/9/byeon-woo-seok-returning-to-ph-for-october-fan-meet-1729"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "mixed_content",
+        "confidence": 0.54,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice",
+          "vague_claim"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "verify_factual_claims_only",
+        "verification_text": "SOBRANG BOYFRIEND CODED NAMAN, OPPA!\nSouth Korean actor na si Byeon Woo-seok, nag-post sa Instagram ng kanyang photo update.\n“So handsome ,” komento naman ng isang netizen.\nNakatakdang pumunta si Woo-seok sa Pilipinas sa October 10, 2026 para sa kanyang “The Secret Library” fan meeting tour na gaganapin sa SM Mall of Asia Arena.",
+        "normalized_verification_text": "SO MUCH BOYFRIEND CODE, OPPA!\nSouth Korean actor Byeon Woo-seok posted a photo update on Instagram.\n\"So handsome,\" commented a netizen.\nWoo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "SOBRANG BOYFRIEND CODED NAMAN, OPPA!",
+            "translated_text": "SO MUCH BOYFRIEND CODE, OPPA!",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "South Korean actor na si Byeon Woo-seok, nag-post sa Instagram ng kanyang photo update.",
+            "translated_text": "South Korean actor Byeon Woo-seok posted a photo update on Instagram.",
+            "scores": {
+              "factual_claim": 0.2,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.9,
+            "second_label": "factual_claim",
+            "second_label_score": 0.2,
+            "score_gap": 0.1,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review",
+              "openai_factual_claim_advice"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s3",
+            "text": "“So handsome ,” komento naman ng isang netizen.",
+            "translated_text": "\"So handsome,\" commented a netizen.",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.33,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.33,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.03,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "unattributed"
+          },
+          {
+            "segment_id": "s4",
+            "text": "Nakatakdang pumunta si Woo-seok sa Pilipinas sa October 10, 2026 para sa kanyang “The Secret Library” fan meeting tour na gaganapin sa SM Mall of Asia Arena.",
+            "translated_text": "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.",
+            "scores": {
+              "factual_claim": 0.42,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.33,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.42,
+            "second_label": "quote",
+            "second_label_score": 0.33,
+            "score_gap": 0.09,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "unattributed"
+          },
+          {
+            "segment_id": "s5",
+            "text": "(Instagram/byeonwooseok)",
+            "translated_text": "(Instagram/byeonwooseok)",
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.75
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.75,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.65,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s5",
+            "text": "(Instagram/byeonwooseok)",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS will verify only the factual segments and skip non-checkable parts.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "factual_claim",
+                "top_label_score": 0.9,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "checkable_event"
+                ]
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "quote",
+                "top_label_score": 0.8,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reported_speech"
+                ]
+              },
+              {
+                "segment_id": "s4",
+                "top_label": "forecast_or_projection_detected",
+                "top_label_score": 0.7,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "scheduled_event"
+                ]
+              },
+              {
+                "segment_id": "s5",
+                "top_label": "contextual_background",
+                "top_label_score": 0.6,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "vague_claim"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "Segment is an uncheckable opinion/exclamation."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "Factual report of Byeon Woo-seok posting a photo update on Instagram."
+          },
+          {
+            "segment_id": 2,
+            "disposition": "checkable",
+            "claim_indexes": [
+              1
+            ],
+            "reason": "Reported attributed statement by a netizen."
+          },
+          {
+            "segment_id": 3,
+            "disposition": "checkable",
+            "claim_indexes": [
+              2
+            ],
+            "reason": "Factual event assertion about Woo-seok's scheduled fan meeting in the Philippines."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "Byeon Woo-seok posted a photo update on Instagram."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "\"So handsome,\" commented a netizen."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              2
+            ],
+            "assertions": [
+              "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his 'The Secret Library' fan meeting tour at SM Mall of Asia Arena."
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "South Korean actor Byeon Woo-seok posted a photo update on Instagram.",
+            "normalized_claim": "Byeon Woo-seok posted a photo update on Instagram.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Byeon Woo-seok Instagram photo update",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 1,
+                "quote": "South Korean actor Byeon Woo-seok posted a photo update on Instagram."
+              }
+            ],
+            "evidence_context": "SO MUCH BOYFRIEND CODE, OPPA!\nSouth Korean actor Byeon Woo-seok posted a photo update on Instagram.\n\"So handsome,\" commented a netizen.\nWoo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.",
+            "original_language_query": "South Korean actor na si Byeon Woo-seok, nag-post sa Instagram ng kanyang photo update.",
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "\"So handsome,\" commented a netizen.",
+            "normalized_claim": "\"So handsome,\" commented a netizen.",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "a netizen",
+              "role": null,
+              "statement": "\"So handsome,\" commented a netizen.",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "\"So handsome,\" commented a netizen.",
+            "source_passages": [
+              {
+                "segment_id": 2,
+                "quote": "\"So handsome,\" commented a netizen."
+              }
+            ],
+            "evidence_context": "SO MUCH BOYFRIEND CODE, OPPA!\nSouth Korean actor Byeon Woo-seok posted a photo update on Instagram.\n\"So handsome,\" commented a netizen.\nWoo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "absent",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "original_language_query": "“So handsome ,” komento naman ng isang netizen.",
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 3,
+            "claim_text": "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.",
+            "normalized_claim": "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his 'The Secret Library' fan meeting tour at SM Mall of Asia Arena.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Woo-seok Philippines October 10 2026 The Secret Library fan meeting SM Mall of Asia Arena",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 3,
+                "quote": "Woo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena."
+              }
+            ],
+            "evidence_context": "SO MUCH BOYFRIEND CODE, OPPA!\nSouth Korean actor Byeon Woo-seok posted a photo update on Instagram.\n\"So handsome,\" commented a netizen.\nWoo-seok is scheduled to go to the Philippines on October 10, 2026 for his \"The Secret Library\" fan meeting tour to be held at SM Mall of Asia Arena.",
+            "original_language_query": "Nakatakdang pumunta si Woo-seok sa Pilipinas sa October 10, 2026 para sa kanyang “The Secret Library” fan meeting tour na gaganapin sa SM Mall of Asia Arena.",
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [
+          {
+            "text": "SO MUCH BOYFRIEND CODE, OPPA!",
+            "segment_type": "opinion"
+          }
+        ],
+        "post_type": "mixed_content",
+        "contains_opinion": true,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "6d08958a3a3a4c149cdf64c59d6fb513",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0078,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 2.0247,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 3.0717,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0004,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0013,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 6.5057,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0024,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0022,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 34.4694,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0747,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 2.2201,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.353,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.3781,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0364,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 12.5967,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 21.1515,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0619,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 1.9117,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.565,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.6007,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0287,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 3.2979,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.political_flags",
+            "duration_seconds": 0.0014,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.search_and_extract",
+            "duration_seconds": 16.5301,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.search_status",
+            "duration_seconds": 0.0866,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.generate_verdict",
+            "duration_seconds": 2.1006,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.openai_rag_fallback",
+            "duration_seconds": 2.235,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.fallback_total",
+            "duration_seconds": 2.2593,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.public_evidence_sources",
+            "duration_seconds": 0.0374,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.component_evidence_review",
+            "duration_seconds": 14.1989,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 114.4266,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 126.0674,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

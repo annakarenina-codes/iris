@@ -1,0 +1,2314 @@
+{
+  "case_id": "C01",
+  "input_sha256": "2a9a68b6e33cf127029392c4127ad70496cc69096c881faa0cfb46a6e7f8d39a",
+  "started_utc": "2026-09-19T10:48:59.018662+00:00",
+  "http_status": 200,
+  "seconds": 66.454,
+  "trace_id": "ae84b786dbe148fd838aa2da0371da60",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-first-pass-shortlist-v21",
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 2 extracted claims individually.",
+    "original_text": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23, as the Senate impeachment court examines allegations of unexplained wealth against her.",
+    "translated_text": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23, as the Senate impeachment court examines allegations of unexplained wealth against her.",
+    "detected_language": "english",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 2,
+    "claim_extraction_status": "ok",
+    "post_type": "fact_only",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_to_verification",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23.",
+        "normalized_claim": "Sebastian Duterte has been subpoenaed to testify in the impeachment trial of Sara Duterte on Sept. 23.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+                  "quote": "The Senate impeachment court on Wednesday issued a subpoena to Davao City Mayor Sebastian \"Baste\" Duterte, directing him to appear at the impeachment trial of his sister, Vice President Sara Duterte."
+                },
+                {
+                  "url": "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+                  "quote": "Duterte was among the individuals subpoenaed to appear on September 23, including Gerardo del Rosario, director of the company registration and monitoring department of the Securities and Exchange Commission (SEC)."
+                },
+                {
+                  "url": "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+                  "quote": "The Senate impeachment court ordered Duterte to appear on Sept. 23, along with lawyer Gary Samonte and Police Major Jericho Sangalang."
+                },
+                {
+                  "url": "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+                  "quote": "Senate impeachment court subpoenaed Davao City Mayor Sebastian \"Baste\" Duterte to testify Sept. 23 in Vice President Sara Duterte's trial, with his appearance mandatory."
+                },
+                {
+                  "url": "https://newsinfo.inquirer.net/2306600/impeach-court-calls-for-baste-duterte",
+                  "quote": "The court’s presiding officer, Sen. Francis “Chiz” Escudero, issued a subpoena on Wednesday for the younger Duterte to appear on Sept. 23 to be questioned about Article 2 of the impeachment complaint."
+                },
+                {
+                  "url": "https://www.rappler.com/philippines/prosecution-call-sebastian-duterte-witness-stand/",
+                  "quote": "The impeachment court on Wednesday, September 16, granted the prosecution’s request to compel the attendance of the younger Duterte on September 23."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Multiple passages explicitly state that Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed by the Senate impeachment court to testify in the impeachment trial of his sister, Vice President Sara Duterte, on September 23. The date, relationship, and purpose are all directly confirmed. No cited passage contradicts this assertion.",
+              "context": {
+                "start": 0,
+                "end": 155,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Davao City Mayor Sebastian “Baste” Duterte",
+                      "start": 0,
+                      "end": 42
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "has been subpoenaed to testify",
+                      "start": 43,
+                      "end": 73
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23.",
+                      "start": 43,
+                      "end": 155
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify",
+                      "start": 0,
+                      "end": 73
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23.",
+                      "start": 43,
+                      "end": 155
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "on Sept. 23.",
+                      "start": 143,
+                      "end": 155
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0,
+                  1
+                ],
+                "component_id": 0,
+                "assertion": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 155
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0,
+              "event_rejections": [
+                {
+                  "component_id": 0,
+                  "url": "https://balita.mb.com.ph/2026/09/16/mayor-baste-padadalhan-ng-subpoena-pinapaharap-sa-impeachment-trial/",
+                  "status": "uncertain",
+                  "reason": "Selected identity passages do not establish the required event time."
+                }
+              ]
+            }
+          ],
+          "supporting_urls": [
+            "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+            "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+            "https://newsinfo.inquirer.net/2306600/impeach-court-calls-for-baste-duterte",
+            "https://www.rappler.com/philippines/prosecution-call-sebastian-duterte-witness-stand/"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "citation_ids": [
+                0,
+                1,
+                4,
+                5,
+                7,
+                8
+              ],
+              "reason": "Multiple passages explicitly state that Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed by the Senate impeachment court to testify in the impeachment trial of his sister, Vice President Sara Duterte, on September 23. The date, relationship, and purpose are all directly confirmed. No cited passage contradicts this assertion.",
+              "component_id": 0
+            }
+          ],
+          "original_claim": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23.",
+              "sources": {
+                "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "reason": "Passages 0 and 3 from source 0 explicitly state that Davao City Mayor Sebastian \"Baste\" Duterte has been subpoenaed to appear at the impeachment trial of his sister, Vice President Sara Duterte, on September 23. Passage 1 confirms the date. The context and participant relationships are directly established.",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+                      "quote": "The Senate impeachment court on Wednesday issued a subpoena to Davao City Mayor Sebastian \"Baste\" Duterte, directing him to appear at the impeachment trial of his sister, Vice President Sara Duterte."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+                      "quote": "Duterte was among the individuals subpoenaed to appear on September 23, including Gerardo del Rosario, director of the company registration and monitoring department of the Securities and Exchange Commission (SEC)."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+                      "quote": "\"In regard to Mayor Sebastian Duterte, Atty. Gary Samonte, and Police Major Jerickson Sangalang, let the subpoena be issued only for September 23. However, on September 22, depending on where we are with respect to the three witnesses, we shall announce if we will be withdrawing that subpoena and simply issue a new one,\" he added."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial": {
+                  "status": "matched",
+                  "passage_ids": [
+                    14,
+                    15,
+                    16,
+                    25
+                  ],
+                  "reason": "Passages 14, 15, and 16 from source 1 confirm that Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify on September 23 in the Senate impeachment trial of his sister, Vice President Sara Duterte. Passage 25 further confirms the subpoena is mandatory. The identity of the event and participants is clear.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+                      "quote": "Vice President Sara Duterte's younger brother, Davao City Mayor Sebastian “Baste” Duterte, has been subpoenaed to testify next week in the former's Senate impeachment trial."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+                      "quote": "The Senate impeachment court ordered Duterte to appear on Sept. 23, along with lawyer Gary Samonte and Police Major Jericho Sangalang."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+                      "quote": "Senate impeachment court subpoenaed Davao City Mayor Sebastian \"Baste\" Duterte to testify Sept. 23 in Vice President Sara Duterte's trial, with his appearance mandatory."
+                    },
+                    {
+                      "url": "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+                      "quote": "At any rate, the private prosecutor said the subpoena issued by the impeachment court was mandatory."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://newsinfo.inquirer.net/2306600/impeach-court-calls-for-baste-duterte": {
+                  "status": "matched",
+                  "passage_ids": [
+                    26,
+                    27
+                  ],
+                  "reason": "Passages 26 and 27 from source 2 state that Davao City Mayor Sebastian “Baste” Duterte, brother of Vice President Sara Duterte, has been summoned by the Senate impeachment court to appear on September 23 as a witness in her impeachment trial. The relationship, action, and date are all established.",
+                  "citations": [
+                    {
+                      "url": "https://newsinfo.inquirer.net/2306600/impeach-court-calls-for-baste-duterte",
+                      "quote": "MANILA, Philippines — Vice President Sara Duterte’s brother, Davao City Mayor Sebastian “Baste” Duterte, has been summoned by the Senate impeachment court as a witness sought by the prosecution in the case over her alleged unexplained wealth."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2306600/impeach-court-calls-for-baste-duterte",
+                      "quote": "The court’s presiding officer, Sen. Francis “Chiz” Escudero, issued a subpoena on Wednesday for the younger Duterte to appear on Sept. 23 to be questioned about Article 2 of the impeachment complaint."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://www.rappler.com/philippines/prosecution-call-sebastian-duterte-witness-stand/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    36,
+                    37
+                  ],
+                  "reason": "Passages 36 and 37 from source 3 confirm that the prosecution in the impeachment trial of Vice President Sara Duterte will call her brother, Davao City Mayor Sebastian Duterte, to the witness stand, and that the court granted the request to compel his attendance on September 23. The event, participants, and date are all matched.",
+                  "citations": [
+                    {
+                      "url": "https://www.rappler.com/philippines/prosecution-call-sebastian-duterte-witness-stand/",
+                      "quote": "MANILA, Philippines – The prosecution team in the impeachment trial of Vice President Sara Duterte will call her brother, Davao City Mayor Sebastian Duterte, to the witness stand."
+                    },
+                    {
+                      "url": "https://www.rappler.com/philippines/prosecution-call-sebastian-duterte-witness-stand/",
+                      "quote": "The impeachment court on Wednesday, September 16, granted the prosecution’s request to compel the attendance of the younger Duterte on September 23."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://balita.mb.com.ph/2026/09/16/mayor-baste-padadalhan-ng-subpoena-pinapaharap-sa-impeachment-trial/": {
+                  "status": "uncertain",
+                  "passage_ids": [
+                    45
+                  ],
+                  "reason": "Selected identity passages do not establish the required event time.",
+                  "citations": [
+                    {
+                      "url": "https://balita.mb.com.ph/2026/09/16/mayor-baste-padadalhan-ng-subpoena-pinapaharap-sa-impeachment-trial/",
+                      "quote": "Nakatakdang padalhan ng Senate Impeachment Court ng subpoena si Davao City Mayor Sebastian \"Baste\" Duterte sang-ayon sa hiling ng Prosecution panel para dumalo sa impeachment trial ng kapatid niyang si Vice President Sara Duterte sa Setyembre 23."
+                    }
+                  ],
+                  "context_status": "unresolved",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": true,
+                    "reason": "Selected identity passages do not establish the required event time.",
+                    "missing_month_days": [
+                      [
+                        9,
+                        23
+                      ]
+                    ],
+                    "missing_years": []
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/subpoenas-testimony-reshape-duterte-impeachment-battle-but-decisive-fights-still-lie-ahead",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-10-confidential-fund-case-sharpens-as-court-revisits-vote-threshold",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-11-trial-moves-from-wealth-records-to-vote-math",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/prosecution-call-sebastian-duterte-witness-stand/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/defense-strategy-address-sara-duterte-saln-unexplained-wealth/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/vice-president-sara-duterte-impeachment-trial-updates-videos/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/baste-duterte-to-be-summoned-at-senate-impeachment-court-1652",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/8/live-updates-vice-president-sara-duterte-s-impeachment-trial-day-23-1007",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/8/prosecution-to-seek-subpoena-for-vp-duterte-in-impeachment-trial-s-grave-threats-article-1603",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001547/live-updates-sara-duterte-impeachment-trial-september-8-2026/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000798/live-updates-sara-duterte-impeachment-trial-september-2-2026/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306315/baste-duterte-other-witnesses-subpoenaed-for-sara-impeachment-trial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306600/impeach-court-calls-for-baste-duterte",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306516/tolosa-baste-duterte-can-testify-if-davao-dealt-with-sara-linked-firms",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/bansa/2026/09/18/2557179/panoorin-school-shooting-naiulat-sa-banga-national-high-school",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/opinion/2026/09/19/2557365/remember",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/nation/2026/09/19/2557224/p239-million-stolen-fuel-seized-tarlac",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/16/mayor-baste-padadalhan-ng-subpoena-pinapaharap-sa-impeachment-trial/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/08/vp-duterte-eyed-as-witness-prosecution-says-all-actors-point-to-the-queen",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1279407",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1277747",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/prosecution-panel-says-well-prepared-for-vp-sara-impeachment-trial-at-senate-urges-public-to-monitor-participate-in-the-process/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/san-juan-city-to-host-50-agency-handog-ng-pangulo-on-sept-14/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/cagayan-de-oro-lawyer-explains-constitutional-impeachment-process/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/prosecution-eyes-vp-duterte-testimony-after-presentation-of-four-impeachment-articles",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/impeachment-court-suspends-trial-tomorrow-sept-9-for-exhibit-marking",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/impeachment-prosecution-drops-remaining-article-i-witnesses-plans-to-present-vp-sara-duterte",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sara-duterte-a-no-show-at-impeach-trial-lawyers-say-presence-not-required",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/qc-court-issues-arrest-warrant-against-vp-duterte-over-grave-threats-case",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/senate-impeachment-court-summons-sara-duterte-vp-camp-says-it-will-answer-raps",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/subpoenas-testimony-reshape-duterte-impeachment-battle-but-decisive-fights-still-lie-ahead",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-10-confidential-fund-case-sharpens-as-court-revisits-vote-threshold",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-11-trial-moves-from-wealth-records-to-vote-math",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/prosecution-call-sebastian-duterte-witness-stand/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/defense-strategy-address-sara-duterte-saln-unexplained-wealth/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/vice-president-sara-duterte-impeachment-trial-updates-videos/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/16/baste-duterte-to-be-summoned-at-senate-impeachment-court-1652",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/8/live-updates-vice-president-sara-duterte-s-impeachment-trial-day-23-1007",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/7/8/prosecution-to-seek-subpoena-for-vp-duterte-in-impeachment-trial-s-grave-threats-article-1603",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1001547/live-updates-sara-duterte-impeachment-trial-september-8-2026/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1000798/live-updates-sara-duterte-impeachment-trial-september-2-2026/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306315/baste-duterte-other-witnesses-subpoenaed-for-sara-impeachment-trial",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306600/impeach-court-calls-for-baste-duterte",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2306516/tolosa-baste-duterte-can-testify-if-davao-dealt-with-sara-linked-firms",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/pilipino-star-ngayon/bansa/2026/09/18/2557179/panoorin-school-shooting-naiulat-sa-banga-national-high-school",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/the-freeman/opinion/2026/09/19/2557365/remember",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/nation/2026/09/19/2557224/p239-million-stolen-fuel-seized-tarlac",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/16/mayor-baste-padadalhan-ng-subpoena-pinapaharap-sa-impeachment-trial/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/08/vp-duterte-eyed-as-witness-prosecution-says-all-actors-point-to-the-queen",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284207",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1279407",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1277747",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/prosecution-panel-says-well-prepared-for-vp-sara-impeachment-trial-at-senate-urges-public-to-monitor-participate-in-the-process/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/san-juan-city-to-host-50-agency-handog-ng-pangulo-on-sept-14/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/cagayan-de-oro-lawyer-explains-constitutional-impeachment-process/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/prosecution-eyes-vp-duterte-testimony-after-presentation-of-four-impeachment-articles",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/impeachment-court-suspends-trial-tomorrow-sept-9-for-exhibit-marking",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/impeachment-prosecution-drops-remaining-article-i-witnesses-plans-to-present-vp-sara-duterte",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/sara-duterte-a-no-show-at-impeach-trial-lawyers-say-presence-not-required",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/qc-court-issues-arrest-warrant-against-vp-duterte-over-grave-threats-case",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/senate-impeachment-court-summons-sara-duterte-vp-camp-says-it-will-answer-raps",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Sebastian Duterte has been subpoenaed to testify in the impeachment trial of Sara Duterte on Sept. 23."
+        },
+        "scoring_claim": "Sebastian Duterte has been subpoenaed to testify in the impeachment trial of Sara Duterte on Sept. 23.",
+        "search_query": "Sebastian Duterte subpoenaed testify impeachment trial Sara Duterte Sept. 23 Baste",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "6fec22026e9050160c096d88150153a3a2e2621d4019e103b23f6e6c384c6392",
+        "cache_version": "week7-first-pass-shortlist-v21",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 1 of 1 factual components.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 4,
+        "primary_evidence": {
+          "source": "GMA News",
+          "title": "Impeachment court issues subpoena to Baste Duterte",
+          "url": "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+          "status": "extracted",
+          "word_count": 473,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "GMA News",
+            "title": "Impeachment court issues subpoena to Baste Duterte",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+            "status": "extracted",
+            "word_count": 473,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - VP Sara’s brother Baste summoned to take witness stand in impeachment trial",
+            "url": "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+            "status": "extracted",
+            "word_count": 205,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Impeachment court subpoenas Baste Duterte",
+            "url": "https://newsinfo.inquirer.net/2306600/impeach-court-calls-for-baste-duterte",
+            "status": "extracted",
+            "word_count": 204,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Rappler",
+            "title": "Prosecution to call Sebastian Duterte to witness stand in VP Sara's trial",
+            "url": "https://www.rappler.com/philippines/prosecution-call-sebastian-duterte-witness-stand/",
+            "status": "extracted",
+            "word_count": 246,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 76,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "GMA News",
+            "title": "Impeachment court issues subpoena to Baste Duterte",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+            "status": "extracted",
+            "word_count": 473,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - VP Sara’s brother Baste summoned to take witness stand in impeachment trial",
+            "url": "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+            "status": "extracted",
+            "word_count": 205,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Impeachment court subpoenas Baste Duterte",
+            "url": "https://newsinfo.inquirer.net/2306600/impeach-court-calls-for-baste-duterte",
+            "status": "extracted",
+            "word_count": 204,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Rappler",
+            "title": "Prosecution to call Sebastian Duterte to witness stand in VP Sara's trial",
+            "url": "https://www.rappler.com/philippines/prosecution-call-sebastian-duterte-witness-stand/",
+            "status": "extracted",
+            "word_count": 246,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "GMA News",
+            "title": "Impeachment court issues subpoena to Baste Duterte",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002613/impeachment-court-issues-subpoena-to-baste-duterte/story/",
+            "status": "extracted",
+            "word_count": 473,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - VP Sara’s brother Baste summoned to take witness stand in impeachment trial",
+            "url": "https://mb.com.ph/2026/09/16/vp-saras-baby-brother-baste-summoned-to-take-witness-stand-in-impeachment-trial",
+            "status": "extracted",
+            "word_count": 205,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Impeachment court subpoenas Baste Duterte",
+            "url": "https://newsinfo.inquirer.net/2306600/impeach-court-calls-for-baste-duterte",
+            "status": "extracted",
+            "word_count": 204,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Rappler",
+            "title": "Prosecution to call Sebastian Duterte to witness stand in VP Sara's trial",
+            "url": "https://www.rappler.com/philippines/prosecution-call-sebastian-duterte-witness-stand/",
+            "status": "extracted",
+            "word_count": 246,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Verified",
+              "reason": "Sebastian Duterte has been subpoenaed to testify on September 23 in the impeachment trial of Sara Duterte.",
+              "supporting_urls": [
+                "https://www.rappler.com/philippines/prosecution-call-sebastian-duterte-witness-stand/"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "The Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte.",
+        "normalized_claim": "The Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "The Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.pna.gov.ph/articles/1283994",
+                  "quote": "MANILA – The Senate impeachment court will shift Tuesday from defining the legal boundaries of unexplained wealth to examining the actual asset declarations and corporate records tied to Vice President Sara Duterte."
+                },
+                {
+                  "url": "https://www.dzrh.com.ph/post/day-25-of-vp-sara-duterte-impeachment-trial-or-september-15-2026",
+                  "quote": "The Senate impeachment court will continue proceedings on Day 25 of Vice President Sara Duterte’s impeachment trial, focusing on Article II, which covers allegations of “Unexplained Wealth, False SALNs, and Continued Business Interests.”"
+                },
+                {
+                  "url": "https://www.gmanetwork.com/news/topstories/nation/1002242/sara-duterte-impeachment-trial-day-24-what-to-expect/story/",
+                  "quote": "The Senate impeachment court on Monday will begin tackling Article 2 of the impeachment case, which accuses Vice President Sara Duterte of accumulating unexplained wealth."
+                },
+                {
+                  "url": "https://newsinfo.inquirer.net/2304516/vp-trial-day-24-court-to-tackle-alleged-unexplained-wealth",
+                  "quote": "II, or Vice President Sara Duterte’s alleged betrayal of public trust for amassing unexplained wealth disproportionate to her lawful income...."
+                },
+                {
+                  "url": "https://www.pna.gov.ph/articles/1283975",
+                  "quote": "Article II also accuses Duterte of having wealth disproportionate to her lawful income, discrepancies in her SALNs and continued business interests while serving as Vice President."
+                },
+                {
+                  "url": "https://www.pna.gov.ph/articles/1283994",
+                  "quote": "Those records are relevant to Article II, which accuses Duterte of accumulating wealth allegedly disproportionate to her lawful income, making inaccurate SALN declarations and maintaining prohibited business interests while in office."
+                },
+                {
+                  "url": "https://www.pna.gov.ph/articles/1283975",
+                  "quote": "The 24th day of the trial shifts to Article II of the impeachment complaint, which covers allegations of unexplained wealth, false Statements of Assets, Liabilities and Net Worth and continued business interests."
+                },
+                {
+                  "url": "https://www.pna.gov.ph/articles/1283975",
+                  "quote": "The Senate impeachment court will examine more than 1,800 bank, insurance and other financial records marked by the prosecution and defense for the unexplained wealth phase of the trial."
+                },
+                {
+                  "url": "https://www.gmanetwork.com/news/topstories/nation/1002242/sara-duterte-impeachment-trial-day-24-what-to-expect/story/",
+                  "quote": "(She would also explain the mechanisms for making that determination, the applicable standards, and the methods government officials might use to conceal their wealth—drawing on her extensive experience, having served as a Sandiganbayan Justice for a very long time.) The Article 2 of the Articles of Impeachment specifically alleges that the Vice President accumulated unexplained wealth through the following: failure to fully and truthfully disclose all her and her spouse's assets, liabilities, and net worth in her statement of assets, liabilities, and net worth (SALN) including in her SALN for the years 2022, 2023, and 2024;"
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Multiple passages explicitly state that the Senate impeachment court is examining allegations of unexplained wealth against Vice President Sara Duterte. For example, citation 2 says the court will begin tackling Article 2, which accuses her of accumulating unexplained wealth. Citation 1 confirms the proceedings focus on Article II, covering allegations of unexplained wealth. Citation 0 states the court will examine asset declarations and corporate records tied to her. Other passages (3, 4, 5, 9, 10, 7) similarly confirm the same subject, event, and scope. No cited passage contradicts this assertion, and all qualifiers (the court, the subject, the nature of the allegations) are preserved.",
+              "context": {
+                "start": 0,
+                "end": 97,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "The Senate impeachment court",
+                      "start": 0,
+                      "end": 28
+                    },
+                    {
+                      "origin": "source_context",
+                      "quote": "the Senate impeachment court",
+                      "start": 159,
+                      "end": 187
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "is examining",
+                      "start": 29,
+                      "end": 41
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "is examining allegations of unexplained wealth against Sara Duterte.",
+                      "start": 29,
+                      "end": 97
+                    },
+                    {
+                      "origin": "source_context",
+                      "quote": "examines allegations of unexplained wealth against her.",
+                      "start": 188,
+                      "end": 243
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "allegations of unexplained wealth against Sara Duterte",
+                      "start": 42,
+                      "end": 96
+                    },
+                    {
+                      "origin": "source_context",
+                      "quote": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23",
+                      "start": 0,
+                      "end": 154
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "The Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 97
+                },
+                "context_is_evidence": false,
+                "inherited_time_dropped": [
+                  {
+                    "origin": "source_context",
+                    "quote": "on Sept. 23",
+                    "start": 143,
+                    "end": 154
+                  }
+                ],
+                "context_reviewed": true
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.pna.gov.ph/articles/1283994",
+            "https://www.dzrh.com.ph/post/day-25-of-vp-sara-duterte-impeachment-trial-or-september-15-2026",
+            "https://www.gmanetwork.com/news/topstories/nation/1002242/sara-duterte-impeachment-trial-day-24-what-to-expect/story/",
+            "https://newsinfo.inquirer.net/2304516/vp-trial-day-24-court-to-tackle-alleged-unexplained-wealth",
+            "https://www.pna.gov.ph/articles/1283975"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "citation_ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                9,
+                10,
+                7
+              ],
+              "reason": "Multiple passages explicitly state that the Senate impeachment court is examining allegations of unexplained wealth against Vice President Sara Duterte. For example, citation 2 says the court will begin tackling Article 2, which accuses her of accumulating unexplained wealth. Citation 1 confirms the proceedings focus on Article II, covering allegations of unexplained wealth. Citation 0 states the court will examine asset declarations and corporate records tied to her. Other passages (3, 4, 5, 9, 10, 7) similarly confirm the same subject, event, and scope. No cited passage contradicts this assertion, and all qualifiers (the court, the subject, the nature of the allegations) are preserved.",
+              "component_id": 0
+            }
+          ],
+          "original_claim": "The Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "The Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte.",
+              "sources": {
+                "https://www.pna.gov.ph/articles/1283994": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0,
+                    3,
+                    4
+                  ],
+                  "reason": "Passage 0 states the Senate impeachment court is shifting to examining asset declarations and corporate records tied to Vice President Sara Duterte. Passage 3 references Article II, which accuses Duterte of accumulating wealth allegedly disproportionate to her lawful income. Passage 4 discusses the prosecution's presentation under Article II, which involves unexplained wealth. These passages directly establish that the Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte.",
+                  "citations": [
+                    {
+                      "url": "https://www.pna.gov.ph/articles/1283994",
+                      "quote": "MANILA – The Senate impeachment court will shift Tuesday from defining the legal boundaries of unexplained wealth to examining the actual asset declarations and corporate records tied to Vice President Sara Duterte."
+                    },
+                    {
+                      "url": "https://www.pna.gov.ph/articles/1283994",
+                      "quote": "Those records are relevant to Article II, which accuses Duterte of accumulating wealth allegedly disproportionate to her lawful income, making inaccurate SALN declarations and maintaining prohibited business interests while in office."
+                    },
+                    {
+                      "url": "https://www.pna.gov.ph/articles/1283994",
+                      "quote": "Their appearance marks a change in the prosecution’s presentation under Article II after retired Sandiganbayan presiding justice Amparo Cabotaje-Tang spent Monday laying down legal principles on unexplained wealth, SALN disclosures, spouses’ assets and prohibited business interests."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.dzrh.com.ph/post/day-25-of-vp-sara-duterte-impeachment-trial-or-september-15-2026": {
+                  "status": "matched",
+                  "passage_ids": [
+                    6,
+                    35
+                  ],
+                  "reason": "Passage 6 states the Senate impeachment court will continue proceedings focusing on Article II, which covers allegations of 'Unexplained Wealth, False SALNs, and Continued Business Interests' against Vice President Sara Duterte. Passage 35 repeats this focus. This directly matches the claim.",
+                  "citations": [
+                    {
+                      "url": "https://www.dzrh.com.ph/post/day-25-of-vp-sara-duterte-impeachment-trial-or-september-15-2026",
+                      "quote": "The Senate impeachment court will continue proceedings on Day 25 of Vice President Sara Duterte’s impeachment trial, focusing on Article II, which covers allegations of “Unexplained Wealth, False SALNs, and Continued Business Interests.”"
+                    },
+                    {
+                      "url": "https://www.dzrh.com.ph/post/day-25-of-vp-sara-duterte-impeachment-trial-or-september-15-2026",
+                      "quote": "The Senate impeachment court will continue proceedings on Day 25 of Vice President Sara Duterte’s impeachment trial, focusing on Article II, which covers allegations of “Unexplained Wealth, False SALNs, and Continued Business Interests.”"
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.gmanetwork.com/news/topstories/nation/1002242/sara-duterte-impeachment-trial-day-24-what-to-expect/story/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    71,
+                    77
+                  ],
+                  "reason": "Passage 71 states the Senate impeachment court will begin tackling Article 2 of the impeachment case, which accuses Vice President Sara Duterte of accumulating unexplained wealth. Passage 77 details that Article 2 specifically alleges the Vice President accumulated unexplained wealth. This directly matches the claim.",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002242/sara-duterte-impeachment-trial-day-24-what-to-expect/story/",
+                      "quote": "The Senate impeachment court on Monday will begin tackling Article 2 of the impeachment case, which accuses Vice President Sara Duterte of accumulating unexplained wealth."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/topstories/nation/1002242/sara-duterte-impeachment-trial-day-24-what-to-expect/story/",
+                      "quote": "(She would also explain the mechanisms for making that determination, the applicable standards, and the methods government officials might use to conceal their wealth—drawing on her extensive experience, having served as a Sandiganbayan Justice for a very long time.) The Article 2 of the Articles of Impeachment specifically alleges that the Vice President accumulated unexplained wealth through the following: failure to fully and truthfully disclose all her and her spouse's assets, liabilities, and net worth in her statement of assets, liabilities, and net worth (SALN) including in her SALN for the years 2022, 2023, and 2024;"
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://newsinfo.inquirer.net/2304516/vp-trial-day-24-court-to-tackle-alleged-unexplained-wealth": {
+                  "status": "matched",
+                  "passage_ids": [
+                    98,
+                    99
+                  ],
+                  "reason": "Passage 98 refers to Vice President Sara Duterte’s alleged betrayal of public trust for amassing unexplained wealth disproportionate to her lawful income. Passage 99 states the Senate impeachment court is set to open the presentation of exhibits for impeachment article II, which is about these allegations. This matches the claim.",
+                  "citations": [
+                    {
+                      "url": "https://newsinfo.inquirer.net/2304516/vp-trial-day-24-court-to-tackle-alleged-unexplained-wealth",
+                      "quote": "II, or Vice President Sara Duterte’s alleged betrayal of public trust for amassing unexplained wealth disproportionate to her lawful income...."
+                    },
+                    {
+                      "url": "https://newsinfo.inquirer.net/2304516/vp-trial-day-24-court-to-tackle-alleged-unexplained-wealth",
+                      "quote": "Vice President Sara Duterte —Inquirer photo/Grig C. Montegrande MANILA, Philippines — The Senate impeachment court on Monday is set to open the presentation of exhibits for impeachment article"
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.pna.gov.ph/articles/1283975": {
+                  "status": "matched",
+                  "passage_ids": [
+                    103,
+                    104,
+                    105
+                  ],
+                  "reason": "Passage 103 states the 24th day of the trial shifts to Article II, which covers allegations of unexplained wealth, false SALNs, and continued business interests. Passage 104 says the Senate impeachment court will examine financial records for the unexplained wealth phase. Passage 105 confirms Article II accuses Duterte of having wealth disproportionate to her lawful income. These passages directly match the claim.",
+                  "citations": [
+                    {
+                      "url": "https://www.pna.gov.ph/articles/1283975",
+                      "quote": "The 24th day of the trial shifts to Article II of the impeachment complaint, which covers allegations of unexplained wealth, false Statements of Assets, Liabilities and Net Worth and continued business interests."
+                    },
+                    {
+                      "url": "https://www.pna.gov.ph/articles/1283975",
+                      "quote": "The Senate impeachment court will examine more than 1,800 bank, insurance and other financial records marked by the prosecution and defense for the unexplained wealth phase of the trial."
+                    },
+                    {
+                      "url": "https://www.pna.gov.ph/articles/1283975",
+                      "quote": "Article II also accuses Duterte of having wealth disproportionate to her lawful income, discrepancies in her SALNs and continued business interests while serving as Vice President."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-11-trial-moves-from-wealth-records-to-vote-math",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-dutertes-impeachment-trial-week-4-the-money-trail-begins",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-10-confidential-fund-case-sharpens-as-court-revisits-vote-threshold",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/prosecution-moves-up-presentation-unexplained-wealth-case-sara-duterte-impeachment/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/data-documents/sara-duterte-wealth-findings-house-impeachment-hearings/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/vice-president-sara-duterte-impeachment-trial-updates-videos/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/14/prosecution-offers-framework-for-unexplained-wealth-allegation-vs-sara-duterte-1858",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/14/day-24-impeach-trial-zeroes-in-on-vp-sara-s-alleged-unexplained-wealth-0930",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/15/lack-of-cash-declaration-in-sara-duterte-salns-brought-up-again-in-impeach-hearing-1313",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002242/sara-duterte-impeachment-trial-day-24-what-to-expect/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/995497/senate-impeachment-court-subpoenas-sara-duterte-s-bank-amlc-records/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002423/sara-duterte-did-not-declare-stock-shares-in-businesses-in-several-salns-ombudsman-official-says/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2257487/sara-duterte-impeachment-trial-everything-you-need-to-know",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2304740/witness-explains-unexplained-hidden-wealth-in-sara-duterte-trial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2304516/vp-trial-day-24-court-to-tackle-alleged-unexplained-wealth",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/14/2556192/article-ii-starts-unexplained-wealth-charge-p677-b-record-duterte-trial",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/14/2556063/amlc-confirm-p67-billion-bank-transactions-vp-mans",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/27/2552103/impeach-court-subpoenas-vp-husbands-bank-records",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/07/21/impeachment-court-allows-bank-tax-probes-tied-to-vp-sara/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/duterte-impeachment-trial-escudero-says-foreign-currency-funds-are-included-in-salns",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/03/ridon-explains-why-prosecution-might-drop-bribery-article-go-straight-to-vp-dutertes-alleged-unexplained-wealth",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1279857",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283994",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283975",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/prosecution-panel-says-well-prepared-for-vp-sara-impeachment-trial-at-senate-urges-public-to-monitor-participate-in-the-process/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/cagayan-de-oro-lawyer-explains-constitutional-impeachment-process/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-24-of-vp-sara-duterte-impeachment-trial-or-september-14-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-25-of-vp-sara-duterte-impeachment-trial-or-september-15-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/prosecution-to-present-unexplained-wealth-evidence-before-bribery-allegations",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/senate-wants-sara-s-tax-records-returned-to-house",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/no-deped-confidential-funds-given-to-afp-poa-confirms",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/impeach-court-to-tackle-vp-tax-bank-records",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-11-trial-moves-from-wealth-records-to-vote-math",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-dutertes-impeachment-trial-week-4-the-money-trail-begins",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-10-confidential-fund-case-sharpens-as-court-revisits-vote-threshold",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/prosecution-moves-up-presentation-unexplained-wealth-case-sara-duterte-impeachment/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/newsbreak/data-documents/sara-duterte-wealth-findings-house-impeachment-hearings/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/vice-president-sara-duterte-impeachment-trial-updates-videos/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/14/prosecution-offers-framework-for-unexplained-wealth-allegation-vs-sara-duterte-1858",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/14/day-24-impeach-trial-zeroes-in-on-vp-sara-s-alleged-unexplained-wealth-0930",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/15/lack-of-cash-declaration-in-sara-duterte-salns-brought-up-again-in-impeach-hearing-1313",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002242/sara-duterte-impeachment-trial-day-24-what-to-expect/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/995497/senate-impeachment-court-subpoenas-sara-duterte-s-bank-amlc-records/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002423/sara-duterte-did-not-declare-stock-shares-in-businesses-in-several-salns-ombudsman-official-says/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2257487/sara-duterte-impeachment-trial-everything-you-need-to-know",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2304740/witness-explains-unexplained-hidden-wealth-in-sara-duterte-trial",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2304516/vp-trial-day-24-court-to-tackle-alleged-unexplained-wealth",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/14/2556192/article-ii-starts-unexplained-wealth-charge-p677-b-record-duterte-trial",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/14/2556063/amlc-confirm-p67-billion-bank-transactions-vp-mans",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/08/27/2552103/impeach-court-subpoenas-vp-husbands-bank-records",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/07/21/impeachment-court-allows-bank-tax-probes-tied-to-vp-sara/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/duterte-impeachment-trial-escudero-says-foreign-currency-funds-are-included-in-salns",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/03/ridon-explains-why-prosecution-might-drop-bribery-article-go-straight-to-vp-dutertes-alleged-unexplained-wealth",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1279857",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283994",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283975",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/prosecution-panel-says-well-prepared-for-vp-sara-impeachment-trial-at-senate-urges-public-to-monitor-participate-in-the-process/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/remulla-no-interference-from-pbbm-ombudsman-in-romualdez-arrest/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/cagayan-de-oro-lawyer-explains-constitutional-impeachment-process/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-24-of-vp-sara-duterte-impeachment-trial-or-september-14-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/day-25-of-vp-sara-duterte-impeachment-trial-or-september-15-2026",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/prosecution-to-present-unexplained-wealth-evidence-before-bribery-allegations",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/senate-wants-sara-s-tax-records-returned-to-house",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/no-deped-confidential-funds-given-to-afp-poa-confirms",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/impeach-court-to-tackle-vp-tax-bank-records",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "The Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte."
+        },
+        "scoring_claim": "The Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte.",
+        "search_query": "Senate impeachment court allegations unexplained wealth Sara Duterte",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "22a5f0e1982b77f02e9566b7877f9b4bd6744f74c6dc0b3dbd1805c9a870f659",
+        "cache_version": "week7-first-pass-shortlist-v21",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 1 of 1 factual components.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 4,
+        "primary_evidence": {
+          "source": "Philippine News Agency",
+          "title": "VP Sara trial to shift from legal theory to SALN, corporate records | Philippine News Agency",
+          "url": "https://www.pna.gov.ph/articles/1283994",
+          "status": "extracted",
+          "word_count": 154,
+          "evidence_method": "component_review",
+          "extraction_quality": "excerpt",
+          "evidence_type": "search_excerpt"
+        },
+        "supporting_sources": [
+          {
+            "source": "Philippine News Agency",
+            "title": "VP Sara trial to shift from legal theory to SALN, corporate records | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283994",
+            "status": "extracted",
+            "word_count": 154,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Day 25 of VP Sara Duterte impeachment trial | September 15, 2026",
+            "url": "https://www.dzrh.com.ph/post/day-25-of-vp-sara-duterte-impeachment-trial-or-september-15-2026",
+            "status": "extracted",
+            "word_count": 1714,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Sara Duterte impeachment trial Day 24: What to expect",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002242/sara-duterte-impeachment-trial-day-24-what-to-expect/story/",
+            "status": "extracted",
+            "word_count": 589,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "VP Trial Day 24: Court to tackle alleged unexplained wealth",
+            "url": "https://newsinfo.inquirer.net/2304516/vp-trial-day-24-court-to-tackle-alleged-unexplained-wealth",
+            "status": "extracted",
+            "word_count": 111,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Year-end SALN rule shapes VP Sara wealth test | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283975",
+            "status": "extracted",
+            "word_count": 245,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 81,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "Philippine News Agency",
+            "title": "VP Sara trial to shift from legal theory to SALN, corporate records | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283994",
+            "status": "extracted",
+            "word_count": 154,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Day 25 of VP Sara Duterte impeachment trial | September 15, 2026",
+            "url": "https://www.dzrh.com.ph/post/day-25-of-vp-sara-duterte-impeachment-trial-or-september-15-2026",
+            "status": "extracted",
+            "word_count": 1714,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Sara Duterte impeachment trial Day 24: What to expect",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002242/sara-duterte-impeachment-trial-day-24-what-to-expect/story/",
+            "status": "extracted",
+            "word_count": 589,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "VP Trial Day 24: Court to tackle alleged unexplained wealth",
+            "url": "https://newsinfo.inquirer.net/2304516/vp-trial-day-24-court-to-tackle-alleged-unexplained-wealth",
+            "status": "extracted",
+            "word_count": 111,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Year-end SALN rule shapes VP Sara wealth test | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283975",
+            "status": "extracted",
+            "word_count": 245,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Philippine News Agency",
+            "title": "VP Sara trial to shift from legal theory to SALN, corporate records | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283994",
+            "status": "extracted",
+            "word_count": 154,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Day 25 of VP Sara Duterte impeachment trial | September 15, 2026",
+            "url": "https://www.dzrh.com.ph/post/day-25-of-vp-sara-duterte-impeachment-trial-or-september-15-2026",
+            "status": "extracted",
+            "word_count": 1714,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Sara Duterte impeachment trial Day 24: What to expect",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002242/sara-duterte-impeachment-trial-day-24-what-to-expect/story/",
+            "status": "extracted",
+            "word_count": 589,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "VP Trial Day 24: Court to tackle alleged unexplained wealth",
+            "url": "https://newsinfo.inquirer.net/2304516/vp-trial-day-24-court-to-tackle-alleged-unexplained-wealth",
+            "status": "extracted",
+            "word_count": 111,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Year-end SALN rule shapes VP Sara wealth test | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1283975",
+            "status": "extracted",
+            "word_count": 245,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Verified",
+              "reason": "The evidence confirms the Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte.",
+              "supporting_urls": [
+                "https://verafiles.org/articles/sara-duterte-impeachment-trial-week-4-the-money-trail-begins",
+                "https://www.rappler.com/philippines/prosecution-moves-up-presentation-unexplained-wealth-case-sara-duterte-impeachment/"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "president",
+          "vice president",
+          "mayor",
+          "senate",
+          "impeachment"
+        ],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [
+            "president",
+            "vice president",
+            "mayor"
+          ],
+          "political_institutions": [
+            "senate"
+          ],
+          "government_controversy": [
+            "impeachment"
+          ],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules",
+        "error": null,
+        "post_type": "fact_only",
+        "confidence": 0.82,
+        "ambiguity_score": 0.0,
+        "ambiguity_reasons": [],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_to_verification",
+        "verification_text": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23, as the Senate impeachment court examines allegations of unexplained wealth against her.",
+        "normalized_verification_text": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23, as the Senate impeachment court examines allegations of unexplained wealth against her.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23, as the Senate impeachment court examines allegations of unexplained wealth against her.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.82,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.33,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.82,
+            "second_label": "quote",
+            "second_label_score": 0.33,
+            "score_gap": 0.49,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_to_verification",
+            "reason_codes": [],
+            "user_notification": null,
+            "speech_scope": "unattributed"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": false,
+          "status": "not_needed",
+          "error": null,
+          "result": null
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0,
+              1
+            ],
+            "reason": "The segment contains two independently checkable factual event assertions: the subpoena of Sebastian Duterte and the Senate impeachment court's examination of allegations against Sara Duterte."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "Sebastian Duterte has been subpoenaed to testify in the impeachment trial of Sara Duterte on Sept. 23."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "The Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte."
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23.",
+            "normalized_claim": "Sebastian Duterte has been subpoenaed to testify in the impeachment trial of Sara Duterte on Sept. 23.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Sebastian Duterte subpoenaed testify impeachment trial Sara Duterte Sept. 23",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23, as the Senate impeachment court examines allegations of unexplained wealth against her."
+              }
+            ],
+            "evidence_context": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23, as the Senate impeachment court examines allegations of unexplained wealth against her.",
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "The Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte.",
+            "normalized_claim": "The Senate impeachment court is examining allegations of unexplained wealth against Sara Duterte.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Senate impeachment court allegations unexplained wealth Sara Duterte",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23, as the Senate impeachment court examines allegations of unexplained wealth against her."
+              }
+            ],
+            "evidence_context": "Davao City Mayor Sebastian “Baste” Duterte has been subpoenaed to testify in the impeachment trial of his sister, Vice President Sara Duterte, on Sept. 23, as the Senate impeachment court examines allegations of unexplained wealth against her.",
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "ae84b786dbe148fd838aa2da0371da60",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0094,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0007,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 0.0179,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0043,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 6.0867,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0023,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0014,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 8.1566,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0816,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 10.2454,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.8616,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.8921,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0534,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 12.0955,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0057,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 9.8136,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0928,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 1.8066,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.6594,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.6912,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0582,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 14.0371,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 60.2213,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 66.3612,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

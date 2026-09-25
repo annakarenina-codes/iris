@@ -1,0 +1,1396 @@
+{
+  "case_id": "C02",
+  "input_sha256": "f342eec10f6ee6784d68af5f38897159160bf7aee2fb869dc474f0a66507a67b",
+  "started_utc": "2026-09-20T04:22:51.473672+00:00",
+  "http_status": 200,
+  "seconds": 50.787,
+  "trace_id": "6640aab53201431d84a4ce858a09e05d",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-factcheck-index-v30",
+  "response": {
+    "verdict": "Verified",
+    "message": "Retrieved passages support 1 of 1 factual components.",
+    "original_text": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+    "translated_text": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+    "detected_language": "english",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 1,
+    "claim_extraction_status": "ok",
+    "post_type": "fact_only",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_with_caution",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+        "normalized_claim": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+                  "quote": "MANILA, Philippines — Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook."
+                },
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing",
+                  "quote": "MANILA, Philippines — The House of Representatives has called Meta chief executive Mark Zuckerberg to a hearing and put the Department of Information and Communications Technology's proposed 2027 budget on hold until concerns over child safety on Meta's platforms are resolved."
+                },
+                {
+                  "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+                  "quote": "The House also deferred action on the proposed P19.49-billion budget of the Department of Information and Communications Technology (DICT) and its attached agencies for 2027 pending resolution of issues involving Meta and online safety."
+                },
+                {
+                  "url": "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/",
+                  "quote": "The House majority bloc backed De Jesus’ motion to defer DICT’s budget deliberations until clearer commitments from Meta are secured, signaling broad congressional frustration with the tech giant."
+                },
+                {
+                  "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+                  "quote": "At Wednesday’s plenary deliberations, the House suspended the DICT’s 2027 budget as they wanted Zuckerberg to face the agency during an inquiry into social media safety."
+                },
+                {
+                  "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+                  "quote": "In a separate DICT post early on Thursday morning , the House of Representatives said it summoned Meta CEO Mark Zuckerberg to face the DICT to respond to its concerns surrounding harmful online content and platform accountability, alongside hopefully setting up measures to improve online safety for Philippine users."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Multiple passages (0, 1, 3, 4, 5, 6) explicitly state that lawmakers deferred approval of the DICT's proposed 2027 budget in order to summon Meta CEO Mark Zuckerberg to address concerns about violence and child safety on Facebook. The rationale, action, and subject all match the claim, and the qualifiers (2027 budget, purpose of summoning Zuckerberg, concerns about violence and child safety) are preserved. No cited passage contradicts this assertion.",
+              "context": {
+                "start": 0,
+                "end": 244,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Lawmakers",
+                      "start": 0,
+                      "end": 9
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT)",
+                      "start": 10,
+                      "end": 130
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook",
+                      "start": 132,
+                      "end": 243
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT)",
+                      "start": 0,
+                      "end": 130
+                    },
+                    {
+                      "origin": "claim",
+                      "quote": "in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook",
+                      "start": 132,
+                      "end": 243
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "2027",
+                      "start": 49,
+                      "end": 53
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0,
+                  1
+                ],
+                "component_id": 0,
+                "assertion": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 244
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+            "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing",
+            "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+            "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "citation_ids": [
+                0,
+                1,
+                3,
+                4,
+                5,
+                6
+              ],
+              "reason": "Multiple passages (0, 1, 3, 4, 5, 6) explicitly state that lawmakers deferred approval of the DICT's proposed 2027 budget in order to summon Meta CEO Mark Zuckerberg to address concerns about violence and child safety on Facebook. The rationale, action, and subject all match the claim, and the qualifiers (2027 budget, purpose of summoning Zuckerberg, concerns about violence and child safety) are preserved. No cited passage contradicts this assertion.",
+              "component_id": 0
+            }
+          ],
+          "original_claim": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+              "sources": {
+                "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0,
+                    3
+                  ],
+                  "reason": "Passage 0 directly states that lawmakers have deferred approval of the proposed 2027 budget of the DICT in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook. Passage 3 further confirms the House suspended the DICT’s 2027 budget to have Zuckerberg face the agency during an inquiry into social media safety.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+                      "quote": "MANILA, Philippines — Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook."
+                    },
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+                      "quote": "At Wednesday’s plenary deliberations, the House suspended the DICT’s 2027 budget as they wanted Zuckerberg to face the agency during an inquiry into social media safety."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing": {
+                  "status": "matched",
+                  "passage_ids": [
+                    23
+                  ],
+                  "reason": "Passage 23 states that the House of Representatives has called Meta chief executive Mark Zuckerberg to a hearing and put the DICT's proposed 2027 budget on hold until concerns over child safety on Meta's platforms are resolved. This matches the described event.",
+                  "citations": [
+                    {
+                      "url": "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing",
+                      "quote": "MANILA, Philippines — The House of Representatives has called Meta chief executive Mark Zuckerberg to a hearing and put the Department of Information and Communications Technology's proposed 2027 budget on hold until concerns over child safety on Meta's platforms are resolved."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    47,
+                    48,
+                    56
+                  ],
+                  "reason": "Passage 47 states the House summoned Meta CEO Mark Zuckerberg to respond to concerns over child safety. Passage 48 confirms the House deferred action on the proposed 2027 DICT budget pending resolution of issues involving Meta and online safety. Passage 56 reiterates the House summoned Zuckerberg to face the DICT regarding harmful online content and accountability. These passages together establish the same event.",
+                  "citations": [
+                    {
+                      "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+                      "quote": "MANILA, Philippines – The House of Representatives on Wednesday, September 16, summoned Meta Platforms CEO Mark Zuckerberg to respond to concerns over child safety on its platforms."
+                    },
+                    {
+                      "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+                      "quote": "The House also deferred action on the proposed P19.49-billion budget of the Department of Information and Communications Technology (DICT) and its attached agencies for 2027 pending resolution of issues involving Meta and online safety."
+                    },
+                    {
+                      "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+                      "quote": "In a separate DICT post early on Thursday morning , the House of Representatives said it summoned Meta CEO Mark Zuckerberg to face the DICT to respond to its concerns surrounding harmful online content and platform accountability, alongside hopefully setting up measures to improve online safety for Philippine users."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                },
+                "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    59,
+                    61
+                  ],
+                  "reason": "Passage 59 states the House majority bloc backed the motion to defer DICT’s budget deliberations until clearer commitments from Meta are secured. Passage 61 confirms the issue was raised during deliberations on the DICT’s proposed 2027 budget. Both support the event described in the claim.",
+                  "citations": [
+                    {
+                      "url": "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/",
+                      "quote": "The House majority bloc backed De Jesus’ motion to defer DICT’s budget deliberations until clearer commitments from Meta are secured, signaling broad congressional frustration with the tech giant."
+                    },
+                    {
+                      "url": "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/",
+                      "quote": "Philreca Party‑list Rep. Presley de Jesus, deputy minority leader, raised the issue during plenary deliberations on the Department of Information and Communications Technology’s (DICT) proposed ₱10.6‑billion budget for 2027."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "matching",
+                    "enforced": true,
+                    "reason": "Explicit event-time anchors appear in selected identity passages; relationship still requires review."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-meta-review-of-ph-politicians-socmed-accounts-for-removal",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/urgent-push-for-child-safety-in-an-increasingly-dangerous-digital-world-inside-the-national-isp-summit-2026",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/video/daily-wrap/september-17-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/technology/features/sagip-bata-bill-sadistic-extortion-online-recruitment-violence/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/technology/2026/8/26/blocking-facebook-to-curb-violence-is-last-resort-says-cicc-1605",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/technology/2025/5/6/make-fake-news-takedowns-faster-meta-told-by-dict-and-cybercrime-watchdog-2048",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/20/nujp-elects-new-leadership-at-national-congress-1040",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/money/companies/1002886/philippine-lawmaker-urges-meta-probe-says-mark-zuckerberg-might-want-to-attend/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999880/facebook-ban-a-last-resort-amid-concerns-over-harmful-effects-dict/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2307286/house-defers-dict-budget-gab-over-online-content-concerns",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://opinion.inquirer.net/194548/deadly-consequences",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2301303/group-urges-lawmakers-to-reverse-cuts-to-depeds-2027-budget",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/opinion/2026/09/20/2557449/dicts-budget-crisis",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/article/10936434/philippines/national/frustrated-with-facebook-and-zuckerberg-solon-seeks-and-gets-deferral-of-dict-budget",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/23/house-leader-p802-m-alocation-in-2027-budget-can-help-stop-potential-school-violence",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1218072",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284061",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283301",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/govt-orders-meta-platforms-inc-to-curb-all-fake-news-warns-of-legal-action/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/people-centered-2027-proposed-budget-advances-to-senate/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/dict-caraga-calls-for-responsible-online-parenting",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/tech-ceos-invited-to-us-capitol-to-testify-about-childrens-online-safety",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dilg-presents-peso3325b-proposed-2027-budget-before-senate-finance-panel",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/house-panel-oks-p72-trillion-proposed-national-budget-for-2027",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/house-panel-no-confidential-funds-for-ovp-deped-da-dict-dfa",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bongbong-marcos-to-jonvic-remulla-bring-back-zaldy-co",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/house-justifies-slashing-of-deped-s-2025-budget",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-no-meta-review-of-ph-politicians-socmed-accounts-for-removal",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/towards-2030-and-beyond-how-long-can-a-wetland-survive-amid-metro-manilas-environmental-pressures",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/video/daily-wrap/september-17-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/technology/features/sagip-bata-bill-sadistic-extortion-online-recruitment-violence/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/technology/2026/8/26/blocking-facebook-to-curb-violence-is-last-resort-says-cicc-1605",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/technology/2025/5/6/make-fake-news-takedowns-faster-meta-told-by-dict-and-cybercrime-watchdog-2048",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/9/20/nujp-elects-new-leadership-at-national-congress-1040",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/money/companies/1002886/philippine-lawmaker-urges-meta-probe-says-mark-zuckerberg-might-want-to-attend/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/999880/facebook-ban-a-last-resort-amid-concerns-over-harmful-effects-dict/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2307286/house-defers-dict-budget-gab-over-online-content-concerns",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://opinion.inquirer.net/194548/deadly-consequences",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2301303/group-urges-lawmakers-to-reverse-cuts-to-depeds-2027-budget",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/opinion/2026/09/20/2557449/dicts-budget-crisis",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/article/10936434/philippines/national/frustrated-with-facebook-and-zuckerberg-solon-seeks-and-gets-deferral-of-dict-budget",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/08/23/house-leader-p802-m-alocation-in-2027-budget-can-help-stop-potential-school-violence",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1218072",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284061",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283301",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/govt-orders-meta-platforms-inc-to-curb-all-fake-news-warns-of-legal-action/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/people-centered-2027-proposed-budget-advances-to-senate/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/dict-caraga-calls-for-responsible-online-parenting",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/tech-ceos-invited-to-us-capitol-to-testify-about-childrens-online-safety",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dilg-presents-peso3325b-proposed-2027-budget-before-senate-finance-panel",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/house-panel-oks-p72-trillion-proposed-national-budget-for-2027",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/house-panel-no-confidential-funds-for-ovp-deped-da-dict-dfa",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bongbong-marcos-to-jonvic-remulla-bring-back-zaldy-co",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/house-justifies-slashing-of-deped-s-2025-budget",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook."
+        },
+        "scoring_claim": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+        "search_query": "lawmakers defer 2027 DICT budget summon Mark Zuckerberg Facebook violence child safety",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "34eb80e3ee56332d090b99d88d6939bd31e04df062e7c80d43a0057751754395",
+        "cache_version": "week7-factcheck-index-v30",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 1 of 1 factual components.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 3,
+        "primary_evidence": {
+          "source": "Philippine Star",
+          "title": "House wants to summon Meta’s Zuckerberg",
+          "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+          "status": "extracted",
+          "word_count": 559,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "Philippine Star",
+            "title": "House wants to summon Meta’s Zuckerberg",
+            "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+            "status": "extracted",
+            "word_count": 559,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Meta child safety concerns behind House 'call' for Mark Zuckerberg to hearing",
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing",
+            "status": "extracted",
+            "word_count": 430,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "House summons Meta's Zuckerberg over child safety, defers action on 2027 DICT budget",
+            "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+            "status": "extracted",
+            "word_count": 324,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Congress eyes summons for Zuckerberg over Facebook accountability – Tempo",
+            "url": "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/",
+            "status": "extracted",
+            "word_count": 123,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 81,
+        "searched_articles": 33,
+        "extracted_articles": 32,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 12,
+            "articles_checked": 3,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Rappler",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "Philippine Star",
+            "title": "House wants to summon Meta’s Zuckerberg",
+            "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+            "status": "extracted",
+            "word_count": 559,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Meta child safety concerns behind House 'call' for Mark Zuckerberg to hearing",
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing",
+            "status": "extracted",
+            "word_count": 430,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "House summons Meta's Zuckerberg over child safety, defers action on 2027 DICT budget",
+            "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+            "status": "extracted",
+            "word_count": 324,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Congress eyes summons for Zuckerberg over Facebook accountability – Tempo",
+            "url": "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/",
+            "status": "extracted",
+            "word_count": 123,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Philippine Star",
+            "title": "House wants to summon Meta’s Zuckerberg",
+            "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+            "status": "extracted",
+            "word_count": 559,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Meta child safety concerns behind House 'call' for Mark Zuckerberg to hearing",
+            "url": "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing",
+            "status": "extracted",
+            "word_count": 430,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "House summons Meta's Zuckerberg over child safety, defers action on 2027 DICT budget",
+            "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+            "status": "extracted",
+            "word_count": 324,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Congress eyes summons for Zuckerberg over Facebook accountability – Tempo",
+            "url": "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/",
+            "status": "extracted",
+            "word_count": 123,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Verified",
+              "reason": "The House deferred the 2027 DICT budget while summoning Zuckerberg over child safety concerns.",
+              "supporting_urls": [
+                "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "budget"
+        ],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": [
+            "budget"
+          ]
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "fact_only",
+        "confidence": 0.9,
+        "ambiguity_score": 0.0,
+        "ambiguity_reasons": [
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_with_caution",
+        "verification_text": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+        "normalized_verification_text": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.52,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.9,
+            "second_label": "opinion",
+            "second_label_score": 0.05,
+            "score_gap": 0.47,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review",
+              "openai_factual_claim_advice"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "factual_claim",
+                "top_label_score": 0.9,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "checkable_event",
+                  "reported_action"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "The segment contains a checkable factual assertion about lawmakers deferring the DICT budget approval in order to summon Mark Zuckerberg regarding Facebook violence and child safety concerns."
+          }
+        ],
+        "grouping": [],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+            "normalized_claim": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "lawmakers defer 2027 DICT budget summon Mark Zuckerberg Facebook violence child safety",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook."
+              }
+            ],
+            "evidence_context": "Lawmakers have deferred approval of the proposed 2027 budget of the Department of Information and Communications Technology (DICT), in a bid to summon and force Meta CEO Mark Zuckerberg to address violence and child safety concerns on Facebook.",
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "6640aab53201431d84a4ce858a09e05d",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0147,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0006,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 4.015,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0043,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 3.7824,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0008,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0019,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 18.4775,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0554,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 9.9645,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.6995,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.7232,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0231,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 12.5588,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 42.8813,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 50.7103,
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    "corroboration_count": 3,
+    "primary_evidence": {
+      "source": "Philippine Star",
+      "title": "House wants to summon Meta’s Zuckerberg",
+      "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+      "status": "extracted",
+      "word_count": 559,
+      "evidence_method": "component_review",
+      "extraction_quality": "full",
+      "evidence_type": "full_text"
+    },
+    "supporting_sources": [
+      {
+        "source": "Philippine Star",
+        "title": "House wants to summon Meta’s Zuckerberg",
+        "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+        "status": "extracted",
+        "word_count": 559,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Philippine Star",
+        "title": "Meta child safety concerns behind House 'call' for Mark Zuckerberg to hearing",
+        "url": "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing",
+        "status": "extracted",
+        "word_count": 430,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Rappler",
+        "title": "House summons Meta's Zuckerberg over child safety, defers action on 2027 DICT budget",
+        "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+        "status": "extracted",
+        "word_count": 324,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Manila Bulletin",
+        "title": "Congress eyes summons for Zuckerberg over Facebook accountability – Tempo",
+        "url": "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/",
+        "status": "extracted",
+        "word_count": 123,
+        "evidence_method": "component_review",
+        "extraction_quality": "excerpt",
+        "evidence_type": "search_excerpt"
+      }
+    ],
+    "search_status": "ok",
+    "total_search_results": 81,
+    "searched_articles": 33,
+    "extracted_articles": 32,
+    "source_summary": [
+      {
+        "source": "VERA Files",
+        "results_found": 12,
+        "articles_checked": 3,
+        "articles_extracted": 2
+      },
+      {
+        "source": "Rappler",
+        "results_found": 6,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "ABS-CBN News",
+        "results_found": 6,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "GMA News",
+        "results_found": 6,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Daily Inquirer",
+        "results_found": 7,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Star",
+        "results_found": 6,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Manila Bulletin",
+        "results_found": 7,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine News Agency",
+        "results_found": 8,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "Philippine Information Agency",
+        "results_found": 5,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "DZRH News",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      },
+      {
+        "source": "OneNews.PH",
+        "results_found": 9,
+        "articles_checked": 3,
+        "articles_extracted": 3
+      }
+    ],
+    "sources": [
+      {
+        "source": "Philippine Star",
+        "title": "House wants to summon Meta’s Zuckerberg",
+        "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+        "status": "extracted",
+        "word_count": 559,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Philippine Star",
+        "title": "Meta child safety concerns behind House 'call' for Mark Zuckerberg to hearing",
+        "url": "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing",
+        "status": "extracted",
+        "word_count": 430,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Rappler",
+        "title": "House summons Meta's Zuckerberg over child safety, defers action on 2027 DICT budget",
+        "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+        "status": "extracted",
+        "word_count": 324,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Manila Bulletin",
+        "title": "Congress eyes summons for Zuckerberg over Facebook accountability – Tempo",
+        "url": "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/",
+        "status": "extracted",
+        "word_count": 123,
+        "evidence_method": "component_review",
+        "extraction_quality": "excerpt",
+        "evidence_type": "search_excerpt"
+      }
+    ],
+    "evidence_sources": [
+      {
+        "source": "Philippine Star",
+        "title": "House wants to summon Meta’s Zuckerberg",
+        "url": "https://www.philstar.com/headlines/2026/09/18/2557098/house-wants-summon-metas-zuckerberg",
+        "status": "extracted",
+        "word_count": 559,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Philippine Star",
+        "title": "Meta child safety concerns behind House 'call' for Mark Zuckerberg to hearing",
+        "url": "https://www.philstar.com/headlines/2026/09/17/2556919/meta-child-safety-concerns-behind-house-call-mark-zuckerberg-hearing",
+        "status": "extracted",
+        "word_count": 430,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Rappler",
+        "title": "House summons Meta's Zuckerberg over child safety, defers action on 2027 DICT budget",
+        "url": "https://www.rappler.com/philippines/house-summons-meta-mark-zuckerberg-child-safety-dict-2027-budget/",
+        "status": "extracted",
+        "word_count": 324,
+        "evidence_method": "component_review",
+        "extraction_quality": "full",
+        "evidence_type": "full_text"
+      },
+      {
+        "source": "Manila Bulletin",
+        "title": "Congress eyes summons for Zuckerberg over Facebook accountability – Tempo",
+        "url": "https://tempo.mb.com.ph/2026/09/17/congress-eyes-summons-for-zuckerberg-over-facebook-accountability/",
+        "status": "extracted",
+        "word_count": 123,
+        "evidence_method": "component_review",
+        "extraction_quality": "excerpt",
+        "evidence_type": "search_excerpt"
+      }
+    ],
+    "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim."
+  }
+}

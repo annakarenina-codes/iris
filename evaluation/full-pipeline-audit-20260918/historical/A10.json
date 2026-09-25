@@ -1,0 +1,1142 @@
+{
+  "case": 10,
+  "trace": {
+    "id": "c34abc3719374011959edd76752ad559",
+    "owner": "08b79e5b143645e991168beb0ab25664",
+    "created": 1788969854.4569151,
+    "ended": 1788969858.494576,
+    "status": "completed",
+    "platform": "chrome",
+    "input_type": "text",
+    "title": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Art",
+    "claim_count": 0,
+    "http_status": 200,
+    "capture_status": "complete",
+    "summary": {
+      "verdict": "No Checkable Claims",
+      "message": "IRIS did not find factual claims that can be checked against approved sources.",
+      "calibration_result": null,
+      "duration_ms": 4037.66,
+      "stop_after": null,
+      "target_reached": false
+    }
+  },
+  "input": {
+    "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+    "platform": "chrome",
+    "debug": false,
+    "_trace_complete": true
+  },
+  "response": {
+    "verdict": "No Checkable Claims",
+    "message": "IRIS did not find factual claims that can be checked against approved sources.",
+    "original_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+    "translated_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 0,
+    "claim_extraction_status": "not_run_content_profiler",
+    "post_type": "unclear",
+    "content_profile_status": "ok",
+    "content_profile_route": "stop_no_checkable_claims",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s1",
+        "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "low_classifier_confidence"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      }
+    ]
+  },
+  "configuration": {
+    "source_sha256": "cdc4b9d9ea9f3e17188e6e91f826b61b1f1f4b53bbbce955527f7e9615074b2f",
+    "code_commit": "add5d63bee5deb7c5efd0f035ee3af14bb1e5f65",
+    "dependencies": {
+      "Flask": "3.1.3",
+      "numpy": "2.5.1",
+      "easyocr": "1.7.2",
+      "sentence-transformers": "5.6.0",
+      "openai": "2.44.0"
+    },
+    "snapshot_policy": "First use in this process; restart after edits",
+    "semantic_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "verified_threshold": 0.85,
+    "partial_threshold": 0.5,
+    "settings": {
+      "OPENAI_MODEL": null,
+      "IRIS_OCR_GPU": null,
+      "IRIS_SEARCH_WORKERS": null,
+      "IRIS_ARTICLE_WORKERS": null,
+      "IRIS_OCR_LOW_CONFIDENCE": null
+    }
+  },
+  "events": [
+    {
+      "data": {},
+      "kind": "request.input",
+      "seq": 1,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 0.06,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "span_id": "14117c7f313b428aa3fd2041db86bc1e",
+      "stage_id": "request.parse_validate",
+      "parent_span_id": null,
+      "input": null,
+      "kind": "span.start",
+      "seq": 2,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 0.13,
+      "claim_id": null
+    },
+    {
+      "span_id": "14117c7f313b428aa3fd2041db86bc1e",
+      "stage_id": "request.parse_validate",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "json_object": true,
+        "content_type": "application/json",
+        "content_length": 253
+      },
+      "duration_ms": 0.10529998689889908,
+      "kind": "span.end",
+      "seq": 3,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 0.3,
+      "parent_span_id": "14117c7f313b428aa3fd2041db86bc1e",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "platform": "chrome",
+        "debug": false
+      },
+      "kind": "request.input",
+      "seq": 4,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 0.38,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "id": "7bda25799a574fb0992b55c5a5754037",
+        "kind": "request_input"
+      },
+      "kind": "artifact",
+      "seq": 5,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 0.6,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "source_sha256": "cdc4b9d9ea9f3e17188e6e91f826b61b1f1f4b53bbbce955527f7e9615074b2f",
+        "code_commit": "add5d63bee5deb7c5efd0f035ee3af14bb1e5f65",
+        "dependencies": {
+          "Flask": "3.1.3",
+          "numpy": "2.5.1",
+          "easyocr": "1.7.2",
+          "sentence-transformers": "5.6.0",
+          "openai": "2.44.0"
+        },
+        "snapshot_policy": "First use in this process; restart after edits",
+        "semantic_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "verified_threshold": 0.85,
+        "partial_threshold": 0.5,
+        "settings": {
+          "OPENAI_MODEL": null,
+          "IRIS_OCR_GPU": null,
+          "IRIS_SEARCH_WORKERS": null,
+          "IRIS_ARTICLE_WORKERS": null,
+          "IRIS_OCR_LOW_CONFIDENCE": null
+        }
+      },
+      "kind": "runtime.configuration",
+      "seq": 6,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 0.72,
+      "parent_span_id": null,
+      "claim_id": null
+    },
+    {
+      "span_id": "c84249b59f834472bff07896a93771fd",
+      "stage_id": "text.process",
+      "parent_span_id": null,
+      "input": {
+        "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "debug_enabled": false
+      },
+      "kind": "span.start",
+      "seq": 7,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 0.84,
+      "claim_id": null
+    },
+    {
+      "span_id": "41f3b0ad41b343b2b1ab559fe93954e0",
+      "stage_id": "text.language",
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "input": {
+        "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters."
+      },
+      "kind": "span.start",
+      "seq": 8,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 0.96,
+      "claim_id": null
+    },
+    {
+      "span_id": "41f3b0ad41b343b2b1ab559fe93954e0",
+      "stage_id": "text.language",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": "english",
+      "duration_ms": 1.0940000065602362,
+      "kind": "span.end",
+      "seq": 9,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 2.14,
+      "parent_span_id": "41f3b0ad41b343b2b1ab559fe93954e0",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.detect_language",
+        "duration_seconds": 0.0013,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 10,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 2.23,
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "claim_id": null
+    },
+    {
+      "span_id": "d8643305c98c4bf18c3f3a39bf544f24",
+      "stage_id": "text.translation",
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "input": {
+        "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "language": "english"
+      },
+      "kind": "span.start",
+      "seq": 11,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 2.55,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "reason": "already_english"
+      },
+      "kind": "translation.skipped",
+      "seq": 12,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 2.69,
+      "parent_span_id": "d8643305c98c4bf18c3f3a39bf544f24",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "id": "2fe4c27a95de442d81016342db618fb7",
+        "kind": "dependency"
+      },
+      "kind": "artifact",
+      "seq": 13,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 2.94,
+      "parent_span_id": "d8643305c98c4bf18c3f3a39bf544f24",
+      "claim_id": null
+    },
+    {
+      "span_id": "d8643305c98c4bf18c3f3a39bf544f24",
+      "stage_id": "text.translation",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+      "duration_ms": 0.360500009264797,
+      "kind": "span.end",
+      "seq": 14,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 3.03,
+      "parent_span_id": "d8643305c98c4bf18c3f3a39bf544f24",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.translate_to_english",
+        "duration_seconds": 0.0006,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 15,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 3.08,
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "claim_id": null
+    },
+    {
+      "span_id": "80fa8839768c41ab9ca2347f4fc9b80a",
+      "stage_id": "text.profile",
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "input": {
+        "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "translated_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters."
+      },
+      "kind": "span.start",
+      "seq": 16,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 3.52,
+      "claim_id": null
+    },
+    {
+      "span_id": "49c0fe5c2f564082a406a56411852584",
+      "stage_id": "text.profile_local",
+      "parent_span_id": "80fa8839768c41ab9ca2347f4fc9b80a",
+      "input": {
+        "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "translated_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters."
+      },
+      "kind": "span.start",
+      "seq": 17,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 3.72,
+      "claim_id": null
+    },
+    {
+      "span_id": "49c0fe5c2f564082a406a56411852584",
+      "stage_id": "text.profile_local",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "status": "ok",
+        "method": "local_rules",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.37,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "low_classifier_confidence"
+        ],
+        "contains_factual_claims": false,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": false,
+        "recommended_route": "stop_no_checkable_claims",
+        "verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "normalized_verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.2,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.37,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.37,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.07,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "openai_profile": {
+          "used": false,
+          "status": "not_run",
+          "error": null,
+          "result": null
+        }
+      },
+      "duration_ms": 2.7546000201255083,
+      "kind": "span.end",
+      "seq": 18,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 7.2,
+      "parent_span_id": "49c0fe5c2f564082a406a56411852584",
+      "claim_id": null
+    },
+    {
+      "span_id": "0f04814a8e304e96b35630130b2103db",
+      "stage_id": "text.profile_ai",
+      "parent_span_id": "80fa8839768c41ab9ca2347f4fc9b80a",
+      "input": {
+        "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "translated_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "local_profile": {
+          "status": "ok",
+          "method": "local_rules",
+          "error": null,
+          "post_type": "unclear",
+          "confidence": 0.37,
+          "ambiguity_score": 0.65,
+          "ambiguity_reasons": [
+            "low_classifier_confidence"
+          ],
+          "contains_factual_claims": false,
+          "contains_opinion": false,
+          "contains_recommendation": false,
+          "contains_forecast_or_projection": false,
+          "contains_satire_or_humor": false,
+          "contains_quote": false,
+          "eligible_for_verification": false,
+          "recommended_route": "stop_no_checkable_claims",
+          "verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+          "normalized_verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+          "segments": [
+            {
+              "segment_id": "s1",
+              "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+              "translated_text": null,
+              "scores": {
+                "factual_claim": 0.2,
+                "opinion": 0.05,
+                "forecast_or_projection_detected": 0.37,
+                "quote": 0.05,
+                "satire_or_humor": 0.05,
+                "call_to_action": 0.05,
+                "contextual_background": 0.05,
+                "unclear": 0.3
+              },
+              "top_label": "unclear",
+              "top_label_score": 0.37,
+              "second_label": "unclear",
+              "second_label_score": 0.3,
+              "score_gap": 0.07,
+              "eligible_for_verification": false,
+              "recommended_route": "stop_no_checkable_claims",
+              "reason_codes": [
+                "low_classifier_confidence"
+              ],
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "ignored_segments": [
+            {
+              "segment_id": "s1",
+              "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+              "segment_type": "unclear",
+              "reason_codes": [
+                "low_classifier_confidence"
+              ],
+              "recommended_route": "stop_no_checkable_claims",
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+          "openai_profile": {
+            "used": false,
+            "status": "not_run",
+            "error": null,
+            "result": null
+          }
+        }
+      },
+      "kind": "span.start",
+      "seq": 19,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 7.82,
+      "claim_id": null
+    },
+    {
+      "data": {
+        "id": "d3b22e87027a4eb7ae45c7e9876d1738",
+        "kind": "dependency"
+      },
+      "kind": "artifact",
+      "seq": 20,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4031.51,
+      "parent_span_id": "0f04814a8e304e96b35630130b2103db",
+      "claim_id": null
+    },
+    {
+      "span_id": "0f04814a8e304e96b35630130b2103db",
+      "stage_id": "text.profile_ai",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "used": true,
+        "status": "ok",
+        "error": null,
+        "result": {
+          "post_type": "mixed_content",
+          "confidence": 0.0,
+          "ambiguity_score": 0.0,
+          "ambiguity_reasons": [
+            "low_classifier_confidence"
+          ],
+          "contains_factual_claims": true,
+          "contains_opinion": false,
+          "contains_forecast_or_projection": false,
+          "contains_satire_or_humor": false,
+          "contains_quote": false,
+          "eligible_for_verification": true,
+          "recommended_route": "verify_factual_claims_only",
+          "segments": [
+            {
+              "segment_id": "s1",
+              "top_label": "factual_claim",
+              "top_label_score": 0.0,
+              "eligible_for_verification": true,
+              "reason_codes": [
+                "reason_code"
+              ],
+              "user_notification": null
+            }
+          ]
+        }
+      },
+      "duration_ms": 4023.650399991311,
+      "kind": "span.end",
+      "seq": 21,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4031.64,
+      "parent_span_id": "0f04814a8e304e96b35630130b2103db",
+      "claim_id": null
+    },
+    {
+      "span_id": "5d6792623c294bb6b7f86c5a3a447c3b",
+      "stage_id": "text.profile_merge",
+      "parent_span_id": "80fa8839768c41ab9ca2347f4fc9b80a",
+      "input": {
+        "local_profile": {
+          "status": "ok",
+          "method": "local_rules",
+          "error": null,
+          "post_type": "unclear",
+          "confidence": 0.37,
+          "ambiguity_score": 0.65,
+          "ambiguity_reasons": [
+            "low_classifier_confidence"
+          ],
+          "contains_factual_claims": false,
+          "contains_opinion": false,
+          "contains_recommendation": false,
+          "contains_forecast_or_projection": false,
+          "contains_satire_or_humor": false,
+          "contains_quote": false,
+          "eligible_for_verification": false,
+          "recommended_route": "stop_no_checkable_claims",
+          "verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+          "normalized_verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+          "segments": [
+            {
+              "segment_id": "s1",
+              "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+              "translated_text": null,
+              "scores": {
+                "factual_claim": 0.2,
+                "opinion": 0.05,
+                "forecast_or_projection_detected": 0.37,
+                "quote": 0.05,
+                "satire_or_humor": 0.05,
+                "call_to_action": 0.05,
+                "contextual_background": 0.05,
+                "unclear": 0.3
+              },
+              "top_label": "unclear",
+              "top_label_score": 0.37,
+              "second_label": "unclear",
+              "second_label_score": 0.3,
+              "score_gap": 0.07,
+              "eligible_for_verification": false,
+              "recommended_route": "stop_no_checkable_claims",
+              "reason_codes": [
+                "low_classifier_confidence"
+              ],
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "ignored_segments": [
+            {
+              "segment_id": "s1",
+              "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+              "segment_type": "unclear",
+              "reason_codes": [
+                "low_classifier_confidence"
+              ],
+              "recommended_route": "stop_no_checkable_claims",
+              "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+            }
+          ],
+          "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+          "openai_profile": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "post_type": "mixed_content",
+              "confidence": 0.0,
+              "ambiguity_score": 0.0,
+              "ambiguity_reasons": [
+                "low_classifier_confidence"
+              ],
+              "contains_factual_claims": true,
+              "contains_opinion": false,
+              "contains_forecast_or_projection": false,
+              "contains_satire_or_humor": false,
+              "contains_quote": false,
+              "eligible_for_verification": true,
+              "recommended_route": "verify_factual_claims_only",
+              "segments": [
+                {
+                  "segment_id": "s1",
+                  "top_label": "factual_claim",
+                  "top_label_score": 0.0,
+                  "eligible_for_verification": true,
+                  "reason_codes": [
+                    "reason_code"
+                  ],
+                  "user_notification": null
+                }
+              ]
+            }
+          }
+        },
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "post_type": "mixed_content",
+            "confidence": 0.0,
+            "ambiguity_score": 0.0,
+            "ambiguity_reasons": [
+              "low_classifier_confidence"
+            ],
+            "contains_factual_claims": true,
+            "contains_opinion": false,
+            "contains_forecast_or_projection": false,
+            "contains_satire_or_humor": false,
+            "contains_quote": false,
+            "eligible_for_verification": true,
+            "recommended_route": "verify_factual_claims_only",
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "factual_claim",
+                "top_label_score": 0.0,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reason_code"
+                ],
+                "user_notification": null
+              }
+            ]
+          }
+        }
+      },
+      "kind": "span.start",
+      "seq": 22,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4032.22,
+      "claim_id": null
+    },
+    {
+      "span_id": "5d6792623c294bb6b7f86c5a3a447c3b",
+      "stage_id": "text.profile_merge",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.37,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "low_classifier_confidence"
+        ],
+        "contains_factual_claims": false,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": false,
+        "recommended_route": "stop_no_checkable_claims",
+        "verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "normalized_verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.2,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.37,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.37,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.07,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "post_type": "mixed_content",
+            "confidence": 0.0,
+            "ambiguity_score": 0.0,
+            "ambiguity_reasons": [
+              "low_classifier_confidence"
+            ],
+            "contains_factual_claims": true,
+            "contains_opinion": false,
+            "contains_forecast_or_projection": false,
+            "contains_satire_or_humor": false,
+            "contains_quote": false,
+            "eligible_for_verification": true,
+            "recommended_route": "verify_factual_claims_only",
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "factual_claim",
+                "top_label_score": 0.0,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reason_code"
+                ],
+                "user_notification": null
+              }
+            ]
+          }
+        }
+      },
+      "duration_ms": 0.0323000131174922,
+      "kind": "span.end",
+      "seq": 23,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4032.79,
+      "parent_span_id": "5d6792623c294bb6b7f86c5a3a447c3b",
+      "claim_id": null
+    },
+    {
+      "span_id": "80fa8839768c41ab9ca2347f4fc9b80a",
+      "stage_id": "text.profile",
+      "status": "completed",
+      "domain_outcome": "ok",
+      "output": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "unclear",
+        "confidence": 0.37,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "low_classifier_confidence"
+        ],
+        "contains_factual_claims": false,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": false,
+        "recommended_route": "stop_no_checkable_claims",
+        "verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "normalized_verification_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.2,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.37,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.37,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.07,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS did not find factual claims that can be checked against approved sources.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "post_type": "mixed_content",
+            "confidence": 0.0,
+            "ambiguity_score": 0.0,
+            "ambiguity_reasons": [
+              "low_classifier_confidence"
+            ],
+            "contains_factual_claims": true,
+            "contains_opinion": false,
+            "contains_forecast_or_projection": false,
+            "contains_satire_or_humor": false,
+            "contains_quote": false,
+            "eligible_for_verification": true,
+            "recommended_route": "verify_factual_claims_only",
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "factual_claim",
+                "top_label_score": 0.0,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "reason_code"
+                ],
+                "user_notification": null
+              }
+            ]
+          }
+        }
+      },
+      "duration_ms": 4029.275899985805,
+      "kind": "span.end",
+      "seq": 24,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4033.34,
+      "parent_span_id": "80fa8839768c41ab9ca2347f4fc9b80a",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.profile_content",
+        "duration_seconds": 4.0302,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 25,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4033.53,
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "claim_id": null
+    },
+    {
+      "span_id": "5134ce8398a24565bd75f969764db572",
+      "stage_id": "text.opinion",
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "input": {
+        "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters."
+      },
+      "kind": "span.start",
+      "seq": 26,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4034.08,
+      "claim_id": null
+    },
+    {
+      "span_id": "5134ce8398a24565bd75f969764db572",
+      "stage_id": "text.opinion",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "duration_ms": 0.15029998030513525,
+      "kind": "span.end",
+      "seq": 27,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4034.38,
+      "parent_span_id": "5134ce8398a24565bd75f969764db572",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.opinion_filter",
+        "duration_seconds": 0.0006,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 28,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4034.55,
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "claim_id": null
+    },
+    {
+      "span_id": "ee4854588f2145caa21ce729c1faff4f",
+      "stage_id": "text.political",
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "input": {
+        "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters."
+      },
+      "kind": "span.start",
+      "seq": 29,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4035.09,
+      "claim_id": null
+    },
+    {
+      "span_id": "ee4854588f2145caa21ce729c1faff4f",
+      "stage_id": "text.political",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "duration_ms": 0.9468999924138188,
+      "kind": "span.end",
+      "seq": 30,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4036.17,
+      "parent_span_id": "ee4854588f2145caa21ce729c1faff4f",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "text.political_check",
+        "duration_seconds": 0.0014,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 31,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4036.24,
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "eligible": false,
+        "route": "stop_no_checkable_claims",
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ]
+      },
+      "kind": "text.route",
+      "seq": 32,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4036.55,
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stages": [
+          "claims.extract",
+          "event.retrieve",
+          "claim.process"
+        ],
+        "reason": "stop_no_checkable_claims"
+      },
+      "kind": "stage.skipped",
+      "seq": 33,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4036.62,
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "stage": "verify_text.total",
+        "duration_seconds": 4.0358,
+        "status": "ok"
+      },
+      "kind": "timing",
+      "seq": 34,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4036.67,
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "claim_id": null
+    },
+    {
+      "span_id": "c84249b59f834472bff07896a93771fd",
+      "stage_id": "text.process",
+      "status": "completed",
+      "domain_outcome": null,
+      "output": {
+        "verdict": "No Checkable Claims",
+        "message": "IRIS did not find factual claims that can be checked against approved sources.",
+        "original_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "translated_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "detected_language": "english",
+        "politically_sensitive": false,
+        "flags": [],
+        "claim_count": 0,
+        "claim_extraction_status": "not_run_content_profiler",
+        "post_type": "unclear",
+        "content_profile_status": "ok",
+        "content_profile_route": "stop_no_checkable_claims",
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ]
+      },
+      "duration_ms": 4036.004099994898,
+      "kind": "span.end",
+      "seq": 35,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4037.16,
+      "parent_span_id": "c84249b59f834472bff07896a93771fd",
+      "claim_id": null
+    },
+    {
+      "data": {
+        "verdict": "No Checkable Claims",
+        "message": "IRIS did not find factual claims that can be checked against approved sources.",
+        "original_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "translated_text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+        "detected_language": "english",
+        "politically_sensitive": false,
+        "flags": [],
+        "claim_count": 0,
+        "claim_extraction_status": "not_run_content_profiler",
+        "post_type": "unclear",
+        "content_profile_status": "ok",
+        "content_profile_route": "stop_no_checkable_claims",
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "ignored_segments": [
+          {
+            "segment_id": "s1",
+            "text": "Ten exemplary Filipinos from various fields of the arts will be proclaimed as National Artists, the country\u2019s highest national recognition for distinct and significant contributions to the arts and letters.",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "low_classifier_confidence"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ]
+      },
+      "http_status": 200,
+      "error": null,
+      "kind": "request.result",
+      "seq": 36,
+      "trace_id": "c34abc3719374011959edd76752ad559",
+      "offset_ms": 4037.62,
+      "parent_span_id": null,
+      "claim_id": null
+    }
+  ]
+}

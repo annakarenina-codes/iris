@@ -1,0 +1,4343 @@
+{
+  "http_status": 200,
+  "trace_id": "1def0d97294e40b78f3244219baf04da",
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 3 extracted claims individually.",
+    "original_text": "She had been suffering for 12 years.\nBut when she heard Jesus was passing by, she didn’t wait for the perfect words. She didn’t need to explain everything.\nShe simply reached for Him.\nShe believed that even touching the hem of His garment could change everything.\nAnd Jesus said, “Daughter, your faith has healed you.” (Mark 5:34)\nMaybe you’re tired. Maybe you’ve been carrying something quietly for a long time.\nKeep reaching for Jesus.\nYou don’t need perfect faith. Just keep reaching for Him.",
+    "translated_text": "She had been suffering for 12 years.\nBut when she heard Jesus was passing by, she didn’t wait for the perfect words. She didn’t need to explain everything.\nShe simply reached for Him.\nShe believed that even touching the hem of His garment could change everything.\nAnd Jesus said, “Daughter, your faith has healed you.” (Mark 5:34)\nMaybe you’re tired. Maybe you’ve been carrying something quietly for a long time.\nKeep reaching for Jesus.\nYou don’t need perfect faith. Just keep reaching for Him.",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 3,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": true,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": true,
+    "ignored_segments": [
+      {
+        "segment_id": "s7",
+        "text": "(Mark 5:34)",
+        "segment_type": "unclear",
+        "reason_codes": [
+          "vague_claim"
+        ],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s8",
+        "text": "Maybe you’re tired.",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "segment_id": "s10",
+        "text": "Keep reaching for Jesus.",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      },
+      {
+        "text": "significant role, helped defend and leading expert are evaluative wording, not standalone factual claims.",
+        "segment_type": "opinion"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "She had been suffering for 12 years.",
+        "normalized_claim": "A woman had been suffering for 12 years.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "She had been suffering for 12 years.",
+              "status": "not_supported",
+              "citations": [],
+              "context": {
+                "start": 0,
+                "end": 36,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "She",
+                      "start": 0,
+                      "end": 3
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "had been suffering",
+                      "start": 4,
+                      "end": 22
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "She had been suffering for 12 years.",
+                      "start": 0,
+                      "end": 36
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "for 12 years",
+                      "start": 23,
+                      "end": 35
+                    }
+                  ],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "She had been suffering for 12 years.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 36
+                },
+                "context_is_evidence": false
+              }
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 1 factual components.",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "original_claim": "She had been suffering for 12 years.",
+          "partition_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/families-of-the-disappeared-united-in-pain-and-struggle",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/marcos-sr-and-the-april-fools-affair",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-videos-shaking-woman-after-covid-19-va",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/voices/ispeak/57829-womb-struggle/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/voices/ispeak/opinion-maria-clara-idealized-filipina-why-matter-now/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/regions/2026/2/20/missing-12-year-old-in-cebu-found-beheaded-tied-to-tree-1429",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/studios/tv/gandang-gabi-vice",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/10/13/14/8-signs-woman-cougar",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/artandculture/761942/pinoy-exorcists-of-ozamiz-revisit-shocking-cases-of-deliverance/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/showbiz/showbizabroad/1003018/h-e-r-and-liza-soberano-on-forgotten-island-philippine-folklore-and-their-new-song-brb/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/168752/former-president-corazon-aquino-people-power-icon-passes-away/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2145080/study-7-2-of-filipino-women-suffer-abuse-from-husbands-or-partners",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://globalnation.inquirer.net/336614/in-disaster-aftermath-nepal-battles-a-flood-of-misinformation",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://youngblood.inquirer.net/2023/12/18/as-scary-as-change/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/newsmakers/2020/09/01/2039129/francis-promised-her-rose-garden",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/13/2556010/scars-marawi-siege-linger-barmm-poll-nears",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/opinion/2016/01/24/1545964/legacies-war-comfort-women-continue-their-struggle",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/18/sc-rules-marital-infidelity-alone-does-not-convict-a-husband-of-violence-against-women-children",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/02/17/until-she-remembers-cast-lgbtqia-roles-were-never-an-issue",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/article/10934731/opinion/a-greatness-measured-in-lives-transformed",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1069583",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282917",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/opinion/pieces/105-women-power-and-the-calvary-of-men",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/features/2023/07/23/13-year-old-qc-girl-might-be-our-first-filipina-saint",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/deped-tightens-measures-to-curb-violence-bullying-in-schools/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/many-cases-of-violence-against-women-and-children-remain-unreported/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/a-child-of-my-own-film-relives-faked-pregnancy-and-crime-case",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/saved-by-a-mango-tree-how-a-nepali-labourer-survived-deadly-flash-flood",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/iran-war-is-latest-blow-to-somalias-malnourished-children",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/backgrounder-why-the-killing-of-transgender-woman-jennifer-laude-drew-outrage-in-2014",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/the-miracle-of-saint-marie-eugenie",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/cory-strong-leader-devoted-mother",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/shamaine-buencamino-remembers-floy-quintos",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/alas-ng-bayan-2-0-holds-true-to-the-mission-of-tandang-sora-womens-museum",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/dds-dilemma",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/moveph/199230-passion-story-stations-cross/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/115869-jose-mari-chan-christmas-songs/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/obituary-mother-teodora-juan-missionary-catechists-saint-therese/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www2.abs-cbn.com/Weekdays/cast/article/4199/dejesus/Maria-De-Jesus.aspx",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/studios/tv/2026/9/20/fyang-nag-react-sa-mga-komento-ng-bashers-gandang-gabi-vice-2257",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/9/20/claudine-barretto-maricel-soriano-lead-star-studded-fashion-show-2343",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/70/dingdong-dantes-man-on-a-mission/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002197/legarda-seeks-moral-support-from-senators-amid-plunder-allegations-illness-lacson/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://lifestyle.inquirer.net/360667/mary-magdalene-the-woman-jesus-loved/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://opinion.inquirer.net/194383/kamukha-niya-si-mama-mary",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pop.inquirer.net/103517/the-curious-case-of-judiel-nieva",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2011/12/02/753816/story-behind-joe-maris-double-diamond-christmas-song",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/daily-bread/2026/09/21/2557645/ups-and-downs-life",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2023/8/19/when-we-pray-for-a-loved-one",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/you-yourself-a-sword-will-pierce",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2023/12/20/how-does-this-happen-to-me-that-the-mother-of-my-lord-should-come-to-me",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1018673",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/flickers-of-hope-twinkles-story-of-diligence-determination-and-optimism/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/teacher-ikaw-naman-angara-leads-kick-off-of-national-teachers-month-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/features/page/39/?division=Mindanao&region=CAR",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ricci-rivero's-dad-posts-cryptic-reminder-about-dating-on-instagram",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/us-judge-signals-rejection-of-part-of-tiktok-privacy-settlement",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ill-see-you-in-court-denise-julia-to-take-legal-action-vs-killa-kush-amid-podcast-drama",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/jose-mari-chan-talks-about-sugar-not-so-sweet-memes",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/teach-kids-the-power-of-choice-and-other-nuggets-of-wisdom-from-these-celebrity-dads",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/families-of-the-disappeared-united-in-pain-and-struggle",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/marcos-sr-and-the-april-fools-affair",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-videos-shaking-woman-after-covid-19-va",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/voices/ispeak/57829-womb-struggle/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/environment-management-bureau-haze-updates-september-1-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/voices/ispeak/opinion-maria-clara-idealized-filipina-why-matter-now/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/regions/2026/2/20/missing-12-year-old-in-cebu-found-beheaded-tied-to-tree-1429",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/studios/tv/gandang-gabi-vice",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/10/13/14/8-signs-woman-cougar",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/lifestyle/artandculture/761942/pinoy-exorcists-of-ozamiz-revisit-shocking-cases-of-deliverance/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/showbiz/showbizabroad/1003018/h-e-r-and-liza-soberano-on-forgotten-island-philippine-folklore-and-their-new-song-brb/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/168752/former-president-corazon-aquino-people-power-icon-passes-away/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2145080/study-7-2-of-filipino-women-suffer-abuse-from-husbands-or-partners",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://globalnation.inquirer.net/336614/in-disaster-aftermath-nepal-battles-a-flood-of-misinformation",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://youngblood.inquirer.net/2023/12/18/as-scary-as-change/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/newsmakers/2020/09/01/2039129/francis-promised-her-rose-garden",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/09/13/2556010/scars-marawi-siege-linger-barmm-poll-nears",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/opinion/2016/01/24/1545964/legacies-war-comfort-women-continue-their-struggle",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/18/sc-rules-marital-infidelity-alone-does-not-convict-a-husband-of-violence-against-women-children",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/02/17/until-she-remembers-cast-lgbtqia-roles-were-never-an-issue",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/article/10934731/opinion/a-greatness-measured-in-lives-transformed",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1069583",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1282917",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/opinion/pieces/105-women-power-and-the-calvary-of-men",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/features/2023/07/23/13-year-old-qc-girl-might-be-our-first-filipina-saint",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/deped-tightens-measures-to-curb-violence-bullying-in-schools/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/many-cases-of-violence-against-women-and-children-remain-unreported/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/a-child-of-my-own-film-relives-faked-pregnancy-and-crime-case",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/saved-by-a-mango-tree-how-a-nepali-labourer-survived-deadly-flash-flood",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/iran-war-is-latest-blow-to-somalias-malnourished-children",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/backgrounder-why-the-killing-of-transgender-woman-jennifer-laude-drew-outrage-in-2014",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/the-miracle-of-saint-marie-eugenie",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/cory-strong-leader-devoted-mother",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/shamaine-buencamino-remembers-floy-quintos",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/alas-ng-bayan-2-0-holds-true-to-the-mission-of-tandang-sora-womens-museum",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/dds-dilemma",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/moveph/199230-passion-story-stations-cross/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/115869-jose-mari-chan-christmas-songs/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/obituary-mother-teodora-juan-missionary-catechists-saint-therese/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www2.abs-cbn.com/Weekdays/cast/article/4199/dejesus/Maria-De-Jesus.aspx",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/studios/tv/2026/9/20/fyang-nag-react-sa-mga-komento-ng-bashers-gandang-gabi-vice-2257",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/9/20/claudine-barretto-maricel-soriano-lead-star-studded-fashion-show-2343",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/70/dingdong-dantes-man-on-a-mission/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002197/legarda-seeks-moral-support-from-senators-amid-plunder-allegations-illness-lacson/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://lifestyle.inquirer.net/360667/mary-magdalene-the-woman-jesus-loved/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://opinion.inquirer.net/194383/kamukha-niya-si-mama-mary",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pop.inquirer.net/103517/the-curious-case-of-judiel-nieva",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2011/12/02/753816/story-behind-joe-maris-double-diamond-christmas-song",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/daily-bread/2026/09/21/2557645/ups-and-downs-life",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2023/8/19/when-we-pray-for-a-loved-one",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/you-yourself-a-sword-will-pierce",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2023/12/20/how-does-this-happen-to-me-that-the-mother-of-my-lord-should-come-to-me",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1018673",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/flickers-of-hope-twinkles-story-of-diligence-determination-and-optimism/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/teacher-ikaw-naman-angara-leads-kick-off-of-national-teachers-month-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/features/page/39/?division=Mindanao&region=CAR",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ricci-rivero's-dad-posts-cryptic-reminder-about-dating-on-instagram",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/us-judge-signals-rejection-of-part-of-tiktok-privacy-settlement",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ill-see-you-in-court-denise-julia-to-take-legal-action-vs-killa-kush-amid-podcast-drama",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/jose-mari-chan-talks-about-sugar-not-so-sweet-memes",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/teach-kids-the-power-of-choice-and-other-nuggets-of-wisdom-from-these-celebrity-dads",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "A woman had been suffering for 12 years."
+        },
+        "scoring_claim": "A woman had been suffering for 12 years.",
+        "search_query": "woman suffering 12 years",
+        "event_search_query": "She Jesus His Daughter Mark Maybe Keep Just",
+        "retrieval_strategy": "claim_search_plus_event_pool",
+        "risk_tags": [],
+        "claim_hash": "86aa62814ae78e38d904bd1a82f1d8aeccdf1688fcd87ee48a861a3746e0f0f2",
+        "cache_version": "week7-general-claims-v36",
+        "verdict": "Not Found",
+        "message": "Retrieved passages support 0 of 1 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 166,
+        "searched_articles": 63,
+        "extracted_articles": 63,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Rappler",
+            "results_found": 11,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 16,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "GMA News",
+            "results_found": 17,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 19,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 19,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 17,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 16,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 18,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 14,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence mentions a woman suffering for 12 years.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "She believed that even touching the hem of His garment could change everything.",
+        "normalized_claim": "The woman believed that touching the hem of Jesus's garment could change everything.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "She believed that even touching the hem of His garment could change everything.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://mb.com.ph/2024/7/7/a-woman-touched-the-tassel-on-his-cloak",
+                  "quote": "In the Gospel, a woman suffering from hemorrhages for 12 years seeks to touch the tassel of Jesus’ garment, believing this contact will bring her some magical cure."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "The passage explicitly states that the woman suffering for 12 years sought to touch the tassel of Jesus’ garment, believing this contact would bring her a magical cure. This directly supports the assertion that she believed even touching the hem of His garment could change everything. The subject (the woman), her belief, and the specific action are all present and refer to the same Gospel event.",
+              "context": {
+                "start": 0,
+                "end": 79,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "She",
+                      "start": 0,
+                      "end": 3
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "believed",
+                      "start": 4,
+                      "end": 12
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "even touching the hem of His garment could change everything.",
+                      "start": 18,
+                      "end": 79
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "She believed that even touching the hem of His garment could change everything.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 79
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://mb.com.ph/2024/7/7/a-woman-touched-the-tassel-on-his-cloak"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0
+              ],
+              "reason": "The passage explicitly states that the woman suffering for 12 years sought to touch the tassel of Jesus’ garment, believing this contact would bring her a magical cure. This directly supports the assertion that she believed even touching the hem of His garment could change everything. The subject (the woman), her belief, and the specific action are all present and refer to the same Gospel event.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "She believed that even touching the hem of His garment could change everything.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "A woman suffering from hemorrhages for 12 years believed that even touching the hem (tassel) of Jesus' garment could change everything (bring healing).",
+              "sources": {
+                "https://mb.com.ph/2024/7/7/a-woman-touched-the-tassel-on-his-cloak": {
+                  "status": "matched",
+                  "passage_ids": [
+                    0
+                  ],
+                  "reason": "Passage 0 states that a woman suffering from hemorrhages for 12 years seeks to touch the tassel of Jesus’ garment, believing this contact will bring her some magical cure. This matches the claim that she believed touching the hem of His garment could change everything.",
+                  "citations": [
+                    {
+                      "url": "https://mb.com.ph/2024/7/7/a-woman-touched-the-tassel-on-his-cloak",
+                      "quote": "In the Gospel, a woman suffering from hemorrhages for 12 years seeks to touch the tassel of Jesus’ garment, believing this contact will bring her some magical cure."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/new-ccp-chair-margie-moran-bats-early-exposure-arts-kids",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/guanzons-challenge-baptism-fire-ferolino",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-demo-video-falsely-claims-rum-bleach-m",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/culture-desk/46305-life-and-style-2013-yearender/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/sports/gilas-pilipinas/g94006089-gilas-women/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/science/earth-space/profile-space-engineer-julie-ann-banatao/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www2.abs-cbn.com/Weekdays/cast/article/4199/dejesus/Maria-De-Jesus.aspx",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/2019/9/17/fresh-scoops/gab-valenciano-becomes-victim-of-celebrity-death-h-39136",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/03/06/16/abs-cbn-director-francis-pasion-found-dead",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/videos/hindi-ka-na-mag-iisa-full-episode-38-stream-together/326486/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/showbiz/showbizabroad/1003018/h-e-r-and-liza-soberano-on-forgotten-island-philippine-folklore-and-their-new-song-brb/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/ulatfilipino/337517/ang-unang-babae-sa-puso-ni-andres-bonifacio/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/571759/did-you-know-mother-ignacia-del-espiritu-santo",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2297071/harmful-haze-from-indonesia-fires-to-affect-western-ph-pagasa",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://lifestyle.inquirer.net/363887/i-experienced-the-miracle-of-our-lady-of-lipa/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/word-of-the-day/2026/09/13/2555811/what-would-your-workplace-or-neighborhood-look-under-gods-rule",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/news-commentary/2016/01/08/1540858/black-nazarene-devotees-share-stories-faith",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2024/7/7/a-woman-touched-the-tassel-on-his-cloak",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/article/10936473/opinion/proclaiming-the-good-news",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2020/8/15/oratio-desperata",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1221661",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284250",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/photos/60936",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/features/2023/07/21/tnalak-festival-weaving-traditions-bridging-history-and-cultural-resilience",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/teacher-ikaw-naman-angara-leads-kick-off-of-national-teachers-month-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/regions/of-boundless-service-to-humanity/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/washing-of-the-feet-a-sacred-ritual-of-humility-heritage-on-maundy-thursday",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/pagasa-lpa-to-bring-cloudy-skies-scattered-rain-over-parts-of-ph",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/peter-yarrow-of-60s-folk-trio-peter-paul-and-mary-dies-at-86",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/tv5-unleashes-back-to-back-premiere-of-a-secret-in-prague-and-my-bespren-emman",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/fact-check-tiktok-video-showing-leni-robredo-as-lutang-was-spliced",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/celebrity-top-10-karen-davila-lyca-gairanod-memes-all-over-social-media-lucy-torres-gomez-says-former-tv5-show-brings-happy-memories",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/shamaine-buencamino-remembers-floy-quintos",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/alas-ng-bayan-2-0-holds-true-to-the-mission-of-tandang-sora-womens-museum",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/dds-dilemma",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/moveph/199230-passion-story-stations-cross/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/115869-jose-mari-chan-christmas-songs/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/obituary-mother-teodora-juan-missionary-catechists-saint-therese/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/studios/tv/2026/9/20/fyang-nag-react-sa-mga-komento-ng-bashers-gandang-gabi-vice-2257",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/9/20/claudine-barretto-maricel-soriano-lead-star-studded-fashion-show-2343",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/70/dingdong-dantes-man-on-a-mission/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002197/legarda-seeks-moral-support-from-senators-amid-plunder-allegations-illness-lacson/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://lifestyle.inquirer.net/360667/mary-magdalene-the-woman-jesus-loved/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://opinion.inquirer.net/194383/kamukha-niya-si-mama-mary",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pop.inquirer.net/103517/the-curious-case-of-judiel-nieva",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2011/12/02/753816/story-behind-joe-maris-double-diamond-christmas-song",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/daily-bread/2026/09/21/2557645/ups-and-downs-life",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2023/8/19/when-we-pray-for-a-loved-one",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/you-yourself-a-sword-will-pierce",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2023/12/20/how-does-this-happen-to-me-that-the-mother-of-my-lord-should-come-to-me",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1069583",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1018673",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/flickers-of-hope-twinkles-story-of-diligence-determination-and-optimism/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/features/page/39/?division=Mindanao&region=CAR",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ricci-rivero's-dad-posts-cryptic-reminder-about-dating-on-instagram",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/us-judge-signals-rejection-of-part-of-tiktok-privacy-settlement",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ill-see-you-in-court-denise-julia-to-take-legal-action-vs-killa-kush-amid-podcast-drama",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/the-miracle-of-saint-marie-eugenie",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/jose-mari-chan-talks-about-sugar-not-so-sweet-memes",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/teach-kids-the-power-of-choice-and-other-nuggets-of-wisdom-from-these-celebrity-dads",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/new-ccp-chair-margie-moran-bats-early-exposure-arts-kids",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/guanzons-challenge-baptism-fire-ferolino",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/vera-files-fact-check-demo-video-falsely-claims-rum-bleach-m",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/culture-desk/46305-life-and-style-2013-yearender/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/sports/gilas-pilipinas/g94006089-gilas-women/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/science/earth-space/profile-space-engineer-julie-ann-banatao/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www2.abs-cbn.com/Weekdays/cast/article/4199/dejesus/Maria-De-Jesus.aspx",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/2019/9/17/fresh-scoops/gab-valenciano-becomes-victim-of-celebrity-death-h-39136",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/03/06/16/abs-cbn-director-francis-pasion-found-dead",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/videos/hindi-ka-na-mag-iisa-full-episode-38-stream-together/326486/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/showbiz/showbizabroad/1003018/h-e-r-and-liza-soberano-on-forgotten-island-philippine-folklore-and-their-new-song-brb/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/ulatfilipino/337517/ang-unang-babae-sa-puso-ni-andres-bonifacio/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/571759/did-you-know-mother-ignacia-del-espiritu-santo",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2297071/harmful-haze-from-indonesia-fires-to-affect-western-ph-pagasa",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://lifestyle.inquirer.net/363887/i-experienced-the-miracle-of-our-lady-of-lipa/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/word-of-the-day/2026/09/13/2555811/what-would-your-workplace-or-neighborhood-look-under-gods-rule",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/news-commentary/2016/01/08/1540858/black-nazarene-devotees-share-stories-faith",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2024/7/7/a-woman-touched-the-tassel-on-his-cloak",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/article/10936473/opinion/proclaiming-the-good-news",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2020/8/15/oratio-desperata",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1221661",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1284250",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/photos/60936",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/features/2023/07/21/tnalak-festival-weaving-traditions-bridging-history-and-cultural-resilience",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/teacher-ikaw-naman-angara-leads-kick-off-of-national-teachers-month-2026/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/regions/of-boundless-service-to-humanity/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/washing-of-the-feet-a-sacred-ritual-of-humility-heritage-on-maundy-thursday",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/pagasa-lpa-to-bring-cloudy-skies-scattered-rain-over-parts-of-ph",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/peter-yarrow-of-60s-folk-trio-peter-paul-and-mary-dies-at-86",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/tv5-unleashes-back-to-back-premiere-of-a-secret-in-prague-and-my-bespren-emman",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/fact-check-tiktok-video-showing-leni-robredo-as-lutang-was-spliced",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/celebrity-top-10-karen-davila-lyca-gairanod-memes-all-over-social-media-lucy-torres-gomez-says-former-tv5-show-brings-happy-memories",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/shamaine-buencamino-remembers-floy-quintos",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/alas-ng-bayan-2-0-holds-true-to-the-mission-of-tandang-sora-womens-museum",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/dds-dilemma",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/moveph/199230-passion-story-stations-cross/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/115869-jose-mari-chan-christmas-songs/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/philippines/obituary-mother-teodora-juan-missionary-catechists-saint-therese/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/studios/tv/2026/9/20/fyang-nag-react-sa-mga-komento-ng-bashers-gandang-gabi-vice-2257",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/9/20/claudine-barretto-maricel-soriano-lead-star-studded-fashion-show-2343",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/70/dingdong-dantes-man-on-a-mission/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002197/legarda-seeks-moral-support-from-senators-amid-plunder-allegations-illness-lacson/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://lifestyle.inquirer.net/360667/mary-magdalene-the-woman-jesus-loved/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://opinion.inquirer.net/194383/kamukha-niya-si-mama-mary",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pop.inquirer.net/103517/the-curious-case-of-judiel-nieva",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2011/12/02/753816/story-behind-joe-maris-double-diamond-christmas-song",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/daily-bread/2026/09/21/2557645/ups-and-downs-life",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2023/8/19/when-we-pray-for-a-loved-one",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/you-yourself-a-sword-will-pierce",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2023/12/20/how-does-this-happen-to-me-that-the-mother-of-my-lord-should-come-to-me",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1069583",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1018673",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/flickers-of-hope-twinkles-story-of-diligence-determination-and-optimism/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/features/page/39/?division=Mindanao&region=CAR",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ricci-rivero's-dad-posts-cryptic-reminder-about-dating-on-instagram",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/us-judge-signals-rejection-of-part-of-tiktok-privacy-settlement",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ill-see-you-in-court-denise-julia-to-take-legal-action-vs-killa-kush-amid-podcast-drama",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/the-miracle-of-saint-marie-eugenie",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/jose-mari-chan-talks-about-sugar-not-so-sweet-memes",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/teach-kids-the-power-of-choice-and-other-nuggets-of-wisdom-from-these-celebrity-dads",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "The woman believed that touching the hem of Jesus's garment could change everything."
+        },
+        "scoring_claim": "The woman believed that touching the hem of Jesus's garment could change everything.",
+        "search_query": "woman believed touching Jesus garment could change everything",
+        "event_search_query": "She Jesus His Daughter Mark Maybe Keep Just",
+        "retrieval_strategy": "claim_search_plus_event_pool",
+        "risk_tags": [],
+        "claim_hash": "b165191c1241f4fd11aa292119d3aecd055cd0ebd889ad4428efd1410dd49f64",
+        "cache_version": "week7-general-claims-v36",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 1 of 1 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "Manila Bulletin",
+          "title": "Manila Bulletin - A woman… touched the tassel on his cloak",
+          "url": "https://mb.com.ph/2024/7/7/a-woman-touched-the-tassel-on-his-cloak",
+          "status": "extracted",
+          "word_count": 134,
+          "evidence_method": "component_review",
+          "extraction_quality": "excerpt",
+          "evidence_pool": "claim_specific",
+          "evidence_type": "search_excerpt"
+        },
+        "supporting_sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - A woman… touched the tassel on his cloak",
+            "url": "https://mb.com.ph/2024/7/7/a-woman-touched-the-tassel-on-his-cloak",
+            "status": "extracted",
+            "word_count": 134,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_pool": "claim_specific",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 152,
+        "searched_articles": 62,
+        "extracted_articles": 62,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 10,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Rappler",
+            "results_found": 8,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 12,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "GMA News",
+            "results_found": 16,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 20,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 19,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 18,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 11,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 17,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 11,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 10,
+            "articles_checked": 6,
+            "articles_extracted": 6
+          }
+        ],
+        "sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - A woman… touched the tassel on his cloak",
+            "url": "https://mb.com.ph/2024/7/7/a-woman-touched-the-tassel-on-his-cloak",
+            "status": "extracted",
+            "word_count": 134,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_pool": "claim_specific",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - A woman… touched the tassel on his cloak",
+            "url": "https://mb.com.ph/2024/7/7/a-woman-touched-the-tassel-on-his-cloak",
+            "status": "extracted",
+            "word_count": 134,
+            "evidence_method": "component_review",
+            "extraction_quality": "excerpt",
+            "evidence_pool": "claim_specific",
+            "evidence_type": "search_excerpt"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not mention a woman believing that touching Jesus's garment could change everything.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 3,
+        "claim_text": "Jesus said, “Daughter, your faith has healed you.”",
+        "normalized_claim": "Jesus said, “Daughter, your faith has healed you.”",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Jesus",
+          "role": null,
+          "statement": "Jesus said, “Daughter, your faith has healed you.”",
+          "source": null,
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "absent",
+            "source": "absent",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Jesus said, “Daughter, your faith has healed you.”",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+                  "quote": "34 He said to her, “Daughter, your faith has saved you. Go in peace and be cured of your affliction. 35 While he was still speaking, people from the synagogue official’s house arrived and said, “Your daughter has died; why trouble the teacher any longer?” 36 Disregarding the message that was reported, Jesus said to the synagogue official, “Do not be afraid; just have faith.” 37 He did not allow anyone to accompany him inside except Peter, James and John, the brother of James. 38 When they arrived at the house of the synagogue official, he caught sight of a commotion, people weeping and wailing loudly. 39 So he went in and said to them, “Why this commotion and weeping? The child is not dead but asleep.” 40 And they ridiculed him. Then he put them all out. He took the child’s father and mother and those who were with him and entered the room where the child was. 41 He took the child by the hand and said to her, “Talitha koum,” which means, “Little girl, I say to you, arise!” 42 The girl, a child of twelve, arose immediately and walked around. [At that] they were utterly astounded. 43 He gave strict orders that no one should know this and said that she should be given something to eat.”"
+                },
+                {
+                  "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+                  "quote": "Our Lord Jesus responded that her faith had healed her."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Passage 0 quotes Jesus as saying to the woman, “Daughter, your faith has saved you. Go in peace and be cured of your affliction,” which is a faithful paraphrase of “Daughter, your faith has healed you.” Passage 1 explicitly states, “Our Lord Jesus responded that her faith had healed her.” Both passages refer to the same biblical event involving Jesus and the woman with hemorrhage. All details of the claim are supported, and there is no contradiction.",
+              "context": {
+                "start": 0,
+                "end": 50,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Jesus",
+                      "start": 0,
+                      "end": 5
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "said",
+                      "start": 6,
+                      "end": 10
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Jesus said, “Daughter, your faith has healed you.”",
+                      "start": 0,
+                      "end": 50
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": [
+                    {
+                      "origin": "claim",
+                      "quote": "Jesus",
+                      "start": 0,
+                      "end": 5
+                    }
+                  ]
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Jesus said, “Daughter, your faith has healed you.”",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 50
+                },
+                "context_is_evidence": false,
+                "partition_repair": "context_count_mismatch_recombined_whole_claim"
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0,
+                1
+              ],
+              "reason": "Passage 0 quotes Jesus as saying to the woman, “Daughter, your faith has saved you. Go in peace and be cured of your affliction,” which is a faithful paraphrase of “Daughter, your faith has healed you.” Passage 1 explicitly states, “Our Lord Jesus responded that her faith had healed her.” Both passages refer to the same biblical event involving Jesus and the woman with hemorrhage. All details of the claim are supported, and there is no contradiction.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "Jesus said, “Daughter, your faith has healed you.”",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "Jesus said, “Daughter, your faith has healed you,” in the context of the healing of the woman with hemorrhage.",
+              "sources": {
+                "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage": {
+                  "status": "matched",
+                  "passage_ids": [
+                    19,
+                    30
+                  ],
+                  "reason": "Passage 19 quotes Jesus as saying to the woman, “Daughter, your faith has saved you. Go in peace and be cured of your affliction.” Passage 30 summarizes that Jesus responded that her faith had healed her. While the exact wording 'your faith has healed you' is not verbatim, the meaning and context are identical and refer to the same incident of Jesus addressing the woman with hemorrhage. The referent is clearly established as the healing of the woman with hemorrhage by Jesus.",
+                  "citations": [
+                    {
+                      "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+                      "quote": "34 He said to her, “Daughter, your faith has saved you. Go in peace and be cured of your affliction. 35 While he was still speaking, people from the synagogue official’s house arrived and said, “Your daughter has died; why trouble the teacher any longer?” 36 Disregarding the message that was reported, Jesus said to the synagogue official, “Do not be afraid; just have faith.” 37 He did not allow anyone to accompany him inside except Peter, James and John, the brother of James. 38 When they arrived at the house of the synagogue official, he caught sight of a commotion, people weeping and wailing loudly. 39 So he went in and said to them, “Why this commotion and weeping? The child is not dead but asleep.” 40 And they ridiculed him. Then he put them all out. He took the child’s father and mother and those who were with him and entered the room where the child was. 41 He took the child by the hand and said to her, “Talitha koum,” which means, “Little girl, I say to you, arise!” 42 The girl, a child of twelve, arose immediately and walked around. [At that] they were utterly astounded. 43 He gave strict orders that no one should know this and said that she should be given something to eat.”"
+                    },
+                    {
+                      "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+                      "quote": "Our Lord Jesus responded that her faith had healed her."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/shamaine-buencamino-remembers-floy-quintos",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/alas-ng-bayan-2-0-holds-true-to-the-mission-of-tandang-sora-womens-museum",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/dds-dilemma",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/moveph/199230-passion-story-stations-cross/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/115869-jose-mari-chan-christmas-songs/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/philippines/obituary-mother-teodora-juan-missionary-catechists-saint-therese/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www2.abs-cbn.com/Weekdays/cast/article/4199/dejesus/Maria-De-Jesus.aspx",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/studios/tv/2026/9/20/fyang-nag-react-sa-mga-komento-ng-bashers-gandang-gabi-vice-2257",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/9/20/claudine-barretto-maricel-soriano-lead-star-studded-fashion-show-2343",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/showbiz/showbizabroad/1003018/h-e-r-and-liza-soberano-on-forgotten-island-philippine-folklore-and-their-new-song-brb/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/70/dingdong-dantes-man-on-a-mission/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002197/legarda-seeks-moral-support-from-senators-amid-plunder-allegations-illness-lacson/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://lifestyle.inquirer.net/360667/mary-magdalene-the-woman-jesus-loved/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://opinion.inquirer.net/194383/kamukha-niya-si-mama-mary",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pop.inquirer.net/103517/the-curious-case-of-judiel-nieva",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2011/12/02/753816/story-behind-joe-maris-double-diamond-christmas-song",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/daily-bread/2026/09/21/2557645/ups-and-downs-life",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2023/8/19/when-we-pray-for-a-loved-one",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/you-yourself-a-sword-will-pierce",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2023/12/20/how-does-this-happen-to-me-that-the-mother-of-my-lord-should-come-to-me",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1069583",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1018673",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/flickers-of-hope-twinkles-story-of-diligence-determination-and-optimism/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/teacher-ikaw-naman-angara-leads-kick-off-of-national-teachers-month-2026/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/features/page/39/?division=Mindanao&region=CAR",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ricci-rivero's-dad-posts-cryptic-reminder-about-dating-on-instagram",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/us-judge-signals-rejection-of-part-of-tiktok-privacy-settlement",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ill-see-you-in-court-denise-julia-to-take-legal-action-vs-killa-kush-amid-podcast-drama",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/the-miracle-of-saint-marie-eugenie",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/jose-mari-chan-talks-about-sugar-not-so-sweet-memes",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/teach-kids-the-power-of-choice-and-other-nuggets-of-wisdom-from-these-celebrity-dads",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/shamaine-buencamino-remembers-floy-quintos",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/alas-ng-bayan-2-0-holds-true-to-the-mission-of-tandang-sora-womens-museum",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://verafiles.org/articles/dds-dilemma",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/moveph/199230-passion-story-stations-cross/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/entertainment/115869-jose-mari-chan-christmas-songs/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.rappler.com/philippines/obituary-mother-teodora-juan-missionary-catechists-saint-therese/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www2.abs-cbn.com/Weekdays/cast/article/4199/dejesus/Maria-De-Jesus.aspx",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/studios/tv/2026/9/20/fyang-nag-react-sa-mga-komento-ng-bashers-gandang-gabi-vice-2257",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/9/20/claudine-barretto-maricel-soriano-lead-star-studded-fashion-show-2343",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/showbiz/showbizabroad/1003018/h-e-r-and-liza-soberano-on-forgotten-island-philippine-folklore-and-their-new-song-brb/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/specials/content/70/dingdong-dantes-man-on-a-mission/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002197/legarda-seeks-moral-support-from-senators-amid-plunder-allegations-illness-lacson/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://lifestyle.inquirer.net/360667/mary-magdalene-the-woman-jesus-loved/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://opinion.inquirer.net/194383/kamukha-niya-si-mama-mary",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pop.inquirer.net/103517/the-curious-case-of-judiel-nieva",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/entertainment/2011/12/02/753816/story-behind-joe-maris-double-diamond-christmas-song",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.philstar.com/other-sections/daily-bread/2026/09/21/2557645/ups-and-downs-life",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2023/8/19/when-we-pray-for-a-loved-one",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2026/09/15/you-yourself-a-sword-will-pierce",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://mb.com.ph/2023/12/20/how-does-this-happen-to-me-that-the-mother-of-my-lord-should-come-to-me",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1069583",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1018673",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/news/flickers-of-hope-twinkles-story-of-diligence-determination-and-optimism/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/teacher-ikaw-naman-angara-leads-kick-off-of-national-teachers-month-2026/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://pia.gov.ph/features/page/39/?division=Mindanao&region=CAR",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ricci-rivero's-dad-posts-cryptic-reminder-about-dating-on-instagram",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/us-judge-signals-rejection-of-part-of-tiktok-privacy-settlement",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/ill-see-you-in-court-denise-julia-to-take-legal-action-vs-killa-kush-amid-podcast-drama",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/the-miracle-of-saint-marie-eugenie",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/jose-mari-chan-talks-about-sugar-not-so-sweet-memes",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          },
+          {
+            "url": "https://www.onenews.ph/articles/teach-kids-the-power-of-choice-and-other-nuggets-of-wisdom-from-these-celebrity-dads",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": [],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "not_required",
+              "program": "not_required",
+              "date": "not_required"
+            },
+            "date_confirmed": false
+          }
+        ],
+        "is_quote_derived": true,
+        "quote_paraphrase": {
+          "status": "ok",
+          "paraphrase": "Jesus stated that a woman's faith has healed her.",
+          "method": "openai",
+          "error": null,
+          "used_for_scoring": true
+        },
+        "scoring_claim": "Jesus stated that a woman's faith has healed her.",
+        "search_query": "Jesus said, “Daughter, your faith has healed you.”",
+        "event_search_query": "She Jesus His Daughter Mark Maybe Keep Just",
+        "retrieval_strategy": "event_pool_only",
+        "risk_tags": [],
+        "claim_hash": "4eaa9b37a979f4d07f8217e17149989d6a2d85a68c5b9e9adde73bf384438582",
+        "cache_version": "week7-general-claims-v36",
+        "verdict": "Verified",
+        "message": "Retrieved evidence supports that Jesus made this statement. This verifies the attribution, not the underlying claim by itself.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "Philippine Star",
+          "title": "Jairus's daughter & the woman with hemorrhage",
+          "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+          "status": "extracted",
+          "word_count": 944,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_pool": "event_context",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Jairus's daughter & the woman with hemorrhage",
+            "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+            "status": "extracted",
+            "word_count": 944,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 83,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Jairus's daughter & the woman with hemorrhage",
+            "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+            "status": "extracted",
+            "word_count": 944,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "Philippine Star",
+            "title": "Jairus's daughter & the woman with hemorrhage",
+            "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+            "status": "extracted",
+            "word_count": 944,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_pool": "event_context",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not mention Jesus stating that a woman's faith has healed her.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "mixed_content",
+        "confidence": 0.38,
+        "ambiguity_score": 0.65,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice",
+          "quote_context_needed",
+          "reported_attribution_needs_verification",
+          "vague_claim"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": true,
+        "eligible_for_verification": true,
+        "recommended_route": "verify_factual_claims_only",
+        "verification_text": "She had been suffering for 12 years.\nBut when she heard Jesus was passing by, she didn’t wait for the perfect words.\nShe didn’t need to explain everything.\nShe simply reached for Him.\nShe believed that even touching the hem of His garment could change everything.\nAnd Jesus said, “Daughter, your faith has healed you.”\nMaybe you’ve been carrying something quietly for a long time.\nYou don’t need perfect faith.\nJust keep reaching for Him.",
+        "normalized_verification_text": "She had been suffering for 12 years.\nBut when she heard Jesus was passing by, she didn’t wait for the perfect words.\nShe didn’t need to explain everything.\nShe simply reached for Him.\nShe believed that even touching the hem of His garment could change everything.\nAnd Jesus said, “Daughter, your faith has healed you.”\nMaybe you’ve been carrying something quietly for a long time.\nYou don’t need perfect faith.\nJust keep reaching for Him.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "She had been suffering for 12 years.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.42,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.42,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.12,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "But when she heard Jesus was passing by, she didn’t wait for the perfect words.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.2,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.2,
+            "score_gap": 0.1,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s3",
+            "text": "She didn’t need to explain everything.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s4",
+            "text": "She simply reached for Him.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s5",
+            "text": "She believed that even touching the hem of His garment could change everything.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.37,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.37,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.07,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s6",
+            "text": "And Jesus said, “Daughter, your faith has healed you.”",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.52,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.53,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.6,
+            "second_label": "factual_claim",
+            "second_label_score": 0.52,
+            "score_gap": 0.01,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "openai_factual_claim_advice",
+              "quote_context_needed",
+              "reported_attribution_needs_verification"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "reported"
+          },
+          {
+            "segment_id": "s7",
+            "text": "(Mark 5:34)",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.32,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.75
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.75,
+            "second_label": "factual_claim",
+            "second_label_score": 0.32,
+            "score_gap": 0.43,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s8",
+            "text": "Maybe you’re tired.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s9",
+            "text": "Maybe you’ve been carrying something quietly for a long time.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s10",
+            "text": "Keep reaching for Jesus.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s11",
+            "text": "You don’t need perfect faith.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s12",
+            "text": "Just keep reaching for Him.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s7",
+            "text": "(Mark 5:34)",
+            "segment_type": "unclear",
+            "reason_codes": [
+              "vague_claim"
+            ],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s8",
+            "text": "Maybe you’re tired.",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          },
+          {
+            "segment_id": "s10",
+            "text": "Keep reaching for Jesus.",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS will verify only the factual segments and skip non-checkable parts.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s4",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s5",
+                "top_label": "unclear",
+                "top_label_score": 0.4,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "low_classifier_confidence",
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s6",
+                "top_label": "factual_claim",
+                "top_label_score": 0.6,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "low_classifier_confidence",
+                  "quote_context_needed",
+                  "reported_attribution_needs_verification"
+                ]
+              },
+              {
+                "segment_id": "s7",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "vague_claim"
+                ]
+              },
+              {
+                "segment_id": "s8",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s9",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s10",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": []
+              },
+              {
+                "segment_id": "s11",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              },
+              {
+                "segment_id": "s12",
+                "top_label": "unclear",
+                "top_label_score": 0.5,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "needs_claim_extraction_review"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "States a factual event about the woman's suffering."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "Narrative context, not a checkable factual claim."
+          },
+          {
+            "segment_id": 2,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "Narrative context, not a checkable factual claim."
+          },
+          {
+            "segment_id": 3,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "Narrative context, not a checkable factual claim."
+          },
+          {
+            "segment_id": 4,
+            "disposition": "checkable",
+            "claim_indexes": [
+              1
+            ],
+            "reason": "States the woman's belief, which is a checkable event in the narrative."
+          },
+          {
+            "segment_id": 5,
+            "disposition": "checkable",
+            "claim_indexes": [
+              2
+            ],
+            "reason": "Direct reported speech attributed to Jesus."
+          },
+          {
+            "segment_id": 6,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "Generalized hypothetical, not a checkable factual claim."
+          },
+          {
+            "segment_id": 7,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "Generalized advice, not a checkable factual claim."
+          },
+          {
+            "segment_id": 8,
+            "disposition": "excluded",
+            "claim_indexes": [],
+            "reason": "Generalized advice, not a checkable factual claim."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "A woman had been suffering for 12 years."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "The woman believed that touching the hem of Jesus's garment could change everything."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              2
+            ],
+            "assertions": [
+              "Jesus said, “Daughter, your faith has healed you.”"
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "She had been suffering for 12 years.",
+            "normalized_claim": "A woman had been suffering for 12 years.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "woman suffering 12 years",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "She had been suffering for 12 years."
+              }
+            ],
+            "evidence_context": "She had been suffering for 12 years.\nBut when she heard Jesus was passing by, she didn’t wait for the perfect words.\nShe didn’t need to explain everything.\nShe simply reached for Him.\nShe believed that even touching the hem of His garment could change everything.\nAnd Jesus said, “Daughter, your faith has healed you.”\nMaybe you’ve been carrying something quietly for a long time.\nYou don’t need perfect faith.\nJust keep reaching for Him.",
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "She believed that even touching the hem of His garment could change everything.",
+            "normalized_claim": "The woman believed that touching the hem of Jesus's garment could change everything.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "woman believed touching Jesus garment could change everything",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 4,
+                "quote": "She believed that even touching the hem of His garment could change everything."
+              }
+            ],
+            "evidence_context": "She had been suffering for 12 years.\nBut when she heard Jesus was passing by, she didn’t wait for the perfect words.\nShe didn’t need to explain everything.\nShe simply reached for Him.\nShe believed that even touching the hem of His garment could change everything.\nAnd Jesus said, “Daughter, your faith has healed you.”\nMaybe you’ve been carrying something quietly for a long time.\nYou don’t need perfect faith.\nJust keep reaching for Him.",
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 3,
+            "claim_text": "Jesus said, “Daughter, your faith has healed you.”",
+            "normalized_claim": "Jesus said, “Daughter, your faith has healed you.”",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Jesus",
+              "role": null,
+              "statement": "Jesus said, “Daughter, your faith has healed you.”",
+              "source": null,
+              "program": null,
+              "date": null
+            },
+            "search_query": "Jesus said, “Daughter, your faith has healed you.”",
+            "source_passages": [
+              {
+                "segment_id": 5,
+                "quote": "And Jesus said, “Daughter, your faith has healed you.”"
+              }
+            ],
+            "evidence_context": "She had been suffering for 12 years.\nBut when she heard Jesus was passing by, she didn’t wait for the perfect words.\nShe didn’t need to explain everything.\nShe simply reached for Him.\nShe believed that even touching the hem of His garment could change everything.\nAnd Jesus said, “Daughter, your faith has healed you.”\nMaybe you’ve been carrying something quietly for a long time.\nYou don’t need perfect faith.\nJust keep reaching for Him.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "absent",
+                "source": "absent",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": true
+          }
+        ],
+        "ignored_segments": [
+          {
+            "text": "significant role, helped defend and leading expert are evaluative wording, not standalone factual claims.",
+            "segment_type": "opinion"
+          }
+        ],
+        "post_type": "mixed_content",
+        "contains_opinion": true,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": true,
+        "status": "ok",
+        "query": "She Jesus His Daughter Mark Maybe Keep Just",
+        "total_search_results": 83,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "articles": [
+          {
+            "source": "VERA Files",
+            "title": "Shamaine Buencamino remembers Floy Quintos",
+            "url": "https://verafiles.org/articles/shamaine-buencamino-remembers-floy-quintos",
+            "status": "extracted",
+            "word_count": 1364,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "VERA Files",
+            "title": "‘Alas ng Bayan 2.0’ holds true to the mission of Tandang Sora Women’s Museum",
+            "url": "https://verafiles.org/articles/alas-ng-bayan-2-0-holds-true-to-the-mission-of-tandang-sora-womens-museum",
+            "status": "extracted",
+            "word_count": 1611,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "VERA Files",
+            "title": "The DDS dilemma",
+            "url": "https://verafiles.org/articles/dds-dilemma",
+            "status": "extracted",
+            "word_count": 689,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "The stories behind the Passion of Jesus",
+            "url": "https://www.rappler.com/moveph/199230-passion-story-stations-cross/",
+            "status": "extracted",
+            "word_count": 1143,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "The stories behind Jose Mari Chan's iconic Christmas songs",
+            "url": "https://www.rappler.com/entertainment/115869-jose-mari-chan-christmas-songs/",
+            "status": "extracted",
+            "word_count": 981,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Rappler",
+            "title": "Mother Teodora Juan, in the footsteps of Saint Therese",
+            "url": "https://www.rappler.com/philippines/obituary-mother-teodora-juan-missionary-catechists-saint-therese/",
+            "status": "extracted",
+            "word_count": 1353,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "https://www2.abs-cbn.com/Weekdays/cast/article/4199/dejesus/Maria-De-Jesus.aspx",
+            "url": "https://www2.abs-cbn.com/Weekdays/cast/article/4199/dejesus/Maria-De-Jesus.aspx",
+            "status": "extracted",
+            "word_count": 10,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Fyang, nag-react sa mga komento ng bashers | Gandang Gabi, Vice! | ABS-CBN Entertainment",
+            "url": "https://www.abs-cbn.com/entertainment/studios/tv/2026/9/20/fyang-nag-react-sa-mga-komento-ng-bashers-gandang-gabi-vice-2257",
+            "status": "extracted",
+            "word_count": 351,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "ABS-CBN News",
+            "title": "Claudine Barretto, Maricel Soriano lead star-studded fashion show; Barretto prepares for new movie | ABS-CBN Lifestyle",
+            "url": "https://www.abs-cbn.com/lifestyle/health-beauty-fashion/2026/9/20/claudine-barretto-maricel-soriano-lead-star-studded-fashion-show-2343",
+            "status": "extracted",
+            "word_count": 278,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "H.E.R. and Liza Soberano on 'Forgotten Island,' Philippine folklore, and their new song 'BRB'",
+            "url": "https://www.gmanetwork.com/news/showbiz/showbizabroad/1003018/h-e-r-and-liza-soberano-on-forgotten-island-philippine-folklore-and-their-new-song-brb/story/",
+            "status": "extracted",
+            "word_count": 4313,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Dingdong Dantes: Man On A Mission",
+            "url": "https://www.gmanetwork.com/news/specials/content/70/dingdong-dantes-man-on-a-mission/",
+            "status": "extracted",
+            "word_count": 1437,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "GMA News",
+            "title": "Legarda seeks moral support from senators amid plunder allegations, illness — Lacson",
+            "url": "https://www.gmanetwork.com/news/topstories/nation/1002197/legarda-seeks-moral-support-from-senators-amid-plunder-allegations-illness-lacson/story/",
+            "status": "extracted",
+            "word_count": 345,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "Mary Magdalene, the woman Jesus loved | Lifestyle.INQ | Lifestyle.INQ",
+            "url": "https://lifestyle.inquirer.net/360667/mary-magdalene-the-woman-jesus-loved/",
+            "status": "extracted",
+            "word_count": 329,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "‘Kamukha niya si’ Mama Mary! | Inquirer Opinion",
+            "url": "https://opinion.inquirer.net/194383/kamukha-niya-si-mama-mary",
+            "status": "extracted",
+            "word_count": 180,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "title": "The Curious Case of Judiel Nieva - POP!",
+            "url": "https://pop.inquirer.net/103517/the-curious-case-of-judiel-nieva",
+            "status": "extracted",
+            "word_count": 314,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "The story behind Joe Mari's double-diamond Christmas song",
+            "url": "https://www.philstar.com/entertainment/2011/12/02/753816/story-behind-joe-maris-double-diamond-christmas-song",
+            "status": "extracted",
+            "word_count": 803,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "The Ups and Downs of Life",
+            "url": "https://www.philstar.com/other-sections/daily-bread/2026/09/21/2557645/ups-and-downs-life",
+            "status": "extracted",
+            "word_count": 350,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Philippine Star",
+            "title": "Jairus's daughter & the woman with hemorrhage",
+            "url": "https://qa.philstar.com/opinion/2012/07/01/823288/jairuss-daughter-woman-hemorrhage",
+            "status": "extracted",
+            "word_count": 944,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - When we pray for a loved one",
+            "url": "https://mb.com.ph/2023/8/19/when-we-pray-for-a-loved-one",
+            "status": "extracted",
+            "word_count": 192,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - You yourself a sword will pierce",
+            "url": "https://mb.com.ph/2026/09/15/you-yourself-a-sword-will-pierce",
+            "status": "extracted",
+            "word_count": 250,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Manila Bulletin",
+            "title": "Manila Bulletin - How does this happen to me, that the mother of my lord should come to me?",
+            "url": "https://mb.com.ph/2023/12/20/how-does-this-happen-to-me-that-the-mother-of-my-lord-should-come-to-me",
+            "status": "extracted",
+            "word_count": 217,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Catholics celebrate 102nd anniversary of Fatima apparitions | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1069583",
+            "status": "extracted",
+            "word_count": 234,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "News Articles | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/list",
+            "status": "extracted",
+            "word_count": 45,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine News Agency",
+            "title": "Simbang Gabi: Keeping a Christmas tradition alive | Philippine News Agency",
+            "url": "https://www.pna.gov.ph/articles/1018673",
+            "status": "extracted",
+            "word_count": 298,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "Flickers of Hope: Twinkle’s story of diligence, determination, and optimism - Philippine Information Agency",
+            "url": "https://pia.gov.ph/news/flickers-of-hope-twinkles-story-of-diligence-determination-and-optimism/",
+            "status": "extracted",
+            "word_count": 283,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "‘Teacher, Ikaw Naman’: Angara leads kick-off of National Teachers’ Month 2026 - Philippine Information Agency",
+            "url": "https://pia.gov.ph/press-release/teacher-ikaw-naman-angara-leads-kick-off-of-national-teachers-month-2026/",
+            "status": "extracted",
+            "word_count": 134,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "Philippine Information Agency",
+            "title": "Features - Philippine Information Agency",
+            "url": "https://pia.gov.ph/features/page/39/?division=Mindanao&region=CAR",
+            "status": "extracted",
+            "word_count": 105,
+            "extraction_quality": "excerpt",
+            "evidence_type": "search_excerpt"
+          },
+          {
+            "source": "DZRH News",
+            "title": "Ricci Rivero’s dad posts cryptic reminder about dating on Instagram",
+            "url": "https://www.dzrh.com.ph/post/ricci-rivero's-dad-posts-cryptic-reminder-about-dating-on-instagram",
+            "status": "extracted",
+            "word_count": 265,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "DZRH News",
+            "title": "US judge signals rejection of part of TikTok privacy settlement",
+            "url": "https://www.dzrh.com.ph/post/us-judge-signals-rejection-of-part-of-tiktok-privacy-settlement",
+            "status": "extracted",
+            "word_count": 395,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "DZRH News",
+            "title": "'I'll see you in court': Denise Julia to take legal action vs Killa Kush amid podcast drama",
+            "url": "https://www.dzrh.com.ph/post/ill-see-you-in-court-denise-julia-to-take-legal-action-vs-killa-kush-amid-podcast-drama",
+            "status": "extracted",
+            "word_count": 748,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "OneNews.PH",
+            "title": "The Miracle Of Saint Marie Eugenie | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/the-miracle-of-saint-marie-eugenie",
+            "status": "extracted",
+            "word_count": 1720,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "OneNews.PH",
+            "title": "Jose Mari Chan Talks About Sugar, Not So Sweet Memes | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/jose-mari-chan-talks-about-sugar-not-so-sweet-memes",
+            "status": "extracted",
+            "word_count": 724,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          },
+          {
+            "source": "OneNews.PH",
+            "title": "‘Teach Kids The Power Of Choice,’ And Other Nuggets Of Wisdom From These Celebrity Dads | OneNews.PH",
+            "url": "https://www.onenews.ph/articles/teach-kids-the-power-of-choice-and-other-nuggets-of-wisdom-from-these-celebrity-dads",
+            "status": "extracted",
+            "word_count": 663,
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ]
+      },
+      "timings": {
+        "request_id": "1def0d97294e40b78f3244219baf04da",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.002,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 5.7391,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0004,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0017,
+            "status": "ok"
+          },
+          {
+            "stage": "text.coverage_scope",
+            "duration_seconds": 1.3278,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 5.8321,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0051,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 13.4433,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0013,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 12.4947,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.1411,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 3.3769,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.4658,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.5245,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0554,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 7.4848,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 12.3032,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.1223,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 3.1734,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.6089,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.6607,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0475,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 11.6589,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.quote_paraphrase",
+            "duration_seconds": 1.13,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.political_flags",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.search_and_extract",
+            "duration_seconds": 0.1658,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.search_status",
+            "duration_seconds": 0.0794,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.generate_verdict",
+            "duration_seconds": 1.7271,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.openai_rag_fallback",
+            "duration_seconds": 1.6125,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.fallback_total",
+            "duration_seconds": 1.645,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.public_evidence_sources",
+            "duration_seconds": 0.0291,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.component_evidence_review",
+            "duration_seconds": 10.7505,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_3.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 70.337,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 96.7112,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  },
+  "post_id": "H22",
+  "started_utc": "2026-09-20T16:10:52.528256+00:00",
+  "seconds": 96.77,
+  "git_commit": "bef80703bbe6e64d6daadd4f7026218fde2c2add",
+  "cache_version": "week7-general-claims-v36",
+  "cache_policy": "reads and writes bypassed",
+  "post": {
+    "id": "H22",
+    "page": "Speak Faith",
+    "url": "https://www.facebook.com/share/p/1DhDrWzUud/",
+    "date": "2026-09-19",
+    "category": "opinion_satire",
+    "notes": "",
+    "text": "She had been suffering for 12 years.\nBut when she heard Jesus was passing by, she didn’t wait for the perfect words. She didn’t need to explain everything.\nShe simply reached for Him.\nShe believed that even touching the hem of His garment could change everything.\nAnd Jesus said, “Daughter, your faith has healed you.” (Mark 5:34)\nMaybe you’re tired. Maybe you’ve been carrying something quietly for a long time.\nKeep reaching for Jesus.\nYou don’t need perfect faith. Just keep reaching for Him.",
+    "image": "",
+    "image_text": "",
+    "expected": {
+      "overall": "No Checkable Claims",
+      "claims": [],
+      "references": []
+    },
+    "expected_fingerprint": "a3899d4998c82dd1be5bdd6b23a07c7a7d215583d635e50149d969d4bf85c18c"
+  },
+  "input_type": "text"
+}

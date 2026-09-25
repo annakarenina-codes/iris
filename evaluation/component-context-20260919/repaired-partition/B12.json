@@ -1,0 +1,162 @@
+{
+  "case_id": "B12",
+  "scope": "Saved case article pool, not an exact replay of per-claim retrieval inputs.",
+  "trace_id": "312ac6129d7b4c7bb3629db8fd524c3e",
+  "timestamp_utc": "2026-09-19T03:52:16.727259+00:00",
+  "input_sha256": "ce841dd7f81de9d21e3a094af4c99192105d0e39e8f42211d9a51b055a690022",
+  "seconds": 9.917,
+  "old_verdict": "Partially Verified",
+  "cache": "not used; direct component review",
+  "new_searches": 0,
+  "models": {
+    "OPENAI_MODEL": "gpt-4o-mini",
+    "IRIS_EVIDENCE_REVIEW_MODEL": "gpt-4.1-2025-04-14"
+  },
+  "code_sha256": {
+    "component_context.py": "1d4a896426ad00d5e2a0b00233450ccb98847c4fbd5a8edc1bfdf652e39fbeca",
+    "component_evidence.py": "6a30ba5da0632f8314f1ebdc81d5af8691bc8a0ff4fa14a95defdc5551d82bd4"
+  },
+  "review": {
+    "status": "ok",
+    "verdict": "Verified",
+    "components": [
+      {
+        "component": "Tony La Viña pointed to Loren Legarda’s legislative record, particularly her years of championing environmental causes.",
+        "status": "supported",
+        "citations": [
+          {
+            "url": "https://www.philstar.com/opinion/2026/09/13/2555876/defending-loren-advocacy-not-alibi-friendship-not-proof-innocence",
+            "quote": "He pointed to the senator’s legislative record, particularly her years of championing environmental causes."
+          },
+          {
+            "url": "https://www.philstar.com/opinion/2026/09/13/2555876/defending-loren-advocacy-not-alibi-friendship-not-proof-innocence",
+            "quote": "In an earlier Facebook post, he cited Loren’s environmental laws, including the Clean Air Act and Renewable Energy Act, among others."
+          }
+        ],
+        "review_reason": "Citation 0 explicitly states, \"He pointed to the senator’s legislative record, particularly her years of championing environmental causes.\" Citation 1 further supports this by noting that in an earlier Facebook post, Tony La Viña cited Loren’s environmental laws, including the Clean Air Act and Renewable Energy Act. These passages directly and unambiguously support the assertion that Tony La Viña pointed to Loren Legarda’s legislative record, especially her environmental advocacy. All qualifiers and details in the claim are preserved and matched in the cited text.",
+        "context": {
+          "start": 0,
+          "end": 119,
+          "anchors": {
+            "subject": [
+              {
+                "origin": "claim",
+                "quote": "Tony La Viña",
+                "start": 0,
+                "end": 12
+              },
+              {
+                "origin": "claim",
+                "quote": "her",
+                "start": 73,
+                "end": 76
+              }
+            ],
+            "action": [
+              {
+                "origin": "claim",
+                "quote": "pointed to",
+                "start": 13,
+                "end": 23
+              },
+              {
+                "origin": "claim",
+                "quote": "championing",
+                "start": 86,
+                "end": 97
+              }
+            ],
+            "event": [
+              {
+                "origin": "claim",
+                "quote": "Tony La Viña pointed to Loren Legarda’s legislative record",
+                "start": 0,
+                "end": 58
+              },
+              {
+                "origin": "claim",
+                "quote": "her years of championing environmental causes",
+                "start": 73,
+                "end": 118
+              }
+            ],
+            "time": [],
+            "negation": [],
+            "speaker": [
+              {
+                "origin": "source_context",
+                "quote": "Atty. Tony La Viña",
+                "start": 261,
+                "end": 279
+              }
+            ]
+          },
+          "proposed_ids": [
+            0
+          ],
+          "component_id": 0,
+          "assertion": "Tony La Viña pointed to Loren Legarda’s legislative record, particularly her years of championing environmental causes.",
+          "source_reference": {
+            "origin": "claim",
+            "start": 0,
+            "end": 119
+          },
+          "context_is_evidence": false,
+          "partition_repair": "context_count_mismatch_recombined_whole_claim"
+        },
+        "event_group_id": 0
+      }
+    ],
+    "supporting_urls": [
+      "https://www.philstar.com/opinion/2026/09/13/2555876/defending-loren-advocacy-not-alibi-friendship-not-proof-innocence"
+    ],
+    "reason": "Retrieved passages support 1 of 1 factual components.",
+    "entailment_checks": [
+      {
+        "same_subject_and_event": true,
+        "assertion_supported": true,
+        "qualifiers_preserved": true,
+        "citation_ids": [
+          0,
+          1
+        ],
+        "reason": "Citation 0 explicitly states, \"He pointed to the senator’s legislative record, particularly her years of championing environmental causes.\" Citation 1 further supports this by noting that in an earlier Facebook post, Tony La Viña cited Loren’s environmental laws, including the Clean Air Act and Renewable Energy Act. These passages directly and unambiguously support the assertion that Tony La Viña pointed to Loren Legarda’s legislative record, especially her environmental advocacy. All qualifiers and details in the claim are preserved and matched in the cited text.",
+        "component_id": 0
+      }
+    ],
+    "original_claim": "Tony La Viña pointed to Loren Legarda’s legislative record, particularly her years of championing environmental causes.",
+    "event_identity_checks": [
+      {
+        "group_id": 0,
+        "component_ids": [
+          0
+        ],
+        "referent": "Tony La Viña pointed to Loren Legarda’s legislative record, particularly her years of championing environmental causes.",
+        "sources": {
+          "https://www.philstar.com/opinion/2026/09/13/2555876/defending-loren-advocacy-not-alibi-friendship-not-proof-innocence": {
+            "status": "matched",
+            "passage_ids": [
+              9
+            ],
+            "reason": "Passage 9 explicitly states: 'He pointed to the senator’s legislative record, particularly her years of championing environmental causes.' This directly matches the claim that Tony La Viña pointed to Loren Legarda’s legislative record, especially her environmental advocacy.",
+            "citations": [
+              {
+                "url": "https://www.philstar.com/opinion/2026/09/13/2555876/defending-loren-advocacy-not-alibi-friendship-not-proof-innocence",
+                "quote": "He pointed to the senator’s legislative record, particularly her years of championing environmental causes."
+              }
+            ],
+            "context_status": "matching",
+            "temporal_context": {
+              "status": "unresolved",
+              "enforced": false,
+              "reason": "No explicit event-time anchor; semantic event review still required."
+            }
+          }
+        }
+      }
+    ],
+    "event_identity_model": "gpt-4.1-2025-04-14",
+    "partition_model": "gpt-4.1-2025-04-14",
+    "entailment_model": "gpt-4.1-2025-04-14"
+  }
+}

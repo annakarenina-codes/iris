@@ -1,0 +1,1888 @@
+{
+  "case_id": "C05",
+  "input_sha256": "fad6a0bcfbf41c217bdef89579822499c2e2ad39f6bb19466f866a1eb31375ab",
+  "started_utc": "2026-09-20T13:05:37.566571+00:00",
+  "http_status": 200,
+  "seconds": 74.072,
+  "trace_id": "11d53e0c28e04880a5f5e52e5a625801",
+  "cache_policy": "reads and writes bypassed",
+  "cache_version": "week7-date-anchor-v34",
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 2 extracted claims individually.",
+    "original_text": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss.",
+    "translated_text": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss.",
+    "detected_language": "english",
+    "politically_sensitive": false,
+    "flags": [],
+    "claim_count": 2,
+    "claim_extraction_status": "ok",
+    "post_type": "fact_only",
+    "content_profile_status": "ok",
+    "content_profile_route": "proceed_to_verification",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "text": "as they continue to cope with their loss",
+        "segment_type": "uncheckable"
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing.",
+        "normalized_claim": "Rene Baterbonia was not connected to University of Santo Tomas before his passing.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+                  "quote": "MANILA — Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "The cited passage explicitly states, 'Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing,' which directly supports the assertion with all qualifiers preserved. The passage refers to the same individual and the same context (before his passing), and there is no contradiction present.",
+              "context": {
+                "start": 0,
+                "end": 95,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Rene Baterbonia",
+                      "start": 0,
+                      "end": 15
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "was not, in any way, connected to",
+                      "start": 16,
+                      "end": 49
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing.",
+                      "start": 0,
+                      "end": 95
+                    }
+                  ],
+                  "time": [
+                    {
+                      "origin": "claim",
+                      "quote": "before his passing",
+                      "start": 76,
+                      "end": 94
+                    }
+                  ],
+                  "negation": [
+                    {
+                      "origin": "claim",
+                      "quote": "was not, in any way, connected to",
+                      "start": 16,
+                      "end": 49
+                    }
+                  ],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 95
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352"
+          ],
+          "reason": "Retrieved passages support 1 of 1 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0
+              ],
+              "reason": "The cited passage explicitly states, 'Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing,' which directly supports the assertion with all qualifiers preserved. The passage refers to the same individual and the same context (before his passing), and there is no contradiction present.",
+              "component_id": 0,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0
+              ],
+              "referent": "The assertion that Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing.",
+              "sources": {
+                "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352": {
+                  "status": "matched",
+                  "passage_ids": [
+                    2
+                  ],
+                  "reason": "Passage 2 explicitly states: 'Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing,' which directly matches the claim and establishes the identity of the assertion.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+                      "quote": "MANILA — Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-marcos-did-not-mention-rene-baterbonia-in-july-27-sona-2",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-viral-forensic-findings-not-from-rene-baterbonias-autopsy-report-2",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-fr-flavies-remark-calling-two-drowned-ateneo-athletes-ejk-victims-fake",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/athletes/rene-baterbonia-chased-dreams-family/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/sports/uaap/aurora-police-statement-ateneo-deaths-rene-baterbonia-divine-adili/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/athletes/rene-baterbonia-burial-talacogon-anguish-cries-justice/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/6/9/rene-baterbonia-s-passing-cuts-short-a-promising-path-beyond-ateneo-1145",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/15/uaap-ateneo-opens-season-89-campaign-with-baterbonia-adili-in-mind-and-heart-2100",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/basketball/1002701/rene-baterbonia-s-mom-watches-uaap-interacts-with-ust-s-koji-buenaflor-as-tigers-dedicate-game-to-late/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/basketball/991770/kieffer-alas-on-backlash-vs-ateneo-players-after-baterbonia-adili-drowning-tragedy-it-s-like-going-thro/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/lifestyle/news/27189/ateneo-shares-update-after-the-tragic-passing-of-rene-clert-baterbonia-and-divine-adili/photo",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://lifestyle.inquirer.net/576411/rene-baterbonia-parasocial/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://sports.inquirer.net/695434/tigers-eye-rebound-battle-archers-grieving-blue-eagles-make-debut",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://cebudailynews.inquirer.net/738008/rene-baterbonia-ateneo-rookie-returns-to-baterbonia-country",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/06/24/2537538/baterbonia-laid-rest",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://interaksyon.philstar.com/trends-spotlights/2026/09/17/319294/let-him-rest-peace-rene-baterbonia-merch-criticism-online/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://qa.philstar.com/sports/2026/06/09/2533978/no-foul-play-ateneo-drowning-incident-aurora-police-say",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/06/17/rene-baterbonia-receives-heros-welcome-as-wake-moves-to-agsur-jersey-retirement-court-named-after-him",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/16/ateneo-umariba-sa-unang-laro-sa-uaap-ermats-at-erpats-nina-baterbonia-at-adili-present-sa-arena/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/06/08/ateneo-standouts-adili-baterbonia-pass-away-in-drowning-incident/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1276826",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1277212",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/hoops-of-hope-4ps-beneficiary-rene-baterbonias-story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/government-work-classes-suspended-in-ncr-16-provinces-due-to-habagat/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/malacanang-on-ateneo-players-deaths-incident-requires-thorough-investigation/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/three-more-ateneo-personalities-face-nbi-probe-over-deaths-of-rene-baterbonia-and-divine-adili",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/pnp-to-place-metro-manila-on-full-alert-ahead-of-martial-law-anniversary-rallies",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/2-ateneo-student-managers-2-utility-staff-appear-before-nbi-in-baterbonia-adili-death-probe",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/baldwin-says-sorry-to-families-admits-failure",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/ateneo-de-davao-offers-scholarships-to-baterbonia-s-siblings",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/kin-of-ateneo-cager-seek-autopsy-mother-says-she-still-can-t-accept-her-son-s-death-an-accident",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-marcos-did-not-mention-rene-baterbonia-in-july-27-sona-2",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-viral-forensic-findings-not-from-rene-baterbonias-autopsy-report-2",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-fr-flavies-remark-calling-two-drowned-ateneo-athletes-ejk-victims-fake",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/people/athletes/rene-baterbonia-chased-dreams-family/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/sports/uaap/aurora-police-statement-ateneo-deaths-rene-baterbonia-divine-adili/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/people/athletes/rene-baterbonia-burial-talacogon-anguish-cries-justice/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/6/9/rene-baterbonia-s-passing-cuts-short-a-promising-path-beyond-ateneo-1145",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/15/uaap-ateneo-opens-season-89-campaign-with-baterbonia-adili-in-mind-and-heart-2100",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/basketball/1002701/rene-baterbonia-s-mom-watches-uaap-interacts-with-ust-s-koji-buenaflor-as-tigers-dedicate-game-to-late/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/basketball/991770/kieffer-alas-on-backlash-vs-ateneo-players-after-baterbonia-adili-drowning-tragedy-it-s-like-going-thro/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/lifestyle/news/27189/ateneo-shares-update-after-the-tragic-passing-of-rene-clert-baterbonia-and-divine-adili/photo",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://lifestyle.inquirer.net/576411/rene-baterbonia-parasocial/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://sports.inquirer.net/695434/tigers-eye-rebound-battle-archers-grieving-blue-eagles-make-debut",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://cebudailynews.inquirer.net/738008/rene-baterbonia-ateneo-rookie-returns-to-baterbonia-country",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/sports/2026/06/24/2537538/baterbonia-laid-rest",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://interaksyon.philstar.com/trends-spotlights/2026/09/17/319294/let-him-rest-peace-rene-baterbonia-merch-criticism-online/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://qa.philstar.com/sports/2026/06/09/2533978/no-foul-play-ateneo-drowning-incident-aurora-police-say",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/06/17/rene-baterbonia-receives-heros-welcome-as-wake-moves-to-agsur-jersey-retirement-court-named-after-him",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://balita.mb.com.ph/2026/09/16/ateneo-umariba-sa-unang-laro-sa-uaap-ermats-at-erpats-nina-baterbonia-at-adili-present-sa-arena/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/06/08/ateneo-standouts-adili-baterbonia-pass-away-in-drowning-incident/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1276826",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1277212",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/list",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/hoops-of-hope-4ps-beneficiary-rene-baterbonias-story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/government-work-classes-suspended-in-ncr-16-provinces-due-to-habagat/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/malacanang-on-ateneo-players-deaths-incident-requires-thorough-investigation/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/three-more-ateneo-personalities-face-nbi-probe-over-deaths-of-rene-baterbonia-and-divine-adili",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/pnp-to-place-metro-manila-on-full-alert-ahead-of-martial-law-anniversary-rallies",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/2-ateneo-student-managers-2-utility-staff-appear-before-nbi-in-baterbonia-adili-death-probe",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/baldwin-says-sorry-to-families-admits-failure",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/ateneo-de-davao-offers-scholarships-to-baterbonia-s-siblings",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/kin-of-ateneo-cager-seek-autopsy-mother-says-she-still-can-t-accept-her-son-s-death-an-accident",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Rene Baterbonia was not connected to University of Santo Tomas before his passing."
+        },
+        "scoring_claim": "Rene Baterbonia was not connected to University of Santo Tomas before his passing.",
+        "search_query": "Rene Baterbonia University of Santo Tomas connection passing",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "e1cceba1e8bfdb5b2240a2f3036b93b0e7c06ce89f830c1556988666b22a7df6",
+        "cache_version": "week7-date-anchor-v34",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 1 of 1 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "ABS-CBN News",
+          "title": "‘PARA KAY RENE’: UST dedicates UAAP Season 89 campaign to Baterbonia family | ABS-CBN Sports",
+          "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+          "status": "extracted",
+          "word_count": 383,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "‘PARA KAY RENE’: UST dedicates UAAP Season 89 campaign to Baterbonia family | ABS-CBN Sports",
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+            "status": "extracted",
+            "word_count": 383,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 89,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 5,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "‘PARA KAY RENE’: UST dedicates UAAP Season 89 campaign to Baterbonia family | ABS-CBN Sports",
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+            "status": "extracted",
+            "word_count": 383,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "‘PARA KAY RENE’: UST dedicates UAAP Season 89 campaign to Baterbonia family | ABS-CBN Sports",
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+            "status": "extracted",
+            "word_count": 383,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence confirms Baterbonia's connection status with the University of Santo Tomas before his passing.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "Rene Baterbonia's bereaved family found solace with the España-based team as they cope with their loss.",
+        "normalized_claim": "Rene Baterbonia's bereaved family found solace with the España-based team as they cope with their loss.",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Verified",
+          "components": [
+            {
+              "component": "Rene Baterbonia's bereaved family found solace with the España-based team",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+                  "quote": "MANILA — Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Citation 0 explicitly states that Rene Baterbonia's bereaved family found solace with the España-based team (University of Santo Tomas). The passage directly matches the claim, with no qualifiers missing or altered. The subject (Baterbonia's family) and event (finding solace with the team) are the same, and the occurrence is clearly identified as the same visit and interaction described in the claim.",
+              "context": {
+                "start": 0,
+                "end": 73,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "Rene Baterbonia's bereaved family",
+                      "start": 0,
+                      "end": 33
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "found solace with the España-based team",
+                      "start": 34,
+                      "end": 73
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "Rene Baterbonia's bereaved family found solace with the España-based team",
+                      "start": 0,
+                      "end": 73
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  0
+                ],
+                "component_id": 0,
+                "assertion": "Rene Baterbonia's bereaved family found solace with the España-based team",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 0,
+                  "end": 73
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            },
+            {
+              "component": "as they cope with their loss.",
+              "status": "supported",
+              "citations": [
+                {
+                  "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+                  "quote": "MANILA — Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss."
+                }
+              ],
+              "evidence_relation": "supported",
+              "review_reason": "Citation 0 states that the bereaved family found solace with the España-based team 'as they continue to cope with their loss.' This directly supports the assertion that the solace was found as they cope with their loss, preserving the qualifiers and referring to the same subject and event. The occurrence is the same as described in the claim.",
+              "context": {
+                "start": 74,
+                "end": 103,
+                "anchors": {
+                  "subject": [
+                    {
+                      "origin": "claim",
+                      "quote": "they",
+                      "start": 77,
+                      "end": 81
+                    }
+                  ],
+                  "action": [
+                    {
+                      "origin": "claim",
+                      "quote": "cope with their loss",
+                      "start": 82,
+                      "end": 102
+                    }
+                  ],
+                  "event": [
+                    {
+                      "origin": "claim",
+                      "quote": "they cope with their loss",
+                      "start": 77,
+                      "end": 102
+                    }
+                  ],
+                  "time": [],
+                  "negation": [],
+                  "speaker": []
+                },
+                "proposed_ids": [
+                  1
+                ],
+                "component_id": 1,
+                "assertion": "as they cope with their loss.",
+                "source_reference": {
+                  "origin": "claim",
+                  "start": 74,
+                  "end": 103
+                },
+                "context_is_evidence": false
+              },
+              "event_group_id": 0
+            }
+          ],
+          "supporting_urls": [
+            "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352"
+          ],
+          "reason": "Retrieved passages support 2 of 2 factual components.",
+          "entailment_checks": [
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0
+              ],
+              "reason": "Citation 0 explicitly states that Rene Baterbonia's bereaved family found solace with the España-based team (University of Santo Tomas). The passage directly matches the claim, with no qualifiers missing or altered. The subject (Baterbonia's family) and event (finding solace with the team) are the same, and the occurrence is clearly identified as the same visit and interaction described in the claim.",
+              "component_id": 0,
+              "denial_urls": []
+            },
+            {
+              "same_subject_and_event": true,
+              "assertion_supported": true,
+              "qualifiers_preserved": true,
+              "contradicted": false,
+              "same_occurrence": true,
+              "missing_kind": "none",
+              "contradiction_kind": "none",
+              "citation_ids": [
+                0
+              ],
+              "reason": "Citation 0 states that the bereaved family found solace with the España-based team 'as they continue to cope with their loss.' This directly supports the assertion that the solace was found as they cope with their loss, preserving the qualifiers and referring to the same subject and event. The occurrence is the same as described in the claim.",
+              "component_id": 1,
+              "denial_urls": []
+            }
+          ],
+          "original_claim": "Rene Baterbonia's bereaved family found solace with the España-based team as they cope with their loss.",
+          "event_identity_checks": [
+            {
+              "group_id": 0,
+              "component_ids": [
+                0,
+                1
+              ],
+              "referent": "Rene Baterbonia's bereaved family found solace with the España-based team (University of Santo Tomas/UST) as they cope with their loss after Rene's passing.",
+              "sources": {
+                "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352": {
+                  "status": "matched",
+                  "passage_ids": [
+                    2,
+                    3,
+                    4,
+                    6,
+                    11
+                  ],
+                  "reason": "Passage 2 explicitly states that Rene Baterbonia was not connected to UST before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss. Passages 3, 4, 6, and 11 further describe the family's interaction with UST and the comfort found, supporting both the solace and coping aspects.",
+                  "citations": [
+                    {
+                      "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+                      "quote": "MANILA — Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+                      "quote": "Rene’s parents, Rovelyn Baterbonia and Rene Baterbonia Sr., were present at the UAAP Season 89 men’s basketball matches on Wednesday and visited UST ahead of its game against De La Salle University."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+                      "quote": "Growling Tigers head coach Pido Jarencio revealed that the Baterbonias decided to visit the team after Rovelyn found comfort in seeing UST forward Koji Buenaflor, whom the family felt bore similarities to Rene."
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+                      "quote": "“Pumunta kay Koji kasi parang lookalike ni Rene. Niyakap, umiiyak yung nanay.”"
+                    },
+                    {
+                      "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+                      "quote": "“Si Koji, naaalala nila na parang anak nila, kaya kami naman, yun lang ang nao-offer namin sa kanila.”"
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                },
+                "https://www.gmanetwork.com/news/sports/basketball/1002701/rene-baterbonia-s-mom-watches-uaap-interacts-with-ust-s-koji-buenaflor-as-tigers-dedicate-game-to-late/story/": {
+                  "status": "matched",
+                  "passage_ids": [
+                    18,
+                    19,
+                    20,
+                    22,
+                    23,
+                    24
+                  ],
+                  "reason": "Passages 18, 19, 20, 22, 23, and 24 describe Rene Baterbonia's mother attending the UST game, interacting with the team and Koji Buenaflor, and finding comfort in the experience. The passages also mention the emotional impact and the team's dedication to Rene, supporting the claim that the bereaved family found solace with UST as they cope with their loss.",
+                  "citations": [
+                    {
+                      "url": "https://www.gmanetwork.com/news/sports/basketball/1002701/rene-baterbonia-s-mom-watches-uaap-interacts-with-ust-s-koji-buenaflor-as-tigers-dedicate-game-to-late/story/",
+                      "quote": "Rene Baterbonia’s mom, Rovelyn, was on the sidelines of the UAAP Season 89 game between the University of Santo Tomas and De La Salle University on Wednesday at the Mall of Asia Arena."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/sports/basketball/1002701/rene-baterbonia-s-mom-watches-uaap-interacts-with-ust-s-koji-buenaflor-as-tigers-dedicate-game-to-late/story/",
+                      "quote": "During their visit to the venue, Rovelyn also had a photo with UST’s Koji Buenaflor, who some believe bears a resemblance to the late Rene."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/sports/basketball/1002701/rene-baterbonia-s-mom-watches-uaap-interacts-with-ust-s-koji-buenaflor-as-tigers-dedicate-game-to-late/story/",
+                      "quote": "“Rene, even if you’re not here, I am still supporting the call for justice for your death. Thank you, UST, for allowing me to have a photo with someone who looks like you. This game’s for you,” Rovelyn said in Filipino in a Facebook post."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/sports/basketball/1002701/rene-baterbonia-s-mom-watches-uaap-interacts-with-ust-s-koji-buenaflor-as-tigers-dedicate-game-to-late/story/",
+                      "quote": "“It was a touching moment earlier. His mother came to us and went to Koji because Koji looks like Rene. She was reminded of Rene, embraced Koji as if he were Rene, and started crying,” Jarencio said."
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/sports/basketball/1002701/rene-baterbonia-s-mom-watches-uaap-interacts-with-ust-s-koji-buenaflor-as-tigers-dedicate-game-to-late/story/",
+                      "quote": "“I simply told her, ‘You are here with us, and we will dedicate all our games to your son, to Rene.’ She was very happy.”"
+                    },
+                    {
+                      "url": "https://www.gmanetwork.com/news/sports/basketball/1002701/rene-baterbonia-s-mom-watches-uaap-interacts-with-ust-s-koji-buenaflor-as-tigers-dedicate-game-to-late/story/",
+                      "quote": "“We’re not doing this for show or grandstanding. They came to us and to Koji, and they were reminded of Rene because he looked like their son. So that’s what I could offer them: every game will be dedicated to Rene Baterbonia. That came from our hearts,” he added."
+                    }
+                  ],
+                  "context_status": "matching",
+                  "temporal_context": {
+                    "status": "unresolved",
+                    "enforced": false,
+                    "reason": "No explicit event-time anchor; semantic event review still required."
+                  }
+                }
+              }
+            }
+          ],
+          "event_identity_model": "gpt-4.1-2025-04-14",
+          "partition_model": "gpt-4.1-2025-04-14",
+          "assessment_model": "gpt-4.1-2025-04-14",
+          "entailment_model": "gpt-4.1-2025-04-14"
+        },
+        "review_error": null,
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-marcos-did-not-mention-rene-baterbonia-in-july-27-sona-2",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-viral-forensic-findings-not-from-rene-baterbonias-autopsy-report-2",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/the-absurdity-that-is-pia-cayetano",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/athletes/rene-baterbonia-mom-demands-answers-son-death-ateneo-team-building/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/sports/uaap/ateneo-blue-eagles-ace-first-test-after-rene-baterbonia-divine-adili-deaths/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.rappler.com/people/athletes/rene-baterbonia-burial-talacogon-anguish-cries-justice/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/6/9/mother-mourns-loss-of-rene-baterbonia-after-team-building-tragedy-1516",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/6/rene-baterbonia-s-mom-prefers-prayers-and-financial-donation-over-material-gift-as-she-seeks-justice-1923",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/photos/rene-baterbonias-former-ateneo-de-davao-teammates-commit-to-de-la-salle-zobel/27292/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/basketball/1002701/rene-baterbonia-s-mom-watches-uaap-interacts-with-ust-s-koji-buenaflor-as-tigers-dedicate-game-to-late/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/regionaltv/sports/114474/agsur-names-baterbonia-sports-icon-retires-no-2-jersey/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2265919/baterbonias-mom-reiterates-call-for-justice-on-40th-day-of-his-death",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://sports.inquirer.net/695618/in-front-of-late-teammates-parents-blue-eagles-forge-hot-season-start",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://cebudailynews.inquirer.net/741115/rene-baterbonia-laid-to-rest-in-agusan-del-sur-hometown",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/06/11/2534501/ateneo-urged-support-late-cager-rene-baterbonias-siblings",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://interaksyon.philstar.com/trends-spotlights/2026/09/15/319196/divine-adili-parents-win-hearts-supporting-ateneo-uaap-son-tragic-death/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://interaksyon.philstar.com/trends-spotlights/2026/06/15/314903/business-raises-funds-rene-baterbonia-family-watch-sales/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/06/09/mother-of-ateneo-team-building-drowning-victim-demands-answers-justice",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/09/16/adilis-parents-to-watch-divines-ateneo-in-season-89-debut/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/06/10/renes-grieving-mom-insists-son-has-bruises-on-different-parts-of-body/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1276826",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1277961",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283969",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/baterbonia-family-visits-nha-awarded-condo-unit/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/worlds-largest-indoor-arena-opens-in-davao-city/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/news/hoops-of-hope-4ps-beneficiary-rene-baterbonias-story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dswd-extends-condolences-to-late-blue-eagle-baterbonias-loved-ones",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/citizens-seek-nbi-probe-into-peso54b-contracts-of-firms-linked-to-pampanga-mayor",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/coach-tab-baldwin-mourns-loss-of-adili-baterbonia-ive-failed-im-sorry",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/dole-summons-ateneo-s-baldwin",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bfar-vessel-hit-by-china-coast-guard-ship",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.onenews.ph/articles/mother-of-varsity-cager-seeks-justice-for-son",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-marcos-did-not-mention-rene-baterbonia-in-july-27-sona-2",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/fact-check-viral-forensic-findings-not-from-rene-baterbonias-autopsy-report-2",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/the-absurdity-that-is-pia-cayetano",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/people/athletes/rene-baterbonia-mom-demands-answers-son-death-ateneo-team-building/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/sports/uaap/ateneo-blue-eagles-ace-first-test-after-rene-baterbonia-divine-adili-deaths/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.rappler.com/people/athletes/rene-baterbonia-burial-talacogon-anguish-cries-justice/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/6/9/mother-mourns-loss-of-rene-baterbonia-after-team-building-tragedy-1516",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/entertainment/showbiz/celebrities/2026/9/6/rene-baterbonia-s-mom-prefers-prayers-and-financial-donation-over-material-gift-as-she-seeks-justice-1923",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/entertainment/photos/rene-baterbonias-former-ateneo-de-davao-teammates-commit-to-de-la-salle-zobel/27292/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/sports/basketball/1002701/rene-baterbonia-s-mom-watches-uaap-interacts-with-ust-s-koji-buenaflor-as-tigers-dedicate-game-to-late/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/regionaltv/sports/114474/agsur-names-baterbonia-sports-icon-retires-no-2-jersey/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2265919/baterbonias-mom-reiterates-call-for-justice-on-40th-day-of-his-death",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://sports.inquirer.net/695618/in-front-of-late-teammates-parents-blue-eagles-forge-hot-season-start",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://cebudailynews.inquirer.net/741115/rene-baterbonia-laid-to-rest-in-agusan-del-sur-hometown",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/06/11/2534501/ateneo-urged-support-late-cager-rene-baterbonias-siblings",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://interaksyon.philstar.com/trends-spotlights/2026/09/15/319196/divine-adili-parents-win-hearts-supporting-ateneo-uaap-son-tragic-death/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://interaksyon.philstar.com/trends-spotlights/2026/06/15/314903/business-raises-funds-rene-baterbonia-family-watch-sales/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://mb.com.ph/2026/06/09/mother-of-ateneo-team-building-drowning-victim-demands-answers-justice",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/09/16/adilis-parents-to-watch-divines-ateneo-in-season-89-debut/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://tempo.mb.com.ph/2026/06/10/renes-grieving-mom-insists-son-has-bruises-on-different-parts-of-body/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1276826",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1277961",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1283969",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/baterbonia-family-visits-nha-awarded-condo-unit/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/worlds-largest-indoor-arena-opens-in-davao-city/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://pia.gov.ph/news/hoops-of-hope-4ps-beneficiary-rene-baterbonias-story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/dswd-extends-condolences-to-late-blue-eagle-baterbonias-loved-ones",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/citizens-seek-nbi-probe-into-peso54b-contracts-of-firms-linked-to-pampanga-mayor",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.dzrh.com.ph/post/coach-tab-baldwin-mourns-loss-of-adili-baterbonia-ive-failed-im-sorry",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/dole-summons-ateneo-s-baldwin",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/bfar-vessel-hit-by-china-coast-guard-ship",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.onenews.ph/articles/mother-of-varsity-cager-seeks-justice-for-son",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Rene Baterbonia's bereaved family found solace with the España-based team as they cope with their loss."
+        },
+        "scoring_claim": "Rene Baterbonia's bereaved family found solace with the España-based team as they cope with their loss.",
+        "search_query": "Rene Baterbonia bereaved family solace España-based team",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "b6244264dcb50d62c0b388a7bf82f5c00eea9c4879014156e412117a3663d111",
+        "cache_version": "week7-date-anchor-v34",
+        "verdict": "Verified",
+        "message": "Retrieved passages support 2 of 2 factual components.",
+        "politically_sensitive": false,
+        "flags": [],
+        "cache_hit": false,
+        "corroboration_count": 1,
+        "primary_evidence": {
+          "source": "ABS-CBN News",
+          "title": "‘PARA KAY RENE’: UST dedicates UAAP Season 89 campaign to Baterbonia family | ABS-CBN Sports",
+          "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+          "status": "extracted",
+          "word_count": 383,
+          "evidence_method": "component_review",
+          "extraction_quality": "full",
+          "evidence_type": "full_text"
+        },
+        "supporting_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "‘PARA KAY RENE’: UST dedicates UAAP Season 89 campaign to Baterbonia family | ABS-CBN Sports",
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+            "status": "extracted",
+            "word_count": 383,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "search_status": "ok",
+        "total_search_results": 96,
+        "searched_articles": 33,
+        "extracted_articles": 33,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 6,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Rappler",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "GMA News",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 10,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 8,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "DZRH News",
+            "results_found": 7,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          },
+          {
+            "source": "OneNews.PH",
+            "results_found": 9,
+            "articles_checked": 3,
+            "articles_extracted": 3
+          }
+        ],
+        "sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "‘PARA KAY RENE’: UST dedicates UAAP Season 89 campaign to Baterbonia family | ABS-CBN Sports",
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+            "status": "extracted",
+            "word_count": 383,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_sources": [
+          {
+            "source": "ABS-CBN News",
+            "title": "‘PARA KAY RENE’: UST dedicates UAAP Season 89 campaign to Baterbonia family | ABS-CBN Sports",
+            "url": "https://www.abs-cbn.com/sports/basketball/2026/9/16/-para-kay-rene-ust-dedicates-uaap-season-89-campaign-to-baterbonia-family-2352",
+            "status": "extracted",
+            "word_count": 383,
+            "evidence_method": "component_review",
+            "extraction_quality": "full",
+            "evidence_type": "full_text"
+          }
+        ],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "The evidence does not mention the family's solace with the team after their loss.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files and Rappler + 9 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": false,
+        "matched_keywords": [],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules",
+        "error": null,
+        "post_type": "fact_only",
+        "confidence": 0.82,
+        "ambiguity_score": 0.0,
+        "ambiguity_reasons": [],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "proceed_to_verification",
+        "verification_text": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss.",
+        "normalized_verification_text": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.82,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.05
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.82,
+            "second_label": "opinion",
+            "second_label_score": 0.05,
+            "score_gap": 0.77,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_to_verification",
+            "reason_codes": [],
+            "user_notification": null,
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [],
+        "user_notification": null,
+        "openai_profile": {
+          "used": false,
+          "status": "not_needed",
+          "error": null,
+          "result": null
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "mixed",
+            "claim_indexes": [
+              0,
+              1
+            ],
+            "reason": "The segment contains two factual claims: Rene Baterbonia's lack of connection to University of Santo Tomas before his passing, and his bereaved family finding solace with the España-based team. The phrase about coping with their loss is uncheckable and listed in ignored_segments."
+          }
+        ],
+        "grouping": [
+          {
+            "operation": "keep",
+            "input_ids": [
+              0
+            ],
+            "assertions": [
+              "Rene Baterbonia was not connected to University of Santo Tomas before his passing."
+            ]
+          },
+          {
+            "operation": "keep",
+            "input_ids": [
+              1
+            ],
+            "assertions": [
+              "Rene Baterbonia's bereaved family found solace with the España-based team as they cope with their loss."
+            ]
+          }
+        ],
+        "grouping_status": "completed",
+        "grouping_error": null,
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing.",
+            "normalized_claim": "Rene Baterbonia was not connected to University of Santo Tomas before his passing.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Rene Baterbonia University of Santo Tomas connection passing",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss."
+              }
+            ],
+            "evidence_context": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss.",
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "Rene Baterbonia's bereaved family found solace with the España-based team as they cope with their loss.",
+            "normalized_claim": "Rene Baterbonia's bereaved family found solace with the España-based team as they cope with their loss.",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Rene Baterbonia bereaved family solace España-based team",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss."
+              }
+            ],
+            "evidence_context": "Rene Baterbonia was not, in any way, connected to University of Santo Tomas before his passing, but it was with the España-based team that his bereaved family found solace as they continue to cope with their loss.",
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [
+          {
+            "text": "as they continue to cope with their loss",
+            "segment_type": "uncheckable"
+          }
+        ],
+        "post_type": "mixed_content",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "11d53e0c28e04880a5f5e52e5a625801",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0056,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0006,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 0.0046,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0003,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 5.6991,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.001,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0008,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0011,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 21.0999,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0697,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 2.3493,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.4573,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.482,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0183,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 10.8536,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0012,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 14.6357,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0725,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 3.395,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.5547,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.5844,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0216,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.component_evidence_review",
+            "duration_seconds": 12.586,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 68.3163,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 74.0414,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

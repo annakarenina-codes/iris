@@ -1,0 +1,1105 @@
+{
+  "case": "vera",
+  "cache_version": "week7-source-review-repair-v16",
+  "seconds": 30.9,
+  "http_status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "Content-Length": "28158",
+    "X-IRIS-Trace-ID": "bb945a891f8e4894a1084fe6e4720347"
+  },
+  "response": {
+    "verdict": "Multiple Claims Checked",
+    "message": "IRIS checked 2 extracted claims individually.",
+    "original_text": "At least two Facebook posts are claiming that retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos. This is fake.",
+    "translated_text": "At least two Facebook posts are claiming that retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos. This is fake.",
+    "detected_language": "english",
+    "politically_sensitive": true,
+    "flags": [
+      "politically_sensitive"
+    ],
+    "claim_count": 2,
+    "claim_extraction_status": "ok",
+    "post_type": "mixed_content",
+    "content_profile_status": "ok",
+    "content_profile_route": "verify_factual_claims_only",
+    "contains_opinion": false,
+    "contains_recommendation": false,
+    "contains_forecast_or_projection": false,
+    "contains_satire_or_humor": false,
+    "contains_quote": false,
+    "ignored_segments": [
+      {
+        "segment_id": "s3",
+        "text": "This is fake.",
+        "segment_type": "unclear",
+        "reason_codes": [],
+        "recommended_route": "stop_no_checkable_claims",
+        "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+      }
+    ],
+    "claims": [
+      {
+        "claim_id": 1,
+        "claim_text": "At least two Facebook posts are claiming that retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos",
+        "normalized_claim": "At least two Facebook posts claim that Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and Liza Araneta-Marcos",
+        "claim_type": "factual_claim",
+        "verification_focus": "factual_claim",
+        "attribution": null,
+        "attribution_integrity": null,
+        "component_review": {
+          "status": "ok",
+          "verdict": "Not Found",
+          "components": [
+            {
+              "component": "At least two Facebook posts claim",
+              "status": "not_supported",
+              "citations": []
+            },
+            {
+              "component": "that Romeo Poquiz made a statement against President Ferdinand Marcos Jr.",
+              "status": "not_supported",
+              "citations": []
+            },
+            {
+              "component": "and Liza Araneta-Marcos",
+              "status": "not_supported",
+              "citations": []
+            }
+          ],
+          "supporting_urls": [],
+          "reason": "Retrieved passages support 0 of 3 factual components.",
+          "partition_model": "gpt-4.1-2025-04-14"
+        },
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-liza-marcos-not-suspended-as-first-lady",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/the-best-and-brightest-marcos-jr-version",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/life/03/10/22/liza-marcos-shares-rare-glimpse-of-personal-life",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/30/malacanang-defends-marcos-amid-viral-videos-of-him-singing-in-a-party-1822",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/966625/liza-marcos-takes-swipe-at-fake-news-amid-drug-use-claims/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/984246/president-marcos-first-lady-liza-33rd-wedding-anniversary/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2117655/ex-generals-disown-marcos-ouster-calls-vow-to-defend-constitution",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2163381/retired-military-officer-who-sought-marcos-ouster-arrested-for-sedition",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/01/05/2498917/ex-air-force-general-nabbed-over-sedition-charge",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/04/13/2520672/amid-health-rumors-presidentmarcos-liza-enjoy-dinner-date",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/01/05/afp-reacts-to-arrest-of-ex-air-force-general-romeo-poquiz",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2025/07/18/hindi-ganyan-ang-sundalong-pilipino-afp-slams-defeatist-narratives-of-ex-military-officers-over-wps-issue",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1231631",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1180900",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mirror.pia.gov.ph/news/2022/08/10/first-lady-liza-araneta-marcos-launches-own-facebook-page",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/pbbm-and-his-valentine-first-lady-liza-araneta-marcos-share-tips-on-how-to-maintain-a-healthy-long-lasting-relationship/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-liza-marcos-not-suspended-as-first-lady",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://verafiles.org/articles/the-best-and-brightest-marcos-jr-version",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/life/03/10/22/liza-marcos-shares-rare-glimpse-of-personal-life",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/8/30/malacanang-defends-marcos-amid-viral-videos-of-him-singing-in-a-party-1822",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/966625/liza-marcos-takes-swipe-at-fake-news-amid-drug-use-claims/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/984246/president-marcos-first-lady-liza-33rd-wedding-anniversary/story/",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/01/05/2498917/ex-air-force-general-nabbed-over-sedition-charge",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/04/13/2520672/amid-health-rumors-presidentmarcos-liza-enjoy-dinner-date",
+            "stage": "attribution_anchors",
+            "matches": true,
+            "missing": []
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "At least two Facebook posts claim that Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and Liza Araneta-Marcos"
+        },
+        "scoring_claim": "At least two Facebook posts claim that Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and Liza Araneta-Marcos",
+        "search_query": "Facebook Romeo Poquiz President Ferdinand Marcos Jr. and Liza Araneta-Marcos least posts",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "b7031cef920a2f509ca274f6ddd8ec019e7620aef6d1a80ed12be31885c156cf",
+        "cache_version": "week7-source-review-repair-v16",
+        "verdict": "Not Found",
+        "message": "Retrieved passages support 0 of 3 factual components.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 38,
+        "searched_articles": 16,
+        "extracted_articles": 8,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "GMA News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Not Found",
+              "reason": "No evidence confirms that Romeo Poquiz made a statement against Marcos Jr. and Liza Araneta-Marcos.",
+              "supporting_urls": [],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      },
+      {
+        "claim_id": 2,
+        "claim_text": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos",
+        "normalized_claim": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos",
+        "claim_type": "attributed_statement",
+        "verification_focus": "speaker_attribution",
+        "attribution": {
+          "speaker": "Romeo Poquiz",
+          "role": "retired Philippine Air Force Maj. Gen.",
+          "statement": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos",
+          "source": "Facebook posts",
+          "program": null,
+          "date": null
+        },
+        "attribution_integrity": {
+          "removed_unsupported_fields": [],
+          "field_checks": {
+            "speaker": "grounded",
+            "role": "grounded",
+            "source": "grounded",
+            "program": "absent",
+            "date": "absent"
+          },
+          "incidental_credits": []
+        },
+        "component_review": {
+          "status": "no_evidence",
+          "verdict": "Not Found",
+          "reason": "No valid extracted evidence satisfied the claim's required anchors.",
+          "supporting_urls": [],
+          "components": []
+        },
+        "incident_evidence_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-liza-marcos-not-suspended-as-first-lady",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://verafiles.org/articles/duterte-i-have-no-quarrel-with-marcos",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/1/5/-retired-military-officer-arrested-over-sedition-raps-0941",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/1/5/retired-military-officer-poquiz-questions-arrest-over-criticism-vs-corruption-cases-1920",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/971707/retired-air-force-general-poquiz-posts-bail-in-inciting-to-sedition-case/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/971656/retired-general-poquiz-arrested-for-sedition/story/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2163381/retired-military-officer-who-sought-marcos-ouster-arrested-for-sedition",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://newsinfo.inquirer.net/2163031/retired-gen-poquiz-arrested-over-inciting-to-sedition",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/01/05/2498917/ex-air-force-general-nabbed-over-sedition-charge",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/01/05/2498937/poquiz-retired-air-force-general-freed-bail-after-naia-arrest",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/01/05/afp-reacts-to-arrest-of-ex-air-force-general-romeo-poquiz",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://mb.com.ph/2026/01/05/retired-military-general-arrested-over-inciting-to-sedition-case",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1266186",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://www.pna.gov.ph/articles/1263021",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/pbbm-vows-to-uphold-rule-of-law-following-vp-duterte-tirades/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          },
+          {
+            "url": "https://pia.gov.ph/press-release/pbbm-and-his-valentine-first-lady-liza-araneta-marcos-share-tips-on-how-to-maintain-a-healthy-long-lasting-relationship/",
+            "matches": true,
+            "subject": null,
+            "reason": "not_referential_incident"
+          }
+        ],
+        "evidence_gate_audit": [
+          {
+            "url": "https://verafiles.org/articles/fact-check-liza-marcos-not-suspended-as-first-lady",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://verafiles.org/articles/duterte-i-have-no-quarrel-with-marcos",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "speaker",
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "missing_or_unmatched",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/1/5/-retired-military-officer-arrested-over-sedition-raps-0941",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.abs-cbn.com/news/nation/2026/1/5/retired-military-officer-poquiz-questions-arrest-over-criticism-vs-corruption-cases-1920",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/971707/retired-air-force-general-poquiz-posts-bail-in-inciting-to-sedition-case/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.gmanetwork.com/news/topstories/nation/971656/retired-general-poquiz-arrested-for-sedition/story/",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/01/05/2498917/ex-air-force-general-nabbed-over-sedition-charge",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          },
+          {
+            "url": "https://www.philstar.com/headlines/2026/01/05/2498937/poquiz-retired-air-force-general-freed-bail-after-naia-arrest",
+            "stage": "attribution_anchors",
+            "matches": false,
+            "missing": [
+              "source"
+            ],
+            "anchor_checks": {
+              "speaker": "normalized_phrase_match",
+              "source": "unmatched",
+              "program": "not_required",
+              "date": "not_required"
+            }
+          }
+        ],
+        "is_quote_derived": false,
+        "quote_paraphrase": {
+          "used_for_scoring": false,
+          "status": "not_needed",
+          "method": "not_run",
+          "error": null,
+          "paraphrase": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos"
+        },
+        "scoring_claim": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos",
+        "search_query": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos",
+        "event_search_query": null,
+        "retrieval_strategy": "claim_search_only",
+        "risk_tags": [],
+        "claim_hash": "a7be41e612d138cff71b8b7b09a385260b6ce824cc1cde0ab869406708a498b6",
+        "cache_version": "week7-source-review-repair-v16",
+        "verdict": "Not Found",
+        "message": "IRIS did not find enough approved-source evidence confirming that Romeo Poquiz made this statement with Facebook posts attribution.",
+        "politically_sensitive": true,
+        "flags": [
+          "politically_sensitive"
+        ],
+        "cache_hit": false,
+        "corroboration_count": 0,
+        "primary_evidence": null,
+        "supporting_sources": [],
+        "search_status": "ok",
+        "total_search_results": 39,
+        "searched_articles": 16,
+        "extracted_articles": 8,
+        "source_summary": [
+          {
+            "source": "VERA Files",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "ABS-CBN News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "GMA News",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Philippine Daily Inquirer",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Star",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 2
+          },
+          {
+            "source": "Manila Bulletin",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine News Agency",
+            "results_found": 5,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          },
+          {
+            "source": "Philippine Information Agency",
+            "results_found": 4,
+            "articles_checked": 2,
+            "articles_extracted": 0
+          }
+        ],
+        "sources": [],
+        "evidence_sources": [],
+        "evidence_policy": "Only valid http/https links from extracted evidence used for the verdict are shown. Attributed claims also require speaker/source/program/date anchors when those anchors are part of the claim.",
+        "fallback": {
+          "openai": {
+            "used": true,
+            "status": "ok",
+            "error": null,
+            "result": {
+              "verdict": "Partially Verified",
+              "reason": "Poquiz criticized the government, but specific statements against Marcos Jr. and Liza Araneta-Marcos are not confirmed.",
+              "supporting_urls": [
+                "https://www.abs-cbn.com/news/nation/2026/1/5/retired-military-officer-poquiz-questions-arrest-over-criticism-vs-corruption-cases-1920"
+              ],
+              "fallback_method": "openai_rag"
+            }
+          },
+          "keyword_overlap": null
+        }
+      }
+    ],
+    "searched_sources": "VERA Files + 7 approved Philippine news sources",
+    "debug": {
+      "opinion_analysis": {
+        "is_opinion": false,
+        "matched_phrases": [],
+        "matched_words": []
+      },
+      "political_analysis": {
+        "politically_sensitive": true,
+        "matched_keywords": [
+          "president",
+          "ferdinand marcos",
+          "marcos jr"
+        ],
+        "matched_agencies": [],
+        "matched_categories": {
+          "elections": [],
+          "public_officials": [
+            "president",
+            "ferdinand marcos",
+            "marcos jr"
+          ],
+          "political_institutions": [],
+          "government_controversy": [],
+          "policy_sensitive": []
+        }
+      },
+      "content_profile": {
+        "status": "ok",
+        "method": "local_rules_with_openai_advice",
+        "error": null,
+        "post_type": "mixed_content",
+        "confidence": 0.47,
+        "ambiguity_score": 0.63,
+        "ambiguity_reasons": [
+          "low_classifier_confidence",
+          "needs_claim_extraction_review",
+          "openai_factual_claim_advice"
+        ],
+        "contains_factual_claims": true,
+        "contains_opinion": false,
+        "contains_recommendation": false,
+        "contains_forecast_or_projection": false,
+        "contains_satire_or_humor": false,
+        "contains_quote": false,
+        "eligible_for_verification": true,
+        "recommended_route": "verify_factual_claims_only",
+        "verification_text": "At least two Facebook posts are claiming that retired Philippine Air Force Maj.\nGen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos.",
+        "normalized_verification_text": "At least two Facebook posts are claiming that retired Philippine Air Force Maj.\nGen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos.",
+        "segments": [
+          {
+            "segment_id": "s1",
+            "text": "At least two Facebook posts are claiming that retired Philippine Air Force Maj.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.3,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.0,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s2",
+            "text": "Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.32,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.25,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "factual_claim",
+            "top_label_score": 0.8,
+            "second_label": "unclear",
+            "second_label_score": 0.3,
+            "score_gap": 0.02,
+            "eligible_for_verification": true,
+            "recommended_route": "proceed_with_caution",
+            "reason_codes": [
+              "low_classifier_confidence",
+              "needs_claim_extraction_review",
+              "openai_factual_claim_advice"
+            ],
+            "user_notification": "IRIS found a possible factual claim, but the content has mixed or low-confidence signals.",
+            "speech_scope": "none"
+          },
+          {
+            "segment_id": "s3",
+            "text": "This is fake.",
+            "translated_text": null,
+            "scores": {
+              "factual_claim": 0.1,
+              "opinion": 0.05,
+              "forecast_or_projection_detected": 0.05,
+              "quote": 0.05,
+              "satire_or_humor": 0.05,
+              "call_to_action": 0.05,
+              "contextual_background": 0.05,
+              "unclear": 0.3
+            },
+            "top_label": "unclear",
+            "top_label_score": 0.3,
+            "second_label": "factual_claim",
+            "second_label_score": 0.1,
+            "score_gap": 0.2,
+            "eligible_for_verification": false,
+            "recommended_route": "stop_no_checkable_claims",
+            "reason_codes": [],
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment.",
+            "speech_scope": "none"
+          }
+        ],
+        "ignored_segments": [
+          {
+            "segment_id": "s3",
+            "text": "This is fake.",
+            "segment_type": "unclear",
+            "reason_codes": [],
+            "recommended_route": "stop_no_checkable_claims",
+            "user_notification": "IRIS could not identify a specific checkable factual claim in this segment."
+          }
+        ],
+        "user_notification": "IRIS will verify only the factual segments and skip non-checkable parts.",
+        "openai_profile": {
+          "used": true,
+          "status": "ok",
+          "error": null,
+          "result": {
+            "segments": [
+              {
+                "segment_id": "s1",
+                "top_label": "contextual_background",
+                "top_label_score": 0.7,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "context_provided"
+                ]
+              },
+              {
+                "segment_id": "s2",
+                "top_label": "factual_claim",
+                "top_label_score": 0.8,
+                "eligible_for_verification": true,
+                "reason_codes": [
+                  "checkable_claim"
+                ]
+              },
+              {
+                "segment_id": "s3",
+                "top_label": "opinion",
+                "top_label_score": 0.6,
+                "eligible_for_verification": false,
+                "reason_codes": [
+                  "subjective_verdict"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "claim_extraction": {
+        "status": "ok",
+        "method": "openai",
+        "coverage": [
+          {
+            "segment_id": 0,
+            "disposition": "checkable",
+            "claim_indexes": [
+              0
+            ],
+            "reason": "The segment asserts that at least two Facebook posts are making a claim about Romeo Poquiz."
+          },
+          {
+            "segment_id": 1,
+            "disposition": "checkable",
+            "claim_indexes": [
+              1
+            ],
+            "reason": "The segment asserts that Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife."
+          }
+        ],
+        "grouping": [],
+        "grouping_status": "not_applied",
+        "grouping_error": "cannot_merge_attribution_with_fact",
+        "coverage_review_model": "gpt-4.1-2025-04-14",
+        "error": null,
+        "claims": [
+          {
+            "claim_id": 1,
+            "claim_text": "At least two Facebook posts are claiming that retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos",
+            "normalized_claim": "At least two Facebook posts claim that Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and Liza Araneta-Marcos",
+            "claim_type": "factual_claim",
+            "risk_tags": [],
+            "search_query": "Facebook Romeo Poquiz President Ferdinand Marcos Jr. and Liza Araneta-Marcos least posts",
+            "verification_focus": "factual_claim",
+            "source_passages": [
+              {
+                "segment_id": 0,
+                "quote": "At least two Facebook posts are claiming that retired Philippine Air Force Maj."
+              }
+            ],
+            "evidence_context": "At least two Facebook posts are claiming that retired Philippine Air Force Maj.\nGen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos.",
+            "is_quote_derived": false
+          },
+          {
+            "claim_id": 2,
+            "claim_text": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos",
+            "normalized_claim": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos",
+            "claim_type": "attributed_statement",
+            "risk_tags": [],
+            "verification_focus": "speaker_attribution",
+            "attribution": {
+              "speaker": "Romeo Poquiz",
+              "role": "retired Philippine Air Force Maj. Gen.",
+              "statement": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos",
+              "source": "Facebook posts",
+              "program": null,
+              "date": null
+            },
+            "search_query": "Retired Philippine Air Force Maj. Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos",
+            "source_passages": [
+              {
+                "segment_id": 1,
+                "quote": "Gen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos."
+              }
+            ],
+            "evidence_context": "At least two Facebook posts are claiming that retired Philippine Air Force Maj.\nGen. Romeo Poquiz made a statement against President Ferdinand Marcos Jr. and his wife, First Lady Liza Araneta-Marcos.",
+            "attribution_integrity": {
+              "removed_unsupported_fields": [],
+              "field_checks": {
+                "speaker": "grounded",
+                "role": "grounded",
+                "source": "grounded",
+                "program": "absent",
+                "date": "absent"
+              },
+              "incidental_credits": []
+            },
+            "is_quote_derived": false
+          }
+        ],
+        "ignored_segments": [],
+        "post_type": "factual_only",
+        "contains_opinion": false,
+        "contains_recommendation": false
+      },
+      "shared_evidence_pool": {
+        "used": false,
+        "status": "not_needed",
+        "query": null,
+        "total_search_results": 0,
+        "searched_articles": 0,
+        "extracted_articles": 0,
+        "source_summary": [],
+        "articles": []
+      },
+      "timings": {
+        "request_id": "bb945a891f8e4894a1084fe6e4720347",
+        "request_type": "verify_text",
+        "stages": [
+          {
+            "stage": "text.detect_language",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.translate_to_english",
+            "duration_seconds": 0.0005,
+            "status": "ok"
+          },
+          {
+            "stage": "text.profile_content",
+            "duration_seconds": 4.449,
+            "status": "ok"
+          },
+          {
+            "stage": "text.opinion_filter",
+            "duration_seconds": 0.0004,
+            "status": "ok"
+          },
+          {
+            "stage": "text.political_check",
+            "duration_seconds": 0.0009,
+            "status": "ok"
+          },
+          {
+            "stage": "text.extract_claims",
+            "duration_seconds": 6.3182,
+            "status": "ok"
+          },
+          {
+            "stage": "text.mark_quote_derived_claims",
+            "duration_seconds": 0.0017,
+            "status": "ok"
+          },
+          {
+            "stage": "text.shared_event_evidence_pool",
+            "duration_seconds": 0.0014,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.political_flags",
+            "duration_seconds": 0.0018,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_and_extract",
+            "duration_seconds": 9.0699,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.search_status",
+            "duration_seconds": 0.0186,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.generate_verdict",
+            "duration_seconds": 0.467,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.openai_rag_fallback",
+            "duration_seconds": 1.6891,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.fallback_total",
+            "duration_seconds": 1.6966,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.public_evidence_sources",
+            "duration_seconds": 0.0066,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.component_evidence_review",
+            "duration_seconds": 2.3196,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_1.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.hash_claim",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_lookup",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.political_flags",
+            "duration_seconds": 0.0017,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_and_extract",
+            "duration_seconds": 4.3265,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.search_status",
+            "duration_seconds": 0.0192,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.generate_verdict",
+            "duration_seconds": 0.4731,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.openai_rag_fallback",
+            "duration_seconds": 1.6001,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.fallback_total",
+            "duration_seconds": 1.6104,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.public_evidence_sources",
+            "duration_seconds": 0.0219,
+            "status": "ok"
+          },
+          {
+            "stage": "claim_2.cache_save",
+            "duration_seconds": 0.0,
+            "status": "ok"
+          },
+          {
+            "stage": "text.verify_claims_total",
+            "duration_seconds": 20.1083,
+            "status": "ok"
+          },
+          {
+            "stage": "verify_text.total",
+            "duration_seconds": 30.8876,
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

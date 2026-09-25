@@ -1,0 +1,29 @@
+{
+  "case_id": "B12",
+  "scope": "Saved case article pool, not an exact replay of per-claim retrieval inputs.",
+  "trace_id": "a171d1e39bc64fe98517ac1ed5455cbc",
+  "timestamp_utc": "2026-09-19T03:50:29.034485+00:00",
+  "input_sha256": "ce841dd7f81de9d21e3a094af4c99192105d0e39e8f42211d9a51b055a690022",
+  "seconds": 1.555,
+  "old_verdict": "Partially Verified",
+  "cache": "not used; direct component review",
+  "new_searches": 0,
+  "models": {
+    "OPENAI_MODEL": "gpt-4o-mini",
+    "IRIS_EVIDENCE_REVIEW_MODEL": "gpt-4.1-2025-04-14"
+  },
+  "code_sha256": {
+    "component_context.py": "f559b0cccd22a46b2cf6c3ede18160630e93356da3e20c654d4cbeee32b8610b",
+    "component_evidence.py": "6a30ba5da0632f8314f1ebdc81d5af8691bc8a0ff4fa14a95defdc5551d82bd4"
+  },
+  "review": {
+    "status": "error",
+    "verdict": null,
+    "components": [],
+    "supporting_urls": [],
+    "reason": "Component-level evidence review could not be completed.",
+    "error": "ValueError",
+    "error_code": "invalid_review_response",
+    "failed_stage": "partition"
+  }
+}
