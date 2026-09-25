@@ -471,9 +471,11 @@ button:active:not(:disabled) {
 }
 
 /* Same quiet pill the panel's reveal controls use: present enough to find,
-   never louder than the links it uncovers. */
+   never louder than the links it uncovers. min-height cancels the global
+   button rule, or this pill inherits the 42px action height. */
 .history-source-more {
   justify-self: start;
+  min-height: 0;
   padding: 4px 10px;
   border: 1px solid #e4dcff;
   border-radius: 999px;

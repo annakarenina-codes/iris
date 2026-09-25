@@ -1193,12 +1193,17 @@ blockquote {
   align-items: center;
   justify-content: center;
   min-width: 0;
+  overflow: hidden;
   border: 1.5px solid var(--iris-border);
   border-radius: var(--iris-r-control);
   background: var(--iris-panel-bg);
   color: var(--iris-text-mid);
   cursor: pointer;
-  font-size: calc(10.5px * var(--iris-scale));
+  /* Fixed size, not scaled: the four cells are locked by the 310px panel, so
+     labels that grow with --iris-scale outgrow their cell and collide at XL.
+     Controls stay fixed-px under scale throughout the panel (switch, nav,
+     icon buttons), and this follows that rule. */
+  font-size: 10.5px;
   font-weight: 800;
   line-height: 1;
   padding: 0 8px;
