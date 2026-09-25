@@ -4,6 +4,24 @@ IRIS, or Intelligent Real-Time Information Scanner, is organized here as one mon
 
 ## Recent changes
 
+### Earlier work (24–25 September)
+
+**Check history (both frontends)**
+
+- Android: successful checks are saved on-device in SQLite (last 200), with a History screen to reopen past results.
+- Extension: checks are saved in browser storage, shown in a History card on the Options page with a Clear history button; the panel keeps the 3 most recent checks.
+
+**Extension**
+
+- Access-token field on the Options page for token-protected backends.
+- Retried requests and a keep-alive while a check is in flight, so slow verifications don't die mid-request.
+- Backend URL is stored per extension copy, so the dev build and installed build don't share settings.
+
+**Android**
+
+- Android Gradle plugin upgraded to 8.9.2.
+- Result parsing reworked into `IrisResultData`.
+
 ### Version control (this branch, `master`)
 
 - Initialized the monorepo as a Git repository with the full baseline committed and pushed to GitHub.
