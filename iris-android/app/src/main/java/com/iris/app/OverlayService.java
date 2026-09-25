@@ -892,7 +892,7 @@ public class OverlayService extends Service {
                 () -> {
                     sourcesExpanded = true;
                     showResultPanel();
-                }), IrisUi.spaced(this, 12));
+                }, this::hidePanel), IrisUi.spaced(this, 12));
         }
 
         if (!resultData.skippedSegments.isEmpty()) {

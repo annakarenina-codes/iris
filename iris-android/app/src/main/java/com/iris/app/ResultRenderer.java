@@ -57,7 +57,8 @@ final class ResultRenderer {
     }
 
     static View claimPanel(Context context, Variant variant, IrisResultData.ClaimItem claim,
-                           boolean imageInput, boolean sourcesExpanded, Runnable onShowMore) {
+                           boolean imageInput, boolean sourcesExpanded, Runnable onShowMore,
+                           Runnable onLinkClick) {
         boolean compact = variant == Variant.COMPACT;
         int sectionGap = compact ? 10 : 12;
         int itemGap = 8;
@@ -94,7 +95,7 @@ final class ResultRenderer {
                 hidden = claim.sources.size() - index;
                 break;
             }
-            wrapper.addView(sourceCard(context, variant, claim.sources.get(index)),
+            wrapper.addView(sourceCard(context, variant, claim.sources.get(index), onLinkClick),
                 IrisUi.spaced(context, itemGap));
         }
         if (hidden > 0) {
@@ -261,7 +262,8 @@ final class ResultRenderer {
         return row;
     }
 
-    private static View sourceCard(Context context, Variant variant, IrisResultData.SourceItem source) {
+    private static View sourceCard(Context context, Variant variant, IrisResultData.SourceItem source,
+                                  Runnable onLinkClick) {
         boolean compact = variant == Variant.COMPACT;
         int cardPadding = compact ? 11 : 12;
         float outletSize = compact ? 11.5f : 12;
@@ -275,6 +277,7 @@ final class ResultRenderer {
         card.setClickable(true);
         IrisUi.touchFeedback(card, 18);
         card.setOnClickListener(view -> {
+            if (onLinkClick != null) onLinkClick.run();
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(source.url));
             // The overlay panel runs in a Service, which needs the new-task flag an
             // Activity launch gets for free.

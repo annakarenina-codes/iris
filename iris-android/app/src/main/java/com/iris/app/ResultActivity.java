@@ -73,7 +73,7 @@ public class ResultActivity extends Activity {
                 () -> {
                     sourcesExpanded = true;
                     render();
-                }), IrisUi.spaced(this, 14));
+                }, null), IrisUi.spaced(this, 14));
         }
 
         if (resultData != null && !resultData.skippedSegments.isEmpty()) {
