@@ -1,0 +1,1633 @@
+:host {
+  all: initial;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.iris-extension-shell[hidden] * {
+  animation-play-state: paused !important;
+}
+
+.iris-floating-wrap {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2147483647;
+  color: #1c1033;
+  font-family:
+    "DM Sans",
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.iris-extension-shell {
+  --iris-scale: 1;
+  /* Brand gradient: the richer violet ramp, with a lighter tail so white type
+     on the gradient keeps its contrast past the midpoint. */
+  --iris-gradient: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 52%, #a78bfa 100%);
+  /* Layered, brand-tinted depth: a wide ambient wash over a tight contact shadow. */
+  --iris-shadow:
+    0 16px 48px rgba(109, 40, 217, 0.16),
+    0 4px 12px rgba(109, 40, 217, 0.08);
+  /* Radii and motion run on tokens so every surface shares one rhythm. */
+  --iris-r-panel: 18px;
+  --iris-r-card: 14px;
+  --iris-r-control: 10px;
+  --iris-ease: cubic-bezier(0.2, 0.8, 0.25, 1);
+  --iris-fast: 160ms;
+  --iris-med: 220ms;
+  --iris-panel-bg: #ffffff;
+  --iris-card-bg: #ffffff;
+  --iris-subtle-bg: #f5f3ff;
+  --iris-muted-bg: #ede9fe;
+  --iris-hover-bg: #f5f3ff;
+  --iris-text: #1c1033;
+  --iris-text-mid: #4b3f72;
+  --iris-text-light: #8b7fb8;
+  --iris-border: #e4dcff;
+  --iris-border-strong: #c4b5fd;
+  --iris-footer-bg: #ffffff;
+  --iris-overlay: rgba(28, 16, 51, 0.24);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.iris-extension-shell * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Dark stays on the brand instead of dropping to flat gray: every surface is a
+   violet-tinted step of the same family, so light and dark read as one product. */
+.iris-extension-shell[data-theme="dark"] {
+  --iris-panel-bg: #171320;
+  --iris-card-bg: #1e1930;
+  --iris-subtle-bg: #241e3a;
+  --iris-muted-bg: #2b2446;
+  --iris-hover-bg: #282142;
+  --iris-text: #f2eefc;
+  --iris-text-mid: #b9afda;
+  --iris-text-light: #8d82b5;
+  --iris-border: rgba(167, 139, 250, 0.16);
+  --iris-border-strong: rgba(167, 139, 250, 0.34);
+  --iris-footer-bg: #171320;
+  --iris-overlay: rgba(8, 5, 18, 0.72);
+  --iris-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.55),
+    0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.iris-panel {
+  position: relative;
+  width: 310px;
+  max-height: calc(100vh - 44px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--iris-border);
+  border-radius: var(--iris-r-panel);
+  background: var(--iris-panel-bg);
+  color: var(--iris-text);
+  box-shadow: var(--iris-shadow);
+  animation: iris-enter 0.28s cubic-bezier(0.34, 1.36, 0.64, 1);
+}
+
+.iris-floating-wrap.is-positioned .iris-panel,
+.iris-floating-wrap.is-positioned .iris-pill {
+  animation: none;
+}
+
+.iris-panel__header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 14px;
+  background: var(--iris-gradient);
+  /* A hairline of light along the top edge keeps the gradient from reading flat. */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.iris-panel.is-dragging .iris-panel__header,
+.iris-pill.is-dragging {
+  cursor: grabbing;
+}
+
+.iris-panel.is-drop-target {
+  border-color: #22c55e;
+  box-shadow:
+    0 0 0 3px rgba(34, 197, 94, 0.18),
+    var(--iris-shadow);
+}
+
+.iris-panel.is-drop-target::after {
+  content: "Drop image to scan";
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(245, 243, 255, 0.88);
+  color: #166534;
+  font-size: calc(13px * var(--iris-scale));
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.iris-extension-shell[data-theme="dark"].iris-panel.is-drop-target::after {
+  background: rgba(23, 19, 32, 0.94);
+  color: #86efac;
+}
+
+.iris-panel__brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.iris-panel__brand .iris-eye {
+  flex: 0 0 auto;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.14));
+}
+
+.iris-panel__brand-copy {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.iris-panel__brand strong {
+  display: block;
+  flex: 0 0 auto;
+  color: #fff;
+  font-size: calc(14px * var(--iris-scale));
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.iris-panel__tagline {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: calc(8px * var(--iris-scale));
+  letter-spacing: 0.38px;
+  line-height: 1.12;
+  white-space: normal;
+}
+
+.iris-panel__tagline span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.iris-eye {
+  display: inline-block;
+  flex: 0 0 auto;
+  object-fit: contain;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.iris-icon {
+  width: 1em;
+  height: 1em;
+}
+
+.iris-icon-button {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  cursor: pointer;
+}
+
+.iris-icon-button:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.iris-panel__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 14px 14px 16px;
+  background: var(--iris-panel-bg);
+}
+
+/* Scrollbars live on the two scroll containers inside the panel only, so the
+   host page keeps its own. The track stays transparent; only the thumb shows. */
+.iris-panel__body::-webkit-scrollbar,
+.faq-list::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.iris-panel__body::-webkit-scrollbar-track,
+.faq-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.iris-panel__body::-webkit-scrollbar-thumb,
+.faq-list::-webkit-scrollbar-thumb {
+  background: var(--iris-muted-bg);
+  border-radius: 999px;
+}
+
+.iris-panel__body::-webkit-scrollbar-thumb:hover,
+.faq-list::-webkit-scrollbar-thumb:hover {
+  background: var(--iris-border-strong);
+}
+
+.iris-state {
+  animation: iris-fade 0.2s ease;
+}
+
+.iris-state--idle {
+  text-align: center;
+}
+
+.idle-search {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  border-radius: 999px;
+  background: var(--iris-subtle-bg);
+  color: #7c3aed;
+  font-size: 26px;
+}
+
+.iris-state h2 {
+  margin: 0 0 4px;
+  color: var(--iris-text);
+  font-size: calc(13px * var(--iris-scale));
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.iris-state p {
+  margin: 0;
+}
+
+.iris-state--idle > p {
+  margin-bottom: 14px;
+  color: var(--iris-text-light);
+  font-size: calc(12px * var(--iris-scale));
+  line-height: 1.55;
+}
+
+.empty-claim {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border: 1.5px dashed var(--iris-border-strong);
+  border-radius: 10px;
+  background: var(--iris-subtle-bg);
+  color: var(--iris-text-mid);
+  font-size: calc(12px * var(--iris-scale));
+  line-height: 1.5;
+}
+
+.empty-claim span,
+.empty-claim strong {
+  display: block;
+}
+
+.empty-claim strong {
+  color: #7c3aed;
+  font-weight: 800;
+}
+
+.iris-button {
+  width: 100%;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--iris-r-control);
+  font-size: calc(13px * var(--iris-scale));
+  font-weight: 800;
+}
+
+.iris-button--disabled {
+  border: 0;
+  background: var(--iris-muted-bg);
+  color: var(--iris-border-strong);
+  cursor: not-allowed;
+}
+
+.iris-button--primary {
+  border: 0;
+  background: var(--iris-gradient);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.28);
+}
+
+.iris-button--primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.iris-button--secondary {
+  border: 1.5px solid var(--iris-border-strong);
+  background: var(--iris-subtle-bg);
+  color: #7c3aed;
+  cursor: pointer;
+}
+
+.iris-button--secondary:hover {
+  background: var(--iris-hover-bg);
+}
+
+.iris-button--upload {
+  margin-top: 8px;
+  border: 1.5px solid var(--iris-border-strong);
+  background: var(--iris-subtle-bg);
+  color: #7c3aed;
+  cursor: pointer;
+}
+
+.iris-button--upload:hover {
+  background: var(--iris-hover-bg);
+}
+
+/* Recent checks — the panel's mirror of the options-page history. Variables keep
+   it themed; verdict badges carry their tone inline like the result cards do. */
+.recent-checks {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1.5px dashed var(--iris-border-strong);
+  text-align: left;
+}
+
+.recent-checks__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: var(--iris-r-control);
+  background: transparent;
+  color: var(--iris-text);
+  font-size: calc(12px * var(--iris-scale));
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.recent-checks__header:hover {
+  background: var(--iris-hover-bg);
+}
+
+.recent-checks__header strong {
+  flex: 1 1 auto;
+}
+
+.recent-checks__count {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--iris-muted-bg);
+  color: var(--iris-text-mid);
+  font-size: calc(10.5px * var(--iris-scale));
+  font-weight: 800;
+}
+
+.recent-checks__header i {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--iris-text-light);
+  border-bottom: 2px solid var(--iris-text-light);
+  transform: rotate(45deg);
+  transition: transform var(--iris-fast) var(--iris-ease);
+}
+
+.recent-checks.is-open .recent-checks__header i {
+  transform: rotate(225deg);
+}
+
+.recent-checks__list {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.recent-check {
+  overflow: hidden;
+  border: 1.5px solid var(--iris-border-strong);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-card-bg);
+}
+
+.recent-check__summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 10px;
+  align-items: start;
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  background: transparent;
+  color: var(--iris-text);
+  font-size: calc(12px * var(--iris-scale));
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--iris-fast) var(--iris-ease);
+}
+
+.recent-check__summary:hover {
+  background: var(--iris-hover-bg);
+}
+
+.recent-check__badge {
+  display: inline-block;
+  justify-self: start;
+  max-width: 150px;
+  overflow: hidden;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: calc(9.5px * var(--iris-scale));
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.recent-check__preview {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: calc(11.5px * var(--iris-scale));
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.recent-check__meta {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--iris-text-light);
+  font-size: calc(10.5px * var(--iris-scale));
+}
+
+.recent-check__detail {
+  display: grid;
+  gap: 8px;
+  padding: 0 10px 10px;
+}
+
+.recent-check__claim {
+  display: grid;
+  gap: 5px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--iris-border-strong);
+}
+
+.recent-check__claim p {
+  margin: 0;
+  color: var(--iris-text-mid);
+  font-size: calc(12px * var(--iris-scale));
+  line-height: 1.5;
+}
+
+.recent-check__sources {
+  color: var(--iris-text-light);
+  font-size: calc(10.5px * var(--iris-scale));
+}
+
+.recent-checks__see-all {
+  margin-top: 10px;
+}
+
+.recent-check__source-list {
+  display: grid;
+  gap: 4px;
+}
+
+.recent-check__source {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #7c3aed;
+  font-size: calc(11px * var(--iris-scale));
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: left;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.recent-check__source:hover {
+  color: var(--iris-text);
+}
+
+.recent-check__source--collapsed {
+  display: none;
+}
+
+/* Reveal controls read as quiet pills: present enough to find, never louder than
+   the content they uncover. */
+.recent-check__source-more {
+  justify-self: start;
+  padding: 3px 9px;
+  border: 1px solid var(--iris-border-strong);
+  border-radius: 999px;
+  background: var(--iris-subtle-bg);
+  color: var(--iris-text-mid);
+  font-size: calc(10.5px * var(--iris-scale));
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.recent-check__source-more:hover {
+  background: var(--iris-hover-bg);
+  color: var(--iris-text);
+}
+
+.photo-preview {
+  position: relative;
+  min-height: 128px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 74% 18%, rgba(252, 211, 77, 0.36), transparent 29%),
+    linear-gradient(135deg, #1e3a8a 0%, #2563eb 52%, #111827 100%);
+  background-position: center;
+  background-size: cover;
+  padding: 12px;
+  color: #fff;
+}
+
+.photo-preview span,
+.photo-preview p {
+  position: relative;
+  z-index: 1;
+}
+
+.photo-preview span {
+  align-self: flex-start;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 3px 8px;
+  font-size: calc(9px * var(--iris-scale));
+  font-weight: 800;
+}
+
+.photo-preview p {
+  max-width: 226px;
+  margin: 0;
+  font-family: "Lora", Georgia, serif;
+  font-size: calc(13px * var(--iris-scale));
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.ocr-preview {
+  margin-bottom: 12px;
+}
+
+.ocr-preview > span,
+.result-claim > span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--iris-text-light);
+  font-size: calc(10px * var(--iris-scale));
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.photo-cancel {
+  margin-top: 8px;
+  min-height: 36px;
+}
+
+.detected-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  color: #065f46;
+  font-size: calc(11.5px * var(--iris-scale));
+}
+
+.detected-row span {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+  animation: ready-pulse 1.7s ease-in-out infinite;
+}
+
+blockquote {
+  margin: 0 0 14px;
+  padding: 9px 11px;
+  border: 1.5px solid #bfdbfe;
+  border-left: 3px solid #2563eb;
+  border-radius: 9px;
+  background: #f0f7ff;
+  color: #1c1033;
+  font-family: "Lora", Georgia, serif;
+  font-size: calc(12px * var(--iris-scale));
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.supporting-note {
+  margin-bottom: 12px !important;
+  color: var(--iris-text-light);
+  font-size: calc(11.5px * var(--iris-scale));
+  line-height: 1.5;
+}
+
+.iris-state--scanning {
+  text-align: center;
+}
+
+.iris-state--scanning blockquote {
+  text-align: left;
+}
+
+.scan-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 0 12px;
+}
+
+.scan-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  animation: dot-bounce 1.4s ease-in-out infinite;
+}
+
+.scan-dots span:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.scan-dots span:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+.iris-state--scanning p {
+  color: var(--iris-text-light);
+  font-size: calc(11.5px * var(--iris-scale));
+  line-height: 1.55;
+}
+
+.progress-track {
+  height: 3px;
+  margin-top: 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--iris-muted-bg);
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  width: 52%;
+  border-radius: 999px;
+  background: var(--iris-gradient);
+  animation: progress-shimmer 1.8s ease-in-out infinite;
+}
+
+.claim-navigator {
+  min-height: 36px;
+  display: grid;
+  grid-template-columns: 36px 1fr 36px;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.claim-navigator strong {
+  color: var(--iris-text);
+  font-size: calc(13px * var(--iris-scale));
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.claim-navigator__button {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--iris-border);
+  border-radius: 999px;
+  background: var(--iris-card-bg);
+  color: #7c3aed;
+  cursor: pointer;
+}
+
+.claim-navigator__button:hover:not(:disabled) {
+  background: var(--iris-hover-bg);
+  border-color: var(--iris-border-strong);
+}
+
+.claim-navigator__button:disabled {
+  color: var(--iris-text-light);
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.claim-result-block {
+  animation: iris-fade 0.2s ease;
+}
+
+.result-claim {
+  margin-bottom: 10px;
+}
+
+.result-claim blockquote {
+  margin-bottom: 0;
+}
+
+.political-flag {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border: 1.5px solid #fdba74;
+  border-radius: 9px;
+  background: #fff7ed;
+  color: #7c2d12;
+}
+
+.political-flag > span {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #fed7aa;
+  color: #7c2d12;
+  font-size: calc(12px * var(--iris-scale));
+  font-weight: 900;
+}
+
+.political-flag strong {
+  display: block;
+  font-size: calc(10.5px * var(--iris-scale));
+  line-height: 1.25;
+}
+
+.political-flag p {
+  margin-top: 2px;
+  color: #9a3412;
+  font-size: calc(10px * var(--iris-scale));
+  line-height: 1.35;
+}
+
+/* background/border-color/color arrive inline from JS, so only the skin that JS
+   does not set lives here: padding, radius, the accent bar, gloss, and motion. */
+.verdict-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 11px 13px;
+  border: 1.5px solid;
+  border-left-width: 4px;
+  border-radius: var(--iris-r-card);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: box-shadow var(--iris-fast) var(--iris-ease);
+}
+
+.verdict-card__icon {
+  min-width: 22px;
+  flex: 0 0 auto;
+  font-size: calc(13px * var(--iris-scale));
+  font-weight: 900;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.verdict-card strong {
+  display: block;
+  margin-bottom: 2px;
+  font-size: calc(13px * var(--iris-scale));
+  line-height: 1.2;
+}
+
+.verdict-card p {
+  font-size: calc(11.5px * var(--iris-scale));
+  line-height: 1.48;
+  opacity: 0.88;
+}
+
+.corroboration-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.corroboration-row strong {
+  min-width: 54px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--iris-gradient);
+  color: #fff;
+  font-size: calc(10.5px * var(--iris-scale));
+  line-height: 1.2;
+  text-align: center;
+}
+
+.corroboration-row span {
+  color: var(--iris-text-light);
+  font-size: calc(11px * var(--iris-scale));
+}
+
+.related-label {
+  margin-bottom: 6px;
+  color: var(--iris-text-light);
+  font-size: calc(10px * var(--iris-scale));
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.source-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.source-card {
+  display: block;
+  width: 100%;
+  border: 1.5px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-card-bg);
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--iris-fast) var(--iris-ease),
+    border-color var(--iris-fast) var(--iris-ease),
+    box-shadow var(--iris-fast) var(--iris-ease),
+    transform var(--iris-fast) var(--iris-ease);
+}
+
+.source-card:hover {
+  border-color: var(--iris-border-strong);
+  background: var(--iris-hover-bg);
+  box-shadow: 0 3px 14px rgba(109, 40, 217, 0.12);
+  transform: translateY(-1px);
+}
+
+.source-card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.source-card__meta span {
+  color: #7c3aed;
+  font-size: calc(9.5px * var(--iris-scale));
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.source-card__meta time {
+  flex: 0 0 auto;
+  color: var(--iris-text-light);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: calc(9px * var(--iris-scale));
+}
+
+.source-card__title {
+  display: -webkit-box;
+  min-height: 32px;
+  overflow: hidden;
+  color: var(--iris-text);
+  font-family: "Lora", Georgia, serif;
+  font-size: calc(11.5px * var(--iris-scale));
+  line-height: 1.42;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.source-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 5px;
+  color: #7c3aed;
+  font-size: calc(10px * var(--iris-scale));
+  font-weight: 800;
+}
+
+.source-empty {
+  border: 1.5px dashed var(--iris-border);
+  border-radius: 10px;
+  background: var(--iris-subtle-bg);
+  color: var(--iris-text-light);
+  padding: 10px 12px;
+  font-size: calc(11.5px * var(--iris-scale));
+  line-height: 1.45;
+}
+
+/* A folded card keeps its place in the list so unfolding it needs no re-render. */
+.source-card--collapsed {
+  display: none;
+}
+
+/* Sits inside the source list, so it borrows the panel's ghost-pill idiom at list scale. */
+.source-more {
+  min-height: 32px;
+  border: 1px solid var(--iris-border-strong);
+  border-radius: 999px;
+  background: var(--iris-subtle-bg);
+  color: var(--iris-text-mid);
+  cursor: pointer;
+  font-size: calc(11.5px * var(--iris-scale));
+  font-weight: 600;
+}
+
+.source-more:hover {
+  background: var(--iris-hover-bg);
+  color: var(--iris-text);
+}
+
+.skipped-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 2px 0 12px;
+  padding: 8px 10px;
+  border: 1.5px solid var(--iris-border);
+  border-radius: 9px;
+  background: var(--iris-subtle-bg);
+  color: var(--iris-text-mid);
+}
+
+.skipped-note > span {
+  width: 17px;
+  height: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--iris-card-bg);
+  color: #7c3aed;
+  font-family: Georgia, serif;
+  font-size: calc(11px * var(--iris-scale));
+  font-style: italic;
+  font-weight: 900;
+}
+
+.skipped-note p {
+  color: var(--iris-text-mid);
+  font-size: calc(11px * var(--iris-scale));
+  line-height: 1.45;
+}
+
+.disclaimer {
+  margin-bottom: 12px !important;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: var(--iris-subtle-bg);
+  color: var(--iris-text-mid);
+  font-size: calc(11px * var(--iris-scale));
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.iris-panel__footer {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid var(--iris-border);
+  background: var(--iris-footer-bg);
+  padding: 7px 14px;
+  color: var(--iris-text-light);
+}
+
+.iris-panel__footer button {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--iris-text-light);
+  cursor: pointer;
+}
+
+.iris-panel__footer button:hover,
+.iris-panel__footer button.is-active {
+  border-color: var(--iris-border);
+  background: var(--iris-hover-bg);
+  color: #7c3aed;
+}
+
+.iris-settings {
+  display: grid;
+  gap: 12px;
+}
+
+.settings-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.settings-title h2 {
+  margin: 0;
+}
+
+.settings-done {
+  width: auto;
+  min-height: 32px;
+  padding: 0 12px;
+  font-size: calc(11.5px * var(--iris-scale));
+}
+
+.setting-row,
+.setting-block {
+  border: 1.5px solid var(--iris-border);
+  border-radius: 10px;
+  background: var(--iris-card-bg);
+  padding: 11px 12px;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.setting-row strong,
+.setting-block > strong {
+  display: block;
+  color: var(--iris-text);
+  font-size: calc(12px * var(--iris-scale));
+  line-height: 1.25;
+}
+
+.setting-row span {
+  display: block;
+  margin-top: 2px;
+  color: var(--iris-text-light);
+  font-size: calc(10.5px * var(--iris-scale));
+  line-height: 1.35;
+}
+
+.switch-button {
+  width: 46px;
+  height: 26px;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 999px;
+  background: var(--iris-muted-bg);
+  padding: 3px;
+  cursor: pointer;
+  transition: background-color var(--iris-med) var(--iris-ease);
+}
+
+.switch-button span {
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin: 0;
+  border-radius: 999px;
+  background: var(--iris-card-bg);
+  box-shadow: 0 1px 4px rgba(28, 16, 51, 0.18);
+  transform: translateX(0);
+  transition: transform var(--iris-med) var(--iris-ease);
+}
+
+.switch-button.is-on {
+  background: var(--iris-gradient);
+}
+
+.switch-button.is-on span {
+  transform: translateX(20px);
+}
+
+.font-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+  margin-top: 9px;
+}
+
+.font-options button {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  border: 1.5px solid var(--iris-border);
+  border-radius: var(--iris-r-control);
+  background: var(--iris-panel-bg);
+  color: var(--iris-text-mid);
+  cursor: pointer;
+  font-size: calc(10.5px * var(--iris-scale));
+  font-weight: 800;
+  line-height: 1;
+  padding: 0 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.font-options button:hover,
+.font-options button.is-active {
+  border-color: var(--iris-border-strong);
+  background: var(--iris-hover-bg);
+  color: #7c3aed;
+}
+
+.faq-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background: var(--iris-overlay);
+  padding: 10px;
+}
+
+.faq-modal {
+  width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1.5px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-panel-bg);
+  box-shadow: var(--iris-shadow);
+  animation: iris-fade 0.16s ease;
+}
+
+.faq-modal header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 12px 10px;
+  border-bottom: 1px solid var(--iris-border);
+}
+
+.faq-modal h2 {
+  margin: 0;
+  color: var(--iris-text);
+  font-size: calc(13px * var(--iris-scale));
+  font-weight: 800;
+}
+
+.iris-icon-button--plain {
+  background: var(--iris-subtle-bg);
+  color: #7c3aed;
+}
+
+.iris-icon-button--plain:hover {
+  background: var(--iris-hover-bg);
+}
+
+.faq-list {
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.faq-list article {
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--iris-border);
+}
+
+.faq-list h3 {
+  margin: 0 0 4px;
+  color: var(--iris-text);
+  font-size: calc(11.5px * var(--iris-scale));
+  line-height: 1.3;
+}
+
+.faq-list p {
+  margin: 0;
+  color: var(--iris-text-mid);
+  font-size: calc(11px * var(--iris-scale));
+  line-height: 1.5;
+}
+
+.faq-list button {
+  border: 0;
+  background: transparent;
+  color: #7c3aed;
+  cursor: pointer;
+  font-size: calc(11px * var(--iris-scale));
+  font-weight: 800;
+  padding: 0;
+}
+
+.iris-pill {
+  position: relative;
+  width: 120px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid var(--iris-border-strong);
+  border-radius: 999px;
+  background: var(--iris-panel-bg);
+  padding: 0 12px 0 8px;
+  color: #7c3aed;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(109, 40, 217, 0.18);
+}
+
+.iris-pill.is-drop-target {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+.iris-pill.is-drop-target::after {
+  content: "Drop";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(245, 243, 255, 0.92);
+  color: #166534;
+  font-size: calc(12px * var(--iris-scale));
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.iris-extension-shell[data-theme="dark"].iris-pill.is-drop-target::after {
+  background: rgba(23, 19, 32, 0.94);
+  color: #86efac;
+}
+
+.iris-pill span {
+  font-size: calc(13px * var(--iris-scale));
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  background: var(--iris-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.iris-pill__status {
+  width: 7px;
+  height: 7px;
+  margin-left: auto;
+  border-radius: 999px;
+  background: var(--iris-text-light);
+  transition:
+    background-color var(--iris-fast) var(--iris-ease),
+    box-shadow var(--iris-fast) var(--iris-ease);
+}
+
+.iris-pill__status.is-ready {
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+  animation: none;
+}
+
+.iris-pill__status.is-scanning {
+  background: #8b5cf6;
+  box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.34);
+  animation: scan-pulse 1.05s ease-in-out infinite;
+}
+
+.iris-extension-shell[data-theme="dark"] .idle-search,
+.iris-extension-shell[data-theme="dark"] .iris-icon-button--plain,
+.iris-extension-shell[data-theme="dark"] .skipped-note > span {
+  background: #241e3a;
+  color: #f2eefc;
+}
+
+.iris-extension-shell[data-theme="dark"] blockquote {
+  border-color: rgba(167, 139, 250, 0.16);
+  border-left-color: #8d82b5;
+  background: #241e3a;
+  color: #f2eefc;
+}
+
+/* Interactive accents keep the brand violet in dark; plain copy goes to the
+   lightest text tone. Splitting them is what keeps links looking like links. */
+.iris-extension-shell[data-theme="dark"] .iris-button--secondary,
+.iris-extension-shell[data-theme="dark"] .iris-button--upload,
+.iris-extension-shell[data-theme="dark"] .claim-navigator__button,
+.iris-extension-shell[data-theme="dark"] .source-card__meta span,
+.iris-extension-shell[data-theme="dark"] .source-card__link,
+.iris-extension-shell[data-theme="dark"] .faq-list button,
+.iris-extension-shell[data-theme="dark"] .font-options button:hover,
+.iris-extension-shell[data-theme="dark"] .font-options button.is-active,
+.iris-extension-shell[data-theme="dark"] .iris-panel__footer button:hover,
+.iris-extension-shell[data-theme="dark"] .iris-panel__footer button.is-active,
+.iris-extension-shell[data-theme="dark"] .recent-check__source {
+  color: #a78bfa;
+}
+
+.iris-extension-shell[data-theme="dark"] .empty-claim strong,
+.iris-extension-shell[data-theme="dark"] .detected-row {
+  color: #f2eefc;
+}
+
+/* The gradient itself is theme-independent, so these stay on the brand ramp
+   instead of dropping to the flat white the old gray palette needed. */
+.iris-extension-shell[data-theme="dark"] .iris-button--primary,
+.iris-extension-shell[data-theme="dark"] .corroboration-row strong,
+.iris-extension-shell[data-theme="dark"] .progress-track span,
+.iris-extension-shell[data-theme="dark"] .scan-dots span {
+  background: var(--iris-gradient);
+  color: #ffffff;
+}
+
+.iris-extension-shell[data-theme="dark"] .source-card:hover {
+  border-color: rgba(167, 139, 250, 0.34);
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* Border only: the pill colours already come from theme-aware tokens, and
+   dropping the colour here is what lets the hover rule brighten them again. */
+.iris-extension-shell[data-theme="dark"] .source-more,
+.iris-extension-shell[data-theme="dark"] .recent-check__source-more {
+  border-color: rgba(167, 139, 250, 0.34);
+}
+
+.iris-extension-shell[data-theme="dark"] .source-card--collapsed {
+  display: none;
+}
+
+.iris-extension-shell[data-theme="dark"] .detected-row span {
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+  animation: none;
+}
+
+.iris-extension-shell[data-theme="dark"] .iris-pill__status.is-ready {
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.20);
+  animation: none;
+}
+
+.iris-extension-shell[data-theme="dark"] .iris-pill__status.is-scanning {
+  background: #8b5cf6;
+  box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.36);
+  animation: scan-pulse 1.05s ease-in-out infinite;
+}
+
+/* The flag is a warning, not chrome: it keeps its warm hue so the caution still
+   reads as one in dark, just rebalanced for a dark surface. */
+.iris-extension-shell[data-theme="dark"] .political-flag {
+  border-color: rgba(251, 146, 60, 0.38);
+  background: #2a1b12;
+  color: #fde8d8;
+}
+
+.iris-extension-shell[data-theme="dark"] .political-flag > span {
+  background: #4a2a18;
+  color: #fed7aa;
+}
+
+.iris-extension-shell[data-theme="dark"] .political-flag p {
+  color: #fdba74;
+}
+
+.iris-extension-shell[data-theme="dark"] .switch-button.is-on {
+  background: var(--iris-gradient);
+}
+
+.iris-extension-shell[data-theme="dark"] .switch-button.is-on span {
+  background: var(--iris-card-bg);
+}
+
+.iris-extension-shell[data-theme="dark"].iris-pill {
+  color: #f2eefc;
+}
+
+.iris-extension-shell[data-theme="dark"].iris-pill span {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.iris-extension-shell[data-theme="dark"].iris-pill.is-drop-target::after {
+  background: rgba(23, 19, 32, 0.94);
+  color: #f2eefc;
+}
+
+.quiet-close-result {
+  margin-bottom: 8px;
+}
+
+@keyframes iris-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes iris-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ready-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.26);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+  }
+}
+
+@keyframes scan-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.38);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(139, 92, 246, 0);
+    transform: scale(1.16);
+  }
+}
+
+@keyframes dot-bounce {
+  0%,
+  80%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.45);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes progress-shimmer {
+  0% {
+    transform: translateX(-110%);
+  }
+  52% {
+    transform: translateX(46%);
+  }
+  100% {
+    transform: translateX(210%);
+  }
+}
+
+@media (max-width: 420px) {
+  .iris-floating-wrap {
+    top: auto;
+    right: 12px;
+    bottom: 14px;
+  }
+
+  .iris-panel {
+    width: min(310px, calc(100vw - 24px));
+    max-height: calc(100vh - 28px);
+  }
+}
+
+/* One motion contract for every button: colour, chrome, and position travel on the
+   same curve, so hover, press, and reveal never feel like separate widgets. */
+.iris-extension-shell button:not(.iris-pill) {
+  transition:
+    background-color var(--iris-fast) var(--iris-ease),
+    border-color var(--iris-fast) var(--iris-ease),
+    color var(--iris-fast) var(--iris-ease),
+    box-shadow var(--iris-fast) var(--iris-ease),
+    transform var(--iris-fast) var(--iris-ease),
+    filter var(--iris-fast) var(--iris-ease);
+}
+
+.iris-extension-shell button:not(:disabled):not(.iris-pill):active {
+  transform: scale(0.97);
+  filter: brightness(0.92);
+}
+
+/* The brand action presses a touch softer than the dense inline controls. */
+.iris-extension-shell button.iris-button--primary:not(:disabled):not(.iris-pill):active {
+  transform: scale(0.98);
+}
+
+.iris-pill:active:not(.is-dragging) {
+  filter: brightness(0.92);
+}
+
+.iris-extension-shell button:focus-visible {
+  outline: 2px solid var(--iris-text);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Pressed and hover feedback stays visible but stops moving: the colour and
+     filter changes below still fire, only transforms are pinned. */
+  .iris-extension-shell button:active,
+  .iris-button--primary:hover,
+  .source-card:hover,
+  .scan-dots span,
+  .progress-track span,
+  .iris-pill__status {
+    transform: none !important;
+  }
+
+  .scan-dots span {
+    opacity: 1;
+  }
+
+  .iris-pill__status.is-scanning {
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3) !important;
+  }
+}

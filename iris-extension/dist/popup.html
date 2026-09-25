@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IRIS</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup-shell">
+      <header>
+        <div class="iris-mark" aria-hidden="true">
+          <img src="assets/iris-logo-mark.png" alt="" draggable="false" />
+        </div>
+        <div>
+          <strong>IRIS</strong>
+          <span>Chrome Extension</span>
+        </div>
+      </header>
+
+      <section class="status-card">
+        <span>Backend</span>
+        <strong id="backend-url">Loading...</strong>
+      </section>
+
+      <div class="button-stack">
+        <button id="open-panel" type="button">Open panel</button>
+        <button id="check-selection" type="button">Check selected text</button>
+        <button id="open-options" type="button" class="secondary">Options</button>
+      </div>
+
+      <p id="popup-status" role="status"></p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

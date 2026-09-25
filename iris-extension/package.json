@@ -1,0 +1,19 @@
+{
+  "name": "iris-extension",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/build-extension.mjs",
+    "build": "node scripts/build-extension.mjs",
+    "extension:dev": "node scripts/build-extension.mjs",
+    "extension:build": "node scripts/build-extension.mjs",
+    "preview": "node scripts/serve-dist.mjs",
+    "test:ui": "node --test tests/interactions.test.cjs",
+    "test": "node --test tests/request-timeout.test.cjs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

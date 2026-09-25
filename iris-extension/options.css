@@ -1,0 +1,490 @@
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: #1c1033;
+  font-family:
+    "DM Sans",
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  /* A half point over the browser default: the page is mostly settings copy. */
+  font-size: 16.5px;
+  background: #f7f5ff;
+}
+
+.options-shell {
+  width: min(720px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 36px 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.iris-mark {
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: 1px solid #e4dcff;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(109, 40, 217, 0.14);
+}
+
+.iris-mark img {
+  width: 36px;
+  height: 36px;
+  display: block;
+  object-fit: contain;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+header p {
+  margin: 4px 0 0;
+  color: #6b5f91;
+  font-size: 14px;
+}
+
+form {
+  display: grid;
+  gap: 14px;
+}
+
+.settings-card,
+.settings-grid {
+  border: 1px solid #e4dcff;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 16px;
+  box-shadow:
+    0 16px 48px rgba(109, 40, 217, 0.16),
+    0 4px 12px rgba(109, 40, 217, 0.08);
+}
+
+.settings-card label,
+.settings-grid label {
+  display: grid;
+  gap: 8px;
+  color: #2b2048;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.settings-card p {
+  margin: 9px 0 0;
+  color: #7a6da5;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+input[type="url"],
+input[type="password"],
+select {
+  width: 100%;
+  min-height: 42px;
+  border: 1.5px solid #c4b5fd;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #1c1033;
+  font: inherit;
+  font-size: 14px;
+  padding: 0 12px;
+  transition:
+    border-color 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
+    box-shadow 160ms cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+/* The ring moves from outline to box-shadow so it never doubles up with the
+   browser's own focus outline. Same halo the panel uses. */
+input[type="url"]:focus,
+input[type="password"]:focus,
+select:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.22);
+  outline: none;
+}
+
+.checkbox-row {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox-row:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox-row input {
+  width: 18px;
+  height: 18px;
+  accent-color: #7c3aed;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+footer {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 52%, #a78bfa 100%);
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 0 16px;
+}
+
+button:hover {
+  filter: brightness(1.06);
+}
+
+/* One motion contract for every control: colour, chrome and position travel on
+   the same curve the on-page panel uses. */
+button {
+  transition:
+    background-color 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
+    border-color 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
+    color 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
+    box-shadow 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
+    transform 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
+    filter 160ms cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+/* Only the footer actions lift. History rows are buttons too, and a row that
+   jumps on hover reads as a glitch instead of as feedback. */
+footer button {
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.28);
+}
+
+footer button:hover {
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+  filter: brightness(0.92);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Kept at the specificity the press rule actually uses, or it never wins. */
+  button:active:not(:disabled),
+  footer button:hover {
+    transform: none !important;
+  }
+}
+
+#restore-defaults {
+  border: 1.5px solid #c4b5fd;
+  background: #ffffff;
+  color: #7c3aed;
+  box-shadow: none;
+}
+
+#save-status {
+  min-height: 18px;
+  margin: 12px 0 0;
+  color: #6b5f91;
+  font-size: 13px;
+}
+
+@media (max-width: 560px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    flex-direction: column;
+  }
+}
+
+/* The study's own settings, folded away from the people taking part in it. */
+.settings-advanced > summary {
+  cursor: pointer;
+  color: #7a6da5;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  list-style: none;
+}
+
+.settings-advanced > summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-advanced > summary::before {
+  content: "\25B8\00A0";
+  display: inline-block;
+  transition: transform 160ms cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+.settings-advanced[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.settings-advanced[open] > summary {
+  margin-bottom: 14px;
+}
+
+.settings-advanced > label:not(.checkbox-row) {
+  margin-top: 4px;
+}
+
+.privacy-note {
+  margin: 0;
+  color: #7a6da5;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Check history: one row per completed check, kept in chrome.storage.local only. */
+.history-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.history-head h2 {
+  margin: 0;
+  color: #2b2048;
+  font-size: 14px;
+}
+
+#clear-history {
+  min-height: 32px;
+  border: 1.5px solid #c4b5fd;
+  background: #ffffff;
+  color: #7c3aed;
+  padding: 0 12px;
+  box-shadow: none;
+}
+
+#clear-history.is-armed {
+  border-color: #fca5a5;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.history-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.history-list .history-empty {
+  margin: 0;
+  padding: 18px 12px;
+  border: 1.5px dashed #e4dcff;
+  border-radius: 10px;
+  color: #7a6da5;
+  font-size: 13px;
+  text-align: center;
+}
+
+.history-row {
+  overflow: hidden;
+  border: 1.5px solid #e4dcff;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.history-row__summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 10px;
+  align-items: start;
+  width: 100%;
+  min-height: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #1c1033;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.history-row__summary:hover {
+  background: #f7f5ff;
+}
+
+.history-row__preview {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.history-row__meta {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #7a6da5;
+  font-size: 11.5px;
+}
+
+.history-badge {
+  display: inline-block;
+  justify-self: start;
+  max-width: 150px;
+  overflow: hidden;
+  padding: 3px 9px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Tones mirror the verdict colors the result panel uses, so the same verdict reads the same. */
+.history-badge.is-verified {
+  border-color: #6ee7b7;
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.history-badge.is-partial {
+  border-color: #fcd34d;
+  background: #fffbeb;
+  color: #78350f;
+}
+
+.history-badge.is-refuted {
+  border-color: #f87171;
+  background: #fef2f2;
+  color: #7f1d1d;
+}
+
+.history-badge.is-unknown {
+  border-color: #e5e7eb;
+  background: #f9fafb;
+  color: #374151;
+}
+
+.history-row__detail {
+  display: grid;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+
+.history-claim {
+  display: grid;
+  gap: 5px;
+  padding-top: 9px;
+  border-top: 1px dashed #e4dcff;
+}
+
+.history-claim p {
+  margin: 0;
+  color: #2b2048;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Quote block for the raw claim: the detail is the only surface where the full
+   statement is readable, so it gets room and weight instead of a clamp. */
+.history-claim__text {
+  margin: 0;
+  padding: 8px 12px;
+  border-left: 3px solid #c4b5fd;
+  background: #f5f3ff;
+  border-radius: 0 8px 8px 0;
+  color: #2b2048;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.history-claim__sources {
+  color: #7a6da5;
+  font-size: 11.5px;
+}
+
+.history-source-list {
+  display: grid;
+  gap: 6px;
+}
+
+.history-source {
+  color: #7c3aed;
+  font-size: 12.5px;
+  line-height: 1.4;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.history-source:hover {
+  color: #4c1d95;
+}
+
+.history-source--collapsed {
+  display: none;
+}
+
+/* Same quiet pill the panel's reveal controls use: present enough to find,
+   never louder than the links it uncovers. */
+.history-source-more {
+  justify-self: start;
+  padding: 4px 10px;
+  border: 1px solid #e4dcff;
+  border-radius: 999px;
+  background: #f5f3ff;
+  color: #4b3f72;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.history-source-more:hover {
+  background: #ede9fe;
+  color: #1c1033;
+}

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IRIS Options</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="options-shell">
+      <header>
+        <div class="iris-mark" aria-hidden="true">
+          <img src="assets/iris-logo-mark.png" alt="" draggable="false" />
+        </div>
+        <div>
+          <h1>IRIS Options</h1>
+          <p>Configure the Chrome extension frontend for backend testing.</p>
+        </div>
+      </header>
+
+      <form id="options-form">
+        <section class="settings-card">
+          <label class="checkbox-row">
+            <input id="panel-enabled" type="checkbox" />
+            <span>Show floating panel automatically when text is selected</span>
+          </label>
+          <label class="checkbox-row">
+            <input id="quiet-mode" type="checkbox" />
+            <span>Quiet Mode: hide IRIS until a right-click check is triggered</span>
+          </label>
+        </section>
+
+        <section class="settings-card">
+          <p class="privacy-note">
+            IRIS sends only the text you select, or the image you submit, to the verification
+            server. It does not read pages on its own and nothing is sent until you ask for a
+            check.
+          </p>
+        </section>
+
+        <!-- Kept reachable for whoever is running the study, folded away from whoever is
+             taking part in it. The fields still exist, so options.js is unchanged. -->
+        <details class="settings-card settings-advanced">
+          <summary>Developer settings</summary>
+
+          <label for="backend-url">Backend URL</label>
+          <input id="backend-url" name="backend-url" type="url" placeholder="http://127.0.0.1:5000" required />
+          <p>IRIS sends selected text to `/verify` and submitted images to `/verify-image` on this backend.</p>
+
+          <label for="access-token">Access token</label>
+          <input id="access-token" name="access-token" type="password" autocomplete="off" placeholder="Leave empty for a backend without one" />
+          <p>Matches IRIS_API_TOKEN on the server. Kept in this browser only, never in the repository.</p>
+
+          <label class="checkbox-row">
+            <input id="debug-mode" type="checkbox" />
+            <span>Send debug=true to the backend during calibration</span>
+          </label>
+        </details>
+
+        <section class="settings-grid">
+          <label>
+            Theme
+            <select id="theme">
+              <option value="system">Follow system</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </label>
+
+          <label>
+            Font size
+            <select id="font-size">
+              <option value="small">Small</option>
+              <option value="default">Default</option>
+              <option value="large">Large</option>
+              <option value="xl">Extra Large</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="settings-card history-card">
+          <div class="history-head">
+            <h2>History</h2>
+            <button type="button" id="clear-history" hidden>Clear history</button>
+          </div>
+          <div id="history-list" class="history-list"></div>
+          <p class="history-note">History is stored only on this browser.</p>
+        </section>
+
+        <footer>
+          <button type="submit">Save options</button>
+          <button type="button" id="restore-defaults">Restore defaults</button>
+        </footer>
+      </form>
+
+      <p id="save-status" role="status"></p>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

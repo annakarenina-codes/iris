@@ -43,3 +43,8 @@ Thumbs.db
 .iris-trace/
 *.sqlite3-wal
 *.sqlite3-shm
+
+# The extension's shippable bundle and UI test screenshots stay tracked;
+# the generic dist/ and build/ rules above would otherwise swallow them.
+!iris-extension/dist/
+!iris-extension/build/
