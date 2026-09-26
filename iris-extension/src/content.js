@@ -707,6 +707,9 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       .map((claim) => {
         const count = claim.corroboration.count;
         const sources = claim.sources;
+        // The row preview clamps to two lines, so the detail is the only place
+        // the full statement is readable — same rule the options history uses.
+        const claimText = String(claim.claim_text || "").trim();
         const hiddenCount = Math.max(0, sources.length - HISTORY_SOURCE_LIMIT);
         const links = sources
           .map((source, index) => {
@@ -722,6 +725,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         return `
       <div class="recent-check__claim">
         ${historyBadge(claim.verdict.label, claim.verdict)}
+        ${claimText ? `<blockquote>${escapeHtml(claimText)}</blockquote>` : ""}
         <p>${escapeHtml(claim.verdict.explanation)}</p>
         <span class="recent-check__sources">${count} evidence ${count === 1 ? "source" : "sources"}</span>
         ${links ? `<div class="recent-check__source-list">${links}${more}</div>` : ""}
@@ -730,9 +734,10 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       .join("");
   }
 
-  function recentChecksSection() {
-    if (!state.history.length) return "";
-
+  // The open body is its own template so the toggle can splice it into the live
+  // section: a full body swap would replace the header node, kill the chevron
+  // transition, and replay the state-entry fade over the whole panel.
+  function recentChecksBody() {
     const rows = state.history
       .slice(0, RECENT_CHECKS_LIMIT)
       .map(
@@ -752,20 +757,21 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       .join("");
 
     return `
+        <div class="recent-checks__list">${rows}</div>
+        <button class="iris-button iris-button--secondary recent-checks__see-all" type="button" data-action="open-history">See all history</button>`;
+  }
+
+  function recentChecksSection() {
+    if (!state.history.length) return "";
+
+    return `
       <section class="recent-checks ${state.recentChecksOpen ? "is-open" : ""}">
         <button type="button" class="recent-checks__header" aria-expanded="${state.recentChecksOpen}" data-action="toggle-recent-checks">
           <strong>Recent checks</strong>
           <span class="recent-checks__count">${state.history.length}</span>
           <i aria-hidden="true"></i>
         </button>
-        ${
-          state.recentChecksOpen
-            ? `
-        <div class="recent-checks__list">${rows}</div>
-        <button class="iris-button iris-button--secondary recent-checks__see-all" type="button" data-action="open-history">See all history</button>
-        `
-            : ""
-        }
+        ${state.recentChecksOpen ? recentChecksBody() : ""}
       </section>
     `;
   }
@@ -1005,6 +1011,15 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       bodyMarkup: null,
       claimIndex: null
     };
+
+    // The entry fade is gated by a class on the body (armed in updatePanelBody).
+    // Dropping the class when the animation ends keeps a later same-status body
+    // swap — Recent checks opening, a history update — from replaying it.
+    mountedView.body.addEventListener("animationend", (event) => {
+      if (event.target.classList?.contains("iris-state")) {
+        mountedView.body.classList.remove("is-state-enter");
+      }
+    });
   }
 
   function updatePanelBody() {
@@ -1015,6 +1030,11 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     if (view.status !== state.status) {
       view.body.innerHTML = markup;
       view.body.scrollTop = 0;
+      // Re-arm the entry fade for this transition only; the animationend
+      // listener in mountPanel disarms it once the fade has played.
+      view.body.classList.remove("is-state-enter");
+      void view.body.offsetWidth;
+      view.body.classList.add("is-state-enter");
     } else if (state.status === "detected") {
       updateDetectedText(state.selectedText);
     } else if (state.status === "settings") {
@@ -1783,7 +1803,21 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
     if (action === "toggle-recent-checks") {
       state.recentChecksOpen = !state.recentChecksOpen;
-      render();
+      const section = actionTarget.closest(".recent-checks");
+      if (!section) {
+        render();
+        return;
+      }
+      section.classList.toggle("is-open", state.recentChecksOpen);
+      actionTarget.setAttribute("aria-expanded", String(state.recentChecksOpen));
+      section.querySelector(".recent-checks__list")?.remove();
+      section.querySelector(".recent-checks__see-all")?.remove();
+      if (state.recentChecksOpen) {
+        section.insertAdjacentHTML("beforeend", recentChecksBody());
+      }
+      // Keep the render cache aligned with the live DOM so the next render()
+      // still detects real changes (for example history clearing while open).
+      mountedView.bodyMarkup = bodyForStatus();
       return;
     }
 

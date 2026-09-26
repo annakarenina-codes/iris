@@ -278,7 +278,10 @@ select {
   background: var(--iris-border-strong);
 }
 
-.iris-state {
+/* The entry fade plays only while the body carries .is-state-enter, which JS
+   arms on a status transition. The idle body also re-renders for Recent checks
+   and history changes; replaying the fade there flashed the whole panel. */
+.iris-panel__body.is-state-enter .iris-state {
   animation: iris-fade 0.2s ease;
 }
 
@@ -449,10 +452,13 @@ select {
   transform: rotate(225deg);
 }
 
+/* Spliced content eases in on open; the header node stays untouched so its
+   chevron transition keeps running across the toggle. */
 .recent-checks__list {
   display: grid;
   gap: 8px;
   margin-top: 8px;
+  animation: iris-fade 0.16s ease;
 }
 
 .recent-check {
@@ -536,6 +542,13 @@ select {
   line-height: 1.5;
 }
 
+/* The claim quote sits in a grid that already spaces its rows, so it keeps no
+   bottom margin; anywhere-wrap stops long unbroken claims from breaching the card. */
+.recent-check__claim blockquote {
+  margin-bottom: 0;
+  overflow-wrap: anywhere;
+}
+
 .recent-check__sources {
   color: var(--iris-text-light);
   font-size: calc(10.5px * var(--iris-scale));
@@ -543,6 +556,7 @@ select {
 
 .recent-checks__see-all {
   margin-top: 10px;
+  animation: iris-fade 0.16s ease;
 }
 
 .recent-check__source-list {
