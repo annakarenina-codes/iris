@@ -1,4 +1,4 @@
-:host {
+﻿:host {
   all: initial;
   -webkit-user-select: none;
   user-select: none;
@@ -19,28 +19,59 @@
 .iris-floating-wrap {
   position: fixed;
   top: 20px;
-  right: 20px;
+  inset-inline-end: 20px;
   z-index: 2147483647;
-  color: #1c1033;
+  /* Fallback only: every visible node lives inside .iris-extension-shell,
+     which carries the themed ink and the font tokens. */
+  color: var(--iris-text, #1c1033);
   font-family:
-    "DM Sans",
-    Inter,
-    ui-sans-serif,
     system-ui,
     -apple-system,
-    BlinkMacSystemFont,
     "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
     sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
+/* Persistent polite live region: 1px, clipped, out of flow — present for
+   assistive tech on every status change, invisible in the layout. */
+.iris-live-region {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 .iris-extension-shell {
   --iris-scale: 1;
-  /* Brand gradient: the richer violet ramp, with a lighter tail so white type
-     on the gradient keeps its contrast past the midpoint. */
-  --iris-gradient: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 52%, #a78bfa 100%);
+  /* Type stacks: no @font-face ships with the extension, so only faces that
+     are always present are named. Georgia keeps the quotes humanist. */
+  --iris-font-sans:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  --iris-font-serif: Georgia, "Times New Roman", serif;
+  /* The single gradient moment on this surface: the panel header. White type
+     clears 5.7:1 at every stop (the old #a78bfa tail fell to 2.7:1). */
+  --iris-gradient: linear-gradient(135deg, #5b21b6 0%, #6d28d9 55%, #7c3aed 100%);
+  --iris-accent: #7c3aed;
+  --iris-accent-strong: #6d28d9;
+  --iris-on-accent: #ffffff;
+  --iris-ready: #16a34a;
+  --iris-focus: #6d28d9;
   /* Layered, brand-tinted depth: a wide ambient wash over a tight contact shadow. */
   --iris-shadow:
     0 16px 48px rgba(109, 40, 217, 0.16),
@@ -49,6 +80,7 @@
   --iris-r-panel: 18px;
   --iris-r-card: 14px;
   --iris-r-control: 10px;
+  --iris-r-pill: 999px;
   --iris-ease: cubic-bezier(0.2, 0.8, 0.25, 1);
   --iris-fast: 160ms;
   --iris-med: 220ms;
@@ -59,7 +91,8 @@
   --iris-hover-bg: #f5f3ff;
   --iris-text: #1c1033;
   --iris-text-mid: #4b3f72;
-  --iris-text-light: #8b7fb8;
+  /* Was #8b7fb8 — 3.60:1 on white. 5.72:1 on white, 4.82:1 on --iris-muted-bg. */
+  --iris-text-light: #6b5f91;
   --iris-border: #e4dcff;
   --iris-border-strong: #c4b5fd;
   --iris-footer-bg: #ffffff;
@@ -83,7 +116,13 @@
   --iris-hover-bg: #282142;
   --iris-text: #f2eefc;
   --iris-text-mid: #b9afda;
-  --iris-text-light: #8d82b5;
+  /* #a398cb clears 5.48-6.88:1 across every dark surface, including hover;
+     the old #8d82b5 dropped to 4.15:1 on the muted step. */
+  --iris-text-light: #a398cb;
+  --iris-accent: #a78bfa;
+  --iris-accent-strong: #7c3aed;
+  --iris-ready: #22c55e;
+  --iris-focus: #a78bfa;
   --iris-border: rgba(167, 139, 250, 0.16);
   --iris-border-strong: rgba(167, 139, 250, 0.34);
   --iris-footer-bg: #171320;
@@ -124,8 +163,10 @@ select {
   flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: 11px 14px;
+  gap: 12px;
+  /* Same gutter as the body and footer: one rhythm down the whole panel. */
+  padding: 12px;
+  /* The panel's single gradient moment. */
   background: var(--iris-gradient);
   /* A hairline of light along the top edge keeps the gradient from reading flat. */
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
@@ -140,7 +181,8 @@ select {
 }
 
 .iris-panel.is-drop-target {
-  border-color: #22c55e;
+  /* 3.30:1 on white — a drag boundary is an interactive control, not decoration. */
+  border-color: var(--iris-ready);
   box-shadow:
     0 0 0 3px rgba(34, 197, 94, 0.18),
     var(--iris-shadow);
@@ -157,7 +199,7 @@ select {
   background: rgba(245, 243, 255, 0.88);
   color: #166534;
   font-size: calc(13px * var(--iris-scale));
-  font-weight: 900;
+  font-weight: 700;
   pointer-events: none;
 }
 
@@ -169,7 +211,7 @@ select {
 .iris-panel__brand {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   min-width: 0;
 }
 
@@ -190,7 +232,7 @@ select {
   flex: 0 0 auto;
   color: #fff;
   font-size: calc(14px * var(--iris-scale));
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.1;
   letter-spacing: 0.02em;
 }
@@ -200,10 +242,13 @@ select {
   flex: 1 1 auto;
   min-width: 0;
   flex-direction: column;
-  color: rgba(255, 255, 255, 0.72);
-  font-family: Consolas, "Courier New", monospace;
-  font-size: calc(8px * var(--iris-scale));
-  letter-spacing: 0.38px;
+  /* 0.92 alpha clears 5.07:1 against the gradient's lightest stop; 0.72
+     dropped to 3.70:1. Stays uppercase — it is part of the brand lockup, not a
+     label — but on the sans stack so it reads as one voice with the wordmark. */
+  color: rgba(255, 255, 255, 0.92);
+  font-family: var(--iris-font-sans);
+  font-size: calc(10px * var(--iris-scale));
+  letter-spacing: 0.4px;
   line-height: 1.12;
   white-space: normal;
 }
@@ -236,7 +281,7 @@ select {
   justify-content: center;
   flex: 0 0 auto;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: rgba(255, 255, 255, 0.16);
   color: #fff;
   cursor: pointer;
@@ -250,7 +295,7 @@ select {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  padding: 14px 14px 16px;
+  padding: 12px 12px 16px;
   background: var(--iris-panel-bg);
 }
 
@@ -270,7 +315,7 @@ select {
 .iris-panel__body::-webkit-scrollbar-thumb,
 .faq-list::-webkit-scrollbar-thumb {
   background: var(--iris-muted-bg);
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
 }
 
 .iris-panel__body::-webkit-scrollbar-thumb:hover,
@@ -296,9 +341,9 @@ select {
   align-items: center;
   justify-content: center;
   margin-bottom: 8px;
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: var(--iris-subtle-bg);
-  color: #7c3aed;
+  color: var(--iris-accent);
   font-size: 26px;
 }
 
@@ -306,7 +351,7 @@ select {
   margin: 0 0 4px;
   color: var(--iris-text);
   font-size: calc(13px * var(--iris-scale));
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.3;
 }
 
@@ -315,17 +360,17 @@ select {
 }
 
 .iris-state--idle > p {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   color: var(--iris-text-light);
   font-size: calc(12px * var(--iris-scale));
   line-height: 1.55;
 }
 
 .empty-claim {
-  margin-bottom: 14px;
-  padding: 10px 12px;
+  margin-bottom: 16px;
+  padding: 12px;
   border: 1.5px dashed var(--iris-border-strong);
-  border-radius: 10px;
+  border-radius: var(--iris-r-control);
   background: var(--iris-subtle-bg);
   color: var(--iris-text-mid);
   font-size: calc(12px * var(--iris-scale));
@@ -338,8 +383,8 @@ select {
 }
 
 .empty-claim strong {
-  color: #7c3aed;
-  font-weight: 800;
+  color: var(--iris-accent);
+  font-weight: 700;
 }
 
 .iris-button {
@@ -351,20 +396,23 @@ select {
   gap: 8px;
   border-radius: var(--iris-r-control);
   font-size: calc(13px * var(--iris-scale));
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .iris-button--disabled {
   border: 0;
   background: var(--iris-muted-bg);
-  color: var(--iris-border-strong);
+  /* 4.82:1 on --iris-muted-bg. Disabled text is exempt from WCAG, but an
+     unreadable primary label is still a broken control. */
+  color: var(--iris-text-light);
   cursor: not-allowed;
 }
 
+/* Solid brand — the gradient belongs to the panel header alone. */
 .iris-button--primary {
   border: 0;
-  background: var(--iris-gradient);
-  color: #fff;
+  background: var(--iris-accent-strong);
+  color: var(--iris-on-accent);
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(109, 40, 217, 0.28);
 }
@@ -374,27 +422,27 @@ select {
   transform: translateY(-1px);
 }
 
-.iris-button--secondary {
+.iris-button--secondary,
+.iris-button--upload {
   border: 1.5px solid var(--iris-border-strong);
   background: var(--iris-subtle-bg);
-  color: #7c3aed;
+  color: var(--iris-accent);
   cursor: pointer;
 }
 
-.iris-button--secondary:hover {
+.iris-button--secondary:hover,
+.iris-button--upload:hover {
   background: var(--iris-hover-bg);
 }
 
 .iris-button--upload {
   margin-top: 8px;
-  border: 1.5px solid var(--iris-border-strong);
-  background: var(--iris-subtle-bg);
-  color: #7c3aed;
-  cursor: pointer;
 }
 
-.iris-button--upload:hover {
-  background: var(--iris-hover-bg);
+/* The error state stacks Try again over Back to IRIS with no wrapper, so the
+   pair needs its own rhythm — the same 8px the photo-state pair already has. */
+.iris-state--error .iris-button + .iris-button {
+  margin-top: 8px;
 }
 
 /* Recent checks — the panel's mirror of the options-page history. Variables keep
@@ -403,7 +451,7 @@ select {
   margin-top: 16px;
   padding-top: 12px;
   border-top: 1.5px dashed var(--iris-border-strong);
-  text-align: left;
+  text-align: start;
 }
 
 .recent-checks__header {
@@ -418,7 +466,7 @@ select {
   background: transparent;
   color: var(--iris-text);
   font-size: calc(12px * var(--iris-scale));
-  font-weight: 800;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -432,17 +480,17 @@ select {
 
 .recent-checks__count {
   padding: 1px 8px;
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: var(--iris-muted-bg);
   color: var(--iris-text-mid);
-  font-size: calc(10.5px * var(--iris-scale));
-  font-weight: 800;
+  font-size: calc(11px * var(--iris-scale));
+  font-weight: 600;
 }
 
 .recent-checks__header i {
   width: 8px;
   height: 8px;
-  border-right: 2px solid var(--iris-text-light);
+  border-inline-end: 2px solid var(--iris-text-light);
   border-bottom: 2px solid var(--iris-text-light);
   transform: rotate(45deg);
   transition: transform var(--iris-fast) var(--iris-ease);
@@ -474,12 +522,12 @@ select {
   gap: 6px 10px;
   align-items: start;
   width: 100%;
-  padding: 9px 10px;
+  padding: 8px 10px;
   border: 0;
   background: transparent;
   color: var(--iris-text);
   font-size: calc(12px * var(--iris-scale));
-  text-align: left;
+  text-align: start;
   cursor: pointer;
   transition: background-color var(--iris-fast) var(--iris-ease);
 }
@@ -495,19 +543,67 @@ select {
   overflow: hidden;
   padding: 2px 8px;
   border: 1px solid transparent;
-  border-radius: 999px;
-  font-size: calc(9.5px * var(--iris-scale));
-  font-weight: 700;
+  border-radius: var(--iris-r-pill);
+  font-size: calc(10px * var(--iris-scale));
+  font-weight: 600;
   letter-spacing: 0.03em;
   text-overflow: ellipsis;
-  text-transform: uppercase;
   white-space: nowrap;
+}
+
+/* The row grid is two columns wide (badge, preview), so the verdict and the
+   SightEngine pill stack inside one badge cell instead of claiming a column. */
+.recent-check__badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.recent-check__ai {
+  display: inline-block;
+  max-width: 150px;
+  overflow: hidden;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--iris-r-pill);
+  font-size: calc(10px * var(--iris-scale));
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tones mirror .image-auth--is-flagged / --is-clear so the same verdict reads
+   the same in the result badge, the row pill, and both themes. */
+.recent-check__ai.is-flagged {
+  border-color: #fca5a5;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.recent-check__ai.is-clear {
+  border-color: #86efac;
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.iris-extension-shell[data-theme="dark"] .recent-check__ai.is-flagged {
+  border-color: rgba(248, 113, 113, 0.38);
+  background: #2a1416;
+  color: #fca5a5;
+}
+
+.iris-extension-shell[data-theme="dark"] .recent-check__ai.is-clear {
+  border-color: rgba(74, 222, 128, 0.34);
+  background: #12241a;
+  color: #86efac;
 }
 
 .recent-check__preview {
   display: -webkit-box;
   overflow: hidden;
-  font-size: calc(11.5px * var(--iris-scale));
+  font-size: calc(12px * var(--iris-scale));
   line-height: 1.4;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -517,9 +613,9 @@ select {
   grid-column: 1 / -1;
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   color: var(--iris-text-light);
-  font-size: calc(10.5px * var(--iris-scale));
+  font-size: calc(11px * var(--iris-scale));
 }
 
 .recent-check__detail {
@@ -551,11 +647,11 @@ select {
 
 .recent-check__sources {
   color: var(--iris-text-light);
-  font-size: calc(10.5px * var(--iris-scale));
+  font-size: calc(11px * var(--iris-scale));
 }
 
 .recent-checks__see-all {
-  margin-top: 10px;
+  margin-top: 8px;
   animation: iris-fade 0.16s ease;
 }
 
@@ -570,11 +666,11 @@ select {
   padding: 0;
   border: 0;
   background: transparent;
-  color: #7c3aed;
+  color: var(--iris-accent);
   font-size: calc(11px * var(--iris-scale));
   font-weight: 600;
   line-height: 1.4;
-  text-align: left;
+  text-align: start;
   text-decoration: underline;
   overflow-wrap: anywhere;
   cursor: pointer;
@@ -594,12 +690,12 @@ select {
   justify-self: start;
   padding: 3px 9px;
   border: 1px solid var(--iris-border-strong);
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: var(--iris-subtle-bg);
-  color: var(--iris-text-mid);
-  font-size: calc(10.5px * var(--iris-scale));
-  font-weight: 600;
-  cursor: pointer;
+   color: var(--iris-text-mid);
+   font-size: calc(11px * var(--iris-scale));
+   font-weight: 600;
+   cursor: pointer;
 }
 
 .recent-check__source-more:hover {
@@ -615,10 +711,11 @@ select {
   justify-content: space-between;
   margin-bottom: 12px;
   overflow: hidden;
-  border-radius: 12px;
-  background:
-    radial-gradient(circle at 74% 18%, rgba(252, 211, 77, 0.36), transparent 29%),
-    linear-gradient(135deg, #1e3a8a 0%, #2563eb 52%, #111827 100%);
+  border-radius: var(--iris-r-card);
+  /* Solid deep violet stands in for the photo until one exists: the old
+     blue ramp plus a yellow glow were two decorative gradients fighting the
+     brand. The real image is applied inline as background-image over this. */
+  background: #2e1065;
   background-position: center;
   background-size: cover;
   padding: 12px;
@@ -633,21 +730,21 @@ select {
 
 .photo-preview span {
   align-self: flex-start;
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: rgba(255, 255, 255, 0.18);
   padding: 3px 8px;
-  font-size: calc(9px * var(--iris-scale));
-  font-weight: 800;
+  font-size: calc(10px * var(--iris-scale));
+  font-weight: 600;
 }
 
 .photo-preview p {
   max-width: 226px;
   margin: 0;
-  font-family: "Lora", Georgia, serif;
+  font-family: var(--iris-font-serif);
   font-size: calc(13px * var(--iris-scale));
   font-weight: 600;
   line-height: 1.35;
-  text-align: left;
+  text-align: start;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
@@ -655,15 +752,15 @@ select {
   margin-bottom: 12px;
 }
 
+/* Sentence case: these are labels, not display type. */
 .ocr-preview > span,
 .result-claim > span {
   display: block;
   margin-bottom: 6px;
   color: var(--iris-text-light);
   font-size: calc(10px * var(--iris-scale));
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .photo-cancel {
@@ -674,39 +771,42 @@ select {
 .detected-row {
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 8px;
   color: #065f46;
-  font-size: calc(11.5px * var(--iris-scale));
+  font-size: calc(12px * var(--iris-scale));
 }
 
 .detected-row span {
   width: 8px;
   height: 8px;
-  border-radius: 999px;
-  background: #22c55e;
+  border-radius: var(--iris-r-pill);
+  background: var(--iris-ready);
   box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
   animation: ready-pulse 1.7s ease-in-out infinite;
 }
 
+/* The claim quote, on brand: violet instead of the stray blue. */
 blockquote {
-  margin: 0 0 14px;
-  padding: 9px 11px;
-  border: 1.5px solid #bfdbfe;
-  border-left: 3px solid #2563eb;
-  border-radius: 9px;
-  background: #f0f7ff;
-  color: #1c1033;
-  font-family: "Lora", Georgia, serif;
+  margin: 0 0 16px;
+  padding: 8px 12px;
+  border: 1.5px solid var(--iris-border-strong);
+  border-inline-start: 3px solid var(--iris-accent);
+  border-radius: var(--iris-r-control);
+  background: var(--iris-subtle-bg);
+  color: var(--iris-text);
+  font-family: var(--iris-font-serif);
   font-size: calc(12px * var(--iris-scale));
   font-style: italic;
   line-height: 1.55;
 }
 
-.supporting-note {
-  margin-bottom: 12px !important;
+/* Raised specificity instead of !important: `.iris-state p` sets margin: 0
+   and beat a bare class on the same element. */
+.iris-state .supporting-note {
+  margin-bottom: 12px;
   color: var(--iris-text-light);
-  font-size: calc(11.5px * var(--iris-scale));
+  font-size: calc(12px * var(--iris-scale));
   line-height: 1.5;
 }
 
@@ -715,7 +815,7 @@ blockquote {
 }
 
 .iris-state--scanning blockquote {
-  text-align: left;
+  text-align: start;
 }
 
 .scan-dots {
@@ -728,8 +828,8 @@ blockquote {
 .scan-dots span {
   width: 8px;
   height: 8px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  border-radius: var(--iris-r-pill);
+  background: var(--iris-accent);
   animation: dot-bounce 1.4s ease-in-out infinite;
 }
 
@@ -743,25 +843,33 @@ blockquote {
 
 .iris-state--scanning p {
   color: var(--iris-text-light);
-  font-size: calc(11.5px * var(--iris-scale));
+  font-size: calc(12px * var(--iris-scale));
   line-height: 1.55;
 }
 
 .progress-track {
   height: 3px;
-  margin-top: 14px;
+  margin-top: 16px;
   overflow: hidden;
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: var(--iris-muted-bg);
 }
 
+/* Honest indeterminate sweep: a 52% bar travelling across the track with no
+   percentage anywhere, because the backend never reports one. */
 .progress-track span {
   display: block;
   height: 100%;
   width: 52%;
-  border-radius: 999px;
-  background: var(--iris-gradient);
+  border-radius: var(--iris-r-pill);
+  background: var(--iris-accent-strong);
   animation: progress-shimmer 1.8s ease-in-out infinite;
+}
+
+/* Cancel borrows .iris-button--secondary wholesale (border, tone, control radius,
+   and the shared :focus-visible ring) — only the spacing below the track is new. */
+.scan-cancel {
+  margin-top: 16px;
 }
 
 .claim-navigator {
@@ -770,13 +878,13 @@ blockquote {
   grid-template-columns: 36px 1fr 36px;
   align-items: center;
   gap: 6px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .claim-navigator strong {
   color: var(--iris-text);
   font-size: calc(13px * var(--iris-scale));
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.2;
   text-align: center;
 }
@@ -788,9 +896,9 @@ blockquote {
   align-items: center;
   justify-content: center;
   border: 1.5px solid var(--iris-border);
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: var(--iris-card-bg);
-  color: #7c3aed;
+  color: var(--iris-accent);
   cursor: pointer;
 }
 
@@ -810,7 +918,7 @@ blockquote {
 }
 
 .result-claim {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .result-claim blockquote {
@@ -821,10 +929,10 @@ blockquote {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  margin-bottom: 10px;
-  padding: 8px 10px;
+  margin-bottom: 8px;
+  padding: 8px 12px;
   border: 1.5px solid #fdba74;
-  border-radius: 9px;
+  border-radius: var(--iris-r-control);
   background: #fff7ed;
   color: #7c2d12;
 }
@@ -836,16 +944,16 @@ blockquote {
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: #fed7aa;
   color: #7c2d12;
   font-size: calc(12px * var(--iris-scale));
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .political-flag strong {
   display: block;
-  font-size: calc(10.5px * var(--iris-scale));
+  font-size: calc(11px * var(--iris-scale));
   line-height: 1.25;
 }
 
@@ -856,14 +964,195 @@ blockquote {
   line-height: 1.35;
 }
 
-/* background/border-color/color arrive inline from JS, so only the skin that JS
-   does not set lives here: padding, radius, the accent bar, gloss, and motion. */
+/* Image detection gets three states instead of two, because "not assessed" is a
+   real outcome: collapsing it into the clear state would render an unrun check
+   as a passed one, which is exactly the false reassurance the newsroom rule
+   forbids. Structure mirrors .political-flag so notices read as one family. */
+.image-auth {
+  display: block;
+  margin-bottom: 8px;
+  border: 1.5px solid;
+  border-radius: var(--iris-r-control);
+}
+
+/* The pill is the control: one row with the icon, feature title, verdict, and
+   detector confidence — the collapsed state must stay quieter than the claim
+   verdict below it, so nothing else shows until the pill is clicked. Native
+   <details>/<summary> keeps it keyboard operable with no toggle JS. */
+.image-auth__pill {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px 8px;
+  padding: 6px 10px;
+  border-radius: inherit;
+  list-style: none;
+  cursor: pointer;
+}
+
+.image-auth__pill::-webkit-details-marker {
+  display: none;
+}
+
+.image-auth__pill::marker {
+  content: "";
+}
+
+.image-auth__pill:hover {
+  background: rgba(15, 23, 42, 0.05);
+}
+
+.image-auth__icon {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: var(--iris-r-pill);
+  font-size: calc(11px * var(--iris-scale));
+  font-weight: 700;
+  line-height: 1;
+}
+
+.image-auth__body {
+  min-width: 0;
+  /* Aligned under the pill's text, past the icon column. */
+  padding: 0 10px 8px 34px;
+}
+
+.image-auth p {
+  margin-top: 2px;
+  font-size: calc(10px * var(--iris-scale));
+  line-height: 1.35;
+}
+
+/* A probability figure is not a footnote: weight and size carry the emphasis,
+   and the tone ink runs at full strength — fading it with opacity would drop
+   this line under the 4.5:1 floor the framing note below defends. In the pill
+   row it sits inline after the verdict — the confidence IS part of the result
+   the collapsed pill exists to show. */
+.image-auth__score {
+  display: inline-block;
+  font-size: calc(10px * var(--iris-scale));
+  font-weight: 700;
+}
+
+.image-auth--is-flagged {
+  border-color: #fca5a5;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.image-auth--is-flagged .image-auth__icon {
+  background: #fecaca;
+  color: #991b1b;
+}
+
+.image-auth--is-flagged p {
+  color: #b91c1c;
+}
+
+.image-auth--is-clear {
+  border-color: #86efac;
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.image-auth--is-clear .image-auth__icon {
+  background: #bbf7d0;
+  color: #166534;
+}
+
+.image-auth--is-clear p {
+  color: #15803d;
+}
+
+.image-auth--is-unknown {
+  border-color: #d1d5db;
+  background: #f9fafb;
+  color: #4b5563;
+}
+
+.image-auth--is-unknown .image-auth__icon {
+  background: #e5e7eb;
+  color: #4b5563;
+}
+
+.image-auth--is-unknown p {
+  color: #6b7280;
+}
+
+/* The pill row: feature title scopes the block, the bold verdict states the
+   result, the AI probability follows when the check ran, and the chevron is
+   the only hint that more opens beneath. Emphasis comes from size and weight
+   only — never opacity: the tone inks above already sit near the 4.5:1 floor on
+   these light tints, so fading them would push the copy below WCAG AA. */
+.image-auth .image-auth__feature {
+  font-size: calc(11px * var(--iris-scale));
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.image-auth .image-auth__verdict {
+  font-size: calc(11px * var(--iris-scale));
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Chevron: the collapsed pill's open-hint, and the only motion in this block.
+   It rides at the row's end so it reads as the control affordance, not as copy. */
+.image-auth__chevron {
+  margin-inline-start: auto;
+  font-size: calc(9px * var(--iris-scale));
+  line-height: 1;
+  transition: transform 150ms ease;
+}
+
+.image-auth__chevron::after {
+  content: "\25BE";
+}
+
+.image-auth[open] .image-auth__chevron {
+  transform: rotate(180deg);
+}
+
+/* The scope note and splice caveat are the sentences that stop the reader
+   treating the image result as evidence about the claim; the per-state note
+   and probabilistic disclaimer carry the detector's limits. All four open with
+   the pill — the collapsed state shows only result + confidence — and they take
+   the neutral ink already used by --is-unknown so they read as one family of
+   caveats in every tone. */
+.image-auth .image-auth__scope,
+.image-auth .image-auth__caveat {
+  margin-top: 4px;
+  font-size: calc(10px * var(--iris-scale));
+  line-height: 1.35;
+  color: #4b5563;
+}
+
+.image-auth .image-auth__note {
+  margin-top: 2px;
+  font-size: calc(10px * var(--iris-scale));
+  line-height: 1.35;
+}
+
+.image-auth .image-auth__disclaimer {
+  margin-top: 5px;
+  font-size: calc(10px * var(--iris-scale));
+  line-height: 1.35;
+  /* Neutral ink, not the tone colour: a fixture note must not read as an error. */
+  color: #4b5563;
+}
+
+/* Tone colours live in CSS on the .is-* classes instead of arriving inline
+   from JS, so dark mode can carry its own tones for the same six verdicts. */
 .verdict-card {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 10px;
-  padding: 11px 13px;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding: 12px;
   border: 1.5px solid;
   border-left-width: 4px;
   border-radius: var(--iris-r-card);
@@ -871,42 +1160,88 @@ blockquote {
   transition: box-shadow var(--iris-fast) var(--iris-ease);
 }
 
+/* The result card and the history badge share one rule per tone so the same
+   verdict can never drift between the two lists. */
+.verdict-card.is-verified,
+.recent-check__badge.is-verified {
+  background: #ecfdf5;
+  border-color: #6ee7b7;
+  color: #065f46;
+}
+
+.verdict-card.is-partial,
+.recent-check__badge.is-partial {
+  background: #fffbeb;
+  border-color: #fcd34d;
+  color: #78350f;
+}
+
+.verdict-card.is-refuted,
+.recent-check__badge.is-refuted {
+  background: #fef2f2;
+  border-color: #f87171;
+  color: #7f1d1d;
+}
+
+.verdict-card.is-opinion,
+.recent-check__badge.is-opinion {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.verdict-card.is-error,
+.recent-check__badge.is-error {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
+.verdict-card.is-unknown,
+.recent-check__badge.is-unknown {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
 .verdict-card__icon {
   min-width: 22px;
   flex: 0 0 auto;
   font-size: calc(13px * var(--iris-scale));
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.3;
   text-align: center;
 }
 
 .verdict-card strong {
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   font-size: calc(13px * var(--iris-scale));
   line-height: 1.2;
 }
 
+/* Full-strength ink: the tone colours were picked to clear 4.5:1 on their own
+   tint, and 0.88 opacity quietly gave that contrast back. */
 .verdict-card p {
-  font-size: calc(11.5px * var(--iris-scale));
+  font-size: calc(12px * var(--iris-scale));
   line-height: 1.48;
-  opacity: 0.88;
 }
 
 .corroboration-row {
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .corroboration-row strong {
   min-width: 54px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: var(--iris-gradient);
-  color: #fff;
-  font-size: calc(10.5px * var(--iris-scale));
+  padding: 4px 8px;
+  border-radius: var(--iris-r-pill);
+  /* Solid brand: the header owns the panel's only gradient. */
+  background: var(--iris-accent-strong);
+  color: var(--iris-on-accent);
+  font-size: calc(11px * var(--iris-scale));
   line-height: 1.2;
   text-align: center;
 }
@@ -920,15 +1255,14 @@ blockquote {
   margin-bottom: 6px;
   color: var(--iris-text-light);
   font-size: calc(10px * var(--iris-scale));
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .source-list {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 8px;
   margin-bottom: 12px;
 }
 
@@ -938,8 +1272,8 @@ blockquote {
   border: 1.5px solid var(--iris-border);
   border-radius: var(--iris-r-card);
   background: var(--iris-card-bg);
-  padding: 10px 12px;
-  text-align: left;
+  padding: 12px;
+  text-align: start;
   cursor: pointer;
   transition:
     background-color var(--iris-fast) var(--iris-ease),
@@ -963,18 +1297,16 @@ blockquote {
 }
 
 .source-card__meta span {
-  color: #7c3aed;
-  font-size: calc(9.5px * var(--iris-scale));
-  font-weight: 700;
+  color: var(--iris-accent);
+  font-size: calc(10px * var(--iris-scale));
+  font-weight: 600;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .source-card__meta time {
   flex: 0 0 auto;
   color: var(--iris-text-light);
-  font-family: Consolas, "Courier New", monospace;
-  font-size: calc(9px * var(--iris-scale));
+  font-size: calc(10px * var(--iris-scale));
 }
 
 .source-card__title {
@@ -982,8 +1314,8 @@ blockquote {
   min-height: 32px;
   overflow: hidden;
   color: var(--iris-text);
-  font-family: "Lora", Georgia, serif;
-  font-size: calc(11.5px * var(--iris-scale));
+  font-family: var(--iris-font-serif);
+  font-size: calc(12px * var(--iris-scale));
   line-height: 1.42;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -993,19 +1325,19 @@ blockquote {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-top: 5px;
-  color: #7c3aed;
+  margin-top: 4px;
+  color: var(--iris-accent);
   font-size: calc(10px * var(--iris-scale));
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .source-empty {
   border: 1.5px dashed var(--iris-border);
-  border-radius: 10px;
+  border-radius: var(--iris-r-control);
   background: var(--iris-subtle-bg);
   color: var(--iris-text-light);
-  padding: 10px 12px;
-  font-size: calc(11.5px * var(--iris-scale));
+  padding: 12px;
+  font-size: calc(12px * var(--iris-scale));
   line-height: 1.45;
 }
 
@@ -1018,11 +1350,11 @@ blockquote {
 .source-more {
   min-height: 32px;
   border: 1px solid var(--iris-border-strong);
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: var(--iris-subtle-bg);
   color: var(--iris-text-mid);
   cursor: pointer;
-  font-size: calc(11.5px * var(--iris-scale));
+  font-size: calc(12px * var(--iris-scale));
   font-weight: 600;
 }
 
@@ -1036,9 +1368,9 @@ blockquote {
   align-items: flex-start;
   gap: 8px;
   margin: 2px 0 12px;
-  padding: 8px 10px;
+  padding: 8px 12px;
   border: 1.5px solid var(--iris-border);
-  border-radius: 9px;
+  border-radius: var(--iris-r-control);
   background: var(--iris-subtle-bg);
   color: var(--iris-text-mid);
 }
@@ -1050,13 +1382,13 @@ blockquote {
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: var(--iris-card-bg);
-  color: #7c3aed;
-  font-family: Georgia, serif;
+  color: var(--iris-accent);
+  font-family: var(--iris-font-serif);
   font-size: calc(11px * var(--iris-scale));
   font-style: italic;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .skipped-note p {
@@ -1065,10 +1397,11 @@ blockquote {
   line-height: 1.45;
 }
 
-.disclaimer {
-  margin-bottom: 12px !important;
-  padding: 8px 10px;
-  border-radius: 9px;
+/* Specificity instead of !important: `.iris-state p` sets margin: 0. */
+.iris-state .disclaimer {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: var(--iris-r-control);
   background: var(--iris-subtle-bg);
   color: var(--iris-text-mid);
   font-size: calc(11px * var(--iris-scale));
@@ -1084,7 +1417,7 @@ blockquote {
   gap: 8px;
   border-top: 1px solid var(--iris-border);
   background: var(--iris-footer-bg);
-  padding: 7px 14px;
+  padding: 8px 12px;
   color: var(--iris-text-light);
 }
 
@@ -1095,7 +1428,7 @@ blockquote {
   align-items: center;
   justify-content: center;
   border: 1.5px solid transparent;
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: transparent;
   color: var(--iris-text-light);
   cursor: pointer;
@@ -1105,7 +1438,7 @@ blockquote {
 .iris-panel__footer button.is-active {
   border-color: var(--iris-border);
   background: var(--iris-hover-bg);
-  color: #7c3aed;
+  color: var(--iris-accent);
 }
 
 .iris-settings {
@@ -1128,15 +1461,15 @@ blockquote {
   width: auto;
   min-height: 32px;
   padding: 0 12px;
-  font-size: calc(11.5px * var(--iris-scale));
+  font-size: calc(12px * var(--iris-scale));
 }
 
 .setting-row,
 .setting-block {
   border: 1.5px solid var(--iris-border);
-  border-radius: 10px;
+  border-radius: var(--iris-r-control);
   background: var(--iris-card-bg);
-  padding: 11px 12px;
+  padding: 12px;
 }
 
 .setting-row {
@@ -1158,8 +1491,32 @@ blockquote {
   display: block;
   margin-top: 2px;
   color: var(--iris-text-light);
-  font-size: calc(10.5px * var(--iris-scale));
+  font-size: calc(11px * var(--iris-scale));
   line-height: 1.35;
+}
+
+/* The language pick is the panel's only native select, so it dresses like the
+   secondary control family: strong border, subtle violet ground, token radius.
+   The native arrow stays - it already follows the theme and the direction, and
+   the intrinsic width reserves its own space so labels never sit under it. */
+.setting-row select {
+  flex: 0 0 auto;
+  min-height: 32px;
+  max-width: 150px;
+  padding: 0 10px;
+  border: 1.5px solid var(--iris-border-strong);
+  border-radius: var(--iris-r-control);
+  background: var(--iris-subtle-bg);
+  color: var(--iris-text);
+  font-size: calc(12px * var(--iris-scale));
+  cursor: pointer;
+  transition:
+    background-color var(--iris-med) var(--iris-ease),
+    border-color var(--iris-med) var(--iris-ease);
+}
+
+.setting-row select:hover {
+  background: var(--iris-hover-bg);
 }
 
 .switch-button {
@@ -1167,7 +1524,7 @@ blockquote {
   height: 26px;
   flex: 0 0 auto;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: var(--iris-muted-bg);
   padding: 3px;
   cursor: pointer;
@@ -1179,15 +1536,16 @@ blockquote {
   height: 20px;
   display: block;
   margin: 0;
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: var(--iris-card-bg);
   box-shadow: 0 1px 4px rgba(28, 16, 51, 0.18);
   transform: translateX(0);
   transition: transform var(--iris-med) var(--iris-ease);
 }
 
+/* Solid brand: a secondary control does not get the header's gradient. */
 .switch-button.is-on {
-  background: var(--iris-gradient);
+  background: var(--iris-accent-strong);
 }
 
 .switch-button.is-on span {
@@ -1198,7 +1556,7 @@ blockquote {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 5px;
-  margin-top: 9px;
+  margin-top: 8px;
 }
 
 .font-options button {
@@ -1217,8 +1575,8 @@ blockquote {
      labels that grow with --iris-scale outgrow their cell and collide at XL.
      Controls stay fixed-px under scale throughout the panel (switch, nav,
      icon buttons), and this follows that rule. */
-  font-size: 10.5px;
-  font-weight: 800;
+  font-size: 11px;
+  font-weight: 600;
   line-height: 1;
   padding: 0 8px;
   text-align: center;
@@ -1226,10 +1584,11 @@ blockquote {
 }
 
 .font-options button:hover,
-.font-options button.is-active {
+.font-options button.is-active,
+.font-options button[aria-pressed="true"] {
   border-color: var(--iris-border-strong);
   background: var(--iris-hover-bg);
-  color: #7c3aed;
+  color: var(--iris-accent);
 }
 
 .faq-overlay {
@@ -1269,12 +1628,12 @@ blockquote {
   margin: 0;
   color: var(--iris-text);
   font-size: calc(13px * var(--iris-scale));
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .iris-icon-button--plain {
   background: var(--iris-subtle-bg);
-  color: #7c3aed;
+  color: var(--iris-accent);
 }
 
 .iris-icon-button--plain:hover {
@@ -1295,7 +1654,7 @@ blockquote {
 .faq-list h3 {
   margin: 0 0 4px;
   color: var(--iris-text);
-  font-size: calc(11.5px * var(--iris-scale));
+  font-size: calc(12px * var(--iris-scale));
   line-height: 1.3;
 }
 
@@ -1309,11 +1668,69 @@ blockquote {
 .faq-list button {
   border: 0;
   background: transparent;
-  color: #7c3aed;
+  color: var(--iris-accent);
   cursor: pointer;
   font-size: calc(11px * var(--iris-scale));
-  font-weight: 800;
+  font-weight: 600;
   padding: 0;
+}
+
+/* Hover to check: the one IRIS surface outside the panel flow. Fixed near
+   the cursor, fades in after a dwell, and yields whenever the pointer enters
+   any other IRIS UI (see composedPath in content.js). The :not(.iris-pill)
+   tier is deliberate — it must out-rank .iris-extension-shell button:not(.iris-pill)
+   to own the transition list, or the fade gets dropped. */
+.iris-extension-shell.iris-hover-pill:not(.iris-pill) {
+  position: fixed;
+  inset-inline-start: 0;
+  top: 0;
+  z-index: 2147483647;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 1.5px solid var(--iris-border-strong);
+  border-radius: var(--iris-r-pill);
+  background: var(--iris-panel-bg);
+  color: var(--iris-accent);
+  font-family: var(--iris-font-sans);
+  font-size: calc(12.5px * var(--iris-scale));
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(109, 40, 217, 0.18);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* Visibility flips only after the fade has played on the way out; on the
+     way in it lands with the first frame (0s, no delay). */
+  transition:
+    opacity var(--iris-med) var(--iris-ease),
+    visibility 0s linear var(--iris-med),
+    background-color var(--iris-fast) var(--iris-ease),
+    border-color var(--iris-fast) var(--iris-ease),
+    color var(--iris-fast) var(--iris-ease),
+    box-shadow var(--iris-fast) var(--iris-ease),
+    transform var(--iris-fast) var(--iris-ease),
+    filter var(--iris-fast) var(--iris-ease);
+}
+
+.iris-extension-shell.iris-hover-pill:not(.iris-pill).is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity var(--iris-med) var(--iris-ease),
+    visibility 0s,
+    background-color var(--iris-fast) var(--iris-ease),
+    border-color var(--iris-fast) var(--iris-ease),
+    color var(--iris-fast) var(--iris-ease),
+    box-shadow var(--iris-fast) var(--iris-ease),
+    transform var(--iris-fast) var(--iris-ease),
+    filter var(--iris-fast) var(--iris-ease);
 }
 
 .iris-pill {
@@ -1324,10 +1741,10 @@ blockquote {
   align-items: center;
   gap: 8px;
   border: 1.5px solid var(--iris-border-strong);
-  border-radius: 999px;
+  border-radius: var(--iris-r-pill);
   background: var(--iris-panel-bg);
   padding: 0 12px 0 8px;
-  color: #7c3aed;
+  color: var(--iris-accent);
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -1335,8 +1752,56 @@ blockquote {
   box-shadow: 0 4px 20px rgba(109, 40, 217, 0.18);
 }
 
+/* The drag-only landing pad: quiet idle unmounts every surface, so a
+   candidate image drag gets a docked pad instead. It parks on the same
+   inline-end edge the floating panel defaults to (right in LTR, left in
+   RTL), vertically centred — never covering the content being dragged.
+   The pad only mounts when no panel/pill exists, so it cannot overlap
+   either. The dashed green edge is the same "drop means go" signal the
+   panel and pill already speak. */
+.iris-quiet-drop {
+  position: fixed;
+  top: 50%;
+  inset-inline-end: 24px;
+  transform: translateY(-50%);
+  width: min(300px, calc(100vw - 48px));
+  height: 168px;
+  z-index: 2147483647;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  padding: 24px;
+  box-sizing: border-box;
+  border: 2px dashed var(--iris-ready);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-card-bg);
+  color: var(--iris-ready);
+  box-shadow: var(--iris-shadow);
+  cursor: copy;
+  user-select: none;
+  text-align: center;
+}
+
+.iris-quiet-drop .iris-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.iris-quiet-drop span {
+  color: var(--iris-text);
+  font-size: calc(13px * var(--iris-scale));
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.iris-quiet-drop:hover {
+  background: var(--iris-hover-bg);
+  border-style: solid;
+}
+
 .iris-pill.is-drop-target {
-  border-color: #22c55e;
+  border-color: var(--iris-ready);
   box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
 }
 
@@ -1350,7 +1815,7 @@ blockquote {
   background: rgba(245, 243, 255, 0.92);
   color: #166534;
   font-size: calc(12px * var(--iris-scale));
-  font-weight: 900;
+  font-weight: 700;
   pointer-events: none;
 }
 
@@ -1359,21 +1824,21 @@ blockquote {
   color: #86efac;
 }
 
+/* Solid accent, not gradient text: clipped gradients read as a rendering bug
+   when they land on light backgrounds, and this wordmark must stay crisp at
+   13px on a 120px pill. */
 .iris-pill span {
   font-size: calc(13px * var(--iris-scale));
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.5px;
-  background: var(--iris-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--iris-accent);
 }
 
 .iris-pill__status {
   width: 7px;
   height: 7px;
-  margin-left: auto;
-  border-radius: 999px;
+  margin-inline-start: auto;
+  border-radius: var(--iris-r-pill);
   background: var(--iris-text-light);
   transition:
     background-color var(--iris-fast) var(--iris-ease),
@@ -1381,7 +1846,7 @@ blockquote {
 }
 
 .iris-pill__status.is-ready {
-  background: #22c55e;
+  background: var(--iris-ready);
   box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
   animation: none;
 }
@@ -1392,49 +1857,15 @@ blockquote {
   animation: scan-pulse 1.05s ease-in-out infinite;
 }
 
-.iris-extension-shell[data-theme="dark"] .idle-search,
-.iris-extension-shell[data-theme="dark"] .iris-icon-button--plain,
-.iris-extension-shell[data-theme="dark"] .skipped-note > span {
-  background: #241e3a;
-  color: #f2eefc;
-}
-
-.iris-extension-shell[data-theme="dark"] blockquote {
-  border-color: rgba(167, 139, 250, 0.16);
-  border-left-color: #8d82b5;
-  background: #241e3a;
-  color: #f2eefc;
-}
-
-/* Interactive accents keep the brand violet in dark; plain copy goes to the
-   lightest text tone. Splitting them is what keeps links looking like links. */
-.iris-extension-shell[data-theme="dark"] .iris-button--secondary,
-.iris-extension-shell[data-theme="dark"] .iris-button--upload,
-.iris-extension-shell[data-theme="dark"] .claim-navigator__button,
-.iris-extension-shell[data-theme="dark"] .source-card__meta span,
-.iris-extension-shell[data-theme="dark"] .source-card__link,
-.iris-extension-shell[data-theme="dark"] .faq-list button,
-.iris-extension-shell[data-theme="dark"] .font-options button:hover,
-.iris-extension-shell[data-theme="dark"] .font-options button.is-active,
-.iris-extension-shell[data-theme="dark"] .iris-panel__footer button:hover,
-.iris-extension-shell[data-theme="dark"] .iris-panel__footer button.is-active,
-.iris-extension-shell[data-theme="dark"] .recent-check__source {
-  color: #a78bfa;
-}
-
+/* Dark accents, quotes, and quiet icons now come from the token block above:
+   --iris-accent, --iris-subtle-bg, and --iris-border-strong already flip with
+   data-theme, so the old per-selector dark repaints are gone. What stays here
+   is ink that genuinely cannot be a token: the detected-claim row keeps its
+   lightest tone because dark green would disappear on a dark panel, and the
+   empty-claim emphasis goes white for the same reason. */
 .iris-extension-shell[data-theme="dark"] .empty-claim strong,
 .iris-extension-shell[data-theme="dark"] .detected-row {
   color: #f2eefc;
-}
-
-/* The gradient itself is theme-independent, so these stay on the brand ramp
-   instead of dropping to the flat white the old gray palette needed. */
-.iris-extension-shell[data-theme="dark"] .iris-button--primary,
-.iris-extension-shell[data-theme="dark"] .corroboration-row strong,
-.iris-extension-shell[data-theme="dark"] .progress-track span,
-.iris-extension-shell[data-theme="dark"] .scan-dots span {
-  background: var(--iris-gradient);
-  color: #ffffff;
 }
 
 .iris-extension-shell[data-theme="dark"] .source-card:hover {
@@ -1444,23 +1875,14 @@ blockquote {
 
 /* Border only: the pill colours already come from theme-aware tokens, and
    dropping the colour here is what lets the hover rule brighten them again. */
-.iris-extension-shell[data-theme="dark"] .source-more,
-.iris-extension-shell[data-theme="dark"] .recent-check__source-more {
-  border-color: rgba(167, 139, 250, 0.34);
-}
-
-.iris-extension-shell[data-theme="dark"] .source-card--collapsed {
-  display: none;
-}
-
+/* Ghost-pill borders and collapsed cards already run on theme-aware tokens,
+   so their dark repaints are gone too. */
 .iris-extension-shell[data-theme="dark"] .detected-row span {
-  background: #22c55e;
   box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
   animation: none;
 }
 
 .iris-extension-shell[data-theme="dark"] .iris-pill__status.is-ready {
-  background: #22c55e;
   box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.20);
   animation: none;
 }
@@ -1488,21 +1910,115 @@ blockquote {
   color: #fdba74;
 }
 
-.iris-extension-shell[data-theme="dark"] .switch-button.is-on {
-  background: var(--iris-gradient);
+/* Same rebalancing for detection: hues stay legible as hues on a dark surface,
+   only the surface and ink move. */
+.iris-extension-shell[data-theme="dark"] .image-auth--is-flagged {
+  border-color: rgba(248, 113, 113, 0.38);
+  background: #2a1416;
+  color: #fde8e8;
 }
 
-.iris-extension-shell[data-theme="dark"] .switch-button.is-on span {
-  background: var(--iris-card-bg);
+.iris-extension-shell[data-theme="dark"] .image-auth--is-flagged .image-auth__icon {
+  background: #4a1c1e;
+  color: #fca5a5;
 }
 
-.iris-extension-shell[data-theme="dark"].iris-pill {
-  color: #f2eefc;
+.iris-extension-shell[data-theme="dark"] .image-auth--is-flagged p {
+  color: #fca5a5;
 }
 
-.iris-extension-shell[data-theme="dark"].iris-pill span {
-  background: none;
-  -webkit-text-fill-color: currentColor;
+.iris-extension-shell[data-theme="dark"] .image-auth--is-clear {
+  border-color: rgba(74, 222, 128, 0.34);
+  background: #12241a;
+  color: #e7fcef;
+}
+
+.iris-extension-shell[data-theme="dark"] .image-auth--is-clear .image-auth__icon {
+  background: #173526;
+  color: #86efac;
+}
+
+.iris-extension-shell[data-theme="dark"] .image-auth--is-clear p {
+  color: #86efac;
+}
+
+.iris-extension-shell[data-theme="dark"] .image-auth--is-unknown {
+  border-color: rgba(148, 163, 184, 0.32);
+  background: #211f2b;
+  color: #e8eaf2;
+}
+
+.iris-extension-shell[data-theme="dark"] .image-auth--is-unknown .image-auth__icon {
+  background: #2f2d3d;
+  color: #cbd5e1;
+}
+
+.iris-extension-shell[data-theme="dark"] .image-auth--is-unknown p {
+  color: #a8adc0;
+}
+
+/* The scope note, the splice caveat, and the disclaimer are the only elements
+   whose ink is tuned to a surface rather than inherited from the tone, so they
+   are the only ones that need rebalancing here: #a8adc0 is the dark counterpart
+   of the light #4b5563 and clears 7:1 on all three dark tone surfaces, so all
+   three caveats stay legible without gaining emphasis the rest of the badge
+   does not have. Everything else in the analysis block inherits the tone ink
+   set above. */
+.iris-extension-shell[data-theme="dark"] .image-auth .image-auth__scope,
+.iris-extension-shell[data-theme="dark"] .image-auth .image-auth__caveat,
+.iris-extension-shell[data-theme="dark"] .image-auth .image-auth__disclaimer {
+  color: #a8adc0;
+}
+
+/* The light theme's near-black hover wash would vanish on the dark tone
+   surfaces, so it flips to the white counterpart there. */
+.iris-extension-shell[data-theme="dark"] .image-auth__pill:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Dark verdict tones: same six hues, surfaces deepened. Every ink clears
+   6.6:1 on its own tint (verified 7.6, partial 12.0, refuted 8.5,
+   opinion 10.3, unknown 10.0). */
+.iris-extension-shell[data-theme="dark"] .verdict-card.is-verified,
+.iris-extension-shell[data-theme="dark"] .recent-check__badge.is-verified {
+  background: #064e3b;
+  border-color: #34d399;
+  color: #a7f3d0;
+}
+
+.iris-extension-shell[data-theme="dark"] .verdict-card.is-partial,
+.iris-extension-shell[data-theme="dark"] .recent-check__badge.is-partial {
+  background: #451a03;
+  border-color: #f59e0b;
+  color: #fde68a;
+}
+
+.iris-extension-shell[data-theme="dark"] .verdict-card.is-refuted,
+.iris-extension-shell[data-theme="dark"] .recent-check__badge.is-refuted {
+  background: #450a0a;
+  border-color: #f87171;
+  color: #fca5a5;
+}
+
+.iris-extension-shell[data-theme="dark"] .verdict-card.is-opinion,
+.iris-extension-shell[data-theme="dark"] .recent-check__badge.is-opinion {
+  background: #172554;
+  border-color: #93c5fd;
+  color: #bfdbfe;
+}
+
+.iris-extension-shell[data-theme="dark"] .verdict-card.is-error,
+.iris-extension-shell[data-theme="dark"] .recent-check__badge.is-error {
+  background: #450a0a;
+  border-color: #f87171;
+  color: #fca5a5;
+}
+
+.iris-extension-shell[data-theme="dark"] .verdict-card.is-unknown,
+.iris-extension-shell[data-theme="dark"] .recent-check__badge.is-unknown {
+  background: #1f2937;
+  border-color: #6b7280;
+  color: #d1d5db;
 }
 
 .iris-extension-shell[data-theme="dark"].iris-pill.is-drop-target::after {
@@ -1584,7 +2100,7 @@ blockquote {
 @media (max-width: 420px) {
   .iris-floating-wrap {
     top: auto;
-    right: 12px;
+    inset-inline-end: 12px;
     bottom: 14px;
   }
 
@@ -1620,9 +2136,19 @@ blockquote {
   filter: brightness(0.92);
 }
 
-.iris-extension-shell button:focus-visible {
-  outline: 2px solid var(--iris-text);
+/* One focus ring for every control in the panel, on both themes. */
+.iris-floating-wrap :focus-visible,
+.iris-panel:focus-visible,
+.iris-pill:focus-visible,
+.iris-hover-pill:focus-visible {
+  outline: 2px solid var(--iris-focus);
   outline-offset: 2px;
+}
+
+/* A violet ring on the gradient header would be invisible against its own
+   violet: the controls that sit on brand surfaces take a white one. */
+.iris-panel__header button:focus-visible {
+  outline-color: #ffffff;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,21 +1,30 @@
 const DEFAULTS = {
   irisBackendUrl: "https://iris-production-8342.up.railway.app", // iris:backend-url
+  sightengineApiUser: "",
+  sightengineApiSecret: "",
   irisAccessToken: "",
   irisPanelEnabled: true,
   irisTheme: "system",
   irisFontSize: "default",
   irisDebugMode: false,
-  quietMode: false
+  quietMode: false,
+  hoverCheck: false,
+  hoverSuppressedByQuiet: false,
+  irisUiLanguage: "en"
 };
 
 const form = document.getElementById("options-form");
 const backendUrl = document.getElementById("backend-url");
+const sightengineUser = document.getElementById("sightengine-user");
+const sightengineSecret = document.getElementById("sightengine-secret");
 const accessToken = document.getElementById("access-token");
 const panelEnabled = document.getElementById("panel-enabled");
 const quietMode = document.getElementById("quiet-mode");
+const hoverCheck = document.getElementById("hover-check");
 const debugMode = document.getElementById("debug-mode");
 const theme = document.getElementById("theme");
 const fontSize = document.getElementById("font-size");
+const uiLanguage = document.getElementById("ui-language");
 const restoreDefaults = document.getElementById("restore-defaults");
 const saveStatus = document.getElementById("save-status");
 const historyList = document.getElementById("history-list");
@@ -28,6 +37,39 @@ const HISTORY_KEY = "irisHistory";
 const HISTORY_SOURCE_LIMIT = 3;
 let historyEntries = [];
 
+// One source of truth for the language list (src/i18n.js): the panel's
+// Settings select and this one must never drift. Native labels stay in their
+// own language on purpose — that is how readers find their own.
+uiLanguage.innerHTML = IRIS_LANGUAGES.map(
+  (language) => `<option value="${language.code}">${escapeHtml(language.label)}</option>`
+).join("");
+
+// One language drives every string on this page: the data-i18n labels, the
+// document direction, and the history rows rebuilt below. Picking a language
+// previews it immediately (like the theme does); Save persists it.
+let currentLanguage = "en";
+
+function optT(key, ...vars) {
+  return irisT(currentLanguage, key, ...vars);
+}
+
+function applyI18n() {
+  const language = IRIS_LANGUAGES.some((entry) => entry.code === currentLanguage)
+    ? currentLanguage
+    : "en";
+  for (const element of document.querySelectorAll("[data-i18n]")) {
+    element.textContent = irisT(language, element.dataset.i18n);
+  }
+  for (const element of document.querySelectorAll("[data-i18n-placeholder]")) {
+    element.placeholder = irisT(language, element.dataset.i18nPlaceholder);
+  }
+  document.title = irisT(language, "options.title");
+  document.documentElement.lang = language;
+  document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+  // Rows carry verdicts, pills, and counts — they repaint with everything else.
+  renderHistory(historyEntries);
+}
+
 function normalizeBackendUrl(value) {
   return String(value || DEFAULTS.irisBackendUrl).trim().replace(/\/+$/, "");
 }
@@ -36,15 +78,44 @@ function setStatus(message) {
   saveStatus.textContent = message || "";
 }
 
+// The stored irisTheme themes this page itself; "system" leaves the attribute
+// off so tokens.css follows prefers-color-scheme through color-scheme.
+function applyTheme(value) {
+  const mode = value || DEFAULTS.irisTheme;
+  if (mode === "light" || mode === "dark") {
+    document.documentElement.dataset.theme = mode;
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+  }
+}
+
 function applyValues(values) {
   backendUrl.value = normalizeBackendUrl(values.irisBackendUrl);
+  sightengineUser.value = values.sightengineApiUser || "";
+  sightengineSecret.value = values.sightengineApiSecret || "";
   accessToken.value = values.irisAccessToken || "";
   panelEnabled.checked = values.irisPanelEnabled !== false;
   quietMode.checked = Boolean(values.quietMode);
+  hoverCheck.checked = Boolean(values.hoverCheck);
   debugMode.checked = Boolean(values.irisDebugMode);
   theme.value = values.irisTheme || DEFAULTS.irisTheme;
   fontSize.value = values.irisFontSize || DEFAULTS.irisFontSize;
+  const language = values.irisUiLanguage || DEFAULTS.irisUiLanguage;
+  uiLanguage.value = IRIS_LANGUAGES.some((entry) => entry.code === language) ? language : "en";
+  currentLanguage = uiLanguage.value;
+  applyI18n();
+  applyTheme(theme.value);
 }
+
+// Picking a theme previews it immediately; Save persists it for the other
+// surfaces (panel, popup). Language follows the same preview rule.
+theme.addEventListener("change", () => applyTheme(theme.value));
+uiLanguage.addEventListener("change", () => {
+  currentLanguage = IRIS_LANGUAGES.some((entry) => entry.code === uiLanguage.value)
+    ? uiLanguage.value
+    : "en";
+  applyI18n();
+});
 
 function readOptions() {
   chrome.storage.sync.get(DEFAULTS, (items) => applyValues(items));
@@ -55,16 +126,20 @@ form.addEventListener("submit", (event) => {
 
   const values = {
     irisBackendUrl: normalizeBackendUrl(backendUrl.value),
+    sightengineApiUser: sightengineUser.value.trim(),
+    sightengineApiSecret: sightengineSecret.value.trim(),
     irisAccessToken: accessToken.value.trim(),
     irisPanelEnabled: panelEnabled.checked,
     quietMode: quietMode.checked,
+    hoverCheck: hoverCheck.checked,
     irisTheme: theme.value,
     irisFontSize: fontSize.value,
+    irisUiLanguage: uiLanguage.value,
     irisDebugMode: debugMode.checked
   };
 
   chrome.storage.sync.set(values, () => {
-    setStatus("Options saved.");
+    setStatus(optT("options.saved"));
     window.setTimeout(() => setStatus(""), 1800);
   });
 });
@@ -72,7 +147,7 @@ form.addEventListener("submit", (event) => {
 restoreDefaults.addEventListener("click", () => {
   chrome.storage.sync.set(DEFAULTS, () => {
     applyValues(DEFAULTS);
-    setStatus("Defaults restored.");
+    setStatus(optT("options.restored"));
     window.setTimeout(() => setStatus(""), 1800);
   });
 });
@@ -109,9 +184,26 @@ function verdictTone(verdict) {
   return "is-unknown";
 }
 
+// The badge shows the verdict in the reader's language; verdictTone still reads
+// the raw string, so colours never depend on the display language. Backend
+// verdicts outside the known four pass through verbatim.
+const VERDICT_KEYS = {
+  verified: "verdict.verified",
+  "partially verified": "verdict.partially",
+  refuted: "verdict.refuted",
+  "not found": "verdict.notFound"
+};
+
+function verdictLabel(verdict) {
+  const label = String(verdict || "").trim();
+  const key = VERDICT_KEYS[label.toLowerCase()];
+  return key ? optT(key) : label;
+}
+
 function historyBadge(verdict) {
-  const label = String(verdict || "").trim() || "Result";
-  return `<span class="history-badge ${verdictTone(label)}">${escapeHtml(label)}</span>`;
+  const raw = String(verdict || "").trim();
+  const label = raw ? verdictLabel(raw) : optT("recent.badgeFallback");
+  return `<span class="history-badge ${verdictTone(raw)}">${escapeHtml(label)}</span>`;
 }
 
 // Same filtering the result panel applies: only extracted http(s) entries, deduped by
@@ -163,17 +255,31 @@ function countClaimSources(claim, payload) {
   return Number.isFinite(count) ? Math.min(Math.max(count, 0), sourceCount) : sourceCount;
 }
 
+// Flat imageAi rides on the stored entry (recordCheckHistory writes it): the row
+// must not parse every stored payload — the detail below stays the lazy parser —
+// and entries recorded before the field existed simply show no pill.
+function historyAiPill(entry) {
+  const info = entry.imageAi;
+  if (!info || !Number.isFinite(Number(info.confidence))) return "";
+
+  const pct = Math.round(Number(info.confidence) * 100);
+  return `<span class="history-row__ai ${info.isAi ? "is-flagged" : "is-clear"}">${escapeHtml(optT("imageAuth.score", pct))}</span>`;
+}
+
 function historyRowMarkup(entry, index) {
   const date = formatCheckedAt(entry.checkedAt);
-  const typeLabel = entry.inputType === "image" ? "Image" : "Text";
+  const typeLabel = optT(entry.inputType === "image" ? "recent.image" : "recent.text");
 
   return `
     <div class="history-row">
       <button type="button" class="history-row__summary" aria-expanded="false" data-index="${index}">
-        ${historyBadge(entry.verdict)}
+        <span class="history-row__badges">
+          ${historyBadge(entry.verdict)}
+          ${historyAiPill(entry)}
+        </span>
         <span class="history-row__preview">${escapeHtml(entry.preview || "")}</span>
         <span class="history-row__meta">
-          <span>${typeLabel}</span>
+          <span>${typeLabel}${entry.image?.name ? ` · ${escapeHtml(entry.image.name)}` : ""}</span>
           <time>${escapeHtml(date)}</time>
         </span>
       </button>
@@ -194,7 +300,7 @@ function historyDetailMarkup(entry) {
 
   const claims = Array.isArray(payload?.claims) ? payload.claims : [];
   if (!claims.length) {
-    const text = String(entry.fallback || "").trim() || "No claim details were stored for this check.";
+    const text = String(entry.fallback || "").trim() || optT("recent.noDetails");
     return `<div class="history-claim"><p>${escapeHtml(text)}</p></div>`;
   }
 
@@ -215,7 +321,7 @@ function historyDetailMarkup(entry) {
         .join("");
       const more =
         hiddenCount > 0
-          ? `<button type="button" class="history-source-more">Show ${hiddenCount} more</button>`
+          ? `<button type="button" class="history-source-more">${escapeHtml(optT("result.showMore", hiddenCount))}</button>`
           : "";
 
       return `
@@ -223,7 +329,7 @@ function historyDetailMarkup(entry) {
         ${historyBadge(claim?.verdict || entry.verdict)}
         ${claimText ? `<blockquote class="history-claim__text">${escapeHtml(claimText)}</blockquote>` : ""}
         ${message ? `<p>${escapeHtml(message)}</p>` : ""}
-        <span class="history-claim__sources">${count} evidence ${count === 1 ? "source" : "sources"}</span>
+        <span class="history-claim__sources">${escapeHtml(optT(count === 1 ? "options.evidenceOne" : "options.evidenceMany", count))}</span>
         ${links ? `<div class="history-source-list">${links}${more}</div>` : ""}
       </div>
     `;
@@ -236,7 +342,7 @@ function renderHistory(entries) {
   clearHistory.hidden = historyEntries.length === 0;
 
   if (!historyEntries.length) {
-    historyList.innerHTML = '<p class="history-empty">No checks yet.</p>';
+    historyList.innerHTML = `<p class="history-empty">${escapeHtml(optT("options.noChecks"))}</p>`;
     return;
   }
 
@@ -273,6 +379,7 @@ historyList.addEventListener("click", (event) => {
   const expanded = summary.getAttribute("aria-expanded") === "true";
   summary.setAttribute("aria-expanded", String(!expanded));
   detail.hidden = expanded;
+  return;
 });
 
 let clearArmed = false;
@@ -281,7 +388,7 @@ let clearTimer = 0;
 function disarmClearHistory() {
   clearArmed = false;
   window.clearTimeout(clearTimer);
-  clearHistory.textContent = "Clear history";
+  clearHistory.textContent = optT("options.clearHistory");
   clearHistory.classList.remove("is-armed");
 }
 
@@ -290,7 +397,7 @@ clearHistory.addEventListener("click", () => {
     // Clearing cannot be undone, so the first click only arms the button; a second
     // click within four seconds is the one that deletes.
     clearArmed = true;
-    clearHistory.textContent = "Confirm clear?";
+    clearHistory.textContent = optT("options.confirmClear");
     clearHistory.classList.add("is-armed");
     clearTimer = window.setTimeout(disarmClearHistory, 4000);
     return;
@@ -299,7 +406,7 @@ clearHistory.addEventListener("click", () => {
   chrome.storage.local.remove(HISTORY_KEY, () => {
     disarmClearHistory();
     renderHistory([]);
-    setStatus("History cleared.");
+    setStatus(optT("options.historyCleared"));
     window.setTimeout(() => setStatus(""), 1800);
   });
 });

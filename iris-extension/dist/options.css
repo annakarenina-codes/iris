@@ -1,3 +1,7 @@
+﻿/* Options — tokens.css supplies palette, type and motion; this file only lays
+   things out. One gradient moment: the Save button. The stored irisTheme sets
+   data-theme on <html> (options.js), so every color below resolves through
+   light-dark() for light, dark, or system. */
 * {
   box-sizing: border-box;
 }
@@ -9,32 +13,25 @@
 body {
   min-height: 100vh;
   margin: 0;
-  color: #1c1033;
-  font-family:
-    "DM Sans",
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-  /* A half point over the browser default: the page is mostly settings copy. */
-  font-size: 16.5px;
-  background: #f7f5ff;
+  color: var(--iris-text);
+  font-family: var(--iris-font-sans);
+  /* The whole scale tops out at 16px; 16.5px was off-scale. */
+  font-size: 16px;
+  background: var(--iris-page-bg);
 }
 
 .options-shell {
   width: min(720px, calc(100vw - 32px));
   margin: 0 auto;
+  /* Page gutter, outside the component spacing scale. */
   padding: 36px 0;
 }
 
 header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 18px;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .iris-mark {
@@ -44,10 +41,10 @@ header {
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  border: 1px solid #e4dcff;
-  border-radius: 14px;
-  background: #ffffff;
-  box-shadow: 0 8px 24px rgba(109, 40, 217, 0.14);
+  border: 1px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-card-bg);
+  box-shadow: 0 8px 24px light-dark(rgba(109, 40, 217, 0.14), rgba(0, 0, 0, 0.45));
 }
 
 .iris-mark img {
@@ -59,79 +56,77 @@ header {
 
 h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 26px;
   line-height: 1.15;
 }
 
 header p {
   margin: 4px 0 0;
-  color: #6b5f91;
+  color: var(--iris-text-light);
   font-size: 14px;
 }
 
 form {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 
 .settings-card,
 .settings-grid {
-  border: 1px solid #e4dcff;
-  border-radius: 14px;
-  background: #ffffff;
+  border: 1px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-card-bg);
   padding: 16px;
-  box-shadow:
-    0 16px 48px rgba(109, 40, 217, 0.16),
-    0 4px 12px rgba(109, 40, 217, 0.08);
+  box-shadow: var(--iris-shadow);
 }
 
 .settings-card label,
 .settings-grid label {
   display: grid;
   gap: 8px;
-  color: #2b2048;
+  color: var(--iris-text);
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 600;
 }
 
 .settings-card p {
-  margin: 9px 0 0;
-  color: #7a6da5;
+  margin: 8px 0 0;
+  color: var(--iris-text-light);
   font-size: 13px;
   line-height: 1.5;
 }
 
+/* Interactive boundaries carry the 3:1 control border; keyboard focus is the
+   shared :focus-visible ring from tokens.css — no second focus system here.
+   type="text" belongs to the group too (SightEngine API User) — leaving it out
+   rendered that one field as a bare unstyled box next to its siblings. */
 input[type="url"],
+input[type="text"],
 input[type="password"],
 select {
   width: 100%;
   min-height: 42px;
-  border: 1.5px solid #c4b5fd;
-  border-radius: 10px;
-  background: #ffffff;
-  color: #1c1033;
+  /* The native arrow owns the trailing edge; keep the label clear of it on
+     fixed-width controls, and let padding-inline flip it for RTL. */
+  padding-inline: 12px 36px;
+  border: 1.5px solid var(--iris-border-control);
+  border-radius: var(--iris-r-control);
+  background: var(--iris-card-bg);
+  color: var(--iris-text);
   font: inherit;
   font-size: 14px;
-  padding: 0 12px;
-  transition:
-    border-color 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
-    box-shadow 160ms cubic-bezier(0.2, 0.8, 0.25, 1);
+  cursor: pointer;
+  transition: border-color 160ms var(--iris-ease);
 }
 
-/* The ring moves from outline to box-shadow so it never doubles up with the
-   browser's own focus outline. Same halo the panel uses. */
-input[type="url"]:focus,
-input[type="password"]:focus,
-select:focus {
-  border-color: #8b5cf6;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.22);
-  outline: none;
+select:hover {
+  border-color: var(--iris-accent);
 }
 
 .checkbox-row {
   grid-template-columns: auto 1fr;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .checkbox-row:last-child {
@@ -141,53 +136,55 @@ select:focus {
 .checkbox-row input {
   width: 18px;
   height: 18px;
-  accent-color: #7c3aed;
+  accent-color: var(--iris-accent);
 }
 
 .settings-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
 footer {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
+/* One motion contract for every control: colour, chrome and position travel on
+   the same curve the on-page panel uses. */
 button {
   min-height: 42px;
   border: 0;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 52%, #a78bfa 100%);
-  color: #ffffff;
+  border-radius: var(--iris-r-control);
+  background: var(--iris-accent-strong);
+  color: var(--iris-on-accent);
   cursor: pointer;
   font: inherit;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 600;
   padding: 0 16px;
+  transition:
+    background-color var(--iris-fast) var(--iris-ease),
+    border-color var(--iris-fast) var(--iris-ease),
+    color var(--iris-fast) var(--iris-ease),
+    box-shadow var(--iris-fast) var(--iris-ease),
+    transform var(--iris-fast) var(--iris-ease),
+    filter var(--iris-fast) var(--iris-ease);
 }
 
 button:hover {
   filter: brightness(1.06);
 }
 
-/* One motion contract for every control: colour, chrome and position travel on
-   the same curve the on-page panel uses. */
-button {
-  transition:
-    background-color 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
-    border-color 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
-    color 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
-    box-shadow 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
-    transform 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
-    filter 160ms cubic-bezier(0.2, 0.8, 0.25, 1);
+/* The page's single gradient moment: the Save button. */
+footer button[type="submit"] {
+  background: var(--iris-gradient);
 }
 
 /* Only the footer actions lift. History rows are buttons too, and a row that
    jumps on hover reads as a glitch instead of as feedback. */
 footer button {
-  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.28);
+  box-shadow: 0 4px 14px light-dark(rgba(109, 40, 217, 0.28), rgba(0, 0, 0, 0.5));
 }
 
 footer button:hover {
@@ -199,31 +196,17 @@ button:active:not(:disabled) {
   filter: brightness(0.92);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
-
-  /* Kept at the specificity the press rule actually uses, or it never wins. */
-  button:active:not(:disabled),
-  footer button:hover {
-    transform: none !important;
-  }
-}
-
 #restore-defaults {
-  border: 1.5px solid #c4b5fd;
-  background: #ffffff;
-  color: #7c3aed;
+  border: 1.5px solid var(--iris-border-strong);
+  background: var(--iris-card-bg);
+  color: var(--iris-accent);
   box-shadow: none;
 }
 
 #save-status {
   min-height: 18px;
   margin: 12px 0 0;
-  color: #6b5f91;
+  color: var(--iris-text-light);
   font-size: 13px;
 }
 
@@ -240,11 +223,10 @@ button:active:not(:disabled) {
 /* The study's own settings, folded away from the people taking part in it. */
 .settings-advanced > summary {
   cursor: pointer;
-  color: #7a6da5;
-  font-size: 12.5px;
+  color: var(--iris-text-light);
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
   list-style: none;
 }
 
@@ -255,7 +237,7 @@ button:active:not(:disabled) {
 .settings-advanced > summary::before {
   content: "\25B8\00A0";
   display: inline-block;
-  transition: transform 160ms cubic-bezier(0.2, 0.8, 0.25, 1);
+  transition: transform var(--iris-fast) var(--iris-ease);
 }
 
 .settings-advanced[open] > summary::before {
@@ -263,7 +245,7 @@ button:active:not(:disabled) {
 }
 
 .settings-advanced[open] > summary {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .settings-advanced > label:not(.checkbox-row) {
@@ -272,7 +254,7 @@ button:active:not(:disabled) {
 
 .privacy-note {
   margin: 0;
-  color: #7a6da5;
+  color: var(--iris-text-light);
   font-size: 13px;
   line-height: 1.5;
 }
@@ -282,28 +264,28 @@ button:active:not(:disabled) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
 }
 
 .history-head h2 {
   margin: 0;
-  color: #2b2048;
+  color: var(--iris-text);
   font-size: 14px;
 }
 
 #clear-history {
   min-height: 32px;
-  border: 1.5px solid #c4b5fd;
-  background: #ffffff;
-  color: #7c3aed;
+  border: 1.5px solid var(--iris-border-strong);
+  background: var(--iris-card-bg);
+  color: var(--iris-accent);
   padding: 0 12px;
   box-shadow: none;
 }
 
 #clear-history.is-armed {
-  border-color: #fca5a5;
-  background: #fef2f2;
-  color: #b91c1c;
+  border-color: light-dark(#fca5a5, #f87171);
+  background: light-dark(#fef2f2, #450a0a);
+  color: light-dark(#b91c1c, #fca5a5);
 }
 
 .history-list {
@@ -314,40 +296,40 @@ button:active:not(:disabled) {
 
 .history-list .history-empty {
   margin: 0;
-  padding: 18px 12px;
-  border: 1.5px dashed #e4dcff;
-  border-radius: 10px;
-  color: #7a6da5;
+  padding: 16px 12px;
+  border: 1.5px dashed var(--iris-border);
+  border-radius: var(--iris-r-control);
+  color: var(--iris-text-light);
   font-size: 13px;
   text-align: center;
 }
 
 .history-row {
   overflow: hidden;
-  border: 1.5px solid #e4dcff;
-  border-radius: 14px;
-  background: #ffffff;
+  border: 1.5px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-card-bg);
 }
 
 .history-row__summary {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 6px 10px;
+  gap: 6px 8px;
   align-items: start;
   width: 100%;
   min-height: 0;
-  padding: 10px 12px;
+  padding: 12px;
   border: 0;
   border-radius: 0;
   background: transparent;
-  color: #1c1033;
+  color: var(--iris-text);
   font-size: 13px;
   font-weight: 400;
-  text-align: left;
+  text-align: start;
 }
 
 .history-row__summary:hover {
-  background: #f7f5ff;
+  background: var(--iris-hover-bg);
 }
 
 .history-row__preview {
@@ -363,9 +345,9 @@ button:active:not(:disabled) {
   grid-column: 1 / -1;
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  color: #7a6da5;
-  font-size: 11.5px;
+  gap: 8px;
+  color: var(--iris-text-light);
+  font-size: 11px;
 }
 
 .history-badge {
@@ -373,40 +355,77 @@ button:active:not(:disabled) {
   justify-self: start;
   max-width: 150px;
   overflow: hidden;
-  padding: 3px 9px;
+  padding: 4px 8px;
   border: 1px solid transparent;
-  border-radius: 999px;
-  font-size: 10.5px;
+  border-radius: var(--iris-r-pill);
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-overflow: ellipsis;
-  text-transform: uppercase;
   white-space: nowrap;
 }
 
-/* Tones mirror the verdict colors the result panel uses, so the same verdict reads the same. */
+/* Tones mirror the verdict colors the result panel uses, so the same verdict
+   reads the same; both schemes come along through light-dark(). */
 .history-badge.is-verified {
-  border-color: #6ee7b7;
-  background: #ecfdf5;
-  color: #065f46;
+  border-color: light-dark(#6ee7b7, #34d399);
+  background: light-dark(#ecfdf5, #064e3b);
+  color: light-dark(#065f46, #a7f3d0);
 }
 
 .history-badge.is-partial {
-  border-color: #fcd34d;
-  background: #fffbeb;
-  color: #78350f;
+  border-color: light-dark(#fcd34d, #fbbf24);
+  background: light-dark(#fffbeb, #451a03);
+  color: light-dark(#78350f, #fde68a);
 }
 
 .history-badge.is-refuted {
-  border-color: #f87171;
-  background: #fef2f2;
-  color: #7f1d1d;
+  border-color: light-dark(#f87171, #f87171);
+  background: light-dark(#fef2f2, #450a0a);
+  color: light-dark(#7f1d1d, #fca5a5);
 }
 
 .history-badge.is-unknown {
-  border-color: #e5e7eb;
-  background: #f9fafb;
-  color: #374151;
+  border-color: light-dark(#e5e7eb, #374151);
+  background: light-dark(#f9fafb, #1e1930);
+  color: light-dark(#374151, #9ca3af);
+}
+
+/* The row grid is two columns wide (badges, preview), so the verdict and the
+   SightEngine pill stack inside one badge cell instead of claiming a column. */
+.history-row__badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.history-row__ai {
+  display: inline-block;
+  max-width: 150px;
+  overflow: hidden;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--iris-r-pill);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tones mirror the panel's .image-auth--is-flagged / --is-clear palettes so the
+   same verdict reads the same on both surfaces, in both themes. */
+.history-row__ai.is-flagged {
+  border-color: light-dark(#fca5a5, rgba(248, 113, 113, 0.38));
+  background: light-dark(#fef2f2, #2a1416);
+  color: light-dark(#991b1b, #fca5a5);
+}
+
+.history-row__ai.is-clear {
+  border-color: light-dark(#86efac, rgba(74, 222, 128, 0.34));
+  background: light-dark(#f0fdf4, #12241a);
+  color: light-dark(#166534, #86efac);
 }
 
 .history-row__detail {
@@ -417,27 +436,32 @@ button:active:not(:disabled) {
 
 .history-claim {
   display: grid;
-  gap: 5px;
-  padding-top: 9px;
-  border-top: 1px dashed #e4dcff;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--iris-border);
 }
 
 .history-claim p {
   margin: 0;
-  color: #2b2048;
+  color: var(--iris-text);
   font-size: 13px;
   line-height: 1.5;
 }
 
 /* Quote block for the raw claim: the detail is the only surface where the full
-   statement is readable, so it gets room and weight instead of a clamp. */
+   statement is readable, so it gets room and weight instead of a clamp. Same
+   treatment the panel gives a quote. */
 .history-claim__text {
   margin: 0;
   padding: 8px 12px;
-  border-left: 3px solid #c4b5fd;
-  background: #f5f3ff;
-  border-radius: 0 8px 8px 0;
-  color: #2b2048;
+  border-inline-start: 3px solid var(--iris-accent);
+  background: var(--iris-subtle-bg);
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  border-start-end-radius: var(--iris-r-control);
+  border-end-end-radius: var(--iris-r-control);
+  color: var(--iris-text);
+  font-family: var(--iris-font-serif);
   font-size: 13px;
   font-style: italic;
   line-height: 1.5;
@@ -445,8 +469,8 @@ button:active:not(:disabled) {
 }
 
 .history-claim__sources {
-  color: #7a6da5;
-  font-size: 11.5px;
+  color: var(--iris-text-light);
+  font-size: 11px;
 }
 
 .history-source-list {
@@ -455,15 +479,15 @@ button:active:not(:disabled) {
 }
 
 .history-source {
-  color: #7c3aed;
-  font-size: 12.5px;
+  color: var(--iris-accent);
+  font-size: 12px;
   line-height: 1.4;
   text-decoration: underline;
   overflow-wrap: anywhere;
 }
 
 .history-source:hover {
-  color: #4c1d95;
+  color: light-dark(#4c1d95, #c4b5fd);
 }
 
 .history-source--collapsed {
@@ -476,17 +500,31 @@ button:active:not(:disabled) {
 .history-source-more {
   justify-self: start;
   min-height: 0;
-  padding: 4px 10px;
-  border: 1px solid #e4dcff;
-  border-radius: 999px;
-  background: #f5f3ff;
-  color: #4b3f72;
-  font-size: 11.5px;
+  padding: 4px 12px;
+  border: 1px solid var(--iris-border);
+  border-radius: var(--iris-r-pill);
+  background: var(--iris-subtle-bg);
+  color: var(--iris-text-mid);
+  font-size: 11px;
   font-weight: 600;
   cursor: pointer;
 }
 
 .history-source-more:hover {
-  background: #ede9fe;
-  color: #1c1033;
+  background: var(--iris-muted-bg);
+  color: var(--iris-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Kept at the specificity the press rule actually uses, or it never wins. */
+  button:active:not(:disabled),
+  footer button:hover {
+    transform: none !important;
+  }
 }

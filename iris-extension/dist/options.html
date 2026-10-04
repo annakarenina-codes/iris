@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IRIS Options</title>
+    <link rel="stylesheet" href="tokens.css" />
     <link rel="stylesheet" href="options.css" />
   </head>
   <body>
@@ -13,8 +14,8 @@
           <img src="assets/iris-logo-mark.png" alt="" draggable="false" />
         </div>
         <div>
-          <h1>IRIS Options</h1>
-          <p>Configure the Chrome extension frontend for backend testing.</p>
+          <h1 data-i18n="options.title">IRIS Options</h1>
+          <p data-i18n="options.subtitle">Configure the Chrome extension frontend for backend testing.</p>
         </div>
       </header>
 
@@ -22,16 +23,20 @@
         <section class="settings-card">
           <label class="checkbox-row">
             <input id="panel-enabled" type="checkbox" />
-            <span>Show floating panel automatically when text is selected</span>
+            <span data-i18n="options.autoPanel">Show floating panel automatically when text is selected</span>
           </label>
           <label class="checkbox-row">
             <input id="quiet-mode" type="checkbox" />
-            <span>Quiet Mode: hide IRIS until a right-click check is triggered</span>
+            <span data-i18n="options.quietMode">Quiet Mode: hide IRIS until a right-click check is triggered</span>
+          </label>
+          <label class="checkbox-row">
+            <input id="hover-check" type="checkbox" />
+            <span data-i18n="options.hoverCheck">Hover to check: show a check pill when the cursor rests on a paragraph or image</span>
           </label>
         </section>
 
         <section class="settings-card">
-          <p class="privacy-note">
+          <p class="privacy-note" data-i18n="options.privacyNote">
             IRIS sends only the text you select, or the image you submit, to the verification
             server. It does not read pages on its own and nothing is sent until you ask for a
             check.
@@ -41,60 +46,76 @@
         <!-- Kept reachable for whoever is running the study, folded away from whoever is
              taking part in it. The fields still exist, so options.js is unchanged. -->
         <details class="settings-card settings-advanced">
-          <summary>Developer settings</summary>
+          <summary data-i18n="options.devSettings">Developer settings</summary>
 
-          <label for="backend-url">Backend URL</label>
+          <label for="backend-url" data-i18n="options.backendUrl">Backend URL</label>
           <input id="backend-url" name="backend-url" type="url" placeholder="http://127.0.0.1:5000" required />
-          <p>IRIS sends selected text to `/verify` and submitted images to `/verify-image` on this backend.</p>
+          <p data-i18n="options.backendHelp">IRIS sends selected text to `/verify` and submitted images to `/verify-image` on this backend.</p>
 
-          <label for="access-token">Access token</label>
-          <input id="access-token" name="access-token" type="password" autocomplete="off" placeholder="Leave empty for a backend without one" />
-          <p>Matches IRIS_API_TOKEN on the server. Kept in this browser only, never in the repository.</p>
+          <label for="sightengine-user" data-i18n="options.sightUser">SightEngine API User</label>
+          <input id="sightengine-user" name="sightengine-user" type="text" placeholder="your_user" autocomplete="off" />
+          <p data-i18n="options.sightUserHelp">SightEngine API user ID for the AI-generated image check.</p>
+
+          <label for="sightengine-secret" data-i18n="options.sightSecret">SightEngine API Secret</label>
+          <input id="sightengine-secret" name="sightengine-secret" type="password" autocomplete="off" placeholder="your_secret" />
+          <p data-i18n="options.sightSecretHelp">SightEngine API secret key. Both values are required for the image-authenticity check.</p>
+
+          <label for="access-token" data-i18n="options.accessToken">Access token</label>
+          <input id="access-token" name="access-token" type="password" autocomplete="off" data-i18n-placeholder="options.tokenPlaceholder" placeholder="Leave empty for a backend without one" />
+          <p data-i18n="options.tokenHelp">Matches IRIS_API_TOKEN on the server. Kept in this browser only, never in the repository.</p>
 
           <label class="checkbox-row">
             <input id="debug-mode" type="checkbox" />
-            <span>Send debug=true to the backend during calibration</span>
+            <span data-i18n="options.debugMode">Send debug=true to the backend during calibration</span>
           </label>
         </details>
 
         <section class="settings-grid">
           <label>
-            Theme
+            <span data-i18n="options.theme">Theme</span>
             <select id="theme">
-              <option value="system">Follow system</option>
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
+              <option value="system" data-i18n="options.themeSystem">Follow system</option>
+              <option value="light" data-i18n="options.themeLight">Light</option>
+              <option value="dark" data-i18n="options.themeDark">Dark</option>
             </select>
           </label>
 
           <label>
-            Font size
+            <span data-i18n="settings.font">Font size</span>
             <select id="font-size">
-              <option value="small">Small</option>
-              <option value="default">Default</option>
-              <option value="large">Large</option>
-              <option value="xl">Extra Large</option>
+              <option value="small" data-i18n="font.small">Small</option>
+              <option value="default" data-i18n="font.default">Default</option>
+              <option value="large" data-i18n="font.large">Large</option>
+              <option value="xl" data-i18n="font.xl">XL</option>
             </select>
+          </label>
+
+          <label>
+            <span data-i18n="settings.language">Language</span>
+            <!-- Populated from IRIS_LANGUAGES in src/i18n.js so this list can
+                 never drift from the panel's Settings select. -->
+            <select id="ui-language"></select>
           </label>
         </section>
 
         <section class="settings-card history-card">
           <div class="history-head">
-            <h2>History</h2>
-            <button type="button" id="clear-history" hidden>Clear history</button>
+            <h2 data-i18n="options.historyTitle">History</h2>
+            <button type="button" id="clear-history" hidden data-i18n="options.clearHistory">Clear history</button>
           </div>
           <div id="history-list" class="history-list"></div>
-          <p class="history-note">History is stored only on this browser.</p>
+          <p class="history-note" data-i18n="options.historyNote">History is stored only on this browser.</p>
         </section>
 
         <footer>
-          <button type="submit">Save options</button>
-          <button type="button" id="restore-defaults">Restore defaults</button>
+          <button type="submit" data-i18n="options.save">Save options</button>
+          <button type="button" id="restore-defaults" data-i18n="options.restore">Restore defaults</button>
         </footer>
       </form>
 
       <p id="save-status" role="status"></p>
     </main>
+    <script src="src/i18n.js"></script>
     <script src="options.js"></script>
   </body>
 </html>
