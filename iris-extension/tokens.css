@@ -1,0 +1,89 @@
+/* IRIS shared design tokens.
+   One palette for the popup and the options page. src/content.css carries the
+   same values in its own token block because it is injected standalone into a
+   shadow root and cannot link this file — keep the two blocks in sync.
+
+   Theme resolution: `color-scheme` follows the OS by default, and popup.js /
+   options.js set data-theme="light|dark" on <html> from the stored irisTheme
+   setting, so one setting themes every surface. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Type — deliberate stacks; no @font-face ships with the extension, so only
+     faces that are always present are named. */
+  --iris-font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --iris-font-serif: Georgia, "Times New Roman", serif;
+
+  /* Spacing — 4px rhythm. */
+  --iris-s-1: 2px;
+  --iris-s-2: 4px;
+  --iris-s-3: 6px;
+  --iris-s-4: 8px;
+  --iris-s-5: 12px;
+  --iris-s-6: 16px;
+  --iris-s-7: 20px;
+  --iris-s-8: 24px;
+
+  /* Radii — three steps plus the genuine pill. */
+  --iris-r-panel: 18px;
+  --iris-r-card: 14px;
+  --iris-r-control: 10px;
+  --iris-r-pill: 999px;
+
+  /* Motion. */
+  --iris-ease: cubic-bezier(0.2, 0.8, 0.25, 1);
+  --iris-fast: 160ms;
+
+  /* Brand. The gradient is the single gradient moment of the popup and of the
+     options page; white type clears 5.7:1 at every stop (the old ramp fell to
+     2.7:1 on its #a78bfa tail). */
+  --iris-gradient: linear-gradient(135deg, #5b21b6 0%, #6d28d9 55%, #7c3aed 100%);
+  --iris-accent: light-dark(#7c3aed, #a78bfa);
+  --iris-accent-strong: light-dark(#6d28d9, #7c3aed);
+  --iris-on-accent: #ffffff;
+
+  /* Surfaces. */
+  --iris-page-bg: light-dark(#f7f5ff, #171320);
+  --iris-panel-bg: light-dark(#ffffff, #171320);
+  --iris-card-bg: light-dark(#ffffff, #1e1930);
+  --iris-subtle-bg: light-dark(#f5f3ff, #241e3a);
+  --iris-muted-bg: light-dark(#ede9fe, #2b2446);
+  --iris-hover-bg: light-dark(#f5f3ff, #282142);
+
+  /* Ink — every pair below clears 4.5:1 on the surface it is used on.
+     --iris-text-light used to be #8b7fb8 (3.60:1 on white). */
+  --iris-text: light-dark(#1c1033, #f2eefc);
+  --iris-text-mid: light-dark(#4b3f72, #b9afda);
+  --iris-text-light: light-dark(#6b5f91, #a398cb);
+
+  /* Lines. */
+  --iris-border: light-dark(#e4dcff, rgba(167, 139, 250, 0.16));
+  --iris-border-strong: light-dark(#c4b5fd, rgba(167, 139, 250, 0.34));
+  /* Interactive boundaries need 3:1, decorative card borders do not. */
+  --iris-border-control: light-dark(#8b5cf6, rgba(167, 139, 250, 0.5));
+
+  /* Focus — one ring for every interactive element on every surface. */
+  --iris-focus: light-dark(#6d28d9, #a78bfa);
+
+  /* Depth — light-dark() sits where the shadow colour goes. */
+  --iris-shadow:
+    0 16px 48px light-dark(rgba(109, 40, 217, 0.12), rgba(0, 0, 0, 0.55)),
+    0 4px 12px light-dark(rgba(109, 40, 217, 0.08), rgba(0, 0, 0, 0.35));
+}
+
+/* The stored irisTheme setting flips the scheme; with no attribute the page
+   follows prefers-color-scheme through `color-scheme: light dark` above. */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Keyboard focus is visible on every interactive element, in both schemes. */
+:focus-visible {
+  outline: 2px solid var(--iris-focus);
+  outline-offset: 2px;
+}

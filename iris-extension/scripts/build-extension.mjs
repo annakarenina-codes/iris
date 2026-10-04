@@ -8,6 +8,7 @@ const distDir = join(projectRoot, "dist");
 
 const files = [
   "manifest.json",
+  "tokens.css",
   "popup.html",
   "popup.css",
   "popup.js",
@@ -22,7 +23,8 @@ const files = [
   "assets/icon128.png",
   "src/background.js",
   "src/content.js",
-  "src/content.css"
+  "src/content.css",
+  "src/i18n.js"
 ];
 
 await rm(distDir, { recursive: true, force: true });
