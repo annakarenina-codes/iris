@@ -1,4 +1,9 @@
-if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
+// Top frame only: the manifest injects here, and the fallback re-injection in
+// background.js/popup.js now targets frame 0 — but if content.js ever reaches
+// a page iframe anyway, it must not run: a panel mounted there would be a
+// second floating surface clipped to that frame (the "two panels" bug).
+// Comparing window references is safe cross-origin.
+if (!window.__IRIS_EXTENSION_CONTENT_LOADED__ && window === window.top) {
   window.__IRIS_EXTENSION_CONTENT_LOADED__ = true;
 
   const STORAGE_DEFAULTS = {
@@ -7,39 +12,27 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     irisTheme: "system",
     irisFontSize: "default",
     irisDebugMode: false,
-    quietMode: false
+    quietMode: false,
+    hoverCheck: false,
+    hoverSuppressedByQuiet: false,
+    irisUiLanguage: "en"
   };
 
+  // Labels live in the i18n dictionary (t("font.*")) so they translate with
+  // the panel; only the value and the scale matter here.
   const FONT_OPTIONS = [
-    { value: "small", label: "Small", scale: 0.9 },
-    { value: "default", label: "Default", scale: 1 },
-    { value: "large", label: "Large", scale: 1.15 },
-    { value: "xl", label: "XL", scale: 1.3 }
+    { value: "small", scale: 0.9 },
+    { value: "default", scale: 1 },
+    { value: "large", scale: 1.15 },
+    { value: "xl", scale: 1.3 }
   ];
 
   const FAQ_ITEMS = [
-    {
-      question: "What does IRIS check?",
-      answer:
-        "IRIS checks selected factual claims against VERA Files and approved Philippine news sources."
-    },
-    {
-      question: "What does Not Found mean?",
-      answer:
-        "It means IRIS did not find enough matching evidence in the approved source scope. It does not mean false."
-    },
-    {
-      question: "What data is sent?",
-      answer:
-        "Only the text you select or the image you explicitly submit for OCR is sent to your configured backend."
-    },
-    {
-      question: "Does IRIS verify images?",
-      answer:
-        "IRIS extracts readable text from submitted images. It does not judge whether an image is authentic or edited."
-    }
+    { questionKey: "faq.q.checks", answerKey: "faq.a.checks" },
+    { questionKey: "faq.q.notFound", answerKey: "faq.a.notFound" },
+    { questionKey: "faq.q.data", answerKey: "faq.a.data" },
+    { questionKey: "faq.q.images", answerKey: "faq.a.images" }
   ];
-  const IMAGE_DROP_ERROR = "Drop a PNG, JPEG, WEBP, BMP, or TIFF image. GIFs, videos, and selected text are not sent to IRIS.";
   const IRIS_LOGO_MARK_URL = chrome.runtime.getURL("assets/iris-logo-mark.png");
 
   // Mirrors the options page and the background recorder: chrome.storage.local, never
@@ -61,6 +54,24 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     recentChecksOpen: false,
     collapsed: false,
     faqOpen: false,
+    faqOpener: null,
+    // The check that failed, in replayable form: the error state only offers a
+    // retry when it can honestly repeat the exact same request.
+    lastCheck: null,
+    // Monotonic id of the check the panel currently believes in. beginCheck()
+    // opens a new generation and cancelActiveCheck() closes the current one, so
+    // every response flow can compare the generation it captured at its own start
+    // against this on arrival and drop a stale payload. A boolean could not do
+    // that: a *new* check re-armed it, letting an old response through the guard.
+    checkGen: 0,
+    // The generation recorded by the flows whose verdict arrives as a background
+    // push (IRIS_CONTEXT_IMAGE_STARTED/RESULT/ERROR). Those messages carry no id,
+    // so the push handlers can only ask whether this generation is still live.
+    pushFlowGen: 0,
+    // Which check kind is running: "text" | "image" | "context-image". Cancel
+    // falls back to the state that matches the kind, not to whichever leftover
+    // happens to be staged (runTextCheck never clears a staged image).
+    activeCheckKind: null,
     panelOpenedByAction: false,
     settings: { ...STORAGE_DEFAULTS },
     position: null,
@@ -68,6 +79,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     dragging: null,
     dropActive: false,
     dropDepth: 0,
+    quietDropActive: false,
     suppressClick: false,
     ignoreSelectionClearUntil: 0,
     ignoreInternalSelectionUntil: 0,
@@ -75,6 +87,13 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     selectionSyncTimer: null,
     pendingPositionSave: null
   };
+
+  // Every visible string in the panel goes through here. irisT (i18n.js,
+  // loaded before this file) falls back to English per key, so a partial
+  // translation degrades instead of blanking the UI.
+  function t(key, ...vars) {
+    return irisT(state.settings.irisUiLanguage, key, vars);
+  }
 
   const host = document.createElement("div");
   host.id = "iris-extension-root";
@@ -89,6 +108,29 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   const syncStorage = chrome.storage?.sync;
   const sessionStorage = chrome.storage?.session;
   let mountedView = null;
+
+  // After the extension is reloaded or uninstalled, this script is orphaned:
+  // its DOM and page listeners stay alive while every chrome.* call fails, so
+  // the old panel becomes a zombie that shadows whatever the next fallback
+  // injection mounts. Detect the lost context, tear the zombie down, and clear
+  // the guard — the next trigger then re-injects into a clean page.
+  let scriptDead = false;
+  function extensionContextLost() {
+    try {
+      return !chrome.runtime || chrome.runtime.id === undefined;
+    } catch (_error) {
+      return true;
+    }
+  }
+  const orphanWatch = window.setInterval(() => {
+    if (scriptDead || !extensionContextLost()) return;
+    scriptDead = true;
+    window.clearInterval(orphanWatch);
+    root.replaceChildren();
+    mountedView = null;
+    host.remove();
+    window.__IRIS_EXTENSION_CONTENT_LOADED__ = false;
+  }, 1000);
 
   function readSyncStorage(defaults) {
     return new Promise((resolve) => {
@@ -357,60 +399,33 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     return getSelectionInfo().text;
   }
 
+  // Tone lives as a class, not as colours in JS: content.css owns the light and
+  // dark palettes for these six tones, so the same verdict reads identically in
+  // the result card, the badge, and dark mode without a second copy of the hexes.
   function getVerdictStyle(verdict) {
     const normalized = String(verdict || "").toLowerCase();
 
     if (normalized === "verified") {
-      return {
-        icon: "OK",
-        color: "#065F46",
-        bg: "#ECFDF5",
-        border: "#6EE7B7"
-      };
+      return { icon: "OK", tone: "is-verified" };
     }
 
     if (normalized === "partially verified") {
-      return {
-        icon: "!",
-        color: "#78350F",
-        bg: "#FFFBEB",
-        border: "#FCD34D"
-      };
+      return { icon: "!", tone: "is-partial" };
     }
 
     if (normalized === "refuted") {
-      return {
-        icon: "X",
-        color: "#7F1D1D",
-        bg: "#FEF2F2",
-        border: "#F87171"
-      };
+      return { icon: "X", tone: "is-refuted" };
     }
 
     if (normalized.includes("opinion")) {
-      return {
-        icon: "i",
-        color: "#1D4ED8",
-        bg: "#EFF6FF",
-        border: "#93C5FD"
-      };
+      return { icon: "i", tone: "is-opinion" };
     }
 
     if (normalized.includes("failed") || normalized.includes("unavailable") || normalized.includes("configured")) {
-      return {
-        icon: "!",
-        color: "#991B1B",
-        bg: "#FEF2F2",
-        border: "#FCA5A5"
-      };
+      return { icon: "!", tone: "is-error" };
     }
 
-    return {
-      icon: "?",
-      color: "#374151",
-      bg: "#F9FAFB",
-      border: "#D1D5DB"
-    };
+    return { icon: "?", tone: "is-unknown" };
   }
 
   function flattenSources(rawSources) {
@@ -515,7 +530,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       politically_sensitive: Boolean(rawClaim?.politically_sensitive),
       verdict: {
         label: verdict,
-        explanation: rawClaim?.message || rawClaim?.verdict_explanation || "IRIS returned this result from the backend.",
+        explanation: rawClaim?.message || rawClaim?.verdict_explanation || t("result.defaultExplanation"),
         ...style
       },
       corroboration: {
@@ -525,6 +540,30 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       },
       sources
     };
+  }
+
+  // Three honest states. "Not assessed" is a real outcome, not a failure: when the
+  // detectors could not run we must never imply the image was cleared, so a missing
+  // or degraded signal renders as unassessed instead of as "authentic".
+  function normalizeImageAuthenticity(payload) {
+    const ai = payload?.ai_generated;
+
+    if (!payload?.image_authenticity_checked || ai?.status !== "ok") {
+      return { state: "not_assessed" };
+    }
+
+    // SightEngine's number is the probability the image IS AI-generated, and it
+    // travels with clear results too. It is always labelled as that probability,
+    // never as "confidence" in authenticity — that label would invert the metric
+    // for the reader. Unparseable values become undefined so no figure renders.
+    const raw = Number(ai?.confidence ?? ai?.suspicion_score);
+    const confidence = Number.isFinite(raw) && raw >= 0 ? raw : undefined;
+
+    if (ai?.is_ai_generated) {
+      return { state: "ai_generated", confidence: confidence ?? 0 };
+    }
+
+    return { state: "not_ai", confidence };
   }
 
   function normalizeBackendResult(payload, fallbackText, claimMode) {
@@ -555,6 +594,12 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       total_claims: payload?.total_claims || payload?.claim_count || claims.length,
       ignored_segments: summarizeIgnoredSegments(payload?.ignored_segments),
       ocr_text: payload?.ocr_text || "",
+      // Only image checks carry these keys, so text results stay null and the
+      // badge never renders for them.
+      image_authenticity:
+        payload && ("ai_generated" in payload || "image_authenticity_checked" in payload)
+          ? normalizeImageAuthenticity(payload)
+          : null,
       claims
     };
   }
@@ -566,7 +611,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   function sourceCards(sources) {
     const validSources = sources.filter((source) => isValidHttpUrl(source.url));
     if (!validSources.length) {
-      return '<div class="source-empty">No valid evidence link found.</div>';
+      return `<div class="source-empty">${t("result.noValidLink")}</div>`;
     }
 
     const cards = validSources.map((source, index) => {
@@ -580,7 +625,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
               ${date}
             </span>
             <span class="source-card__title">${escapeHtml(source.title)}</span>
-            ${source.url ? `<span class="source-card__link">${icon("external")} Read full article</span>` : ""}
+            ${source.url ? `<span class="source-card__link">${icon("external")} ${t("result.readArticle")}</span>` : ""}
           </button>
         `;
     });
@@ -588,7 +633,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     const hiddenCount = validSources.length - VISIBLE_SOURCE_CARDS;
     if (hiddenCount > 0) {
       cards.push(
-        `<button class="source-more" type="button" data-action="show-more-sources">Show ${hiddenCount} more</button>`
+        `<button class="source-more" type="button" data-action="show-more-sources">${t("result.showMore", hiddenCount)}</button>`
       );
     }
 
@@ -606,61 +651,144 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     return `
       <div class="skipped-note">
         <span aria-hidden="true">i</span>
-        <p>${total} other ${total === 1 ? "part" : "parts"} of this post were not checked (${formatted}).</p>
+        <p>${t(total === 1 ? "result.skippedOne" : "result.skippedMany", total, formatted)}</p>
       </div>
     `;
   }
 
   function claimNavigator(totalClaims) {
     return `
-      <div class="claim-navigator" aria-label="Claim navigation" ${totalClaims <= 1 ? "hidden" : ""}>
-        <button class="claim-navigator__button" type="button" data-action="prev-claim" aria-label="Previous claim" ${state.claimIndex === 0 ? "disabled" : ""}>
+      <div class="claim-navigator" role="group" aria-label="${t("nav.aria")}" ${totalClaims <= 1 ? "hidden" : ""}>
+        <button class="claim-navigator__button" type="button" data-action="prev-claim" aria-label="${t("nav.prev")}" ${state.claimIndex === 0 ? "disabled" : ""}>
           ${icon("chevronLeft")}
         </button>
-        <strong>Claim ${state.claimIndex + 1} of ${totalClaims}</strong>
-        <button class="claim-navigator__button" type="button" data-action="next-claim" aria-label="Next claim" ${state.claimIndex === totalClaims - 1 ? "disabled" : ""}>
+        <strong>${t("result.claimOf", state.claimIndex + 1, totalClaims)}</strong>
+        <button class="claim-navigator__button" type="button" data-action="next-claim" aria-label="${t("nav.next")}" ${state.claimIndex === totalClaims - 1 ? "disabled" : ""}>
           ${icon("chevronRight")}
         </button>
       </div>
     `;
   }
 
-  function resultClaimBlock(claim, result) {
+  // Shown once per image check, above the claim card. Decision SUPPORT, not a
+  // decision: one feature title scopes the whole block, the verdict line states
+  // the result bare, and the scope note directly under it keeps the image result
+  // from being read as a claim verdict. The image signal and the claim signal are
+  // independent — an AI-generated image can still illustrate a real event — so
+  // nothing here may imply that one caused the other.
+  // The negative state states only what the detector observed — "No AI
+  // generation detected" — never a conclusion like "real"/"authentic": IRIS is a
+  // decision aid, not the decider, so no badge line may deliver a verdict the
+  // reader should form themselves.
+  // The whole block collapses into one pill — result plus the detector's
+  // confidence — because this signal is supporting evidence for the claim
+  // verdict below it, not a rival headline. The splice caveat, scope note, and
+  // caveats open with the pill on click. Exactly one detector runs (SightEngine's
+  // genai model), so the copy names it and never claims a second detector or a
+  // manipulation/forensics check this pipeline does not perform.
+  function imageAuthenticityBadge(info) {
+    if (!info) return "";
+
+    const FEATURE_TITLE = t("imageAuth.feature");
+    const DISCLAIMER = t("imageAuth.disclaimer");
+    // The sentence that stops the image result being read as evidence about the
+    // claim: it opens together with the splice caveat the moment the pill is
+    // clicked — the collapsed state keeps only result + confidence.
+    const SCOPE_LINE = t("imageAuth.scope");
+
+    const TONES = {
+      ai_generated: {
+        cls: "is-flagged",
+        icon: "!",
+        verdict: t("imageAuth.aiGenerated"),
+        note: t("imageAuth.aiGeneratedNote")
+      },
+      not_ai: {
+        cls: "is-clear",
+        icon: "✓",
+        verdict: t("imageAuth.notAi"),
+        // The qualifier on the verdict: it opens with the pill, one click away,
+        // so "not detected" is never far from the line limiting it — IRIS helps
+        // decide, it does not decide.
+        caveat: t("imageAuth.notAiCaveat"),
+        note: t("imageAuth.notAiNote")
+      },
+      not_assessed: {
+        cls: "is-unknown",
+        icon: "?",
+        verdict: t("imageAuth.notAssessed"),
+        note: t("imageAuth.notAssessedNote")
+      }
+    };
+
+    const tone = TONES[info.state] || TONES.not_assessed;
+    const hasScore =
+      (info.state === "ai_generated" || info.state === "not_ai") &&
+      typeof info.confidence === "number";
+    const score = hasScore
+      ? `<span class="image-auth__score">${t("imageAuth.score", Math.round(info.confidence * 100))}</span>`
+      : "";
+
+    // The <summary> is the pill: icon, feature title, verdict, and confidence
+    // in one row — everything a collapsed reader needs, nothing that competes
+    // with the claim verdict below. Native <details>/<summary> is the control:
+    // keyboard operable, aria state carried by the platform, no toggle JS.
+    return `
+      <details class="image-auth image-auth--${tone.cls}">
+        <summary class="image-auth__pill">
+          <span class="image-auth__icon" aria-hidden="true">${tone.icon}</span>
+          <strong class="image-auth__feature">${escapeHtml(FEATURE_TITLE)}</strong>
+          <span class="image-auth__verdict">${escapeHtml(tone.verdict)}</span>
+          ${score}
+          <span class="image-auth__chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="image-auth__body">
+          ${tone.caveat ? `<p class="image-auth__caveat">${escapeHtml(tone.caveat)}</p>` : ""}
+          <p class="image-auth__scope">${escapeHtml(SCOPE_LINE)}</p>
+          <p class="image-auth__note">${escapeHtml(tone.note)}</p>
+          <p class="image-auth__disclaimer">${escapeHtml(DISCLAIMER)}</p>
+        </div>
+      </details>
+    `;
+  }
+
+function resultClaimBlock(claim, result) {
     return `
       <div class="claim-result-block">
         <div class="result-claim">
-          ${state.claimMode === "photo" ? "<span>Text extracted from image</span>" : ""}
+          ${state.claimMode === "photo" ? `<span>${t("result.extracted")}</span>` : ""}
           <blockquote>${escapeHtml(truncateText(claim.claim_text))}</blockquote>
         </div>
 
         ${
           claim.politically_sensitive
             ? `<div class="political-flag">
-                <span aria-hidden="true">!</span>
-                <div>
-                  <strong>Politically Sensitive</strong>
-                  <p>Apply extra scrutiny before sharing.</p>
-                </div>
-              </div>`
+                 <span aria-hidden="true">!</span>
+                 <div>
+                   <strong>${t("result.sensitive")}</strong>
+                   <p>${t("result.sensitiveNote")}</p>
+                 </div>
+               </div>`
             : ""
         }
 
-        <div class="verdict-card" style="background:${claim.verdict.bg};border-color:${claim.verdict.border};color:${claim.verdict.color}">
+        <div class="verdict-card ${escapeHtml(claim.verdict.tone || "is-unknown")}">
           <span class="verdict-card__icon">${escapeHtml(claim.verdict.icon)}</span>
           <div>
-            <strong>${escapeHtml(claim.verdict.label)}</strong>
+            <strong>${escapeHtml(verdictLabel(claim.verdict.label))}</strong>
             <p>${escapeHtml(claim.verdict.explanation)}</p>
           </div>
         </div>
 
+        ${state.claimIndex === result.claims.length - 1 ? skippedNote(result.ignored_segments) : ""}
+
         <div class="corroboration-row">
           <strong>${claim.corroboration.count}</strong>
-          <span>${claim.corroboration.count === 1 ? "evidence source used" : "evidence sources used"}</span>
+          <span>${t(claim.corroboration.count === 1 ? "result.sourceUsed" : "result.sourcesUsed")}</span>
         </div>
 
-        <div class="related-label">Evidence Sources</div>
+        <div class="related-label">${t("result.evidenceSources")}</div>
         <div class="source-list">${sourceCards(claim.sources)}</div>
-        ${state.claimIndex === result.claims.length - 1 ? skippedNote(result.ignored_segments) : ""}
       </div>
     `;
   }
@@ -674,12 +802,46 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
   }
 
+  // The badge shows the verdict in the reader's language; the raw string stays
+  // English in storage and in every tone match, so colours and history never
+  // depend on the display language. Backend verdicts outside the known four
+  // pass through verbatim rather than vanish.
+  const VERDICT_KEYS = {
+    verified: "verdict.verified",
+    "partially verified": "verdict.partially",
+    refuted: "verdict.refuted",
+    "not found": "verdict.notFound"
+  };
+
+  function verdictLabel(verdict) {
+    const label = String(verdict || "").trim();
+    const key = VERDICT_KEYS[label.toLowerCase()];
+    return key ? t(key) : label;
+  }
+
   // Badge tones reuse getVerdictStyle so the same verdict reads identically in the
-  // result card, the options history, and this list.
+  // result card, the options history, and this list. Callers pass either a verdict
+  // object or a bare label string — a string must not be mistaken for a style, or
+  // the row badge renders with no tone at all.
   function historyBadge(verdict, style) {
-    const label = String(verdict || "").trim() || "Result";
-    const tone = style || getVerdictStyle(label);
-    return `<span class="recent-check__badge" style="background:${tone.bg};border-color:${tone.border};color:${tone.color}">${escapeHtml(label)}</span>`;
+    const raw = String(verdict || "").trim();
+    const tone = style && typeof style === "object" ? style : getVerdictStyle(raw);
+    const label = raw ? verdictLabel(raw) : t("recent.badgeFallback");
+    return `<span class="recent-check__badge ${escapeHtml(tone.tone || "is-unknown")}">${escapeHtml(label)}</span>`;
+  }
+
+  // Flat imageAi rides on the stored entry (see recordCheckHistory in background.js):
+  // the row must not parse every payload — the detail below stays the lazy parser —
+  // and entries recorded before the field existed simply show no pill. The score text
+  // is the result badge's own translated key, so both views word it identically.
+  function historyAiPill(entry) {
+    const info = entry.imageAi;
+    if (!info || !Number.isFinite(Number(info.confidence))) return "";
+
+    const flagged = Boolean(info.isAi);
+    return `<span class="recent-check__ai ${flagged ? "is-flagged" : "is-clear"}">${escapeHtml(
+      t("imageAuth.score", Math.round(Number(info.confidence) * 100))
+    )}</span>`;
   }
 
   // Detail is parsed from the stored payload through the panel's own normalizer, so
@@ -697,13 +859,17 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       ? normalizeBackendResult(payload, entry.fallback, entry.inputType === "image" ? "photo" : "text")
       : null;
     const claims = Array.isArray(result?.claims) ? result.claims : [];
+    // New image entries store the merged payload, so the normalizer sees the
+    // SightEngine block and hands back a badge; older and text entries normalize
+    // to null and stay badge-free, exactly as before.
+    const authenticityBadge = imageAuthenticityBadge(result?.image_authenticity);
 
     if (!claims.length) {
-      const text = String(entry.fallback || "").trim() || "No claim details were stored for this check.";
-      return `<div class="recent-check__claim"><p>${escapeHtml(text)}</p></div>`;
+      const text = String(entry.fallback || "").trim() || t("recent.noDetails");
+      return `${authenticityBadge}<div class="recent-check__claim"><p>${escapeHtml(text)}</p></div>`;
     }
 
-    return claims
+    return `${authenticityBadge}${claims
       .map((claim) => {
         const count = claim.corroboration.count;
         const sources = claim.sources;
@@ -719,7 +885,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
           .join("");
         const more =
           hiddenCount > 0
-            ? `<button class="recent-check__source-more" type="button" data-action="show-more-history-sources">Show ${hiddenCount} more</button>`
+            ? `<button class="recent-check__source-more" type="button" data-action="show-more-history-sources">${t("result.showMore", hiddenCount)}</button>`
             : "";
 
         return `
@@ -727,11 +893,11 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         ${historyBadge(claim.verdict.label, claim.verdict)}
         ${claimText ? `<blockquote>${escapeHtml(claimText)}</blockquote>` : ""}
         <p>${escapeHtml(claim.verdict.explanation)}</p>
-        <span class="recent-check__sources">${count} evidence ${count === 1 ? "source" : "sources"}</span>
+        <span class="recent-check__sources">${t(count === 1 ? "recent.evidenceOne" : "recent.evidenceMany", count)}</span>
         ${links ? `<div class="recent-check__source-list">${links}${more}</div>` : ""}
       </div>`;
       })
-      .join("");
+      .join("")}`;
   }
 
   // The open body is its own template so the toggle can splice it into the live
@@ -744,10 +910,13 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         (entry, index) => `
       <div class="recent-check">
         <button type="button" class="recent-check__summary" aria-expanded="false" data-action="toggle-recent-check" data-index="${index}">
-          ${historyBadge(entry.verdict)}
+          <span class="recent-check__badges">
+            ${historyBadge(entry.verdict)}
+            ${historyAiPill(entry)}
+          </span>
           <span class="recent-check__preview">${escapeHtml(entry.preview || "")}</span>
           <span class="recent-check__meta">
-            <span>${entry.inputType === "image" ? "Image" : "Text"}</span>
+            <span>${entry.inputType === "image" ? t("recent.image") : t("recent.text")}${entry.image?.name ? ` · ${escapeHtml(entry.image.name)}` : ""}</span>
             <time>${escapeHtml(formatCheckedAt(entry.checkedAt))}</time>
           </span>
         </button>
@@ -758,7 +927,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
     return `
         <div class="recent-checks__list">${rows}</div>
-        <button class="iris-button iris-button--secondary recent-checks__see-all" type="button" data-action="open-history">See all history</button>`;
+        <button class="iris-button iris-button--secondary recent-checks__see-all" type="button" data-action="open-history">${t("recent.seeAll")}</button>`;
   }
 
   function recentChecksSection() {
@@ -767,7 +936,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     return `
       <section class="recent-checks ${state.recentChecksOpen ? "is-open" : ""}">
         <button type="button" class="recent-checks__header" aria-expanded="${state.recentChecksOpen}" data-action="toggle-recent-checks">
-          <strong>Recent checks</strong>
+          <strong>${t("recent.title")}</strong>
           <span class="recent-checks__count">${state.history.length}</span>
           <i aria-hidden="true"></i>
         </button>
@@ -780,16 +949,16 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     return `
       <section class="iris-state iris-state--idle">
         <div class="idle-search">${icon("search")}</div>
-        <h2>Ready to fact-check</h2>
-        <p>Highlight a news claim on this page, then use IRIS to verify it against Philippine sources.</p>
+        <h2>${t("idle.title")}</h2>
+        <p>${t("idle.body")}</p>
         <div class="empty-claim">
-          <span>No text selected yet.</span>
-          <strong>Select text to begin</strong>
+          <span>${t("idle.empty")}</span>
+          <strong>${t("idle.emptyHint")}</strong>
         </div>
-        <button class="iris-button iris-button--disabled" type="button" disabled>Check with IRIS</button>
+        <button class="iris-button iris-button--disabled" type="button" disabled>${t("btn.check")}</button>
         <button class="iris-button iris-button--upload" type="button" data-action="upload-image">
           ${icon("image")}
-          Upload image
+          ${t("btn.upload")}
         </button>
         ${recentChecksSection()}
       </section>
@@ -801,20 +970,20 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       <section class="iris-state">
         <div class="detected-row">
           <span aria-hidden="true"></span>
-          <strong>Text detected</strong>
+          <strong>${t("detected.title")}</strong>
         </div>
         <blockquote data-role="detected-claim">${escapeHtml(truncateText(state.selectedText))}</blockquote>
-        <p class="supporting-note">IRIS will check this claim against VERA Files, Rappler, and 9 credible Philippine news sources.</p>
+        <p class="supporting-note">${t("detected.note")}</p>
         <button class="iris-button iris-button--primary" type="button" data-action="check-text">
           ${irisEye(18, true)}
-          Check with IRIS
+          ${t("btn.check")}
         </button>
       </section>
     `;
   }
 
   function photoState() {
-    const fileName = state.selectedImage?.name || "Selected image";
+    const fileName = state.selectedImage?.name || t("photo.defaultName");
     const previewStyle = state.selectedImage?.dataUrl
       ? `style="background-image:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,.12)),url('${escapeHtml(state.selectedImage.dataUrl)}')"`
       : "";
@@ -823,17 +992,17 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       <section class="iris-state iris-state--photo">
         <div class="photo-preview" ${previewStyle}>
           <span>${escapeHtml(fileName)}</span>
-          <p>IRIS will extract readable text first, then run the verification pipeline.</p>
+          <p>${t("photo.body")}</p>
         </div>
         <div class="ocr-preview">
-          <span>Image OCR</span>
-          <blockquote>Ready to scan selected image text.</blockquote>
+          <span>${t("photo.ocrLabel")}</span>
+          <blockquote>${t("photo.ocrReady")}</blockquote>
         </div>
         <button class="iris-button iris-button--primary" type="button" data-action="scan-image">
           ${irisEye(18, true)}
-          Scan image text
+          ${t("btn.scan")}
         </button>
-        <button class="iris-button iris-button--secondary photo-cancel" type="button" data-action="cancel-image">Cancel</button>
+        <button class="iris-button iris-button--secondary photo-cancel" type="button" data-action="cancel-image">${t("btn.cancel")}</button>
       </section>
     `;
   }
@@ -841,16 +1010,17 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   function scanningState() {
     const text =
       state.claimMode === "photo"
-        ? "Extracting image text and scanning sources..."
+        ? t("scan.photoText")
         : truncateText(state.selectedText);
 
     return `
       <section class="iris-state iris-state--scanning">
         <blockquote>${escapeHtml(text)}</blockquote>
         <div class="scan-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-        <h2>Scanning sources...</h2>
-        <p>Checking VERA Files, Rappler, ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, DZRH, and OneNews.</p>
+        <h2>${t("scan.title")}</h2>
+        <p>${t("scan.body")}</p>
         <div class="progress-track" aria-hidden="true"><span></span></div>
+        <button class="iris-button iris-button--secondary scan-cancel" type="button" data-action="cancel-check">${t("btn.cancel")}</button>
       </section>
     `;
   }
@@ -859,17 +1029,18 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     const result = state.result || { claims: [], ignored_segments: [] };
     const claims = result.claims.length
       ? result.claims
-      : [normalizeClaim({ verdict: "Not Found", message: "IRIS did not return a claim result." }, state.selectedText, [])];
+      : [normalizeClaim({ verdict: "Not Found", message: t("result.notFoundMsg") }, state.selectedText, [])];
     const activeClaim = claims[Math.min(state.claimIndex, claims.length - 1)];
-    const quietCloseButton = `<button class="iris-button iris-button--secondary quiet-close-result" type="button" data-action="quiet-close" ${state.settings.quietMode ? "" : "hidden"}>Close IRIS</button>`;
+    const quietCloseButton = `<button class="iris-button iris-button--secondary quiet-close-result" type="button" data-action="quiet-close" ${state.settings.quietMode ? "" : "hidden"}>${t("btn.closeIris")}</button>`;
 
     return `
       <section class="iris-state iris-state--result">
         ${claimNavigator(claims.length)}
+        ${imageAuthenticityBadge(result.image_authenticity)}
         ${resultClaimBlock(activeClaim, { ...result, claims })}
-        <p class="disclaimer">IRIS is an assistant, not an authority. Always read the linked articles before sharing.</p>
+        <p class="disclaimer">${t("result.disclaimer")}</p>
         ${quietCloseButton}
-        <button class="iris-button iris-button--secondary" type="button" data-action="reset">Check another claim</button>
+        <button class="iris-button iris-button--secondary" type="button" data-action="reset">${t("btn.checkAnother")}</button>
       </section>
     `;
   }
@@ -877,31 +1048,41 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   function errorState() {
     return `
       <section class="iris-state iris-state--error">
-        <div class="verdict-card" style="background:#FEF2F2;border-color:#FCA5A5;color:#991B1B">
+        <div class="verdict-card is-error">
           <span class="verdict-card__icon">!</span>
           <div>
-            <strong>IRIS could not complete the check</strong>
-            <p>${escapeHtml(state.errorMessage || "The backend request failed.")}</p>
+            <strong>${t("err.title")}</strong>
+            <p>${escapeHtml(state.errorMessage || t("err.backend"))}</p>
           </div>
         </div>
-        <p class="supporting-note">Backend URL: ${escapeHtml(normalizeBackendUrl(state.settings.irisBackendUrl))}</p>
-        <button class="iris-button iris-button--secondary" type="button" data-action="reset">Back to IRIS</button>
+        <p class="supporting-note">${t("err.backendUrl", escapeHtml(normalizeBackendUrl(state.settings.irisBackendUrl)))}</p>
+        ${
+          state.lastCheck
+            ? `<button class="iris-button iris-button--primary" type="button" data-action="retry">${t("btn.retry")}</button>`
+            : ""
+        }
+        <button class="iris-button iris-button--secondary" type="button" data-action="reset">${t("btn.back")}</button>
       </section>
     `;
   }
 
   function settingsState() {
+    const languageOptions = IRIS_LANGUAGES.map(
+      (language) =>
+        `<option value="${language.code}" ${state.settings.irisUiLanguage === language.code ? "selected" : ""}>${escapeHtml(language.label)}</option>`
+    ).join("");
+
     return `
       <section class="iris-state iris-settings">
         <div class="settings-title">
-          <h2>Settings</h2>
-          <button class="iris-button iris-button--secondary settings-done" type="button" data-action="close-settings">Done</button>
+          <h2>${t("settings.title")}</h2>
+          <button class="iris-button iris-button--secondary settings-done" type="button" data-action="close-settings">${t("btn.done")}</button>
         </div>
 
         <div class="setting-row">
           <div>
-            <strong>Night mode</strong>
-            <span>IRIS panel only</span>
+            <strong>${t("settings.night")}</strong>
+            <span>${t("settings.nightSub")}</span>
           </div>
           <button class="switch-button ${resolveTheme() === "dark" ? "is-on" : ""}" type="button" role="switch" aria-checked="${resolveTheme() === "dark"}" data-action="toggle-theme">
             <span></span>
@@ -910,26 +1091,44 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
         <div class="setting-row">
           <div>
-            <strong>Quiet Mode</strong>
-            <span>Only show IRIS after right-click checks</span>
+            <strong>${t("settings.quiet")}</strong>
+            <span>${t("settings.quietSub")}</span>
           </div>
           <button class="switch-button ${state.settings.quietMode ? "is-on" : ""}" type="button" role="switch" aria-checked="${state.settings.quietMode}" data-action="toggle-quiet-mode">
             <span></span>
           </button>
         </div>
 
+        <div class="setting-row">
+          <div>
+            <strong>${t("settings.hover")}</strong>
+            <span>${t("settings.hoverSub")}</span>
+          </div>
+          <button class="switch-button ${state.settings.hoverCheck ? "is-on" : ""}" type="button" role="switch" aria-checked="${state.settings.hoverCheck}" data-action="toggle-hover-check">
+            <span></span>
+          </button>
+        </div>
+
         <div class="setting-block">
-          <strong>Font size</strong>
-          <div class="font-options" role="group" aria-label="Font size">
+          <strong>${t("settings.font")}</strong>
+          <div class="font-options" role="group" aria-label="${t("settings.font")}">
             ${FONT_OPTIONS.map((option) => `
-              <button class="${state.settings.irisFontSize === option.value ? "is-active" : ""}" type="button" data-action="set-font" data-value="${option.value}">
-                ${escapeHtml(option.label)}
+              <button class="${state.settings.irisFontSize === option.value ? "is-active" : ""}" type="button" data-action="set-font" data-value="${option.value}" aria-pressed="${state.settings.irisFontSize === option.value}">
+                ${escapeHtml(t(`font.${option.value}`))}
               </button>
             `).join("")}
           </div>
         </div>
 
-        <button class="iris-button iris-button--secondary" type="button" data-action="open-options">Backend and privacy options</button>
+        <div class="setting-row">
+          <div>
+            <strong>${t("settings.language")}</strong>
+            <span>${t("settings.languageSub")}</span>
+          </div>
+          <select data-setting="irisUiLanguage" aria-label="${t("settings.language")}">${languageOptions}</select>
+        </div>
+
+        <button class="iris-button iris-button--secondary" type="button" data-action="open-options">${t("settings.options")}</button>
       </section>
     `;
   }
@@ -942,18 +1141,18 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         <section class="faq-modal" role="dialog" aria-modal="true" aria-labelledby="iris-faq-title">
           <header>
             <h2 id="iris-faq-title">FAQ</h2>
-            <button class="iris-icon-button iris-icon-button--plain" type="button" aria-label="Close FAQ" data-action="close-faq">
+            <button class="iris-icon-button iris-icon-button--plain" type="button" aria-label="${t("aria.closeFaq")}" data-action="close-faq">
               ${icon("close")}
             </button>
           </header>
           <div class="faq-list">
             ${FAQ_ITEMS.map((item) => `
               <article>
-                <h3>${escapeHtml(item.question)}</h3>
-                <p>${escapeHtml(item.answer)}</p>
+                <h3>${escapeHtml(t(item.questionKey))}</h3>
+                <p>${escapeHtml(t(item.answerKey))}</p>
               </article>
             `).join("")}
-            <button type="button" data-action="open-source" data-url="https://verafiles.org">Open VERA Files</button>
+            <button type="button" data-action="open-source" data-url="https://verafiles.org">${t("faq.openVera")}</button>
           </div>
         </section>
       </div>
@@ -974,12 +1173,13 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     root.innerHTML = `
       <div class="iris-floating-wrap">
         <input id="iris-image-input" type="file" accept="image/*" hidden />
-        <button class="iris-pill iris-extension-shell" type="button" aria-label="Open IRIS panel" data-drag-handle data-action="expand" hidden>
+        <div class="iris-live-region" role="status" aria-live="polite" aria-atomic="true"></div>
+        <button class="iris-pill iris-extension-shell" type="button" aria-label="${t("aria.openPanel")}" data-drag-handle data-action="expand" hidden>
                 ${irisEye(22)}
                 <span>IRIS</span>
                 <i class="iris-pill__status" aria-hidden="true"></i>
         </button>
-        <aside class="iris-panel iris-extension-shell" aria-label="IRIS fact-check panel" hidden>
+        <aside class="iris-panel iris-extension-shell" aria-label="${t("aria.panel")}" hidden>
                 <header class="iris-panel__header" data-drag-handle>
                   <div class="iris-panel__brand">
                     ${irisEye(28)}
@@ -995,8 +1195,8 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
                 </header>
                 <div class="iris-panel__body"></div>
                 <footer class="iris-panel__footer">
-                  <button type="button" aria-label="Open IRIS settings" data-action="open-settings">${icon("gear")}</button>
-                  <button type="button" aria-label="Open IRIS FAQ" data-action="open-faq">${icon("question")}</button>
+                  <button type="button" aria-label="${t("aria.openSettings")}" data-action="open-settings">${icon("gear")}</button>
+                  <button type="button" aria-label="${t("aria.openFaq")}" data-action="open-faq">${icon("question")}</button>
                 </footer>
         </aside>
       </div>
@@ -1007,9 +1207,14 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       pill: root.querySelector(".iris-pill"),
       body: root.querySelector(".iris-panel__body"),
       headerClose: root.querySelector('[data-role="header-close"]'),
+      // Lives outside the body so innerHTML swaps on status changes cannot
+      // destroy it, and outside the panel so it also speaks when collapsed.
+      liveRegion: root.querySelector(".iris-live-region"),
+      announcedStatus: null,
       status: null,
       bodyMarkup: null,
-      claimIndex: null
+      claimIndex: null,
+      renderedLanguage: state.settings.irisUiLanguage
     };
 
     // The entry fade is gated by a class on the body (armed in updatePanelBody).
@@ -1027,6 +1232,34 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     const markup = bodyForStatus();
     if (view.bodyMarkup === markup && view.status === state.status) return;
 
+    // A language switch rewrites every label in the body, but the per-status
+    // branches below only patch their own controls — they keep live DOM state
+    // alive across a theme toggle. So a language change swaps the whole body
+    // once, then hands focus back to the select the reader just used: dropping
+    // it mid-choice would strand a keyboard user at the page root.
+    if (view.renderedLanguage !== state.settings.irisUiLanguage) {
+      const keepLanguageFocus = Boolean(
+        shadow.activeElement?.matches?.('select[data-setting="irisUiLanguage"]')
+      );
+      // The FAQ overlay sits on the panel, not in the body, so the swap below
+      // would leave it behind in the old language. Drop it here; render's
+      // injection re-adds it fresh, and focus that was inside it is handed back
+      // after the re-add instead of falling to the page root.
+      const openFaq = view.panel.querySelector(".faq-overlay");
+      const keepFaqFocus = Boolean(openFaq && shadow.activeElement && openFaq.contains(shadow.activeElement));
+      if (openFaq) openFaq.remove();
+      view.pendingFaqFocus = keepFaqFocus;
+      view.body.innerHTML = markup;
+      view.renderedLanguage = state.settings.irisUiLanguage;
+      view.status = state.status;
+      view.bodyMarkup = markup;
+      view.claimIndex = state.claimIndex;
+      if (keepLanguageFocus) {
+        view.body.querySelector('select[data-setting="irisUiLanguage"]')?.focus();
+      }
+      return;
+    }
+
     if (view.status !== state.status) {
       view.body.innerHTML = markup;
       view.body.scrollTop = 0;
@@ -1040,14 +1273,17 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     } else if (state.status === "settings") {
       for (const [action, checked] of [
         ["toggle-theme", resolveTheme() === "dark"],
-        ["toggle-quiet-mode", state.settings.quietMode]
+        ["toggle-quiet-mode", state.settings.quietMode],
+        ["toggle-hover-check", state.settings.hoverCheck]
       ]) {
         const button = view.body.querySelector(`[data-action="${action}"]`);
         button.classList.toggle("is-on", Boolean(checked));
         button.setAttribute("aria-checked", String(Boolean(checked)));
       }
       for (const button of view.body.querySelectorAll('[data-action="set-font"]')) {
-        button.classList.toggle("is-active", button.dataset.value === state.settings.irisFontSize);
+        const active = button.dataset.value === state.settings.irisFontSize;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
       }
     } else if (state.status === "result") {
       // Keep navigation buttons and unchanged evidence links alive during updates.
@@ -1061,6 +1297,18 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       for (const action of ["prev-claim", "next-claim"]) {
         navigator.querySelector(`[data-action="${action}"]`).disabled =
           nextNavigator.querySelector(`[data-action="${action}"]`).disabled;
+      }
+      // The detection badge sits between the navigator and the claim block, so the
+      // block swap below never reaches it. Without this, a second image check would
+      // keep showing the first check's verdict — worse than showing none.
+      const badge = view.body.querySelector(".image-auth");
+      const nextBadge = next.querySelector(".image-auth");
+      if (badge && !nextBadge) {
+        badge.remove();
+      } else if (!badge && nextBadge) {
+        navigator.after(nextBadge);
+      } else if (badge && nextBadge && !badge.isEqualNode(nextBadge)) {
+        badge.replaceWith(nextBadge);
       }
       const block = view.body.querySelector(".claim-result-block");
       const nextBlock = next.querySelector(".claim-result-block");
@@ -1076,11 +1324,18 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   function render() {
+    if (scriptDead) return;
     if (!shouldRenderPanel()) {
       root.replaceChildren();
       mountedView = null;
+      // A live drag keeps its pad across stray re-renders of the unmounted state.
+      if (state.quietDropActive) mountQuietDropTarget();
       return;
     }
+    // A mounted surface supersedes the drag-only pad: the pill or panel owns
+    // the drop from here, and the flag must not resurrect the pad after the
+    // next quiet-close.
+    state.quietDropActive = false;
     if (!mountedView) mountPanel();
 
     const { wrapper, panel, pill, headerClose } = mountedView;
@@ -1095,6 +1350,9 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       surface.style.setProperty("--iris-scale", activeFontScale());
       surface.classList.toggle("is-dragging", Boolean(state.dragging));
       surface.classList.toggle("is-drop-target", state.dropActive);
+      // Arabic flips both surfaces to RTL; every physical left/right rule in
+      // the panel CSS already reads through logical properties.
+      surface.dir = state.settings.irisUiLanguage === "ar" ? "rtl" : "ltr";
     }
     panel.hidden = state.collapsed;
     pill.hidden = !state.collapsed;
@@ -1103,21 +1361,52 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     const statusDot = pill.querySelector(".iris-pill__status");
     statusDot.classList.toggle("is-scanning", scanning);
     statusDot.classList.toggle("is-ready", ready);
-    pill.setAttribute("aria-label", scanning ? "IRIS is scanning. Open panel" : ready ? "IRIS is ready. Open panel" : "Open IRIS panel");
+    pill.setAttribute("aria-label", scanning ? t("aria.scanning") : ready ? t("aria.ready") : t("aria.openPanel"));
     panel.setAttribute("aria-busy", String(scanning));
+    // The shell mounts once, so its aria labels are refreshed here: switching
+    // language re-renders without re-mounting, and a stale English label would
+    // contradict the translated body it announces.
+    panel.setAttribute("aria-label", t("aria.panel"));
+
+    // One polite announcement per status transition. Claim paging and history
+    // toggles re-render the body constantly; those must stay silent.
+    if (mountedView.announcedStatus !== state.status) {
+      mountedView.announcedStatus = state.status;
+      mountedView.liveRegion.textContent = announcementFor(state.status);
+    }
 
     const closeAction = state.settings.quietMode ? "quiet-close" : "collapse";
+    // Label sits outside the icon guard below: it must follow a language
+    // switch even when the action itself did not change.
+    headerClose.setAttribute("aria-label", state.settings.quietMode ? t("aria.closePanel") : t("aria.collapsePanel"));
     if (headerClose.dataset.action !== closeAction) {
       headerClose.dataset.action = closeAction;
-      headerClose.setAttribute("aria-label", state.settings.quietMode ? "Close IRIS panel" : "Collapse IRIS panel");
       headerClose.innerHTML = icon(state.settings.quietMode ? "close" : "minus");
     }
-    panel.querySelector('[data-action="open-settings"]').classList.toggle("is-active", state.status === "settings");
+    const settingsButton = panel.querySelector('[data-action="open-settings"]');
+    settingsButton.classList.toggle("is-active", state.status === "settings");
+    settingsButton.setAttribute("aria-label", t("aria.openSettings"));
+    panel.querySelector('[data-action="open-faq"]').setAttribute("aria-label", t("aria.openFaq"));
     updatePanelBody();
 
     const faq = panel.querySelector(".faq-overlay");
     if (state.faqOpen && !faq) panel.insertAdjacentHTML("beforeend", faqOverlay());
     if (!state.faqOpen && faq) faq.remove();
+    if (mountedView.pendingFaqFocus && state.faqOpen) {
+      mountedView.pendingFaqFocus = false;
+      panel.querySelector('.faq-modal button[data-action="close-faq"]')?.focus();
+    }
+
+    // The pill belongs to idle browsing: any check that starts elsewhere
+    // (selection sync, right-click, image drop) takes it down immediately.
+    if (hoverIsPending() && state.status !== "idle") stopHoverCheck();
+
+    // The pill's drag clamp only knows the pill's own box (120x36): a pill
+    // parked at the right edge fits, but the 310px panel it opens does not -
+    // and a bottom-parked pill opens a panel taller than its parking spot.
+    // Re-clamp against the surface that is actually visible, after the body
+    // has settled to its final height.
+    keepSurfaceInViewport();
   }
 
   function applyPositionDuringDrag(x, y) {
@@ -1129,6 +1418,53 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     wrapper.style.top = `${y}px`;
     wrapper.style.right = "auto";
     wrapper.style.bottom = "auto";
+  }
+
+  // Keeps a parked position inside the viewport for the surface that is
+  // showing now. Measuring offsetWidth/offsetHeight reads layout, so the
+  // enter animation and RTL direction neither skew it nor need mirroring.
+  // A live drag owns its own clamp and must not be re-clamped underneath.
+  function keepSurfaceInViewport() {
+    if (!state.position || !mountedView || state.dragging) return;
+
+    const { panel, pill } = mountedView;
+    const surface = !panel.hidden ? panel : pill;
+    const width = surface.offsetWidth;
+    const height = surface.offsetHeight;
+    if (!width || !height) return;
+
+    const x = clamp(state.position.x, 8, window.innerWidth - width - 8);
+    const y = clamp(state.position.y, 8, window.innerHeight - height - 8);
+    if (x === state.position.x && y === state.position.y) return;
+
+    state.position = { x, y };
+    applyPositionDuringDrag(x, y);
+  }
+
+  // Screen-reader narration for the live region. Each status speaks once, on
+  // transition only — render() re-runs for drags, fonts, and history toggles,
+  // and repeating these would turn the panel into a chatterbox. Keys, not
+  // strings: the announcement follows the panel's language.
+  const STATUS_ANNOUNCEMENT_KEYS = {
+    detected: "announce.detected",
+    photo: "announce.photo",
+    scanning: "announce.scanning",
+    result: "announce.result",
+    settings: "announce.settings"
+  };
+
+  function announcementFor(status) {
+    if (status === "error") return state.errorMessage || t("announce.error");
+    const key = STATUS_ANNOUNCEMENT_KEYS[status];
+    return key ? t(key) : "";
+  }
+
+  // One-off line in the shared live region. render() only speaks on a status
+  // transition, so a message that must be the *last* word after a transition —
+  // "Check cancelled." — writes through here instead of through announcementFor.
+  function announceDirectly(message) {
+    if (!mountedView) return;
+    mountedView.liveRegion.textContent = message;
   }
 
   function setStatus(status) {
@@ -1150,20 +1486,119 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     state.result = null;
     state.claimIndex = 0;
     state.faqOpen = false;
+    state.faqOpener = null;
+    state.lastCheck = null;
     state.panelOpenedByAction = false;
     window.getSelection()?.removeAllRanges();
     render();
   }
 
+  // Cancels the check the panel is presenting.
+  //
+  // Suppression design (the whole point of this function):
+  //  * Generation — bumping state.checkGen invalidates every in-flight response
+  //    flow at once: each flow captured the generation it started under and drops
+  //    its arrival when it no longer matches, so a late response can neither
+  //    overwrite the cancelled check's fallback state nor overtake a *newer*
+  //    check that already began (the re-arm race a boolean could not close).
+  //  * Abort — for the context-image pipeline, cancel also tells background.js to
+  //    stop the work, so an aborted invocation pushes neither RESULT nor ERROR.
+  //    The message is fire-and-forget and always sent (a text check makes it a
+  //    harmless no-op), immediately on cancel: the next check is a whole human
+  //    interaction away, which is the only thing keeping this single-tab abort
+  //    from ever landing on a pipeline that starts *after* the cancel.
+  //  * HONESTY — a response flow has no background abort of its own: IRIS_VERIFY_TEXT
+  //    runs to completion server-side and only its arrival is dropped here by the
+  //    generation guard. The same holds for the {ok} reply of
+  //    IRIS_VERIFY_IMAGE_SOURCE (that reply carries no verdict). What the abort
+  //    covers is the context-image pipeline itself, whichever flow started it.
+  //  * KNOWN LIMIT — the RESULT/ERROR messages carry no id, so content-gen alone
+  //    cannot tell cancelled push-flow A's RESULT from a *new* push-flow B's
+  //    RESULT: A arriving while B scans matches pushFlowGen === checkGen. That
+  //    case is exactly the one the background abort closes — an aborted pipeline
+  //    never sends the message in the first place.
+  function cancelActiveCheck() {
+    if (state.status !== "scanning") return;
+
+    state.checkGen += 1;
+    sendRuntimeMessage({ type: "IRIS_CONTEXT_IMAGE_ABORT" }).catch(() => {});
+
+    // The fallback follows the check kind that was running. A text check leaves an
+    // earlier staged image in place (runTextCheck never clears it) but is a *text*
+    // check, so staged text wins for it; image checks always stage their own image.
+    let nextStatus = "idle";
+    if (state.activeCheckKind === "text") {
+      if (state.selectedText) nextStatus = "detected";
+      else if (state.selectedImage) nextStatus = "photo";
+    } else if (state.selectedImage) {
+      nextStatus = "photo";
+    } else if (state.selectedText) {
+      nextStatus = "detected";
+    }
+
+    // The focused Cancel button dies with the scanning body, which would drop
+    // keyboard focus to document.body. Capture where focus was before the swap.
+    const hadFocusInside = Boolean(
+      mountedView && shadow.activeElement && mountedView.panel.contains(shadow.activeElement)
+    );
+
+    // render() would otherwise speak the destination status ("Text detected.")
+    // over the cancellation line: mark it already announced, then speak ours.
+    if (mountedView) mountedView.announcedStatus = nextStatus;
+    setStatus(nextStatus);
+    announceDirectly(t("announce.cancelled"));
+
+    if (hadFocusInside) handOffFocusAfterCancel(nextStatus);
+  }
+
+  // Re-homes focus the Cancel swap displaced: the restored state's primary action
+  // first, then anything focusable in the panel body, then anything focusable in
+  // the panel; if there is none, focus is left where it landed. Everything stays
+  // inside the shadow root — document.activeElement retargets to the host, but
+  // shadow.activeElement keeps tracking the real control.
+  const FOCUSABLE_SELECTOR =
+    'button:not([disabled]), [href], input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  function handOffFocusAfterCancel(nextStatus) {
+    const view = mountedView;
+    if (!view) return;
+
+    const primaryAction = { detected: "check-text", photo: "scan-image" }[nextStatus];
+    const candidates = [];
+    if (primaryAction) {
+      const primary = view.body.querySelector(`[data-action="${primaryAction}"]`);
+      if (primary) candidates.push(primary);
+    }
+    candidates.push(...view.body.querySelectorAll(FOCUSABLE_SELECTOR));
+    candidates.push(...view.panel.querySelectorAll(FOCUSABLE_SELECTOR));
+
+    const target = candidates.find((element) => !element.disabled && element.offsetParent !== null);
+    target?.focus();
+  }
+
+  // Every entry point into the scanning state — panel check-text and image flow,
+  // context-menu checks, retry, popup-triggered checks — opens a new generation
+  // here, before any pre-flight validation error of its own can render, and
+  // records which check kind it is so Cancel knows where to fall back to. The
+  // returned generation is what a response flow compares against on arrival.
+  function beginCheck(kind) {
+    state.checkGen += 1;
+    state.activeCheckKind = kind;
+    return state.checkGen;
+  }
+
   async function runTextCheck(text) {
+    const myGen = beginCheck("text");
+    state.lastCheck = null;
     const cleanText = String(text || "").trim();
 
     if (!cleanText) {
-      state.errorMessage = "No selected text was provided.";
+      state.errorMessage = t("err.noSelection");
       setStatus("error");
       return;
     }
 
+    state.lastCheck = { kind: "text", text: cleanText };
     state.panelOpenedByAction = true;
     state.selectedText = cleanText;
     state.claimMode = "text";
@@ -1177,33 +1612,53 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         type: "IRIS_VERIFY_TEXT",
         backendUrl: state.settings.irisBackendUrl,
         debug: state.settings.irisDebugMode,
+        language: state.settings.irisUiLanguage,
         text: cleanText
       });
 
+      // Cancelled — or superseded by a newer check — while the request was in
+      // flight: the payload is real, but the check it belongs to no longer
+      // exists. Dropped on arrival, before it can render.
+      if (myGen !== state.checkGen) return;
+
       if (!response?.ok) {
-        throw new Error(response?.error || "The IRIS backend did not return a successful text result.");
+        throw new Error(response?.error || t("err.textResult"));
       }
 
       state.result = normalizeBackendResult(response.payload, cleanText, "text");
       setStatus("result");
     } catch (error) {
+      if (myGen !== state.checkGen) return;
+
       state.errorMessage = error.message;
       setStatus("error");
     }
   }
 
-  async function requestBackgroundImageVerification(source, imageName = "Selected image", previewDataUrl = "") {
+  async function requestBackgroundImageVerification(source, imageName = t("image.selectedName"), previewDataUrl = "") {
+    const myGen = beginCheck("image");
+    // This flow's verdict arrives as a background push (IRIS_CONTEXT_IMAGE_*),
+    // not as the response below — so it records the generation those pushes must
+    // match, exactly as the IRIS_CONTEXT_IMAGE_STARTED handler does.
+    state.pushFlowGen = myGen;
+    state.lastCheck = null;
     const imageSource = source || {};
 
     if (!imageSource.dataUrl && !imageSource.url) {
-      state.errorMessage = "No image data was provided.";
+      state.errorMessage = t("err.noImageData");
       setStatus("error");
       return;
     }
 
+    state.lastCheck = {
+      kind: "image-source",
+      source: { ...imageSource, name: imageName },
+      imageName,
+      previewDataUrl
+    };
     state.panelOpenedByAction = true;
     state.claimMode = "photo";
-    state.selectedText = "Image selected for OCR.";
+    state.selectedText = t("image.forOcr");
     state.selectedImage = {
       dataUrl: previewDataUrl || imageSource.dataUrl || "",
       name: imageName
@@ -1223,17 +1678,33 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         }
       });
 
+      // Stale reply (cancelled or superseded): this flow already handed its
+      // verdict over to the push handlers, and its generation is no longer live.
+      if (myGen !== state.checkGen) return;
+
       if (!response?.ok) {
         throw new Error(response?.error || "IRIS could not start image verification.");
       }
     } catch (error) {
+      if (myGen !== state.checkGen) return;
+
       failContextImageCheck(error.message);
     }
   }
 
-  async function runImageCheck(imageDataUrl, imageName = "Selected image") {
+  async function runImageCheck(imageDataUrl, imageName = t("image.selectedName")) {
     if (!imageDataUrl) {
-      state.errorMessage = "No image data was provided.";
+      // A context-menu image check stages a URL, never a data URL, and Cancel
+      // returns to the photo state for exactly that case — so the staged source
+      // is the only image there is to scan. Route it through the same
+      // verification path a retry uses; failing on the missing data URL would
+      // strand the reader on an error for a check that is perfectly replayable.
+      const staged = state.lastCheck;
+      if (staged?.kind === "image-source") {
+        return requestBackgroundImageVerification(staged.source, staged.imageName, staged.previewDataUrl);
+      }
+
+      state.errorMessage = t("err.noImageData");
       setStatus("error");
       return;
     }
@@ -1246,12 +1717,12 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   async function runImageUrlCheck(imageUrl) {
-    return runImageUrlDropCheck(imageUrl, "Image from page");
+    return runImageUrlDropCheck(imageUrl, t("image.fromPage"));
   }
 
-  async function runImageUrlDropCheck(imageUrl, imageName = "Image from page") {
+  async function runImageUrlDropCheck(imageUrl, imageName = t("image.fromPage")) {
     if (!imageUrl) {
-      state.errorMessage = "No image URL was provided.";
+      state.errorMessage = t("err.noImageUrl");
       setStatus("error");
       return;
     }
@@ -1263,37 +1734,64 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     }, imageName);
   }
 
-  function startContextImageCheck(imageUrl, imageName = "Selected image") {
+  function startContextImageCheck(imageUrl, imageName = t("image.selectedName")) {
+    const myGen = beginCheck("context-image");
+    // The context-menu check is pushed by background.js, which this file never
+    // modifies. Storing the URL here lets a failed one retry through the generic
+    // IRIS_VERIFY_IMAGE_SOURCE path instead of needing a new background message.
+    state.lastCheck = imageUrl
+      ? {
+          kind: "image-source",
+          source: { kind: "url", url: imageUrl, name: imageName },
+          imageName,
+          previewDataUrl: ""
+        }
+      : null;
     state.panelOpenedByAction = true;
     state.claimMode = "photo";
-    state.selectedText = "Image selected for OCR.";
+    state.selectedText = t("image.forOcr");
     state.selectedImage = {
       dataUrl: "",
-      name: imageName || (imageUrl ? "Image from page" : "Selected image")
+      name: imageName || (imageUrl ? t("image.fromPage") : t("image.selectedName"))
     };
     state.result = null;
     state.claimIndex = 0;
     state.faqOpen = false;
     state.collapsed = false;
     setStatus("scanning");
+    return myGen;
   }
 
   function finishContextImageCheck(payload) {
-    const fallbackText = payload?.ocr_text || "Image selected for OCR.";
+    // Late IRIS_CONTEXT_IMAGE_RESULT: dropped unless the push flow that was
+    // recorded at IRIS_CONTEXT_IMAGE_STARTED is still the live one. The message
+    // carries no id, so this comparison is the only handle on whose result it is.
+    if (state.pushFlowGen !== state.checkGen) return;
+
+    const fallbackText = payload?.ocr_text || t("image.forOcr");
     state.result = normalizeBackendResult(payload, fallbackText, "photo");
     setStatus("result");
   }
 
   function failContextImageCheck(message) {
+    // Late IRIS_CONTEXT_IMAGE_ERROR (or a failed retry) after a cancel: dropped
+    // too — a cancelled check must not flip the panel into an error state.
+    if (state.pushFlowGen !== state.checkGen) return;
+
     state.panelOpenedByAction = true;
     state.claimMode = "photo";
-    state.selectedText = "Image selected for OCR.";
+    state.selectedText = t("image.forOcr");
     state.selectedImage = state.selectedImage || {
       dataUrl: "",
-      name: "Selected image"
+      name: t("image.selectedName")
     };
     state.collapsed = false;
-    state.errorMessage = message || "IRIS could not verify the selected image.";
+    // Background-originated failures arrive in English (the worker has no i18n):
+    // the one known IRIS-owned message is mapped to the reader's language, and
+    // anything else — backend wording included — passes through untouched.
+    state.errorMessage = message && message !== "IRIS could not verify the selected image."
+      ? message
+      : t("err.verifyImage");
     setStatus("error");
   }
 
@@ -1301,7 +1799,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => resolve(String(reader.result || ""));
-      reader.onerror = () => reject(new Error("IRIS could not read the selected image file."));
+      reader.onerror = () => reject(new Error(t("err.readImage")));
       reader.readAsDataURL(file);
     });
   }
@@ -1440,12 +1938,23 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
   function getDroppedImageUrl(dataTransfer) {
     const uriListUrl = normalizeDroppedUrl(firstUriListUrl(dataTransfer?.getData("text/uri-list")));
-    if (uriListUrl) return uriListUrl;
-
     const htmlUrl = extractImageUrlFromHtml(dataTransfer?.getData("text/html"));
+    const plainTextUrl = extractImageUrlFromPlainText(dataTransfer?.getData("text/plain"));
+
+    // Right-click's srcUrl is always a real image, so drag is held to the same
+    // bar: uri-list wins only when it IS an image (a data/blob URL or a file
+    // with an image extension). Facebook drags put the photo's PAGE link there,
+    // and checking that downloads HTML instead of image bytes — a page link
+    // falls through to the HTML fragment, which carries the actual <img src>
+    // the right-click path would have seen.
+    const uriListIsImage = uriListUrl && (
+      /^data:image\//i.test(uriListUrl) ||
+      /^blob:/i.test(uriListUrl) ||
+      hasSupportedImageExtension(uriListUrl)
+    );
+    if (uriListIsImage) return uriListUrl;
     if (htmlUrl) return htmlUrl;
 
-    const plainTextUrl = extractImageUrlFromPlainText(dataTransfer?.getData("text/plain"));
     return hasSupportedImageExtension(plainTextUrl) ? plainTextUrl : "";
   }
 
@@ -1458,7 +1967,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     const blob = await response.blob();
     const type = String(blob.type || "").toLowerCase();
     if (type && (!type.startsWith("image/") || type === "image/gif")) {
-      throw new Error(IMAGE_DROP_ERROR);
+      throw new Error(t("drop.error"));
     }
 
     return readFileAsDataUrl(blob);
@@ -1480,7 +1989,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
   async function handleDroppedImageFile(file) {
     if (!file) {
-      showImageDropError(IMAGE_DROP_ERROR);
+      showImageDropError(t("drop.error"));
       return;
     }
 
@@ -1494,13 +2003,13 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
 
   async function handleDroppedImageUrl(url) {
     if (!url) {
-      showImageDropError(IMAGE_DROP_ERROR);
+      showImageDropError(t("drop.error"));
       return;
     }
 
     try {
       if (isUnsupportedDroppedSource(url)) {
-        showImageDropError(IMAGE_DROP_ERROR);
+        showImageDropError(t("drop.error"));
         return;
       }
 
@@ -1530,7 +2039,7 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
         return;
       }
 
-      showImageDropError(IMAGE_DROP_ERROR);
+      showImageDropError(t("drop.error"));
       return;
     }
 
@@ -1551,10 +2060,10 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       state.panelOpenedByAction = true;
       state.selectedImage = {
         dataUrl,
-        name: file.name || "Selected image"
+        name: file.name || t("image.selectedName")
       };
       state.claimMode = "photo";
-      state.selectedText = "Image selected for OCR.";
+      state.selectedText = t("image.forOcr");
       state.claimIndex = 0;
       state.collapsed = false;
       setStatus("photo");
@@ -1642,13 +2151,387 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   }
 
   function handleSelectionChange() {
+    stopHoverForSelection();
     scheduleSelectionSync(state.pagePointerDown ? 16 : 80);
+  }
+
+  // Hover to check: optional (default off). Resting the cursor on a paragraph
+  // for a beat fades in a pill; clicking it is an explicit check request and
+  // lands in the same "detected" state as a text selection — no auto-run.
+  //
+  // The pill lives directly under `shadow`, NOT inside `root`: render() clears
+  // root's children whenever the panel should not be shown, and hover must
+  // survive exactly that (quiet idle / panel disabled).
+  const hoverState = {
+    timer: 0,
+    raf: 0,
+    pending: null,
+    // Last mousemove seen, kept for the scroll-settle re-probe below: a wheel
+    // scroll leaves the cursor parked, so no new mousemove arrives to re-arm on.
+    lastEvent: null,
+    settleTimer: 0,
+    block: null,
+    kind: "text",
+    text: "",
+    imageSrc: "",
+    anchorX: 0,
+    anchorY: 0,
+    visible: false
+  };
+  // Tags that can legitimately BE the text unit. Semantic ones first (p, li,
+  // ...), but social UIs like Facebook render captions as bare
+  // <div dir="auto"><span>...</span></div> trees with no <p> anywhere —
+  // container tags count too, gated by the word check below.
+  const HOVER_BLOCK_TAGS = new Set([
+    "P", "LI", "H1", "H2", "H3", "H4", "H5", "H6",
+    "BLOCKQUOTE", "TD", "TH", "DD", "DT", "FIGCAPTION",
+    "DIV", "SECTION", "ARTICLE", "FIGURE", "MAIN", "ASIDE",
+    "TR", "UL", "OL", "DL", "TABLE"
+  ]);
+  const HOVER_INTERACTIVE_SELECTOR = "a, button, input, textarea, select, summary, label, video, audio";
+  const HOVER_DWELL_MS = 400;
+  const HOVER_MIN_WORDS = 15;
+  const HOVER_DRIFT_PX = 8;
+  // Padding around the armed block (and the smallest post image worth
+  // checking): the pill lives in this neighborhood, so pointer transit
+  // across whitespace, images, or short text keeps it alive.
+  const HOVER_NEAR_PX = 96;
+  // How long the page must stay quiet after a scroll before the cursor's
+  // position is probed again. Dynamic feeds keep emitting scroll events while
+  // the pointer never moves; only the settled run can arm.
+  const HOVER_SCROLL_SETTLE_MS = 150;
+
+  const hoverPill = document.createElement("button");
+  hoverPill.type = "button";
+  hoverPill.className = "iris-hover-pill iris-extension-shell";
+  hoverPill.setAttribute("aria-label", "Check this paragraph with IRIS");
+  hoverPill.innerHTML = `${irisEye(16)}<span>Check with IRIS</span>`;
+  shadow.append(hoverPill);
+  const hoverPillLabel = hoverPill.querySelector("span");
+
+  function hoverIsPending() {
+    return hoverState.visible || Boolean(hoverState.timer);
+  }
+
+  function hideHoverPill() {
+    if (!hoverState.visible) return;
+    hoverState.visible = false;
+    hoverPill.classList.remove("is-visible");
+  }
+
+  function cancelHoverDwell() {
+    if (hoverState.timer) window.clearTimeout(hoverState.timer);
+    hoverState.timer = 0;
+    hoverState.block = null;
+    hoverState.kind = "text";
+    hoverState.text = "";
+    hoverState.imageSrc = "";
+  }
+
+  function stopHoverCheck() {
+    // A queued animation frame has no owner but this function: processHoverMove
+    // clears it only if the browser actually runs the callback, and rendering is
+    // suspended while the window is locked or occluded — if that frame is
+    // dropped, the raf gate in onHoverMouseMove wedges every future mousemove
+    // until a reload. Cancel it here, before the pending check below: an armed
+    // frame with no timer yet is not "pending", but it is exactly the wedge.
+    if (hoverState.raf) {
+      window.cancelAnimationFrame(hoverState.raf);
+      hoverState.raf = 0;
+      hoverState.pending = null;
+    }
+    // A scheduled settle re-probe is an arm in flight; explicit dismissal
+    // (Escape, blur, leaving the region) cancels it too. The scroll listener
+    // clears this before scheduling its own, so its probe survives.
+    if (hoverState.settleTimer) {
+      window.clearTimeout(hoverState.settleTimer);
+      hoverState.settleTimer = 0;
+    }
+    if (!hoverIsPending()) return;
+    hideHoverPill();
+    cancelHoverDwell();
+  }
+
+  // Coming back to the window must not depend on a fresh mousemove: alt-tabbing
+  // away and returning with the cursor parked fires no mousemove at all, and a
+  // frame queued when rendering suspended may never run. Re-probe the last known
+  // pointer position instead — the dwell restarts against whatever is under the
+  // cursor now. Explicit stops (blur, visibility-hidden) clear timers but keep
+  // lastEvent, so there is always a position to come back to.
+  function reprobeHoverAfterReturn() {
+    if (hoverState.raf || hoverState.settleTimer) return;
+    if (!state.settings.hoverCheck || !hoverState.lastEvent) return;
+    hoverState.pending = hoverState.lastEvent;
+    hoverState.raf = window.requestAnimationFrame(processHoverMove);
+  }
+
+  function showHoverPill() {
+    hoverState.timer = 0;
+    const armed =
+      hoverState.kind === "image" ? Boolean(hoverState.imageSrc) : Boolean(hoverState.text);
+    if (!armed || !state.settings.hoverCheck || state.status !== "idle") {
+      cancelHoverDwell();
+      return;
+    }
+
+    const forImage = hoverState.kind === "image";
+    hoverPillLabel.textContent = forImage ? t("hover.pillImage") : t("hover.pill");
+    hoverPill.setAttribute(
+      "aria-label",
+      forImage ? t("hover.pillImage") : t("hover.ariaParagraph")
+    );
+    hoverPill.dataset.theme = resolveTheme();
+    hoverPill.style.setProperty("--iris-scale", activeFontScale());
+    // Measure before the class flip: the pill is laid out while hidden, so
+    // the read is honest and also flushes the style writes above.
+    const width = hoverPill.offsetWidth || 170;
+    const height = hoverPill.offsetHeight || 34;
+    const left = Math.max(8, Math.min(hoverState.anchorX + 12, window.innerWidth - width - 8));
+    const top = Math.max(8, Math.min(hoverState.anchorY + 12, window.innerHeight - height - 8));
+    hoverPill.style.left = `${left}px`;
+    hoverPill.style.top = `${top}px`;
+    hoverState.visible = true;
+    hoverPill.classList.add("is-visible");
+  }
+
+  hoverPill.addEventListener("click", () => {
+    const kind = hoverState.kind;
+    const text = hoverState.text;
+    const imageSrc = hoverState.imageSrc;
+    stopHoverCheck();
+
+    if (kind === "image") {
+      if (imageSrc) runImageUrlCheck(imageSrc);
+      return;
+    }
+
+    if (!text) return;
+
+    state.claimMode = "text";
+    state.panelOpenedByAction = true;
+    // Every other check entry point (right-click, selection sync, image drop)
+    // re-opens a collapsed panel. Without this, clicking the hover pill while
+    // the panel is collapsed flips status to "detected" but leaves the panel
+    // hidden — the collapsed pill shows a ready dot and nothing else.
+    state.collapsed = false;
+    state.selectedText = text;
+    state.status = "detected";
+    // The click can clear the page selection. Without this window a late
+    // selection-sync sees status "detected" + empty text and bounces the
+    // panel straight back to idle.
+    state.ignoreSelectionClearUntil = Date.now() + 800;
+    render();
+  });
+
+  function onHoverMouseMove(event) {
+    if (scriptDead) return;
+    hoverState.lastEvent = event;
+    if (!state.settings.hoverCheck) {
+      if (hoverIsPending()) stopHoverCheck();
+      return;
+    }
+
+    hoverState.pending = event;
+    if (hoverState.raf) return;
+    hoverState.raf = window.requestAnimationFrame(processHoverMove);
+  }
+
+  // Deepest-first ancestor walk: the first text-bearing block decides.
+  // A span carrying the whole caption is skipped (not a block), so its
+  // <div dir="auto"> parent wins on Facebook. Climbing PAST a real text
+  // unit that is merely too short would swallow post containers (author,
+  // timestamp, caption in one blob) — so a small text unit stops the walk.
+  function findHoverBlock(start) {
+    for (let el = start; el && el.nodeType === Node.ELEMENT_NODE; el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (!HOVER_BLOCK_TAGS.has(el.tagName)) continue;
+
+      const text = (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (!text) continue; // structure-only box, keep climbing
+      if (text.split(/\s+/).length < HOVER_MIN_WORDS) return null;
+      return { element: el, text };
+    }
+    return null;
+  }
+
+  function pointRectDistance(x, y, rect) {
+    const dx = Math.max(rect.left - x, 0, x - rect.right);
+    const dy = Math.max(rect.top - y, 0, y - rect.bottom);
+    return Math.hypot(dx, dy);
+  }
+
+  // A post photo worth checking, not an avatar: rendered at least 120px in
+  // both directions (Facebook profile pictures sit at 40–56px; emoji, badges,
+  // and verification marks are smaller still).
+  function checkableHoverImage(img) {
+    const src = img.currentSrc || img.src;
+    if (!src || !img.isConnected) return null;
+    const rect = img.getBoundingClientRect();
+    if (rect.width < 120 || rect.height < 120) return null;
+    return { element: img, kind: "image", src, text: "" };
+  }
+
+  function armHoverDwell(arm, x, y) {
+    if (hoverState.timer) window.clearTimeout(hoverState.timer);
+    hoverState.timer = 0;
+    hideHoverPill();
+    hoverState.block = arm.element;
+    hoverState.kind = arm.kind || "text";
+    hoverState.text = arm.text || "";
+    hoverState.imageSrc = arm.src || "";
+    hoverState.anchorX = x;
+    hoverState.anchorY = y;
+    hoverState.timer = window.setTimeout(showHoverPill, HOVER_DWELL_MS);
+  }
+
+  function processHoverMove() {
+    hoverState.raf = 0;
+    const event = hoverState.pending;
+    hoverState.pending = null;
+    if (!event || !state.settings.hoverCheck) return;
+
+    // Composed path, not event.target: mouse events over the shadow UI
+    // retarget to `host`, which would hide the pill as the cursor crosses
+    // onto it. Over the pill itself it stays; over any other IRIS surface
+    // it yields.
+    const path = typeof event.composedPath === "function" ? event.composedPath() : [];
+    if (hoverState.visible && path.includes(hoverPill)) return;
+    if (path.includes(host)) {
+      stopHoverCheck();
+      return;
+    }
+
+    if (state.status !== "idle") {
+      stopHoverCheck();
+      return;
+    }
+
+    const selection = window.getSelection();
+    if (selection && !selection.isCollapsed && selection.toString().trim()) {
+      stopHoverCheck();
+      return;
+    }
+
+    const x = event.clientX;
+    const y = event.clientY;
+
+    // Region = the block or image the dwell armed on, padded by
+    // HOVER_NEAR_PX. It answers one question: is the pointer still in the
+    // neighborhood the pill belongs to? Long captions count as one region
+    // (rect covers them end to end); the pill sitting +12px off-anchor stays
+    // comfortably inside it.
+    const region = hoverState.block ? hoverState.block.getBoundingClientRect() : null;
+    const nearRegion = region ? pointRectDistance(x, y, region) <= HOVER_NEAR_PX : false;
+
+    if (hoverState.visible) {
+      // Pill up: whitespace, images, links, and short text inside (or just
+      // around) the region keep it — only wandering off cancels it. Every
+      // explicit trigger (selection, scroll, Escape, IRIS UI, status) has
+      // already been handled above or in its own listener.
+      if (!nearRegion) stopHoverCheck();
+      return;
+    }
+
+    // An image under the pointer wins: caret probing cannot see images, and
+    // elementFromPoint is authoritative for what the cursor is actually on.
+    const under = document.elementFromPoint(x, y);
+    const img = under && under.tagName === "IMG" ? under : under && under.closest ? under.closest("img") : null;
+    const image = img ? checkableHoverImage(img) : null;
+
+    let arm = image;
+    if (!arm) {
+      let hit = null;
+      if (typeof document.caretRangeFromPoint === "function") {
+        const range = document.caretRangeFromPoint(x, y);
+        const node = range && range.startContainer;
+        hit = node && (node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement);
+      } else if (typeof document.caretPositionFromPoint === "function") {
+        const position = document.caretPositionFromPoint(x, y);
+        const node = position && position.offsetNode;
+        hit = node && (node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement);
+      }
+
+      if (hit && (nodeBelongsToIris(hit) || hit.closest(HOVER_INTERACTIVE_SELECTOR))) {
+        // Resting on a link or control: no arm, and the dwell does not wait
+        // it out — but a pill already up inside the region stays up.
+        if (!nearRegion) stopHoverCheck();
+        return;
+      }
+      if (hit) arm = findHoverBlock(hit);
+    }
+
+    if (!arm) {
+      // Whitespace/short-text transit inside an armed region keeps an
+      // in-flight dwell (line breaks no longer reset it); outside every
+      // region there is nothing to keep.
+      if (!nearRegion) stopHoverCheck();
+      return;
+    }
+
+    const sameTarget = arm.element === hoverState.block;
+    const drifted = Math.hypot(x - hoverState.anchorX, y - hoverState.anchorY) > HOVER_DRIFT_PX;
+    if (sameTarget && hoverState.timer && !drifted) return;
+
+    armHoverDwell(arm, x, y);
+  }
+
+  function stopHoverForSelection() {
+    if (!hoverIsPending()) return;
+    const selection = window.getSelection();
+    if (selection && !selection.isCollapsed && selection.toString().trim()) stopHoverCheck();
   }
 
   async function saveQuickSetting(key, value) {
     state.settings[key] = value;
     await writeSyncStorage({ [key]: value });
     render();
+  }
+
+  // The FAQ is a real modal (role=dialog, aria-modal): focus moves in on open,
+  // Tab cycles inside it, Escape closes it, and focus returns to the opener.
+  // Without the trap, everything behind the overlay stays tabbable and
+  // aria-modal="true" is a promise the dialog does not keep.
+  function closeFaq() {
+    const opener = state.faqOpener;
+    state.faqOpen = false;
+    state.faqOpener = null;
+    render();
+    if (opener?.isConnected) opener.focus();
+  }
+
+  function handleKeydown(event) {
+    if (!state.faqOpen) return;
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeFaq();
+      return;
+    }
+
+    if (event.key !== "Tab") return;
+
+    const modal = shadow.querySelector(".faq-modal");
+    if (!modal) return;
+
+    const focusable = Array.from(
+      modal.querySelectorAll('button, [href], input, select, textarea, summary, [tabindex]:not([tabindex="-1"])')
+    ).filter((node) => !node.disabled && node.getClientRects().length > 0);
+
+    if (!focusable.length) return;
+
+    const active = shadow.activeElement;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey) {
+      if (active === first || !modal.contains(active)) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else if (active === last || !modal.contains(active)) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 
   function handleClick(event) {
@@ -1705,6 +2588,23 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       return;
     }
 
+    if (action === "cancel-check") {
+      cancelActiveCheck();
+      return;
+    }
+
+    if (action === "retry") {
+      const last = state.lastCheck;
+      if (!last) return;
+
+      if (last.kind === "text") {
+        runTextCheck(last.text);
+      } else if (last.kind === "image-source") {
+        requestBackgroundImageVerification(last.source, last.imageName, last.previewDataUrl);
+      }
+      return;
+    }
+
     if (action === "reset") {
       resetPanel();
       return;
@@ -1752,7 +2652,28 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     }
 
     if (action === "toggle-quiet-mode") {
-      saveQuickSetting("quietMode", !state.settings.quietMode);
+      const nextQuiet = !state.settings.quietMode;
+      saveQuickSetting("quietMode", nextQuiet);
+      // The Quiet nudge: turning Quiet ON switches Hover to check OFF (the
+      // setting the Quiet copy promises to suppress) and records that the
+      // nudge — not the reader — did it. Turning Quiet OFF gives back
+      // exactly what the nudge took; a hover the reader changed by hand
+      // while Quiet was on clears the record and wins.
+      if (nextQuiet && state.settings.hoverCheck) {
+        saveQuickSetting("hoverCheck", false);
+        saveQuickSetting("hoverSuppressedByQuiet", true);
+      } else if (!nextQuiet && state.settings.hoverSuppressedByQuiet) {
+        saveQuickSetting("hoverCheck", true);
+        saveQuickSetting("hoverSuppressedByQuiet", false);
+      }
+      return;
+    }
+
+    if (action === "toggle-hover-check") {
+      saveQuickSetting("hoverCheck", !state.settings.hoverCheck);
+      // Any hand-made choice owns the setting from here on — the nudge's
+      // restore no longer applies.
+      if (state.settings.hoverSuppressedByQuiet) saveQuickSetting("hoverSuppressedByQuiet", false);
       return;
     }
 
@@ -1762,15 +2683,18 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     }
 
     if (action === "open-faq") {
+      // Remember what opened the dialog: focus must land inside the modal now
+      // and come back to this button when it closes.
+      state.faqOpener = actionTarget;
       state.faqOpen = true;
       render();
+      shadow.querySelector(".faq-modal .iris-icon-button")?.focus();
       return;
     }
 
     if (action === "close-faq") {
       if (actionTarget.classList.contains("faq-overlay") && target.closest?.(".faq-modal")) return;
-      state.faqOpen = false;
-      render();
+      closeFaq();
       return;
     }
 
@@ -1858,6 +2782,10 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     if (event.target?.id === "iris-image-input") {
       handleImageFile(event.target.files?.[0]);
       event.target.value = "";
+    } else if (event.target?.matches?.('select[data-setting="irisUiLanguage"]')) {
+      const value = event.target.value;
+      const valid = IRIS_LANGUAGES.some((language) => language.code === value);
+      saveQuickSetting("irisUiLanguage", valid ? value : "en");
     }
   }
 
@@ -1897,6 +2825,49 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     state.dropDepth = 0;
     setDropTargetActive(false);
     handleDroppedImage(event.dataTransfer);
+    hideQuietDropTarget();
+  }
+
+  // Quiet idle (and a hidden panel) unmount every surface, so a drag over the
+  // page would have nowhere to land: the drop listeners live on root, and root
+  // is empty. The pad mounts only while an image-shaped drag is active and no
+  // IRIS surface exists; the drop itself rides the normal root handlers, so a
+  // landing here behaves exactly like a landing on the panel.
+  function dragIsImageCandidate(event) {
+    // Image drags carry uri-list (the photo link) or local Files. A text
+    // selection carries only text/plain + text/html and must never raise the
+    // pad; GIF files stay out with the rest of the unsupported set.
+    if (dragHasLocalFiles(event)) return dragMayContainImage(event);
+    return dragHasType(event, "text/uri-list");
+  }
+
+  function mountQuietDropTarget() {
+    root.innerHTML = `
+      <div class="iris-quiet-drop iris-extension-shell" role="group" aria-label="${t("drop.quietTarget")}">
+        ${icon("image")}
+        <span>${t("drop.quietTarget")}</span>
+      </div>
+    `;
+    const target = root.querySelector(".iris-quiet-drop");
+    if (!target) return;
+    target.dataset.theme = resolveTheme();
+    target.style.setProperty("--iris-scale", activeFontScale());
+  }
+
+  function hideQuietDropTarget() {
+    if (!state.quietDropActive) return;
+    state.quietDropActive = false;
+    if (!mountedView) root.replaceChildren();
+  }
+
+  function handleDocumentDragEnter(event) {
+    // mountedView covers a mounted pill/panel; shouldRenderPanel() covers the
+    // moment a surface is due but not yet mounted - the pad must never race it.
+    if (scriptDead || mountedView || shouldRenderPanel()) return;
+    if (!dragIsImageCandidate(event)) return;
+    if (state.quietDropActive && root.querySelector(".iris-quiet-drop")) return;
+    state.quietDropActive = true;
+    mountQuietDropTarget();
   }
 
   function preserveSelectionForPanelInteraction() {
@@ -1999,11 +2970,27 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   root.addEventListener("pointerup", preserveSelectionForPanelInteraction, true);
   root.addEventListener("pointercancel", preserveSelectionForPanelInteraction, true);
   root.addEventListener("click", handleClick);
+  shadow.addEventListener("keydown", handleKeydown);
   root.addEventListener("change", handleChange);
   root.addEventListener("dragenter", handleLocalImageDragEnter);
   root.addEventListener("dragover", handleLocalImageDragOver);
   root.addEventListener("dragleave", handleLocalImageDragLeave);
   root.addEventListener("drop", handleLocalImageDrop);
+  // Page-level drag detection: root has no size while every surface is
+  // unmounted, so it can never hear the drag that should mount the pad.
+  // Capture runs before root's handlers, whose stopPropagation would
+  // otherwise starve the detector. dragend - not drop - is the teardown:
+  // a captured drop listener would wipe the target mid-dispatch.
+  document.addEventListener("dragenter", handleDocumentDragEnter, true);
+  document.addEventListener("dragend", hideQuietDropTarget, true);
+  document.addEventListener("dragleave", (event) => {
+    // relatedTarget null means the pointer left the document (window drag
+    // end, alt-tab); a normal element-to-element leave keeps the pad.
+    if (!event.relatedTarget) hideQuietDropTarget();
+  }, true);
+  // A resize can shrink the viewport under a parked position; the same clamp
+  // that opens the panel also keeps it inside afterwards.
+  window.addEventListener("resize", () => keepSurfaceInViewport());
   root.addEventListener("pointerdown", startDrag);
   root.addEventListener("pointermove", moveDrag);
   root.addEventListener("pointerup", endDrag);
@@ -2013,6 +3000,43 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
   window.addEventListener("pointerup", handlePagePointerUp, true);
   window.addEventListener("pointercancel", handlePagePointerUp, true);
   document.addEventListener("selectionchange", handleSelectionChange);
+  document.addEventListener("mousemove", onHoverMouseMove, { passive: true });
+  // Capture on window: element scrolls don't bubble, but they do pass
+  // through the capture phase — one listener covers the whole page tree.
+  window.addEventListener("scroll", () => {
+    stopHoverCheck();
+    // A scroll does not end the reader's intent: wheel and trackpad scrolling
+    // leave the cursor parked where it was, with no mousemove to re-arm on —
+    // and dynamic pages emit scroll events while the pointer never moves
+    // (layout shifts, lazy loads). Once the page settles, probe what is under
+    // the cursor NOW: the dwell restarts against the content that scroll
+    // brought there.
+    window.clearTimeout(hoverState.settleTimer);
+    hoverState.settleTimer = window.setTimeout(() => {
+      hoverState.settleTimer = 0;
+      if (!state.settings.hoverCheck || !hoverState.lastEvent) return;
+      if (hoverState.raf) return;
+      hoverState.pending = hoverState.lastEvent;
+      hoverState.raf = window.requestAnimationFrame(processHoverMove);
+    }, HOVER_SCROLL_SETTLE_MS);
+  }, { capture: true, passive: true });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") stopHoverCheck();
+  });
+  // Leaving the page is detected on the root element, NOT through mouseout:
+  // dynamic pages (Facebook re-renders constantly) synthesize mouseout with a
+  // null relatedTarget whenever the node under the cursor is replaced, which
+  // would kill the pill while the pointer never moved at all.
+  document.documentElement.addEventListener("mouseleave", stopHoverCheck);
+  window.addEventListener("blur", stopHoverCheck);
+  window.addEventListener("focus", reprobeHoverAfterReturn);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      stopHoverCheck();
+      return;
+    }
+    reprobeHoverAfterReturn();
+  });
   window.matchMedia?.("(prefers-color-scheme: dark)").addEventListener("change", () => {
     if (state.settings.irisTheme === "system") render();
   });
@@ -2033,11 +3057,15 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
     }
 
     if (message?.type === "IRIS_CONTEXT_IMAGE_STARTED") {
-      startContextImageCheck(message.imageUrl || "", message.imageName || "Selected image");
+      // Records this push flow's generation: the RESULT and ERROR branches below
+      // only render while it is still the live one (pushFlowGen === checkGen).
+      state.pushFlowGen = startContextImageCheck(message.imageUrl || "", message.imageName || t("image.selectedName"));
       sendResponse({ ok: true });
       return false;
     }
 
+    // Both drops are decided inside finish/failContextImageCheck: those messages
+    // carry no check id, so the recorded flow generation is the only handle.
     if (message?.type === "IRIS_CONTEXT_IMAGE_RESULT") {
       finishContextImageCheck(message.payload || {});
       sendResponse({ ok: true });
@@ -2088,7 +3116,10 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
       irisTheme: items.irisTheme || STORAGE_DEFAULTS.irisTheme,
       irisFontSize: items.irisFontSize || STORAGE_DEFAULTS.irisFontSize,
       irisDebugMode: Boolean(items.irisDebugMode),
-      quietMode: Boolean(items.quietMode)
+      quietMode: Boolean(items.quietMode),
+      hoverCheck: Boolean(items.hoverCheck),
+      hoverSuppressedByQuiet: Boolean(items.hoverSuppressedByQuiet),
+      irisUiLanguage: items.irisUiLanguage || STORAGE_DEFAULTS.irisUiLanguage
     };
     state.history = Array.isArray(localItems[HISTORY_KEY]) ? localItems[HISTORY_KEY] : [];
 
@@ -2110,6 +3141,26 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__) {
           state.settings[key] = changes[key].newValue;
           shouldRender = true;
         }
+      }
+
+      // Hover to check switched off (options page or another tab): the pill
+      // must not wait for the next mousemove to notice.
+      if (changes.hoverCheck && !changes.hoverCheck.newValue) stopHoverCheck();
+
+      // Quiet Mode flipped from somewhere other than this panel's own toggle
+      // (the options page, another tab): the nudge must apply there too —
+      // quiet promises no IRIS surface until a right-click, and the record is
+      // what lets the restore hand hover back. This mirrors toggle-quiet-mode
+      // exactly; by the time storage events arrive the local toggle has already
+      // updated state, so those paths skip these conditions instead of looping.
+      if (changes.quietMode?.newValue === true && state.settings.hoverCheck) {
+        saveQuickSetting("hoverCheck", false);
+        saveQuickSetting("hoverSuppressedByQuiet", true);
+        shouldRender = true;
+      } else if (changes.quietMode?.newValue === false && state.settings.hoverSuppressedByQuiet) {
+        saveQuickSetting("hoverCheck", true);
+        saveQuickSetting("hoverSuppressedByQuiet", false);
+        shouldRender = true;
       }
 
       if (
