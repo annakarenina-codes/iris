@@ -1,3 +1,6 @@
+/* Popup — one gradient moment (#open-panel). Everything else runs on the
+   shared tokens in tokens.css, so the stored irisTheme setting themes this
+   page exactly like the panel and the options page. */
 * {
   box-sizing: border-box;
 }
@@ -5,29 +8,21 @@
 body {
   width: 260px;
   margin: 0;
-  color: #1c1033;
-  font-family:
-    "DM Sans",
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-  /* A half point over the browser default; the popup is all short copy. */
-  font-size: 16.5px;
-  background: #ffffff;
+  color: var(--iris-text);
+  font-family: var(--iris-font-sans);
+  /* 16px is the whole scale's top body step; 16.5px was off-scale. */
+  font-size: 16px;
+  background: var(--iris-page-bg);
 }
 
 .popup-shell {
-  padding: 14px;
+  padding: 16px;
 }
 
 header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 12px;
 }
 
@@ -37,9 +32,9 @@ header {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #e4dcff;
-  border-radius: 14px;
-  background: #f5f3ff;
+  border: 1px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-subtle-bg);
 }
 
 .iris-mark img {
@@ -57,34 +52,34 @@ header strong {
 
 header span {
   display: block;
-  color: #8b7fb8;
+  /* Was #8b7fb8: 3.60:1 on white. */
+  color: var(--iris-text-light);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .status-card {
   margin-bottom: 12px;
-  padding: 10px;
-  border: 1px solid #e4dcff;
-  border-radius: 14px;
-  background: #f5f3ff;
+  padding: 12px;
+  border: 1px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-subtle-bg);
   box-shadow: 0 4px 12px rgba(109, 40, 217, 0.08);
 }
 
 .status-card span {
   display: block;
-  margin-bottom: 3px;
-  color: #8b7fb8;
+  margin-bottom: 4px;
+  color: var(--iris-text-light);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .status-card strong {
   display: block;
   overflow-wrap: anywhere;
-  color: #4b3f72;
+  color: var(--iris-text-mid);
   font-size: 12px;
   line-height: 1.35;
 }
@@ -94,17 +89,32 @@ header span {
   gap: 8px;
 }
 
+/* One motion contract: colour, chrome and position travel on the same curve.
+   Reduced motion keeps the press/hover feedback and pins the transforms. */
 button {
   min-height: 38px;
   border: 0;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 52%, #a78bfa 100%);
-  color: #ffffff;
+  border-radius: var(--iris-r-control);
+  background: var(--iris-accent-strong);
+  color: var(--iris-on-accent);
   cursor: pointer;
   font: inherit;
-  font-size: 12.5px;
-  font-weight: 900;
+  font-size: 13px;
+  font-weight: 600;
   box-shadow: 0 4px 14px rgba(109, 40, 217, 0.28);
+  transition:
+    background-color var(--iris-fast) var(--iris-ease),
+    border-color var(--iris-fast) var(--iris-ease),
+    color var(--iris-fast) var(--iris-ease),
+    box-shadow var(--iris-fast) var(--iris-ease),
+    transform var(--iris-fast) var(--iris-ease),
+    filter var(--iris-fast) var(--iris-ease);
+}
+
+/* The popup's single gradient moment. White type clears 5.7:1 at every stop
+   of the ramp in tokens.css. */
+#open-panel {
+  background: var(--iris-gradient);
 }
 
 button:hover {
@@ -112,20 +122,24 @@ button:hover {
   transform: translateY(-1px);
 }
 
-/* Same motion contract as the panel: colour, chrome and position on one curve. */
-button {
-  transition:
-    background-color 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
-    border-color 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
-    color 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
-    box-shadow 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
-    transform 160ms cubic-bezier(0.2, 0.8, 0.25, 1),
-    filter 160ms cubic-bezier(0.2, 0.8, 0.25, 1);
-}
-
 button:active:not(:disabled) {
   transform: scale(0.97);
   filter: brightness(0.92);
+}
+
+button.secondary {
+  border: 1.5px solid var(--iris-border-strong);
+  background: var(--iris-card-bg);
+  color: var(--iris-accent);
+  box-shadow: none;
+}
+
+#popup-status {
+  min-height: 16px;
+  margin: 8px 0 0;
+  color: var(--iris-text-light);
+  font-size: 11px;
+  line-height: 1.35;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -141,19 +155,4 @@ button:active:not(:disabled) {
   button:hover {
     transform: none !important;
   }
-}
-
-button.secondary {
-  border: 1.5px solid #c4b5fd;
-  background: #ffffff;
-  color: #7c3aed;
-  box-shadow: none;
-}
-
-#popup-status {
-  min-height: 16px;
-  margin: 10px 0 0;
-  color: #8b7fb8;
-  font-size: 11px;
-  line-height: 1.35;
 }
