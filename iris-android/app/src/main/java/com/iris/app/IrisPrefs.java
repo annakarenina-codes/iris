@@ -11,6 +11,16 @@ final class IrisPrefs {
     private static final String BUBBLE_X = "bubble_x";
     private static final String BUBBLE_Y = "bubble_y";
     private static final String THEME = "irisTheme";
+    /** Matches the extension's irisUiLanguage key; null means follow the system locale. */
+    private static final String UI_LANGUAGE = "irisUiLanguage";
+    // Bring-your-own-key, exactly like the extension's sightengineApiUser/Secret settings:
+    // the credentials live on the device and never ship in code or on a server.
+    private static final String SIGHTENGINE_API_USER = "sightengine_api_user";
+    private static final String SIGHTENGINE_API_SECRET = "sightengine_api_secret";
+    // Auto-filling the paste panel reads the clipboard the moment the panel opens, so the
+    // choice is opt-in and off by default: a reader who never turns it on keeps the
+    // tap-Paste-only behavior, exactly as the privacy copy promises.
+    private static final String CLIPBOARD_AUTO_OPEN = "clipboard_auto_open";
     private static final String DEFAULT_BACKEND_URL = "https://iris-production-8342.up.railway.app"; // iris:backend-url
 
     private IrisPrefs() {}
@@ -96,6 +106,59 @@ final class IrisPrefs {
     static void setTheme(Context context, String theme) {
         SharedPreferences.Editor editor = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit();
         editor.putString(THEME, theme);
+        editor.apply();
+    }
+
+    /** The chosen app language, or null when the reader has never picked one. */
+    static String getUiLanguage(Context context) {
+        return context
+            .getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+            .getString(UI_LANGUAGE, null);
+    }
+
+    static void setUiLanguage(Context context, String code) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit();
+        if (code == null) {
+            editor.remove(UI_LANGUAGE);
+        } else {
+            editor.putString(UI_LANGUAGE, code);
+        }
+        editor.apply();
+    }
+
+    static String getSightengineApiUser(Context context) {
+        return context
+            .getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+            .getString(SIGHTENGINE_API_USER, "");
+    }
+
+    static void setSightengineApiUser(Context context, String value) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit();
+        editor.putString(SIGHTENGINE_API_USER, value == null ? "" : value.trim());
+        editor.apply();
+    }
+
+    static String getSightengineApiSecret(Context context) {
+        return context
+            .getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+            .getString(SIGHTENGINE_API_SECRET, "");
+    }
+
+    static void setSightengineApiSecret(Context context, String value) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit();
+        editor.putString(SIGHTENGINE_API_SECRET, value == null ? "" : value.trim());
+        editor.apply();
+    }
+
+    static boolean isClipboardAutoOpen(Context context) {
+        return context
+            .getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+            .getBoolean(CLIPBOARD_AUTO_OPEN, false);
+    }
+
+    static void setClipboardAutoOpen(Context context, boolean enabled) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit();
+        editor.putBoolean(CLIPBOARD_AUTO_OPEN, enabled);
         editor.apply();
     }
 }

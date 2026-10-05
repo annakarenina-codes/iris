@@ -1,6 +1,7 @@
 package com.iris.app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -20,6 +21,11 @@ public class ShareImageActivity extends Activity {
     private LinearLayout bodyLayout;
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IrisLocale.wrap(newBase));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         IrisUi.applyTheme(this);
@@ -31,11 +37,16 @@ public class ShareImageActivity extends Activity {
             return;
         }
 
+        // The sharing app's caption, usually carrying the page the image came from.
+        // It rides alongside the image stream and would otherwise be dropped.
+        String sourceUrl = IrisResultData.extractSourceUrl(getIntent().getStringExtra(Intent.EXTRA_TEXT));
+
         if (Settings.canDrawOverlays(this)) {
             grantUriPermission(getPackageName(), imageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             Intent service = new Intent(this, OverlayService.class);
             service.setAction(OverlayService.ACTION_VERIFY_IMAGE_URI);
             service.putExtra(OverlayService.EXTRA_IMAGE_URI, imageUri.toString());
+            service.putExtra(OverlayService.EXTRA_SOURCE_URL, sourceUrl);
             service.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startOverlayService(service);
             finish();
@@ -47,10 +58,11 @@ public class ShareImageActivity extends Activity {
             @Override
             public void onSuccess(String responseJson) {
                 // Without overlay permission this path skips OverlayService, so record here.
-                HistoryStore.record(ShareImageActivity.this, responseJson, "Image selected for OCR.", "image");
+                String annotated = IrisResultData.withSourceUrl(responseJson, sourceUrl);
+                HistoryStore.record(ShareImageActivity.this, annotated, "Image submitted for checking.", "image");
                 Intent intent = new Intent(ShareImageActivity.this, ResultActivity.class);
-                intent.putExtra(ResultActivity.EXTRA_RESPONSE_JSON, responseJson);
-                intent.putExtra(ResultActivity.EXTRA_FALLBACK_TEXT, "Image selected for OCR.");
+                intent.putExtra(ResultActivity.EXTRA_RESPONSE_JSON, annotated);
+                intent.putExtra(ResultActivity.EXTRA_FALLBACK_TEXT, "Image submitted for checking.");
                 intent.putExtra(ResultActivity.EXTRA_INPUT_TYPE, "image");
                 startActivity(intent);
                 finish();
@@ -80,13 +92,13 @@ public class ShareImageActivity extends Activity {
         panel.addView(header(), IrisUi.matchWrap());
 
         bodyLayout = IrisUi.vertical(this, 20);
-        bodyLayout.addView(IrisUi.eyebrow(this, "Image OCR"), IrisUi.matchWrap());
+        bodyLayout.addView(IrisUi.eyebrow(this, "Image check"), IrisUi.matchWrap());
         bodyLayout.addView(imagePreview(), IrisUi.spaced(this, 8));
 
         progressBar = new IrisScanIndicator(this);
         bodyLayout.addView(progressBar, IrisUi.spaced(this, 18));
 
-        TextView label = IrisUi.title(this, "Extracting image text...", 19);
+        TextView label = IrisUi.title(this, "Checking image...", 19);
         label.setGravity(Gravity.CENTER);
         bodyLayout.addView(label, IrisUi.spaced(this, 10));
 

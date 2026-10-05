@@ -6,4 +6,17 @@
         <!-- Matches IrisUi.BG, so the launch window never shows pure white. -->
         <item name="android:windowBackground">#f5f3ff</item>
     </style>
+
+    <!-- Hosts the system document picker and draws nothing of its own: PickImageActivity
+         never calls setContentView. Translucent so no IRIS window flashes over the app
+         the reader was actually checking, and paired with an empty taskAffinity in the
+         manifest so finishing it drops back to that app instead of parking the reader on
+         MainActivity, which is where the opaque default launch used to land them. -->
+    <style name="IrisPickerTheme" parent="android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:colorAccent">#7C3AED</item>
+    </style>
 </resources>

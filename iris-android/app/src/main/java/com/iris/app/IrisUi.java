@@ -57,6 +57,17 @@ final class IrisUi {
     static int STATUS_OK = Color.rgb(6, 95, 70);
     static int STATUS_ERROR = Color.rgb(153, 27, 27);
     static int STATUS_OFF = Color.rgb(55, 65, 81);
+    // Ink for content living on a day-only card (verdict rows and badges): the card
+    // never darkens, so its text must never lighten. final, because applyTheme
+    // reassigns every other token and these two must survive that swap -- using
+    // TEXT/MUTED there paints near-white on near-white once the theme goes dark.
+    static final int TEXT_ON_LIGHT = Color.rgb(28, 16, 51);
+    static final int MUTED_ON_LIGHT = Color.rgb(75, 63, 114);
+    // Same reasoning as the two above, for accent ink: the eyebrows inside a verdict
+    // row or badge sit on verdictBackground(), which never darkens, so they must keep
+    // the day violet. VIOLET itself flips at night because everywhere else it lands
+    // on CARD/BG, which do darken.
+    static final int VIOLET_ON_LIGHT = Color.rgb(124, 58, 237);
 
     static final String THEME_SYSTEM = "system";
     static final String THEME_LIGHT = "light";
@@ -127,6 +138,16 @@ final class IrisUi {
         BLUE_BORDER = Color.rgb(91, 130, 217);
         BLUE_OUTLINE = Color.rgb(91, 130, 217);
         TRACK = Color.rgb(51, 44, 80);
+        // Accent ink flips too. Until now VIOLET and DEEP_VIOLET kept their day values,
+        // so secondary/ghost buttons (DEEP_VIOLET on CARD) and every eyebrow label
+        // (VIOLET on CARD) rendered violet-on-violet-black at 2.4:1 -- the same failure
+        // the history rows had, just inverted. Both stay recognisably violet rather than
+        // going pale, and DEEP_VIOLET keeps the lower luminance of the pair so the two
+        // still read as related the way they do by day. GRADIENT_* is left alone on
+        // purpose: it is button fill under white text, not ink, and lightening it would
+        // break that instead.
+        VIOLET = Color.rgb(167, 139, 250);
+        DEEP_VIOLET = Color.rgb(159, 123, 250);
         // The thumb stays light in both themes so the OFF label keeps something to sit on.
         KNOB = Color.rgb(240, 237, 252);
         // Lightened enough to read as ink on a dark card, still clearly green/red/gray.
@@ -306,7 +327,19 @@ final class IrisUi {
     }
 
     static TextView eyebrow(Context context, String value) {
-        TextView view = text(context, value, 11, VIOLET, Typeface.BOLD);
+        return eyebrow(context, value, VIOLET);
+    }
+
+    /**
+     * Eyebrow on an explicitly colored surface.
+     *
+     * The no-arg form reads VIOLET, which flips at night. That is right for every card
+     * built from CARD/BG/BLUE_BG, and wrong for the day-only verdict cards, where the
+     * night violet would drop to 2.5:1. Call sites on verdictBackground() must pass
+     * VIOLET_ON_LIGHT.
+     */
+    static TextView eyebrow(Context context, String value, int color) {
+        TextView view = text(context, value, 11, color, Typeface.BOLD);
         view.setAllCaps(true);
         view.setLetterSpacing(0.08f);
         return view;

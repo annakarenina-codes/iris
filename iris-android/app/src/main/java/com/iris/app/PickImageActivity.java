@@ -1,6 +1,7 @@
 package com.iris.app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -9,6 +10,11 @@ import android.os.Bundle;
 public class PickImageActivity extends Activity {
     private static final int PICK_IMAGE_REQUEST = 6101;
     private boolean pickerOpened;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IrisLocale.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

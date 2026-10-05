@@ -28,9 +28,17 @@
             android:name=".HistoryActivity"
             android:exported="false" />
 
+        <!-- Trampoline for the overlay's "Choose image" button. The empty taskAffinity
+             gives it a task of its own, and the translucent theme (res/values/styles.xml)
+             keeps it from painting: without both, the picker joined the main IRIS task,
+             brought that task forward, and finishing it left the reader on MainActivity
+             rather than back in the app they were checking. -->
         <activity
             android:name=".PickImageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:theme="@style/IrisPickerTheme" />
 
         <activity
             android:name=".ShareImageActivity"
@@ -48,6 +56,11 @@
             android:label="@string/process_text_label">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/plain" />
             </intent-filter>

@@ -1,4 +1,101 @@
 <resources>
     <string name="app_name">IRIS</string>
     <string name="process_text_label">Check with IRIS</string>
+
+    <!-- Hero -->
+    <string name="hero_acronym">Intelligent Real-time\nInformation Scanner</string>
+    <string name="hero_tagline">Fact-check from any app</string>
+    <string name="hero_subtitle">Enable the floating bubble, paste copied Facebook text, use Android\'s text menu where available, or share images to IRIS for OCR verification.</string>
+
+    <!-- Status strip -->
+    <string name="status_ready_title">Ready to fact-check</string>
+    <string name="status_ready_detail">IRIS only checks text or images you intentionally submit.</string>
+
+    <!-- Bubble card -->
+    <string name="bubble_eyebrow">IRIS Bubble</string>
+    <string name="bubble_title">Floating assistant</string>
+    <string name="bubble_open">Open bubble now</string>
+    <string name="bubble_stop">Turn off bubble</string>
+    <string name="bubble_desc_on">IRIS is active. Use the bubble for Facebook paste checks, selected text, or shared images.</string>
+    <string name="bubble_desc_off">IRIS is disabled. Enable it to show the floating bubble over other apps.</string>
+    <string name="bubble_state_on">ON - Bubble is visible</string>
+    <string name="bubble_state_off">OFF - Bubble is hidden</string>
+
+    <!-- Clipboard auto-open -->
+    <string name="clipboard_eyebrow">Clipboard</string>
+    <string name="clipboard_title">Auto-open pasted text</string>
+    <string name="clipboard_desc">When on, tapping the bubble fills the panel with your most recent copied text so you can check it right away. Off by default.</string>
+    <string name="clipboard_toggle_label">Fill with copied text</string>
+
+    <!-- Appearance -->
+    <string name="appearance_eyebrow">Appearance</string>
+    <string name="theme_title">Theme</string>
+    <string name="theme_desc">Follow the system setting, or force light or dark for IRIS.</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+
+    <!-- Language -->
+    <string name="language_eyebrow">Language</string>
+    <string name="language_title">App language</string>
+    <string name="language_desc">Choose the language IRIS uses across the app.</string>
+
+    <!-- Android workflow -->
+    <string name="workflow_eyebrow">Android workflow</string>
+    <string name="workflow_title">Three user-triggered entry points</string>
+    <string name="workflow_paste_title">Facebook paste</string>
+    <string name="workflow_paste_detail">Long-press post text to copy it, tap the IRIS bubble, paste, then check.</string>
+    <string name="workflow_select_title">Text selection</string>
+    <string name="workflow_select_detail">In supported apps, the Android text toolbar can show Check with IRIS.</string>
+    <string name="workflow_share_title">Image sharing</string>
+    <string name="workflow_share_detail">Share image posts to IRIS; the app sends them to /verify-image for OCR, then shows claim results.</string>
+
+    <!-- Privacy and sources -->
+    <string name="privacy_eyebrow">Privacy and sources</string>
+    <string name="privacy_title">User-controlled verification</string>
+    <string name="privacy_trigger_title">User-triggered only</string>
+    <string name="privacy_trigger_detail">IRIS does not monitor other apps automatically; checks begin only when you submit text or an image.</string>
+    <string name="privacy_clipboard_title">Privacy first</string>
+    <string name="privacy_clipboard_detail">The clipboard is read only when you tap Paste from Clipboard inside the bubble, or when auto-open is on and the panel opens.</string>
+    <string name="privacy_sources_title">Approved sources</string>
+    <string name="privacy_sources_detail">IRIS checks VERA Files and Rappler plus ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, DZRH, and OneNews.</string>
+
+    <!-- Backend -->
+    <string name="backend_eyebrow">Backend</string>
+    <string name="backend_title">Connection</string>
+    <string name="backend_desc">Use 10.0.2.2 when the Flask backend is running on the same laptop as the emulator.</string>
+    <string name="backend_save">Save backend URL</string>
+    <string name="status_backend_saved">Backend URL saved.</string>
+
+    <!-- SightEngine -->
+    <string name="sightengine_eyebrow">Image checks</string>
+    <string name="sightengine_title">AI-image detection</string>
+    <string name="sightengine_desc">Add your own SightEngine API credentials to run AI-image detection on shared images. Saved on this device only. Without them, image checks show Not assessed.</string>
+    <string name="sightengine_user_hint">API user</string>
+    <string name="sightengine_secret_hint">API secret</string>
+    <string name="sightengine_save">Save credentials</string>
+    <string name="status_sightengine_saved">Credentials saved.</string>
+
+    <!-- Manual check -->
+    <string name="manual_eyebrow">Check a claim</string>
+    <string name="manual_title">Manual text and image check</string>
+    <string name="manual_desc">Paste a claim or choose a screenshot, and IRIS will check it against Philippine news sources.</string>
+    <string name="manual_input_hint">Paste or type a claim to verify</string>
+    <string name="manual_pick_image">Choose image to check</string>
+
+    <!-- History card -->
+    <string name="history_eyebrow">History</string>
+    <string name="history_title">Past checks</string>
+    <string name="history_desc">Review verdicts from checks run on this device. History never leaves the phone.</string>
+    <string name="history_open">Open history</string>
+
+    <!-- Flow statuses -->
+    <string name="status_overlay_permission">Allow IRIS to display over other apps, then return here and enable the bubble again.</string>
+    <string name="status_bubble_active">IRIS Bubble is active. Tap it to paste text, or use Android sharing/text menus.</string>
+    <string name="status_bubble_off">IRIS Bubble turned off.</string>
+    <string name="status_empty_text">Enter or select text first.</string>
+    <string name="status_scanning">Scanning approved IRIS sources...</string>
+    <string name="status_no_image">No image was selected.</string>
+    <string name="status_extracting">Checking image and scanning sources...</string>
+    <string name="status_image_ocr">Image submitted for checking.</string>
 </resources>

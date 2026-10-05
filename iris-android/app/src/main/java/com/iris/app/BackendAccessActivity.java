@@ -20,6 +20,11 @@ public class BackendAccessActivity extends Activity {
     private static final List<PendingCheck> pendingChecks = new ArrayList<>();
     private boolean resolved;
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IrisLocale.wrap(newBase));
+    }
+
     // Called on the network worker, because a configured hostname may need DNS resolution.
     static boolean needsPermission(Context context, URL url) throws Exception {
         if (Build.VERSION.SDK_INT < 37 || context.checkSelfPermission(PERMISSION) == PackageManager.PERMISSION_GRANTED) {

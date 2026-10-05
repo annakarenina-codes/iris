@@ -55,6 +55,7 @@ public class OverlayService extends Service {
     public static final String ACTION_VERIFY_IMAGE_URI = "com.iris.app.action.VERIFY_IMAGE_URI";
     public static final String EXTRA_TEXT = "extra_text";
     public static final String EXTRA_IMAGE_URI = "extra_image_uri";
+    public static final String EXTRA_SOURCE_URL = "extra_source_url";
 
     private static final String NOTIFICATION_CHANNEL_ID = "iris_bubble";
     private static final int NOTIFICATION_ID = 8201;
@@ -62,6 +63,15 @@ public class OverlayService extends Service {
     // the panel, which closes it, and again as a click on the bubble, which would open it
     // straight back up. The second half of that gesture is ignored.
     private static final long BUBBLE_REOPEN_GUARD_MS = 400;
+    // Auto-open only fills the panel with text long enough to be a claim: a URL tail, an
+    // emoji, or a bare name is left alone (a tap-opened panel) or closes again (a panel
+    // that opened by itself).
+    static final int CLIPBOARD_AUTO_OPEN_MIN_CHARS = 15;
+    // Focus reaches the panel window asynchronously, so the first read after opening can
+    // come back empty. Two spaced retries cover slow focus grants before giving up.
+    private static final long CLIPBOARD_RETRY_MS = 150;
+    private static final long CLIPBOARD_RETRY_SLOW_MS = 400;
+    private static final int CLIPBOARD_READ_ATTEMPTS = 2;
 
     private static final int STATE_IDLE = 0;
     private static final int STATE_INPUT = 1;
@@ -113,12 +123,30 @@ public class OverlayService extends Service {
     // arrives, so each verdict starts from the same collapsed three-source default.
     private boolean sourcesExpanded = false;
     private final SimpleDateFormat historyDateFormat = new SimpleDateFormat("MM-dd HH:mm", Locale.getDefault());
+    // Clipboard auto-open is opt-in (IrisPrefs). The listener lives for the service
+    // lifetime; the pref check inside the callback keeps it silent until the reader
+    // turns the feature on, so registering alone changes nothing.
+    private ClipboardManager clipboardManager;
+    private final ClipboardManager.OnPrimaryClipChangedListener primaryClipListener =
+        this::onPrimaryClipChanged;
+    // Set only when the clipboard-change listener opens the panel, so the fill knows a
+    // panel that appeared by itself may close again, while a tap-opened one never does.
+    private boolean clipboardAutoOpenRequested = false;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IrisLocale.wrap(newBase));
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         applyOverlayTheme();
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        if (clipboardManager != null) {
+            clipboardManager.addPrimaryClipChangedListener(primaryClipListener);
+        }
     }
 
     /**
@@ -134,6 +162,10 @@ public class OverlayService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        // A language change reaches a running service only here: attachBaseContext ran
+        // once at creation, and a restart would run onDestroy - which marks the bubble
+        // disabled (see applyOverlayTheme) - so resources refresh in place instead.
+        IrisLocale.apply(this);
         String action = intent == null ? ACTION_SHOW : intent.getAction();
 
         if (ACTION_STOP.equals(action)) {
@@ -156,7 +188,8 @@ public class OverlayService extends Service {
             verifyTextSource(text);
         } else if (ACTION_VERIFY_IMAGE_URI.equals(action)) {
             String value = intent == null ? "" : intent.getStringExtra(EXTRA_IMAGE_URI);
-            verifyImageSource(TextUtils.isEmpty(value) ? null : Uri.parse(value));
+            String sourceUrl = intent == null ? "" : intent.getStringExtra(EXTRA_SOURCE_URL);
+            verifyImageSource(TextUtils.isEmpty(value) ? null : Uri.parse(value), sourceUrl);
         }
 
         return START_STICKY;
@@ -535,9 +568,20 @@ public class OverlayService extends Service {
         setBubbleReady(state == STATE_RESULT || state == STATE_ERROR);
     }
 
+    /**
+     * The paste panel never raises the keyboard by itself.
+     *
+     * The window is focusable with soft input hidden, so the field brings the keyboard up
+     * the moment it is tapped and nothing else does. Raising one over a reader who only
+     * meant to open the panel is a worse surprise than one tap on the field.
+     */
     private void showInputPanel() {
         state = STATE_INPUT;
         setBubbleActive(false);
+        // A panel the clipboard listener opened may close itself if the clip turns out to
+        // be nothing worth checking; a panel the reader tapped never does.
+        boolean autoOpened = clipboardAutoOpenRequested;
+        clipboardAutoOpenRequested = false;
 
         LinearLayout card = createPanelShell("PASTE TEXT", view -> resetToIdle());
         LinearLayout body = IrisUi.vertical(this, 16);
@@ -589,7 +633,14 @@ public class OverlayService extends Service {
         scrollView.addView(body, IrisUi.matchWrap());
         card.addView(scrollView, IrisUi.matchWrap());
         showPanelView(card, true, panelHeightEstimate());
-        enterPasteTextState();
+
+        // The promise on the settings card: with the toggle on, opening the panel fills it
+        // from the clipboard -- whether the tap opened it or a copy auto-opened it. The
+        // read waits for the window to hold focus (next frame, then two spaced retries),
+        // because Android only hands the clip to a focused window.
+        if (IrisPrefs.isClipboardAutoOpen(this) && panel != null) {
+            panel.post(() -> fillFromClipboard(0, autoOpened));
+        }
     }
 
     /**
@@ -616,7 +667,7 @@ public class OverlayService extends Service {
 
         LinearLayout actions = IrisUi.vertical(this, 0);
 
-        Button chooseImage = IrisUi.secondaryButton(this, "Choose image for OCR");
+        Button chooseImage = IrisUi.secondaryButton(this, "Choose image to check");
         chooseImage.setOnClickListener(view -> openImagePicker());
         actions.addView(chooseImage, IrisUi.matchWrap());
 
@@ -638,15 +689,16 @@ public class OverlayService extends Service {
 
         header.setOnClickListener(view -> {
             quickActionsExpanded = !quickActionsExpanded;
-            actions.setVisibility(quickActionsExpanded ? View.VISIBLE : View.GONE);
             chevron.setText(quickActionsExpanded ? "▾" : "▸");
-            // Release any capped height first, so the window is free to shrink with the
-            // section instead of holding the taller measurement from before the fold.
+            // Release any capped height first, so the window is free to follow the fold
+            // instead of holding the taller measurement from before it.
             if (panelParams != null) {
                 panelParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
             }
             positionPanelNearBubble(0);
-            if (panel != null) panel.post(() -> positionPanelNearBubble(0));
+            // The cap is re-derived only once the fold lands: re-capping mid-animation
+            // would freeze the window against a partial measurement.
+            IrisMotion.fold(actions, quickActionsExpanded, this::repositionPanelForDetail);
         });
         return section;
     }
@@ -693,19 +745,20 @@ public class OverlayService extends Service {
 
         header.setOnClickListener(view -> {
             recentChecksExpanded = !recentChecksExpanded;
-            list.setVisibility(recentChecksExpanded ? View.VISIBLE : View.GONE);
             chevron.setText(recentChecksExpanded ? "▾" : "▸");
             if (!recentChecksExpanded) {
                 // Folding the list takes an open verdict with it, so a re-open starts clean.
                 openRecentDetail.close();
             }
-            // Release any capped height first, so the window is free to shrink with the
-            // section instead of holding the taller measurement from before the fold.
+            // Release any capped height first, so the window is free to follow the fold
+            // instead of holding the taller measurement from before it.
             if (panelParams != null) {
                 panelParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
             }
             positionPanelNearBubble(0);
-            if (panel != null) panel.post(() -> positionPanelNearBubble(0));
+            // The cap is re-derived only once the fold lands: re-capping mid-animation
+            // would freeze the window against a partial measurement.
+            IrisMotion.fold(list, recentChecksExpanded, this::repositionPanelForDetail);
         });
         return section;
     }
@@ -738,7 +791,9 @@ public class OverlayService extends Service {
         row.addView(icon, IrisUi.fixed(this, 30, 30));
 
         LinearLayout copy = IrisUi.vertical(this, 0);
-        TextView preview = IrisUi.text(this, entry.preview, 12.5f, IrisUi.TEXT, Typeface.NORMAL);
+        // Same day-only ink as the history screen's rows: the verdict card below never
+        // darkens, so IrisUi.TEXT/muted would wash out against it in dark mode.
+        TextView preview = IrisUi.text(this, entry.preview, 12.5f, IrisUi.TEXT_ON_LIGHT, Typeface.NORMAL);
         preview.setMaxLines(1);
         preview.setEllipsize(TextUtils.TruncateAt.END);
         copy.addView(preview, IrisUi.matchWrap());
@@ -746,7 +801,7 @@ public class OverlayService extends Service {
         LinearLayout meta = IrisUi.horizontal(this, 0);
         String verdictLabel = TextUtils.isEmpty(entry.verdict) ? "Result" : entry.verdict;
         meta.addView(IrisUi.text(this, verdictLabel, 10.5f, color, Typeface.BOLD), IrisUi.rowWeight(1));
-        TextView date = IrisUi.muted(this, checkedAt, 10.5f);
+        TextView date = IrisUi.text(this, checkedAt, 10.5f, IrisUi.MUTED_ON_LIGHT, Typeface.NORMAL);
         date.setGravity(Gravity.END);
         meta.addView(date, IrisUi.rowWeight(1));
         copy.addView(meta, IrisUi.spaced(this, 3));
@@ -776,7 +831,7 @@ public class OverlayService extends Service {
         // Parse on first tap only: two rows a user never opens cost the panel nothing.
         if (detail.getChildCount() == 0) {
             detail.addView(
-                HistoryDetail.build(this, entry, checkedAt, () -> openStoredResult(entry)),
+                HistoryDetail.build(this, entry, checkedAt, () -> openStoredResult(entry), this::hidePanel),
                 IrisUi.matchWrap()
             );
         }
@@ -784,10 +839,14 @@ public class OverlayService extends Service {
     }
 
     /**
-     * Re-runs the panel's existing height cap once the detail has settled, so extra
-     * content scrolls inside the body instead of growing the overlay window past the
-     * screen, and a collapse frees the fixed height that would otherwise leave an
-     * empty strip below the shorter card. Width and drag behavior stay untouched.
+     * Re-runs the panel's existing height cap once the content has settled -- a stored
+     * detail opening, or a section fold landing -- so extra content scrolls inside the
+     * body instead of growing the overlay window past the screen, and a collapse frees
+     * the fixed height that would otherwise leave an empty strip below the shorter card.
+     * Width and drag behavior stay untouched.
+     *
+     * Only ever called after the height is final: called mid-fold it would measure a
+     * partial card and pin the window to it.
      */
     private void repositionPanelForDetail() {
         if (panelParams != null) {
@@ -850,7 +909,7 @@ public class OverlayService extends Service {
     private View scanPreview(String value, boolean image) {
         LinearLayout box = IrisUi.vertical(this, 12);
         box.setBackground(IrisUi.bordered(this, IrisUi.BLUE_BG, 14, IrisUi.BLUE_OUTLINE));
-        box.addView(IrisUi.eyebrow(this, image ? "Image OCR" : "Selected text"), IrisUi.matchWrap());
+        box.addView(IrisUi.eyebrow(this, image ? "Image check" : "Selected text"), IrisUi.matchWrap());
         TextView text = IrisUi.text(this, value, 13.5f, IrisUi.TEXT, Typeface.NORMAL);
         text.setLineSpacing(0, 1.15f);
         box.addView(text, IrisUi.spaced(this, 5));
@@ -888,7 +947,8 @@ public class OverlayService extends Service {
                     showResultPanel();
                 }), IrisUi.matchWrap());
             body.addView(ResultRenderer.claimPanel(this, ResultRenderer.Variant.COMPACT,
-                resultData.claims.get(claimIndex), "image".equals(currentInputType), sourcesExpanded,
+                resultData.claims.get(claimIndex), resultData.imageAuthenticity,
+                "image".equals(currentInputType), resultData.sourceUrl, sourcesExpanded,
                 () -> {
                     sourcesExpanded = true;
                     showResultPanel();
@@ -911,10 +971,15 @@ public class OverlayService extends Service {
         card.addView(scrollView, scrollParams);
 
         // Outside the scrolling area, so it is reachable without reading to the bottom first.
-        // This is the one control that discards the result; the X only puts it away.
+        // This is the one control that discards the result; the X only puts it away. It
+        // then hands straight back to the paste box, so Done and X no longer both end on
+        // a bare bubble with nothing on screen to tell them apart.
         LinearLayout footer = IrisUi.vertical(this, 0);
         Button done = IrisUi.secondaryButton(this, "Done");
-        done.setOnClickListener(view -> resetToIdle());
+        done.setOnClickListener(view -> {
+            resetToIdle();
+            showInputPanel();
+        });
         footer.addView(done, IrisUi.spaced(this, 12));
         card.addView(footer, IrisUi.matchWrap());
 
@@ -1050,8 +1115,11 @@ public class OverlayService extends Service {
         }
         panelParams.flags = flags;
         panelParams.gravity = Gravity.TOP | Gravity.LEFT;
+        // HIDDEN for the focusable input panel: the window must never pop the keyboard on
+        // attach or on focus -- the field raises it on tap. UNSPECIFIED elsewhere would
+        // still let a previously visible keyboard ride back in on a focus change.
         panelParams.softInputMode = focusable
-            ? WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
+            ? WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
             : WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED;
         positionPanelNearBubble(heightEstimate);
         panel.setOnTouchListener((view, event) -> {
@@ -1136,40 +1204,6 @@ public class OverlayService extends Service {
         return Math.max(IrisUi.dp(this, 260), Math.min(IrisUi.dp(this, 500), available));
     }
 
-    private void enterPasteTextState() {
-        if (windowManager == null || panel == null || panelParams == null) return;
-
-        panelParams.flags = panelParams.flags & ~WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-        panelParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE;
-        if (panel.getParent() != null) {
-            windowManager.updateViewLayout(panel, panelParams);
-        }
-
-        panel.requestFocus();
-        if (claimInput != null) {
-            EditText input = claimInput;
-            input.post(() -> {
-                if (input != claimInput || !input.isAttachedToWindow()) return;
-                input.requestFocus();
-                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                if (inputMethodManager != null) {
-                    inputMethodManager.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
-                }
-            });
-        }
-    }
-
-    private void exitPasteTextState() {
-        hideKeyboard();
-        if (windowManager == null || panel == null || panelParams == null) return;
-
-        panelParams.flags = panelParams.flags | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-        panelParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED;
-        if (panel.getParent() != null) {
-            windowManager.updateViewLayout(panel, panelParams);
-        }
-    }
-
     private void hideKeyboard() {
         if (panel == null) return;
 
@@ -1204,6 +1238,76 @@ public class OverlayService extends Service {
             return text == null ? null : text.toString();
         } catch (Exception error) {
             return null;
+        }
+    }
+
+    static boolean isAutoFillableClip(String text) {
+        return text != null && text.trim().length() >= CLIPBOARD_AUTO_OPEN_MIN_CHARS;
+    }
+
+    /**
+     * Notices a copy while the bubble is idle and, when the reader opted in, opens the
+     * input panel with the text already filled in.
+     *
+     * Android only hands clipboard content to a focused window, so the clip cannot be
+     * inspected before the panel opens -- the panel goes up first and showInputPanel
+     * schedules the read once it holds focus. Without the opt-in, or while any panel is
+     * already showing, a copy does nothing: it never hijacks a check in progress.
+     */
+    private void onPrimaryClipChanged() {
+        if (!IrisPrefs.isClipboardAutoOpen(this)) return;
+        if (state != STATE_IDLE) return;
+        if (bubble == null || bubble.getParent() == null) return;
+
+        clipboardAutoOpenRequested = true;
+        showInputPanel();
+    }
+
+    /**
+     * Fills the open input panel from the clipboard, now that the panel holds focus.
+     *
+     * Focus is granted asynchronously, so the first read can come back empty and gets two
+     * spaced retries before the outcome is decided. Behavior differs by who opened the
+     * panel: a clip too short to be a claim -- or no clip at all -- closes a panel that
+     * opened by itself (the reader never asked for it), while a panel the reader tapped
+     * is left untouched with its default status line. If a clip exists but never becomes
+     * readable, the manual Paste button is the fallback and the status says so.
+     */
+    private void fillFromClipboard(int attempt, boolean autoOpened) {
+        if (panel == null || claimInput == null) return;
+
+        String text = pasteFromClipboard();
+        if (text != null) {
+            if (isAutoFillableClip(text)) {
+                String trimmed = text.trim();
+                claimInput.setText(trimmed);
+                claimInput.setSelection(trimmed.length());
+                setPanelStatus("Clipboard text filled in. Tap Check with IRIS when ready.", IrisUi.STATUS_OK);
+            } else if (autoOpened) {
+                resetToIdle();
+            }
+            return;
+        }
+
+        if (attempt < CLIPBOARD_READ_ATTEMPTS) {
+            long delay = attempt == 0 ? CLIPBOARD_RETRY_MS : CLIPBOARD_RETRY_SLOW_MS;
+            panel.postDelayed(() -> fillFromClipboard(attempt + 1, autoOpened), delay);
+            return;
+        }
+
+        if (primaryClipExists()) {
+            setPanelStatus("Clipboard is not readable yet. Tap Paste from Clipboard.", IrisUi.STATUS_ERROR);
+        } else if (autoOpened) {
+            resetToIdle();
+        }
+    }
+
+    private boolean primaryClipExists() {
+        try {
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            return clipboard != null && clipboard.hasPrimaryClip();
+        } catch (Exception error) {
+            return false;
         }
     }
 
@@ -1291,14 +1395,14 @@ public class OverlayService extends Service {
         showErrorPanel(message);
     }
 
-    private void verifyImageSource(Uri imageUri) {
+    private void verifyImageSource(Uri imageUri, String sourceUrl) {
         if (imageUri == null) {
             showErrorPanel("No shared image was provided.");
             return;
         }
 
         currentInputType = "image";
-        currentFallbackText = "Image selected for OCR.";
+        currentFallbackText = "Image submitted for checking.";
         long token = ++requestToken;
         showScanningPanel("image");
 
@@ -1306,7 +1410,7 @@ public class OverlayService extends Service {
             @Override
             public void onSuccess(String responseJson) {
                 if (token != requestToken) return;
-                deliverResult(responseJson);
+                deliverResult(IrisResultData.withSourceUrl(responseJson, sourceUrl));
             }
 
             @Override
@@ -1340,11 +1444,9 @@ public class OverlayService extends Service {
     }
 
     private void removePanelView() {
-        if (state == STATE_INPUT) {
-            exitPasteTextState();
-        } else {
-            hideKeyboard();
-        }
+        // One hide for every state: the input panel no longer flips focus flags, so the
+        // keyboard path is the same on the way out as it is anywhere else.
+        hideKeyboard();
 
         panelDismissedAt = SystemClock.uptimeMillis();
 
@@ -1454,6 +1556,10 @@ public class OverlayService extends Service {
     public void onDestroy() {
         cancelSnap();
         requestToken += 1;
+        if (clipboardManager != null) {
+            clipboardManager.removePrimaryClipChangedListener(primaryClipListener);
+            clipboardManager = null;
+        }
         super.onDestroy();
         removePanelView();
         if (windowManager != null && bubble != null && bubble.getParent() != null) {

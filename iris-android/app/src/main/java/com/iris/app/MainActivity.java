@@ -2,6 +2,8 @@ package com.iris.app;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -26,11 +28,19 @@ public class MainActivity extends Activity {
 
     private EditText backendUrlInput;
     private EditText claimInput;
+    private EditText sightengineUserInput;
+    private EditText sightengineSecretInput;
     private TextView statusText;
     private TextView bubbleDescription;
     private TextView bubbleStatusLabel;
     private IrisScanIndicator progressBar;
     private IrisToggleView bubbleToggle;
+    private IrisToggleView clipboardToggle;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IrisLocale.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +69,15 @@ public class MainActivity extends Activity {
         LinearLayout body = IrisUi.vertical(this, 18);
         body.addView(statusStrip(), IrisUi.matchWrap());
         body.addView(bubbleControlCard(), IrisUi.spaced(this, 14));
+        body.addView(clipboardCard(), IrisUi.spaced(this, 14));
         body.addView(themeCard(), IrisUi.spaced(this, 14));
+        body.addView(languageCard(), IrisUi.spaced(this, 14));
         body.addView(androidWorkflowCard(), IrisUi.spaced(this, 14));
         body.addView(sourceTrustCard(), IrisUi.spaced(this, 14));
         if (IrisPrefs.isBackendConfigurable()) {
             body.addView(backendCard(), IrisUi.spaced(this, 14));
         }
+        body.addView(sightengineCard(), IrisUi.spaced(this, 14));
         body.addView(manualCheckCard(), IrisUi.spaced(this, 14));
         body.addView(historyCard(), IrisUi.spaced(this, 14));
         root.addView(body, IrisUi.matchWrap());
@@ -94,7 +107,7 @@ public class MainActivity extends Activity {
         LinearLayout brandCopy = IrisUi.vertical(this, 0);
         TextView name = IrisUi.text(this, "IRIS", 38, Color.WHITE, Typeface.BOLD);
         name.setIncludeFontPadding(false);
-        TextView acronym = IrisUi.text(this, "Intelligent Real-time\nInformation Scanner", 20, Color.WHITE, Typeface.NORMAL);
+        TextView acronym = IrisUi.text(this, getString(R.string.hero_acronym), 20, Color.WHITE, Typeface.NORMAL);
         acronym.setIncludeFontPadding(false);
         acronym.setLineSpacing(0, 1.04f);
         brandCopy.addView(name, IrisUi.matchWrap());
@@ -105,13 +118,13 @@ public class MainActivity extends Activity {
         brandRow.addView(brandCopy, copyParams);
         header.addView(brandRow, IrisUi.matchWrap());
 
-        TextView title = IrisUi.text(this, "Fact-check from any app", 23, Color.WHITE, Typeface.BOLD);
+        TextView title = IrisUi.text(this, getString(R.string.hero_tagline), 23, Color.WHITE, Typeface.BOLD);
         title.setLineSpacing(0, 1.02f);
         header.addView(title, IrisUi.spaced(this, 22));
 
         TextView subtitle = IrisUi.text(
             this,
-            "Enable the floating bubble, paste copied Facebook text, use Android's text menu where available, or share images to IRIS for OCR verification.",
+            getString(R.string.hero_subtitle),
             14,
             Color.WHITE,
             Typeface.NORMAL
@@ -132,8 +145,8 @@ public class MainActivity extends Activity {
         strip.addView(dot, IrisUi.fixed(this, 10, 10));
 
         LinearLayout copy = IrisUi.vertical(this, 0);
-        copy.addView(IrisUi.text(this, "Ready to fact-check", 15, IrisUi.TEXT, Typeface.BOLD), IrisUi.matchWrap());
-        statusText = IrisUi.muted(this, "IRIS only checks text or images you intentionally submit.", 12);
+        copy.addView(IrisUi.text(this, getString(R.string.status_ready_title), 15, IrisUi.TEXT, Typeface.BOLD), IrisUi.matchWrap());
+        statusText = IrisUi.muted(this, getString(R.string.status_ready_detail), 12);
         copy.addView(statusText, IrisUi.matchWrap());
 
         LinearLayout.LayoutParams copyParams = IrisUi.rowWeight(1);
@@ -160,8 +173,8 @@ public class MainActivity extends Activity {
         top.addView(preview, IrisUi.fixed(this, 58, 58));
 
         LinearLayout copy = IrisUi.vertical(this, 0);
-        copy.addView(IrisUi.eyebrow(this, "IRIS Bubble"), IrisUi.matchWrap());
-        copy.addView(IrisUi.title(this, "Floating assistant", 20), IrisUi.spaced(this, 2));
+        copy.addView(IrisUi.eyebrow(this, getString(R.string.bubble_eyebrow)), IrisUi.matchWrap());
+        copy.addView(IrisUi.title(this, getString(R.string.bubble_title), 20), IrisUi.spaced(this, 2));
         bubbleDescription = IrisUi.muted(this, "", 12.5f);
         copy.addView(bubbleDescription, IrisUi.spaced(this, 5));
 
@@ -181,35 +194,75 @@ public class MainActivity extends Activity {
         bubbleStatusLabel.setPadding(IrisUi.dp(this, 12), IrisUi.dp(this, 10), IrisUi.dp(this, 12), IrisUi.dp(this, 10));
         card.addView(bubbleStatusLabel, IrisUi.spaced(this, 14));
 
-        Button primary = IrisUi.primaryButton(this, "Open bubble now");
+        Button primary = IrisUi.primaryButton(this, getString(R.string.bubble_open));
         primary.setOnClickListener(view -> enableBubble());
         card.addView(primary, IrisUi.spaced(this, 12));
 
-        Button stop = IrisUi.secondaryButton(this, "Turn off bubble");
+        Button stop = IrisUi.secondaryButton(this, getString(R.string.bubble_stop));
         stop.setOnClickListener(view -> disableBubble());
         card.addView(stop, IrisUi.spaced(this, 8));
 
         return card;
     }
 
+    /**
+     * The clipboard auto-open choice, next to the bubble card it affects. Off by default:
+     * the switch is the privacy boundary — only turning it on lets the panel read the
+     * clipboard when it opens, which is why the copy stays tap-Paste-only otherwise.
+     */
+    private View clipboardCard() {
+        LinearLayout card = IrisUi.card(this, 18);
+        card.addView(IrisUi.eyebrow(this, getString(R.string.clipboard_eyebrow)), IrisUi.matchWrap());
+        card.addView(IrisUi.title(this, getString(R.string.clipboard_title), 20), IrisUi.spaced(this, 3));
+        card.addView(IrisUi.muted(this, getString(R.string.clipboard_desc), 12.5f), IrisUi.spaced(this, 6));
+
+        LinearLayout row = IrisUi.horizontal(this, 0);
+        row.setGravity(Gravity.CENTER_VERTICAL);
+
+        TextView label = IrisUi.text(
+            this,
+            getString(R.string.clipboard_toggle_label),
+            13.5f,
+            IrisUi.TEXT,
+            Typeface.BOLD
+        );
+        LinearLayout.LayoutParams labelParams = IrisUi.rowWeight(1);
+        labelParams.rightMargin = IrisUi.dp(this, 12);
+        row.addView(label, labelParams);
+
+        clipboardToggle = new IrisToggleView(this);
+        clipboardToggle.setContentDescription(getString(R.string.clipboard_toggle_label));
+        clipboardToggle.setChecked(IrisPrefs.isClipboardAutoOpen(this));
+        clipboardToggle.setOnClickListener(view -> toggleClipboardAutoOpen());
+        row.addView(clipboardToggle, IrisUi.fixed(this, 64, 34));
+        card.addView(row, IrisUi.spaced(this, 12));
+        return card;
+    }
+
+    private void toggleClipboardAutoOpen() {
+        boolean next = !IrisPrefs.isClipboardAutoOpen(this);
+        IrisPrefs.setClipboardAutoOpen(this, next);
+        clipboardToggle.setChecked(next);
+    }
+
     private View themeCard() {
         LinearLayout card = IrisUi.card(this, 18);
-        card.addView(IrisUi.eyebrow(this, "Appearance"), IrisUi.matchWrap());
-        card.addView(IrisUi.title(this, "Theme", 20), IrisUi.spaced(this, 3));
+        card.addView(IrisUi.eyebrow(this, getString(R.string.appearance_eyebrow)), IrisUi.matchWrap());
+        card.addView(IrisUi.title(this, getString(R.string.theme_title), 20), IrisUi.spaced(this, 3));
         card.addView(
-            IrisUi.muted(this, "Follow the system setting, or force light or dark for IRIS.", 12.5f),
+            IrisUi.muted(this, getString(R.string.theme_desc), 12.5f),
             IrisUi.spaced(this, 6)
         );
 
         String current = IrisPrefs.getTheme(this);
         LinearLayout row = IrisUi.horizontal(this, 0);
-        row.addView(themeOption("System", IrisUi.THEME_SYSTEM, current), IrisUi.rowWeight(1));
+        row.addView(themeOption(getString(R.string.theme_system), IrisUi.THEME_SYSTEM, current), IrisUi.rowWeight(1));
         LinearLayout.LayoutParams lightParams = IrisUi.rowWeight(1);
         lightParams.leftMargin = IrisUi.dp(this, 8);
-        row.addView(themeOption("Light", IrisUi.THEME_LIGHT, current), lightParams);
+        row.addView(themeOption(getString(R.string.theme_light), IrisUi.THEME_LIGHT, current), lightParams);
         LinearLayout.LayoutParams darkParams = IrisUi.rowWeight(1);
         darkParams.leftMargin = IrisUi.dp(this, 8);
-        row.addView(themeOption("Dark", IrisUi.THEME_DARK, current), darkParams);
+        row.addView(themeOption(getString(R.string.theme_dark), IrisUi.THEME_DARK, current), darkParams);
         card.addView(row, IrisUi.spaced(this, 12));
         return card;
     }
@@ -252,31 +305,77 @@ public class MainActivity extends Activity {
         recreate();
     }
 
+    private View languageCard() {
+        LinearLayout card = IrisUi.card(this, 18);
+        card.addView(IrisUi.eyebrow(this, getString(R.string.language_eyebrow)), IrisUi.matchWrap());
+        card.addView(IrisUi.title(this, getString(R.string.language_title), 20), IrisUi.spaced(this, 3));
+        card.addView(IrisUi.muted(this, getString(R.string.language_desc), 12.5f), IrisUi.spaced(this, 6));
+
+        final String[] codes = new String[IrisLocale.LANGUAGES.length];
+        final String[] labels = new String[IrisLocale.LANGUAGES.length];
+        String current = IrisLocale.get(this);
+        int selectedIndex = 0;
+        for (int i = 0; i < IrisLocale.LANGUAGES.length; i++) {
+            codes[i] = IrisLocale.LANGUAGES[i][0];
+            labels[i] = IrisLocale.LANGUAGES[i][1];
+            if (codes[i].equals(current)) selectedIndex = i;
+        }
+        final int checked = selectedIndex;
+
+        Button picker = IrisUi.secondaryButton(this, IrisLocale.label(current));
+        picker.setOnClickListener(view -> new AlertDialog.Builder(this)
+            .setTitle(getString(R.string.language_title))
+            .setSingleChoiceItems(labels, checked, (dialog, which) -> {
+                dialog.dismiss();
+                selectLanguage(codes[which]);
+            })
+            .show());
+        card.addView(picker, IrisUi.spaced(this, 12));
+        return card;
+    }
+
+    /**
+     * Same choreography as selectTheme: the overlay shares this process, so an
+     * ACTION_SHOW repaint nudge picks the new strings up through IrisLocale.apply
+     * without a restart that could strand the bubble; recreate() re-attaches this
+     * Activity's context in the new language.
+     */
+    private void selectLanguage(String code) {
+        if (code.equals(IrisLocale.get(this))) return;
+        IrisPrefs.setUiLanguage(this, code);
+        if (IrisPrefs.isBubbleEnabled(this)) {
+            Intent intent = new Intent(this, OverlayService.class);
+            intent.setAction(OverlayService.ACTION_SHOW);
+            startOverlayService(intent);
+        }
+        recreate();
+    }
+
     private View androidWorkflowCard() {
         LinearLayout card = IrisUi.card(this, 18);
-        card.addView(IrisUi.eyebrow(this, "Android workflow"), IrisUi.matchWrap());
-        card.addView(IrisUi.title(this, "Three user-triggered entry points", 20), IrisUi.spaced(this, 3));
-        card.addView(infoRow("Facebook paste", "Long-press post text to copy it, tap the IRIS bubble, paste, then check."), IrisUi.spaced(this, 12));
-        card.addView(infoRow("Text selection", "In supported apps, the Android text toolbar can show Check with IRIS."), IrisUi.spaced(this, 10));
-        card.addView(infoRow("Image sharing", "Share image posts to IRIS; the app sends them to /verify-image for OCR, then shows claim results."), IrisUi.spaced(this, 10));
+        card.addView(IrisUi.eyebrow(this, getString(R.string.workflow_eyebrow)), IrisUi.matchWrap());
+        card.addView(IrisUi.title(this, getString(R.string.workflow_title), 20), IrisUi.spaced(this, 3));
+        card.addView(infoRow(getString(R.string.workflow_paste_title), getString(R.string.workflow_paste_detail)), IrisUi.spaced(this, 12));
+        card.addView(infoRow(getString(R.string.workflow_select_title), getString(R.string.workflow_select_detail)), IrisUi.spaced(this, 10));
+        card.addView(infoRow(getString(R.string.workflow_share_title), getString(R.string.workflow_share_detail)), IrisUi.spaced(this, 10));
         return card;
     }
 
     private View sourceTrustCard() {
         LinearLayout card = IrisUi.card(this, 18);
-        card.addView(IrisUi.eyebrow(this, "Privacy and sources"), IrisUi.matchWrap());
-        card.addView(IrisUi.title(this, "User-controlled verification", 20), IrisUi.spaced(this, 3));
-        card.addView(infoRow("User-triggered only", "IRIS does not monitor other apps automatically; checks begin only when you submit text or an image."), IrisUi.spaced(this, 12));
-        card.addView(infoRow("Privacy first", "The clipboard is read only after you tap Paste from Clipboard inside the bubble."), IrisUi.spaced(this, 10));
-        card.addView(infoRow("Approved sources", "IRIS checks VERA Files and Rappler plus ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, DZRH, and OneNews."), IrisUi.spaced(this, 10));
+        card.addView(IrisUi.eyebrow(this, getString(R.string.privacy_eyebrow)), IrisUi.matchWrap());
+        card.addView(IrisUi.title(this, getString(R.string.privacy_title), 20), IrisUi.spaced(this, 3));
+        card.addView(infoRow(getString(R.string.privacy_trigger_title), getString(R.string.privacy_trigger_detail)), IrisUi.spaced(this, 12));
+        card.addView(infoRow(getString(R.string.privacy_clipboard_title), getString(R.string.privacy_clipboard_detail)), IrisUi.spaced(this, 10));
+        card.addView(infoRow(getString(R.string.privacy_sources_title), getString(R.string.privacy_sources_detail)), IrisUi.spaced(this, 10));
         return card;
     }
 
     private View backendCard() {
         LinearLayout card = IrisUi.card(this, 18);
-        card.addView(IrisUi.eyebrow(this, "Backend"), IrisUi.matchWrap());
-        card.addView(IrisUi.title(this, "Connection", 20), IrisUi.spaced(this, 3));
-        card.addView(IrisUi.muted(this, "Use 10.0.2.2 when the Flask backend is running on the same laptop as the emulator.", 12.5f), IrisUi.spaced(this, 6));
+        card.addView(IrisUi.eyebrow(this, getString(R.string.backend_eyebrow)), IrisUi.matchWrap());
+        card.addView(IrisUi.title(this, getString(R.string.backend_title), 20), IrisUi.spaced(this, 3));
+        card.addView(IrisUi.muted(this, getString(R.string.backend_desc), 12.5f), IrisUi.spaced(this, 6));
 
         backendUrlInput = new EditText(this);
         backendUrlInput.setHint("http://10.0.2.2:5000");
@@ -290,23 +389,68 @@ public class MainActivity extends Activity {
         IrisUi.focusRing(backendUrlInput, 12);
         card.addView(backendUrlInput, IrisUi.spaced(this, 12));
 
-        Button saveBackend = IrisUi.secondaryButton(this, "Save backend URL");
+        Button saveBackend = IrisUi.secondaryButton(this, getString(R.string.backend_save));
         saveBackend.setOnClickListener(view -> {
             IrisPrefs.setBackendUrl(this, backendUrlInput.getText().toString());
-            setStatus("Backend URL saved.");
+            setStatus(getString(R.string.status_backend_saved));
         });
         card.addView(saveBackend, IrisUi.spaced(this, 10));
         return card;
     }
 
+    /**
+     * Bring-your-own-key for the AI-image detector, mirroring the extension's settings:
+     * the credentials are typed here, stored on this device, and never ship in the APK.
+     * Without them, image checks still run — they just report the honest
+     * "Not assessed" badge instead of a verdict.
+     */
+    private View sightengineCard() {
+        LinearLayout card = IrisUi.card(this, 18);
+        card.addView(IrisUi.eyebrow(this, getString(R.string.sightengine_eyebrow)), IrisUi.matchWrap());
+        card.addView(IrisUi.title(this, getString(R.string.sightengine_title), 20), IrisUi.spaced(this, 3));
+        card.addView(IrisUi.muted(this, getString(R.string.sightengine_desc), 12.5f), IrisUi.spaced(this, 6));
+
+        sightengineUserInput = new EditText(this);
+        sightengineUserInput.setHint(getString(R.string.sightengine_user_hint));
+        sightengineUserInput.setSingleLine(true);
+        sightengineUserInput.setText(IrisPrefs.getSightengineApiUser(this));
+        sightengineUserInput.setTextColor(IrisUi.TEXT);
+        sightengineUserInput.setHintTextColor(IrisUi.TEXT_LIGHT);
+        sightengineUserInput.setBackground(IrisUi.bordered(this, IrisUi.CARD, 12, IrisUi.BORDER));
+        sightengineUserInput.setPadding(IrisUi.dp(this, 14), 0, IrisUi.dp(this, 14), 0);
+        IrisUi.focusRing(sightengineUserInput, 12);
+        card.addView(sightengineUserInput, IrisUi.spaced(this, 12));
+
+        sightengineSecretInput = new EditText(this);
+        sightengineSecretInput.setHint(getString(R.string.sightengine_secret_hint));
+        sightengineSecretInput.setSingleLine(true);
+        sightengineSecretInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        sightengineSecretInput.setText(IrisPrefs.getSightengineApiSecret(this));
+        sightengineSecretInput.setTextColor(IrisUi.TEXT);
+        sightengineSecretInput.setHintTextColor(IrisUi.TEXT_LIGHT);
+        sightengineSecretInput.setBackground(IrisUi.bordered(this, IrisUi.CARD, 12, IrisUi.BORDER));
+        sightengineSecretInput.setPadding(IrisUi.dp(this, 14), 0, IrisUi.dp(this, 14), 0);
+        IrisUi.focusRing(sightengineSecretInput, 12);
+        card.addView(sightengineSecretInput, IrisUi.spaced(this, 12));
+
+        Button saveKeys = IrisUi.secondaryButton(this, getString(R.string.sightengine_save));
+        saveKeys.setOnClickListener(view -> {
+            IrisPrefs.setSightengineApiUser(this, sightengineUserInput.getText().toString());
+            IrisPrefs.setSightengineApiSecret(this, sightengineSecretInput.getText().toString());
+            setStatus(getString(R.string.status_sightengine_saved));
+        });
+        card.addView(saveKeys, IrisUi.spaced(this, 10));
+        return card;
+    }
+
     private View manualCheckCard() {
         LinearLayout card = IrisUi.card(this, 18);
-        card.addView(IrisUi.eyebrow(this, "Check a claim"), IrisUi.matchWrap());
-        card.addView(IrisUi.title(this, "Manual text and image check", 20), IrisUi.spaced(this, 3));
-        card.addView(IrisUi.muted(this, "Paste a claim or choose a screenshot, and IRIS will check it against Philippine news sources.", 12.5f), IrisUi.spaced(this, 6));
+        card.addView(IrisUi.eyebrow(this, getString(R.string.manual_eyebrow)), IrisUi.matchWrap());
+        card.addView(IrisUi.title(this, getString(R.string.manual_title), 20), IrisUi.spaced(this, 3));
+        card.addView(IrisUi.muted(this, getString(R.string.manual_desc), 12.5f), IrisUi.spaced(this, 6));
 
         claimInput = new EditText(this);
-        claimInput.setHint("Paste or type a claim to verify");
+        claimInput.setHint(getString(R.string.manual_input_hint));
         claimInput.setMinLines(4);
         claimInput.setGravity(Gravity.TOP);
         claimInput.setTextColor(IrisUi.TEXT);
@@ -317,11 +461,11 @@ public class MainActivity extends Activity {
         IrisUi.focusRing(claimInput, 14);
         card.addView(claimInput, IrisUi.spaced(this, 12));
 
-        Button checkText = IrisUi.primaryButton(this, "Check with IRIS");
+        Button checkText = IrisUi.primaryButton(this, getString(R.string.process_text_label));
         checkText.setOnClickListener(view -> verifyTypedText());
         card.addView(checkText, IrisUi.spaced(this, 12));
 
-        Button pickImage = IrisUi.secondaryButton(this, "Choose image for OCR");
+        Button pickImage = IrisUi.secondaryButton(this, getString(R.string.manual_pick_image));
         pickImage.setOnClickListener(view -> openImagePicker());
         card.addView(pickImage, IrisUi.spaced(this, 10));
 
@@ -333,11 +477,11 @@ public class MainActivity extends Activity {
 
     private View historyCard() {
         LinearLayout card = IrisUi.card(this, 18);
-        card.addView(IrisUi.eyebrow(this, "History"), IrisUi.matchWrap());
-        card.addView(IrisUi.title(this, "Past checks", 20), IrisUi.spaced(this, 3));
-        card.addView(IrisUi.muted(this, "Review verdicts from checks run on this device. History never leaves the phone.", 12.5f), IrisUi.spaced(this, 6));
+        card.addView(IrisUi.eyebrow(this, getString(R.string.history_eyebrow)), IrisUi.matchWrap());
+        card.addView(IrisUi.title(this, getString(R.string.history_title), 20), IrisUi.spaced(this, 3));
+        card.addView(IrisUi.muted(this, getString(R.string.history_desc), 12.5f), IrisUi.spaced(this, 6));
 
-        Button openHistory = IrisUi.secondaryButton(this, "Open history");
+        Button openHistory = IrisUi.secondaryButton(this, getString(R.string.history_open));
         openHistory.setOnClickListener(view -> startActivity(new Intent(this, HistoryActivity.class)));
         card.addView(openHistory, IrisUi.spaced(this, 12));
         return card;
@@ -380,16 +524,16 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
             intent.setData(Uri.parse("package:" + getPackageName()));
             startActivity(intent);
-            setStatus("Allow IRIS to display over other apps, then return here and enable the bubble again.");
-            return;
-        }
+        setStatus(getString(R.string.status_overlay_permission));
+        return;
+    }
 
-        requestNotificationPermissionIfNeeded();
+    requestNotificationPermissionIfNeeded();
         IrisPrefs.setBubbleEnabled(this, true);
         Intent intent = new Intent(this, OverlayService.class);
         intent.setAction(OverlayService.ACTION_SHOW);
         startOverlayService(intent);
-        setStatus("IRIS Bubble is active. Tap it to paste text, or use Android sharing/text menus.");
+        setStatus(getString(R.string.status_bubble_active));
         updateBubbleCard();
     }
 
@@ -398,7 +542,7 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, OverlayService.class);
         intent.setAction(OverlayService.ACTION_STOP);
         startService(intent);
-        setStatus("IRIS Bubble turned off.");
+        setStatus(getString(R.string.status_bubble_off));
         updateBubbleCard();
     }
 
@@ -423,11 +567,13 @@ public class MainActivity extends Activity {
         }
         if (bubbleDescription != null) {
             bubbleDescription.setText(enabled
-                ? "IRIS is active. Use the bubble for Facebook paste checks, selected text, or shared images."
-                : "IRIS is disabled. Enable it to show the floating bubble over other apps.");
+                ? getString(R.string.bubble_desc_on)
+                : getString(R.string.bubble_desc_off));
         }
         if (bubbleStatusLabel != null) {
-            bubbleStatusLabel.setText(enabled ? "ON - Bubble is visible" : "OFF - Bubble is hidden");
+            bubbleStatusLabel.setText(enabled
+                ? getString(R.string.bubble_state_on)
+                : getString(R.string.bubble_state_off));
             bubbleStatusLabel.setTextColor(enabled ? IrisUi.STATUS_OK : IrisUi.STATUS_OFF);
             bubbleStatusLabel.setBackground(IrisUi.bordered(
                 this,
@@ -441,11 +587,11 @@ public class MainActivity extends Activity {
     private void verifyTypedText() {
         String text = claimInput.getText().toString().trim();
         if (text.isEmpty()) {
-            setStatus("Enter or select text first.");
+            setStatus(getString(R.string.status_empty_text));
             return;
         }
 
-        setLoading("Scanning approved IRIS sources...");
+        setLoading(getString(R.string.status_scanning));
         IrisApiClient.verifyText(this, text, new IrisApiClient.Callback() {
             @Override
             public void onSuccess(String responseJson) {
@@ -474,15 +620,15 @@ public class MainActivity extends Activity {
 
         Uri imageUri = data.getData();
         if (imageUri == null) {
-            setStatus("No image was selected.");
+            setStatus(getString(R.string.status_no_image));
             return;
         }
 
-        setLoading("Extracting image text and scanning sources...");
+        setLoading(getString(R.string.status_extracting));
         IrisApiClient.verifyImageUri(this, imageUri, new IrisApiClient.Callback() {
             @Override
             public void onSuccess(String responseJson) {
-                showResult(responseJson, "Image selected for OCR.", "image");
+                showResult(responseJson, getString(R.string.status_image_ocr), "image");
             }
 
             @Override

@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">IRIS</string>
+    <!-- Extension parity: i18n.js btn.check in ja. -->
+    <string name="process_text_label">IRISでチェック</string>
+
+    <!-- Hero -->
+    <string name="hero_tagline">どのアプリからでもファクトチェック</string>
+    <string name="hero_subtitle">フローティングバブルを有効にし、コピーしたFacebookのテキストを貼り付け、対応アプリではAndroidのテキストメニューを使い、画像をIRISに共有してOCR検証を行えます。</string>
+
+    <!-- Status strip -->
+    <string name="status_ready_title">ファクトチェックの準備完了</string>
+    <string name="status_ready_detail">IRISが調べるのは、あなたが意図的に送信したテキストや画像だけです。</string>
+
+    <!-- Bubble card -->
+    <string name="bubble_eyebrow">IRIS Bubble</string>
+    <string name="bubble_title">フローティングアシスタント</string>
+    <string name="bubble_open">バブルを今すぐ開く</string>
+    <string name="bubble_stop">バブルをオフにする</string>
+    <string name="bubble_desc_on">IRISは有効です。バブルを使ってFacebookの貼り付けチェック、選択したテキスト、共有画像を確認できます。</string>
+    <string name="bubble_desc_off">IRISは無効です。有効にすると他のアプリの上にフローティングバブルが表示されます。</string>
+    <string name="bubble_state_on">オン - バブル表示中</string>
+    <string name="bubble_state_off">オフ - バブル非表示</string>
+
+    <!-- Clipboard auto-open -->
+    <string name="clipboard_eyebrow">クリップボード</string>
+    <string name="clipboard_title">貼り付けテキストを自動で開く</string>
+    <string name="clipboard_desc">オンにすると、バブルをタップしたときにパネルへ直近のコピーしたテキストが入るので、すぐに確認できます。既定ではオフです。</string>
+    <string name="clipboard_toggle_label">コピーしたテキストで埋める</string>
+
+    <!-- Appearance -->
+    <string name="appearance_eyebrow">外観</string>
+    <string name="theme_title">テーマ</string>
+    <string name="theme_desc">システム設定に従うか、IRISをライト/ダークに固定します。</string>
+    <string name="theme_system">システム</string>
+    <string name="theme_light">ライト</string>
+    <string name="theme_dark">ダーク</string>
+
+    <!-- Language -->
+    <string name="language_eyebrow">言語</string>
+    <string name="language_title">アプリの言語</string>
+    <string name="language_desc">アプリ全体でIRISが使用する言語を選択します。</string>
+
+    <!-- Android workflow -->
+    <string name="workflow_eyebrow">Androidのワークフロー</string>
+    <string name="workflow_title">ユーザーが起動する3つの入口</string>
+    <string name="workflow_paste_title">Facebook貼り付け</string>
+    <string name="workflow_paste_detail">投稿テキストを長押ししてコピーし、IRISバブルをタップして貼り付け、チェックします。</string>
+    <string name="workflow_select_title">テキスト選択</string>
+    <string name="workflow_select_detail">対応アプリでは、Androidのテキストツールバーに「IRISでチェック」が表示されます。</string>
+    <string name="workflow_share_title">画像の共有</string>
+    <string name="workflow_share_detail">画像投稿をIRISに共有すると、アプリが/verify-imageに送ってOCR処理し、検証結果を表示します。</string>
+
+    <!-- Privacy and sources -->
+    <string name="privacy_eyebrow">プライバシーとソース</string>
+    <string name="privacy_title">ユーザー主導の検証</string>
+    <string name="privacy_trigger_title">ユーザーの操作でのみ実行</string>
+    <string name="privacy_trigger_detail">IRISが他のアプリを自動的に監視することはありません。テキストや画像を送信したときだけチェックが始まります。</string>
+    <string name="privacy_clipboard_title">プライバシー優先</string>
+    <string name="privacy_clipboard_detail">クリップボードの読み取りは、バブル内の「クリップボードから貼り付け」をタップした後のみ、または自動オープンをオンにしてパネルを開いたときに限ります。</string>
+    <string name="privacy_sources_title">承認済みのソース</string>
+    <string name="privacy_sources_detail">IRISはVERA FilesとRappler、ABS-CBN、GMA、Inquirer、PhilStar、Manila Bulletin、PNA、PIA、DZRH、OneNewsを照合します。</string>
+
+    <!-- Backend -->
+    <string name="backend_eyebrow">バックエンド</string>
+    <string name="backend_title">接続</string>
+    <string name="backend_desc">Flaskバックエンドがエミュレーターと同じラップトップで動作している場合は10.0.2.2を使用してください。</string>
+    <string name="backend_save">バックエンドURLを保存</string>
+    <string name="status_backend_saved">バックエンドURLを保存しました。</string>
+
+    <!-- SightEngine -->
+    <string name="sightengine_eyebrow">画像チェック</string>
+    <string name="sightengine_title">AI画像検出</string>
+    <string name="sightengine_desc">ご自身のSightEngine API認証情報を貼り付けると、共有画像でAI画像検出を実行できます。このデバイスにのみ保存されます。認証情報がない場合、画像チェックはNot assessedと表示されます。</string>
+    <string name="sightengine_user_hint">APIユーザー</string>
+    <string name="sightengine_secret_hint">APIシークレット</string>
+    <string name="sightengine_save">認証情報を保存</string>
+    <string name="status_sightengine_saved">認証情報を保存しました。</string>
+
+    <!-- Manual check -->
+    <string name="manual_eyebrow">主張をチェック</string>
+    <string name="manual_title">手動テキスト・画像チェック</string>
+    <string name="manual_desc">主張を貼り付けるかスクリーンショットを選択すると、IRISがフィリピンのニュースソースと照合します。</string>
+    <string name="manual_input_hint">検証する主張を貼り付けるか入力</string>
+    <string name="manual_pick_image">チェックする画像を選択</string>
+
+    <!-- History card -->
+    <string name="history_eyebrow">履歴</string>
+    <string name="history_title">過去のチェック</string>
+    <string name="history_desc">この端末で実行したチェックの判定を確認できます。履歴が電話から外に出ることはありません。</string>
+    <string name="history_open">履歴を開く</string>
+
+    <!-- Flow statuses -->
+    <string name="status_overlay_permission">IRISを他のアプリの上に表示するのを許可し、戻ってからバブルを再度有効にしてください。</string>
+    <string name="status_bubble_active">IRISバブルが有効です。タップしてテキストを貼り付けるか、Androidの共有・テキストメニューを使えます。</string>
+    <string name="status_bubble_off">IRISバブルをオフにしました。</string>
+    <string name="status_empty_text">先にテキストを入力または選択してください。</string>
+    <string name="status_scanning">承認済みのIRISソースをスキャン中...</string>
+    <string name="status_no_image">画像が選択されていません。</string>
+    <string name="status_extracting">画像をチェックし、ソースをスキャン中...</string>
+    <string name="status_image_ocr">チェックのために画像を送信しました。</string>
+</resources>

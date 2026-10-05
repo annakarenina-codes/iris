@@ -2,6 +2,7 @@ package com.iris.app;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -35,6 +36,11 @@ public class HistoryActivity extends Activity {
 
     // One open detail at a time, same coordinator the bubble panel's recent checks use.
     private final OpenDetailTracker openDetail = new OpenDetailTracker();
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IrisLocale.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,14 +183,19 @@ public class HistoryActivity extends Activity {
         String verdictLabel = TextUtils.isEmpty(entry.verdict) ? "Result" : entry.verdict;
         copy.addView(IrisUi.text(this, verdictLabel, 15.5f, color, Typeface.BOLD), IrisUi.matchWrap());
 
-        TextView preview = IrisUi.text(this, entry.preview, 13, IrisUi.TEXT, Typeface.NORMAL);
+        // The row card is day-only in both themes, so its ink is too: IrisUi.TEXT and
+        // IrisUi.muted would go near-white against this light background at night.
+        TextView preview = IrisUi.text(this, entry.preview, 13, IrisUi.TEXT_ON_LIGHT, Typeface.NORMAL);
         preview.setMaxLines(2);
         preview.setEllipsize(TextUtils.TruncateAt.END);
         copy.addView(preview, IrisUi.spaced(this, 4));
 
         LinearLayout meta = IrisUi.horizontal(this, 0);
-        meta.addView(IrisUi.eyebrow(this, "image".equals(entry.inputType) ? "Image" : "Text"), IrisUi.rowWeight(1));
-        TextView date = IrisUi.muted(this, checkedAt, 11);
+        // Explicit VIOLET_ON_LIGHT: on this day-only card the night violet would sit at 2.5:1.
+        meta.addView(IrisUi.eyebrow(this,
+            "image".equals(entry.inputType) ? "Image" : "Text", IrisUi.VIOLET_ON_LIGHT),
+            IrisUi.rowWeight(1));
+        TextView date = IrisUi.text(this, checkedAt, 11, IrisUi.MUTED_ON_LIGHT, Typeface.NORMAL);
         date.setGravity(Gravity.END);
         meta.addView(date, IrisUi.rowWeight(1));
         copy.addView(meta, IrisUi.spaced(this, 6));
@@ -213,8 +224,10 @@ public class HistoryActivity extends Activity {
         }
         // Parse on first tap only: an unopened payload costs the list nothing.
         if (detail.getChildCount() == 0) {
+            // null on the link click: this is a full-screen Activity, not the overlay,
+            // so there is no panel to put away when an article opens.
             detail.addView(
-                HistoryDetail.build(this, entry, checkedAt, () -> openFullResult(entry)),
+                HistoryDetail.build(this, entry, checkedAt, () -> openFullResult(entry), null),
                 IrisUi.matchWrap()
             );
         }
