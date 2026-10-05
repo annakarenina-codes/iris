@@ -42,6 +42,7 @@ from pipeline.search import merge_search_results, search_and_extract
 from pipeline.search_queries import anchored_query, original_language_query
 from pipeline.translator import translate_to_english
 from pipeline.verdict_generator import generate_verdict
+from pipeline.sightengine_authenticity import assess_image_authenticity
 
 app = Flask(__name__)
 app.json.sort_keys = False
@@ -1369,6 +1370,44 @@ def add_ocr_response_fields(response, ocr_result, debug_enabled):
 
     return response
 
+# One SightEngine call in flight per worker: Android image checks are not a
+# high-frequency path, and a bounded pool keeps a burst of requests from
+# opening a burst of outbound connections.
+_AUTHENTICITY_EXECUTOR = ThreadPoolExecutor(
+    max_workers=max(1, int(os.getenv("IRIS_SIGHTENGINE_WORKERS", "2"))),
+)
+
+
+def _start_authenticity_check(data, image_bytes):
+    """Starts the SightEngine check only for clients that have no check of their own.
+
+    Android sends platform: "android" and has no credentials; the browser
+    extension sends platform: "chrome", runs SightEngine itself, and overwrites
+    this result client-side, so asking twice would only burn API quota. A request
+    that identifies as nothing fails closed: no call, checked stays False.
+    """
+    platform = str((data or {}).get("platform") or "").strip().lower()
+    if platform != "android":
+        return None
+
+    return _AUTHENTICITY_EXECUTOR.submit(assess_image_authenticity, image_bytes)
+
+
+def _collect_authenticity(timings, future):
+    if future is None:
+        return None
+
+    try:
+        return timed_stage(timings, "image.sightengine_authenticity", future.result)
+    except Exception:
+        # The module collapses its own failures into an honest NOT_ASSESSED
+        # payload; an exception escaping here means the future itself died.
+        return {
+            "image_authenticity_checked": False,
+            "ai_generated": {"status": "error", "error": "SightEngine check unavailable."},
+        }
+
+
 def _truthy(value):
     if isinstance(value, bool):
         return value
@@ -1911,6 +1950,11 @@ def verify_image():
         )
         return jsonify(response), int(image_result.get("http_status", 400))
 
+    # Started before OCR so the network-bound SightEngine call overlaps the
+    # local one; the verdict lands in every response below, whichever half of
+    # the check fails. Non-Android requests never start it (see the helper).
+    authenticity_future = _start_authenticity_check(data, image_result["image_bytes"])
+
     ocr_result = timed_stage(
         timings,
         "image.extract_text_from_image",
@@ -1919,6 +1963,11 @@ def verify_image():
 
     if ocr_result["status"] != "ok" or not ocr_result["text"].strip():
         response = build_ocr_stop_response(ocr_result, debug_enabled)
+        # The authenticity half stands alone: an image with no readable text can
+        # still be an AI image, and the badge must survive the OCR failure.
+        authenticity = _collect_authenticity(timings, authenticity_future)
+        if authenticity:
+            response.update(authenticity)
         response = finalize_response(
             response,
             debug_enabled,
@@ -1933,6 +1982,9 @@ def verify_image():
         lambda: verify_text_payload(ocr_result["text"], debug_enabled, timings, from_image=True),
     )
     response = add_ocr_response_fields(response, ocr_result, debug_enabled)
+    authenticity = _collect_authenticity(timings, authenticity_future)
+    if authenticity:
+        response.update(authenticity)
     response = finalize_response(
         response,
         debug_enabled,
