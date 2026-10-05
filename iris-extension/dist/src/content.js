@@ -542,6 +542,13 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__ && window === window.top) {
     };
   }
 
+  // One detector's number, read the same way genai's is: unparseable becomes an
+  // absent figure rather than a rendered 0%.
+  function detectorScore(detector) {
+    const raw = Number(detector?.confidence ?? detector?.suspicion_score);
+    return Number.isFinite(raw) && raw >= 0 ? raw : 0;
+  }
+
   // Three honest states. "Not assessed" is a real outcome, not a failure: when the
   // detectors could not run we must never imply the image was cleared, so a missing
   // or degraded signal renders as unassessed instead of as "authentic".
@@ -559,11 +566,25 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__ && window === window.top) {
     const raw = Number(ai?.confidence ?? ai?.suspicion_score);
     const confidence = Number.isFinite(raw) && raw >= 0 ? raw : undefined;
 
-    if (ai?.is_ai_generated) {
-      return { state: "ai_generated", confidence: confidence ?? 0 };
-    }
+    const result = ai?.is_ai_generated
+      ? { state: "ai_generated", confidence: confidence ?? 0 }
+      : { state: "not_ai", confidence };
 
-    return { state: "not_ai", confidence };
+    // The extra detectors ride along ONLY when they fired. A quiet detector says
+    // nothing on purpose: with image type out of scope we cannot tell "checked and
+    // clear" from "nothing there to check", so silence is the honest answer for one
+    // that did not fire — and each flag stays an observation of its own detector,
+    // never a vote counted into the AI verdict above it.
+    const flags = [];
+    if (payload?.deepfake?.status === "ok" && payload.deepfake.is_suspicious) {
+      flags.push({ kind: "deepfake", key: "imageAuth.deepfakeFlagged", confidence: detectorScore(payload.deepfake) });
+    }
+    if (payload?.embedded_text?.status === "ok" && payload.embedded_text.is_suspicious) {
+      flags.push({ kind: "embedded_text", key: "imageAuth.embeddedTextFlagged", confidence: detectorScore(payload.embedded_text) });
+    }
+    if (flags.length) result.flags = flags;
+
+    return result;
   }
 
   function normalizeBackendResult(payload, fallbackText, claimMode) {
@@ -683,9 +704,11 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__ && window === window.top) {
   // The whole block collapses into one pill — result plus the detector's
   // confidence — because this signal is supporting evidence for the claim
   // verdict below it, not a rival headline. The splice caveat, scope note, and
-  // caveats open with the pill on click. Exactly one detector runs (SightEngine's
-  // genai model), so the copy names it and never claims a second detector or a
-  // manipulation/forensics check this pipeline does not perform.
+  // caveats open with the pill on click. Three models run (genai, deepfake,
+  // embedded text); genai alone decides the AI verdict, and the other two may
+  // only flag what they saw. The copy therefore never claims a manipulation or
+  // forensics check this pipeline does not perform, and never counts detectors
+  // into a majority opinion about the image.
   function imageAuthenticityBadge(info) {
     if (!info) return "";
 
@@ -721,13 +744,57 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__ && window === window.top) {
       }
     };
 
-    const tone = TONES[info.state] || TONES.not_assessed;
+    const flags = Array.isArray(info.flags) ? info.flags : [];
+    // genai's own call, kept apart from the flags: the AI score only prints next
+    // to genai's verdict, never beside a detector that is reporting something else.
+    const aiState = info.state;
+    const aiFlagged = aiState === "ai_generated";
+    const deepfakeFired = flags.some((f) => f.kind === "deepfake");
+
+    // Card colour answers ONE question — how worried is this about forgery — so only
+    // genai and face swaps may set it. Added text is a weaker and far more common
+    // claim (a news chyron, a watermark, an overlay are all "text added after the
+    // shot"), so it gets its own muted line and never repaints the card: a signal
+    // that fires on nearly every image is noise, and noise must not be allowed to
+    // cry wolf. The single exception stays — a face swap beside a green "No AI
+    // generation detected" would contradict itself — so deepfake still takes the
+    // headline and the card when genai stayed quiet.
+    let tone;
+    let headline = null;
+
+    if (aiState === "not_assessed") {
+      tone = TONES.not_assessed;
+    } else if (aiFlagged || deepfakeFired) {
+      tone = { ...TONES.ai_generated };
+      if (!aiFlagged) {
+        headline = flags.find((f) => f.kind === "deepfake") || flags[0];
+        tone.verdict = t(headline.key, Math.round(headline.confidence * 100));
+        // genai's own quiet reading is still stated underneath rather than hidden:
+        // the flag says what fired, this says what genai saw, and neither of them is
+        // proof about the image as a whole.
+        tone.note = t("imageAuth.notAiNote");
+      }
+    } else {
+      tone = TONES.not_ai;
+    }
+
     const hasScore =
-      (info.state === "ai_generated" || info.state === "not_ai") &&
+      (aiState === "ai_generated" || aiState === "not_ai") &&
       typeof info.confidence === "number";
     const score = hasScore
       ? `<span class="image-auth__score">${t("imageAuth.score", Math.round(info.confidence * 100))}</span>`
       : "";
+
+    // Every fired detector that is NOT already the headline rides as its own line —
+    // an independent observation of that detector, never folded into the verdict
+    // above it or counted as a second vote on it.
+    const extraFlags = flags
+      .filter((f) => f !== headline)
+      .map(
+        (f) =>
+          `<span class="image-auth__flag">${escapeHtml(t(f.key, Math.round(f.confidence * 100)))}</span>`
+      )
+      .join("");
 
     // The <summary> is the pill: icon, feature title, verdict, and confidence
     // in one row — everything a collapsed reader needs, nothing that competes
@@ -740,12 +807,13 @@ if (!window.__IRIS_EXTENSION_CONTENT_LOADED__ && window === window.top) {
           <strong class="image-auth__feature">${escapeHtml(FEATURE_TITLE)}</strong>
           <span class="image-auth__verdict">${escapeHtml(tone.verdict)}</span>
           ${score}
+          ${extraFlags}
           <span class="image-auth__chevron" aria-hidden="true"></span>
         </summary>
         <div class="image-auth__body">
           ${tone.caveat ? `<p class="image-auth__caveat">${escapeHtml(tone.caveat)}</p>` : ""}
           <p class="image-auth__scope">${escapeHtml(SCOPE_LINE)}</p>
-          <p class="image-auth__note">${escapeHtml(tone.note)}</p>
+          ${tone.note ? `<p class="image-auth__note">${escapeHtml(tone.note)}</p>` : ""}
           <p class="image-auth__disclaimer">${escapeHtml(DISCLAIMER)}</p>
         </div>
       </details>

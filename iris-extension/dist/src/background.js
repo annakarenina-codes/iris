@@ -425,6 +425,34 @@ function base64ToBytes(base64) {
 }
 
 /**
+ * Reads one probability key out of a SightEngine sub-object. SightEngine has shipped
+ * numbers, missing keys and unparseable strings; an unknown reads as 0, the same way the
+ * backend reads it -- an unknown is an observation of nothing, not a verdict of "clear".
+ */
+function sightengineDetectorProbability(container, key) {
+  const raw = container && typeof container === "object" ? container[key] : 0;
+  const number = Number(raw ?? 0);
+  return Number.isFinite(number) ? number : 0;
+}
+
+/**
+ * One detector's reading, in the shape Android's IrisResultData expects. Every detector
+ * answers with the same fields so a client can render any of them without knowing which
+ * model produced it. Fields never make one detector's output a conclusion about another's.
+ */
+function sightengineObservation(score, isSuspicious, extra = {}) {
+  return {
+    suspicion_score: score,
+    confidence: score,
+    is_suspicious: isSuspicious,
+    model: "SightEngine",
+    status: "ok",
+    error: null,
+    ...extra
+  };
+}
+
+/**
  * The authenticity half of an image check, asked of SightEngine directly from this worker.
  * It never throws: an unassessed image is an honest result the panel already knows how to
  * render, so every failure collapses into {image_authenticity_checked: false}.
@@ -452,7 +480,10 @@ async function analyzeImageAuthenticitySightEngine(source, payload, run = null) 
     const mediaBytes = base64ToBytes(imageBase64);
 
     const formData = new FormData();
-    formData.append("models", "genai");
+    // Deepfake and embedded text ride the same request as genai: one call, one
+    // process batch, and the same strictly-greater-than-0.5 rule the backend uses so
+    // both halves of one check can never disagree about the same image.
+    formData.append("models", "genai,deepfake,text");
     formData.append("api_user", apiUser);
     formData.append("api_secret", apiSecret);
     formData.append("media", new Blob([mediaBytes], { type: "image/jpeg" }), "image.jpg");
@@ -507,17 +538,31 @@ async function analyzeImageAuthenticitySightEngine(source, payload, run = null) 
 
     const isSuspicious = aiProbability > 0.5;
 
+    // Deepfake and embedded text live in their own sub-objects; both readers fail
+    // closed to 0 when the key is absent or malformed, so a partially-shaped response
+    // still yields an honest observation rather than a thrown check.
+    const typeContainer = data?.type && typeof data.type === "object" ? data.type : {};
+    const textContainer = data?.text && typeof data.text === "object" ? data.text : {};
+    const deepfakeProbability = sightengineDetectorProbability(typeContainer, "deepfake");
+    const artificialText = sightengineDetectorProbability(textContainer, "has_artificial");
+    const naturalText = sightengineDetectorProbability(textContainer, "has_natural");
+    const deepfakeSuspicious = deepfakeProbability > 0.5;
+    const textSuspicious = artificialText > 0.5;
+
     return {
       image_authenticity_checked: true,
-      ai_generated: {
-        suspicion_score: aiProbability,
-        confidence: aiProbability,
-        is_suspicious: isSuspicious,
-        is_ai_generated: isSuspicious,
-        model: "SightEngine",
-        status: "ok",
-        error: null
-      }
+      ai_generated: sightengineObservation(aiProbability, isSuspicious, {
+        is_ai_generated: isSuspicious
+      }),
+      deepfake: sightengineObservation(deepfakeProbability, deepfakeSuspicious, {
+        is_deepfake: deepfakeSuspicious
+      }),
+      // Text present in the scene (has_natural) is not an accusation: only text added
+      // after the shot (has_artificial) is flagged.
+      embedded_text: sightengineObservation(artificialText, textSuspicious, {
+        has_artificial: artificialText,
+        has_natural: naturalText
+      })
     };
   } catch (error) {
     return {
@@ -610,6 +655,11 @@ async function verifyImage(sourceInput, tabId) {
       const payload = claimPayload || { message: claimError };
       payload.image_authenticity_checked = authenticityOk;
       payload.ai_generated = authenticity.ai_generated;
+      // The extra detectors ride along exactly as Android's mergeInto carries them.
+      // Absent stays absent: a payload whose check never ran must not grow empty
+      // verdicts for detectors that never fired.
+      if (authenticity.deepfake) payload.deepfake = authenticity.deepfake;
+      if (authenticity.embedded_text) payload.embedded_text = authenticity.embedded_text;
 
       if (run.aborted) return;
 

@@ -1038,6 +1038,19 @@ blockquote {
   font-weight: 700;
 }
 
+/* A second detector that fired rides in the pill beside the score. The pill is a
+   wrapping flex row, so a long flag moves onto its own line instead of clipping
+   the verdict. Its OWN amber ink — independent of the card tone above it — is what
+   keeps added text from being able to repaint the card: the line stays legible and
+   distinguishable on every surface the badge can take, without turning a routine
+   observation into an alarm. #92400e clears 7:1 on all three light tone surfaces. */
+.image-auth__flag {
+  display: inline-block;
+  font-size: calc(10px * var(--iris-scale));
+  font-weight: 700;
+  color: #92400e;
+}
+
 .image-auth--is-flagged {
   border-color: #fca5a5;
   background: #fef2f2;
@@ -1955,6 +1968,12 @@ blockquote {
 
 .iris-extension-shell[data-theme="dark"] .image-auth--is-unknown p {
   color: #a8adc0;
+}
+
+/* The flag line's dark counterpart: #fcd34d clears 11:1 on the darkest tone
+   surface the badge can take, so it reads the same way on red, green, and gray. */
+.iris-extension-shell[data-theme="dark"] .image-auth__flag {
+  color: #fcd34d;
 }
 
 /* The scope note, the splice caveat, and the disclaimer are the only elements

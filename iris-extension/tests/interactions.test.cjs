@@ -347,6 +347,11 @@ test('image detection renders all three states, and renders nothing when the pay
       text: node.textContent,
       className: node.className,
       score: node.querySelector('.image-auth__score')?.textContent || null,
+      // A second detector that fired. Read through the same visibility check as the
+      // rest of the pill, so a flag that only existed in the markup would not pass.
+      flags: [...node.querySelectorAll('.image-auth__flag')]
+        .filter((el) => el.checkVisibility())
+        .map((el) => el.textContent.trim()),
       caveat: node.querySelector('.image-auth__caveat')?.textContent || null,
       chevron: !!node.querySelector('.image-auth__chevron'),
       visible: [...node.querySelectorAll(COLLAPSED_VISIBLE)]
@@ -377,7 +382,8 @@ test('image detection renders all three states, and renders nothing when the pay
     assert.equal(badge.text.indexOf('AI Generation Analysis'), -1, 'the redundant branch label is gone');
     assert.equal(badge.text.indexOf('Manipulation: Not assessed'), -1,
       'no manipulation claim appears: this pipeline has no manipulation check');
-    assert.equal(badge.text.indexOf('Two'), -1, 'no second detector is claimed: exactly one detector runs');
+    assert.equal(badge.text.indexOf('Two'), -1,
+      'no count of detectors is claimed: the copy names only what each one saw');
     assert.ok(feature < result, 'the feature title precedes the verdict');
     assert.ok(result < scope, 'the verdict precedes the independence line');
     assert.ok(scope < disclaimer, 'the independence line precedes the probabilistic caveat');
@@ -447,6 +453,88 @@ test('image detection renders all three states, and renders nothing when the pay
   assert.match(badge.text, /IRIS could not run image detection on this image\./);
   assert.equal(badge.score, null, 'An unassessed check must never publish a probability figure');
   await assertFraming(badge, 'Not assessed');
+
+  // A second detector that FIRED rides beside genai's verdict as its own observation,
+  // and only the detector that fired is shown: a quiet one says nothing, because with
+  // image type out of scope "clear" and "never looked" are indistinguishable.
+  await render({
+    claims: [imageClaim],
+    image_authenticity_checked: true,
+    ai_generated: { status: 'ok', is_ai_generated: true, confidence: 0.529 },
+    deepfake: { status: 'ok', is_suspicious: true, confidence: 0.82, model: 'deepfake' },
+    embedded_text: { status: 'ok', is_suspicious: false, confidence: 0.01, model: 'text' }
+  }, 'is-flagged');
+  badge = await readBadge();
+  assert.deepEqual(badge.flags, ['Face swap: flagged (82%)'],
+    'only the detector that fired renders, and it keeps its own score');
+  assert.equal(badge.score, 'AI probability: 53%', "genai's figure stays independent of the flag");
+  await assertFraming(badge, 'Potentially AI-generated');
+
+  // A detector firing while genai stays quiet must flip the card to flagged: a green
+  // "No AI generation detected" beside a live face-swap flag would contradict itself.
+  // The flag becomes the verdict, and genai's own reading is stated underneath it.
+  await render({
+    claims: [imageClaim],
+    image_authenticity_checked: true,
+    ai_generated: { status: 'ok', is_ai_generated: false, confidence: 0.04 },
+    deepfake: { status: 'ok', is_suspicious: true, confidence: 0.82, model: 'deepfake' }
+  }, 'is-flagged');
+  badge = await readBadge();
+  assert.match(badge.className, /is-flagged/, 'a fired detector outranks the clear AI verdict');
+  assert.deepEqual(badge.flags, [], 'the flag already IS the verdict, so it is not repeated');
+  assert.equal(badge.score, 'AI probability: 4%');
+  await assertFraming(badge, 'Face swap: flagged (82%)');
+  assert.match(badge.text, /SightEngine did not flag this image\. That is not proof it is authentic\./,
+    "genai's quiet reading is still stated rather than hidden");
+
+  // Added text alone must NOT repaint the card. It fires on nearly every news image
+  // (a chyron, a watermark, an overlay are all "text added after the shot"), so
+  // colouring it would turn routine noise into a standing alarm — and a green card
+  // carrying a flag would be a contradiction of its own. The card keeps genai's
+  // honest verdict; the text detector gets its own line beside it.
+  await render({
+    claims: [imageClaim],
+    image_authenticity_checked: true,
+    ai_generated: { status: 'ok', is_ai_generated: false, confidence: 0.04 },
+    embedded_text: { status: 'ok', is_suspicious: true, confidence: 0.91, model: 'text' }
+  }, 'is-clear');
+  badge = await readBadge();
+  assert.match(badge.className, /is-clear/,
+    'added text never repaints the card: colour belongs to genai and deepfake');
+  assert.deepEqual(badge.flags, ['Text added after capture: flagged (91%)'],
+    'the text detector still speaks — it just does so as its own line');
+  assert.match(badge.text, /No AI generation detected/,
+    'the card states what genai actually saw');
+  await assertFraming(badge, 'No AI generation detected');
+
+  // Both fired while genai stayed quiet: deepfake carries the stronger claim so it
+  // takes the headline, red wins because a face swap IS involved, and the text flag
+  // rides along as its own line instead of being swallowed or repeated.
+  await render({
+    claims: [imageClaim],
+    image_authenticity_checked: true,
+    ai_generated: { status: 'ok', is_ai_generated: false, confidence: 0.04 },
+    deepfake: { status: 'ok', is_suspicious: true, confidence: 0.82, model: 'deepfake' },
+    embedded_text: { status: 'ok', is_suspicious: true, confidence: 0.91, model: 'text' }
+  }, 'is-flagged');
+  badge = await readBadge();
+  assert.match(badge.className, /is-flagged/, 'a face swap keeps the card red');
+  assert.deepEqual(badge.flags, ['Text added after capture: flagged (91%)'],
+    'the headline flag is not repeated as a second line');
+  await assertFraming(badge, 'Face swap: flagged (82%)');
+
+  // A detector that did not fire — or whose check failed — contributes nothing: it
+  // must never grow into a "checked and clear" claim the payload never made.
+  await render({
+    claims: [imageClaim],
+    image_authenticity_checked: true,
+    ai_generated: { status: 'ok', is_ai_generated: false, confidence: 0.04 },
+    deepfake: { status: 'ok', is_suspicious: false, confidence: 0.01 },
+    embedded_text: { status: 'error', error: 'quota' }
+  }, 'is-clear');
+  badge = await readBadge();
+  assert.deepEqual(badge.flags, [], 'a quiet or failed detector is silent, never a "clear" claim');
+  await assertFraming(badge, 'No AI generation detected');
 
   // No detection keys at all: the badge must not render rather than default to a state.
   await render({ claims: [imageClaim] });
