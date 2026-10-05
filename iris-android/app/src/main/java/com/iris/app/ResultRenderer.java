@@ -57,14 +57,33 @@ final class ResultRenderer {
     }
 
     static View claimPanel(Context context, Variant variant, IrisResultData.ClaimItem claim,
-                           boolean imageInput, boolean sourcesExpanded, Runnable onShowMore,
-                           Runnable onLinkClick) {
+                           IrisResultData.ImageAuthenticity authenticity,
+                           boolean imageInput, String sourceUrl, boolean sourcesExpanded,
+                           Runnable onShowMore, Runnable onLinkClick) {
         boolean compact = variant == Variant.COMPACT;
         int sectionGap = compact ? 10 : 12;
         int itemGap = 8;
 
         LinearLayout wrapper = IrisUi.vertical(context, 0);
-        wrapper.addView(claimBox(context, variant, claim.claimText, imageInput), IrisUi.matchWrap());
+        // Leads the panel the same way the extension leads the result: for an image
+        // check, whether the image was assessed at all outranks the extracted text.
+        // The claim box carries the section gap when it follows the authenticity card;
+        // matchWrap() has no margin, so without it the two cards sit flush together.
+        if (authenticity != null) {
+            wrapper.addView(authenticityCard(context, variant, authenticity), IrisUi.matchWrap());
+            wrapper.addView(claimBox(context, variant, claim.claimText, imageInput),
+                IrisUi.spaced(context, sectionGap));
+        } else {
+            wrapper.addView(claimBox(context, variant, claim.claimText, imageInput),
+                IrisUi.matchWrap());
+        }
+
+        // The page the shared image came from, carried in the share itself. Sits with
+        // the claim box because both describe the input, not the verdict.
+        if (!TextUtils.isEmpty(sourceUrl)) {
+            wrapper.addView(sourceUrlRow(context, variant, sourceUrl, onLinkClick),
+                IrisUi.spaced(context, sectionGap));
+        }
 
         if (claim.politicallySensitive) {
             wrapper.addView(politicalFlag(context, variant), IrisUi.spaced(context, sectionGap));
@@ -178,6 +197,187 @@ final class ResultRenderer {
         return box;
     }
 
+    /**
+     * The page the shared image came from, as one tappable row. The URL opens exactly
+     * like a source card's link — same ACTION_VIEW, same new-task flag for the service
+     * context — so "where did this image come from" is one tap away instead of gone.
+     */
+    private static View sourceUrlRow(Context context, Variant variant, String sourceUrl,
+                                     Runnable onLinkClick) {
+        boolean compact = variant == Variant.COMPACT;
+        int rowPadding = compact ? 11 : 12;
+
+        LinearLayout row = IrisUi.vertical(context, rowPadding);
+        row.setBackground(IrisUi.bordered(context, IrisUi.CARD, 14, IrisUi.BORDER));
+        row.setClickable(true);
+        IrisUi.touchFeedback(row, 14);
+        row.setOnClickListener(view -> {
+            if (onLinkClick != null) onLinkClick.run();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sourceUrl));
+            if (!(context instanceof Activity)) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            }
+            context.startActivity(intent);
+        });
+
+        row.addView(IrisUi.eyebrow(context, "Image source"), IrisUi.matchWrap());
+        TextView url = IrisUi.text(context, sourceUrl, compact ? 11.5f : 12, IrisUi.VIOLET,
+            Typeface.BOLD);
+        url.setSingleLine(true);
+        url.setEllipsize(TextUtils.TruncateAt.END);
+        row.addView(url, IrisUi.matchWrap());
+        return row;
+    }
+
+    /**
+     * Three states, not two. "Not assessed" is a real outcome and must stay visible:
+     * folding it into the clear state would draw an unrun check as a passed one, which
+     * is the false reassurance the newsroom rule exists to prevent. The neutral copy
+     * for the clear state says so explicitly rather than calling the image authentic.
+     *
+     * These cards use the day-only GREEN/RED/GRAY tokens on purpose, exactly like
+     * politicalFlag: those tokens never reassign in applyTheme, so a light card with
+     * dark ink stays readable in both themes instead of flipping with the surface.
+     */
+    static View authenticityCard(Context context, Variant variant,
+                                 IrisResultData.ImageAuthenticity info) {
+        boolean compact = variant == Variant.COMPACT;
+        int rowPadding = compact ? 11 : 12;
+        int iconSize = compact ? 32 : 34;
+        float iconTextSize = compact ? 15f : 16f;
+        float titleSize = compact ? 13.5f : 14;
+        float bodySize = compact ? 11.5f : 12;
+        float scoreSize = compact ? 10.5f : 11;
+
+        int background;
+        int border;
+        int ink;
+        String icon;
+        String title;
+        String body;
+
+        // genai's own call stays separate from the flags: the AI score only prints next
+        // to genai's verdict, never beside a detector that is reporting something else.
+        boolean aiGenerated = IrisResultData.ImageAuthenticity.AI_GENERATED.equals(info.state);
+        IrisResultData.DetectorFlag deepfake =
+            findFlag(info, IrisResultData.ImageAuthenticity.FLAG_DEEPFAKE);
+
+        // Card colour answers ONE question — how worried is this about forgery — so only
+        // genai and face swaps may set it. Added text is a weaker and far more common
+        // claim (a news chyron, a watermark, an overlay are all "text added after the
+        // shot"), so it gets its own muted line and never repaints the card: a signal
+        // that fires on nearly every image is noise, and noise must not cry wolf.
+        // The single exception stays — a face swap beside "No AI detected" would
+        // contradict itself — so deepfake still takes the headline when genai is quiet.
+        IrisResultData.DetectorFlag headline = null;
+        if (!aiGenerated && deepfake != null) {
+            headline = deepfake;
+        }
+
+        if (IrisResultData.ImageAuthenticity.NOT_ASSESSED.equals(info.state)) {
+            background = IrisUi.GRAY_BG;
+            border = IrisUi.GRAY_BORDER;
+            ink = IrisUi.GRAY;
+            icon = "?";
+            title = "Not assessed";
+            body = "IRIS could not run image detection on this image.";
+        } else if (aiGenerated || deepfake != null) {
+            background = IrisUi.RED_BG;
+            border = IrisUi.RED_BORDER;
+            ink = IrisUi.RED;
+            icon = "!";
+            if (aiGenerated) {
+                title = "AI-generated image";
+                // Three models run (genai, deepfake, embedded text); genai alone decides
+                // THIS verdict, so the copy names it and never claims a second detector
+                // or a manipulation/forensics check this pipeline does not perform.
+                body = info.model.isEmpty()
+                    ? "The AI-image detector flagged this image."
+                    : info.model + "'s AI-image detector flagged this image.";
+            } else {
+                // The detector — not genai — is what fired, so its line becomes the
+                // headline, and genai's own quiet reading is stated underneath rather
+                // than hidden: each detector reports only what it saw.
+                title = detectorFlagLabel(headline);
+                body = (info.model.isEmpty()
+                    ? "The AI-image detector did not flag this image."
+                    : info.model + " did not flag this image.")
+                    + " That is not proof it is authentic.";
+            }
+        } else {
+            background = IrisUi.GREEN_BG;
+            border = IrisUi.GREEN_BORDER;
+            ink = IrisUi.GREEN;
+            icon = "\u2713";
+            title = "No AI detected";
+            body = (info.model.isEmpty()
+                ? "The AI-image detector did not flag this image."
+                : info.model + " did not flag this image.")
+                + " That is not proof it is authentic.";
+        }
+
+        LinearLayout row = IrisUi.horizontal(context, rowPadding);
+        row.setBackground(IrisUi.bordered(context, background, 14, border));
+
+        TextView mark = new TextView(context);
+        mark.setText(icon);
+        mark.setTextSize(iconTextSize);
+        mark.setGravity(Gravity.CENTER);
+        mark.setTextColor(ink);
+        mark.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        mark.setBackground(IrisUi.rounded(context, Color.WHITE, 999));
+        row.addView(mark, IrisUi.fixed(context, iconSize, iconSize));
+
+        LinearLayout copy = IrisUi.vertical(context, 0);
+        copy.addView(IrisUi.text(context, title, titleSize, ink, Typeface.BOLD), IrisUi.matchWrap());
+        copy.addView(IrisUi.text(context, body, bodySize, ink, Typeface.NORMAL), IrisUi.matchWrap());
+
+        if (IrisResultData.ImageAuthenticity.AI_GENERATED.equals(info.state) && info.confidence > 0) {
+            copy.addView(IrisUi.text(context,
+                "AI probability: " + Math.round(info.confidence * 100) + "%",
+                scoreSize, ink, Typeface.BOLD), IrisUi.matchWrap());
+        }
+
+        // Every fired detector that is NOT already the headline rides as its own line in
+        // amber — the one ink that stays distinguishable on any card tone, so added text
+        // can be read without ever being able to repaint the card around it. It is an
+        // independent observation of that detector, never folded into the verdict above
+        // it or counted as a second vote on it.
+        for (IrisResultData.DetectorFlag flag : info.flags) {
+            if (flag == headline) continue;
+            copy.addView(IrisUi.text(context, detectorFlagLabel(flag),
+                scoreSize, IrisUi.ORANGE, Typeface.BOLD), IrisUi.matchWrap());
+        }
+
+        // The row's padding only insets the card's outer edge. LinearLayout puts no gap
+        // between children, so without an explicit margin the icon touches the title.
+        LinearLayout.LayoutParams copyParams = IrisUi.rowWeight(1);
+        copyParams.setMargins(IrisUi.dp(context, 10), 0, 0, 0);
+        row.addView(copy, copyParams);
+        return row;
+    }
+
+    /** Returns the fired flag of the given kind, or null when that detector stayed quiet. */
+    private static IrisResultData.DetectorFlag findFlag(IrisResultData.ImageAuthenticity info, String kind) {
+        for (IrisResultData.DetectorFlag flag : info.flags) {
+            if (kind.equals(flag.kind)) return flag;
+        }
+        return null;
+    }
+
+    /**
+     * Phrases one fired detector's line exactly as the extension's i18n copy does, so
+     * the two surfaces never drift: an unknown kind still renders honestly as a flag
+     * rather than being swallowed.
+     */
+    private static String detectorFlagLabel(IrisResultData.DetectorFlag flag) {
+        int pct = (int) Math.round(flag.confidence * 100);
+        if (IrisResultData.ImageAuthenticity.FLAG_EMBEDDED_TEXT.equals(flag.kind)) {
+            return "Text added after capture: flagged (" + pct + "%)";
+        }
+        return "Face swap: flagged (" + pct + "%)";
+    }
+
     private static View politicalFlag(Context context, Variant variant) {
         boolean compact = variant == Variant.COMPACT;
         int rowPadding = compact ? 11 : 12;
@@ -203,7 +403,9 @@ final class ResultRenderer {
             Typeface.BOLD), IrisUi.matchWrap());
         copy.addView(IrisUi.text(context, "Apply extra scrutiny before sharing.", bodySize,
             IrisUi.ORANGE, Typeface.NORMAL), IrisUi.matchWrap());
-        flag.addView(copy, IrisUi.rowWeight(1));
+        LinearLayout.LayoutParams flagParams = IrisUi.rowWeight(1);
+        flagParams.setMargins(IrisUi.dp(context, 10), 0, 0, 0);
+        flag.addView(copy, flagParams);
         return flag;
     }
 
@@ -233,7 +435,9 @@ final class ResultRenderer {
             IrisUi.matchWrap());
         copy.addView(IrisUi.text(context, claim.message, messageSize, color, Typeface.NORMAL),
             IrisUi.matchWrap());
-        card.addView(copy, IrisUi.rowWeight(1));
+        LinearLayout.LayoutParams verdictCopyParams = IrisUi.rowWeight(1);
+        verdictCopyParams.setMargins(IrisUi.dp(context, 10), 0, 0, 0);
+        card.addView(copy, verdictCopyParams);
         return card;
     }
 
@@ -256,9 +460,14 @@ final class ResultRenderer {
         pill.setBackground(IrisUi.gradient(context, 999));
         row.addView(pill, IrisUi.fixed(context, pillWidth, pillHeight));
 
+        // The pill and the label are siblings in a zero-padding row, so the gap has to be
+        // a margin. The old leading space in the label was a stand-in for one and only
+        // ever moved the text a couple of pixels.
         TextView label = IrisUi.muted(context,
-            claim.evidenceCount == 1 ? " evidence source used" : " evidence sources used", labelSize);
-        row.addView(label, IrisUi.rowWeight(1));
+            claim.evidenceCount == 1 ? "evidence source used" : "evidence sources used", labelSize);
+        LinearLayout.LayoutParams labelParams = IrisUi.rowWeight(1);
+        labelParams.setMargins(IrisUi.dp(context, 9), 0, 0, 0);
+        row.addView(label, labelParams);
         return row;
     }
 

@@ -37,8 +37,13 @@ final class HistoryDetail {
      * Builds the expanded detail for one entry. `openFullResult` is the escape hatch
      * back to ResultActivity; the caller owns that launch because the bubble has to
      * fold itself away first while the activity must not.
+     *
+     * `onLinkClick` runs before an article opens. The bubble panel passes hidePanel()
+     * so the browser arrives over a resting bubble instead of a panel still covering
+     * the screen behind it; the history screen passes null and keeps its own layout.
      */
-    static View build(Context context, HistoryStore.HistoryEntry entry, String checkedAtLabel, Runnable openFullResult) {
+    static View build(Context context, HistoryStore.HistoryEntry entry, String checkedAtLabel,
+                      Runnable openFullResult, Runnable onLinkClick) {
         // Same parse ResultActivity runs, so verdict, claim and links can never drift
         // between the inline view and the full screen it links to.
         IrisResultData data = IrisResultData.parse(entry.rawJson, entry.fallback, entry.inputType);
@@ -46,13 +51,24 @@ final class HistoryDetail {
         LinearLayout detail = IrisUi.vertical(context, 12);
         detail.setBackground(IrisUi.bordered(context, IrisUi.CARD, 14, IrisUi.BORDER));
 
+        // Leads the detail the same way claimPanel leads the live result: whether the
+        // image was assessed at all outranks the extracted claims beneath it. It is the
+        // first child, so it takes no top margin; whatever follows it does, because
+        // matchWrap() alone would butt the two cards together with no gap at all.
+        boolean hasAuthenticity = data.imageAuthenticity != null;
+        if (hasAuthenticity) {
+            detail.addView(ResultRenderer.authenticityCard(context, ResultRenderer.Variant.COMPACT,
+                data.imageAuthenticity), IrisUi.matchWrap());
+        }
+
         List<IrisResultData.ClaimItem> claims = data.claims;
         if (claims.isEmpty()) {
             // A payload with no claims still says what it can instead of rendering nothing.
             String text = TextUtils.isEmpty(entry.fallback)
                 ? "No claim details were stored for this check."
                 : entry.fallback;
-            detail.addView(IrisUi.muted(context, text, 12), IrisUi.spaced(context, 8));
+            detail.addView(IrisUi.muted(context, text, 12),
+                hasAuthenticity ? IrisUi.spaced(context, 8) : IrisUi.matchWrap());
         } else {
             for (int index = 0; index < claims.size(); index += 1) {
                 if (index > 0) {
@@ -68,8 +84,21 @@ final class HistoryDetail {
                 String claimLabel = claims.size() > 1
                     ? "Claim " + (index + 1) + " of " + claims.size()
                     : null;
-                detail.addView(claimBlock(context, claims.get(index), claimLabel), IrisUi.matchWrap());
+                LinearLayout.LayoutParams claimParams =
+                    hasAuthenticity && index == 0
+                        ? IrisUi.spaced(context, 8)
+                        : IrisUi.matchWrap();
+                detail.addView(claimBlock(context, claims.get(index), claimLabel, onLinkClick),
+                    claimParams);
             }
+        }
+
+        // The page the shared image came from, carried in the share itself. Input
+        // metadata about the whole check, so it sits above the Checked row rather
+        // than inside any one claim.
+        if (!TextUtils.isEmpty(data.sourceUrl)) {
+            detail.addView(sourceUrlRow(context, data.sourceUrl, onLinkClick),
+                IrisUi.spaced(context, 8));
         }
 
         detail.addView(checkedRow(context, checkedAtLabel), IrisUi.spaced(context, 8));
@@ -81,7 +110,8 @@ final class HistoryDetail {
     }
 
     /** One claim: optional "Claim N of M" label, badge, quote, explanation, evidence, sources. */
-    private static View claimBlock(Context context, IrisResultData.ClaimItem claim, String claimLabel) {
+    private static View claimBlock(Context context, IrisResultData.ClaimItem claim, String claimLabel,
+                                   Runnable onLinkClick) {
         LinearLayout block = IrisUi.vertical(context, 8);
 
         if (claimLabel != null) {
@@ -104,7 +134,7 @@ final class HistoryDetail {
             + (claim.evidenceCount == 1 ? "source" : "sources");
         block.addView(IrisUi.muted(context, countLabel, 11.5f), IrisUi.spaced(context, 4));
 
-        block.addView(sourceList(context, claim.sources), IrisUi.spaced(context, 4));
+        block.addView(sourceList(context, claim.sources, onLinkClick), IrisUi.spaced(context, 4));
         return block;
     }
 
@@ -114,7 +144,7 @@ final class HistoryDetail {
      * class; keeping them here with GONE does the same job without rebuilding the list
      * the reader is looking at.
      */
-    private static View sourceList(Context context, List<IrisResultData.SourceItem> sources) {
+    private static View sourceList(Context context, List<IrisResultData.SourceItem> sources, Runnable onLinkClick) {
         LinearLayout list = IrisUi.vertical(context, 6);
         if (sources.isEmpty()) {
             list.addView(IrisUi.muted(context, "No article links stored for this check.", 12), IrisUi.matchWrap());
@@ -123,7 +153,7 @@ final class HistoryDetail {
 
         List<View> hidden = new ArrayList<>();
         for (int index = 0; index < sources.size(); index += 1) {
-            View link = sourceLink(context, sources.get(index));
+            View link = sourceLink(context, sources.get(index), onLinkClick);
             if (index >= HISTORY_SOURCE_LIMIT) {
                 link.setVisibility(View.GONE);
                 hidden.add(link);
@@ -200,7 +230,8 @@ final class HistoryDetail {
         badge.addView(icon, IrisUi.fixed(context, 36, 36));
 
         LinearLayout copy = IrisUi.vertical(context, 0);
-        copy.addView(IrisUi.eyebrow(context, "Verdict"), IrisUi.matchWrap());
+        // Explicit VIOLET_ON_LIGHT: the badge keeps its day-only verdictBackground().
+        copy.addView(IrisUi.eyebrow(context, "Verdict", IrisUi.VIOLET_ON_LIGHT), IrisUi.matchWrap());
         copy.addView(IrisUi.text(context, verdict, 15, color, Typeface.BOLD), IrisUi.matchWrap());
         LinearLayout.LayoutParams copyParams = IrisUi.rowWeight(1);
         copyParams.leftMargin = IrisUi.dp(context, 10);
@@ -239,13 +270,44 @@ final class HistoryDetail {
         return meta;
     }
 
+    /**
+     * The image's shared source page, stored as source_url when the share carried a
+     * caption link. BG surface like sourceLink, so it reads as a sibling row inside
+     * the CARD container instead of blending into it; tap order matches sourceLink —
+     * host away first, then the browser.
+     */
+    private static View sourceUrlRow(Context context, String sourceUrl, Runnable onLinkClick) {
+        LinearLayout card = IrisUi.vertical(context, 8);
+        card.setBackground(IrisUi.bordered(context, IrisUi.BG, 14, IrisUi.BORDER));
+        card.setClickable(true);
+        IrisUi.touchFeedback(card, 14);
+        card.setOnClickListener(view -> {
+            if (onLinkClick != null) onLinkClick.run();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sourceUrl));
+            if (!(context instanceof Activity)) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            }
+            context.startActivity(intent);
+        });
+
+        card.addView(IrisUi.eyebrow(context, "Image source"), IrisUi.matchWrap());
+        TextView url = IrisUi.text(context, sourceUrl, 12, IrisUi.VIOLET, Typeface.BOLD);
+        url.setSingleLine(true);
+        url.setEllipsize(TextUtils.TruncateAt.END);
+        card.addView(url, IrisUi.matchWrap());
+        return card;
+    }
+
     /** Compact article link that opens in the browser exactly like the result screen's source card. */
-    private static View sourceLink(Context context, IrisResultData.SourceItem source) {
+    private static View sourceLink(Context context, IrisResultData.SourceItem source, Runnable onLinkClick) {
         LinearLayout card = IrisUi.vertical(context, 10);
         card.setBackground(IrisUi.bordered(context, IrisUi.BG, 14, IrisUi.BORDER));
         card.setClickable(true);
         IrisUi.touchFeedback(card, 14);
         card.setOnClickListener(view -> {
+            // Same order as ResultRenderer.sourceCard: put the host away first, then
+            // leave for the browser, so the panel is never still on screen behind it.
+            if (onLinkClick != null) onLinkClick.run();
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(source.url));
             // The bubble panel runs in a Service, so its links need the new-task flag
             // that an Activity launch gets for free.

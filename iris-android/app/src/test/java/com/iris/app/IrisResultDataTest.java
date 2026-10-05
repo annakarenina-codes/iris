@@ -9,6 +9,7 @@ import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
@@ -242,5 +243,252 @@ public class IrisResultDataTest {
         IrisResultData result = IrisResultData.parse(payload, "fallback", "");
 
         assertEquals("text", result.inputType);
+    }
+
+    @Test
+    public void imageAuthenticityIsNullWhenPayloadCarriesNoDetectionKeys() {
+        IrisResultData result = IrisResultData.parse("{\"claims\": []}", "fallback", "text");
+
+        assertNull(result.imageAuthenticity);
+    }
+
+    @Test
+    public void imageAuthenticityFlagsConfirmedDetectionWithScore() {
+        String payload = "{"
+            + "\"claims\": [],"
+            + "\"image_authenticity_checked\": true,"
+            + "\"ai_generated\": {\"status\": \"ok\", \"is_ai_generated\": true, \"confidence\": 0.529}"
+            + "}";
+
+        IrisResultData result = IrisResultData.parse(payload, "fallback", "image");
+
+        assertEquals(IrisResultData.ImageAuthenticity.AI_GENERATED, result.imageAuthenticity.state);
+        assertEquals(0.529, result.imageAuthenticity.confidence, 0.0001);
+    }
+
+    @Test
+    public void imageAuthenticityReportsClearResultWithoutPublishingAScore() {
+        String payload = "{"
+            + "\"claims\": [],"
+            + "\"image_authenticity_checked\": true,"
+            + "\"ai_generated\": {\"status\": \"ok\", \"is_ai_generated\": false, \"confidence\": 0.0}"
+            + "}";
+
+        IrisResultData result = IrisResultData.parse(payload, "fallback", "image");
+
+        assertEquals(IrisResultData.ImageAuthenticity.NOT_AI, result.imageAuthenticity.state);
+        // A clear result must not carry a confidence the UI could render as
+        // "how sure we are it is real" — the backend's 0.0 only means no flag.
+        assertEquals(0.0, result.imageAuthenticity.confidence, 0.0);
+    }
+
+    @Test
+    public void imageAuthenticityReportsNotAssessedWhenDetectionNeverRan() {
+        String payload = "{\"claims\": [], \"image_authenticity_checked\": false}";
+
+        IrisResultData result = IrisResultData.parse(payload, "fallback", "image");
+
+        assertEquals(IrisResultData.ImageAuthenticity.NOT_ASSESSED, result.imageAuthenticity.state);
+    }
+
+    @Test
+    public void imageAuthenticityReportsNotAssessedWhenModelsFailedToLoad() {
+        String payload = "{"
+            + "\"claims\": [],"
+            + "\"image_authenticity_checked\": false,"
+            + "\"ai_generated\": {\"status\": \"model_unavailable\", \"is_ai_generated\": false}"
+            + "}";
+
+        IrisResultData result = IrisResultData.parse(payload, "fallback", "image");
+
+        assertEquals(IrisResultData.ImageAuthenticity.NOT_ASSESSED, result.imageAuthenticity.state);
+    }
+
+    @Test
+    public void imageAuthenticityReportsNotAssessedOnDegradedDetectionStatus() {
+        String payload = "{"
+            + "\"claims\": [],"
+            + "\"image_authenticity_checked\": true,"
+            + "\"ai_generated\": {\"status\": \"error\", \"is_ai_generated\": false}"
+            + "}";
+
+        IrisResultData result = IrisResultData.parse(payload, "fallback", "image");
+
+        assertEquals(IrisResultData.ImageAuthenticity.NOT_ASSESSED, result.imageAuthenticity.state);
+    }
+
+    @Test
+    public void imageAuthenticityCarriesTheDetectorModelName() {
+        String payload = "{"
+            + "\"claims\": [],"
+            + "\"image_authenticity_checked\": true,"
+            + "\"ai_generated\": {\"status\": \"ok\", \"is_ai_generated\": true,"
+            + "\"confidence\": 0.99, \"model\": \"SightEngine\"}"
+            + "}";
+
+        IrisResultData result = IrisResultData.parse(payload, "fallback", "image");
+
+        assertEquals("SightEngine", result.imageAuthenticity.model);
+    }
+
+    @Test
+    public void imageAuthenticityModelIsEmptyWhenThePayloadDoesNotSay() {
+        String payload = "{"
+            + "\"claims\": [],"
+            + "\"image_authenticity_checked\": true,"
+            + "\"ai_generated\": {\"status\": \"ok\", \"is_ai_generated\": false, \"confidence\": 0.0}"
+            + "}";
+
+        IrisResultData result = IrisResultData.parse(payload, "fallback", "image");
+
+        assertEquals("", result.imageAuthenticity.model);
+    }
+
+    @Test
+    public void imageAuthenticityCarriesAFiredDeepfakeFlag() {
+        String payload = "{"
+            + "\"claims\": [],"
+            + "\"image_authenticity_checked\": true,"
+            + "\"ai_generated\": {\"status\": \"ok\", \"is_ai_generated\": true, \"confidence\": 0.9},"
+            + "\"deepfake\": {\"status\": \"ok\", \"is_suspicious\": true, \"confidence\": 0.82},"
+            + "\"embedded_text\": {\"status\": \"ok\", \"is_suspicious\": false, \"confidence\": 0.01}"
+            + "}";
+
+        IrisResultData result = IrisResultData.parse(payload, "fallback", "image");
+
+        // Only the detector that fired becomes a flag, and it keeps its own score:
+        // a quiet embedded-text detector contributes nothing at all.
+        assertEquals(1, result.imageAuthenticity.flags.size());
+        assertEquals(IrisResultData.ImageAuthenticity.FLAG_DEEPFAKE,
+            result.imageAuthenticity.flags.get(0).kind);
+        assertEquals(0.82, result.imageAuthenticity.flags.get(0).confidence, 0.0001);
+    }
+
+    @Test
+    public void imageAuthenticityStaysSilentWhenNoDetectorFired() {
+        String payload = "{"
+            + "\"claims\": [],"
+            + "\"image_authenticity_checked\": true,"
+            + "\"ai_generated\": {\"status\": \"ok\", \"is_ai_generated\": false, \"confidence\": 0.0},"
+            + "\"deepfake\": {\"status\": \"ok\", \"is_suspicious\": false, \"confidence\": 0.01},"
+            + "\"embedded_text\": {\"status\": \"error\", \"error\": \"quota\"}"
+            + "}";
+
+        IrisResultData result = IrisResultData.parse(payload, "fallback", "image");
+
+        // A quiet or failed detector must not grow into a "checked and clear" claim the
+        // payload never made: empty is the only honest reading of what it did not say.
+        assertEquals(IrisResultData.ImageAuthenticity.NOT_AI, result.imageAuthenticity.state);
+        assertEquals(0, result.imageAuthenticity.flags.size());
+    }
+
+    @Test
+    public void imageAuthenticityKeepsAFiredFlagEvenWhenGenaiStaysQuiet() {
+        String payload = "{"
+            + "\"claims\": [],"
+            + "\"image_authenticity_checked\": true,"
+            + "\"ai_generated\": {\"status\": \"ok\", \"is_ai_generated\": false, \"confidence\": 0.04},"
+            + "\"deepfake\": {\"status\": \"ok\", \"is_suspicious\": true, \"confidence\": 0.82}"
+            + "}";
+
+        IrisResultData result = IrisResultData.parse(payload, "fallback", "image");
+
+        // Each detector reports only what it saw: genai's state is untouched by a flag
+        // from a different detector, and the renderer decides how to show both together.
+        assertEquals(IrisResultData.ImageAuthenticity.NOT_AI, result.imageAuthenticity.state);
+        assertEquals(0.0, result.imageAuthenticity.confidence, 0.0);
+        assertEquals(1, result.imageAuthenticity.flags.size());
+        assertEquals(IrisResultData.ImageAuthenticity.FLAG_DEEPFAKE,
+            result.imageAuthenticity.flags.get(0).kind);
+    }
+
+    @Test
+    public void imageAuthenticityDropsFlagsWhenTheCheckNeverRan() {
+        String payload = "{"
+            + "\"claims\": [],"
+            + "\"image_authenticity_checked\": false,"
+            + "\"deepfake\": {\"status\": \"ok\", \"is_suspicious\": true, \"confidence\": 0.82}"
+            + "}";
+
+        IrisResultData result = IrisResultData.parse(payload, "fallback", "image");
+
+        assertEquals(IrisResultData.ImageAuthenticity.NOT_ASSESSED, result.imageAuthenticity.state);
+        assertEquals(0, result.imageAuthenticity.flags.size());
+    }
+
+    @Test
+    public void extractSourceUrlFindsBareUrlInCaption() {
+        String caption = "https://www.example.com/post/123";
+
+        assertEquals("https://www.example.com/post/123",
+            IrisResultData.extractSourceUrl(caption));
+    }
+
+    @Test
+    public void extractSourceUrlFindsUrlInsideCaptionText() {
+        String caption = "Check this out https://www.example.com/post?id=1 before it drops!";
+
+        assertEquals("https://www.example.com/post?id=1",
+            IrisResultData.extractSourceUrl(caption));
+    }
+
+    @Test
+    public void extractSourceUrlStripsSentencePunctuation() {
+        String caption = "Wild photo. See https://www.example.com/photo.";
+
+        assertEquals("https://www.example.com/photo",
+            IrisResultData.extractSourceUrl(caption));
+    }
+
+    @Test
+    public void extractSourceUrlReturnsEmptyWithoutUrl() {
+        assertEquals("", IrisResultData.extractSourceUrl("just a caption, no link"));
+        assertEquals("", IrisResultData.extractSourceUrl(""));
+        assertEquals("", IrisResultData.extractSourceUrl(null));
+    }
+
+    @Test
+    public void withSourceUrlMergesUrlIntoPayload() throws Exception {
+        String payload = "{\"claims\": [], \"verdict\": \"Verified\"}";
+
+        String merged = IrisResultData.withSourceUrl(payload, "https://www.example.com/post");
+
+        assertEquals("https://www.example.com/post",
+            new JSONObject(merged).getString("source_url"));
+        // The check's own fields survive the merge untouched.
+        assertEquals("Verified", new JSONObject(merged).getString("verdict"));
+    }
+
+    @Test
+    public void withSourceUrlPassesPayloadThroughWhenUrlMissing() {
+        String payload = "{\"claims\": []}";
+
+        assertEquals(payload, IrisResultData.withSourceUrl(payload, ""));
+        assertEquals(payload, IrisResultData.withSourceUrl(payload, null));
+    }
+
+    @Test
+    public void withSourceUrlNeverDropsTheResultOnBadJson() {
+        assertEquals("not json", IrisResultData.withSourceUrl("not json", "https://x.example/a"));
+        assertEquals("", IrisResultData.withSourceUrl("", "https://x.example/a"));
+    }
+
+    @Test
+    public void parseReadsMergedSourceUrl() throws Exception {
+        JSONObject payload = new JSONObject();
+        payload.put("claims", new JSONArray());
+        payload.put("source_url", "https://www.example.com/post");
+
+        IrisResultData result = IrisResultData.parse(payload.toString(), "fallback", "image");
+
+        assertEquals("https://www.example.com/post", result.sourceUrl);
+    }
+
+    @Test
+    public void parseSourceUrlDefaultsToEmptyOnTextChecks() {
+        IrisResultData result = IrisResultData.parse(
+            "{\"claims\": [], \"ignored_segments\": []}", "fallback", "text");
+
+        assertEquals("", result.sourceUrl);
     }
 }

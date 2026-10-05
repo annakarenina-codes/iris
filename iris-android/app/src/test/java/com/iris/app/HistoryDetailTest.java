@@ -33,7 +33,8 @@ public class HistoryDetailTest {
             RuntimeEnvironment.getApplication(),
             entry(threeClaimJson(), ""),
             "2026-09-25 13:00",
-            () -> {}
+            () -> {},
+            null
         );
 
         List<String> texts = textsIn(detail);
@@ -52,7 +53,8 @@ public class HistoryDetailTest {
             RuntimeEnvironment.getApplication(),
             entry(singleClaimJson(), ""),
             "2026-09-25 13:00",
-            () -> {}
+            () -> {},
+            null
         );
 
         for (String text : textsIn(detail)) {
@@ -70,7 +72,8 @@ public class HistoryDetailTest {
             RuntimeEnvironment.getApplication(),
             entry(singleClaimJson(), ""),
             "2026-09-25 13:00",
-            () -> opened.set(true)
+            () -> opened.set(true),
+            null
         );
 
         View open = findWithText(detail, "Open full result");
@@ -78,6 +81,27 @@ public class HistoryDetailTest {
         open.performClick();
 
         assertTrue("the escape hatch should hand off to ResultActivity", opened.get());
+    }
+
+    @Test
+    public void buildHandsSourceLinksToTheHostBeforeOpeningTheArticle() throws Exception {
+        AtomicBoolean hostPutAway = new AtomicBoolean(false);
+        View detail = HistoryDetail.build(
+            RuntimeEnvironment.getApplication(),
+            entry(singleClaimJsonWithSource(), ""),
+            "2026-09-25 13:00",
+            () -> {},
+            () -> hostPutAway.set(true)
+        );
+
+        View link = sourceCard(detail);
+        assertEquals("expected a clickable source link", true, link != null);
+        link.performClick();
+
+        assertTrue(
+            "the bubble panel must put itself away before the browser opens",
+            hostPutAway.get()
+        );
     }
 
     @Test
@@ -104,6 +128,128 @@ public class HistoryDetailTest {
         assertTrue(expanded.startsWith("Verified: some claim"));
     }
 
+    @Test
+    public void buildRendersStoredSharedImageSourceUrl() throws Exception {
+        View detail = HistoryDetail.build(
+            RuntimeEnvironment.getApplication(),
+            entry(singleClaimJsonWithSourceUrl(), ""),
+            "2026-09-25 13:00",
+            () -> {},
+            null
+        );
+
+        assertTrue(
+            "the share's source URL must survive into history detail",
+            findWithText(detail, "https://www.example.com/post/42") != null
+        );
+    }
+
+    @Test
+    public void buildOmitsSourceUrlRowWhenNoneWasShared() throws Exception {
+        View detail = HistoryDetail.build(
+            RuntimeEnvironment.getApplication(),
+            entry(singleClaimJson(), ""),
+            "2026-09-25 13:00",
+            () -> {},
+            null
+        );
+
+        for (String text : textsIn(detail)) {
+            assertFalse(
+                "gallery checks carry no source URL, so no row may render: " + text,
+                text.equals("Image source")
+            );
+        }
+    }
+
+    @Test
+    public void buildHandsSourceUrlTapToTheHostBeforeOpeningTheBrowser() throws Exception {
+        AtomicBoolean hostPutAway = new AtomicBoolean(false);
+        View detail = HistoryDetail.build(
+            RuntimeEnvironment.getApplication(),
+            entry(singleClaimJsonWithSourceUrl(), ""),
+            "2026-09-25 13:00",
+            () -> {},
+            () -> hostPutAway.set(true)
+        );
+
+        View row = clickableAncestorOf(findWithText(detail, "https://www.example.com/post/42"));
+        assertEquals("expected a clickable source URL row", true, row != null);
+        row.performClick();
+
+        assertTrue(
+            "the bubble panel must put itself away before the browser opens",
+            hostPutAway.get()
+        );
+    }
+
+    @Test
+    public void buildLeadsWithTheImageBadgeAheadOfTheClaims() throws Exception {
+        View detail = HistoryDetail.build(
+            RuntimeEnvironment.getApplication(),
+            entry(imageAuthenticityJson(true), ""),
+            "2026-09-25 13:00",
+            () -> {},
+            null
+        );
+
+        List<String> texts = textsIn(detail);
+        assertTrue(texts.contains("AI-generated image"));
+        assertTrue(texts.contains("SightEngine's AI-image detector flagged this image."));
+        assertTrue(texts.contains("AI probability: 99%"));
+        assertTrue("the badge must lead, ahead of the claim text",
+            texts.indexOf("AI-generated image") < texts.indexOf("First claim text"));
+    }
+
+    @Test
+    public void buildNamesTheDetectorInTheHonestClearState() throws Exception {
+        View detail = HistoryDetail.build(
+            RuntimeEnvironment.getApplication(),
+            entry(imageAuthenticityJson(false), ""),
+            "2026-09-25 13:00",
+            () -> {},
+            null
+        );
+
+        List<String> texts = textsIn(detail);
+        assertTrue(texts.contains("No AI detected"));
+        assertTrue(texts.contains(
+            "SightEngine did not flag this image. That is not proof it is authentic."));
+        assertFalse("the clear state never publishes a score",
+            texts.contains("AI probability: 0%"));
+    }
+
+    @Test
+    public void buildAddsNoBadgeForATextCheck() throws Exception {
+        View detail = HistoryDetail.build(
+            RuntimeEnvironment.getApplication(),
+            entry(singleClaimJson(), ""),
+            "2026-09-25 13:00",
+            () -> {},
+            null
+        );
+
+        assertFalse(textsIn(detail).contains("AI-generated image"));
+    }
+
+    private static String imageAuthenticityJson(boolean aiGenerated) throws Exception {
+        JSONObject ai = new JSONObject();
+        ai.put("status", "ok");
+        ai.put("is_ai_generated", aiGenerated);
+        ai.put("confidence", aiGenerated ? 0.99 : 0.0);
+        ai.put("model", "SightEngine");
+
+        JSONObject claim = new JSONObject();
+        claim.put("claim_text", "First claim text");
+        claim.put("verdict", "Verified");
+
+        JSONObject payload = new JSONObject();
+        payload.put("claims", new JSONArray().put(claim));
+        payload.put("image_authenticity_checked", true);
+        payload.put("ai_generated", ai);
+        return payload.toString();
+    }
+
     private static HistoryStore.HistoryEntry entry(String rawJson, String fallback) {
         HistoryStore.HistoryEntry entry = new HistoryStore.HistoryEntry();
         entry.rawJson = rawJson;
@@ -118,6 +264,35 @@ public class HistoryDetailTest {
 
         JSONObject payload = new JSONObject();
         payload.put("claims", new JSONArray().put(claim));
+        return payload.toString();
+    }
+
+    /** One claim carrying a real source, so a link actually renders to click. */
+    private static String singleClaimJsonWithSource() throws Exception {
+        JSONObject source = new JSONObject();
+        source.put("url", "https://www.rappler.com/nation/example");
+        source.put("outlet", "Rappler");
+        source.put("title", "Example article");
+
+        JSONObject claim = new JSONObject();
+        claim.put("claim_text", "First claim text");
+        claim.put("verdict", "Verified");
+        claim.put("sources", new JSONArray().put(source));
+
+        JSONObject payload = new JSONObject();
+        payload.put("claims", new JSONArray().put(claim));
+        return payload.toString();
+    }
+
+    /** One claim plus the source_url a share caption contributed. */
+    private static String singleClaimJsonWithSourceUrl() throws Exception {
+        JSONObject claim = new JSONObject();
+        claim.put("claim_text", "First claim text");
+        claim.put("verdict", "Verified");
+
+        JSONObject payload = new JSONObject();
+        payload.put("claims", new JSONArray().put(claim));
+        payload.put("source_url", "https://www.example.com/post/42");
         return payload.toString();
     }
 
@@ -153,6 +328,26 @@ public class HistoryDetailTest {
                 collectTexts(group.getChildAt(index), texts);
             }
         }
+    }
+
+    /**
+     * The source card wraps its "Read full article" label; the label itself is a plain
+     * TextView, so clicking it proves nothing. Walk out to the card that owns the listener.
+     */
+    private static View sourceCard(View root) {
+        return clickableAncestorOf(findWithText(root, "Read full article"));
+    }
+
+    /** Walks from a label out to the nearest ancestor that owns a click listener. */
+    private static View clickableAncestorOf(View label) {
+        if (label == null) return null;
+        Object parent = label.getParent();
+        while (parent instanceof View) {
+            View view = (View) parent;
+            if (view.isClickable()) return view;
+            parent = view.getParent();
+        }
+        return null;
     }
 
     private static View findWithText(View view, String wanted) {

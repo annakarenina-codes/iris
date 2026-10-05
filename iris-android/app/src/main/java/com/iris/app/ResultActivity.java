@@ -1,6 +1,7 @@
 package com.iris.app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -23,6 +24,11 @@ public class ResultActivity extends Activity {
     // Cleared when the claim or result changes, so every verdict starts collapsed at
     // three sources; only the reader's explicit tap reveals the rest.
     private boolean sourcesExpanded = false;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IrisLocale.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +75,8 @@ public class ResultActivity extends Activity {
                     render();
                 }), IrisUi.matchWrap());
             body.addView(ResultRenderer.claimPanel(this, ResultRenderer.Variant.FULL,
-                resultData.claims.get(claimIndex), "image".equals(inputType), sourcesExpanded,
+                resultData.claims.get(claimIndex), resultData.imageAuthenticity,
+                "image".equals(inputType), resultData.sourceUrl, sourcesExpanded,
                 () -> {
                     sourcesExpanded = true;
                     render();

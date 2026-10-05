@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 final class IrisResultData {
     // Denominator of the "n of N" pill. Must match len(ALL_SOURCES) in
@@ -24,6 +26,13 @@ final class IrisResultData {
     final List<SkippedSegment> skippedSegments = new ArrayList<>();
     String inputType = "text";
     String ocrText = "";
+    // null when the payload carried no detection keys at all (a text check, or a
+    // response too degraded to include them), so callers can tell "not an image
+    // check" apart from "an image check we could not run".
+    ImageAuthenticity imageAuthenticity;
+    // Where the shared image came from: the URL Android apps attach to an image
+    // share as EXTRA_TEXT. Empty on gallery picks and text checks, which have none.
+    String sourceUrl = "";
 
     private IrisResultData() {}
 
@@ -34,6 +43,8 @@ final class IrisResultData {
         try {
             JSONObject payload = new JSONObject(responseJson);
             result.ocrText = payload.optString("ocr_text", "");
+            result.sourceUrl = payload.optString("source_url", "");
+            result.imageAuthenticity = parseImageAuthenticity(payload);
             JSONArray claimArray = payload.optJSONArray("claims");
             JSONArray topLevelSources = firstArray(payload, "evidence_sources", "supporting_sources", "sources");
 
@@ -70,6 +81,92 @@ final class IrisResultData {
         }
 
         return result;
+    }
+
+    /**
+     * Maps the backend's image-authenticity payload onto three renderable states.
+     *
+     * NOT_ASSESSED is the one that matters: it is what we return whenever the check
+     * did not run or did not finish, so an unrun check can never be drawn as a
+     * cleared image. Confidence rides along only on a positive flag — the backend
+     * reports 0.0 whenever nothing was flagged, which means "we did not establish
+     * AI-ness", not "we established authenticity", and must not be shown as a score.
+     */
+    private static ImageAuthenticity parseImageAuthenticity(JSONObject payload) {
+        if (!payload.has("ai_generated") && !payload.has("image_authenticity_checked")) {
+            return null;
+        }
+
+        JSONObject ai = payload.optJSONObject("ai_generated");
+        boolean checked = payload.optBoolean("image_authenticity_checked", false);
+        String model = ai == null ? "" : ai.optString("model", "");
+
+        // Only a detector that FIRED becomes a flag. With image type out of scope we
+        // cannot tell "checked and clear" from "nothing there to check", so a quiet
+        // detector stays silent instead of claiming it cleared the image — and the
+        // list is dropped entirely for NOT_ASSESSED, which is what the extension does too.
+        List<DetectorFlag> flags = new ArrayList<>();
+        collectFlag(payload, ImageAuthenticity.FLAG_DEEPFAKE, flags);
+        collectFlag(payload, ImageAuthenticity.FLAG_EMBEDDED_TEXT, flags);
+
+        if (!checked || ai == null || !"ok".equals(ai.optString("status", ""))) {
+            return new ImageAuthenticity(ImageAuthenticity.NOT_ASSESSED, 0, "");
+        }
+
+        if (ai.optBoolean("is_ai_generated", false)) {
+            return new ImageAuthenticity(ImageAuthenticity.AI_GENERATED, ai.optDouble("confidence", 0), model, flags);
+        }
+
+        return new ImageAuthenticity(ImageAuthenticity.NOT_AI, 0, model, flags);
+    }
+
+    /** Adds a detector's reading only when that detector reports `status: ok` and `is_suspicious`. */
+    private static void collectFlag(JSONObject payload, String key, List<DetectorFlag> out) {
+        JSONObject detector = payload.optJSONObject(key);
+        if (detector == null || !"ok".equals(detector.optString("status", ""))) return;
+        if (!detector.optBoolean("is_suspicious", false)) return;
+
+        double score = detector.optDouble("confidence", 0);
+        if (Double.isNaN(score) || Double.isInfinite(score)) score = 0;
+        out.add(new DetectorFlag(key, score));
+    }
+
+    /**
+     * Pulls the first http(s) URL out of the text a sharing app attached to an image
+     * share (EXTRA_TEXT). The share text is often a full caption — "Check this out
+     * https://… " — so a plain isEmpty check would throw the link away with the caption,
+     * which is exactly the bug this exists to fix. Returns "" when no URL is present:
+     * gallery picks share no text at all, and that is a normal case, not an error.
+     */
+    static String extractSourceUrl(String sharedText) {
+        if (TextUtils.isEmpty(sharedText)) return "";
+
+        Matcher matcher = Pattern.compile("https?://\\S+").matcher(sharedText);
+        if (!matcher.find()) return "";
+
+        // Captions routinely end a pasted link with sentence punctuation; the trailing
+        // dot/paren belongs to the sentence, not the URL.
+        String url = matcher.group();
+        return url.replaceAll("[.,;:!?)\\]}'\"]+$", "");
+    }
+
+    /**
+     * Returns the backend response with the shared source URL merged in as source_url,
+     * so every surface that later reads this JSON (result screen, history row, history
+     * detail) sees the same URL the share carried. A URL that is empty, or a payload
+     * that will not parse, passes through untouched: the check itself is the product,
+     * and losing an annotation must never cost the user their result.
+     */
+    static String withSourceUrl(String responseJson, String sourceUrl) {
+        if (TextUtils.isEmpty(responseJson) || TextUtils.isEmpty(sourceUrl)) return responseJson;
+
+        try {
+            JSONObject payload = new JSONObject(responseJson);
+            payload.put("source_url", sourceUrl);
+            return payload.toString();
+        } catch (Exception error) {
+            return responseJson;
+        }
     }
 
     private static ClaimItem parseClaim(JSONObject claim, String fallbackText, JSONArray topLevelSources, int fallbackId) {
@@ -254,6 +351,50 @@ final class IrisResultData {
         SkippedSegment(String label, int count) {
             this.label = label;
             this.count = count;
+        }
+    }
+
+    static final class ImageAuthenticity {
+        static final String AI_GENERATED = "ai_generated";
+        static final String NOT_AI = "not_ai";
+        static final String NOT_ASSESSED = "not_assessed";
+        /** Payload key of the face-swap detector, and of the added-text detector. */
+        static final String FLAG_DEEPFAKE = "deepfake";
+        static final String FLAG_EMBEDDED_TEXT = "embedded_text";
+
+        final String state;
+        final double confidence;
+        /** The detector that produced the verdict, e.g. "SightEngine"; empty when the payload doesn't say. */
+        final String model;
+        /** Second detectors that FIRED, each with its own score. Empty is the honest default: a detector that stayed quiet says nothing. */
+        final List<DetectorFlag> flags;
+
+        ImageAuthenticity(String state, double confidence, String model) {
+            this(state, confidence, model, new ArrayList<DetectorFlag>());
+        }
+
+        ImageAuthenticity(String state, double confidence, String model, List<DetectorFlag> flags) {
+            this.state = state;
+            this.confidence = confidence;
+            this.model = model == null ? "" : model;
+            this.flags = flags == null ? new ArrayList<DetectorFlag>() : flags;
+        }
+    }
+
+    /**
+     * One secondary detector's own reading. Stored as (kind, score) rather than as
+     * rendered copy so the parser stays free of UI text and the renderer can label it
+     * in whichever language that screen already speaks. It is an observation of that
+     * detector alone — never a vote counted into genai's verdict.
+     */
+    static final class DetectorFlag {
+        /** Payload key the flag came from: {@link ImageAuthenticity#FLAG_DEEPFAKE} or {@link ImageAuthenticity#FLAG_EMBEDDED_TEXT}. */
+        final String kind;
+        final double confidence;
+
+        DetectorFlag(String kind, double confidence) {
+            this.kind = kind;
+            this.confidence = confidence;
         }
     }
 }

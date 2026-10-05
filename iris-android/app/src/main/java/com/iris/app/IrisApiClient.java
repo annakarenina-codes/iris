@@ -18,6 +18,8 @@ import java.net.ConnectException;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 final class IrisApiClient {
     interface Callback {
@@ -54,19 +56,100 @@ final class IrisApiClient {
 
     static void verifyImageUri(Context context, Uri imageUri, Callback callback) {
         EXECUTOR.execute(() -> {
+            String base64;
             try {
-                String base64 = readUriAsDataUrl(context, imageUri);
+                base64 = readUriAsDataUrl(context, imageUri);
+            } catch (Exception error) {
+                MAIN.post(() -> callback.onError(error.getMessage()));
+                return;
+            }
+
+            try {
                 JSONObject payload = new JSONObject();
                 payload.put("image_base64", base64);
                 payload.put("platform", "android");
+
+                // Two independent halves, started side by side (extension parity,
+                // background.js:563 Promise.allSettled): the claims post and the
+                // SightEngine check can each carry the result alone, so neither
+                // failure is allowed to discard the other's verdict. If the backend
+                // ever ships its own verdict for platform==android, drop this call to
+                // save the quota — mergeInto already ensures only one verdict ships.
+                Future<JSONObject> authenticity = EXECUTOR.submit(() ->
+                    SightEngineAuthenticity.check(context,
+                        SightEngineAuthenticity.bytesFromDataUrl(base64)));
+
                 // Already on a worker thread, reading the image, so this goes straight to
                 // the request rather than queueing a second hop. Attempt zero: the image
                 // path gets the same one retry as the text path.
-                postJsonPayload(context, "/verify-image", payload, callback, 0);
+                postJsonPayload(context, "/verify-image", payload,
+                    joinedCallback(callback, authenticity), 0);
             } catch (Exception error) {
                 MAIN.post(() -> callback.onError(error.getMessage()));
             }
         });
+    }
+
+    /**
+     * Delivers one image check after both halves have settled.
+     *
+     * Invoked on the main thread. When the SightEngine half is already finished — the
+     * common case, since it answers in seconds while the claims post can take a minute —
+     * joining is instant and stays put. A half still in flight must never block the UI:
+     * it gets a worker, and the final delivery hops back to the main thread. Either half
+     * alone is a result — a dead claims backend still shows the image badge (the backend
+     * failure rides along as the claim message), and a SightEngine miss only marks the
+     * badge "not assessed". Only when BOTH halves fail does the caller see a plain error
+     * (extension parity, background.js:602-612).
+     */
+    static Callback joinedCallback(Callback callback, Future<JSONObject> authenticity) {
+        return new Callback() {
+            @Override
+            public void onSuccess(String responseJson) {
+                if (authenticity.isDone()) {
+                    callback.onSuccess(SightEngineAuthenticity.mergeInto(responseJson, await(authenticity)));
+                    return;
+                }
+                EXECUTOR.execute(() -> {
+                    String merged = SightEngineAuthenticity.mergeInto(responseJson, await(authenticity));
+                    MAIN.post(() -> callback.onSuccess(merged));
+                });
+            }
+
+            @Override
+            public void onError(String message) {
+                if (authenticity.isDone()) {
+                    deliverErrorOrVerdict(callback, message, await(authenticity));
+                    return;
+                }
+                EXECUTOR.execute(() -> {
+                    JSONObject verdict = await(authenticity);
+                    MAIN.post(() -> deliverErrorOrVerdict(callback, message, verdict));
+                });
+            }
+        };
+    }
+
+    /** A surviving image verdict outranks a dead claims half; only both-dead is an error. */
+    private static void deliverErrorOrVerdict(Callback callback, String message, JSONObject verdict) {
+        if (verdict != null && verdict.optBoolean("image_authenticity_checked", false)) {
+            callback.onSuccess(SightEngineAuthenticity.payloadWithClaimError(message, verdict));
+        } else {
+            callback.onError(message);
+        }
+    }
+
+    /** Bounded by the check's own connect+read deadlines; this is the backstop. */
+    private static JSONObject await(Future<JSONObject> authenticity) {
+        try {
+            JSONObject verdict = authenticity.get(50, TimeUnit.SECONDS);
+            return verdict != null
+                ? verdict
+                : SightEngineAuthenticity.failure("SightEngine check failed.");
+        } catch (Exception error) {
+            authenticity.cancel(true);
+            return SightEngineAuthenticity.failure("SightEngine request failed.");
+        }
     }
 
     private static void postJson(Context context, String path, JSONObject payload, Callback callback) {
@@ -130,6 +213,13 @@ final class IrisApiClient {
             String response = readStream(inputStream);
 
             if (status < 200 || status >= 300) {
+                if (carriesAuthenticityVerdict(response)) {
+                    // An OCR-stop response still carries a completed image verdict: the
+                    // image half runs independently of the text half, so a real badge
+                    // must reach the screen instead of collapsing into a bare error.
+                    MAIN.post(() -> callback.onSuccess(response));
+                    return;
+                }
                 String message = extractBackendMessage(response, status);
                 MAIN.post(() -> callback.onError(message));
                 return;
@@ -200,5 +290,20 @@ final class IrisApiClient {
         } catch (Exception ignored) {
         }
         return "IRIS backend request failed with HTTP " + status + ".";
+    }
+
+    /**
+     * True when a non-2xx body still carries a completed image verdict worth rendering.
+     *
+     * image_authenticity_checked is only true when the check actually ran and finished;
+     * every failure shape (missing creds, timeout, undecodable image) reports false and
+     * stays the error it already was.
+     */
+    static boolean carriesAuthenticityVerdict(String response) {
+        try {
+            return new JSONObject(response).optBoolean("image_authenticity_checked", false);
+        } catch (Exception ignored) {
+            return false;
+        }
     }
 }
