@@ -220,15 +220,17 @@ final class SightEngineAuthenticity {
     /**
      * Folds the authenticity verdict into the backend's response for delivery.
      *
-     * A response that already carries image_authenticity_checked passes through untouched:
-     * the backend ran its own check, and two verdicts for one image must never fight —
-     * the backend's own answer is the one that ships.
+     * A response that already carries a completed check passes through untouched: the
+     * backend ran its own check, and two verdicts for one image must never fight — the
+     * backend's own answer is the one that ships. Mere presence is not a verdict: a
+     * backend that could not check answers false, and letting that bin a check which
+     * did finish would bill the client for an answer the user never sees.
      */
     static String mergeInto(String responseJson, JSONObject authenticity) {
         if (authenticity == null) return responseJson;
         try {
             JSONObject payload = new JSONObject(responseJson);
-            if (payload.has("image_authenticity_checked")) return responseJson;
+            if (payload.optBoolean("image_authenticity_checked", false)) return responseJson;
             payload.put("image_authenticity_checked",
                 authenticity.optBoolean("image_authenticity_checked", false));
             payload.put("ai_generated", authenticity.optJSONObject("ai_generated"));

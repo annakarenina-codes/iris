@@ -182,14 +182,23 @@ public class SightEngineAuthenticityTest {
     }
 
     @Test
-    public void mergeKeepsABackendFailureItRanItself() {
+    public void mergeYieldsToACheckTheBackendNeverRan() throws Exception {
+        // The backend answers false because it has no credentials, not because it
+        // looked and found nothing. Binning a finished verdict in favour of that
+        // would bill the client for an answer the user never sees.
         String backend = "{\"image_authenticity_checked\": false, "
-            + "\"ai_generated\": {\"status\": \"error\", \"error\": \"backend creds\"}}";
+            + "\"ai_generated\": {\"status\": \"error\", "
+            + "\"error\": \"SightEngine credentials not configured.\"}}";
 
         String merged = SightEngineAuthenticity.mergeInto(backend,
             SightEngineAuthenticity.parseVerdict(200, "{\"type\": 0.9}"));
 
-        assertEquals("the backend ran its own check; its honest failure ships", backend, merged);
+        JSONObject payload = new JSONObject(merged);
+        assertTrue("a check the backend never ran must not bin one that finished",
+            payload.getBoolean("image_authenticity_checked"));
+        assertEquals(0.9, payload.getJSONObject("ai_generated").getDouble("suspicion_score"), 0.0001);
+        assertTrue("the backend non-verdict must not survive the merge",
+            payload.getJSONObject("ai_generated").isNull("error"));
     }
 
     @Test
