@@ -974,3 +974,47 @@ test('Opening the panel from a pill parked at the edge keeps it fully on screen'
   assert.ok(panelBox.y + panelBox.height <= vp.height - 7,
     `the panel overflows the bottom edge by ${Math.round(panelBox.y + panelBox.height - vp.height)}px`);
 });
+
+test('A quiet drag raises a floating bubble, not a panel-sized box', async (t) => {
+  const page = await fixture(t, { quietMode: true });
+  await page.evaluate(() => {
+    const transfer = new DataTransfer();
+    transfer.setData('text/uri-list', 'https://example.com/photo.jpg');
+    document.body.dispatchEvent(new DragEvent('dragenter', { bubbles: true, cancelable: true, dataTransfer: transfer }));
+  });
+  const box = await page.locator('.iris-quiet-drop').boundingBox();
+  assert.ok(box.width <= 100 && box.height <= 100,
+    `the drop marker is a bubble, not a card — got ${Math.round(box.width)}x${Math.round(box.height)}`);
+  assert.ok(Math.abs(box.width - box.height) <= 1,
+    'a bubble is round — the two axes must match');
+  // The instruction still reaches assistive tech and the native tooltip even
+  // though the caption no longer renders.
+  const pad = page.locator('.iris-quiet-drop');
+  assert.equal(await pad.getAttribute('aria-label'), 'Drop an image to check it');
+  assert.equal(await pad.getAttribute('title'), 'Drop an image to check it');
+});
+
+test('A quiet drag that never lands on the bubble still takes the bubble down', async (t) => {
+  // Three ways a drag ends. dragend only fires when the dragged source lives
+  // in this document, so a photo dragged in from another tab, window or the
+  // desktop ends on one of the other two — and used to strand the bubble.
+  const endings = {
+    'dragend (source in this page)': "document.body.dispatchEvent(new DragEvent('dragend', { bubbles: true, cancelable: true }))",
+    'drop elsewhere on the page': "document.body.dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true }))",
+    'dragleave (left the window)': "document.body.dispatchEvent(new DragEvent('dragleave', { bubbles: true, cancelable: true, relatedTarget: null }))",
+  };
+
+  for (const [label, ending] of Object.entries(endings)) {
+    const page = await fixture(t, { quietMode: true });
+    await page.evaluate(() => {
+      const transfer = new DataTransfer();
+      transfer.setData('text/uri-list', 'https://example.com/photo.jpg');
+      document.body.dispatchEvent(new DragEvent('dragenter', { bubbles: true, cancelable: true, dataTransfer: transfer }));
+    });
+    await page.locator('.iris-quiet-drop').waitFor();
+    await page.evaluate((body) => { new Function(body)(); }, ending);
+    assert.equal(await page.locator('.iris-quiet-drop').count(), 0,
+      `${label} must not strand the bubble`);
+    await page.close();
+  }
+});

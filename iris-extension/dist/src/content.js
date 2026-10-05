@@ -2911,7 +2911,7 @@ function resultClaimBlock(claim, result) {
 
   function mountQuietDropTarget() {
     root.innerHTML = `
-      <div class="iris-quiet-drop iris-extension-shell" role="group" aria-label="${t("drop.quietTarget")}">
+      <div class="iris-quiet-drop iris-extension-shell" role="group" aria-label="${t("drop.quietTarget")}" title="${t("drop.quietTarget")}">
         ${icon("image")}
         <span>${t("drop.quietTarget")}</span>
       </div>
@@ -3047,10 +3047,14 @@ function resultClaimBlock(claim, result) {
   // Page-level drag detection: root has no size while every surface is
   // unmounted, so it can never hear the drag that should mount the pad.
   // Capture runs before root's handlers, whose stopPropagation would
-  // otherwise starve the detector. dragend - not drop - is the teardown:
-  // a captured drop listener would wipe the target mid-dispatch.
+  // otherwise starve the detector. Teardown is deliberately two events:
+  // a CAPTURED drop would wipe the target mid-dispatch, so a drop that
+  // lands on root hides the pad itself; everything else needs dragend
+  // plus a bubbling drop, because a drag whose source lives outside this
+  // document never fires dragend here and would strand the pad forever.
   document.addEventListener("dragenter", handleDocumentDragEnter, true);
   document.addEventListener("dragend", hideQuietDropTarget, true);
+  document.addEventListener("drop", hideQuietDropTarget);
   document.addEventListener("dragleave", (event) => {
     // relatedTarget null means the pointer left the document (window drag
     // end, alt-tab); a normal element-to-element leave keeps the pad.

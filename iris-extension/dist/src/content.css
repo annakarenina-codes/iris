@@ -1765,47 +1765,54 @@ blockquote {
   box-shadow: 0 4px 20px rgba(109, 40, 217, 0.18);
 }
 
-/* The drag-only landing pad: quiet idle unmounts every surface, so a
-   candidate image drag gets a docked pad instead. It parks on the same
+/* The drag-only landing bubble: quiet idle unmounts every surface, so a
+   candidate image drag gets a docked marker instead. It parks on the same
    inline-end edge the floating panel defaults to (right in LTR, left in
    RTL), vertically centred — never covering the content being dragged.
-   The pad only mounts when no panel/pill exists, so it cannot overlap
+   The bubble only mounts when no panel/pill exists, so it cannot overlap
    either. The dashed green edge is the same "drop means go" signal the
-   panel and pill already speak. */
+   panel and pill already speak; a circle, not a card, because a card
+   competing with the dragged content is a box the eye has to dismiss
+   first. The instruction rides the aria-label and the native title. */
 .iris-quiet-drop {
   position: fixed;
   top: 50%;
   inset-inline-end: 24px;
   transform: translateY(-50%);
-  width: min(300px, calc(100vw - 48px));
-  height: 168px;
+  width: 72px;
+  height: 72px;
   z-index: 2147483647;
   display: grid;
   place-content: center;
-  justify-items: center;
-  gap: 10px;
-  padding: 24px;
+  place-items: center;
   box-sizing: border-box;
+  padding: 0;
   border: 2px dashed var(--iris-ready);
-  border-radius: var(--iris-r-card);
+  border-radius: 50%;
   background: var(--iris-card-bg);
   color: var(--iris-ready);
   box-shadow: var(--iris-shadow);
   cursor: copy;
   user-select: none;
-  text-align: center;
 }
 
 .iris-quiet-drop .iris-icon {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
 }
 
+/* The sentence stays in the DOM for assistive tech and the native tooltip,
+   but never renders: the bubble speaks through its label, not a caption. */
 .iris-quiet-drop span {
-  color: var(--iris-text);
-  font-size: calc(13px * var(--iris-scale));
-  font-weight: 700;
-  line-height: 1.3;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .iris-quiet-drop:hover {
