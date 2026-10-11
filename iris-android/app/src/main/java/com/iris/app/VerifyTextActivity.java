@@ -1,6 +1,7 @@
 package com.iris.app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -19,11 +20,26 @@ public class VerifyTextActivity extends Activity {
     private LinearLayout bodyLayout;
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IrisLocale.wrap(newBase));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        IrisUi.applyTheme(this);
 
-        CharSequence selected = getIntent().getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);
-        String text = selected == null ? "" : selected.toString().trim();
+        // Two doors into the same verification flow: the selection toolbar (PROCESS_TEXT)
+        // carries EXTRA_PROCESS_TEXT, the system share sheet (ACTION_SEND) carries EXTRA_TEXT.
+        boolean fromShare = Intent.ACTION_SEND.equals(getIntent().getAction());
+        CharSequence input = fromShare
+                ? getIntent().getCharSequenceExtra(Intent.EXTRA_TEXT)
+                : getIntent().getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);
+        String text = input == null ? "" : input.toString().trim();
+        String sourceLabel = fromShare ? "Shared text" : "Selected text";
+        String emptyMessage = fromShare
+                ? "No shared text was provided."
+                : "No selected text was provided.";
 
         if (!text.isEmpty() && Settings.canDrawOverlays(this)) {
             Intent service = new Intent(this, OverlayService.class);
@@ -34,16 +50,18 @@ public class VerifyTextActivity extends Activity {
             return;
         }
 
-        renderLoading(text);
+        renderLoading(text, sourceLabel, emptyMessage);
 
         if (text.isEmpty()) {
-            showError("No selected text was provided.");
+            showError(emptyMessage);
             return;
         }
 
         IrisApiClient.verifyText(this, text, new IrisApiClient.Callback() {
             @Override
             public void onSuccess(String responseJson) {
+                // Without overlay permission this path skips OverlayService, so record here.
+                HistoryStore.record(VerifyTextActivity.this, responseJson, text, "text");
                 Intent intent = new Intent(VerifyTextActivity.this, ResultActivity.class);
                 intent.putExtra(ResultActivity.EXTRA_RESPONSE_JSON, responseJson);
                 intent.putExtra(ResultActivity.EXTRA_FALLBACK_TEXT, text);
@@ -67,7 +85,7 @@ public class VerifyTextActivity extends Activity {
         }
     }
 
-    private void renderLoading(String selectedText) {
+    private void renderLoading(String selectedText, String sourceLabel, String emptyMessage) {
         LinearLayout root = IrisUi.vertical(this, 18);
         root.setGravity(Gravity.CENTER);
         root.setBackgroundColor(IrisUi.BG);
@@ -76,8 +94,8 @@ public class VerifyTextActivity extends Activity {
         panel.addView(header(), IrisUi.matchWrap());
 
         bodyLayout = IrisUi.vertical(this, 20);
-        bodyLayout.addView(IrisUi.eyebrow(this, "Selected text"), IrisUi.matchWrap());
-        bodyLayout.addView(claimPreview(selectedText), IrisUi.spaced(this, 8));
+        bodyLayout.addView(IrisUi.eyebrow(this, sourceLabel), IrisUi.matchWrap());
+        bodyLayout.addView(claimPreview(selectedText, emptyMessage), IrisUi.spaced(this, 8));
 
         progressBar = new IrisScanIndicator(this);
         bodyLayout.addView(progressBar, IrisUi.spaced(this, 18));
@@ -97,7 +115,7 @@ public class VerifyTextActivity extends Activity {
 
     private View header() {
         LinearLayout header = IrisUi.horizontal(this, 14);
-        header.setBackground(IrisUi.gradient(this, 20));
+        header.setBackground(IrisUi.gradient(this, 18));
 
         IrisMarkView mark = new IrisMarkView(this);
         mark.setMonochrome(true);
@@ -116,15 +134,15 @@ public class VerifyTextActivity extends Activity {
         return header;
     }
 
-    private View claimPreview(String selectedText) {
+    private View claimPreview(String selectedText, String emptyMessage) {
         TextView quote = new TextView(this);
-        quote.setText(truncate(selectedText.isEmpty() ? "No selected text was provided." : selectedText));
+        quote.setText(truncate(selectedText.isEmpty() ? emptyMessage : selectedText));
         quote.setTextColor(IrisUi.TEXT);
         quote.setTextSize(16);
         quote.setTypeface(Typeface.SERIF, Typeface.ITALIC);
         quote.setLineSpacing(0, 1.12f);
         quote.setPadding(IrisUi.dp(this, 14), IrisUi.dp(this, 12), IrisUi.dp(this, 14), IrisUi.dp(this, 12));
-        quote.setBackground(IrisUi.bordered(this, IrisUi.BLUE_BG, 14, Color.rgb(187, 218, 255)));
+        quote.setBackground(IrisUi.bordered(this, IrisUi.BLUE_BG, 14, IrisUi.BLUE_OUTLINE));
         return quote;
     }
 
@@ -132,7 +150,7 @@ public class VerifyTextActivity extends Activity {
         if (progressBar != null) progressBar.setVisibility(View.GONE);
         if (statusText != null) {
             statusText.setText(message == null ? "IRIS could not complete the check." : message);
-            statusText.setTextColor(Color.rgb(153, 27, 27));
+            statusText.setTextColor(IrisUi.STATUS_ERROR);
         }
 
         Button done = IrisUi.secondaryButton(this, "Back to IRIS");

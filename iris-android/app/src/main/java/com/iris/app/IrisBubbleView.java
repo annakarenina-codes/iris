@@ -106,7 +106,7 @@ public class IrisBubbleView extends FrameLayout {
         }
 
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.WHITE);
+        paint.setColor(IrisUi.CARD);
         canvas.drawCircle(centerX, centerY, radius, paint);
 
         paint.setStyle(Paint.Style.STROKE);

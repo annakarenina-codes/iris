@@ -1,0 +1,530 @@
+﻿/* Options — tokens.css supplies palette, type and motion; this file only lays
+   things out. One gradient moment: the Save button. The stored irisTheme sets
+   data-theme on <html> (options.js), so every color below resolves through
+   light-dark() for light, dark, or system. */
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--iris-text);
+  font-family: var(--iris-font-sans);
+  /* The whole scale tops out at 16px; 16.5px was off-scale. */
+  font-size: 16px;
+  background: var(--iris-page-bg);
+}
+
+.options-shell {
+  width: min(720px, calc(100vw - 32px));
+  margin: 0 auto;
+  /* Page gutter, outside the component spacing scale. */
+  padding: 36px 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.iris-mark {
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: 1px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-card-bg);
+  box-shadow: 0 8px 24px light-dark(rgba(109, 40, 217, 0.14), rgba(0, 0, 0, 0.45));
+}
+
+.iris-mark img {
+  width: 36px;
+  height: 36px;
+  display: block;
+  object-fit: contain;
+}
+
+h1 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+header p {
+  margin: 4px 0 0;
+  color: var(--iris-text-light);
+  font-size: 14px;
+}
+
+form {
+  display: grid;
+  gap: 16px;
+}
+
+.settings-card,
+.settings-grid {
+  border: 1px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-card-bg);
+  padding: 16px;
+  box-shadow: var(--iris-shadow);
+}
+
+.settings-card label,
+.settings-grid label {
+  display: grid;
+  gap: 8px;
+  color: var(--iris-text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.settings-card p {
+  margin: 8px 0 0;
+  color: var(--iris-text-light);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Interactive boundaries carry the 3:1 control border; keyboard focus is the
+   shared :focus-visible ring from tokens.css — no second focus system here.
+   type="text" belongs to the group too (SightEngine API User) — leaving it out
+   rendered that one field as a bare unstyled box next to its siblings. */
+input[type="url"],
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  min-height: 42px;
+  /* The native arrow owns the trailing edge; keep the label clear of it on
+     fixed-width controls, and let padding-inline flip it for RTL. */
+  padding-inline: 12px 36px;
+  border: 1.5px solid var(--iris-border-control);
+  border-radius: var(--iris-r-control);
+  background: var(--iris-card-bg);
+  color: var(--iris-text);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 160ms var(--iris-ease);
+}
+
+select:hover {
+  border-color: var(--iris-accent);
+}
+
+.checkbox-row {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.checkbox-row:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox-row input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--iris-accent);
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+footer {
+  display: flex;
+  gap: 8px;
+}
+
+/* One motion contract for every control: colour, chrome and position travel on
+   the same curve the on-page panel uses. */
+button {
+  min-height: 42px;
+  border: 0;
+  border-radius: var(--iris-r-control);
+  background: var(--iris-accent-strong);
+  color: var(--iris-on-accent);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0 16px;
+  transition:
+    background-color var(--iris-fast) var(--iris-ease),
+    border-color var(--iris-fast) var(--iris-ease),
+    color var(--iris-fast) var(--iris-ease),
+    box-shadow var(--iris-fast) var(--iris-ease),
+    transform var(--iris-fast) var(--iris-ease),
+    filter var(--iris-fast) var(--iris-ease);
+}
+
+button:hover {
+  filter: brightness(1.06);
+}
+
+/* The page's single gradient moment: the Save button. */
+footer button[type="submit"] {
+  background: var(--iris-gradient);
+}
+
+/* Only the footer actions lift. History rows are buttons too, and a row that
+   jumps on hover reads as a glitch instead of as feedback. */
+footer button {
+  box-shadow: 0 4px 14px light-dark(rgba(109, 40, 217, 0.28), rgba(0, 0, 0, 0.5));
+}
+
+footer button:hover {
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+  filter: brightness(0.92);
+}
+
+#restore-defaults {
+  border: 1.5px solid var(--iris-border-strong);
+  background: var(--iris-card-bg);
+  color: var(--iris-accent);
+  box-shadow: none;
+}
+
+#save-status {
+  min-height: 18px;
+  margin: 12px 0 0;
+  color: var(--iris-text-light);
+  font-size: 13px;
+}
+
+@media (max-width: 560px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    flex-direction: column;
+  }
+}
+
+/* The study's own settings, folded away from the people taking part in it. */
+.settings-advanced > summary {
+  cursor: pointer;
+  color: var(--iris-text-light);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  list-style: none;
+}
+
+.settings-advanced > summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-advanced > summary::before {
+  content: "\25B8\00A0";
+  display: inline-block;
+  transition: transform var(--iris-fast) var(--iris-ease);
+}
+
+.settings-advanced[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.settings-advanced[open] > summary {
+  margin-bottom: 16px;
+}
+
+.settings-advanced > label:not(.checkbox-row) {
+  margin-top: 4px;
+}
+
+.privacy-note {
+  margin: 0;
+  color: var(--iris-text-light);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Check history: one row per completed check, kept in chrome.storage.local only. */
+.history-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.history-head h2 {
+  margin: 0;
+  color: var(--iris-text);
+  font-size: 14px;
+}
+
+#clear-history {
+  min-height: 32px;
+  border: 1.5px solid var(--iris-border-strong);
+  background: var(--iris-card-bg);
+  color: var(--iris-accent);
+  padding: 0 12px;
+  box-shadow: none;
+}
+
+#clear-history.is-armed {
+  border-color: light-dark(#fca5a5, #f87171);
+  background: light-dark(#fef2f2, #450a0a);
+  color: light-dark(#b91c1c, #fca5a5);
+}
+
+.history-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.history-list .history-empty {
+  margin: 0;
+  padding: 16px 12px;
+  border: 1.5px dashed var(--iris-border);
+  border-radius: var(--iris-r-control);
+  color: var(--iris-text-light);
+  font-size: 13px;
+  text-align: center;
+}
+
+.history-row {
+  overflow: hidden;
+  border: 1.5px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-card-bg);
+}
+
+.history-row__summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 8px;
+  align-items: start;
+  width: 100%;
+  min-height: 0;
+  padding: 12px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--iris-text);
+  font-size: 13px;
+  font-weight: 400;
+  text-align: start;
+}
+
+.history-row__summary:hover {
+  background: var(--iris-hover-bg);
+}
+
+.history-row__preview {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.history-row__meta {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--iris-text-light);
+  font-size: 11px;
+}
+
+.history-badge {
+  display: inline-block;
+  justify-self: start;
+  max-width: 150px;
+  overflow: hidden;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--iris-r-pill);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tones mirror the verdict colors the result panel uses, so the same verdict
+   reads the same; both schemes come along through light-dark(). */
+.history-badge.is-verified {
+  border-color: light-dark(#6ee7b7, #34d399);
+  background: light-dark(#ecfdf5, #064e3b);
+  color: light-dark(#065f46, #a7f3d0);
+}
+
+.history-badge.is-partial {
+  border-color: light-dark(#fcd34d, #fbbf24);
+  background: light-dark(#fffbeb, #451a03);
+  color: light-dark(#78350f, #fde68a);
+}
+
+.history-badge.is-refuted {
+  border-color: light-dark(#f87171, #f87171);
+  background: light-dark(#fef2f2, #450a0a);
+  color: light-dark(#7f1d1d, #fca5a5);
+}
+
+.history-badge.is-unknown {
+  border-color: light-dark(#e5e7eb, #374151);
+  background: light-dark(#f9fafb, #1e1930);
+  color: light-dark(#374151, #9ca3af);
+}
+
+/* The row grid is two columns wide (badges, preview), so the verdict and the
+   SightEngine pill stack inside one badge cell instead of claiming a column. */
+.history-row__badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.history-row__ai {
+  display: inline-block;
+  max-width: 150px;
+  overflow: hidden;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--iris-r-pill);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tones mirror the panel's .image-auth--is-flagged / --is-clear palettes so the
+   same verdict reads the same on both surfaces, in both themes. */
+.history-row__ai.is-flagged {
+  border-color: light-dark(#fca5a5, rgba(248, 113, 113, 0.38));
+  background: light-dark(#fef2f2, #2a1416);
+  color: light-dark(#991b1b, #fca5a5);
+}
+
+.history-row__ai.is-clear {
+  border-color: light-dark(#86efac, rgba(74, 222, 128, 0.34));
+  background: light-dark(#f0fdf4, #12241a);
+  color: light-dark(#166534, #86efac);
+}
+
+.history-row__detail {
+  display: grid;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+
+.history-claim {
+  display: grid;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--iris-border);
+}
+
+.history-claim p {
+  margin: 0;
+  color: var(--iris-text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Quote block for the raw claim: the detail is the only surface where the full
+   statement is readable, so it gets room and weight instead of a clamp. Same
+   treatment the panel gives a quote. */
+.history-claim__text {
+  margin: 0;
+  padding: 8px 12px;
+  border-inline-start: 3px solid var(--iris-accent);
+  background: var(--iris-subtle-bg);
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  border-start-end-radius: var(--iris-r-control);
+  border-end-end-radius: var(--iris-r-control);
+  color: var(--iris-text);
+  font-family: var(--iris-font-serif);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.history-claim__sources {
+  color: var(--iris-text-light);
+  font-size: 11px;
+}
+
+.history-source-list {
+  display: grid;
+  gap: 6px;
+}
+
+.history-source {
+  color: var(--iris-accent);
+  font-size: 12px;
+  line-height: 1.4;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.history-source:hover {
+  color: light-dark(#4c1d95, #c4b5fd);
+}
+
+.history-source--collapsed {
+  display: none;
+}
+
+/* Same quiet pill the panel's reveal controls use: present enough to find,
+   never louder than the links it uncovers. min-height cancels the global
+   button rule, or this pill inherits the 42px action height. */
+.history-source-more {
+  justify-self: start;
+  min-height: 0;
+  padding: 4px 12px;
+  border: 1px solid var(--iris-border);
+  border-radius: var(--iris-r-pill);
+  background: var(--iris-subtle-bg);
+  color: var(--iris-text-mid);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.history-source-more:hover {
+  background: var(--iris-muted-bg);
+  color: var(--iris-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Kept at the specificity the press rule actually uses, or it never wins. */
+  button:active:not(:disabled),
+  footer button:hover {
+    transform: none !important;
+  }
+}

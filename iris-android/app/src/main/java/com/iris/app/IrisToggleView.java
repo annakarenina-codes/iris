@@ -59,7 +59,7 @@ public class IrisToggleView extends View {
             ));
         } else {
             paint.setShader(null);
-            paint.setColor(Color.rgb(229, 231, 235));
+            paint.setColor(IrisUi.TRACK);
         }
         canvas.drawRoundRect(track, height / 2f, height / 2f, paint);
         paint.setShader(null);
@@ -68,7 +68,7 @@ public class IrisToggleView extends View {
         float knobCenterX = checked ? width - height / 2f : height / 2f;
         float knobCenterY = height / 2f;
 
-        paint.setColor(Color.WHITE);
+        paint.setColor(IrisUi.KNOB);
         canvas.drawCircle(knobCenterX, knobCenterY, knobRadius, paint);
 
         if (checked) {

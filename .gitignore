@@ -38,8 +38,21 @@ Thumbs.db
 # Nested tool metadata
 .agents/
 .codex/
+.atl/
+
+# Local research and eval artifacts. Standalone tooling: no tracked file in the
+# backend, extension, or Android app imports from these, so a fresh clone builds
+# and runs without them. iris-authenticity also holds a SightEngine credential
+# and ~500 MB of LoRA checkpoints, which must never enter history.
+iris-authenticity/
+tested-images/
 
 # IRIS TRACE runtime data
 .iris-trace/
 *.sqlite3-wal
 *.sqlite3-shm
+
+# The extension's shippable bundle and UI test screenshots stay tracked;
+# the generic dist/ and build/ rules above would otherwise swallow them.
+!iris-extension/dist/
+!iris-extension/build/

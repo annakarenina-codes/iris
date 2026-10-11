@@ -1,0 +1,158 @@
+/* Popup — one gradient moment (#open-panel). Everything else runs on the
+   shared tokens in tokens.css, so the stored irisTheme setting themes this
+   page exactly like the panel and the options page. */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 260px;
+  margin: 0;
+  color: var(--iris-text);
+  font-family: var(--iris-font-sans);
+  /* 16px is the whole scale's top body step; 16.5px was off-scale. */
+  font-size: 16px;
+  background: var(--iris-page-bg);
+}
+
+.popup-shell {
+  padding: 16px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.iris-mark {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-subtle-bg);
+}
+
+.iris-mark img {
+  width: 28px;
+  height: 28px;
+  display: block;
+  object-fit: contain;
+}
+
+header strong {
+  display: block;
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+header span {
+  display: block;
+  /* Was #8b7fb8: 3.60:1 on white. */
+  color: var(--iris-text-light);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.status-card {
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid var(--iris-border);
+  border-radius: var(--iris-r-card);
+  background: var(--iris-subtle-bg);
+  box-shadow: 0 4px 12px rgba(109, 40, 217, 0.08);
+}
+
+.status-card span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--iris-text-light);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.status-card strong {
+  display: block;
+  overflow-wrap: anywhere;
+  color: var(--iris-text-mid);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.button-stack {
+  display: grid;
+  gap: 8px;
+}
+
+/* One motion contract: colour, chrome and position travel on the same curve.
+   Reduced motion keeps the press/hover feedback and pins the transforms. */
+button {
+  min-height: 38px;
+  border: 0;
+  border-radius: var(--iris-r-control);
+  background: var(--iris-accent-strong);
+  color: var(--iris-on-accent);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.28);
+  transition:
+    background-color var(--iris-fast) var(--iris-ease),
+    border-color var(--iris-fast) var(--iris-ease),
+    color var(--iris-fast) var(--iris-ease),
+    box-shadow var(--iris-fast) var(--iris-ease),
+    transform var(--iris-fast) var(--iris-ease),
+    filter var(--iris-fast) var(--iris-ease);
+}
+
+/* The popup's single gradient moment. White type clears 5.7:1 at every stop
+   of the ramp in tokens.css. */
+#open-panel {
+  background: var(--iris-gradient);
+}
+
+button:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+  filter: brightness(0.92);
+}
+
+button.secondary {
+  border: 1.5px solid var(--iris-border-strong);
+  background: var(--iris-card-bg);
+  color: var(--iris-accent);
+  box-shadow: none;
+}
+
+#popup-status {
+  min-height: 16px;
+  margin: 8px 0 0;
+  color: var(--iris-text-light);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Matched to the specificity the press and hover rules actually use, so the
+     static feedback survives without any movement. */
+  button:active:not(:disabled),
+  button:hover {
+    transform: none !important;
+  }
+}

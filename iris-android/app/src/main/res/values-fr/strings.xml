@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">IRIS</string>
+    <!-- Extension parity: i18n.js btn.check in fr. -->
+    <string name="process_text_label">Vérifier avec IRIS</string>
+
+    <!-- Hero -->
+    <string name="hero_tagline">Vérifiez des faits depuis n\'importe quelle appli</string>
+    <string name="hero_subtitle">Activez la bulle flottante, collez un texte Facebook copié, utilisez le menu de texte Android si disponible, ou partagez des images à IRIS pour une vérification OCR.</string>
+
+    <!-- Status strip -->
+    <string name="status_ready_title">Prêt à vérifier</string>
+    <string name="status_ready_detail">IRIS ne vérifie que le texte ou les images que vous soumettez volontairement.</string>
+
+    <!-- Bubble card -->
+    <string name="bubble_eyebrow">IRIS Bubble</string>
+    <string name="bubble_title">Assistant flottant</string>
+    <string name="bubble_open">Ouvrir la bulle maintenant</string>
+    <string name="bubble_stop">Désactiver la bulle</string>
+    <string name="bubble_desc_on">IRIS est actif. Utilisez la bulle pour vérifier un texte collé sur Facebook, un texte sélectionné ou des images partagées.</string>
+    <string name="bubble_desc_off">IRIS est désactivé. Activez-le pour afficher la bulle flottante au-dessus des autres applis.</string>
+    <string name="bubble_state_on">ACTIVÉ - Bulle visible</string>
+    <string name="bubble_state_off">DÉSACTIVÉ - Bulle masquée</string>
+
+    <!-- Clipboard auto-open -->
+    <string name="clipboard_eyebrow">Presse-papiers</string>
+    <string name="clipboard_title">Ouvrir le texte collé automatiquement</string>
+    <string name="clipboard_desc">Activée, cette option remplit le panneau avec votre dernier texte copié dès que vous touchez la bulle, pour le vérifier aussitôt. Désactivée par défaut.</string>
+    <string name="clipboard_toggle_label">Remplir avec le texte copié</string>
+
+    <!-- Appearance -->
+    <string name="appearance_eyebrow">Apparence</string>
+    <string name="theme_title">Thème</string>
+    <string name="theme_desc">Suivez le réglage système, ou forcez le clair ou le sombre pour IRIS.</string>
+    <string name="theme_system">Système</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_dark">Sombre</string>
+
+    <!-- Language -->
+    <string name="language_eyebrow">Langue</string>
+    <string name="language_title">Langue de l\'appli</string>
+    <string name="language_desc">Choisissez la langue utilisée par IRIS dans toute l\'appli.</string>
+
+    <!-- Android workflow -->
+    <string name="workflow_eyebrow">Flux Android</string>
+    <string name="workflow_title">Trois points d\'entrée déclenchés par l\'utilisateur</string>
+    <string name="workflow_paste_title">Collage Facebook</string>
+    <string name="workflow_paste_detail">Appuyez longuement sur le texte du poste pour le copier, touchez la bulle IRIS, collez, puis vérifiez.</string>
+    <string name="workflow_select_title">Sélection de texte</string>
+    <string name="workflow_select_detail">Dans les applis prises en charge, la barre de texte Android peut afficher « Vérifier avec IRIS ».</string>
+    <string name="workflow_share_title">Partage d\'images</string>
+    <string name="workflow_share_detail">Partagez des publications avec images à IRIS ; l\'appli les envoie vers /verify-image pour l\'OCR, puis affiche les résultats.</string>
+
+    <!-- Privacy and sources -->
+    <string name="privacy_eyebrow">Confidentialité et sources</string>
+    <string name="privacy_title">Vérification contrôlée par l\'utilisateur</string>
+    <string name="privacy_trigger_title">Uniquement déclenché par l\'utilisateur</string>
+    <string name="privacy_trigger_detail">IRIS ne surveille pas automatiquement les autres applis ; la vérification commence uniquement lorsque vous soumettez un texte ou une image.</string>
+    <string name="privacy_clipboard_title">Confidentialité d\'abord</string>
+    <string name="privacy_clipboard_detail">Le presse-papiers n\'est lu qu\'après avoir touché Coller depuis le presse-papiers dans la bulle, ou lorsque l\'ouverture automatique est activée et que le panneau s\'ouvre.</string>
+    <string name="privacy_sources_title">Sources approuvées</string>
+    <string name="privacy_sources_detail">IRIS vérifie VERA Files et Rappler ainsi que ABS-CBN, GMA, Inquirer, PhilStar, Manila Bulletin, PNA, PIA, DZRH et OneNews.</string>
+
+    <!-- Backend -->
+    <string name="backend_eyebrow">Backend</string>
+    <string name="backend_title">Connexion</string>
+    <string name="backend_desc">Utilisez 10.0.2.2 lorsque le backend Flask tourne sur le même ordinateur que l\'émulateur.</string>
+    <string name="backend_save">Enregistrer l\'URL du backend</string>
+    <string name="status_backend_saved">URL du backend enregistrée.</string>
+
+    <!-- SightEngine -->
+    <string name="sightengine_eyebrow">Vérifications d\'images</string>
+    <string name="sightengine_title">Détection d\'images IA</string>
+    <string name="sightengine_desc">Ajoutez vos propres identifiants d\'API SightEngine pour activer la détection d\'images IA sur les images partagées. Enregistrés uniquement sur cet appareil. Sans eux, les contrôles d\'images affichent Not assessed.</string>
+    <string name="sightengine_user_hint">Utilisateur de l\'API</string>
+    <string name="sightengine_secret_hint">Clé secrète de l\'API</string>
+    <string name="sightengine_save">Enregistrer les identifiants</string>
+    <string name="status_sightengine_saved">Identifiants enregistrés.</string>
+
+    <!-- Manual check -->
+    <string name="manual_eyebrow">Vérifier une affirmation</string>
+    <string name="manual_title">Vérification manuelle de texte et d\'image</string>
+    <string name="manual_desc">Collez une affirmation ou choisissez une capture d\'écran, et IRIS la vérifiera contre les sources de presse philippines.</string>
+    <string name="manual_input_hint">Collez ou saisissez une affirmation à vérifier</string>
+    <string name="manual_pick_image">Choisir une image à vérifier</string>
+
+    <!-- History card -->
+    <string name="history_eyebrow">Historique</string>
+    <string name="history_title">Vérifications passées</string>
+    <string name="history_desc">Consultez les verdicts des vérifications effectuées sur cet appareil. L\'historique ne quitte jamais le téléphone.</string>
+    <string name="history_open">Ouvrir l\'historique</string>
+
+    <!-- Flow statuses -->
+    <string name="status_overlay_permission">Autorisez IRIS à s\'afficher au-dessus des autres applis, puis revenez ici et réactivez la bulle.</string>
+    <string name="status_bubble_active">La bulle IRIS est active. Touchez-la pour coller du texte, ou utilisez les menus de partage et de texte d\'Android.</string>
+    <string name="status_bubble_off">Bulle IRIS désactivée.</string>
+    <string name="status_empty_text">Saisissez ou sélectionnez d\'abord un texte.</string>
+    <string name="status_scanning">Recherche dans les sources approuvées par IRIS...</string>
+    <string name="status_no_image">Aucune image sélectionnée.</string>
+    <string name="status_extracting">Vérification de l\'image et recherche de sources...</string>
+    <string name="status_image_ocr">Image envoyée pour vérification.</string>
+</resources>

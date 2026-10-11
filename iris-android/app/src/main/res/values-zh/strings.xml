@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">IRIS</string>
+    <!-- Extension parity: i18n.js btn.check in zh. -->
+    <string name="process_text_label">用 IRIS 检查</string>
+
+    <!-- Hero -->
+    <string name="hero_tagline">从任何应用进行事实核查</string>
+    <string name="hero_subtitle">启用浮动气泡、粘贴复制的 Facebook 文本、在支持的应用中使用 Android 文本菜单，或将图片分享给 IRIS 进行 OCR 验证。</string>
+
+    <!-- Status strip -->
+    <string name="status_ready_title">准备就绪，随时核查</string>
+    <string name="status_ready_detail">IRIS 只会检查您主动提交的文本或图片。</string>
+
+    <!-- Bubble card -->
+    <string name="bubble_eyebrow">IRIS Bubble</string>
+    <string name="bubble_title">浮动助手</string>
+    <string name="bubble_open">立即打开气泡</string>
+    <string name="bubble_stop">关闭气泡</string>
+    <string name="bubble_desc_on">IRIS 已启用。使用气泡进行 Facebook 粘贴检查、选中文本或分享的图片。</string>
+    <string name="bubble_desc_off">IRIS 已停用。启用后可在其他应用上方显示浮动气泡。</string>
+    <string name="bubble_state_on">开 - 气泡可见</string>
+    <string name="bubble_state_off">关 - 气泡隐藏</string>
+
+    <!-- Clipboard auto-open -->
+    <string name="clipboard_eyebrow">剪贴板</string>
+    <string name="clipboard_title">自动打开粘贴的文本</string>
+    <string name="clipboard_desc">开启后，点按气泡会用你最近复制的文本填充面板，方便立即检查。默认关闭。</string>
+    <string name="clipboard_toggle_label">用复制的文本填充</string>
+
+    <!-- Appearance -->
+    <string name="appearance_eyebrow">外观</string>
+    <string name="theme_title">主题</string>
+    <string name="theme_desc">跟随系统设置，或为 IRIS 强制使用浅色或深色。</string>
+    <string name="theme_system">系统</string>
+    <string name="theme_light">浅色</string>
+    <string name="theme_dark">深色</string>
+
+    <!-- Language -->
+    <string name="language_eyebrow">语言</string>
+    <string name="language_title">应用语言</string>
+    <string name="language_desc">选择 IRIS 在整个应用中使用的语言。</string>
+
+    <!-- Android workflow -->
+    <string name="workflow_eyebrow">Android 工作流程</string>
+    <string name="workflow_title">三种由用户触发的入口</string>
+    <string name="workflow_paste_title">Facebook 粘贴</string>
+    <string name="workflow_paste_detail">长按帖子文本进行复制，点按 IRIS 气泡，粘贴后进行检查。</string>
+    <string name="workflow_select_title">文本选择</string>
+    <string name="workflow_select_detail">在支持的应用中，Android 文本工具栏会显示“用 IRIS 检查”。</string>
+    <string name="workflow_share_title">图片分享</string>
+    <string name="workflow_share_detail">将图片帖子分享给 IRIS；应用会将其发送到 /verify-image 进行 OCR，然后显示声明结果。</string>
+
+    <!-- Privacy and sources -->
+    <string name="privacy_eyebrow">隐私与来源</string>
+    <string name="privacy_title">由用户掌控的验证</string>
+    <string name="privacy_trigger_title">仅由用户触发</string>
+    <string name="privacy_trigger_detail">IRIS 不会自动监控其他应用；只有当您提交文本或图片时才会开始检查。</string>
+    <string name="privacy_clipboard_title">隐私优先</string>
+    <string name="privacy_clipboard_detail">只有在气泡内点按“从剪贴板粘贴”后，或开启自动打开并打开面板时，才会读取剪贴板。</string>
+    <string name="privacy_sources_title">认可的来源</string>
+    <string name="privacy_sources_detail">IRIS 检查 VERA Files、Rappler 以及 ABS-CBN、GMA、Inquirer、PhilStar、Manila Bulletin、PNA、PIA、DZRH 和 OneNews。</string>
+
+    <!-- Backend -->
+    <string name="backend_eyebrow">后端</string>
+    <string name="backend_title">连接</string>
+    <string name="backend_desc">当 Flask 后端与模拟器在同一台笔记本上运行时，请使用 10.0.2.2。</string>
+    <string name="backend_save">保存后端地址</string>
+    <string name="status_backend_saved">后端地址已保存。</string>
+
+    <!-- SightEngine -->
+    <string name="sightengine_eyebrow">图片检查</string>
+    <string name="sightengine_title">AI 图像检测</string>
+    <string name="sightengine_desc">添加你自己的 SightEngine API 凭据，即可对分享的图片运行 AI 图像检测。凭据仅保存在此设备上。没有凭据时，图片检查会显示 Not assessed。</string>
+    <string name="sightengine_user_hint">API 用户</string>
+    <string name="sightengine_secret_hint">API 密钥</string>
+    <string name="sightengine_save">保存凭据</string>
+    <string name="status_sightengine_saved">凭据已保存。</string>
+
+    <!-- Manual check -->
+    <string name="manual_eyebrow">检查声明</string>
+    <string name="manual_title">手动文本与图片检查</string>
+    <string name="manual_desc">粘贴一条声明或选择一张截图，IRIS 将对照菲律宾新闻来源进行检查。</string>
+    <string name="manual_input_hint">粘贴或输入要验证的声明</string>
+    <string name="manual_pick_image">选择图片进行检查</string>
+
+    <!-- History card -->
+    <string name="history_eyebrow">历史记录</string>
+    <string name="history_title">以往的检查</string>
+    <string name="history_desc">查看本设备上所做检查的判定。历史记录永远不会离开手机。</string>
+    <string name="history_open">打开历史记录</string>
+
+    <!-- Flow statuses -->
+    <string name="status_overlay_permission">允许 IRIS 在其他应用上显示，然后返回此处重新启用气泡。</string>
+    <string name="status_bubble_active">IRIS 气泡已激活。点按它粘贴文本，或使用 Android 的分享/文本菜单。</string>
+    <string name="status_bubble_off">IRIS 气泡已关闭。</string>
+    <string name="status_empty_text">请先输入或选择文本。</string>
+    <string name="status_scanning">正在扫描认可的 IRIS 来源...</string>
+    <string name="status_no_image">未选择任何图片。</string>
+    <string name="status_extracting">正在检查图片并扫描来源...</string>
+    <string name="status_image_ocr">已提交图片进行检查。</string>
+</resources>

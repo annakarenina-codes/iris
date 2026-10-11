@@ -4,7 +4,11 @@ plugins {
 
 android {
     namespace "com.iris.app"
-    compileSdk 37
+    compileSdk 36
+
+    buildFeatures {
+        buildConfig true
+    }
 
     buildFeatures {
         buildConfig true
@@ -22,6 +26,12 @@ android {
         // which is exactly right for a backend that has no token set.
         buildConfigField "String", "IRIS_ACCESS_TOKEN", "\"${irisAccessToken()}\""
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 def irisAccessToken() {
@@ -31,4 +41,9 @@ def irisAccessToken() {
         file.withInputStream { properties.load(it) }
     }
     return properties.getProperty("iris.accessToken", "")
+}
+
+dependencies {
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "org.robolectric:robolectric:4.14"
 }

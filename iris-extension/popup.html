@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IRIS</title>
+    <link rel="stylesheet" href="tokens.css" />
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
@@ -14,23 +15,24 @@
         </div>
         <div>
           <strong>IRIS</strong>
-          <span>Chrome Extension</span>
+          <span data-i18n="popup.subtitle">Chrome Extension</span>
         </div>
       </header>
 
       <section class="status-card">
-        <span>Backend</span>
-        <strong id="backend-url">Loading...</strong>
+        <span data-i18n="popup.backend">Backend</span>
+        <strong id="backend-url" data-i18n="popup.loading">Loading...</strong>
       </section>
 
       <div class="button-stack">
-        <button id="open-panel" type="button">Open panel</button>
-        <button id="check-selection" type="button">Check selected text</button>
-        <button id="open-options" type="button" class="secondary">Options</button>
+        <button id="open-panel" type="button" data-i18n="popup.openPanel">Open panel</button>
+        <button id="check-selection" type="button" data-i18n="popup.checkSelection">Check selected text</button>
+        <button id="open-options" type="button" class="secondary" data-i18n="popup.options">Options</button>
       </div>
 
       <p id="popup-status" role="status"></p>
     </main>
+    <script src="src/i18n.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>

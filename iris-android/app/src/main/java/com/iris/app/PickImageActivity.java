@@ -1,6 +1,7 @@
 package com.iris.app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -11,8 +12,14 @@ public class PickImageActivity extends Activity {
     private boolean pickerOpened;
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IrisLocale.wrap(newBase));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        IrisUi.applyTheme(this);
         if (savedInstanceState != null) {
             pickerOpened = savedInstanceState.getBoolean("picker_opened", false);
         }
